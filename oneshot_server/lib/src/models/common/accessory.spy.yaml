@@ -1,0 +1,21 @@
+class: Accessory
+table: accessories
+fields:
+  id: UuidValue?, defaultPersist=random
+  userId: UuidValue?
+  userInfo: module:auth:UserInfo?, relation
+  firearmId: UuidValue?
+  firearm: Firearm?, relation
+  purpose: String
+  type: String         # Press, Die, Scope, Magazine
+  manufacturer: String
+  model: String
+  serialNumber: String?
+  condition: String
+  purchasePrice: double?
+  acquisitionDate: DateTime?
+indexes:
+  accessory_user_id_idx:
+    fields: userId
+  accessory_firearm_id_idx:
+    fields: firearmId

@@ -1,0 +1,15 @@
+class: SupplyStock
+table: supply_stocks
+fields:
+  id: UuidValue?, defaultPersist=random
+  name: String
+  type: String         # Case, Primer, Powder, Bullet
+  quantity: double
+  unit: String         # Units, Grams, Grains
+  acquisitionDate: DateTime?
+  batchNumber: String?
+  userId: UuidValue?
+  userInfo: module:auth:UserInfo?, relation
+indexes:
+  supply_stock_user_id_idx:
+    fields: userId

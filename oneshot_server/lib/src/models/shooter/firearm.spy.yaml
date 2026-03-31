@@ -1,0 +1,28 @@
+class: Firearm
+table: firearms
+fields:
+  id: UuidValue?, defaultPersist=random
+  userId: UuidValue?
+  userInfo: module:auth:UserInfo?, relation
+  purpose: String      # Defense, Sport, Collection, Hunting
+  type: String         # Pistol, Revolver, Rifle
+  action: String
+  usageType: String    # Permitted, Restricted
+  serialNumber: String
+  manufactureCountry: String
+  manufacturer: String
+  model: String
+  caliber: String
+  magazineCapacity: int
+  barrelLength: String
+  weight: double
+  acquisitionDate: DateTime?
+  purchasePrice: double?
+  saleDate: DateTime?
+  salePrice: double?
+  condition: String
+indexes:
+  firearm_user_id_idx:
+    fields: userId
+  firearm_serial_number_idx:
+    fields: serialNumber

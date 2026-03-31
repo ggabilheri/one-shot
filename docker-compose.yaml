@@ -1,0 +1,74 @@
+services:
+  backend:
+    build:
+      context: ./oneshot_server
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+      - "8082:8082"
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_DB: oneshot
+      POSTGRES_PASSWORD: "ILpRp4L7sJi7dIhixYIYL2kafVyEdAxp"
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: "lgL9OOl8Zy-PYKlGC8rq7RNTOVH_7fdh"
+    depends_on:
+      - postgres
+      - redis
+
+  front_end:
+    build:
+      context: ./oneshot_flutter
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8092:80"
+    depends_on:
+      - backend
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    ports:
+      - "8090:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: oneshot
+      POSTGRES_PASSWORD: "ILpRp4L7sJi7dIhixYIYL2kafVyEdAxp"
+    volumes:
+      - oneshot_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6.2.6
+    ports:
+      - "8091:6379"
+    command: redis-server --requirepass "lgL9OOl8Zy-PYKlGC8rq7RNTOVH_7fdh"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+
+  postgres_test:
+    image: pgvector/pgvector:pg16
+    ports:
+      - "9090:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: oneshot_test
+      POSTGRES_PASSWORD: "rf_led6kil_sTU3B3SqEaGuYqkPe8J4f"
+    volumes:
+      - oneshot_test_data:/var/lib/postgresql/data
+
+  redis_test:
+    image: redis:6.2.6
+    ports:
+      - "9091:6379"
+    command: redis-server --requirepass "zhDW7OH3xREFPTIwyfDCtXmIfvGIk7pr"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+
+volumes:
+  oneshot_data:
+  oneshot_test_data:

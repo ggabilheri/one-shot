@@ -1,0 +1,22 @@
+class: ReloadTest
+table: reload_tests
+fields:
+  id: UuidValue?, defaultPersist=random
+  reloadSessionId: UuidValue?
+  reloadSession: ReloadSession?, relation
+  firearmId: UuidValue?
+  firearm: Firearm?, relation
+  testDate: DateTime
+  shotsFired: int
+  highestVelocityFps: double
+  lowestVelocityFps: double
+  averageVelocityFps: double
+  powerFactor: double
+  averageEnergy: double
+  groupingMeasurement: double?
+  crackedCasings: int
+indexes:
+  reload_test_session_id_idx:
+    fields: reloadSessionId
+  reload_test_firearm_id_idx:
+    fields: firearmId

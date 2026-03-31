@@ -1,0 +1,18 @@
+class: GunsmithClient
+table: gunsmith_clients
+fields:
+  id: UuidValue?, defaultPersist=random
+  gunsmithUserId: UuidValue?
+  gunsmithUserInfo: module:auth:UserInfo?, relation
+  name: String
+  cpf: String
+  rg: String?
+  phone: String
+  addressId: UuidValue?
+  address: Address?, relation
+indexes:
+  gunsmith_client_user_id_idx:
+    fields: gunsmithUserId
+  gunsmith_client_cpf_idx:
+    fields: cpf
+    unique: true

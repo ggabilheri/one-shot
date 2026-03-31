@@ -1,0 +1,26 @@
+class: Document
+table: documents
+fields:
+  id: UuidValue?, defaultPersist=random
+  userId: UuidValue?
+  userInfo: module:auth:UserInfo?, relation
+  firearmId: UuidValue?
+  firearm: Firearm?, relation(optional)
+  accessoryId: UuidValue?
+  accessory: Accessory?, relation(optional)
+  documentType: String   
+  registryAgency: String   
+  documentNumber: String
+  issueDate: DateTime
+  expirationDate: DateTime
+  documentImageUrl: String?
+  supplierName: String?
+  supplierAddressId: UuidValue?
+  supplierAddress: Address?, relation(optional)
+indexes:
+  document_user_id_idx:
+    fields: userId
+  document_firearm_id_idx:
+    fields: firearmId
+  document_expiration_date_idx:
+    fields: expirationDate

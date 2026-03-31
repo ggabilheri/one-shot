@@ -1,0 +1,27 @@
+class: ReloadSession
+table: reload_sessions
+fields:
+  id: UuidValue?, defaultPersist=random
+  userId: UuidValue?
+  userInfo: module:auth:UserInfo?, relation
+  reloadDate: DateTime
+  pressId: UuidValue?
+  press: Accessory?, relation
+  caliber: String
+  casingBatch: String
+  reloadsCompleted: int
+  powderId: UuidValue?
+  powder: SupplyStock?, relation
+  powderGrains: double
+  primerId: UuidValue?
+  primer: SupplyStock?, relation
+  projectileId: UuidValue?
+  projectile: SupplyStock?, relation
+  oal: double             
+  totalCost: double
+  unitCost: double
+indexes:
+  reload_session_user_id_idx:
+    fields: userId
+  reload_session_date_idx:
+    fields: reloadDate

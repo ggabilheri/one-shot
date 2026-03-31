@@ -1,0 +1,20 @@
+class: AmmunitionStock
+table: ammunition_stocks
+fields:
+  id: UuidValue?, defaultPersist=random
+  userId: UuidValue?
+  userInfo: module:auth:UserInfo?, relation
+  type: String            # Original / Reloaded
+  manufacturer: String
+  caliber: String
+  projectileType: String
+  projectileWeightGrains: double?
+  quantity: int
+  purchasePrice: double?
+  acquisitionDate: DateTime
+  casingBatch: String?
+indexes:
+  ammo_stock_user_id_idx:
+    fields: userId
+  ammo_stock_caliber_idx:
+    fields: caliber

@@ -1,0 +1,22 @@
+class: Training
+table: trainings
+fields:
+  id: UuidValue?, defaultPersist=random
+  userId: UuidValue?
+  userInfo: module:auth:UserInfo?, relation
+  date: DateTime
+  location: String
+  environmentType: String    
+  firearmId: UuidValue?
+  firearm: Firearm?, relation
+  ammunitionId: UuidValue?
+  ammunition: AmmunitionStock?, relation
+  shotsFired: int
+  distanceMeters: double
+  score: int?
+  targetImagesUrl: String?
+indexes:
+  training_user_id_idx:
+    fields: userId
+  training_date_idx:
+    fields: date

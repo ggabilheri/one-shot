@@ -1,0 +1,9 @@
+enum: UserType
+default: user
+values:
+  - shooter
+  - gunsmith
+  - admin
+  - psychologist
+  - instructor
+  - user

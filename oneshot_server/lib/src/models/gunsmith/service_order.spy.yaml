@@ -1,0 +1,20 @@
+class: ServiceOrder
+table: service_orders
+fields:
+  id: UuidValue?, defaultPersist=random
+  clientId: UuidValue?
+  client: GunsmithClient?, relation
+  firearmId: UuidValue?
+  firearm: Firearm?, relation
+  entryDate: DateTime
+  estimatedDeliveryDate: DateTime?
+  totalPrice: double
+  discount: double?
+  finalPrice: double
+  paymentMethod: String?
+  notes: String?
+indexes:
+  service_order_client_id_idx:
+    fields: clientId
+  service_order_entry_date_idx:
+    fields: entryDate

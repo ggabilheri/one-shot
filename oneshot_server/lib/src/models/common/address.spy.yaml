@@ -1,0 +1,15 @@
+class: Address
+table: addresses
+fields:
+  id: UuidValue?, defaultPersist=random
+  street: String
+  number: String
+  complement: String?
+  neighborhood: String
+  city: String
+  state: String
+  zipCode: String
+  userProfile: UserProfile?, relation
+indexes:
+  address_zip_code_idx:
+    fields: zipCode
