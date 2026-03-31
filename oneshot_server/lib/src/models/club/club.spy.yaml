@@ -1,0 +1,19 @@
+class: Club
+table: clubs
+fields:
+  id: UuidValue?, defaultPersist=random
+  name: String
+  cnpj: String
+  addressId: UuidValue?
+  address: Address?, relation
+  ownerId: UuidValue?
+  owner: UserProfile?, relation
+  phoneNumber: String?
+  email: String?
+  active: bool, default=true
+indexes:
+  club_cnpj_idx:
+    fields: cnpj
+    unique: true
+  club_owner_id_idx:
+    fields: ownerId

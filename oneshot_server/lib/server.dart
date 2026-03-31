@@ -4,6 +4,8 @@ import 'package:serverpod_auth_server/serverpod_auth_server.dart' as auth;
 
 import 'package:oneshot_server/src/web/routes/root.dart';
 
+import 'package:oneshot_server/src/core/injections/injections.dart';
+
 import 'src/generated/protocol.dart';
 import 'src/generated/endpoints.dart';
 
@@ -12,6 +14,9 @@ import 'src/generated/endpoints.dart';
 // configuring Relic (Serverpod's web-server), or need custom setup work.
 
 void run(List<String> args) async {
+  // Initialize Service Locator
+  sl.init();
+
   // Initialize Serverpod and connect it with your generated code.
   final pod = Serverpod(args, Protocol(), Endpoints());
 

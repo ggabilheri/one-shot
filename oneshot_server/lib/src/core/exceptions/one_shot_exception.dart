@@ -13,8 +13,8 @@ class ValidationException extends OneShotException {
 }
 
 class UnauthorizedException extends OneShotException {
-  UnauthorizedException([String message = 'Acesso não autorizado.'])
-      : super(message, code: 'UNAUTHORIZED');
+  UnauthorizedException([super.message = 'Acesso não autorizado.'])
+      : super(code: 'UNAUTHORIZED');
 }
 
 class NotFoundException extends OneShotException {

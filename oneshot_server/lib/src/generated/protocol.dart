@@ -13,26 +13,51 @@
 import 'package:serverpod/serverpod.dart' as _i1;
 import 'package:serverpod/protocol.dart' as _i2;
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i3;
-import 'common/accessory.dart' as _i4;
-import 'common/address.dart' as _i5;
-import 'common/document.dart' as _i6;
-import 'common/supply_stock.dart' as _i7;
-import 'common/user_profile.dart' as _i8;
-import 'enums/user_type.enum.dart' as _i9;
-import 'greeting.dart' as _i10;
-import 'gunsmith/gunsmith_client.dart' as _i11;
-import 'gunsmith/service_order.dart' as _i12;
-import 'gunsmith/service_order_item.dart' as _i13;
-import 'shooter/ammunition_stock.dart' as _i14;
-import 'shooter/firearm.dart' as _i15;
-import 'shooter/reload_session.dart' as _i16;
-import 'shooter/reload_test.dart' as _i17;
-import 'shooter/training.dart' as _i18;
+import 'club/club.dart' as _i4;
+import 'club/membership.dart' as _i5;
+import 'club/range_visit.dart' as _i6;
+import 'common/accessory.dart' as _i7;
+import 'common/address.dart' as _i8;
+import 'common/document.dart' as _i9;
+import 'common/supply_stock.dart' as _i10;
+import 'common/user_profile.dart' as _i11;
+import 'enums/membership_status.dart' as _i12;
+import 'enums/user_type.enum.dart' as _i13;
+import 'greeting.dart' as _i14;
+import 'gunsmith/gunsmith_client.dart' as _i15;
+import 'gunsmith/service_order.dart' as _i16;
+import 'gunsmith/service_order_item.dart' as _i17;
+import 'shooter/ammunition_stock.dart' as _i18;
+import 'shooter/firearm.dart' as _i19;
+import 'shooter/reload_session.dart' as _i20;
+import 'shooter/reload_test.dart' as _i21;
+import 'shooter/training.dart' as _i22;
+import 'package:oneshot_server/src/generated/shooter/ammunition_stock.dart'
+    as _i23;
+import 'package:oneshot_server/src/generated/club/club.dart' as _i24;
+import 'package:oneshot_server/src/generated/club/membership.dart' as _i25;
+import 'package:oneshot_server/src/generated/club/range_visit.dart' as _i26;
+import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _i27;
+import 'package:oneshot_server/src/generated/gunsmith/gunsmith_client.dart'
+    as _i28;
+import 'package:oneshot_server/src/generated/gunsmith/service_order_item.dart'
+    as _i29;
+import 'package:oneshot_server/src/generated/gunsmith/service_order.dart'
+    as _i30;
+import 'package:oneshot_server/src/generated/shooter/reload_session.dart'
+    as _i31;
+import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i32;
+import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i33;
+import 'package:oneshot_server/src/generated/shooter/training.dart' as _i34;
+export 'club/club.dart';
+export 'club/membership.dart';
+export 'club/range_visit.dart';
 export 'common/accessory.dart';
 export 'common/address.dart';
 export 'common/document.dart';
 export 'common/supply_stock.dart';
 export 'common/user_profile.dart';
+export 'enums/membership_status.dart';
 export 'enums/user_type.enum.dart';
 export 'greeting.dart';
 export 'gunsmith/gunsmith_client.dart';
@@ -433,6 +458,140 @@ class Protocol extends _i1.SerializationManagerServer {
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
               definition: 'caliber',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
+          isPrimary: false,
+        ),
+      ],
+      managed: true,
+    ),
+    _i2.TableDefinition(
+      name: 'clubs',
+      dartName: 'Club',
+      schema: 'public',
+      module: 'oneshot',
+      columns: [
+        _i2.ColumnDefinition(
+          name: 'id',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue?',
+          columnDefault: 'gen_random_uuid()',
+        ),
+        _i2.ColumnDefinition(
+          name: 'name',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+        _i2.ColumnDefinition(
+          name: 'cnpj',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+        _i2.ColumnDefinition(
+          name: 'addressId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: true,
+          dartType: 'UuidValue?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'addressId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue',
+        ),
+        _i2.ColumnDefinition(
+          name: 'ownerId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: true,
+          dartType: 'UuidValue?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'ownerId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue',
+        ),
+        _i2.ColumnDefinition(
+          name: 'phoneNumber',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'email',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'active',
+          columnType: _i2.ColumnType.boolean,
+          isNullable: false,
+          dartType: 'bool',
+          columnDefault: 'true',
+        ),
+      ],
+      foreignKeys: [
+        _i2.ForeignKeyDefinition(
+          constraintName: 'clubs_fk_0',
+          columns: ['addressId'],
+          referenceTable: 'addresses',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _i2.ForeignKeyAction.noAction,
+          onDelete: _i2.ForeignKeyAction.noAction,
+          matchType: null,
+        ),
+        _i2.ForeignKeyDefinition(
+          constraintName: 'clubs_fk_1',
+          columns: ['ownerId'],
+          referenceTable: 'user_profile',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _i2.ForeignKeyAction.noAction,
+          onDelete: _i2.ForeignKeyAction.noAction,
+          matchType: null,
+        ),
+      ],
+      indexes: [
+        _i2.IndexDefinition(
+          indexName: 'clubs_pkey',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'id',
+            ),
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: true,
+        ),
+        _i2.IndexDefinition(
+          indexName: 'club_cnpj_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'cnpj',
+            ),
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: false,
+        ),
+        _i2.IndexDefinition(
+          indexName: 'club_owner_id_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'ownerId',
             ),
           ],
           type: 'btree',
@@ -949,6 +1108,314 @@ class Protocol extends _i1.SerializationManagerServer {
           ],
           type: 'btree',
           isUnique: true,
+          isPrimary: false,
+        ),
+      ],
+      managed: true,
+    ),
+    _i2.TableDefinition(
+      name: 'memberships',
+      dartName: 'Membership',
+      schema: 'public',
+      module: 'oneshot',
+      columns: [
+        _i2.ColumnDefinition(
+          name: 'id',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue?',
+          columnDefault: 'gen_random_uuid()',
+        ),
+        _i2.ColumnDefinition(
+          name: 'userId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: true,
+          dartType: 'UuidValue?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'userId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue',
+        ),
+        _i2.ColumnDefinition(
+          name: 'clubId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: true,
+          dartType: 'UuidValue?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'clubId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue',
+        ),
+        _i2.ColumnDefinition(
+          name: 'membershipNumber',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'startDate',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: false,
+          dartType: 'DateTime',
+        ),
+        _i2.ColumnDefinition(
+          name: 'validUntil',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'status',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'protocol:MembershipStatus',
+          columnDefault: '\'active\'::text',
+        ),
+        _i2.ColumnDefinition(
+          name: 'planName',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+      ],
+      foreignKeys: [
+        _i2.ForeignKeyDefinition(
+          constraintName: 'memberships_fk_0',
+          columns: ['userId'],
+          referenceTable: 'user_profile',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _i2.ForeignKeyAction.noAction,
+          onDelete: _i2.ForeignKeyAction.noAction,
+          matchType: null,
+        ),
+        _i2.ForeignKeyDefinition(
+          constraintName: 'memberships_fk_1',
+          columns: ['clubId'],
+          referenceTable: 'clubs',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _i2.ForeignKeyAction.noAction,
+          onDelete: _i2.ForeignKeyAction.noAction,
+          matchType: null,
+        ),
+      ],
+      indexes: [
+        _i2.IndexDefinition(
+          indexName: 'memberships_pkey',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'id',
+            ),
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: true,
+        ),
+        _i2.IndexDefinition(
+          indexName: 'membership_user_club_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'userId',
+            ),
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'clubId',
+            ),
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: false,
+        ),
+        _i2.IndexDefinition(
+          indexName: 'membership_club_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'clubId',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
+          isPrimary: false,
+        ),
+      ],
+      managed: true,
+    ),
+    _i2.TableDefinition(
+      name: 'range_visits',
+      dartName: 'RangeVisit',
+      schema: 'public',
+      module: 'oneshot',
+      columns: [
+        _i2.ColumnDefinition(
+          name: 'id',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue?',
+          columnDefault: 'gen_random_uuid()',
+        ),
+        _i2.ColumnDefinition(
+          name: 'userId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: true,
+          dartType: 'UuidValue?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'userId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue',
+        ),
+        _i2.ColumnDefinition(
+          name: 'clubId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: true,
+          dartType: 'UuidValue?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'clubId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue',
+        ),
+        _i2.ColumnDefinition(
+          name: 'firearmId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: true,
+          dartType: 'UuidValue?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'firearmId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue',
+        ),
+        _i2.ColumnDefinition(
+          name: 'checkIn',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: false,
+          dartType: 'DateTime',
+        ),
+        _i2.ColumnDefinition(
+          name: 'checkOut',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'shotsFired',
+          columnType: _i2.ColumnType.bigint,
+          isNullable: false,
+          dartType: 'int',
+          columnDefault: '0',
+        ),
+        _i2.ColumnDefinition(
+          name: 'notes',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'habitualityReportGenerated',
+          columnType: _i2.ColumnType.boolean,
+          isNullable: false,
+          dartType: 'bool',
+          columnDefault: 'false',
+        ),
+      ],
+      foreignKeys: [
+        _i2.ForeignKeyDefinition(
+          constraintName: 'range_visits_fk_0',
+          columns: ['userId'],
+          referenceTable: 'user_profile',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _i2.ForeignKeyAction.noAction,
+          onDelete: _i2.ForeignKeyAction.noAction,
+          matchType: null,
+        ),
+        _i2.ForeignKeyDefinition(
+          constraintName: 'range_visits_fk_1',
+          columns: ['clubId'],
+          referenceTable: 'clubs',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _i2.ForeignKeyAction.noAction,
+          onDelete: _i2.ForeignKeyAction.noAction,
+          matchType: null,
+        ),
+        _i2.ForeignKeyDefinition(
+          constraintName: 'range_visits_fk_2',
+          columns: ['firearmId'],
+          referenceTable: 'firearms',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _i2.ForeignKeyAction.noAction,
+          onDelete: _i2.ForeignKeyAction.noAction,
+          matchType: null,
+        ),
+      ],
+      indexes: [
+        _i2.IndexDefinition(
+          indexName: 'range_visits_pkey',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'id',
+            ),
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: true,
+        ),
+        _i2.IndexDefinition(
+          indexName: 'range_visit_user_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'userId',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
+          isPrimary: false,
+        ),
+        _i2.IndexDefinition(
+          indexName: 'range_visit_club_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'clubId',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
+          isPrimary: false,
+        ),
+        _i2.IndexDefinition(
+          indexName: 'range_visit_date_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'checkIn',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
           isPrimary: false,
         ),
       ],
@@ -1998,104 +2465,189 @@ class Protocol extends _i1.SerializationManagerServer {
       }
     }
 
-    if (t == _i4.Accessory) {
-      return _i4.Accessory.fromJson(data) as T;
+    if (t == _i4.Club) {
+      return _i4.Club.fromJson(data) as T;
     }
-    if (t == _i5.Address) {
-      return _i5.Address.fromJson(data) as T;
+    if (t == _i5.Membership) {
+      return _i5.Membership.fromJson(data) as T;
     }
-    if (t == _i6.Document) {
-      return _i6.Document.fromJson(data) as T;
+    if (t == _i6.RangeVisit) {
+      return _i6.RangeVisit.fromJson(data) as T;
     }
-    if (t == _i7.SupplyStock) {
-      return _i7.SupplyStock.fromJson(data) as T;
+    if (t == _i7.Accessory) {
+      return _i7.Accessory.fromJson(data) as T;
     }
-    if (t == _i8.UserProfile) {
-      return _i8.UserProfile.fromJson(data) as T;
+    if (t == _i8.Address) {
+      return _i8.Address.fromJson(data) as T;
     }
-    if (t == _i9.UserType) {
-      return _i9.UserType.fromJson(data) as T;
+    if (t == _i9.Document) {
+      return _i9.Document.fromJson(data) as T;
     }
-    if (t == _i10.Greeting) {
-      return _i10.Greeting.fromJson(data) as T;
+    if (t == _i10.SupplyStock) {
+      return _i10.SupplyStock.fromJson(data) as T;
     }
-    if (t == _i11.GunsmithClient) {
-      return _i11.GunsmithClient.fromJson(data) as T;
+    if (t == _i11.UserProfile) {
+      return _i11.UserProfile.fromJson(data) as T;
     }
-    if (t == _i12.ServiceOrder) {
-      return _i12.ServiceOrder.fromJson(data) as T;
+    if (t == _i12.MembershipStatus) {
+      return _i12.MembershipStatus.fromJson(data) as T;
     }
-    if (t == _i13.ServiceOrderItem) {
-      return _i13.ServiceOrderItem.fromJson(data) as T;
+    if (t == _i13.UserType) {
+      return _i13.UserType.fromJson(data) as T;
     }
-    if (t == _i14.AmmunitionStock) {
-      return _i14.AmmunitionStock.fromJson(data) as T;
+    if (t == _i14.Greeting) {
+      return _i14.Greeting.fromJson(data) as T;
     }
-    if (t == _i15.Firearm) {
-      return _i15.Firearm.fromJson(data) as T;
+    if (t == _i15.GunsmithClient) {
+      return _i15.GunsmithClient.fromJson(data) as T;
     }
-    if (t == _i16.ReloadSession) {
-      return _i16.ReloadSession.fromJson(data) as T;
+    if (t == _i16.ServiceOrder) {
+      return _i16.ServiceOrder.fromJson(data) as T;
     }
-    if (t == _i17.ReloadTest) {
-      return _i17.ReloadTest.fromJson(data) as T;
+    if (t == _i17.ServiceOrderItem) {
+      return _i17.ServiceOrderItem.fromJson(data) as T;
     }
-    if (t == _i18.Training) {
-      return _i18.Training.fromJson(data) as T;
+    if (t == _i18.AmmunitionStock) {
+      return _i18.AmmunitionStock.fromJson(data) as T;
     }
-    if (t == _i1.getType<_i4.Accessory?>()) {
-      return (data != null ? _i4.Accessory.fromJson(data) : null) as T;
+    if (t == _i19.Firearm) {
+      return _i19.Firearm.fromJson(data) as T;
     }
-    if (t == _i1.getType<_i5.Address?>()) {
-      return (data != null ? _i5.Address.fromJson(data) : null) as T;
+    if (t == _i20.ReloadSession) {
+      return _i20.ReloadSession.fromJson(data) as T;
     }
-    if (t == _i1.getType<_i6.Document?>()) {
-      return (data != null ? _i6.Document.fromJson(data) : null) as T;
+    if (t == _i21.ReloadTest) {
+      return _i21.ReloadTest.fromJson(data) as T;
     }
-    if (t == _i1.getType<_i7.SupplyStock?>()) {
-      return (data != null ? _i7.SupplyStock.fromJson(data) : null) as T;
+    if (t == _i22.Training) {
+      return _i22.Training.fromJson(data) as T;
     }
-    if (t == _i1.getType<_i8.UserProfile?>()) {
-      return (data != null ? _i8.UserProfile.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i4.Club?>()) {
+      return (data != null ? _i4.Club.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i9.UserType?>()) {
-      return (data != null ? _i9.UserType.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i5.Membership?>()) {
+      return (data != null ? _i5.Membership.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i10.Greeting?>()) {
-      return (data != null ? _i10.Greeting.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i6.RangeVisit?>()) {
+      return (data != null ? _i6.RangeVisit.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i11.GunsmithClient?>()) {
-      return (data != null ? _i11.GunsmithClient.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i7.Accessory?>()) {
+      return (data != null ? _i7.Accessory.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i12.ServiceOrder?>()) {
-      return (data != null ? _i12.ServiceOrder.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i8.Address?>()) {
+      return (data != null ? _i8.Address.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i13.ServiceOrderItem?>()) {
-      return (data != null ? _i13.ServiceOrderItem.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i9.Document?>()) {
+      return (data != null ? _i9.Document.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i14.AmmunitionStock?>()) {
-      return (data != null ? _i14.AmmunitionStock.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i10.SupplyStock?>()) {
+      return (data != null ? _i10.SupplyStock.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i15.Firearm?>()) {
-      return (data != null ? _i15.Firearm.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i11.UserProfile?>()) {
+      return (data != null ? _i11.UserProfile.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i16.ReloadSession?>()) {
-      return (data != null ? _i16.ReloadSession.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i12.MembershipStatus?>()) {
+      return (data != null ? _i12.MembershipStatus.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i17.ReloadTest?>()) {
-      return (data != null ? _i17.ReloadTest.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i13.UserType?>()) {
+      return (data != null ? _i13.UserType.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i18.Training?>()) {
-      return (data != null ? _i18.Training.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i14.Greeting?>()) {
+      return (data != null ? _i14.Greeting.fromJson(data) : null) as T;
     }
-    if (t == List<_i9.UserType>) {
-      return (data as List).map((e) => deserialize<_i9.UserType>(e)).toList()
+    if (t == _i1.getType<_i15.GunsmithClient?>()) {
+      return (data != null ? _i15.GunsmithClient.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i16.ServiceOrder?>()) {
+      return (data != null ? _i16.ServiceOrder.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i17.ServiceOrderItem?>()) {
+      return (data != null ? _i17.ServiceOrderItem.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i18.AmmunitionStock?>()) {
+      return (data != null ? _i18.AmmunitionStock.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i19.Firearm?>()) {
+      return (data != null ? _i19.Firearm.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i20.ReloadSession?>()) {
+      return (data != null ? _i20.ReloadSession.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i21.ReloadTest?>()) {
+      return (data != null ? _i21.ReloadTest.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i22.Training?>()) {
+      return (data != null ? _i22.Training.fromJson(data) : null) as T;
+    }
+    if (t == List<_i13.UserType>) {
+      return (data as List).map((e) => deserialize<_i13.UserType>(e)).toList()
           as T;
     }
-    if (t == _i1.getType<List<_i9.UserType>?>()) {
+    if (t == _i1.getType<List<_i13.UserType>?>()) {
       return (data != null
-              ? (data as List).map((e) => deserialize<_i9.UserType>(e)).toList()
+              ? (data as List)
+                    .map((e) => deserialize<_i13.UserType>(e))
+                    .toList()
               : null)
+          as T;
+    }
+    if (t == List<_i23.AmmunitionStock>) {
+      return (data as List)
+              .map((e) => deserialize<_i23.AmmunitionStock>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i24.Club>) {
+      return (data as List).map((e) => deserialize<_i24.Club>(e)).toList() as T;
+    }
+    if (t == List<_i25.Membership>) {
+      return (data as List).map((e) => deserialize<_i25.Membership>(e)).toList()
+          as T;
+    }
+    if (t == List<_i26.RangeVisit>) {
+      return (data as List).map((e) => deserialize<_i26.RangeVisit>(e)).toList()
+          as T;
+    }
+    if (t == List<_i27.Firearm>) {
+      return (data as List).map((e) => deserialize<_i27.Firearm>(e)).toList()
+          as T;
+    }
+    if (t == List<_i28.GunsmithClient>) {
+      return (data as List)
+              .map((e) => deserialize<_i28.GunsmithClient>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i29.ServiceOrderItem>) {
+      return (data as List)
+              .map((e) => deserialize<_i29.ServiceOrderItem>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i30.ServiceOrder>) {
+      return (data as List)
+              .map((e) => deserialize<_i30.ServiceOrder>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i31.ReloadSession>) {
+      return (data as List)
+              .map((e) => deserialize<_i31.ReloadSession>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i32.ReloadTest>) {
+      return (data as List).map((e) => deserialize<_i32.ReloadTest>(e)).toList()
+          as T;
+    }
+    if (t == List<_i33.SupplyStock>) {
+      return (data as List)
+              .map((e) => deserialize<_i33.SupplyStock>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i34.Training>) {
+      return (data as List).map((e) => deserialize<_i34.Training>(e)).toList()
           as T;
     }
     try {
@@ -2109,21 +2661,25 @@ class Protocol extends _i1.SerializationManagerServer {
 
   static String? getClassNameForType(Type type) {
     return switch (type) {
-      _i4.Accessory => 'Accessory',
-      _i5.Address => 'Address',
-      _i6.Document => 'Document',
-      _i7.SupplyStock => 'SupplyStock',
-      _i8.UserProfile => 'UserProfile',
-      _i9.UserType => 'UserType',
-      _i10.Greeting => 'Greeting',
-      _i11.GunsmithClient => 'GunsmithClient',
-      _i12.ServiceOrder => 'ServiceOrder',
-      _i13.ServiceOrderItem => 'ServiceOrderItem',
-      _i14.AmmunitionStock => 'AmmunitionStock',
-      _i15.Firearm => 'Firearm',
-      _i16.ReloadSession => 'ReloadSession',
-      _i17.ReloadTest => 'ReloadTest',
-      _i18.Training => 'Training',
+      _i4.Club => 'Club',
+      _i5.Membership => 'Membership',
+      _i6.RangeVisit => 'RangeVisit',
+      _i7.Accessory => 'Accessory',
+      _i8.Address => 'Address',
+      _i9.Document => 'Document',
+      _i10.SupplyStock => 'SupplyStock',
+      _i11.UserProfile => 'UserProfile',
+      _i12.MembershipStatus => 'MembershipStatus',
+      _i13.UserType => 'UserType',
+      _i14.Greeting => 'Greeting',
+      _i15.GunsmithClient => 'GunsmithClient',
+      _i16.ServiceOrder => 'ServiceOrder',
+      _i17.ServiceOrderItem => 'ServiceOrderItem',
+      _i18.AmmunitionStock => 'AmmunitionStock',
+      _i19.Firearm => 'Firearm',
+      _i20.ReloadSession => 'ReloadSession',
+      _i21.ReloadTest => 'ReloadTest',
+      _i22.Training => 'Training',
       _ => null,
     };
   }
@@ -2138,35 +2694,43 @@ class Protocol extends _i1.SerializationManagerServer {
     }
 
     switch (data) {
-      case _i4.Accessory():
+      case _i4.Club():
+        return 'Club';
+      case _i5.Membership():
+        return 'Membership';
+      case _i6.RangeVisit():
+        return 'RangeVisit';
+      case _i7.Accessory():
         return 'Accessory';
-      case _i5.Address():
+      case _i8.Address():
         return 'Address';
-      case _i6.Document():
+      case _i9.Document():
         return 'Document';
-      case _i7.SupplyStock():
+      case _i10.SupplyStock():
         return 'SupplyStock';
-      case _i8.UserProfile():
+      case _i11.UserProfile():
         return 'UserProfile';
-      case _i9.UserType():
+      case _i12.MembershipStatus():
+        return 'MembershipStatus';
+      case _i13.UserType():
         return 'UserType';
-      case _i10.Greeting():
+      case _i14.Greeting():
         return 'Greeting';
-      case _i11.GunsmithClient():
+      case _i15.GunsmithClient():
         return 'GunsmithClient';
-      case _i12.ServiceOrder():
+      case _i16.ServiceOrder():
         return 'ServiceOrder';
-      case _i13.ServiceOrderItem():
+      case _i17.ServiceOrderItem():
         return 'ServiceOrderItem';
-      case _i14.AmmunitionStock():
+      case _i18.AmmunitionStock():
         return 'AmmunitionStock';
-      case _i15.Firearm():
+      case _i19.Firearm():
         return 'Firearm';
-      case _i16.ReloadSession():
+      case _i20.ReloadSession():
         return 'ReloadSession';
-      case _i17.ReloadTest():
+      case _i21.ReloadTest():
         return 'ReloadTest';
-      case _i18.Training():
+      case _i22.Training():
         return 'Training';
     }
     className = _i2.Protocol().getClassNameForObject(data);
@@ -2186,50 +2750,62 @@ class Protocol extends _i1.SerializationManagerServer {
     if (dataClassName is! String) {
       return super.deserializeByClassName(data);
     }
+    if (dataClassName == 'Club') {
+      return deserialize<_i4.Club>(data['data']);
+    }
+    if (dataClassName == 'Membership') {
+      return deserialize<_i5.Membership>(data['data']);
+    }
+    if (dataClassName == 'RangeVisit') {
+      return deserialize<_i6.RangeVisit>(data['data']);
+    }
     if (dataClassName == 'Accessory') {
-      return deserialize<_i4.Accessory>(data['data']);
+      return deserialize<_i7.Accessory>(data['data']);
     }
     if (dataClassName == 'Address') {
-      return deserialize<_i5.Address>(data['data']);
+      return deserialize<_i8.Address>(data['data']);
     }
     if (dataClassName == 'Document') {
-      return deserialize<_i6.Document>(data['data']);
+      return deserialize<_i9.Document>(data['data']);
     }
     if (dataClassName == 'SupplyStock') {
-      return deserialize<_i7.SupplyStock>(data['data']);
+      return deserialize<_i10.SupplyStock>(data['data']);
     }
     if (dataClassName == 'UserProfile') {
-      return deserialize<_i8.UserProfile>(data['data']);
+      return deserialize<_i11.UserProfile>(data['data']);
+    }
+    if (dataClassName == 'MembershipStatus') {
+      return deserialize<_i12.MembershipStatus>(data['data']);
     }
     if (dataClassName == 'UserType') {
-      return deserialize<_i9.UserType>(data['data']);
+      return deserialize<_i13.UserType>(data['data']);
     }
     if (dataClassName == 'Greeting') {
-      return deserialize<_i10.Greeting>(data['data']);
+      return deserialize<_i14.Greeting>(data['data']);
     }
     if (dataClassName == 'GunsmithClient') {
-      return deserialize<_i11.GunsmithClient>(data['data']);
+      return deserialize<_i15.GunsmithClient>(data['data']);
     }
     if (dataClassName == 'ServiceOrder') {
-      return deserialize<_i12.ServiceOrder>(data['data']);
+      return deserialize<_i16.ServiceOrder>(data['data']);
     }
     if (dataClassName == 'ServiceOrderItem') {
-      return deserialize<_i13.ServiceOrderItem>(data['data']);
+      return deserialize<_i17.ServiceOrderItem>(data['data']);
     }
     if (dataClassName == 'AmmunitionStock') {
-      return deserialize<_i14.AmmunitionStock>(data['data']);
+      return deserialize<_i18.AmmunitionStock>(data['data']);
     }
     if (dataClassName == 'Firearm') {
-      return deserialize<_i15.Firearm>(data['data']);
+      return deserialize<_i19.Firearm>(data['data']);
     }
     if (dataClassName == 'ReloadSession') {
-      return deserialize<_i16.ReloadSession>(data['data']);
+      return deserialize<_i20.ReloadSession>(data['data']);
     }
     if (dataClassName == 'ReloadTest') {
-      return deserialize<_i17.ReloadTest>(data['data']);
+      return deserialize<_i21.ReloadTest>(data['data']);
     }
     if (dataClassName == 'Training') {
-      return deserialize<_i18.Training>(data['data']);
+      return deserialize<_i22.Training>(data['data']);
     }
     if (dataClassName.startsWith('serverpod.')) {
       data['className'] = dataClassName.substring(10);
@@ -2257,32 +2833,38 @@ class Protocol extends _i1.SerializationManagerServer {
       }
     }
     switch (t) {
-      case _i4.Accessory:
-        return _i4.Accessory.t;
-      case _i5.Address:
-        return _i5.Address.t;
-      case _i6.Document:
-        return _i6.Document.t;
-      case _i7.SupplyStock:
-        return _i7.SupplyStock.t;
-      case _i8.UserProfile:
-        return _i8.UserProfile.t;
-      case _i11.GunsmithClient:
-        return _i11.GunsmithClient.t;
-      case _i12.ServiceOrder:
-        return _i12.ServiceOrder.t;
-      case _i13.ServiceOrderItem:
-        return _i13.ServiceOrderItem.t;
-      case _i14.AmmunitionStock:
-        return _i14.AmmunitionStock.t;
-      case _i15.Firearm:
-        return _i15.Firearm.t;
-      case _i16.ReloadSession:
-        return _i16.ReloadSession.t;
-      case _i17.ReloadTest:
-        return _i17.ReloadTest.t;
-      case _i18.Training:
-        return _i18.Training.t;
+      case _i4.Club:
+        return _i4.Club.t;
+      case _i5.Membership:
+        return _i5.Membership.t;
+      case _i6.RangeVisit:
+        return _i6.RangeVisit.t;
+      case _i7.Accessory:
+        return _i7.Accessory.t;
+      case _i8.Address:
+        return _i8.Address.t;
+      case _i9.Document:
+        return _i9.Document.t;
+      case _i10.SupplyStock:
+        return _i10.SupplyStock.t;
+      case _i11.UserProfile:
+        return _i11.UserProfile.t;
+      case _i15.GunsmithClient:
+        return _i15.GunsmithClient.t;
+      case _i16.ServiceOrder:
+        return _i16.ServiceOrder.t;
+      case _i17.ServiceOrderItem:
+        return _i17.ServiceOrderItem.t;
+      case _i18.AmmunitionStock:
+        return _i18.AmmunitionStock.t;
+      case _i19.Firearm:
+        return _i19.Firearm.t;
+      case _i20.ReloadSession:
+        return _i20.ReloadSession.t;
+      case _i21.ReloadTest:
+        return _i21.ReloadTest.t;
+      case _i22.Training:
+        return _i22.Training.t;
     }
     return null;
   }

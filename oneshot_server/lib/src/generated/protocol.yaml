@@ -1,2 +1,43 @@
+ammunition:
+  - getMyAmmunition:
+  - addAmmunition:
+  - adjustQuantity:
+  - deleteAmmunition:
+club:
+  - createClub:
+  - listClubs:
+  - requestMembership:
+  - getMyMemberships:
+  - checkIn:
+  - checkOut:
+  - getMyVisits:
+firearm:
+  - getMyFirearms:
+  - registerFirearm:
+  - updateFirearm:
+  - deleteFirearm:
+gunsmith:
+  - createClient:
+  - findClientByCpf:
+  - getMyClients:
+  - registerServiceOrder:
+  - getOrdersByClient:
+  - getOrderItems:
+profile:
+  - getOrCreateMyProfile:
+  - updateMyProfile:
+  - getProfileById:
+reload:
+  - executeReloadSession:
+  - getMyReloadSessions:
+  - registerTest:
+  - getTestsBySession:
+  - getMySupplies:
+  - addSupply:
+  - updateSupply:
+training:
+  - register:
+  - getMyTrainings:
+  - getTraining:
 greeting:
   - hello:

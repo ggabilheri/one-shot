@@ -1,0 +1,7 @@
+enum: MembershipStatus
+default: active
+serialized: byName
+values:
+  - active
+  - suspended
+  - expired

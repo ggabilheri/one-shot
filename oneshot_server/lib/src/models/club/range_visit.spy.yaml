@@ -1,0 +1,22 @@
+class: RangeVisit
+table: range_visits
+fields:
+  id: UuidValue?, defaultPersist=random
+  userId: UuidValue?
+  user: UserProfile?, relation
+  clubId: UuidValue?
+  club: Club?, relation
+  firearmId: UuidValue?
+  firearm: Firearm?, relation
+  checkIn: DateTime
+  checkOut: DateTime?
+  shotsFired: int, default=0
+  notes: String?
+  habitualityReportGenerated: bool, default=false
+indexes:
+  range_visit_user_idx:
+    fields: userId
+  range_visit_club_idx:
+    fields: clubId
+  range_visit_date_idx:
+    fields: checkIn
