@@ -11,7 +11,7 @@ RUN dart compile exe bin/main.dart -o bin/server
 FROM alpine:latest
 
 # Environment variables
-ENV runmode=production
+ENV runmode=development
 ENV serverid=default
 ENV logging=normal
 ENV role=monolith
@@ -24,7 +24,6 @@ COPY --from=build /app/bin/server server
 
 # Copy configuration files and resources
 COPY --from=build /app/config/ config/
-COPY --from=build /app/web/ web/
 COPY --from=build /app/migrations/ migrations/
 
 # This file is required to enable the endpoint log filter in Insights.
@@ -36,4 +35,4 @@ EXPOSE 8081
 EXPOSE 8082
 
 # Define the entrypoint command
-ENTRYPOINT ./server --mode=$runmode --server-id=$serverid --logging=$logging --role=$role
+ENTRYPOINT ./server --apply-migrations --mode=$runmode --server-id=$serverid --logging=$logging --role=$role
