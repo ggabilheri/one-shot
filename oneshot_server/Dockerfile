@@ -1,5 +1,24 @@
 # Build stage
-FROM dart:3.8.1 AS build
+FROM ubuntu:22.04 AS builder
+
+# Instala dependências
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    unzip \
+    libglu1-mesa \
+    build-essential \
+    pkg-config \
+    libgtk-3-dev \
+    && apt-get clean
+
+# Configura Flutter
+ENV FLUTTER_VERSION 3.32.5
+RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
+ENV PATH="/usr/local/flutter/bin:${PATH}"
+RUN cd /usr/local/flutter && git checkout 3.32.5
+RUN flutter config --enable-web
+
 WORKDIR /app
 COPY . .
 
