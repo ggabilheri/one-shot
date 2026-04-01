@@ -1,0 +1,15 @@
+# Ignore Dart build artifacts and local development files
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+bin/server
+pubspec.lock
+*.log
+.DS_Store
+.vscode/
+.idea/
+.fvm/
+Dockerfile
+.dockerignore
