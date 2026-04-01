@@ -1,5 +1,5 @@
 # Build stage
-FROM dart:3.8.1 AS build
+FROM dart:3.6.1 AS build
 WORKDIR /app
 COPY . .
 
@@ -8,16 +8,16 @@ RUN dart pub get
 RUN dart compile exe bin/main.dart -o bin/server
 
 # Final stage
-FROM alpine:latest
+FROM debian:stable-slim
+
+# Install runtime dependencies (inc. ca-certificates for HTTPS)
+RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 
 # Environment variables
 ENV runmode=development
 ENV serverid=default
 ENV logging=normal
 ENV role=monolith
-
-# Copy runtime dependencies
-COPY --from=build /runtime/ /
 
 # Copy compiled server executable
 COPY --from=build /app/bin/server server
@@ -35,4 +35,5 @@ EXPOSE 8081
 EXPOSE 8082
 
 # Define the entrypoint command
+# Using shell form to allow variable expansion
 ENTRYPOINT ./server --apply-migrations --mode=$runmode --server-id=$serverid --logging=$logging --role=$role
