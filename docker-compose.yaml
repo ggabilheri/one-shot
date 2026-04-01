@@ -21,15 +21,15 @@ services:
       - postgres
       - redis
 
-  front_end:
-    build:
-      context: ./oneshot_flutter
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - "8092:80"
-    depends_on:
-      - backend
+  # front_end:
+  #   build:
+  #     context: ./oneshot_flutter
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   ports:
+  #     - "8092:80"
+  #   depends_on:
+  #     - backend
 
   postgres:
     image: pgvector/pgvector:pg16
