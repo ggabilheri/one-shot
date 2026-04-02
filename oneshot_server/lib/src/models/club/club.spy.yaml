@@ -4,9 +4,7 @@ fields:
   id: UuidValue, defaultModel=random
   name: String
   cnpj: String
-  addressId: UuidValue?
   address: Address?, relation(optional)
-  ownerId: UuidValue?
   owner: UserProfile?, relation(optional)
   phoneNumber: String?
   email: String?

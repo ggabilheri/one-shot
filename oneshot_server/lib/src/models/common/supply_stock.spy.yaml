@@ -8,8 +8,7 @@ fields:
   unit: String         # Units, Grams, Grains
   acquisitionDate: DateTime?
   batchNumber: String?
-  userId: UuidValue?
   userInfo: module:auth:UserInfo?, relation(optional)
 indexes:
   supply_stock_user_id_idx:
-    fields: userId
+    fields: userInfoId

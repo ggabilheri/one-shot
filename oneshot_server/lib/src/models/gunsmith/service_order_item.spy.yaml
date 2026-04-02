@@ -2,11 +2,9 @@ class: ServiceOrderItem
 table: service_order_items
 fields:
   id: UuidValue, defaultModel=random
-  serviceOrderId: UuidValue?
   serviceOrder: ServiceOrder?, relation(optional)
   description: String
   isStockPart: bool
-  supplyPartId: UuidValue?
   supplyPart: SupplyStock?, relation(optional)
   servicePrice: double
 indexes:

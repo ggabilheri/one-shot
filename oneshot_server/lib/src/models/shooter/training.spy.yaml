@@ -2,14 +2,11 @@ class: Training
 table: trainings
 fields:
   id: UuidValue, defaultModel=random
-  userId: UuidValue?
   userInfo: module:auth:UserInfo?, relation(optional)
   date: DateTime
   location: String
   environmentType: String    
-  firearmId: UuidValue?
   firearm: Firearm?, relation(optional)
-  ammunitionId: UuidValue?
   ammunition: AmmunitionStock?, relation(optional)
   shotsFired: int
   distanceMeters: double
@@ -17,6 +14,6 @@ fields:
   targetImagesUrl: String?
 indexes:
   training_user_id_idx:
-    fields: userId
+    fields: userInfoId
   training_date_idx:
     fields: date

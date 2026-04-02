@@ -2,7 +2,6 @@ class: AmmunitionStock
 table: ammunition_stocks
 fields:
   id: UuidValue, defaultModel=random
-  userId: UuidValue?
   userInfo: module:auth:UserInfo?, relation(optional)
   type: String            # Original / Reloaded
   manufacturer: String
@@ -15,6 +14,6 @@ fields:
   casingBatch: String?
 indexes:
   ammo_stock_user_id_idx:
-    fields: userId
+    fields: userInfoId
   ammo_stock_caliber_idx:
     fields: caliber

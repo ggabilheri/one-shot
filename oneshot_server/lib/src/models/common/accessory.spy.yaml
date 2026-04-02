@@ -2,9 +2,7 @@ class: Accessory
 table: accessories
 fields:
   id: UuidValue, defaultModel=random
-  userId: UuidValue?
   userInfo: module:auth:UserInfo?, relation(optional)
-  firearmId: UuidValue?
   firearm: Firearm?, relation(optional)
   purpose: String
   type: String         # Press, Die, Scope, Magazine
@@ -16,6 +14,6 @@ fields:
   acquisitionDate: DateTime?
 indexes:
   accessory_user_id_idx:
-    fields: userId
+    fields: userInfoId
   accessory_firearm_id_idx:
     fields: firearmId

@@ -2,7 +2,6 @@ class: Firearm
 table: firearms
 fields:
   id: UuidValue, defaultModel=random
-  userId: UuidValue?
   userInfo: module:auth:UserInfo?, relation(optional)
   purpose: String      # Defense, Sport, Collection, Hunting
   type: String         # Pistol, Revolver, Rifle
@@ -23,6 +22,6 @@ fields:
   condition: String
 indexes:
   firearm_user_id_idx:
-    fields: userId
+    fields: userInfoId
   firearm_serial_number_idx:
     fields: serialNumber

@@ -2,9 +2,7 @@ class: ReloadTest
 table: reload_tests
 fields:
   id: UuidValue, defaultModel=random
-  reloadSessionId: UuidValue?
   reloadSession: ReloadSession?, relation(optional)
-  firearmId: UuidValue?
   firearm: Firearm?, relation(optional)
   testDate: DateTime
   shotsFired: int

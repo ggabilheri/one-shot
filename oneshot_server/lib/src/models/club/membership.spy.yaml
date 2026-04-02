@@ -2,9 +2,7 @@ class: Membership
 table: memberships
 fields:
   id: UuidValue, defaultModel=random
-  userId: UuidValue?
   user: UserProfile?, relation(optional)
-  clubId: UuidValue?
   club: Club?, relation(optional)
   membershipNumber: String?
   startDate: DateTime

@@ -2,9 +2,7 @@ class: ServiceOrder
 table: service_orders
 fields:
   id: UuidValue, defaultModel=random
-  clientId: UuidValue?
   client: GunsmithClient?, relation(optional)
-  firearmId: UuidValue?
   firearm: Firearm?, relation(optional)
   entryDate: DateTime
   estimatedDeliveryDate: DateTime?

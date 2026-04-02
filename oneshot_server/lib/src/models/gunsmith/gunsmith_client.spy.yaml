@@ -2,17 +2,15 @@ class: GunsmithClient
 table: gunsmith_clients
 fields:
   id: UuidValue, defaultModel=random
-  gunsmithUserId: UuidValue?
   gunsmithUserInfo: module:auth:UserInfo?, relation(optional)
   name: String
   cpf: String
   rg: String?
   phone: String
-  addressId: UuidValue?
   address: Address?, relation(optional)
 indexes:
   gunsmith_client_user_id_idx:
-    fields: gunsmithUserId
+    fields: gunsmithUserInfoId
   gunsmith_client_cpf_idx:
     fields: cpf
     unique: true

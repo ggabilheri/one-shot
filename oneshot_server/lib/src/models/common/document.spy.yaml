@@ -2,7 +2,6 @@ class: Document
 table: documents
 fields:
   id: UuidValue, defaultModel=random
-  userId: UuidValue?
   userInfo: module:auth:UserInfo?, relation(optional)
   firearmId: UuidValue?
   firearm: Firearm?, relation(optional)(optional)
@@ -19,7 +18,7 @@ fields:
   supplierAddress: Address?, relation(optional)(optional)
 indexes:
   document_user_id_idx:
-    fields: userId
+    fields: userInfoId
   document_firearm_id_idx:
     fields: firearmId
   document_expiration_date_idx:
