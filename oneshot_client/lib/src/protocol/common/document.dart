@@ -23,9 +23,7 @@ abstract class Document implements _i1.SerializableModel {
     this.userInfoId,
     this.userInfo,
     this.firearmId,
-    this.firearmId,
     this.firearm,
-    this.accessoryId,
     this.accessoryId,
     this.accessory,
     required this.documentType,
@@ -45,9 +43,7 @@ abstract class Document implements _i1.SerializableModel {
     int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
-    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    _i1.UuidValue? accessoryId,
     _i1.UuidValue? accessoryId,
     _i4.Accessory? accessory,
     required String documentType,
@@ -124,11 +120,7 @@ abstract class Document implements _i1.SerializableModel {
 
   _i1.UuidValue? firearmId;
 
-  _i1.UuidValue? firearmId;
-
   _i3.Firearm? firearm;
-
-  _i1.UuidValue? accessoryId;
 
   _i1.UuidValue? accessoryId;
 
@@ -162,9 +154,7 @@ abstract class Document implements _i1.SerializableModel {
     int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
-    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    _i1.UuidValue? accessoryId,
     _i1.UuidValue? accessoryId,
     _i4.Accessory? accessory,
     String? documentType,
@@ -186,9 +176,7 @@ abstract class Document implements _i1.SerializableModel {
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
-      if (accessoryId != null) 'accessoryId': accessoryId?.toJson(),
       if (accessoryId != null) 'accessoryId': accessoryId?.toJson(),
       if (accessory != null) 'accessory': accessory?.toJson(),
       'documentType': documentType,
@@ -220,9 +208,7 @@ class _DocumentImpl extends Document {
     int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
-    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    _i1.UuidValue? accessoryId,
     _i1.UuidValue? accessoryId,
     _i4.Accessory? accessory,
     required String documentType,
@@ -263,9 +249,7 @@ class _DocumentImpl extends Document {
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     Object? firearmId = _Undefined,
-    Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
-    Object? accessoryId = _Undefined,
     Object? accessoryId = _Undefined,
     Object? accessory = _Undefined,
     String? documentType,

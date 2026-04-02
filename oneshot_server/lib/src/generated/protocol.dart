@@ -599,18 +599,6 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
-          name: 'firearmId',
-          columnType: _i2.ColumnType.uuid,
-          isNullable: true,
-          dartType: 'UuidValue?',
-        ),
-        _i2.ColumnDefinition(
-          name: 'accessoryId',
-          columnType: _i2.ColumnType.uuid,
-          isNullable: true,
-          dartType: 'UuidValue?',
-        ),
-        _i2.ColumnDefinition(
           name: 'accessoryId',
           columnType: _i2.ColumnType.uuid,
           isNullable: true,

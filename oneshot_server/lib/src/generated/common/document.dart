@@ -25,9 +25,7 @@ abstract class Document
     this.userInfoId,
     this.userInfo,
     this.firearmId,
-    this.firearmId,
     this.firearm,
-    this.accessoryId,
     this.accessoryId,
     this.accessory,
     required this.documentType,
@@ -47,9 +45,7 @@ abstract class Document
     int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
-    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    _i1.UuidValue? accessoryId,
     _i1.UuidValue? accessoryId,
     _i4.Accessory? accessory,
     required String documentType,
@@ -130,11 +126,7 @@ abstract class Document
 
   _i1.UuidValue? firearmId;
 
-  _i1.UuidValue? firearmId;
-
   _i3.Firearm? firearm;
-
-  _i1.UuidValue? accessoryId;
 
   _i1.UuidValue? accessoryId;
 
@@ -171,9 +163,7 @@ abstract class Document
     int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
-    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    _i1.UuidValue? accessoryId,
     _i1.UuidValue? accessoryId,
     _i4.Accessory? accessory,
     String? documentType,
@@ -195,9 +185,7 @@ abstract class Document
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
-      if (accessoryId != null) 'accessoryId': accessoryId?.toJson(),
       if (accessoryId != null) 'accessoryId': accessoryId?.toJson(),
       if (accessory != null) 'accessory': accessory?.toJson(),
       'documentType': documentType,
@@ -223,9 +211,7 @@ abstract class Document
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
-      if (accessoryId != null) 'accessoryId': accessoryId?.toJson(),
       if (accessoryId != null) 'accessoryId': accessoryId?.toJson(),
       if (accessory != null) 'accessory': accessory?.toJsonForProtocol(),
       'documentType': documentType,
@@ -292,9 +278,7 @@ class _DocumentImpl extends Document {
     int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
-    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    _i1.UuidValue? accessoryId,
     _i1.UuidValue? accessoryId,
     _i4.Accessory? accessory,
     required String documentType,
@@ -335,9 +319,7 @@ class _DocumentImpl extends Document {
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     Object? firearmId = _Undefined,
-    Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
-    Object? accessoryId = _Undefined,
     Object? accessoryId = _Undefined,
     Object? accessory = _Undefined,
     String? documentType,
@@ -396,20 +378,6 @@ class DocumentUpdateTable extends _i1.UpdateTable<DocumentTable> {
     _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.firearmId,
-    value,
-  );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.firearmId,
-    value,
-  );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> accessoryId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.accessoryId,
     value,
   );
 
@@ -487,14 +455,6 @@ class DocumentTable extends _i1.Table<_i1.UuidValue> {
       'firearmId',
       this,
     );
-    firearmId = _i1.ColumnUuid(
-      'firearmId',
-      this,
-    );
-    accessoryId = _i1.ColumnUuid(
-      'accessoryId',
-      this,
-    );
     accessoryId = _i1.ColumnUuid(
       'accessoryId',
       this,
@@ -545,11 +505,7 @@ class DocumentTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnUuid firearmId;
 
-  late final _i1.ColumnUuid firearmId;
-
   _i3.FirearmTable? _firearm;
-
-  late final _i1.ColumnUuid accessoryId;
 
   late final _i1.ColumnUuid accessoryId;
 
@@ -632,8 +588,6 @@ class DocumentTable extends _i1.Table<_i1.UuidValue> {
     id,
     userInfoId,
     firearmId,
-    firearmId,
-    accessoryId,
     accessoryId,
     documentType,
     registryAgency,
