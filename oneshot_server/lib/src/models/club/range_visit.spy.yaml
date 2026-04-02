@@ -1,7 +1,7 @@
 class: RangeVisit
 table: range_visits
 fields:
-  id: UuidValue?, defaultPersist=random
+  id: UuidValue?,  defaultPersist=random
   userId: UuidValue?
   user: UserProfile?, relation
   clubId: UuidValue?

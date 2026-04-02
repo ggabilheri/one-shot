@@ -1,7 +1,7 @@
 class: Firearm
 table: firearms
 fields:
-  id: UuidValue?, defaultPersist=random
+  id: UuidValue?,  defaultPersist=random
   userId: UuidValue?
   userInfo: module:auth:UserInfo?, relation
   purpose: String      # Defense, Sport, Collection, Hunting

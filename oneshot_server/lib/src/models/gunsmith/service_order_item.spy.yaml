@@ -1,7 +1,7 @@
 class: ServiceOrderItem
 table: service_order_items
 fields:
-  id: UuidValue?, defaultPersist=random
+  id: UuidValue?,  defaultPersist=random
   serviceOrderId: UuidValue?
   serviceOrder: ServiceOrder?, relation
   description: String

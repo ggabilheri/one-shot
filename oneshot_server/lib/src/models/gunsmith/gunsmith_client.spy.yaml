@@ -1,7 +1,7 @@
 class: GunsmithClient
 table: gunsmith_clients
 fields:
-  id: UuidValue?, defaultPersist=random
+  id: UuidValue?,  defaultPersist=random
   gunsmithUserId: UuidValue?
   gunsmithUserInfo: module:auth:UserInfo?, relation
   name: String

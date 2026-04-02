@@ -1,7 +1,7 @@
 class: ReloadSession
 table: reload_sessions
 fields:
-  id: UuidValue?, defaultPersist=random
+  id: UuidValue?,  defaultPersist=random
   userId: UuidValue?
   userInfo: module:auth:UserInfo?, relation
   reloadDate: DateTime

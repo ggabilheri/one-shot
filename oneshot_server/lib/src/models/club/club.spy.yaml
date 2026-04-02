@@ -1,7 +1,7 @@
 class: Club
 table: clubs
 fields:
-  id: UuidValue?, defaultPersist=random
+  id: UuidValue?,  defaultPersist=random
   name: String
   cnpj: String
   addressId: UuidValue?
