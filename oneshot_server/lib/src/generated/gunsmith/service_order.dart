@@ -17,14 +17,14 @@ import '../shooter/firearm.dart' as _i3;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i4;
 
 abstract class ServiceOrder
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   ServiceOrder._({
-    this.id,
+    _i1.UuidValue? id,
     this.clientId,
-    required this.clientId,
+    this.clientId,
     this.client,
     this.firearmId,
-    required this.firearmId,
+    this.firearmId,
     this.firearm,
     required this.entryDate,
     this.estimatedDeliveryDate,
@@ -33,15 +33,15 @@ abstract class ServiceOrder
     required this.finalPrice,
     this.paymentMethod,
     this.notes,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory ServiceOrder({
     _i1.UuidValue? id,
     _i1.UuidValue? clientId,
-    required _i1.UuidValue clientId,
+    _i1.UuidValue? clientId,
     _i2.GunsmithClient? client,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime entryDate,
     DateTime? estimatedDeliveryDate,
@@ -57,17 +57,17 @@ abstract class ServiceOrder
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      clientId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['clientId'],
-      ),
+      clientId: jsonSerialization['clientId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['clientId']),
       client: jsonSerialization['client'] == null
           ? null
           : _i4.Protocol().deserialize<_i2.GunsmithClient>(
               jsonSerialization['client'],
             ),
-      firearmId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['firearmId'],
-      ),
+      firearmId: jsonSerialization['firearmId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
           : _i4.Protocol().deserialize<_i3.Firearm>(
@@ -94,17 +94,17 @@ abstract class ServiceOrder
   static const db = ServiceOrderRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   _i1.UuidValue? clientId;
 
-  _i1.UuidValue clientId;
+  _i1.UuidValue? clientId;
 
   _i2.GunsmithClient? client;
 
   _i1.UuidValue? firearmId;
 
-  _i1.UuidValue firearmId;
+  _i1.UuidValue? firearmId;
 
   _i3.Firearm? firearm;
 
@@ -123,7 +123,7 @@ abstract class ServiceOrder
   String? notes;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [ServiceOrder]
   /// with some or all fields replaced by the given arguments.
@@ -148,12 +148,12 @@ abstract class ServiceOrder
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'ServiceOrder',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (clientId != null) 'clientId': clientId?.toJson(),
-      'clientId': clientId.toJson(),
+      if (clientId != null) 'clientId': clientId?.toJson(),
       if (client != null) 'client': client?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'entryDate': entryDate.toJson(),
       if (estimatedDeliveryDate != null)
@@ -170,12 +170,12 @@ abstract class ServiceOrder
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'ServiceOrder',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (clientId != null) 'clientId': clientId?.toJson(),
-      'clientId': clientId.toJson(),
+      if (clientId != null) 'clientId': clientId?.toJson(),
       if (client != null) 'client': client?.toJsonForProtocol(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
       'entryDate': entryDate.toJson(),
       if (estimatedDeliveryDate != null)
@@ -230,10 +230,10 @@ class _ServiceOrderImpl extends ServiceOrder {
   _ServiceOrderImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? clientId,
-    required _i1.UuidValue clientId,
+    _i1.UuidValue? clientId,
     _i2.GunsmithClient? client,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime entryDate,
     DateTime? estimatedDeliveryDate,
@@ -262,12 +262,12 @@ class _ServiceOrderImpl extends ServiceOrder {
   @_i1.useResult
   @override
   ServiceOrder copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? clientId = _Undefined,
-    _i1.UuidValue? clientId,
+    Object? clientId = _Undefined,
     Object? client = _Undefined,
     Object? firearmId = _Undefined,
-    _i1.UuidValue? firearmId,
+    Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     DateTime? entryDate,
     Object? estimatedDeliveryDate = _Undefined,
@@ -278,10 +278,10 @@ class _ServiceOrderImpl extends ServiceOrder {
     Object? notes = _Undefined,
   }) {
     return ServiceOrder(
-      id: id is _i1.UuidValue? ? id : this.id,
-      clientId: clientId ?? this.clientId,
+      id: id ?? this.id,
+      clientId: clientId is _i1.UuidValue? ? clientId : this.clientId,
       client: client is _i2.GunsmithClient? ? client : this.client?.copyWith(),
-      firearmId: firearmId ?? this.firearmId,
+      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
       firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
       entryDate: entryDate ?? this.entryDate,
       estimatedDeliveryDate: estimatedDeliveryDate is DateTime?
@@ -308,11 +308,12 @@ class ServiceOrderUpdateTable extends _i1.UpdateTable<ServiceOrderTable> {
     value,
   );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> clientId(_i1.UuidValue value) =>
-      _i1.ColumnValue(
-        table.clientId,
-        value,
-      );
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> clientId(
+    _i1.UuidValue? value,
+  ) => _i1.ColumnValue(
+    table.clientId,
+    value,
+  );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
     _i1.UuidValue? value,
@@ -322,7 +323,7 @@ class ServiceOrderUpdateTable extends _i1.UpdateTable<ServiceOrderTable> {
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.firearmId,
     value,
@@ -367,7 +368,7 @@ class ServiceOrderUpdateTable extends _i1.UpdateTable<ServiceOrderTable> {
   );
 }
 
-class ServiceOrderTable extends _i1.Table<_i1.UuidValue?> {
+class ServiceOrderTable extends _i1.Table<_i1.UuidValue> {
   ServiceOrderTable({super.tableRelation})
     : super(tableName: 'service_orders') {
     updateTable = ServiceOrderUpdateTable(this);
@@ -519,7 +520,7 @@ class ServiceOrderInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => ServiceOrder.t;
+  _i1.Table<_i1.UuidValue> get table => ServiceOrder.t;
 }
 
 class ServiceOrderIncludeList extends _i1.IncludeList {
@@ -539,13 +540,15 @@ class ServiceOrderIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => ServiceOrder.t;
+  _i1.Table<_i1.UuidValue> get table => ServiceOrder.t;
 }
 
 class ServiceOrderRepository {
   const ServiceOrderRepository._();
 
   final attachRow = const ServiceOrderAttachRowRepository._();
+
+  final detachRow = const ServiceOrderDetachRowRepository._();
 
   /// Returns a list of [ServiceOrder]s matching the given query parameters.
   ///
@@ -879,6 +882,54 @@ class ServiceOrderAttachRowRepository {
     }
 
     var $serviceOrder = serviceOrder.copyWith(firearmId: firearm.id);
+    await session.db.updateRow<ServiceOrder>(
+      $serviceOrder,
+      columns: [ServiceOrder.t.firearmId],
+      transaction: transaction,
+    );
+  }
+}
+
+class ServiceOrderDetachRowRepository {
+  const ServiceOrderDetachRowRepository._();
+
+  /// Detaches the relation between this [ServiceOrder] and the [GunsmithClient] set in `client`
+  /// by setting the [ServiceOrder]'s foreign key `clientId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> client(
+    _i1.DatabaseSession session,
+    ServiceOrder serviceOrder, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (serviceOrder.id == null) {
+      throw ArgumentError.notNull('serviceOrder.id');
+    }
+
+    var $serviceOrder = serviceOrder.copyWith(clientId: null);
+    await session.db.updateRow<ServiceOrder>(
+      $serviceOrder,
+      columns: [ServiceOrder.t.clientId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [ServiceOrder] and the [Firearm] set in `firearm`
+  /// by setting the [ServiceOrder]'s foreign key `firearmId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> firearm(
+    _i1.DatabaseSession session,
+    ServiceOrder serviceOrder, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (serviceOrder.id == null) {
+      throw ArgumentError.notNull('serviceOrder.id');
+    }
+
+    var $serviceOrder = serviceOrder.copyWith(firearmId: null);
     await session.db.updateRow<ServiceOrder>(
       $serviceOrder,
       columns: [ServiceOrder.t.firearmId],

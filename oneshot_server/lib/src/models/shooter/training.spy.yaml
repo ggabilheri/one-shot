@@ -1,16 +1,16 @@
 class: Training
 table: trainings
 fields:
-  id: UuidValue?, defaultPersist=random
+  id: UuidValue, defaultModel=random
   userId: UuidValue?
-  userInfo: module:auth:UserInfo?, relation
+  userInfo: module:auth:UserInfo?, relation(optional)
   date: DateTime
   location: String
   environmentType: String    
   firearmId: UuidValue?
-  firearm: Firearm?, relation
+  firearm: Firearm?, relation(optional)
   ammunitionId: UuidValue?
-  ammunition: AmmunitionStock?, relation
+  ammunition: AmmunitionStock?, relation(optional)
   shotsFired: int
   distanceMeters: double
   score: int?

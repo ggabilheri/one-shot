@@ -1,13 +1,13 @@
 class: ServiceOrderItem
 table: service_order_items
 fields:
-  id: UuidValue,  defaultPersist=random
+  id: UuidValue, defaultModel=random
   serviceOrderId: UuidValue?
-  serviceOrder: ServiceOrder?, relation
+  serviceOrder: ServiceOrder?, relation(optional)
   description: String
   isStockPart: bool
   supplyPartId: UuidValue?
-  supplyPart: SupplyStock?, relation
+  supplyPart: SupplyStock?, relation(optional)
   servicePrice: double
 indexes:
   service_order_item_order_id_idx:

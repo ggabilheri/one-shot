@@ -1,11 +1,11 @@
 class: Membership
 table: memberships
 fields:
-  id: UuidValue,  defaultPersist=random
+  id: UuidValue, defaultModel=random
   userId: UuidValue?
-  user: UserProfile?, relation
+  user: UserProfile?, relation(optional)
   clubId: UuidValue?
-  club: Club?, relation
+  club: Club?, relation(optional)
   membershipNumber: String?
   startDate: DateTime
   validUntil: DateTime?

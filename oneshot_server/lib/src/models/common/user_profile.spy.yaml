@@ -1,12 +1,12 @@
 class: UserProfile
 table: user_profile
 fields:
-  id: UuidValue,  defaultPersist=random
-  userInfo: module:auth:UserInfo?, relation(optional)
+  id: UuidValue, defaultModel=random
+  userInfo: module:auth:UserInfo?, relation(optional)(optional)
   name: String
   cpf: String?
   cr: String?
-  address: Address?, relation(optional)
+  address: Address?, relation(optional)(optional)
   types: List<UserType>?
 indexes:
   user_cpf_idx:

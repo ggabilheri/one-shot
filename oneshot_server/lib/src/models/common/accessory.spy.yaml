@@ -1,11 +1,11 @@
 class: Accessory
 table: accessories
 fields:
-  id: UuidValue,  defaultPersist=random
+  id: UuidValue, defaultModel=random
   userId: UuidValue?
-  userInfo: module:auth:UserInfo?, relation
+  userInfo: module:auth:UserInfo?, relation(optional)
   firearmId: UuidValue?
-  firearm: Firearm?, relation
+  firearm: Firearm?, relation(optional)
   purpose: String
   type: String         # Press, Die, Scope, Magazine
   manufacturer: String

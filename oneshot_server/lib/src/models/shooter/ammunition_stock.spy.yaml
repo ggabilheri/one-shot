@@ -1,9 +1,9 @@
 class: AmmunitionStock
 table: ammunition_stocks
 fields:
-  id: UuidValue,  defaultPersist=random
+  id: UuidValue, defaultModel=random
   userId: UuidValue?
-  userInfo: module:auth:UserInfo?, relation
+  userInfo: module:auth:UserInfo?, relation(optional)
   type: String            # Original / Reloaded
   manufacturer: String
   caliber: String

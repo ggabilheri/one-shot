@@ -16,9 +16,9 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i3;
 
 abstract class AmmunitionStock implements _i1.SerializableModel {
   AmmunitionStock._({
-    this.id,
+    _i1.UuidValue? id,
     this.userId,
-    required this.userInfoId,
+    this.userInfoId,
     this.userInfo,
     required this.type,
     required this.manufacturer,
@@ -29,12 +29,12 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
     this.purchasePrice,
     required this.acquisitionDate,
     this.casingBatch,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory AmmunitionStock({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     required String type,
     required String manufacturer,
@@ -55,7 +55,7 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
       userId: jsonSerialization['userId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
-      userInfoId: jsonSerialization['userInfoId'] as int,
+      userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
           : _i3.Protocol().deserialize<_i2.UserInfo>(
@@ -76,14 +76,12 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
     );
   }
 
-  /// The database id, set if the object has been inserted into the
-  /// database or if it has been fetched from the database. Otherwise,
-  /// the id will be null.
-  _i1.UuidValue? id;
+  /// The id of the object.
+  _i1.UuidValue id;
 
   _i1.UuidValue? userId;
 
-  int userInfoId;
+  int? userInfoId;
 
   _i2.UserInfo? userInfo;
 
@@ -127,9 +125,9 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'AmmunitionStock',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'type': type,
       'manufacturer': manufacturer,
@@ -156,7 +154,7 @@ class _AmmunitionStockImpl extends AmmunitionStock {
   _AmmunitionStockImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     required String type,
     required String manufacturer,
@@ -188,9 +186,9 @@ class _AmmunitionStockImpl extends AmmunitionStock {
   @_i1.useResult
   @override
   AmmunitionStock copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userId = _Undefined,
-    int? userInfoId,
+    Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     String? type,
     String? manufacturer,
@@ -203,9 +201,9 @@ class _AmmunitionStockImpl extends AmmunitionStock {
     Object? casingBatch = _Undefined,
   }) {
     return AmmunitionStock(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       userId: userId is _i1.UuidValue? ? userId : this.userId,
-      userInfoId: userInfoId ?? this.userInfoId,
+      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),

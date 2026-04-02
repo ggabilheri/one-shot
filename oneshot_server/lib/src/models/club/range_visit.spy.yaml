@@ -1,13 +1,13 @@
 class: RangeVisit
 table: range_visits
 fields:
-  id: UuidValue,  defaultPersist=random
+  id: UuidValue, defaultModel=random
   userId: UuidValue?
-  user: UserProfile?, relation
+  user: UserProfile?, relation(optional)
   clubId: UuidValue?
-  club: Club?, relation
+  club: Club?, relation(optional)
   firearmId: UuidValue?
-  firearm: Firearm?, relation
+  firearm: Firearm?, relation(optional)
   checkIn: DateTime
   checkOut: DateTime?
   shotsFired: int, default=0

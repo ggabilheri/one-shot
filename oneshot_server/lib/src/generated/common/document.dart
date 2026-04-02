@@ -19,11 +19,11 @@ import '../common/address.dart' as _i5;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i6;
 
 abstract class Document
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Document._({
-    this.id,
+    _i1.UuidValue? id,
     this.userId,
-    required this.userInfoId,
+    this.userInfoId,
     this.userInfo,
     this.firearmId,
     this.firearmId,
@@ -41,12 +41,12 @@ abstract class Document
     this.supplierAddressId,
     this.supplierAddressId,
     this.supplierAddress,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory Document({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
@@ -74,7 +74,7 @@ abstract class Document
       userId: jsonSerialization['userId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
-      userInfoId: jsonSerialization['userInfoId'] as int,
+      userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
           : _i6.Protocol().deserialize<_i2.UserInfo>(
@@ -127,11 +127,11 @@ abstract class Document
   static const db = DocumentRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   _i1.UuidValue? userId;
 
-  int userInfoId;
+  int? userInfoId;
 
   _i2.UserInfo? userInfo;
 
@@ -168,7 +168,7 @@ abstract class Document
   _i5.Address? supplierAddress;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Document]
   /// with some or all fields replaced by the given arguments.
@@ -199,9 +199,9 @@ abstract class Document
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Document',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
@@ -228,9 +228,9 @@ abstract class Document
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'Document',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
@@ -300,7 +300,7 @@ class _DocumentImpl extends Document {
   _DocumentImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
@@ -343,9 +343,9 @@ class _DocumentImpl extends Document {
   @_i1.useResult
   @override
   Document copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userId = _Undefined,
-    int? userInfoId,
+    Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearmId = _Undefined,
@@ -365,9 +365,9 @@ class _DocumentImpl extends Document {
     Object? supplierAddress = _Undefined,
   }) {
     return Document(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       userId: userId is _i1.UuidValue? ? userId : this.userId,
-      userInfoId: userInfoId ?? this.userInfoId,
+      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
@@ -407,7 +407,7 @@ class DocumentUpdateTable extends _i1.UpdateTable<DocumentTable> {
         value,
       );
 
-  _i1.ColumnValue<int, int> userInfoId(int value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
     table.userInfoId,
     value,
   );
@@ -496,7 +496,7 @@ class DocumentUpdateTable extends _i1.UpdateTable<DocumentTable> {
   );
 }
 
-class DocumentTable extends _i1.Table<_i1.UuidValue?> {
+class DocumentTable extends _i1.Table<_i1.UuidValue> {
   DocumentTable({super.tableRelation}) : super(tableName: 'documents') {
     updateTable = DocumentUpdateTable(this);
     userId = _i1.ColumnUuid(
@@ -721,7 +721,7 @@ class DocumentInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Document.t;
+  _i1.Table<_i1.UuidValue> get table => Document.t;
 }
 
 class DocumentIncludeList extends _i1.IncludeList {
@@ -741,7 +741,7 @@ class DocumentIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Document.t;
+  _i1.Table<_i1.UuidValue> get table => Document.t;
 }
 
 class DocumentRepository {
@@ -1139,6 +1139,28 @@ class DocumentAttachRowRepository {
 
 class DocumentDetachRowRepository {
   const DocumentDetachRowRepository._();
+
+  /// Detaches the relation between this [Document] and the [UserInfo] set in `userInfo`
+  /// by setting the [Document]'s foreign key `userInfoId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> userInfo(
+    _i1.DatabaseSession session,
+    Document document, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (document.id == null) {
+      throw ArgumentError.notNull('document.id');
+    }
+
+    var $document = document.copyWith(userInfoId: null);
+    await session.db.updateRow<Document>(
+      $document,
+      columns: [Document.t.userInfoId],
+      transaction: transaction,
+    );
+  }
 
   /// Detaches the relation between this [Document] and the [Firearm] set in `firearm`
   /// by setting the [Document]'s foreign key `firearmId` to `null`.

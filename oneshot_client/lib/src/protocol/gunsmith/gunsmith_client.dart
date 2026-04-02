@@ -17,30 +17,30 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i4;
 
 abstract class GunsmithClient implements _i1.SerializableModel {
   GunsmithClient._({
-    this.id,
+    _i1.UuidValue? id,
     this.gunsmithUserId,
-    required this.gunsmithUserInfoId,
+    this.gunsmithUserInfoId,
     this.gunsmithUserInfo,
     required this.name,
     required this.cpf,
     this.rg,
     required this.phone,
     this.addressId,
-    required this.addressId,
+    this.addressId,
     this.address,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory GunsmithClient({
     _i1.UuidValue? id,
     _i1.UuidValue? gunsmithUserId,
-    required int gunsmithUserInfoId,
+    int? gunsmithUserInfoId,
     _i2.UserInfo? gunsmithUserInfo,
     required String name,
     required String cpf,
     String? rg,
     required String phone,
     _i1.UuidValue? addressId,
-    required _i1.UuidValue addressId,
+    _i1.UuidValue? addressId,
     _i3.Address? address,
   }) = _GunsmithClientImpl;
 
@@ -54,7 +54,7 @@ abstract class GunsmithClient implements _i1.SerializableModel {
           : _i1.UuidValueJsonExtension.fromJson(
               jsonSerialization['gunsmithUserId'],
             ),
-      gunsmithUserInfoId: jsonSerialization['gunsmithUserInfoId'] as int,
+      gunsmithUserInfoId: jsonSerialization['gunsmithUserInfoId'] as int?,
       gunsmithUserInfo: jsonSerialization['gunsmithUserInfo'] == null
           ? null
           : _i4.Protocol().deserialize<_i2.UserInfo>(
@@ -64,9 +64,9 @@ abstract class GunsmithClient implements _i1.SerializableModel {
       cpf: jsonSerialization['cpf'] as String,
       rg: jsonSerialization['rg'] as String?,
       phone: jsonSerialization['phone'] as String,
-      addressId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['addressId'],
-      ),
+      addressId: jsonSerialization['addressId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
       address: jsonSerialization['address'] == null
           ? null
           : _i4.Protocol().deserialize<_i3.Address>(
@@ -75,14 +75,12 @@ abstract class GunsmithClient implements _i1.SerializableModel {
     );
   }
 
-  /// The database id, set if the object has been inserted into the
-  /// database or if it has been fetched from the database. Otherwise,
-  /// the id will be null.
-  _i1.UuidValue? id;
+  /// The id of the object.
+  _i1.UuidValue id;
 
   _i1.UuidValue? gunsmithUserId;
 
-  int gunsmithUserInfoId;
+  int? gunsmithUserInfoId;
 
   _i2.UserInfo? gunsmithUserInfo;
 
@@ -96,7 +94,7 @@ abstract class GunsmithClient implements _i1.SerializableModel {
 
   _i1.UuidValue? addressId;
 
-  _i1.UuidValue addressId;
+  _i1.UuidValue? addressId;
 
   _i3.Address? address;
 
@@ -120,9 +118,9 @@ abstract class GunsmithClient implements _i1.SerializableModel {
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'GunsmithClient',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (gunsmithUserId != null) 'gunsmithUserId': gunsmithUserId?.toJson(),
-      'gunsmithUserInfoId': gunsmithUserInfoId,
+      if (gunsmithUserInfoId != null) 'gunsmithUserInfoId': gunsmithUserInfoId,
       if (gunsmithUserInfo != null)
         'gunsmithUserInfo': gunsmithUserInfo?.toJson(),
       'name': name,
@@ -130,7 +128,7 @@ abstract class GunsmithClient implements _i1.SerializableModel {
       if (rg != null) 'rg': rg,
       'phone': phone,
       if (addressId != null) 'addressId': addressId?.toJson(),
-      'addressId': addressId.toJson(),
+      if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJson(),
     };
   }
@@ -147,14 +145,14 @@ class _GunsmithClientImpl extends GunsmithClient {
   _GunsmithClientImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? gunsmithUserId,
-    required int gunsmithUserInfoId,
+    int? gunsmithUserInfoId,
     _i2.UserInfo? gunsmithUserInfo,
     required String name,
     required String cpf,
     String? rg,
     required String phone,
     _i1.UuidValue? addressId,
-    required _i1.UuidValue addressId,
+    _i1.UuidValue? addressId,
     _i3.Address? address,
   }) : super._(
          id: id,
@@ -174,24 +172,26 @@ class _GunsmithClientImpl extends GunsmithClient {
   @_i1.useResult
   @override
   GunsmithClient copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? gunsmithUserId = _Undefined,
-    int? gunsmithUserInfoId,
+    Object? gunsmithUserInfoId = _Undefined,
     Object? gunsmithUserInfo = _Undefined,
     String? name,
     String? cpf,
     Object? rg = _Undefined,
     String? phone,
     Object? addressId = _Undefined,
-    _i1.UuidValue? addressId,
+    Object? addressId = _Undefined,
     Object? address = _Undefined,
   }) {
     return GunsmithClient(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       gunsmithUserId: gunsmithUserId is _i1.UuidValue?
           ? gunsmithUserId
           : this.gunsmithUserId,
-      gunsmithUserInfoId: gunsmithUserInfoId ?? this.gunsmithUserInfoId,
+      gunsmithUserInfoId: gunsmithUserInfoId is int?
+          ? gunsmithUserInfoId
+          : this.gunsmithUserInfoId,
       gunsmithUserInfo: gunsmithUserInfo is _i2.UserInfo?
           ? gunsmithUserInfo
           : this.gunsmithUserInfo?.copyWith(),
@@ -199,7 +199,7 @@ class _GunsmithClientImpl extends GunsmithClient {
       cpf: cpf ?? this.cpf,
       rg: rg is String? ? rg : this.rg,
       phone: phone ?? this.phone,
-      addressId: addressId ?? this.addressId,
+      addressId: addressId is _i1.UuidValue? ? addressId : this.addressId,
       address: address is _i3.Address? ? address : this.address?.copyWith(),
     );
   }

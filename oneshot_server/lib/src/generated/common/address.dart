@@ -16,9 +16,9 @@ import '../common/user_profile.dart' as _i2;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i3;
 
 abstract class Address
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Address._({
-    this.id,
+    _i1.UuidValue? id,
     required this.street,
     required this.number,
     this.complement,
@@ -26,9 +26,9 @@ abstract class Address
     required this.city,
     required this.state,
     required this.zipCode,
-    required this.userProfileId,
+    this.userProfileId,
     this.userProfile,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory Address({
     _i1.UuidValue? id,
@@ -39,7 +39,7 @@ abstract class Address
     required String city,
     required String state,
     required String zipCode,
-    required _i1.UuidValue userProfileId,
+    _i1.UuidValue? userProfileId,
     _i2.UserProfile? userProfile,
   }) = _AddressImpl;
 
@@ -55,9 +55,11 @@ abstract class Address
       city: jsonSerialization['city'] as String,
       state: jsonSerialization['state'] as String,
       zipCode: jsonSerialization['zipCode'] as String,
-      userProfileId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['userProfileId'],
-      ),
+      userProfileId: jsonSerialization['userProfileId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(
+              jsonSerialization['userProfileId'],
+            ),
       userProfile: jsonSerialization['userProfile'] == null
           ? null
           : _i3.Protocol().deserialize<_i2.UserProfile>(
@@ -71,7 +73,7 @@ abstract class Address
   static const db = AddressRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   String street;
 
@@ -87,12 +89,12 @@ abstract class Address
 
   String zipCode;
 
-  _i1.UuidValue userProfileId;
+  _i1.UuidValue? userProfileId;
 
   _i2.UserProfile? userProfile;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Address]
   /// with some or all fields replaced by the given arguments.
@@ -113,7 +115,7 @@ abstract class Address
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Address',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       'street': street,
       'number': number,
       if (complement != null) 'complement': complement,
@@ -121,7 +123,7 @@ abstract class Address
       'city': city,
       'state': state,
       'zipCode': zipCode,
-      'userProfileId': userProfileId.toJson(),
+      if (userProfileId != null) 'userProfileId': userProfileId?.toJson(),
       if (userProfile != null) 'userProfile': userProfile?.toJson(),
     };
   }
@@ -130,7 +132,7 @@ abstract class Address
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'Address',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       'street': street,
       'number': number,
       if (complement != null) 'complement': complement,
@@ -138,7 +140,7 @@ abstract class Address
       'city': city,
       'state': state,
       'zipCode': zipCode,
-      'userProfileId': userProfileId.toJson(),
+      if (userProfileId != null) 'userProfileId': userProfileId?.toJson(),
       if (userProfile != null) 'userProfile': userProfile?.toJsonForProtocol(),
     };
   }
@@ -185,7 +187,7 @@ class _AddressImpl extends Address {
     required String city,
     required String state,
     required String zipCode,
-    required _i1.UuidValue userProfileId,
+    _i1.UuidValue? userProfileId,
     _i2.UserProfile? userProfile,
   }) : super._(
          id: id,
@@ -205,7 +207,7 @@ class _AddressImpl extends Address {
   @_i1.useResult
   @override
   Address copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     String? street,
     String? number,
     Object? complement = _Undefined,
@@ -213,11 +215,11 @@ class _AddressImpl extends Address {
     String? city,
     String? state,
     String? zipCode,
-    _i1.UuidValue? userProfileId,
+    Object? userProfileId = _Undefined,
     Object? userProfile = _Undefined,
   }) {
     return Address(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       street: street ?? this.street,
       number: number ?? this.number,
       complement: complement is String? ? complement : this.complement,
@@ -225,7 +227,9 @@ class _AddressImpl extends Address {
       city: city ?? this.city,
       state: state ?? this.state,
       zipCode: zipCode ?? this.zipCode,
-      userProfileId: userProfileId ?? this.userProfileId,
+      userProfileId: userProfileId is _i1.UuidValue?
+          ? userProfileId
+          : this.userProfileId,
       userProfile: userProfile is _i2.UserProfile?
           ? userProfile
           : this.userProfile?.copyWith(),
@@ -272,14 +276,14 @@ class AddressUpdateTable extends _i1.UpdateTable<AddressTable> {
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userProfileId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.userProfileId,
     value,
   );
 }
 
-class AddressTable extends _i1.Table<_i1.UuidValue?> {
+class AddressTable extends _i1.Table<_i1.UuidValue> {
   AddressTable({super.tableRelation}) : super(tableName: 'addresses') {
     updateTable = AddressUpdateTable(this);
     street = _i1.ColumnString(
@@ -382,7 +386,7 @@ class AddressInclude extends _i1.IncludeObject {
   Map<String, _i1.Include?> get includes => {'userProfile': _userProfile};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Address.t;
+  _i1.Table<_i1.UuidValue> get table => Address.t;
 }
 
 class AddressIncludeList extends _i1.IncludeList {
@@ -402,13 +406,15 @@ class AddressIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Address.t;
+  _i1.Table<_i1.UuidValue> get table => Address.t;
 }
 
 class AddressRepository {
   const AddressRepository._();
 
   final attachRow = const AddressAttachRowRepository._();
+
+  final detachRow = const AddressDetachRowRepository._();
 
   /// Returns a list of [Address]s matching the given query parameters.
   ///
@@ -719,6 +725,32 @@ class AddressAttachRowRepository {
     }
 
     var $address = address.copyWith(userProfileId: userProfile.id);
+    await session.db.updateRow<Address>(
+      $address,
+      columns: [Address.t.userProfileId],
+      transaction: transaction,
+    );
+  }
+}
+
+class AddressDetachRowRepository {
+  const AddressDetachRowRepository._();
+
+  /// Detaches the relation between this [Address] and the [UserProfile] set in `userProfile`
+  /// by setting the [Address]'s foreign key `userProfileId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> userProfile(
+    _i1.DatabaseSession session,
+    Address address, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (address.id == null) {
+      throw ArgumentError.notNull('address.id');
+    }
+
+    var $address = address.copyWith(userProfileId: null);
     await session.db.updateRow<Address>(
       $address,
       columns: [Address.t.userProfileId],

@@ -1,13 +1,13 @@
 class: Club
 table: clubs
 fields:
-  id: UuidValue,  defaultPersist=random
+  id: UuidValue, defaultModel=random
   name: String
   cnpj: String
   addressId: UuidValue?
-  address: Address?, relation
+  address: Address?, relation(optional)
   ownerId: UuidValue?
-  owner: UserProfile?, relation
+  owner: UserProfile?, relation(optional)
   phoneNumber: String?
   email: String?
   active: bool, default=true

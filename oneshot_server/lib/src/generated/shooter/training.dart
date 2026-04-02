@@ -18,40 +18,40 @@ import '../shooter/ammunition_stock.dart' as _i4;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i5;
 
 abstract class Training
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Training._({
-    this.id,
+    _i1.UuidValue? id,
     this.userId,
-    required this.userInfoId,
+    this.userInfoId,
     this.userInfo,
     required this.date,
     required this.location,
     required this.environmentType,
     this.firearmId,
-    required this.firearmId,
+    this.firearmId,
     this.firearm,
     this.ammunitionId,
-    required this.ammunitionId,
+    this.ammunitionId,
     this.ammunition,
     required this.shotsFired,
     required this.distanceMeters,
     this.score,
     this.targetImagesUrl,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory Training({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     required DateTime date,
     required String location,
     required String environmentType,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     _i1.UuidValue? ammunitionId,
-    required _i1.UuidValue ammunitionId,
+    _i1.UuidValue? ammunitionId,
     _i4.AmmunitionStock? ammunition,
     required int shotsFired,
     required double distanceMeters,
@@ -67,7 +67,7 @@ abstract class Training
       userId: jsonSerialization['userId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
-      userInfoId: jsonSerialization['userInfoId'] as int,
+      userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
           : _i5.Protocol().deserialize<_i2.UserInfo>(
@@ -76,17 +76,19 @@ abstract class Training
       date: _i1.DateTimeJsonExtension.fromJson(jsonSerialization['date']),
       location: jsonSerialization['location'] as String,
       environmentType: jsonSerialization['environmentType'] as String,
-      firearmId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['firearmId'],
-      ),
+      firearmId: jsonSerialization['firearmId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
           : _i5.Protocol().deserialize<_i3.Firearm>(
               jsonSerialization['firearm'],
             ),
-      ammunitionId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['ammunitionId'],
-      ),
+      ammunitionId: jsonSerialization['ammunitionId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(
+              jsonSerialization['ammunitionId'],
+            ),
       ammunition: jsonSerialization['ammunition'] == null
           ? null
           : _i5.Protocol().deserialize<_i4.AmmunitionStock>(
@@ -104,11 +106,11 @@ abstract class Training
   static const db = TrainingRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   _i1.UuidValue? userId;
 
-  int userInfoId;
+  int? userInfoId;
 
   _i2.UserInfo? userInfo;
 
@@ -120,13 +122,13 @@ abstract class Training
 
   _i1.UuidValue? firearmId;
 
-  _i1.UuidValue firearmId;
+  _i1.UuidValue? firearmId;
 
   _i3.Firearm? firearm;
 
   _i1.UuidValue? ammunitionId;
 
-  _i1.UuidValue ammunitionId;
+  _i1.UuidValue? ammunitionId;
 
   _i4.AmmunitionStock? ammunition;
 
@@ -139,7 +141,7 @@ abstract class Training
   String? targetImagesUrl;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Training]
   /// with some or all fields replaced by the given arguments.
@@ -167,18 +169,18 @@ abstract class Training
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Training',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'date': date.toJson(),
       'location': location,
       'environmentType': environmentType,
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       if (ammunitionId != null) 'ammunitionId': ammunitionId?.toJson(),
-      'ammunitionId': ammunitionId.toJson(),
+      if (ammunitionId != null) 'ammunitionId': ammunitionId?.toJson(),
       if (ammunition != null) 'ammunition': ammunition?.toJson(),
       'shotsFired': shotsFired,
       'distanceMeters': distanceMeters,
@@ -191,18 +193,18 @@ abstract class Training
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'Training',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
       'date': date.toJson(),
       'location': location,
       'environmentType': environmentType,
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
       if (ammunitionId != null) 'ammunitionId': ammunitionId?.toJson(),
-      'ammunitionId': ammunitionId.toJson(),
+      if (ammunitionId != null) 'ammunitionId': ammunitionId?.toJson(),
       if (ammunition != null) 'ammunition': ammunition?.toJsonForProtocol(),
       'shotsFired': shotsFired,
       'distanceMeters': distanceMeters,
@@ -255,16 +257,16 @@ class _TrainingImpl extends Training {
   _TrainingImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     required DateTime date,
     required String location,
     required String environmentType,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     _i1.UuidValue? ammunitionId,
-    required _i1.UuidValue ammunitionId,
+    _i1.UuidValue? ammunitionId,
     _i4.AmmunitionStock? ammunition,
     required int shotsFired,
     required double distanceMeters,
@@ -293,18 +295,18 @@ class _TrainingImpl extends Training {
   @_i1.useResult
   @override
   Training copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userId = _Undefined,
-    int? userInfoId,
+    Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     DateTime? date,
     String? location,
     String? environmentType,
     Object? firearmId = _Undefined,
-    _i1.UuidValue? firearmId,
+    Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     Object? ammunitionId = _Undefined,
-    _i1.UuidValue? ammunitionId,
+    Object? ammunitionId = _Undefined,
     Object? ammunition = _Undefined,
     int? shotsFired,
     double? distanceMeters,
@@ -312,18 +314,20 @@ class _TrainingImpl extends Training {
     Object? targetImagesUrl = _Undefined,
   }) {
     return Training(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       userId: userId is _i1.UuidValue? ? userId : this.userId,
-      userInfoId: userInfoId ?? this.userInfoId,
+      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
       date: date ?? this.date,
       location: location ?? this.location,
       environmentType: environmentType ?? this.environmentType,
-      firearmId: firearmId ?? this.firearmId,
+      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
       firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
-      ammunitionId: ammunitionId ?? this.ammunitionId,
+      ammunitionId: ammunitionId is _i1.UuidValue?
+          ? ammunitionId
+          : this.ammunitionId,
       ammunition: ammunition is _i4.AmmunitionStock?
           ? ammunition
           : this.ammunition?.copyWith(),
@@ -346,7 +350,7 @@ class TrainingUpdateTable extends _i1.UpdateTable<TrainingTable> {
         value,
       );
 
-  _i1.ColumnValue<int, int> userInfoId(int value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
     table.userInfoId,
     value,
   );
@@ -375,7 +379,7 @@ class TrainingUpdateTable extends _i1.UpdateTable<TrainingTable> {
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.firearmId,
     value,
@@ -389,7 +393,7 @@ class TrainingUpdateTable extends _i1.UpdateTable<TrainingTable> {
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> ammunitionId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.ammunitionId,
     value,
@@ -418,7 +422,7 @@ class TrainingUpdateTable extends _i1.UpdateTable<TrainingTable> {
       );
 }
 
-class TrainingTable extends _i1.Table<_i1.UuidValue?> {
+class TrainingTable extends _i1.Table<_i1.UuidValue> {
   TrainingTable({super.tableRelation}) : super(tableName: 'trainings') {
     updateTable = TrainingUpdateTable(this);
     userId = _i1.ColumnUuid(
@@ -606,7 +610,7 @@ class TrainingInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Training.t;
+  _i1.Table<_i1.UuidValue> get table => Training.t;
 }
 
 class TrainingIncludeList extends _i1.IncludeList {
@@ -626,13 +630,15 @@ class TrainingIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Training.t;
+  _i1.Table<_i1.UuidValue> get table => Training.t;
 }
 
 class TrainingRepository {
   const TrainingRepository._();
 
   final attachRow = const TrainingAttachRowRepository._();
+
+  final detachRow = const TrainingDetachRowRepository._();
 
   /// Returns a list of [Training]s matching the given query parameters.
   ///
@@ -989,6 +995,76 @@ class TrainingAttachRowRepository {
     }
 
     var $training = training.copyWith(ammunitionId: ammunition.id);
+    await session.db.updateRow<Training>(
+      $training,
+      columns: [Training.t.ammunitionId],
+      transaction: transaction,
+    );
+  }
+}
+
+class TrainingDetachRowRepository {
+  const TrainingDetachRowRepository._();
+
+  /// Detaches the relation between this [Training] and the [UserInfo] set in `userInfo`
+  /// by setting the [Training]'s foreign key `userInfoId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> userInfo(
+    _i1.DatabaseSession session,
+    Training training, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (training.id == null) {
+      throw ArgumentError.notNull('training.id');
+    }
+
+    var $training = training.copyWith(userInfoId: null);
+    await session.db.updateRow<Training>(
+      $training,
+      columns: [Training.t.userInfoId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [Training] and the [Firearm] set in `firearm`
+  /// by setting the [Training]'s foreign key `firearmId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> firearm(
+    _i1.DatabaseSession session,
+    Training training, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (training.id == null) {
+      throw ArgumentError.notNull('training.id');
+    }
+
+    var $training = training.copyWith(firearmId: null);
+    await session.db.updateRow<Training>(
+      $training,
+      columns: [Training.t.firearmId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [Training] and the [AmmunitionStock] set in `ammunition`
+  /// by setting the [Training]'s foreign key `ammunitionId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> ammunition(
+    _i1.DatabaseSession session,
+    Training training, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (training.id == null) {
+      throw ArgumentError.notNull('training.id');
+    }
+
+    var $training = training.copyWith(ammunitionId: null);
     await session.db.updateRow<Training>(
       $training,
       columns: [Training.t.ammunitionId],

@@ -18,34 +18,35 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i5;
 
 abstract class RangeVisit implements _i1.SerializableModel {
   RangeVisit._({
-    this.id,
+    _i1.UuidValue? id,
     this.userId,
-    required this.userId,
+    this.userId,
     this.user,
     this.clubId,
-    required this.clubId,
+    this.clubId,
     this.club,
     this.firearmId,
-    required this.firearmId,
+    this.firearmId,
     this.firearm,
     required this.checkIn,
     this.checkOut,
     int? shotsFired,
     this.notes,
     bool? habitualityReportGenerated,
-  }) : shotsFired = shotsFired ?? 0,
+  }) : id = id ?? const _i1.Uuid().v4obj(),
+       shotsFired = shotsFired ?? 0,
        habitualityReportGenerated = habitualityReportGenerated ?? false;
 
   factory RangeVisit({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required _i1.UuidValue userId,
+    _i1.UuidValue? userId,
     _i2.UserProfile? user,
     _i1.UuidValue? clubId,
-    required _i1.UuidValue clubId,
+    _i1.UuidValue? clubId,
     _i3.Club? club,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i4.Firearm? firearm,
     required DateTime checkIn,
     DateTime? checkOut,
@@ -59,19 +60,23 @@ abstract class RangeVisit implements _i1.SerializableModel {
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+      userId: jsonSerialization['userId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       user: jsonSerialization['user'] == null
           ? null
           : _i5.Protocol().deserialize<_i2.UserProfile>(
               jsonSerialization['user'],
             ),
-      clubId: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['clubId']),
+      clubId: jsonSerialization['clubId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['clubId']),
       club: jsonSerialization['club'] == null
           ? null
           : _i5.Protocol().deserialize<_i3.Club>(jsonSerialization['club']),
-      firearmId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['firearmId'],
-      ),
+      firearmId: jsonSerialization['firearmId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
           : _i5.Protocol().deserialize<_i4.Firearm>(
@@ -92,26 +97,24 @@ abstract class RangeVisit implements _i1.SerializableModel {
     );
   }
 
-  /// The database id, set if the object has been inserted into the
-  /// database or if it has been fetched from the database. Otherwise,
-  /// the id will be null.
-  _i1.UuidValue? id;
+  /// The id of the object.
+  _i1.UuidValue id;
 
   _i1.UuidValue? userId;
 
-  _i1.UuidValue userId;
+  _i1.UuidValue? userId;
 
   _i2.UserProfile? user;
 
   _i1.UuidValue? clubId;
 
-  _i1.UuidValue clubId;
+  _i1.UuidValue? clubId;
 
   _i3.Club? club;
 
   _i1.UuidValue? firearmId;
 
-  _i1.UuidValue firearmId;
+  _i1.UuidValue? firearmId;
 
   _i4.Firearm? firearm;
 
@@ -149,15 +152,15 @@ abstract class RangeVisit implements _i1.SerializableModel {
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'RangeVisit',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userId': userId.toJson(),
+      if (userId != null) 'userId': userId?.toJson(),
       if (user != null) 'user': user?.toJson(),
       if (clubId != null) 'clubId': clubId?.toJson(),
-      'clubId': clubId.toJson(),
+      if (clubId != null) 'clubId': clubId?.toJson(),
       if (club != null) 'club': club?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'checkIn': checkIn.toJson(),
       if (checkOut != null) 'checkOut': checkOut?.toJson(),
@@ -179,13 +182,13 @@ class _RangeVisitImpl extends RangeVisit {
   _RangeVisitImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required _i1.UuidValue userId,
+    _i1.UuidValue? userId,
     _i2.UserProfile? user,
     _i1.UuidValue? clubId,
-    required _i1.UuidValue clubId,
+    _i1.UuidValue? clubId,
     _i3.Club? club,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i4.Firearm? firearm,
     required DateTime checkIn,
     DateTime? checkOut,
@@ -212,15 +215,15 @@ class _RangeVisitImpl extends RangeVisit {
   @_i1.useResult
   @override
   RangeVisit copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userId = _Undefined,
-    _i1.UuidValue? userId,
+    Object? userId = _Undefined,
     Object? user = _Undefined,
     Object? clubId = _Undefined,
-    _i1.UuidValue? clubId,
+    Object? clubId = _Undefined,
     Object? club = _Undefined,
     Object? firearmId = _Undefined,
-    _i1.UuidValue? firearmId,
+    Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     DateTime? checkIn,
     Object? checkOut = _Undefined,
@@ -229,12 +232,12 @@ class _RangeVisitImpl extends RangeVisit {
     bool? habitualityReportGenerated,
   }) {
     return RangeVisit(
-      id: id is _i1.UuidValue? ? id : this.id,
-      userId: userId ?? this.userId,
+      id: id ?? this.id,
+      userId: userId is _i1.UuidValue? ? userId : this.userId,
       user: user is _i2.UserProfile? ? user : this.user?.copyWith(),
-      clubId: clubId ?? this.clubId,
+      clubId: clubId is _i1.UuidValue? ? clubId : this.clubId,
       club: club is _i3.Club? ? club : this.club?.copyWith(),
-      firearmId: firearmId ?? this.firearmId,
+      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
       firearm: firearm is _i4.Firearm? ? firearm : this.firearm?.copyWith(),
       checkIn: checkIn ?? this.checkIn,
       checkOut: checkOut is DateTime? ? checkOut : this.checkOut,

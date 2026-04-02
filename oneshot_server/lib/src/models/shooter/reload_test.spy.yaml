@@ -1,11 +1,11 @@
 class: ReloadTest
 table: reload_tests
 fields:
-  id: UuidValue,  defaultPersist=random
+  id: UuidValue, defaultModel=random
   reloadSessionId: UuidValue?
-  reloadSession: ReloadSession?, relation
+  reloadSession: ReloadSession?, relation(optional)
   firearmId: UuidValue?
-  firearm: Firearm?, relation
+  firearm: Firearm?, relation(optional)
   testDate: DateTime
   shotsFired: int
   highestVelocityFps: double

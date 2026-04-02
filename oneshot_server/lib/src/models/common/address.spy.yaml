@@ -1,7 +1,7 @@
 class: Address
 table: addresses
 fields:
-  id: UuidValue,  defaultPersist=random
+  id: UuidValue, defaultModel=random
   street: String
   number: String
   complement: String?
@@ -9,7 +9,7 @@ fields:
   city: String
   state: String
   zipCode: String
-  userProfile: UserProfile?, relation
+  userProfile: UserProfile?, relation(optional)
 indexes:
   address_zip_code_idx:
     fields: zipCode

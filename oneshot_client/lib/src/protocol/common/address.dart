@@ -16,7 +16,7 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i3;
 
 abstract class Address implements _i1.SerializableModel {
   Address._({
-    this.id,
+    _i1.UuidValue? id,
     required this.street,
     required this.number,
     this.complement,
@@ -24,9 +24,9 @@ abstract class Address implements _i1.SerializableModel {
     required this.city,
     required this.state,
     required this.zipCode,
-    required this.userProfileId,
+    this.userProfileId,
     this.userProfile,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory Address({
     _i1.UuidValue? id,
@@ -37,7 +37,7 @@ abstract class Address implements _i1.SerializableModel {
     required String city,
     required String state,
     required String zipCode,
-    required _i1.UuidValue userProfileId,
+    _i1.UuidValue? userProfileId,
     _i2.UserProfile? userProfile,
   }) = _AddressImpl;
 
@@ -53,9 +53,11 @@ abstract class Address implements _i1.SerializableModel {
       city: jsonSerialization['city'] as String,
       state: jsonSerialization['state'] as String,
       zipCode: jsonSerialization['zipCode'] as String,
-      userProfileId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['userProfileId'],
-      ),
+      userProfileId: jsonSerialization['userProfileId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(
+              jsonSerialization['userProfileId'],
+            ),
       userProfile: jsonSerialization['userProfile'] == null
           ? null
           : _i3.Protocol().deserialize<_i2.UserProfile>(
@@ -64,10 +66,8 @@ abstract class Address implements _i1.SerializableModel {
     );
   }
 
-  /// The database id, set if the object has been inserted into the
-  /// database or if it has been fetched from the database. Otherwise,
-  /// the id will be null.
-  _i1.UuidValue? id;
+  /// The id of the object.
+  _i1.UuidValue id;
 
   String street;
 
@@ -83,7 +83,7 @@ abstract class Address implements _i1.SerializableModel {
 
   String zipCode;
 
-  _i1.UuidValue userProfileId;
+  _i1.UuidValue? userProfileId;
 
   _i2.UserProfile? userProfile;
 
@@ -106,7 +106,7 @@ abstract class Address implements _i1.SerializableModel {
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Address',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       'street': street,
       'number': number,
       if (complement != null) 'complement': complement,
@@ -114,7 +114,7 @@ abstract class Address implements _i1.SerializableModel {
       'city': city,
       'state': state,
       'zipCode': zipCode,
-      'userProfileId': userProfileId.toJson(),
+      if (userProfileId != null) 'userProfileId': userProfileId?.toJson(),
       if (userProfile != null) 'userProfile': userProfile?.toJson(),
     };
   }
@@ -137,7 +137,7 @@ class _AddressImpl extends Address {
     required String city,
     required String state,
     required String zipCode,
-    required _i1.UuidValue userProfileId,
+    _i1.UuidValue? userProfileId,
     _i2.UserProfile? userProfile,
   }) : super._(
          id: id,
@@ -157,7 +157,7 @@ class _AddressImpl extends Address {
   @_i1.useResult
   @override
   Address copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     String? street,
     String? number,
     Object? complement = _Undefined,
@@ -165,11 +165,11 @@ class _AddressImpl extends Address {
     String? city,
     String? state,
     String? zipCode,
-    _i1.UuidValue? userProfileId,
+    Object? userProfileId = _Undefined,
     Object? userProfile = _Undefined,
   }) {
     return Address(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       street: street ?? this.street,
       number: number ?? this.number,
       complement: complement is String? ? complement : this.complement,
@@ -177,7 +177,9 @@ class _AddressImpl extends Address {
       city: city ?? this.city,
       state: state ?? this.state,
       zipCode: zipCode ?? this.zipCode,
-      userProfileId: userProfileId ?? this.userProfileId,
+      userProfileId: userProfileId is _i1.UuidValue?
+          ? userProfileId
+          : this.userProfileId,
       userProfile: userProfile is _i2.UserProfile?
           ? userProfile
           : this.userProfile?.copyWith(),

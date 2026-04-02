@@ -17,12 +17,12 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i4;
 
 abstract class ServiceOrder implements _i1.SerializableModel {
   ServiceOrder._({
-    this.id,
+    _i1.UuidValue? id,
     this.clientId,
-    required this.clientId,
+    this.clientId,
     this.client,
     this.firearmId,
-    required this.firearmId,
+    this.firearmId,
     this.firearm,
     required this.entryDate,
     this.estimatedDeliveryDate,
@@ -31,15 +31,15 @@ abstract class ServiceOrder implements _i1.SerializableModel {
     required this.finalPrice,
     this.paymentMethod,
     this.notes,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory ServiceOrder({
     _i1.UuidValue? id,
     _i1.UuidValue? clientId,
-    required _i1.UuidValue clientId,
+    _i1.UuidValue? clientId,
     _i2.GunsmithClient? client,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime entryDate,
     DateTime? estimatedDeliveryDate,
@@ -55,17 +55,17 @@ abstract class ServiceOrder implements _i1.SerializableModel {
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      clientId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['clientId'],
-      ),
+      clientId: jsonSerialization['clientId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['clientId']),
       client: jsonSerialization['client'] == null
           ? null
           : _i4.Protocol().deserialize<_i2.GunsmithClient>(
               jsonSerialization['client'],
             ),
-      firearmId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['firearmId'],
-      ),
+      firearmId: jsonSerialization['firearmId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
           : _i4.Protocol().deserialize<_i3.Firearm>(
@@ -87,20 +87,18 @@ abstract class ServiceOrder implements _i1.SerializableModel {
     );
   }
 
-  /// The database id, set if the object has been inserted into the
-  /// database or if it has been fetched from the database. Otherwise,
-  /// the id will be null.
-  _i1.UuidValue? id;
+  /// The id of the object.
+  _i1.UuidValue id;
 
   _i1.UuidValue? clientId;
 
-  _i1.UuidValue clientId;
+  _i1.UuidValue? clientId;
 
   _i2.GunsmithClient? client;
 
   _i1.UuidValue? firearmId;
 
-  _i1.UuidValue firearmId;
+  _i1.UuidValue? firearmId;
 
   _i3.Firearm? firearm;
 
@@ -141,12 +139,12 @@ abstract class ServiceOrder implements _i1.SerializableModel {
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'ServiceOrder',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (clientId != null) 'clientId': clientId?.toJson(),
-      'clientId': clientId.toJson(),
+      if (clientId != null) 'clientId': clientId?.toJson(),
       if (client != null) 'client': client?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'entryDate': entryDate.toJson(),
       if (estimatedDeliveryDate != null)
@@ -171,10 +169,10 @@ class _ServiceOrderImpl extends ServiceOrder {
   _ServiceOrderImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? clientId,
-    required _i1.UuidValue clientId,
+    _i1.UuidValue? clientId,
     _i2.GunsmithClient? client,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime entryDate,
     DateTime? estimatedDeliveryDate,
@@ -203,12 +201,12 @@ class _ServiceOrderImpl extends ServiceOrder {
   @_i1.useResult
   @override
   ServiceOrder copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? clientId = _Undefined,
-    _i1.UuidValue? clientId,
+    Object? clientId = _Undefined,
     Object? client = _Undefined,
     Object? firearmId = _Undefined,
-    _i1.UuidValue? firearmId,
+    Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     DateTime? entryDate,
     Object? estimatedDeliveryDate = _Undefined,
@@ -219,10 +217,10 @@ class _ServiceOrderImpl extends ServiceOrder {
     Object? notes = _Undefined,
   }) {
     return ServiceOrder(
-      id: id is _i1.UuidValue? ? id : this.id,
-      clientId: clientId ?? this.clientId,
+      id: id ?? this.id,
+      clientId: clientId is _i1.UuidValue? ? clientId : this.clientId,
       client: client is _i2.GunsmithClient? ? client : this.client?.copyWith(),
-      firearmId: firearmId ?? this.firearmId,
+      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
       firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
       entryDate: entryDate ?? this.entryDate,
       estimatedDeliveryDate: estimatedDeliveryDate is DateTime?

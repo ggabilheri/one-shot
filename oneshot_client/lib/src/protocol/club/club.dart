@@ -17,29 +17,30 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i4;
 
 abstract class Club implements _i1.SerializableModel {
   Club._({
-    this.id,
+    _i1.UuidValue? id,
     required this.name,
     required this.cnpj,
     this.addressId,
-    required this.addressId,
+    this.addressId,
     this.address,
     this.ownerId,
-    required this.ownerId,
+    this.ownerId,
     this.owner,
     this.phoneNumber,
     this.email,
     bool? active,
-  }) : active = active ?? true;
+  }) : id = id ?? const _i1.Uuid().v4obj(),
+       active = active ?? true;
 
   factory Club({
     _i1.UuidValue? id,
     required String name,
     required String cnpj,
     _i1.UuidValue? addressId,
-    required _i1.UuidValue addressId,
+    _i1.UuidValue? addressId,
     _i2.Address? address,
     _i1.UuidValue? ownerId,
-    required _i1.UuidValue ownerId,
+    _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     String? phoneNumber,
     String? email,
@@ -53,17 +54,17 @@ abstract class Club implements _i1.SerializableModel {
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       name: jsonSerialization['name'] as String,
       cnpj: jsonSerialization['cnpj'] as String,
-      addressId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['addressId'],
-      ),
+      addressId: jsonSerialization['addressId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
       address: jsonSerialization['address'] == null
           ? null
           : _i4.Protocol().deserialize<_i2.Address>(
               jsonSerialization['address'],
             ),
-      ownerId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['ownerId'],
-      ),
+      ownerId: jsonSerialization['ownerId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['ownerId']),
       owner: jsonSerialization['owner'] == null
           ? null
           : _i4.Protocol().deserialize<_i3.UserProfile>(
@@ -77,10 +78,8 @@ abstract class Club implements _i1.SerializableModel {
     );
   }
 
-  /// The database id, set if the object has been inserted into the
-  /// database or if it has been fetched from the database. Otherwise,
-  /// the id will be null.
-  _i1.UuidValue? id;
+  /// The id of the object.
+  _i1.UuidValue id;
 
   String name;
 
@@ -88,13 +87,13 @@ abstract class Club implements _i1.SerializableModel {
 
   _i1.UuidValue? addressId;
 
-  _i1.UuidValue addressId;
+  _i1.UuidValue? addressId;
 
   _i2.Address? address;
 
   _i1.UuidValue? ownerId;
 
-  _i1.UuidValue ownerId;
+  _i1.UuidValue? ownerId;
 
   _i3.UserProfile? owner;
 
@@ -125,14 +124,14 @@ abstract class Club implements _i1.SerializableModel {
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Club',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       'name': name,
       'cnpj': cnpj,
       if (addressId != null) 'addressId': addressId?.toJson(),
-      'addressId': addressId.toJson(),
+      if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJson(),
       if (ownerId != null) 'ownerId': ownerId?.toJson(),
-      'ownerId': ownerId.toJson(),
+      if (ownerId != null) 'ownerId': ownerId?.toJson(),
       if (owner != null) 'owner': owner?.toJson(),
       if (phoneNumber != null) 'phoneNumber': phoneNumber,
       if (email != null) 'email': email,
@@ -154,10 +153,10 @@ class _ClubImpl extends Club {
     required String name,
     required String cnpj,
     _i1.UuidValue? addressId,
-    required _i1.UuidValue addressId,
+    _i1.UuidValue? addressId,
     _i2.Address? address,
     _i1.UuidValue? ownerId,
-    required _i1.UuidValue ownerId,
+    _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     String? phoneNumber,
     String? email,
@@ -180,26 +179,26 @@ class _ClubImpl extends Club {
   @_i1.useResult
   @override
   Club copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     String? name,
     String? cnpj,
     Object? addressId = _Undefined,
-    _i1.UuidValue? addressId,
+    Object? addressId = _Undefined,
     Object? address = _Undefined,
     Object? ownerId = _Undefined,
-    _i1.UuidValue? ownerId,
+    Object? ownerId = _Undefined,
     Object? owner = _Undefined,
     Object? phoneNumber = _Undefined,
     Object? email = _Undefined,
     bool? active,
   }) {
     return Club(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       name: name ?? this.name,
       cnpj: cnpj ?? this.cnpj,
-      addressId: addressId ?? this.addressId,
+      addressId: addressId is _i1.UuidValue? ? addressId : this.addressId,
       address: address is _i2.Address? ? address : this.address?.copyWith(),
-      ownerId: ownerId ?? this.ownerId,
+      ownerId: ownerId is _i1.UuidValue? ? ownerId : this.ownerId,
       owner: owner is _i3.UserProfile? ? owner : this.owner?.copyWith(),
       phoneNumber: phoneNumber is String? ? phoneNumber : this.phoneNumber,
       email: email is String? ? email : this.email,

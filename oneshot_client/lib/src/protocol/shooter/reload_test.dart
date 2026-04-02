@@ -17,12 +17,12 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i4;
 
 abstract class ReloadTest implements _i1.SerializableModel {
   ReloadTest._({
-    this.id,
+    _i1.UuidValue? id,
     this.reloadSessionId,
-    required this.reloadSessionId,
+    this.reloadSessionId,
     this.reloadSession,
     this.firearmId,
-    required this.firearmId,
+    this.firearmId,
     this.firearm,
     required this.testDate,
     required this.shotsFired,
@@ -33,15 +33,15 @@ abstract class ReloadTest implements _i1.SerializableModel {
     required this.averageEnergy,
     this.groupingMeasurement,
     required this.crackedCasings,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory ReloadTest({
     _i1.UuidValue? id,
     _i1.UuidValue? reloadSessionId,
-    required _i1.UuidValue reloadSessionId,
+    _i1.UuidValue? reloadSessionId,
     _i2.ReloadSession? reloadSession,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime testDate,
     required int shotsFired,
@@ -59,17 +59,19 @@ abstract class ReloadTest implements _i1.SerializableModel {
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      reloadSessionId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['reloadSessionId'],
-      ),
+      reloadSessionId: jsonSerialization['reloadSessionId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(
+              jsonSerialization['reloadSessionId'],
+            ),
       reloadSession: jsonSerialization['reloadSession'] == null
           ? null
           : _i4.Protocol().deserialize<_i2.ReloadSession>(
               jsonSerialization['reloadSession'],
             ),
-      firearmId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['firearmId'],
-      ),
+      firearmId: jsonSerialization['firearmId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
           : _i4.Protocol().deserialize<_i3.Firearm>(
@@ -93,20 +95,18 @@ abstract class ReloadTest implements _i1.SerializableModel {
     );
   }
 
-  /// The database id, set if the object has been inserted into the
-  /// database or if it has been fetched from the database. Otherwise,
-  /// the id will be null.
-  _i1.UuidValue? id;
+  /// The id of the object.
+  _i1.UuidValue id;
 
   _i1.UuidValue? reloadSessionId;
 
-  _i1.UuidValue reloadSessionId;
+  _i1.UuidValue? reloadSessionId;
 
   _i2.ReloadSession? reloadSession;
 
   _i1.UuidValue? firearmId;
 
-  _i1.UuidValue firearmId;
+  _i1.UuidValue? firearmId;
 
   _i3.Firearm? firearm;
 
@@ -153,12 +153,12 @@ abstract class ReloadTest implements _i1.SerializableModel {
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'ReloadTest',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
-      'reloadSessionId': reloadSessionId.toJson(),
+      if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
       if (reloadSession != null) 'reloadSession': reloadSession?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'testDate': testDate.toJson(),
       'shotsFired': shotsFired,
@@ -185,10 +185,10 @@ class _ReloadTestImpl extends ReloadTest {
   _ReloadTestImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? reloadSessionId,
-    required _i1.UuidValue reloadSessionId,
+    _i1.UuidValue? reloadSessionId,
     _i2.ReloadSession? reloadSession,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime testDate,
     required int shotsFired,
@@ -221,12 +221,12 @@ class _ReloadTestImpl extends ReloadTest {
   @_i1.useResult
   @override
   ReloadTest copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? reloadSessionId = _Undefined,
-    _i1.UuidValue? reloadSessionId,
+    Object? reloadSessionId = _Undefined,
     Object? reloadSession = _Undefined,
     Object? firearmId = _Undefined,
-    _i1.UuidValue? firearmId,
+    Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     DateTime? testDate,
     int? shotsFired,
@@ -239,12 +239,14 @@ class _ReloadTestImpl extends ReloadTest {
     int? crackedCasings,
   }) {
     return ReloadTest(
-      id: id is _i1.UuidValue? ? id : this.id,
-      reloadSessionId: reloadSessionId ?? this.reloadSessionId,
+      id: id ?? this.id,
+      reloadSessionId: reloadSessionId is _i1.UuidValue?
+          ? reloadSessionId
+          : this.reloadSessionId,
       reloadSession: reloadSession is _i2.ReloadSession?
           ? reloadSession
           : this.reloadSession?.copyWith(),
-      firearmId: firearmId ?? this.firearmId,
+      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
       firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
       testDate: testDate ?? this.testDate,
       shotsFired: shotsFired ?? this.shotsFired,

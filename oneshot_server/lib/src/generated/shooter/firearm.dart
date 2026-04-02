@@ -16,11 +16,11 @@ import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i2;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i3;
 
 abstract class Firearm
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Firearm._({
-    this.id,
+    _i1.UuidValue? id,
     this.userId,
-    required this.userInfoId,
+    this.userInfoId,
     this.userInfo,
     required this.purpose,
     required this.type,
@@ -39,12 +39,12 @@ abstract class Firearm
     this.saleDate,
     this.salePrice,
     required this.condition,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory Firearm({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     required String purpose,
     required String type,
@@ -73,7 +73,7 @@ abstract class Firearm
       userId: jsonSerialization['userId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
-      userInfoId: jsonSerialization['userInfoId'] as int,
+      userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
           : _i3.Protocol().deserialize<_i2.UserInfo>(
@@ -110,11 +110,11 @@ abstract class Firearm
   static const db = FirearmRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   _i1.UuidValue? userId;
 
-  int userInfoId;
+  int? userInfoId;
 
   _i2.UserInfo? userInfo;
 
@@ -153,7 +153,7 @@ abstract class Firearm
   String condition;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Firearm]
   /// with some or all fields replaced by the given arguments.
@@ -185,9 +185,9 @@ abstract class Firearm
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Firearm',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'purpose': purpose,
       'type': type,
@@ -213,9 +213,9 @@ abstract class Firearm
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'Firearm',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
       'purpose': purpose,
       'type': type,
@@ -273,7 +273,7 @@ class _FirearmImpl extends Firearm {
   _FirearmImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     required String purpose,
     required String type,
@@ -321,9 +321,9 @@ class _FirearmImpl extends Firearm {
   @_i1.useResult
   @override
   Firearm copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userId = _Undefined,
-    int? userInfoId,
+    Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     String? purpose,
     String? type,
@@ -344,9 +344,9 @@ class _FirearmImpl extends Firearm {
     String? condition,
   }) {
     return Firearm(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       userId: userId is _i1.UuidValue? ? userId : this.userId,
-      userInfoId: userInfoId ?? this.userInfoId,
+      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
@@ -384,7 +384,7 @@ class FirearmUpdateTable extends _i1.UpdateTable<FirearmTable> {
         value,
       );
 
-  _i1.ColumnValue<int, int> userInfoId(int value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
     table.userInfoId,
     value,
   );
@@ -479,7 +479,7 @@ class FirearmUpdateTable extends _i1.UpdateTable<FirearmTable> {
   );
 }
 
-class FirearmTable extends _i1.Table<_i1.UuidValue?> {
+class FirearmTable extends _i1.Table<_i1.UuidValue> {
   FirearmTable({super.tableRelation}) : super(tableName: 'firearms') {
     updateTable = FirearmUpdateTable(this);
     userId = _i1.ColumnUuid(
@@ -659,7 +659,7 @@ class FirearmInclude extends _i1.IncludeObject {
   Map<String, _i1.Include?> get includes => {'userInfo': _userInfo};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Firearm.t;
+  _i1.Table<_i1.UuidValue> get table => Firearm.t;
 }
 
 class FirearmIncludeList extends _i1.IncludeList {
@@ -679,13 +679,15 @@ class FirearmIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Firearm.t;
+  _i1.Table<_i1.UuidValue> get table => Firearm.t;
 }
 
 class FirearmRepository {
   const FirearmRepository._();
 
   final attachRow = const FirearmAttachRowRepository._();
+
+  final detachRow = const FirearmDetachRowRepository._();
 
   /// Returns a list of [Firearm]s matching the given query parameters.
   ///
@@ -996,6 +998,32 @@ class FirearmAttachRowRepository {
     }
 
     var $firearm = firearm.copyWith(userInfoId: userInfo.id);
+    await session.db.updateRow<Firearm>(
+      $firearm,
+      columns: [Firearm.t.userInfoId],
+      transaction: transaction,
+    );
+  }
+}
+
+class FirearmDetachRowRepository {
+  const FirearmDetachRowRepository._();
+
+  /// Detaches the relation between this [Firearm] and the [UserInfo] set in `userInfo`
+  /// by setting the [Firearm]'s foreign key `userInfoId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> userInfo(
+    _i1.DatabaseSession session,
+    Firearm firearm, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (firearm.id == null) {
+      throw ArgumentError.notNull('firearm.id');
+    }
+
+    var $firearm = firearm.copyWith(userInfoId: null);
     await session.db.updateRow<Firearm>(
       $firearm,
       columns: [Firearm.t.userInfoId],

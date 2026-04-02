@@ -1,13 +1,13 @@
 class: Document
 table: documents
 fields:
-  id: UuidValue,  defaultPersist=random
+  id: UuidValue, defaultModel=random
   userId: UuidValue?
-  userInfo: module:auth:UserInfo?, relation
+  userInfo: module:auth:UserInfo?, relation(optional)
   firearmId: UuidValue?
-  firearm: Firearm?, relation(optional)
+  firearm: Firearm?, relation(optional)(optional)
   accessoryId: UuidValue?
-  accessory: Accessory?, relation(optional)
+  accessory: Accessory?, relation(optional)(optional)
   documentType: String   
   registryAgency: String   
   documentNumber: String
@@ -16,7 +16,7 @@ fields:
   documentImageUrl: String?
   supplierName: String?
   supplierAddressId: UuidValue?
-  supplierAddress: Address?, relation(optional)
+  supplierAddress: Address?, relation(optional)(optional)
 indexes:
   document_user_id_idx:
     fields: userId

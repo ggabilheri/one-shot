@@ -17,32 +17,32 @@ import '../common/address.dart' as _i3;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i4;
 
 abstract class GunsmithClient
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   GunsmithClient._({
-    this.id,
+    _i1.UuidValue? id,
     this.gunsmithUserId,
-    required this.gunsmithUserInfoId,
+    this.gunsmithUserInfoId,
     this.gunsmithUserInfo,
     required this.name,
     required this.cpf,
     this.rg,
     required this.phone,
     this.addressId,
-    required this.addressId,
+    this.addressId,
     this.address,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory GunsmithClient({
     _i1.UuidValue? id,
     _i1.UuidValue? gunsmithUserId,
-    required int gunsmithUserInfoId,
+    int? gunsmithUserInfoId,
     _i2.UserInfo? gunsmithUserInfo,
     required String name,
     required String cpf,
     String? rg,
     required String phone,
     _i1.UuidValue? addressId,
-    required _i1.UuidValue addressId,
+    _i1.UuidValue? addressId,
     _i3.Address? address,
   }) = _GunsmithClientImpl;
 
@@ -56,7 +56,7 @@ abstract class GunsmithClient
           : _i1.UuidValueJsonExtension.fromJson(
               jsonSerialization['gunsmithUserId'],
             ),
-      gunsmithUserInfoId: jsonSerialization['gunsmithUserInfoId'] as int,
+      gunsmithUserInfoId: jsonSerialization['gunsmithUserInfoId'] as int?,
       gunsmithUserInfo: jsonSerialization['gunsmithUserInfo'] == null
           ? null
           : _i4.Protocol().deserialize<_i2.UserInfo>(
@@ -66,9 +66,9 @@ abstract class GunsmithClient
       cpf: jsonSerialization['cpf'] as String,
       rg: jsonSerialization['rg'] as String?,
       phone: jsonSerialization['phone'] as String,
-      addressId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['addressId'],
-      ),
+      addressId: jsonSerialization['addressId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
       address: jsonSerialization['address'] == null
           ? null
           : _i4.Protocol().deserialize<_i3.Address>(
@@ -82,11 +82,11 @@ abstract class GunsmithClient
   static const db = GunsmithClientRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   _i1.UuidValue? gunsmithUserId;
 
-  int gunsmithUserInfoId;
+  int? gunsmithUserInfoId;
 
   _i2.UserInfo? gunsmithUserInfo;
 
@@ -100,12 +100,12 @@ abstract class GunsmithClient
 
   _i1.UuidValue? addressId;
 
-  _i1.UuidValue addressId;
+  _i1.UuidValue? addressId;
 
   _i3.Address? address;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [GunsmithClient]
   /// with some or all fields replaced by the given arguments.
@@ -127,9 +127,9 @@ abstract class GunsmithClient
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'GunsmithClient',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (gunsmithUserId != null) 'gunsmithUserId': gunsmithUserId?.toJson(),
-      'gunsmithUserInfoId': gunsmithUserInfoId,
+      if (gunsmithUserInfoId != null) 'gunsmithUserInfoId': gunsmithUserInfoId,
       if (gunsmithUserInfo != null)
         'gunsmithUserInfo': gunsmithUserInfo?.toJson(),
       'name': name,
@@ -137,7 +137,7 @@ abstract class GunsmithClient
       if (rg != null) 'rg': rg,
       'phone': phone,
       if (addressId != null) 'addressId': addressId?.toJson(),
-      'addressId': addressId.toJson(),
+      if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJson(),
     };
   }
@@ -146,9 +146,9 @@ abstract class GunsmithClient
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'GunsmithClient',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (gunsmithUserId != null) 'gunsmithUserId': gunsmithUserId?.toJson(),
-      'gunsmithUserInfoId': gunsmithUserInfoId,
+      if (gunsmithUserInfoId != null) 'gunsmithUserInfoId': gunsmithUserInfoId,
       if (gunsmithUserInfo != null)
         'gunsmithUserInfo': gunsmithUserInfo?.toJsonForProtocol(),
       'name': name,
@@ -156,7 +156,7 @@ abstract class GunsmithClient
       if (rg != null) 'rg': rg,
       'phone': phone,
       if (addressId != null) 'addressId': addressId?.toJson(),
-      'addressId': addressId.toJson(),
+      if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJsonForProtocol(),
     };
   }
@@ -203,14 +203,14 @@ class _GunsmithClientImpl extends GunsmithClient {
   _GunsmithClientImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? gunsmithUserId,
-    required int gunsmithUserInfoId,
+    int? gunsmithUserInfoId,
     _i2.UserInfo? gunsmithUserInfo,
     required String name,
     required String cpf,
     String? rg,
     required String phone,
     _i1.UuidValue? addressId,
-    required _i1.UuidValue addressId,
+    _i1.UuidValue? addressId,
     _i3.Address? address,
   }) : super._(
          id: id,
@@ -230,24 +230,26 @@ class _GunsmithClientImpl extends GunsmithClient {
   @_i1.useResult
   @override
   GunsmithClient copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? gunsmithUserId = _Undefined,
-    int? gunsmithUserInfoId,
+    Object? gunsmithUserInfoId = _Undefined,
     Object? gunsmithUserInfo = _Undefined,
     String? name,
     String? cpf,
     Object? rg = _Undefined,
     String? phone,
     Object? addressId = _Undefined,
-    _i1.UuidValue? addressId,
+    Object? addressId = _Undefined,
     Object? address = _Undefined,
   }) {
     return GunsmithClient(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       gunsmithUserId: gunsmithUserId is _i1.UuidValue?
           ? gunsmithUserId
           : this.gunsmithUserId,
-      gunsmithUserInfoId: gunsmithUserInfoId ?? this.gunsmithUserInfoId,
+      gunsmithUserInfoId: gunsmithUserInfoId is int?
+          ? gunsmithUserInfoId
+          : this.gunsmithUserInfoId,
       gunsmithUserInfo: gunsmithUserInfo is _i2.UserInfo?
           ? gunsmithUserInfo
           : this.gunsmithUserInfo?.copyWith(),
@@ -255,7 +257,7 @@ class _GunsmithClientImpl extends GunsmithClient {
       cpf: cpf ?? this.cpf,
       rg: rg is String? ? rg : this.rg,
       phone: phone ?? this.phone,
-      addressId: addressId ?? this.addressId,
+      addressId: addressId is _i1.UuidValue? ? addressId : this.addressId,
       address: address is _i3.Address? ? address : this.address?.copyWith(),
     );
   }
@@ -271,7 +273,7 @@ class GunsmithClientUpdateTable extends _i1.UpdateTable<GunsmithClientTable> {
     value,
   );
 
-  _i1.ColumnValue<int, int> gunsmithUserInfoId(int value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> gunsmithUserInfoId(int? value) => _i1.ColumnValue(
     table.gunsmithUserInfoId,
     value,
   );
@@ -304,14 +306,14 @@ class GunsmithClientUpdateTable extends _i1.UpdateTable<GunsmithClientTable> {
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> addressId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.addressId,
     value,
   );
 }
 
-class GunsmithClientTable extends _i1.Table<_i1.UuidValue?> {
+class GunsmithClientTable extends _i1.Table<_i1.UuidValue> {
   GunsmithClientTable({super.tableRelation})
     : super(tableName: 'gunsmith_clients') {
     updateTable = GunsmithClientUpdateTable(this);
@@ -442,7 +444,7 @@ class GunsmithClientInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => GunsmithClient.t;
+  _i1.Table<_i1.UuidValue> get table => GunsmithClient.t;
 }
 
 class GunsmithClientIncludeList extends _i1.IncludeList {
@@ -462,13 +464,15 @@ class GunsmithClientIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => GunsmithClient.t;
+  _i1.Table<_i1.UuidValue> get table => GunsmithClient.t;
 }
 
 class GunsmithClientRepository {
   const GunsmithClientRepository._();
 
   final attachRow = const GunsmithClientAttachRowRepository._();
+
+  final detachRow = const GunsmithClientDetachRowRepository._();
 
   /// Returns a list of [GunsmithClient]s matching the given query parameters.
   ///
@@ -804,6 +808,54 @@ class GunsmithClientAttachRowRepository {
     }
 
     var $gunsmithClient = gunsmithClient.copyWith(addressId: address.id);
+    await session.db.updateRow<GunsmithClient>(
+      $gunsmithClient,
+      columns: [GunsmithClient.t.addressId],
+      transaction: transaction,
+    );
+  }
+}
+
+class GunsmithClientDetachRowRepository {
+  const GunsmithClientDetachRowRepository._();
+
+  /// Detaches the relation between this [GunsmithClient] and the [UserInfo] set in `gunsmithUserInfo`
+  /// by setting the [GunsmithClient]'s foreign key `gunsmithUserInfoId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> gunsmithUserInfo(
+    _i1.DatabaseSession session,
+    GunsmithClient gunsmithClient, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (gunsmithClient.id == null) {
+      throw ArgumentError.notNull('gunsmithClient.id');
+    }
+
+    var $gunsmithClient = gunsmithClient.copyWith(gunsmithUserInfoId: null);
+    await session.db.updateRow<GunsmithClient>(
+      $gunsmithClient,
+      columns: [GunsmithClient.t.gunsmithUserInfoId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [GunsmithClient] and the [Address] set in `address`
+  /// by setting the [GunsmithClient]'s foreign key `addressId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> address(
+    _i1.DatabaseSession session,
+    GunsmithClient gunsmithClient, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (gunsmithClient.id == null) {
+      throw ArgumentError.notNull('gunsmithClient.id');
+    }
+
+    var $gunsmithClient = gunsmithClient.copyWith(addressId: null);
     await session.db.updateRow<GunsmithClient>(
       $gunsmithClient,
       columns: [GunsmithClient.t.addressId],

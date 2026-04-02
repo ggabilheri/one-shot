@@ -17,14 +17,14 @@ import '../shooter/firearm.dart' as _i3;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i4;
 
 abstract class Accessory
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Accessory._({
-    this.id,
+    _i1.UuidValue? id,
     this.userId,
-    required this.userInfoId,
+    this.userInfoId,
     this.userInfo,
     this.firearmId,
-    required this.firearmId,
+    this.firearmId,
     this.firearm,
     required this.purpose,
     required this.type,
@@ -34,15 +34,15 @@ abstract class Accessory
     required this.condition,
     this.purchasePrice,
     this.acquisitionDate,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory Accessory({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required String purpose,
     required String type,
@@ -62,15 +62,15 @@ abstract class Accessory
       userId: jsonSerialization['userId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
-      userInfoId: jsonSerialization['userInfoId'] as int,
+      userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
           : _i4.Protocol().deserialize<_i2.UserInfo>(
               jsonSerialization['userInfo'],
             ),
-      firearmId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['firearmId'],
-      ),
+      firearmId: jsonSerialization['firearmId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
           : _i4.Protocol().deserialize<_i3.Firearm>(
@@ -96,17 +96,17 @@ abstract class Accessory
   static const db = AccessoryRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   _i1.UuidValue? userId;
 
-  int userInfoId;
+  int? userInfoId;
 
   _i2.UserInfo? userInfo;
 
   _i1.UuidValue? firearmId;
 
-  _i1.UuidValue firearmId;
+  _i1.UuidValue? firearmId;
 
   _i3.Firearm? firearm;
 
@@ -127,7 +127,7 @@ abstract class Accessory
   DateTime? acquisitionDate;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Accessory]
   /// with some or all fields replaced by the given arguments.
@@ -153,12 +153,12 @@ abstract class Accessory
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Accessory',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'purpose': purpose,
       'type': type,
@@ -175,12 +175,12 @@ abstract class Accessory
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'Accessory',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
       'purpose': purpose,
       'type': type,
@@ -235,10 +235,10 @@ class _AccessoryImpl extends Accessory {
   _AccessoryImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required String purpose,
     required String type,
@@ -270,12 +270,12 @@ class _AccessoryImpl extends Accessory {
   @_i1.useResult
   @override
   Accessory copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userId = _Undefined,
-    int? userInfoId,
+    Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     Object? firearmId = _Undefined,
-    _i1.UuidValue? firearmId,
+    Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     String? purpose,
     String? type,
@@ -287,13 +287,13 @@ class _AccessoryImpl extends Accessory {
     Object? acquisitionDate = _Undefined,
   }) {
     return Accessory(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       userId: userId is _i1.UuidValue? ? userId : this.userId,
-      userInfoId: userInfoId ?? this.userInfoId,
+      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
-      firearmId: firearmId ?? this.firearmId,
+      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
       firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
       purpose: purpose ?? this.purpose,
       type: type ?? this.type,
@@ -320,7 +320,7 @@ class AccessoryUpdateTable extends _i1.UpdateTable<AccessoryTable> {
         value,
       );
 
-  _i1.ColumnValue<int, int> userInfoId(int value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
     table.userInfoId,
     value,
   );
@@ -333,7 +333,7 @@ class AccessoryUpdateTable extends _i1.UpdateTable<AccessoryTable> {
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.firearmId,
     value,
@@ -383,7 +383,7 @@ class AccessoryUpdateTable extends _i1.UpdateTable<AccessoryTable> {
       );
 }
 
-class AccessoryTable extends _i1.Table<_i1.UuidValue?> {
+class AccessoryTable extends _i1.Table<_i1.UuidValue> {
   AccessoryTable({super.tableRelation}) : super(tableName: 'accessories') {
     updateTable = AccessoryUpdateTable(this);
     userId = _i1.ColumnUuid(
@@ -541,7 +541,7 @@ class AccessoryInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Accessory.t;
+  _i1.Table<_i1.UuidValue> get table => Accessory.t;
 }
 
 class AccessoryIncludeList extends _i1.IncludeList {
@@ -561,13 +561,15 @@ class AccessoryIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Accessory.t;
+  _i1.Table<_i1.UuidValue> get table => Accessory.t;
 }
 
 class AccessoryRepository {
   const AccessoryRepository._();
 
   final attachRow = const AccessoryAttachRowRepository._();
+
+  final detachRow = const AccessoryDetachRowRepository._();
 
   /// Returns a list of [Accessory]s matching the given query parameters.
   ///
@@ -901,6 +903,54 @@ class AccessoryAttachRowRepository {
     }
 
     var $accessory = accessory.copyWith(firearmId: firearm.id);
+    await session.db.updateRow<Accessory>(
+      $accessory,
+      columns: [Accessory.t.firearmId],
+      transaction: transaction,
+    );
+  }
+}
+
+class AccessoryDetachRowRepository {
+  const AccessoryDetachRowRepository._();
+
+  /// Detaches the relation between this [Accessory] and the [UserInfo] set in `userInfo`
+  /// by setting the [Accessory]'s foreign key `userInfoId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> userInfo(
+    _i1.DatabaseSession session,
+    Accessory accessory, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (accessory.id == null) {
+      throw ArgumentError.notNull('accessory.id');
+    }
+
+    var $accessory = accessory.copyWith(userInfoId: null);
+    await session.db.updateRow<Accessory>(
+      $accessory,
+      columns: [Accessory.t.userInfoId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [Accessory] and the [Firearm] set in `firearm`
+  /// by setting the [Accessory]'s foreign key `firearmId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> firearm(
+    _i1.DatabaseSession session,
+    Accessory accessory, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (accessory.id == null) {
+      throw ArgumentError.notNull('accessory.id');
+    }
+
+    var $accessory = accessory.copyWith(firearmId: null);
     await session.db.updateRow<Accessory>(
       $accessory,
       columns: [Accessory.t.firearmId],

@@ -17,29 +17,29 @@ import '../common/supply_stock.dart' as _i3;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i4;
 
 abstract class ServiceOrderItem
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   ServiceOrderItem._({
-    this.id,
+    _i1.UuidValue? id,
     this.serviceOrderId,
-    required this.serviceOrderId,
+    this.serviceOrderId,
     this.serviceOrder,
     required this.description,
     required this.isStockPart,
     this.supplyPartId,
-    required this.supplyPartId,
+    this.supplyPartId,
     this.supplyPart,
     required this.servicePrice,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory ServiceOrderItem({
     _i1.UuidValue? id,
     _i1.UuidValue? serviceOrderId,
-    required _i1.UuidValue serviceOrderId,
+    _i1.UuidValue? serviceOrderId,
     _i2.ServiceOrder? serviceOrder,
     required String description,
     required bool isStockPart,
     _i1.UuidValue? supplyPartId,
-    required _i1.UuidValue supplyPartId,
+    _i1.UuidValue? supplyPartId,
     _i3.SupplyStock? supplyPart,
     required double servicePrice,
   }) = _ServiceOrderItemImpl;
@@ -49,9 +49,11 @@ abstract class ServiceOrderItem
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      serviceOrderId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['serviceOrderId'],
-      ),
+      serviceOrderId: jsonSerialization['serviceOrderId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(
+              jsonSerialization['serviceOrderId'],
+            ),
       serviceOrder: jsonSerialization['serviceOrder'] == null
           ? null
           : _i4.Protocol().deserialize<_i2.ServiceOrder>(
@@ -61,9 +63,11 @@ abstract class ServiceOrderItem
       isStockPart: _i1.BoolJsonExtension.fromJson(
         jsonSerialization['isStockPart'],
       ),
-      supplyPartId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['supplyPartId'],
-      ),
+      supplyPartId: jsonSerialization['supplyPartId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(
+              jsonSerialization['supplyPartId'],
+            ),
       supplyPart: jsonSerialization['supplyPart'] == null
           ? null
           : _i4.Protocol().deserialize<_i3.SupplyStock>(
@@ -78,11 +82,11 @@ abstract class ServiceOrderItem
   static const db = ServiceOrderItemRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   _i1.UuidValue? serviceOrderId;
 
-  _i1.UuidValue serviceOrderId;
+  _i1.UuidValue? serviceOrderId;
 
   _i2.ServiceOrder? serviceOrder;
 
@@ -92,14 +96,14 @@ abstract class ServiceOrderItem
 
   _i1.UuidValue? supplyPartId;
 
-  _i1.UuidValue supplyPartId;
+  _i1.UuidValue? supplyPartId;
 
   _i3.SupplyStock? supplyPart;
 
   double servicePrice;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [ServiceOrderItem]
   /// with some or all fields replaced by the given arguments.
@@ -120,14 +124,14 @@ abstract class ServiceOrderItem
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'ServiceOrderItem',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (serviceOrderId != null) 'serviceOrderId': serviceOrderId?.toJson(),
-      'serviceOrderId': serviceOrderId.toJson(),
+      if (serviceOrderId != null) 'serviceOrderId': serviceOrderId?.toJson(),
       if (serviceOrder != null) 'serviceOrder': serviceOrder?.toJson(),
       'description': description,
       'isStockPart': isStockPart,
       if (supplyPartId != null) 'supplyPartId': supplyPartId?.toJson(),
-      'supplyPartId': supplyPartId.toJson(),
+      if (supplyPartId != null) 'supplyPartId': supplyPartId?.toJson(),
       if (supplyPart != null) 'supplyPart': supplyPart?.toJson(),
       'servicePrice': servicePrice,
     };
@@ -137,15 +141,15 @@ abstract class ServiceOrderItem
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'ServiceOrderItem',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (serviceOrderId != null) 'serviceOrderId': serviceOrderId?.toJson(),
-      'serviceOrderId': serviceOrderId.toJson(),
+      if (serviceOrderId != null) 'serviceOrderId': serviceOrderId?.toJson(),
       if (serviceOrder != null)
         'serviceOrder': serviceOrder?.toJsonForProtocol(),
       'description': description,
       'isStockPart': isStockPart,
       if (supplyPartId != null) 'supplyPartId': supplyPartId?.toJson(),
-      'supplyPartId': supplyPartId.toJson(),
+      if (supplyPartId != null) 'supplyPartId': supplyPartId?.toJson(),
       if (supplyPart != null) 'supplyPart': supplyPart?.toJsonForProtocol(),
       'servicePrice': servicePrice,
     };
@@ -193,12 +197,12 @@ class _ServiceOrderItemImpl extends ServiceOrderItem {
   _ServiceOrderItemImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? serviceOrderId,
-    required _i1.UuidValue serviceOrderId,
+    _i1.UuidValue? serviceOrderId,
     _i2.ServiceOrder? serviceOrder,
     required String description,
     required bool isStockPart,
     _i1.UuidValue? supplyPartId,
-    required _i1.UuidValue supplyPartId,
+    _i1.UuidValue? supplyPartId,
     _i3.SupplyStock? supplyPart,
     required double servicePrice,
   }) : super._(
@@ -217,26 +221,30 @@ class _ServiceOrderItemImpl extends ServiceOrderItem {
   @_i1.useResult
   @override
   ServiceOrderItem copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? serviceOrderId = _Undefined,
-    _i1.UuidValue? serviceOrderId,
+    Object? serviceOrderId = _Undefined,
     Object? serviceOrder = _Undefined,
     String? description,
     bool? isStockPart,
     Object? supplyPartId = _Undefined,
-    _i1.UuidValue? supplyPartId,
+    Object? supplyPartId = _Undefined,
     Object? supplyPart = _Undefined,
     double? servicePrice,
   }) {
     return ServiceOrderItem(
-      id: id is _i1.UuidValue? ? id : this.id,
-      serviceOrderId: serviceOrderId ?? this.serviceOrderId,
+      id: id ?? this.id,
+      serviceOrderId: serviceOrderId is _i1.UuidValue?
+          ? serviceOrderId
+          : this.serviceOrderId,
       serviceOrder: serviceOrder is _i2.ServiceOrder?
           ? serviceOrder
           : this.serviceOrder?.copyWith(),
       description: description ?? this.description,
       isStockPart: isStockPart ?? this.isStockPart,
-      supplyPartId: supplyPartId ?? this.supplyPartId,
+      supplyPartId: supplyPartId is _i1.UuidValue?
+          ? supplyPartId
+          : this.supplyPartId,
       supplyPart: supplyPart is _i3.SupplyStock?
           ? supplyPart
           : this.supplyPart?.copyWith(),
@@ -257,7 +265,7 @@ class ServiceOrderItemUpdateTable
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> serviceOrderId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.serviceOrderId,
     value,
@@ -281,7 +289,7 @@ class ServiceOrderItemUpdateTable
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> supplyPartId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.supplyPartId,
     value,
@@ -293,7 +301,7 @@ class ServiceOrderItemUpdateTable
   );
 }
 
-class ServiceOrderItemTable extends _i1.Table<_i1.UuidValue?> {
+class ServiceOrderItemTable extends _i1.Table<_i1.UuidValue> {
   ServiceOrderItemTable({super.tableRelation})
     : super(tableName: 'service_order_items') {
     updateTable = ServiceOrderItemUpdateTable(this);
@@ -417,7 +425,7 @@ class ServiceOrderItemInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => ServiceOrderItem.t;
+  _i1.Table<_i1.UuidValue> get table => ServiceOrderItem.t;
 }
 
 class ServiceOrderItemIncludeList extends _i1.IncludeList {
@@ -437,13 +445,15 @@ class ServiceOrderItemIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => ServiceOrderItem.t;
+  _i1.Table<_i1.UuidValue> get table => ServiceOrderItem.t;
 }
 
 class ServiceOrderItemRepository {
   const ServiceOrderItemRepository._();
 
   final attachRow = const ServiceOrderItemAttachRowRepository._();
+
+  final detachRow = const ServiceOrderItemDetachRowRepository._();
 
   /// Returns a list of [ServiceOrderItem]s matching the given query parameters.
   ///
@@ -783,6 +793,54 @@ class ServiceOrderItemAttachRowRepository {
     var $serviceOrderItem = serviceOrderItem.copyWith(
       supplyPartId: supplyPart.id,
     );
+    await session.db.updateRow<ServiceOrderItem>(
+      $serviceOrderItem,
+      columns: [ServiceOrderItem.t.supplyPartId],
+      transaction: transaction,
+    );
+  }
+}
+
+class ServiceOrderItemDetachRowRepository {
+  const ServiceOrderItemDetachRowRepository._();
+
+  /// Detaches the relation between this [ServiceOrderItem] and the [ServiceOrder] set in `serviceOrder`
+  /// by setting the [ServiceOrderItem]'s foreign key `serviceOrderId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> serviceOrder(
+    _i1.DatabaseSession session,
+    ServiceOrderItem serviceOrderItem, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (serviceOrderItem.id == null) {
+      throw ArgumentError.notNull('serviceOrderItem.id');
+    }
+
+    var $serviceOrderItem = serviceOrderItem.copyWith(serviceOrderId: null);
+    await session.db.updateRow<ServiceOrderItem>(
+      $serviceOrderItem,
+      columns: [ServiceOrderItem.t.serviceOrderId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [ServiceOrderItem] and the [SupplyStock] set in `supplyPart`
+  /// by setting the [ServiceOrderItem]'s foreign key `supplyPartId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> supplyPart(
+    _i1.DatabaseSession session,
+    ServiceOrderItem serviceOrderItem, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (serviceOrderItem.id == null) {
+      throw ArgumentError.notNull('serviceOrderItem.id');
+    }
+
+    var $serviceOrderItem = serviceOrderItem.copyWith(supplyPartId: null);
     await session.db.updateRow<ServiceOrderItem>(
       $serviceOrderItem,
       columns: [ServiceOrderItem.t.supplyPartId],

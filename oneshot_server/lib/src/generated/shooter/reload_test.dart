@@ -17,14 +17,14 @@ import '../shooter/firearm.dart' as _i3;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i4;
 
 abstract class ReloadTest
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   ReloadTest._({
-    this.id,
+    _i1.UuidValue? id,
     this.reloadSessionId,
-    required this.reloadSessionId,
+    this.reloadSessionId,
     this.reloadSession,
     this.firearmId,
-    required this.firearmId,
+    this.firearmId,
     this.firearm,
     required this.testDate,
     required this.shotsFired,
@@ -35,15 +35,15 @@ abstract class ReloadTest
     required this.averageEnergy,
     this.groupingMeasurement,
     required this.crackedCasings,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory ReloadTest({
     _i1.UuidValue? id,
     _i1.UuidValue? reloadSessionId,
-    required _i1.UuidValue reloadSessionId,
+    _i1.UuidValue? reloadSessionId,
     _i2.ReloadSession? reloadSession,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime testDate,
     required int shotsFired,
@@ -61,17 +61,19 @@ abstract class ReloadTest
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      reloadSessionId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['reloadSessionId'],
-      ),
+      reloadSessionId: jsonSerialization['reloadSessionId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(
+              jsonSerialization['reloadSessionId'],
+            ),
       reloadSession: jsonSerialization['reloadSession'] == null
           ? null
           : _i4.Protocol().deserialize<_i2.ReloadSession>(
               jsonSerialization['reloadSession'],
             ),
-      firearmId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['firearmId'],
-      ),
+      firearmId: jsonSerialization['firearmId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
           : _i4.Protocol().deserialize<_i3.Firearm>(
@@ -100,17 +102,17 @@ abstract class ReloadTest
   static const db = ReloadTestRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   _i1.UuidValue? reloadSessionId;
 
-  _i1.UuidValue reloadSessionId;
+  _i1.UuidValue? reloadSessionId;
 
   _i2.ReloadSession? reloadSession;
 
   _i1.UuidValue? firearmId;
 
-  _i1.UuidValue firearmId;
+  _i1.UuidValue? firearmId;
 
   _i3.Firearm? firearm;
 
@@ -133,7 +135,7 @@ abstract class ReloadTest
   int crackedCasings;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [ReloadTest]
   /// with some or all fields replaced by the given arguments.
@@ -160,12 +162,12 @@ abstract class ReloadTest
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'ReloadTest',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
-      'reloadSessionId': reloadSessionId.toJson(),
+      if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
       if (reloadSession != null) 'reloadSession': reloadSession?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'testDate': testDate.toJson(),
       'shotsFired': shotsFired,
@@ -184,13 +186,13 @@ abstract class ReloadTest
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'ReloadTest',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
-      'reloadSessionId': reloadSessionId.toJson(),
+      if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
       if (reloadSession != null)
         'reloadSession': reloadSession?.toJsonForProtocol(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
       'testDate': testDate.toJson(),
       'shotsFired': shotsFired,
@@ -247,10 +249,10 @@ class _ReloadTestImpl extends ReloadTest {
   _ReloadTestImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? reloadSessionId,
-    required _i1.UuidValue reloadSessionId,
+    _i1.UuidValue? reloadSessionId,
     _i2.ReloadSession? reloadSession,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime testDate,
     required int shotsFired,
@@ -283,12 +285,12 @@ class _ReloadTestImpl extends ReloadTest {
   @_i1.useResult
   @override
   ReloadTest copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? reloadSessionId = _Undefined,
-    _i1.UuidValue? reloadSessionId,
+    Object? reloadSessionId = _Undefined,
     Object? reloadSession = _Undefined,
     Object? firearmId = _Undefined,
-    _i1.UuidValue? firearmId,
+    Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     DateTime? testDate,
     int? shotsFired,
@@ -301,12 +303,14 @@ class _ReloadTestImpl extends ReloadTest {
     int? crackedCasings,
   }) {
     return ReloadTest(
-      id: id is _i1.UuidValue? ? id : this.id,
-      reloadSessionId: reloadSessionId ?? this.reloadSessionId,
+      id: id ?? this.id,
+      reloadSessionId: reloadSessionId is _i1.UuidValue?
+          ? reloadSessionId
+          : this.reloadSessionId,
       reloadSession: reloadSession is _i2.ReloadSession?
           ? reloadSession
           : this.reloadSession?.copyWith(),
-      firearmId: firearmId ?? this.firearmId,
+      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
       firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
       testDate: testDate ?? this.testDate,
       shotsFired: shotsFired ?? this.shotsFired,
@@ -334,7 +338,7 @@ class ReloadTestUpdateTable extends _i1.UpdateTable<ReloadTestTable> {
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> reloadSessionId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.reloadSessionId,
     value,
@@ -348,7 +352,7 @@ class ReloadTestUpdateTable extends _i1.UpdateTable<ReloadTestTable> {
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.firearmId,
     value,
@@ -406,7 +410,7 @@ class ReloadTestUpdateTable extends _i1.UpdateTable<ReloadTestTable> {
   );
 }
 
-class ReloadTestTable extends _i1.Table<_i1.UuidValue?> {
+class ReloadTestTable extends _i1.Table<_i1.UuidValue> {
   ReloadTestTable({super.tableRelation}) : super(tableName: 'reload_tests') {
     updateTable = ReloadTestUpdateTable(this);
     reloadSessionId = _i1.ColumnUuid(
@@ -571,7 +575,7 @@ class ReloadTestInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => ReloadTest.t;
+  _i1.Table<_i1.UuidValue> get table => ReloadTest.t;
 }
 
 class ReloadTestIncludeList extends _i1.IncludeList {
@@ -591,13 +595,15 @@ class ReloadTestIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => ReloadTest.t;
+  _i1.Table<_i1.UuidValue> get table => ReloadTest.t;
 }
 
 class ReloadTestRepository {
   const ReloadTestRepository._();
 
   final attachRow = const ReloadTestAttachRowRepository._();
+
+  final detachRow = const ReloadTestDetachRowRepository._();
 
   /// Returns a list of [ReloadTest]s matching the given query parameters.
   ///
@@ -931,6 +937,54 @@ class ReloadTestAttachRowRepository {
     }
 
     var $reloadTest = reloadTest.copyWith(firearmId: firearm.id);
+    await session.db.updateRow<ReloadTest>(
+      $reloadTest,
+      columns: [ReloadTest.t.firearmId],
+      transaction: transaction,
+    );
+  }
+}
+
+class ReloadTestDetachRowRepository {
+  const ReloadTestDetachRowRepository._();
+
+  /// Detaches the relation between this [ReloadTest] and the [ReloadSession] set in `reloadSession`
+  /// by setting the [ReloadTest]'s foreign key `reloadSessionId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> reloadSession(
+    _i1.DatabaseSession session,
+    ReloadTest reloadTest, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (reloadTest.id == null) {
+      throw ArgumentError.notNull('reloadTest.id');
+    }
+
+    var $reloadTest = reloadTest.copyWith(reloadSessionId: null);
+    await session.db.updateRow<ReloadTest>(
+      $reloadTest,
+      columns: [ReloadTest.t.reloadSessionId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [ReloadTest] and the [Firearm] set in `firearm`
+  /// by setting the [ReloadTest]'s foreign key `firearmId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> firearm(
+    _i1.DatabaseSession session,
+    ReloadTest reloadTest, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (reloadTest.id == null) {
+      throw ArgumentError.notNull('reloadTest.id');
+    }
+
+    var $reloadTest = reloadTest.copyWith(firearmId: null);
     await session.db.updateRow<ReloadTest>(
       $reloadTest,
       columns: [ReloadTest.t.firearmId],

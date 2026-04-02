@@ -18,29 +18,30 @@ import '../club/club.dart' as _i4;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i5;
 
 abstract class Membership
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Membership._({
-    this.id,
+    _i1.UuidValue? id,
     this.userId,
-    required this.userId,
+    this.userId,
     this.user,
     this.clubId,
-    required this.clubId,
+    this.clubId,
     this.club,
     this.membershipNumber,
     required this.startDate,
     this.validUntil,
     _i2.MembershipStatus? status,
     this.planName,
-  }) : status = status ?? _i2.MembershipStatus.active;
+  }) : id = id ?? const _i1.Uuid().v4obj(),
+       status = status ?? _i2.MembershipStatus.active;
 
   factory Membership({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required _i1.UuidValue userId,
+    _i1.UuidValue? userId,
     _i3.UserProfile? user,
     _i1.UuidValue? clubId,
-    required _i1.UuidValue clubId,
+    _i1.UuidValue? clubId,
     _i4.Club? club,
     String? membershipNumber,
     required DateTime startDate,
@@ -54,13 +55,17 @@ abstract class Membership
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+      userId: jsonSerialization['userId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       user: jsonSerialization['user'] == null
           ? null
           : _i5.Protocol().deserialize<_i3.UserProfile>(
               jsonSerialization['user'],
             ),
-      clubId: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['clubId']),
+      clubId: jsonSerialization['clubId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['clubId']),
       club: jsonSerialization['club'] == null
           ? null
           : _i5.Protocol().deserialize<_i4.Club>(jsonSerialization['club']),
@@ -85,17 +90,17 @@ abstract class Membership
   static const db = MembershipRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   _i1.UuidValue? userId;
 
-  _i1.UuidValue userId;
+  _i1.UuidValue? userId;
 
   _i3.UserProfile? user;
 
   _i1.UuidValue? clubId;
 
-  _i1.UuidValue clubId;
+  _i1.UuidValue? clubId;
 
   _i4.Club? club;
 
@@ -110,7 +115,7 @@ abstract class Membership
   String? planName;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Membership]
   /// with some or all fields replaced by the given arguments.
@@ -133,12 +138,12 @@ abstract class Membership
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Membership',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userId': userId.toJson(),
+      if (userId != null) 'userId': userId?.toJson(),
       if (user != null) 'user': user?.toJson(),
       if (clubId != null) 'clubId': clubId?.toJson(),
-      'clubId': clubId.toJson(),
+      if (clubId != null) 'clubId': clubId?.toJson(),
       if (club != null) 'club': club?.toJson(),
       if (membershipNumber != null) 'membershipNumber': membershipNumber,
       'startDate': startDate.toJson(),
@@ -152,12 +157,12 @@ abstract class Membership
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'Membership',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userId': userId.toJson(),
+      if (userId != null) 'userId': userId?.toJson(),
       if (user != null) 'user': user?.toJsonForProtocol(),
       if (clubId != null) 'clubId': clubId?.toJson(),
-      'clubId': clubId.toJson(),
+      if (clubId != null) 'clubId': clubId?.toJson(),
       if (club != null) 'club': club?.toJsonForProtocol(),
       if (membershipNumber != null) 'membershipNumber': membershipNumber,
       'startDate': startDate.toJson(),
@@ -209,10 +214,10 @@ class _MembershipImpl extends Membership {
   _MembershipImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required _i1.UuidValue userId,
+    _i1.UuidValue? userId,
     _i3.UserProfile? user,
     _i1.UuidValue? clubId,
-    required _i1.UuidValue clubId,
+    _i1.UuidValue? clubId,
     _i4.Club? club,
     String? membershipNumber,
     required DateTime startDate,
@@ -237,12 +242,12 @@ class _MembershipImpl extends Membership {
   @_i1.useResult
   @override
   Membership copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userId = _Undefined,
-    _i1.UuidValue? userId,
+    Object? userId = _Undefined,
     Object? user = _Undefined,
     Object? clubId = _Undefined,
-    _i1.UuidValue? clubId,
+    Object? clubId = _Undefined,
     Object? club = _Undefined,
     Object? membershipNumber = _Undefined,
     DateTime? startDate,
@@ -251,10 +256,10 @@ class _MembershipImpl extends Membership {
     Object? planName = _Undefined,
   }) {
     return Membership(
-      id: id is _i1.UuidValue? ? id : this.id,
-      userId: userId ?? this.userId,
+      id: id ?? this.id,
+      userId: userId is _i1.UuidValue? ? userId : this.userId,
       user: user is _i3.UserProfile? ? user : this.user?.copyWith(),
-      clubId: clubId ?? this.clubId,
+      clubId: clubId is _i1.UuidValue? ? clubId : this.clubId,
       club: club is _i4.Club? ? club : this.club?.copyWith(),
       membershipNumber: membershipNumber is String?
           ? membershipNumber
@@ -276,7 +281,7 @@ class MembershipUpdateTable extends _i1.UpdateTable<MembershipTable> {
         value,
       );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue value) =>
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
       _i1.ColumnValue(
         table.userId,
         value,
@@ -288,7 +293,7 @@ class MembershipUpdateTable extends _i1.UpdateTable<MembershipTable> {
         value,
       );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> clubId(_i1.UuidValue value) =>
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> clubId(_i1.UuidValue? value) =>
       _i1.ColumnValue(
         table.clubId,
         value,
@@ -325,7 +330,7 @@ class MembershipUpdateTable extends _i1.UpdateTable<MembershipTable> {
   );
 }
 
-class MembershipTable extends _i1.Table<_i1.UuidValue?> {
+class MembershipTable extends _i1.Table<_i1.UuidValue> {
   MembershipTable({super.tableRelation}) : super(tableName: 'memberships') {
     updateTable = MembershipUpdateTable(this);
     userId = _i1.ColumnUuid(
@@ -464,7 +469,7 @@ class MembershipInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Membership.t;
+  _i1.Table<_i1.UuidValue> get table => Membership.t;
 }
 
 class MembershipIncludeList extends _i1.IncludeList {
@@ -484,13 +489,15 @@ class MembershipIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Membership.t;
+  _i1.Table<_i1.UuidValue> get table => Membership.t;
 }
 
 class MembershipRepository {
   const MembershipRepository._();
 
   final attachRow = const MembershipAttachRowRepository._();
+
+  final detachRow = const MembershipDetachRowRepository._();
 
   /// Returns a list of [Membership]s matching the given query parameters.
   ///
@@ -824,6 +831,54 @@ class MembershipAttachRowRepository {
     }
 
     var $membership = membership.copyWith(clubId: club.id);
+    await session.db.updateRow<Membership>(
+      $membership,
+      columns: [Membership.t.clubId],
+      transaction: transaction,
+    );
+  }
+}
+
+class MembershipDetachRowRepository {
+  const MembershipDetachRowRepository._();
+
+  /// Detaches the relation between this [Membership] and the [UserProfile] set in `user`
+  /// by setting the [Membership]'s foreign key `userId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> user(
+    _i1.DatabaseSession session,
+    Membership membership, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (membership.id == null) {
+      throw ArgumentError.notNull('membership.id');
+    }
+
+    var $membership = membership.copyWith(userId: null);
+    await session.db.updateRow<Membership>(
+      $membership,
+      columns: [Membership.t.userId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [Membership] and the [Club] set in `club`
+  /// by setting the [Membership]'s foreign key `clubId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> club(
+    _i1.DatabaseSession session,
+    Membership membership, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (membership.id == null) {
+      throw ArgumentError.notNull('membership.id');
+    }
+
+    var $membership = membership.copyWith(clubId: null);
     await session.db.updateRow<Membership>(
       $membership,
       columns: [Membership.t.clubId],

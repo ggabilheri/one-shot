@@ -19,9 +19,9 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i6;
 
 abstract class Document implements _i1.SerializableModel {
   Document._({
-    this.id,
+    _i1.UuidValue? id,
     this.userId,
-    required this.userInfoId,
+    this.userInfoId,
     this.userInfo,
     this.firearmId,
     this.firearmId,
@@ -39,12 +39,12 @@ abstract class Document implements _i1.SerializableModel {
     this.supplierAddressId,
     this.supplierAddressId,
     this.supplierAddress,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory Document({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
@@ -72,7 +72,7 @@ abstract class Document implements _i1.SerializableModel {
       userId: jsonSerialization['userId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
-      userInfoId: jsonSerialization['userInfoId'] as int,
+      userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
           : _i6.Protocol().deserialize<_i2.UserInfo>(
@@ -120,14 +120,12 @@ abstract class Document implements _i1.SerializableModel {
     );
   }
 
-  /// The database id, set if the object has been inserted into the
-  /// database or if it has been fetched from the database. Otherwise,
-  /// the id will be null.
-  _i1.UuidValue? id;
+  /// The id of the object.
+  _i1.UuidValue id;
 
   _i1.UuidValue? userId;
 
-  int userInfoId;
+  int? userInfoId;
 
   _i2.UserInfo? userInfo;
 
@@ -192,9 +190,9 @@ abstract class Document implements _i1.SerializableModel {
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Document',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
@@ -229,7 +227,7 @@ class _DocumentImpl extends Document {
   _DocumentImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
@@ -272,9 +270,9 @@ class _DocumentImpl extends Document {
   @_i1.useResult
   @override
   Document copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userId = _Undefined,
-    int? userInfoId,
+    Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearmId = _Undefined,
@@ -294,9 +292,9 @@ class _DocumentImpl extends Document {
     Object? supplierAddress = _Undefined,
   }) {
     return Document(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       userId: userId is _i1.UuidValue? ? userId : this.userId,
-      userInfoId: userInfoId ?? this.userInfoId,
+      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),

@@ -16,11 +16,11 @@ import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i2;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i3;
 
 abstract class AmmunitionStock
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   AmmunitionStock._({
-    this.id,
+    _i1.UuidValue? id,
     this.userId,
-    required this.userInfoId,
+    this.userInfoId,
     this.userInfo,
     required this.type,
     required this.manufacturer,
@@ -31,12 +31,12 @@ abstract class AmmunitionStock
     this.purchasePrice,
     required this.acquisitionDate,
     this.casingBatch,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory AmmunitionStock({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     required String type,
     required String manufacturer,
@@ -57,7 +57,7 @@ abstract class AmmunitionStock
       userId: jsonSerialization['userId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
-      userInfoId: jsonSerialization['userInfoId'] as int,
+      userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
           : _i3.Protocol().deserialize<_i2.UserInfo>(
@@ -83,11 +83,11 @@ abstract class AmmunitionStock
   static const db = AmmunitionStockRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   _i1.UuidValue? userId;
 
-  int userInfoId;
+  int? userInfoId;
 
   _i2.UserInfo? userInfo;
 
@@ -110,7 +110,7 @@ abstract class AmmunitionStock
   String? casingBatch;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [AmmunitionStock]
   /// with some or all fields replaced by the given arguments.
@@ -134,9 +134,9 @@ abstract class AmmunitionStock
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'AmmunitionStock',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'type': type,
       'manufacturer': manufacturer,
@@ -155,9 +155,9 @@ abstract class AmmunitionStock
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'AmmunitionStock',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
       'type': type,
       'manufacturer': manufacturer,
@@ -208,7 +208,7 @@ class _AmmunitionStockImpl extends AmmunitionStock {
   _AmmunitionStockImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     required String type,
     required String manufacturer,
@@ -240,9 +240,9 @@ class _AmmunitionStockImpl extends AmmunitionStock {
   @_i1.useResult
   @override
   AmmunitionStock copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userId = _Undefined,
-    int? userInfoId,
+    Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     String? type,
     String? manufacturer,
@@ -255,9 +255,9 @@ class _AmmunitionStockImpl extends AmmunitionStock {
     Object? casingBatch = _Undefined,
   }) {
     return AmmunitionStock(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       userId: userId is _i1.UuidValue? ? userId : this.userId,
-      userInfoId: userInfoId ?? this.userInfoId,
+      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
@@ -287,7 +287,7 @@ class AmmunitionStockUpdateTable extends _i1.UpdateTable<AmmunitionStockTable> {
         value,
       );
 
-  _i1.ColumnValue<int, int> userInfoId(int value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
     table.userInfoId,
     value,
   );
@@ -342,7 +342,7 @@ class AmmunitionStockUpdateTable extends _i1.UpdateTable<AmmunitionStockTable> {
   );
 }
 
-class AmmunitionStockTable extends _i1.Table<_i1.UuidValue?> {
+class AmmunitionStockTable extends _i1.Table<_i1.UuidValue> {
   AmmunitionStockTable({super.tableRelation})
     : super(tableName: 'ammunition_stocks') {
     updateTable = AmmunitionStockUpdateTable(this);
@@ -467,7 +467,7 @@ class AmmunitionStockInclude extends _i1.IncludeObject {
   Map<String, _i1.Include?> get includes => {'userInfo': _userInfo};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => AmmunitionStock.t;
+  _i1.Table<_i1.UuidValue> get table => AmmunitionStock.t;
 }
 
 class AmmunitionStockIncludeList extends _i1.IncludeList {
@@ -487,13 +487,15 @@ class AmmunitionStockIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => AmmunitionStock.t;
+  _i1.Table<_i1.UuidValue> get table => AmmunitionStock.t;
 }
 
 class AmmunitionStockRepository {
   const AmmunitionStockRepository._();
 
   final attachRow = const AmmunitionStockAttachRowRepository._();
+
+  final detachRow = const AmmunitionStockDetachRowRepository._();
 
   /// Returns a list of [AmmunitionStock]s matching the given query parameters.
   ///
@@ -806,6 +808,32 @@ class AmmunitionStockAttachRowRepository {
     }
 
     var $ammunitionStock = ammunitionStock.copyWith(userInfoId: userInfo.id);
+    await session.db.updateRow<AmmunitionStock>(
+      $ammunitionStock,
+      columns: [AmmunitionStock.t.userInfoId],
+      transaction: transaction,
+    );
+  }
+}
+
+class AmmunitionStockDetachRowRepository {
+  const AmmunitionStockDetachRowRepository._();
+
+  /// Detaches the relation between this [AmmunitionStock] and the [UserInfo] set in `userInfo`
+  /// by setting the [AmmunitionStock]'s foreign key `userInfoId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> userInfo(
+    _i1.DatabaseSession session,
+    AmmunitionStock ammunitionStock, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (ammunitionStock.id == null) {
+      throw ArgumentError.notNull('ammunitionStock.id');
+    }
+
+    var $ammunitionStock = ammunitionStock.copyWith(userInfoId: null);
     await session.db.updateRow<AmmunitionStock>(
       $ammunitionStock,
       columns: [AmmunitionStock.t.userInfoId],

@@ -16,9 +16,9 @@ import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i2;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i3;
 
 abstract class SupplyStock
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   SupplyStock._({
-    this.id,
+    _i1.UuidValue? id,
     required this.name,
     required this.type,
     required this.quantity,
@@ -26,9 +26,9 @@ abstract class SupplyStock
     this.acquisitionDate,
     this.batchNumber,
     this.userId,
-    required this.userInfoId,
+    this.userInfoId,
     this.userInfo,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory SupplyStock({
     _i1.UuidValue? id,
@@ -39,7 +39,7 @@ abstract class SupplyStock
     DateTime? acquisitionDate,
     String? batchNumber,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
   }) = _SupplyStockImpl;
 
@@ -61,7 +61,7 @@ abstract class SupplyStock
       userId: jsonSerialization['userId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
-      userInfoId: jsonSerialization['userInfoId'] as int,
+      userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
           : _i3.Protocol().deserialize<_i2.UserInfo>(
@@ -75,7 +75,7 @@ abstract class SupplyStock
   static const db = SupplyStockRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   String name;
 
@@ -91,12 +91,12 @@ abstract class SupplyStock
 
   _i1.UuidValue? userId;
 
-  int userInfoId;
+  int? userInfoId;
 
   _i2.UserInfo? userInfo;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [SupplyStock]
   /// with some or all fields replaced by the given arguments.
@@ -117,7 +117,7 @@ abstract class SupplyStock
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'SupplyStock',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       'name': name,
       'type': type,
       'quantity': quantity,
@@ -125,7 +125,7 @@ abstract class SupplyStock
       if (acquisitionDate != null) 'acquisitionDate': acquisitionDate?.toJson(),
       if (batchNumber != null) 'batchNumber': batchNumber,
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
     };
   }
@@ -134,7 +134,7 @@ abstract class SupplyStock
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'SupplyStock',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       'name': name,
       'type': type,
       'quantity': quantity,
@@ -142,7 +142,7 @@ abstract class SupplyStock
       if (acquisitionDate != null) 'acquisitionDate': acquisitionDate?.toJson(),
       if (batchNumber != null) 'batchNumber': batchNumber,
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
     };
   }
@@ -189,7 +189,7 @@ class _SupplyStockImpl extends SupplyStock {
     DateTime? acquisitionDate,
     String? batchNumber,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
   }) : super._(
          id: id,
@@ -209,7 +209,7 @@ class _SupplyStockImpl extends SupplyStock {
   @_i1.useResult
   @override
   SupplyStock copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     String? name,
     String? type,
     double? quantity,
@@ -217,11 +217,11 @@ class _SupplyStockImpl extends SupplyStock {
     Object? acquisitionDate = _Undefined,
     Object? batchNumber = _Undefined,
     Object? userId = _Undefined,
-    int? userInfoId,
+    Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
   }) {
     return SupplyStock(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       name: name ?? this.name,
       type: type ?? this.type,
       quantity: quantity ?? this.quantity,
@@ -231,7 +231,7 @@ class _SupplyStockImpl extends SupplyStock {
           : this.acquisitionDate,
       batchNumber: batchNumber is String? ? batchNumber : this.batchNumber,
       userId: userId is _i1.UuidValue? ? userId : this.userId,
-      userInfoId: userInfoId ?? this.userInfoId,
+      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
@@ -279,13 +279,13 @@ class SupplyStockUpdateTable extends _i1.UpdateTable<SupplyStockTable> {
         value,
       );
 
-  _i1.ColumnValue<int, int> userInfoId(int value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
     table.userInfoId,
     value,
   );
 }
 
-class SupplyStockTable extends _i1.Table<_i1.UuidValue?> {
+class SupplyStockTable extends _i1.Table<_i1.UuidValue> {
   SupplyStockTable({super.tableRelation}) : super(tableName: 'supply_stocks') {
     updateTable = SupplyStockUpdateTable(this);
     name = _i1.ColumnString(
@@ -388,7 +388,7 @@ class SupplyStockInclude extends _i1.IncludeObject {
   Map<String, _i1.Include?> get includes => {'userInfo': _userInfo};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => SupplyStock.t;
+  _i1.Table<_i1.UuidValue> get table => SupplyStock.t;
 }
 
 class SupplyStockIncludeList extends _i1.IncludeList {
@@ -408,13 +408,15 @@ class SupplyStockIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => SupplyStock.t;
+  _i1.Table<_i1.UuidValue> get table => SupplyStock.t;
 }
 
 class SupplyStockRepository {
   const SupplyStockRepository._();
 
   final attachRow = const SupplyStockAttachRowRepository._();
+
+  final detachRow = const SupplyStockDetachRowRepository._();
 
   /// Returns a list of [SupplyStock]s matching the given query parameters.
   ///
@@ -725,6 +727,32 @@ class SupplyStockAttachRowRepository {
     }
 
     var $supplyStock = supplyStock.copyWith(userInfoId: userInfo.id);
+    await session.db.updateRow<SupplyStock>(
+      $supplyStock,
+      columns: [SupplyStock.t.userInfoId],
+      transaction: transaction,
+    );
+  }
+}
+
+class SupplyStockDetachRowRepository {
+  const SupplyStockDetachRowRepository._();
+
+  /// Detaches the relation between this [SupplyStock] and the [UserInfo] set in `userInfo`
+  /// by setting the [SupplyStock]'s foreign key `userInfoId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> userInfo(
+    _i1.DatabaseSession session,
+    SupplyStock supplyStock, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (supplyStock.id == null) {
+      throw ArgumentError.notNull('supplyStock.id');
+    }
+
+    var $supplyStock = supplyStock.copyWith(userInfoId: null);
     await session.db.updateRow<SupplyStock>(
       $supplyStock,
       columns: [SupplyStock.t.userInfoId],

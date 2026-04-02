@@ -18,7 +18,7 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i5;
 
 abstract class UserProfile implements _i1.SerializableModel {
   UserProfile._({
-    this.id,
+    _i1.UuidValue? id,
     this.userInfoId,
     this.userInfo,
     required this.name,
@@ -27,7 +27,7 @@ abstract class UserProfile implements _i1.SerializableModel {
     this.addressId,
     this.address,
     this.types,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory UserProfile({
     _i1.UuidValue? id,
@@ -71,10 +71,8 @@ abstract class UserProfile implements _i1.SerializableModel {
     );
   }
 
-  /// The database id, set if the object has been inserted into the
-  /// database or if it has been fetched from the database. Otherwise,
-  /// the id will be null.
-  _i1.UuidValue? id;
+  /// The id of the object.
+  _i1.UuidValue id;
 
   int? userInfoId;
 
@@ -110,7 +108,7 @@ abstract class UserProfile implements _i1.SerializableModel {
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'UserProfile',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'name': name,
@@ -158,7 +156,7 @@ class _UserProfileImpl extends UserProfile {
   @_i1.useResult
   @override
   UserProfile copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     String? name,
@@ -169,7 +167,7 @@ class _UserProfileImpl extends UserProfile {
     Object? types = _Undefined,
   }) {
     return UserProfile(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo

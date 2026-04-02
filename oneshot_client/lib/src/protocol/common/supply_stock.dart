@@ -16,7 +16,7 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i3;
 
 abstract class SupplyStock implements _i1.SerializableModel {
   SupplyStock._({
-    this.id,
+    _i1.UuidValue? id,
     required this.name,
     required this.type,
     required this.quantity,
@@ -24,9 +24,9 @@ abstract class SupplyStock implements _i1.SerializableModel {
     this.acquisitionDate,
     this.batchNumber,
     this.userId,
-    required this.userInfoId,
+    this.userInfoId,
     this.userInfo,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory SupplyStock({
     _i1.UuidValue? id,
@@ -37,7 +37,7 @@ abstract class SupplyStock implements _i1.SerializableModel {
     DateTime? acquisitionDate,
     String? batchNumber,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
   }) = _SupplyStockImpl;
 
@@ -59,7 +59,7 @@ abstract class SupplyStock implements _i1.SerializableModel {
       userId: jsonSerialization['userId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
-      userInfoId: jsonSerialization['userInfoId'] as int,
+      userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
           : _i3.Protocol().deserialize<_i2.UserInfo>(
@@ -68,10 +68,8 @@ abstract class SupplyStock implements _i1.SerializableModel {
     );
   }
 
-  /// The database id, set if the object has been inserted into the
-  /// database or if it has been fetched from the database. Otherwise,
-  /// the id will be null.
-  _i1.UuidValue? id;
+  /// The id of the object.
+  _i1.UuidValue id;
 
   String name;
 
@@ -87,7 +85,7 @@ abstract class SupplyStock implements _i1.SerializableModel {
 
   _i1.UuidValue? userId;
 
-  int userInfoId;
+  int? userInfoId;
 
   _i2.UserInfo? userInfo;
 
@@ -110,7 +108,7 @@ abstract class SupplyStock implements _i1.SerializableModel {
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'SupplyStock',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       'name': name,
       'type': type,
       'quantity': quantity,
@@ -118,7 +116,7 @@ abstract class SupplyStock implements _i1.SerializableModel {
       if (acquisitionDate != null) 'acquisitionDate': acquisitionDate?.toJson(),
       if (batchNumber != null) 'batchNumber': batchNumber,
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
     };
   }
@@ -141,7 +139,7 @@ class _SupplyStockImpl extends SupplyStock {
     DateTime? acquisitionDate,
     String? batchNumber,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
   }) : super._(
          id: id,
@@ -161,7 +159,7 @@ class _SupplyStockImpl extends SupplyStock {
   @_i1.useResult
   @override
   SupplyStock copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     String? name,
     String? type,
     double? quantity,
@@ -169,11 +167,11 @@ class _SupplyStockImpl extends SupplyStock {
     Object? acquisitionDate = _Undefined,
     Object? batchNumber = _Undefined,
     Object? userId = _Undefined,
-    int? userInfoId,
+    Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
   }) {
     return SupplyStock(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       name: name ?? this.name,
       type: type ?? this.type,
       quantity: quantity ?? this.quantity,
@@ -183,7 +181,7 @@ class _SupplyStockImpl extends SupplyStock {
           : this.acquisitionDate,
       batchNumber: batchNumber is String? ? batchNumber : this.batchNumber,
       userId: userId is _i1.UuidValue? ? userId : this.userId,
-      userInfoId: userInfoId ?? this.userInfoId,
+      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),

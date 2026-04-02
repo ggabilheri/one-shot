@@ -17,31 +17,32 @@ import '../common/user_profile.dart' as _i3;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i4;
 
 abstract class Club
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Club._({
-    this.id,
+    _i1.UuidValue? id,
     required this.name,
     required this.cnpj,
     this.addressId,
-    required this.addressId,
+    this.addressId,
     this.address,
     this.ownerId,
-    required this.ownerId,
+    this.ownerId,
     this.owner,
     this.phoneNumber,
     this.email,
     bool? active,
-  }) : active = active ?? true;
+  }) : id = id ?? const _i1.Uuid().v4obj(),
+       active = active ?? true;
 
   factory Club({
     _i1.UuidValue? id,
     required String name,
     required String cnpj,
     _i1.UuidValue? addressId,
-    required _i1.UuidValue addressId,
+    _i1.UuidValue? addressId,
     _i2.Address? address,
     _i1.UuidValue? ownerId,
-    required _i1.UuidValue ownerId,
+    _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     String? phoneNumber,
     String? email,
@@ -55,17 +56,17 @@ abstract class Club
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       name: jsonSerialization['name'] as String,
       cnpj: jsonSerialization['cnpj'] as String,
-      addressId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['addressId'],
-      ),
+      addressId: jsonSerialization['addressId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
       address: jsonSerialization['address'] == null
           ? null
           : _i4.Protocol().deserialize<_i2.Address>(
               jsonSerialization['address'],
             ),
-      ownerId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['ownerId'],
-      ),
+      ownerId: jsonSerialization['ownerId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['ownerId']),
       owner: jsonSerialization['owner'] == null
           ? null
           : _i4.Protocol().deserialize<_i3.UserProfile>(
@@ -84,7 +85,7 @@ abstract class Club
   static const db = ClubRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   String name;
 
@@ -92,13 +93,13 @@ abstract class Club
 
   _i1.UuidValue? addressId;
 
-  _i1.UuidValue addressId;
+  _i1.UuidValue? addressId;
 
   _i2.Address? address;
 
   _i1.UuidValue? ownerId;
 
-  _i1.UuidValue ownerId;
+  _i1.UuidValue? ownerId;
 
   _i3.UserProfile? owner;
 
@@ -109,7 +110,7 @@ abstract class Club
   bool active;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Club]
   /// with some or all fields replaced by the given arguments.
@@ -132,14 +133,14 @@ abstract class Club
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Club',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       'name': name,
       'cnpj': cnpj,
       if (addressId != null) 'addressId': addressId?.toJson(),
-      'addressId': addressId.toJson(),
+      if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJson(),
       if (ownerId != null) 'ownerId': ownerId?.toJson(),
-      'ownerId': ownerId.toJson(),
+      if (ownerId != null) 'ownerId': ownerId?.toJson(),
       if (owner != null) 'owner': owner?.toJson(),
       if (phoneNumber != null) 'phoneNumber': phoneNumber,
       if (email != null) 'email': email,
@@ -151,14 +152,14 @@ abstract class Club
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'Club',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       'name': name,
       'cnpj': cnpj,
       if (addressId != null) 'addressId': addressId?.toJson(),
-      'addressId': addressId.toJson(),
+      if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJsonForProtocol(),
       if (ownerId != null) 'ownerId': ownerId?.toJson(),
-      'ownerId': ownerId.toJson(),
+      if (ownerId != null) 'ownerId': ownerId?.toJson(),
       if (owner != null) 'owner': owner?.toJsonForProtocol(),
       if (phoneNumber != null) 'phoneNumber': phoneNumber,
       if (email != null) 'email': email,
@@ -210,10 +211,10 @@ class _ClubImpl extends Club {
     required String name,
     required String cnpj,
     _i1.UuidValue? addressId,
-    required _i1.UuidValue addressId,
+    _i1.UuidValue? addressId,
     _i2.Address? address,
     _i1.UuidValue? ownerId,
-    required _i1.UuidValue ownerId,
+    _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     String? phoneNumber,
     String? email,
@@ -236,26 +237,26 @@ class _ClubImpl extends Club {
   @_i1.useResult
   @override
   Club copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     String? name,
     String? cnpj,
     Object? addressId = _Undefined,
-    _i1.UuidValue? addressId,
+    Object? addressId = _Undefined,
     Object? address = _Undefined,
     Object? ownerId = _Undefined,
-    _i1.UuidValue? ownerId,
+    Object? ownerId = _Undefined,
     Object? owner = _Undefined,
     Object? phoneNumber = _Undefined,
     Object? email = _Undefined,
     bool? active,
   }) {
     return Club(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       name: name ?? this.name,
       cnpj: cnpj ?? this.cnpj,
-      addressId: addressId ?? this.addressId,
+      addressId: addressId is _i1.UuidValue? ? addressId : this.addressId,
       address: address is _i2.Address? ? address : this.address?.copyWith(),
-      ownerId: ownerId ?? this.ownerId,
+      ownerId: ownerId is _i1.UuidValue? ? ownerId : this.ownerId,
       owner: owner is _i3.UserProfile? ? owner : this.owner?.copyWith(),
       phoneNumber: phoneNumber is String? ? phoneNumber : this.phoneNumber,
       email: email is String? ? email : this.email,
@@ -285,7 +286,7 @@ class ClubUpdateTable extends _i1.UpdateTable<ClubTable> {
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> addressId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.addressId,
     value,
@@ -297,7 +298,7 @@ class ClubUpdateTable extends _i1.UpdateTable<ClubTable> {
         value,
       );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> ownerId(_i1.UuidValue value) =>
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> ownerId(_i1.UuidValue? value) =>
       _i1.ColumnValue(
         table.ownerId,
         value,
@@ -319,7 +320,7 @@ class ClubUpdateTable extends _i1.UpdateTable<ClubTable> {
   );
 }
 
-class ClubTable extends _i1.Table<_i1.UuidValue?> {
+class ClubTable extends _i1.Table<_i1.UuidValue> {
   ClubTable({super.tableRelation}) : super(tableName: 'clubs') {
     updateTable = ClubUpdateTable(this);
     name = _i1.ColumnString(
@@ -457,7 +458,7 @@ class ClubInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Club.t;
+  _i1.Table<_i1.UuidValue> get table => Club.t;
 }
 
 class ClubIncludeList extends _i1.IncludeList {
@@ -477,13 +478,15 @@ class ClubIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => Club.t;
+  _i1.Table<_i1.UuidValue> get table => Club.t;
 }
 
 class ClubRepository {
   const ClubRepository._();
 
   final attachRow = const ClubAttachRowRepository._();
+
+  final detachRow = const ClubDetachRowRepository._();
 
   /// Returns a list of [Club]s matching the given query parameters.
   ///
@@ -817,6 +820,54 @@ class ClubAttachRowRepository {
     }
 
     var $club = club.copyWith(ownerId: owner.id);
+    await session.db.updateRow<Club>(
+      $club,
+      columns: [Club.t.ownerId],
+      transaction: transaction,
+    );
+  }
+}
+
+class ClubDetachRowRepository {
+  const ClubDetachRowRepository._();
+
+  /// Detaches the relation between this [Club] and the [Address] set in `address`
+  /// by setting the [Club]'s foreign key `addressId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> address(
+    _i1.DatabaseSession session,
+    Club club, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (club.id == null) {
+      throw ArgumentError.notNull('club.id');
+    }
+
+    var $club = club.copyWith(addressId: null);
+    await session.db.updateRow<Club>(
+      $club,
+      columns: [Club.t.addressId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [Club] and the [UserProfile] set in `owner`
+  /// by setting the [Club]'s foreign key `ownerId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> owner(
+    _i1.DatabaseSession session,
+    Club club, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (club.id == null) {
+      throw ArgumentError.notNull('club.id');
+    }
+
+    var $club = club.copyWith(ownerId: null);
     await session.db.updateRow<Club>(
       $club,
       columns: [Club.t.ownerId],

@@ -18,9 +18,9 @@ import '../enums/user_type.enum.dart' as _i4;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i5;
 
 abstract class UserProfile
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   UserProfile._({
-    this.id,
+    _i1.UuidValue? id,
     this.userInfoId,
     this.userInfo,
     required this.name,
@@ -29,7 +29,7 @@ abstract class UserProfile
     this.addressId,
     this.address,
     this.types,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory UserProfile({
     _i1.UuidValue? id,
@@ -78,7 +78,7 @@ abstract class UserProfile
   static const db = UserProfileRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   int? userInfoId;
 
@@ -97,7 +97,7 @@ abstract class UserProfile
   List<_i4.UserType>? types;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [UserProfile]
   /// with some or all fields replaced by the given arguments.
@@ -117,7 +117,7 @@ abstract class UserProfile
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'UserProfile',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'name': name,
@@ -133,7 +133,7 @@ abstract class UserProfile
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'UserProfile',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
       'name': name,
@@ -211,7 +211,7 @@ class _UserProfileImpl extends UserProfile {
   @_i1.useResult
   @override
   UserProfile copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     String? name,
@@ -222,7 +222,7 @@ class _UserProfileImpl extends UserProfile {
     Object? types = _Undefined,
   }) {
     return UserProfile(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
@@ -277,7 +277,7 @@ class UserProfileUpdateTable extends _i1.UpdateTable<UserProfileTable> {
   );
 }
 
-class UserProfileTable extends _i1.Table<_i1.UuidValue?> {
+class UserProfileTable extends _i1.Table<_i1.UuidValue> {
   UserProfileTable({super.tableRelation}) : super(tableName: 'user_profile') {
     updateTable = UserProfileUpdateTable(this);
     userInfoId = _i1.ColumnInt(
@@ -393,7 +393,7 @@ class UserProfileInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => UserProfile.t;
+  _i1.Table<_i1.UuidValue> get table => UserProfile.t;
 }
 
 class UserProfileIncludeList extends _i1.IncludeList {
@@ -413,7 +413,7 @@ class UserProfileIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => UserProfile.t;
+  _i1.Table<_i1.UuidValue> get table => UserProfile.t;
 }
 
 class UserProfileRepository {

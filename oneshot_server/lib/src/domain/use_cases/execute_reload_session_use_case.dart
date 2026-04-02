@@ -24,16 +24,16 @@ class ExecuteReloadSessionUseCase implements IExecuteReloadSessionUseCase {
 
     // Projetil
     await _reloadRepository.adjustSupplyQuantity(
-        session, reloadSession.projectileId, -totalReloads.toDouble());
+        session, reloadSession.projectileId!, -totalReloads.toDouble());
 
     // Espoleta
     await _reloadRepository.adjustSupplyQuantity(
-        session, reloadSession.primerId, -totalReloads.toDouble());
+        session, reloadSession.primerId!, -totalReloads.toDouble());
 
     // Pólvora (Debitamos: grains per shot * total shots)
     final grainsToDebit = reloadSession.powderGrains * totalReloads;
     await _reloadRepository.adjustSupplyQuantity(
-        session, reloadSession.powderId, -grainsToDebit);
+        session, reloadSession.powderId!, -grainsToDebit);
 
     // 2. Persistir a Sessão
     final savedSession =

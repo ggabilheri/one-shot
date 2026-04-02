@@ -18,55 +18,55 @@ import '../common/supply_stock.dart' as _i4;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i5;
 
 abstract class ReloadSession
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   ReloadSession._({
-    this.id,
+    _i1.UuidValue? id,
     this.userId,
-    required this.userInfoId,
+    this.userInfoId,
     this.userInfo,
     required this.reloadDate,
     this.pressId,
-    required this.pressId,
+    this.pressId,
     this.press,
     required this.caliber,
     required this.casingBatch,
     required this.reloadsCompleted,
     this.powderId,
-    required this.powderId,
+    this.powderId,
     this.powder,
     required this.powderGrains,
     this.primerId,
-    required this.primerId,
+    this.primerId,
     this.primer,
     this.projectileId,
-    required this.projectileId,
+    this.projectileId,
     this.projectile,
     required this.oal,
     required this.totalCost,
     required this.unitCost,
-  });
+  }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory ReloadSession({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     required DateTime reloadDate,
     _i1.UuidValue? pressId,
-    required _i1.UuidValue pressId,
+    _i1.UuidValue? pressId,
     _i3.Accessory? press,
     required String caliber,
     required String casingBatch,
     required int reloadsCompleted,
     _i1.UuidValue? powderId,
-    required _i1.UuidValue powderId,
+    _i1.UuidValue? powderId,
     _i4.SupplyStock? powder,
     required double powderGrains,
     _i1.UuidValue? primerId,
-    required _i1.UuidValue primerId,
+    _i1.UuidValue? primerId,
     _i4.SupplyStock? primer,
     _i1.UuidValue? projectileId,
-    required _i1.UuidValue projectileId,
+    _i1.UuidValue? projectileId,
     _i4.SupplyStock? projectile,
     required double oal,
     required double totalCost,
@@ -81,7 +81,7 @@ abstract class ReloadSession
       userId: jsonSerialization['userId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
-      userInfoId: jsonSerialization['userInfoId'] as int,
+      userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
           : _i5.Protocol().deserialize<_i2.UserInfo>(
@@ -90,9 +90,9 @@ abstract class ReloadSession
       reloadDate: _i1.DateTimeJsonExtension.fromJson(
         jsonSerialization['reloadDate'],
       ),
-      pressId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['pressId'],
-      ),
+      pressId: jsonSerialization['pressId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['pressId']),
       press: jsonSerialization['press'] == null
           ? null
           : _i5.Protocol().deserialize<_i3.Accessory>(
@@ -101,26 +101,28 @@ abstract class ReloadSession
       caliber: jsonSerialization['caliber'] as String,
       casingBatch: jsonSerialization['casingBatch'] as String,
       reloadsCompleted: jsonSerialization['reloadsCompleted'] as int,
-      powderId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['powderId'],
-      ),
+      powderId: jsonSerialization['powderId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['powderId']),
       powder: jsonSerialization['powder'] == null
           ? null
           : _i5.Protocol().deserialize<_i4.SupplyStock>(
               jsonSerialization['powder'],
             ),
       powderGrains: (jsonSerialization['powderGrains'] as num).toDouble(),
-      primerId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['primerId'],
-      ),
+      primerId: jsonSerialization['primerId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['primerId']),
       primer: jsonSerialization['primer'] == null
           ? null
           : _i5.Protocol().deserialize<_i4.SupplyStock>(
               jsonSerialization['primer'],
             ),
-      projectileId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['projectileId'],
-      ),
+      projectileId: jsonSerialization['projectileId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(
+              jsonSerialization['projectileId'],
+            ),
       projectile: jsonSerialization['projectile'] == null
           ? null
           : _i5.Protocol().deserialize<_i4.SupplyStock>(
@@ -137,11 +139,11 @@ abstract class ReloadSession
   static const db = ReloadSessionRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   _i1.UuidValue? userId;
 
-  int userInfoId;
+  int? userInfoId;
 
   _i2.UserInfo? userInfo;
 
@@ -149,7 +151,7 @@ abstract class ReloadSession
 
   _i1.UuidValue? pressId;
 
-  _i1.UuidValue pressId;
+  _i1.UuidValue? pressId;
 
   _i3.Accessory? press;
 
@@ -161,7 +163,7 @@ abstract class ReloadSession
 
   _i1.UuidValue? powderId;
 
-  _i1.UuidValue powderId;
+  _i1.UuidValue? powderId;
 
   _i4.SupplyStock? powder;
 
@@ -169,13 +171,13 @@ abstract class ReloadSession
 
   _i1.UuidValue? primerId;
 
-  _i1.UuidValue primerId;
+  _i1.UuidValue? primerId;
 
   _i4.SupplyStock? primer;
 
   _i1.UuidValue? projectileId;
 
-  _i1.UuidValue projectileId;
+  _i1.UuidValue? projectileId;
 
   _i4.SupplyStock? projectile;
 
@@ -186,7 +188,7 @@ abstract class ReloadSession
   double unitCost;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [ReloadSession]
   /// with some or all fields replaced by the given arguments.
@@ -221,26 +223,26 @@ abstract class ReloadSession
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'ReloadSession',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'reloadDate': reloadDate.toJson(),
       if (pressId != null) 'pressId': pressId?.toJson(),
-      'pressId': pressId.toJson(),
+      if (pressId != null) 'pressId': pressId?.toJson(),
       if (press != null) 'press': press?.toJson(),
       'caliber': caliber,
       'casingBatch': casingBatch,
       'reloadsCompleted': reloadsCompleted,
       if (powderId != null) 'powderId': powderId?.toJson(),
-      'powderId': powderId.toJson(),
+      if (powderId != null) 'powderId': powderId?.toJson(),
       if (powder != null) 'powder': powder?.toJson(),
       'powderGrains': powderGrains,
       if (primerId != null) 'primerId': primerId?.toJson(),
-      'primerId': primerId.toJson(),
+      if (primerId != null) 'primerId': primerId?.toJson(),
       if (primer != null) 'primer': primer?.toJson(),
       if (projectileId != null) 'projectileId': projectileId?.toJson(),
-      'projectileId': projectileId.toJson(),
+      if (projectileId != null) 'projectileId': projectileId?.toJson(),
       if (projectile != null) 'projectile': projectile?.toJson(),
       'oal': oal,
       'totalCost': totalCost,
@@ -252,26 +254,26 @@ abstract class ReloadSession
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'ReloadSession',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userInfoId': userInfoId,
+      if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
       'reloadDate': reloadDate.toJson(),
       if (pressId != null) 'pressId': pressId?.toJson(),
-      'pressId': pressId.toJson(),
+      if (pressId != null) 'pressId': pressId?.toJson(),
       if (press != null) 'press': press?.toJsonForProtocol(),
       'caliber': caliber,
       'casingBatch': casingBatch,
       'reloadsCompleted': reloadsCompleted,
       if (powderId != null) 'powderId': powderId?.toJson(),
-      'powderId': powderId.toJson(),
+      if (powderId != null) 'powderId': powderId?.toJson(),
       if (powder != null) 'powder': powder?.toJsonForProtocol(),
       'powderGrains': powderGrains,
       if (primerId != null) 'primerId': primerId?.toJson(),
-      'primerId': primerId.toJson(),
+      if (primerId != null) 'primerId': primerId?.toJson(),
       if (primer != null) 'primer': primer?.toJsonForProtocol(),
       if (projectileId != null) 'projectileId': projectileId?.toJson(),
-      'projectileId': projectileId.toJson(),
+      if (projectileId != null) 'projectileId': projectileId?.toJson(),
       if (projectile != null) 'projectile': projectile?.toJsonForProtocol(),
       'oal': oal,
       'totalCost': totalCost,
@@ -327,24 +329,24 @@ class _ReloadSessionImpl extends ReloadSession {
   _ReloadSessionImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required int userInfoId,
+    int? userInfoId,
     _i2.UserInfo? userInfo,
     required DateTime reloadDate,
     _i1.UuidValue? pressId,
-    required _i1.UuidValue pressId,
+    _i1.UuidValue? pressId,
     _i3.Accessory? press,
     required String caliber,
     required String casingBatch,
     required int reloadsCompleted,
     _i1.UuidValue? powderId,
-    required _i1.UuidValue powderId,
+    _i1.UuidValue? powderId,
     _i4.SupplyStock? powder,
     required double powderGrains,
     _i1.UuidValue? primerId,
-    required _i1.UuidValue primerId,
+    _i1.UuidValue? primerId,
     _i4.SupplyStock? primer,
     _i1.UuidValue? projectileId,
-    required _i1.UuidValue projectileId,
+    _i1.UuidValue? projectileId,
     _i4.SupplyStock? projectile,
     required double oal,
     required double totalCost,
@@ -377,50 +379,52 @@ class _ReloadSessionImpl extends ReloadSession {
   @_i1.useResult
   @override
   ReloadSession copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userId = _Undefined,
-    int? userInfoId,
+    Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     DateTime? reloadDate,
     Object? pressId = _Undefined,
-    _i1.UuidValue? pressId,
+    Object? pressId = _Undefined,
     Object? press = _Undefined,
     String? caliber,
     String? casingBatch,
     int? reloadsCompleted,
     Object? powderId = _Undefined,
-    _i1.UuidValue? powderId,
+    Object? powderId = _Undefined,
     Object? powder = _Undefined,
     double? powderGrains,
     Object? primerId = _Undefined,
-    _i1.UuidValue? primerId,
+    Object? primerId = _Undefined,
     Object? primer = _Undefined,
     Object? projectileId = _Undefined,
-    _i1.UuidValue? projectileId,
+    Object? projectileId = _Undefined,
     Object? projectile = _Undefined,
     double? oal,
     double? totalCost,
     double? unitCost,
   }) {
     return ReloadSession(
-      id: id is _i1.UuidValue? ? id : this.id,
+      id: id ?? this.id,
       userId: userId is _i1.UuidValue? ? userId : this.userId,
-      userInfoId: userInfoId ?? this.userInfoId,
+      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
       reloadDate: reloadDate ?? this.reloadDate,
-      pressId: pressId ?? this.pressId,
+      pressId: pressId is _i1.UuidValue? ? pressId : this.pressId,
       press: press is _i3.Accessory? ? press : this.press?.copyWith(),
       caliber: caliber ?? this.caliber,
       casingBatch: casingBatch ?? this.casingBatch,
       reloadsCompleted: reloadsCompleted ?? this.reloadsCompleted,
-      powderId: powderId ?? this.powderId,
+      powderId: powderId is _i1.UuidValue? ? powderId : this.powderId,
       powder: powder is _i4.SupplyStock? ? powder : this.powder?.copyWith(),
       powderGrains: powderGrains ?? this.powderGrains,
-      primerId: primerId ?? this.primerId,
+      primerId: primerId is _i1.UuidValue? ? primerId : this.primerId,
       primer: primer is _i4.SupplyStock? ? primer : this.primer?.copyWith(),
-      projectileId: projectileId ?? this.projectileId,
+      projectileId: projectileId is _i1.UuidValue?
+          ? projectileId
+          : this.projectileId,
       projectile: projectile is _i4.SupplyStock?
           ? projectile
           : this.projectile?.copyWith(),
@@ -440,7 +444,7 @@ class ReloadSessionUpdateTable extends _i1.UpdateTable<ReloadSessionTable> {
         value,
       );
 
-  _i1.ColumnValue<int, int> userInfoId(int value) => _i1.ColumnValue(
+  _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
     table.userInfoId,
     value,
   );
@@ -457,7 +461,7 @@ class ReloadSessionUpdateTable extends _i1.UpdateTable<ReloadSessionTable> {
         value,
       );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> pressId(_i1.UuidValue value) =>
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> pressId(_i1.UuidValue? value) =>
       _i1.ColumnValue(
         table.pressId,
         value,
@@ -485,11 +489,12 @@ class ReloadSessionUpdateTable extends _i1.UpdateTable<ReloadSessionTable> {
     value,
   );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> powderId(_i1.UuidValue value) =>
-      _i1.ColumnValue(
-        table.powderId,
-        value,
-      );
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> powderId(
+    _i1.UuidValue? value,
+  ) => _i1.ColumnValue(
+    table.powderId,
+    value,
+  );
 
   _i1.ColumnValue<double, double> powderGrains(double value) => _i1.ColumnValue(
     table.powderGrains,
@@ -503,11 +508,12 @@ class ReloadSessionUpdateTable extends _i1.UpdateTable<ReloadSessionTable> {
     value,
   );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> primerId(_i1.UuidValue value) =>
-      _i1.ColumnValue(
-        table.primerId,
-        value,
-      );
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> primerId(
+    _i1.UuidValue? value,
+  ) => _i1.ColumnValue(
+    table.primerId,
+    value,
+  );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> projectileId(
     _i1.UuidValue? value,
@@ -517,7 +523,7 @@ class ReloadSessionUpdateTable extends _i1.UpdateTable<ReloadSessionTable> {
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> projectileId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.projectileId,
     value,
@@ -539,7 +545,7 @@ class ReloadSessionUpdateTable extends _i1.UpdateTable<ReloadSessionTable> {
   );
 }
 
-class ReloadSessionTable extends _i1.Table<_i1.UuidValue?> {
+class ReloadSessionTable extends _i1.Table<_i1.UuidValue> {
   ReloadSessionTable({super.tableRelation})
     : super(tableName: 'reload_sessions') {
     updateTable = ReloadSessionUpdateTable(this);
@@ -809,7 +815,7 @@ class ReloadSessionInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => ReloadSession.t;
+  _i1.Table<_i1.UuidValue> get table => ReloadSession.t;
 }
 
 class ReloadSessionIncludeList extends _i1.IncludeList {
@@ -829,13 +835,15 @@ class ReloadSessionIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => ReloadSession.t;
+  _i1.Table<_i1.UuidValue> get table => ReloadSession.t;
 }
 
 class ReloadSessionRepository {
   const ReloadSessionRepository._();
 
   final attachRow = const ReloadSessionAttachRowRepository._();
+
+  final detachRow = const ReloadSessionDetachRowRepository._();
 
   /// Returns a list of [ReloadSession]s matching the given query parameters.
   ///
@@ -1238,6 +1246,120 @@ class ReloadSessionAttachRowRepository {
     }
 
     var $reloadSession = reloadSession.copyWith(projectileId: projectile.id);
+    await session.db.updateRow<ReloadSession>(
+      $reloadSession,
+      columns: [ReloadSession.t.projectileId],
+      transaction: transaction,
+    );
+  }
+}
+
+class ReloadSessionDetachRowRepository {
+  const ReloadSessionDetachRowRepository._();
+
+  /// Detaches the relation between this [ReloadSession] and the [UserInfo] set in `userInfo`
+  /// by setting the [ReloadSession]'s foreign key `userInfoId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> userInfo(
+    _i1.DatabaseSession session,
+    ReloadSession reloadSession, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (reloadSession.id == null) {
+      throw ArgumentError.notNull('reloadSession.id');
+    }
+
+    var $reloadSession = reloadSession.copyWith(userInfoId: null);
+    await session.db.updateRow<ReloadSession>(
+      $reloadSession,
+      columns: [ReloadSession.t.userInfoId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [ReloadSession] and the [Accessory] set in `press`
+  /// by setting the [ReloadSession]'s foreign key `pressId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> press(
+    _i1.DatabaseSession session,
+    ReloadSession reloadSession, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (reloadSession.id == null) {
+      throw ArgumentError.notNull('reloadSession.id');
+    }
+
+    var $reloadSession = reloadSession.copyWith(pressId: null);
+    await session.db.updateRow<ReloadSession>(
+      $reloadSession,
+      columns: [ReloadSession.t.pressId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [ReloadSession] and the [SupplyStock] set in `powder`
+  /// by setting the [ReloadSession]'s foreign key `powderId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> powder(
+    _i1.DatabaseSession session,
+    ReloadSession reloadSession, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (reloadSession.id == null) {
+      throw ArgumentError.notNull('reloadSession.id');
+    }
+
+    var $reloadSession = reloadSession.copyWith(powderId: null);
+    await session.db.updateRow<ReloadSession>(
+      $reloadSession,
+      columns: [ReloadSession.t.powderId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [ReloadSession] and the [SupplyStock] set in `primer`
+  /// by setting the [ReloadSession]'s foreign key `primerId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> primer(
+    _i1.DatabaseSession session,
+    ReloadSession reloadSession, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (reloadSession.id == null) {
+      throw ArgumentError.notNull('reloadSession.id');
+    }
+
+    var $reloadSession = reloadSession.copyWith(primerId: null);
+    await session.db.updateRow<ReloadSession>(
+      $reloadSession,
+      columns: [ReloadSession.t.primerId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [ReloadSession] and the [SupplyStock] set in `projectile`
+  /// by setting the [ReloadSession]'s foreign key `projectileId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> projectile(
+    _i1.DatabaseSession session,
+    ReloadSession reloadSession, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (reloadSession.id == null) {
+      throw ArgumentError.notNull('reloadSession.id');
+    }
+
+    var $reloadSession = reloadSession.copyWith(projectileId: null);
     await session.db.updateRow<ReloadSession>(
       $reloadSession,
       columns: [ReloadSession.t.projectileId],

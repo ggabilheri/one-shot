@@ -89,7 +89,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -101,8 +101,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'userInfoId',
           columnType: _i2.ColumnType.bigint,
-          isNullable: false,
-          dartType: 'int',
+          isNullable: true,
+          dartType: 'int?',
         ),
         _i2.ColumnDefinition(
           name: 'firearmId',
@@ -113,8 +113,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'firearmId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'purpose',
@@ -240,7 +240,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -288,8 +288,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'userProfileId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
       ],
       foreignKeys: [
@@ -344,7 +344,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -356,8 +356,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'userInfoId',
           columnType: _i2.ColumnType.bigint,
-          isNullable: false,
-          dartType: 'int',
+          isNullable: true,
+          dartType: 'int?',
         ),
         _i2.ColumnDefinition(
           name: 'type',
@@ -479,7 +479,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -503,8 +503,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'addressId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'ownerId',
@@ -515,8 +515,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'ownerId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'phoneNumber',
@@ -613,7 +613,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -625,8 +625,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'userInfoId',
           columnType: _i2.ColumnType.bigint,
-          isNullable: false,
-          dartType: 'int',
+          isNullable: true,
+          dartType: 'int?',
         ),
         _i2.ColumnDefinition(
           name: 'firearmId',
@@ -815,7 +815,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -827,8 +827,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'userInfoId',
           columnType: _i2.ColumnType.bigint,
-          isNullable: false,
-          dartType: 'int',
+          isNullable: true,
+          dartType: 'int?',
         ),
         _i2.ColumnDefinition(
           name: 'purpose',
@@ -998,7 +998,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -1010,8 +1010,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'gunsmithUserInfoId',
           columnType: _i2.ColumnType.bigint,
-          isNullable: false,
-          dartType: 'int',
+          isNullable: true,
+          dartType: 'int?',
         ),
         _i2.ColumnDefinition(
           name: 'name',
@@ -1046,8 +1046,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'addressId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
       ],
       foreignKeys: [
@@ -1125,7 +1125,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -1137,8 +1137,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'userId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'clubId',
@@ -1149,8 +1149,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'clubId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'membershipNumber',
@@ -1263,7 +1263,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -1275,8 +1275,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'userId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'clubId',
@@ -1287,8 +1287,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'clubId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'firearmId',
@@ -1299,8 +1299,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'firearmId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'checkIn',
@@ -1433,7 +1433,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -1445,8 +1445,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'userInfoId',
           columnType: _i2.ColumnType.bigint,
-          isNullable: false,
-          dartType: 'int',
+          isNullable: true,
+          dartType: 'int?',
         ),
         _i2.ColumnDefinition(
           name: 'reloadDate',
@@ -1463,8 +1463,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'pressId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'caliber',
@@ -1493,8 +1493,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'powderId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'powderGrains',
@@ -1511,8 +1511,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'primerId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'projectileId',
@@ -1523,8 +1523,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'projectileId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'oal',
@@ -1650,7 +1650,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -1662,8 +1662,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'reloadSessionId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'firearmId',
@@ -1674,8 +1674,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'firearmId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'testDate',
@@ -1807,7 +1807,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -1819,8 +1819,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'serviceOrderId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'description',
@@ -1843,8 +1843,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'supplyPartId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'servicePrice',
@@ -1915,7 +1915,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -1927,8 +1927,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'clientId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'firearmId',
@@ -1939,8 +1939,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'firearmId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'entryDate',
@@ -2060,7 +2060,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -2108,8 +2108,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'userInfoId',
           columnType: _i2.ColumnType.bigint,
-          isNullable: false,
-          dartType: 'int',
+          isNullable: true,
+          dartType: 'int?',
         ),
       ],
       foreignKeys: [
@@ -2164,7 +2164,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
@@ -2176,8 +2176,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'userInfoId',
           columnType: _i2.ColumnType.bigint,
-          isNullable: false,
-          dartType: 'int',
+          isNullable: true,
+          dartType: 'int?',
         ),
         _i2.ColumnDefinition(
           name: 'date',
@@ -2206,8 +2206,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'firearmId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'ammunitionId',
@@ -2218,8 +2218,8 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'ammunitionId',
           columnType: _i2.ColumnType.uuid,
-          isNullable: false,
-          dartType: 'UuidValue',
+          isNullable: true,
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'shotsFired',
@@ -2331,7 +2331,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'id',
           columnType: _i2.ColumnType.uuid,
           isNullable: false,
-          dartType: 'UuidValue?',
+          dartType: 'UuidValue',
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(

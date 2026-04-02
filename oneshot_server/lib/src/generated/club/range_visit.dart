@@ -18,36 +18,37 @@ import '../shooter/firearm.dart' as _i4;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i5;
 
 abstract class RangeVisit
-    implements _i1.TableRow<_i1.UuidValue?>, _i1.ProtocolSerialization {
+    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   RangeVisit._({
-    this.id,
+    _i1.UuidValue? id,
     this.userId,
-    required this.userId,
+    this.userId,
     this.user,
     this.clubId,
-    required this.clubId,
+    this.clubId,
     this.club,
     this.firearmId,
-    required this.firearmId,
+    this.firearmId,
     this.firearm,
     required this.checkIn,
     this.checkOut,
     int? shotsFired,
     this.notes,
     bool? habitualityReportGenerated,
-  }) : shotsFired = shotsFired ?? 0,
+  }) : id = id ?? const _i1.Uuid().v4obj(),
+       shotsFired = shotsFired ?? 0,
        habitualityReportGenerated = habitualityReportGenerated ?? false;
 
   factory RangeVisit({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required _i1.UuidValue userId,
+    _i1.UuidValue? userId,
     _i2.UserProfile? user,
     _i1.UuidValue? clubId,
-    required _i1.UuidValue clubId,
+    _i1.UuidValue? clubId,
     _i3.Club? club,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i4.Firearm? firearm,
     required DateTime checkIn,
     DateTime? checkOut,
@@ -61,19 +62,23 @@ abstract class RangeVisit
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+      userId: jsonSerialization['userId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       user: jsonSerialization['user'] == null
           ? null
           : _i5.Protocol().deserialize<_i2.UserProfile>(
               jsonSerialization['user'],
             ),
-      clubId: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['clubId']),
+      clubId: jsonSerialization['clubId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['clubId']),
       club: jsonSerialization['club'] == null
           ? null
           : _i5.Protocol().deserialize<_i3.Club>(jsonSerialization['club']),
-      firearmId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['firearmId'],
-      ),
+      firearmId: jsonSerialization['firearmId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
           : _i5.Protocol().deserialize<_i4.Firearm>(
@@ -99,23 +104,23 @@ abstract class RangeVisit
   static const db = RangeVisitRepository._();
 
   @override
-  _i1.UuidValue? id;
+  _i1.UuidValue id;
 
   _i1.UuidValue? userId;
 
-  _i1.UuidValue userId;
+  _i1.UuidValue? userId;
 
   _i2.UserProfile? user;
 
   _i1.UuidValue? clubId;
 
-  _i1.UuidValue clubId;
+  _i1.UuidValue? clubId;
 
   _i3.Club? club;
 
   _i1.UuidValue? firearmId;
 
-  _i1.UuidValue firearmId;
+  _i1.UuidValue? firearmId;
 
   _i4.Firearm? firearm;
 
@@ -130,7 +135,7 @@ abstract class RangeVisit
   bool habitualityReportGenerated;
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => t;
+  _i1.Table<_i1.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [RangeVisit]
   /// with some or all fields replaced by the given arguments.
@@ -156,15 +161,15 @@ abstract class RangeVisit
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'RangeVisit',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userId': userId.toJson(),
+      if (userId != null) 'userId': userId?.toJson(),
       if (user != null) 'user': user?.toJson(),
       if (clubId != null) 'clubId': clubId?.toJson(),
-      'clubId': clubId.toJson(),
+      if (clubId != null) 'clubId': clubId?.toJson(),
       if (club != null) 'club': club?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'checkIn': checkIn.toJson(),
       if (checkOut != null) 'checkOut': checkOut?.toJson(),
@@ -178,15 +183,15 @@ abstract class RangeVisit
   Map<String, dynamic> toJsonForProtocol() {
     return {
       '__className__': 'RangeVisit',
-      if (id != null) 'id': id?.toJson(),
+      'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      'userId': userId.toJson(),
+      if (userId != null) 'userId': userId?.toJson(),
       if (user != null) 'user': user?.toJsonForProtocol(),
       if (clubId != null) 'clubId': clubId?.toJson(),
-      'clubId': clubId.toJson(),
+      if (clubId != null) 'clubId': clubId?.toJson(),
       if (club != null) 'club': club?.toJsonForProtocol(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      'firearmId': firearmId.toJson(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
       'checkIn': checkIn.toJson(),
       if (checkOut != null) 'checkOut': checkOut?.toJson(),
@@ -240,13 +245,13 @@ class _RangeVisitImpl extends RangeVisit {
   _RangeVisitImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    required _i1.UuidValue userId,
+    _i1.UuidValue? userId,
     _i2.UserProfile? user,
     _i1.UuidValue? clubId,
-    required _i1.UuidValue clubId,
+    _i1.UuidValue? clubId,
     _i3.Club? club,
     _i1.UuidValue? firearmId,
-    required _i1.UuidValue firearmId,
+    _i1.UuidValue? firearmId,
     _i4.Firearm? firearm,
     required DateTime checkIn,
     DateTime? checkOut,
@@ -273,15 +278,15 @@ class _RangeVisitImpl extends RangeVisit {
   @_i1.useResult
   @override
   RangeVisit copyWith({
-    Object? id = _Undefined,
+    _i1.UuidValue? id,
     Object? userId = _Undefined,
-    _i1.UuidValue? userId,
+    Object? userId = _Undefined,
     Object? user = _Undefined,
     Object? clubId = _Undefined,
-    _i1.UuidValue? clubId,
+    Object? clubId = _Undefined,
     Object? club = _Undefined,
     Object? firearmId = _Undefined,
-    _i1.UuidValue? firearmId,
+    Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     DateTime? checkIn,
     Object? checkOut = _Undefined,
@@ -290,12 +295,12 @@ class _RangeVisitImpl extends RangeVisit {
     bool? habitualityReportGenerated,
   }) {
     return RangeVisit(
-      id: id is _i1.UuidValue? ? id : this.id,
-      userId: userId ?? this.userId,
+      id: id ?? this.id,
+      userId: userId is _i1.UuidValue? ? userId : this.userId,
       user: user is _i2.UserProfile? ? user : this.user?.copyWith(),
-      clubId: clubId ?? this.clubId,
+      clubId: clubId is _i1.UuidValue? ? clubId : this.clubId,
       club: club is _i3.Club? ? club : this.club?.copyWith(),
-      firearmId: firearmId ?? this.firearmId,
+      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
       firearm: firearm is _i4.Firearm? ? firearm : this.firearm?.copyWith(),
       checkIn: checkIn ?? this.checkIn,
       checkOut: checkOut is DateTime? ? checkOut : this.checkOut,
@@ -316,7 +321,7 @@ class RangeVisitUpdateTable extends _i1.UpdateTable<RangeVisitTable> {
         value,
       );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue value) =>
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
       _i1.ColumnValue(
         table.userId,
         value,
@@ -328,7 +333,7 @@ class RangeVisitUpdateTable extends _i1.UpdateTable<RangeVisitTable> {
         value,
       );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> clubId(_i1.UuidValue value) =>
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> clubId(_i1.UuidValue? value) =>
       _i1.ColumnValue(
         table.clubId,
         value,
@@ -342,7 +347,7 @@ class RangeVisitUpdateTable extends _i1.UpdateTable<RangeVisitTable> {
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.firearmId,
     value,
@@ -377,7 +382,7 @@ class RangeVisitUpdateTable extends _i1.UpdateTable<RangeVisitTable> {
       );
 }
 
-class RangeVisitTable extends _i1.Table<_i1.UuidValue?> {
+class RangeVisitTable extends _i1.Table<_i1.UuidValue> {
   RangeVisitTable({super.tableRelation}) : super(tableName: 'range_visits') {
     updateTable = RangeVisitUpdateTable(this);
     userId = _i1.ColumnUuid(
@@ -553,7 +558,7 @@ class RangeVisitInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => RangeVisit.t;
+  _i1.Table<_i1.UuidValue> get table => RangeVisit.t;
 }
 
 class RangeVisitIncludeList extends _i1.IncludeList {
@@ -573,13 +578,15 @@ class RangeVisitIncludeList extends _i1.IncludeList {
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue?> get table => RangeVisit.t;
+  _i1.Table<_i1.UuidValue> get table => RangeVisit.t;
 }
 
 class RangeVisitRepository {
   const RangeVisitRepository._();
 
   final attachRow = const RangeVisitAttachRowRepository._();
+
+  final detachRow = const RangeVisitDetachRowRepository._();
 
   /// Returns a list of [RangeVisit]s matching the given query parameters.
   ///
@@ -936,6 +943,76 @@ class RangeVisitAttachRowRepository {
     }
 
     var $rangeVisit = rangeVisit.copyWith(firearmId: firearm.id);
+    await session.db.updateRow<RangeVisit>(
+      $rangeVisit,
+      columns: [RangeVisit.t.firearmId],
+      transaction: transaction,
+    );
+  }
+}
+
+class RangeVisitDetachRowRepository {
+  const RangeVisitDetachRowRepository._();
+
+  /// Detaches the relation between this [RangeVisit] and the [UserProfile] set in `user`
+  /// by setting the [RangeVisit]'s foreign key `userId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> user(
+    _i1.DatabaseSession session,
+    RangeVisit rangeVisit, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (rangeVisit.id == null) {
+      throw ArgumentError.notNull('rangeVisit.id');
+    }
+
+    var $rangeVisit = rangeVisit.copyWith(userId: null);
+    await session.db.updateRow<RangeVisit>(
+      $rangeVisit,
+      columns: [RangeVisit.t.userId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [RangeVisit] and the [Club] set in `club`
+  /// by setting the [RangeVisit]'s foreign key `clubId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> club(
+    _i1.DatabaseSession session,
+    RangeVisit rangeVisit, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (rangeVisit.id == null) {
+      throw ArgumentError.notNull('rangeVisit.id');
+    }
+
+    var $rangeVisit = rangeVisit.copyWith(clubId: null);
+    await session.db.updateRow<RangeVisit>(
+      $rangeVisit,
+      columns: [RangeVisit.t.clubId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [RangeVisit] and the [Firearm] set in `firearm`
+  /// by setting the [RangeVisit]'s foreign key `firearmId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> firearm(
+    _i1.DatabaseSession session,
+    RangeVisit rangeVisit, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (rangeVisit.id == null) {
+      throw ArgumentError.notNull('rangeVisit.id');
+    }
+
+    var $rangeVisit = rangeVisit.copyWith(firearmId: null);
     await session.db.updateRow<RangeVisit>(
       $rangeVisit,
       columns: [RangeVisit.t.firearmId],
