@@ -1,7 +1,7 @@
 class: SupplyStock
 table: supply_stocks
 fields:
-  id: UuidValue?,  defaultPersist=random
+  id: UuidValue,  defaultPersist=random
   name: String
   type: String         # Case, Primer, Powder, Bullet
   quantity: double

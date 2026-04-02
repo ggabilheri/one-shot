@@ -1,7 +1,7 @@
 class: Membership
 table: memberships
 fields:
-  id: UuidValue?,  defaultPersist=random
+  id: UuidValue,  defaultPersist=random
   userId: UuidValue?
   user: UserProfile?, relation
   clubId: UuidValue?

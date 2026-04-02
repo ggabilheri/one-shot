@@ -1,7 +1,7 @@
 class: ReloadTest
 table: reload_tests
 fields:
-  id: UuidValue?,  defaultPersist=random
+  id: UuidValue,  defaultPersist=random
   reloadSessionId: UuidValue?
   reloadSession: ReloadSession?, relation
   firearmId: UuidValue?

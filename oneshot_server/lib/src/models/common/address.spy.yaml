@@ -1,7 +1,7 @@
 class: Address
 table: addresses
 fields:
-  id: UuidValue?,  defaultPersist=random
+  id: UuidValue,  defaultPersist=random
   street: String
   number: String
   complement: String?

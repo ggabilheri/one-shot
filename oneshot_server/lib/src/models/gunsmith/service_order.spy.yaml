@@ -1,7 +1,7 @@
 class: ServiceOrder
 table: service_orders
 fields:
-  id: UuidValue?,  defaultPersist=random
+  id: UuidValue,  defaultPersist=random
   clientId: UuidValue?
   client: GunsmithClient?, relation
   firearmId: UuidValue?
