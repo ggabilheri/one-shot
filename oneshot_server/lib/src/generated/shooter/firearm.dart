@@ -12,15 +12,20 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i2;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i3;
+import '../common/user_profile.dart' as _i2;
+import '../enums/firearm_purpose.enum.dart' as _i3;
+import '../enums/firearm_type.enum.dart' as _i4;
+import '../enums/firearm_action.enum.dart' as _i5;
+import '../enums/usage_type.enum.dart' as _i6;
+import '../enums/conservation_state.enum.dart' as _i7;
+import 'package:oneshot_server/src/generated/protocol.dart' as _i8;
 
 abstract class Firearm
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Firearm._({
     _i1.UuidValue? id,
-    this.userInfoId,
-    this.userInfo,
+    this.userId,
+    this.user,
     required this.purpose,
     required this.type,
     required this.action,
@@ -29,38 +34,70 @@ abstract class Firearm
     required this.manufactureCountry,
     required this.manufacturer,
     required this.model,
+    this.bolt,
+    this.frame,
+    this.grip,
+    required this.conservationState,
     required this.caliber,
+    this.barrelsCount,
+    this.barrelLength,
+    this.soulType,
+    this.sightType,
+    this.riflingCount,
+    this.riflingDirection,
     required this.magazineCapacity,
-    required this.barrelLength,
-    required this.weight,
+    this.magazineCount,
+    this.dimensions,
+    this.weight,
     this.acquisitionDate,
     this.purchasePrice,
     this.saleDate,
     this.salePrice,
-    required this.condition,
+    this.buyerData,
+    this.customizations,
+    this.images,
+    this.cleaningHistory,
+    this.maintenanceHistory,
+    this.totalShots,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory Firearm({
     _i1.UuidValue? id,
-    int? userInfoId,
-    _i2.UserInfo? userInfo,
-    required String purpose,
-    required String type,
-    required String action,
-    required String usageType,
+    _i1.UuidValue? userId,
+    _i2.UserProfile? user,
+    required _i3.FirearmPurpose purpose,
+    required _i4.FirearmType type,
+    required _i5.FirearmAction action,
+    required _i6.UsageType usageType,
     required String serialNumber,
     required String manufactureCountry,
     required String manufacturer,
     required String model,
+    String? bolt,
+    String? frame,
+    String? grip,
+    required _i7.ConservationState conservationState,
     required String caliber,
+    int? barrelsCount,
+    String? barrelLength,
+    String? soulType,
+    String? sightType,
+    int? riflingCount,
+    String? riflingDirection,
     required int magazineCapacity,
-    required String barrelLength,
-    required double weight,
+    int? magazineCount,
+    String? dimensions,
+    double? weight,
     DateTime? acquisitionDate,
     double? purchasePrice,
     DateTime? saleDate,
     double? salePrice,
-    required String condition,
+    String? buyerData,
+    String? customizations,
+    List<String>? images,
+    String? cleaningHistory,
+    String? maintenanceHistory,
+    int? totalShots,
   }) = _FirearmImpl;
 
   factory Firearm.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -68,24 +105,45 @@ abstract class Firearm
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userInfoId: jsonSerialization['userInfoId'] as int?,
-      userInfo: jsonSerialization['userInfo'] == null
+      userId: jsonSerialization['userId'] == null
           ? null
-          : _i3.Protocol().deserialize<_i2.UserInfo>(
-              jsonSerialization['userInfo'],
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+      user: jsonSerialization['user'] == null
+          ? null
+          : _i8.Protocol().deserialize<_i2.UserProfile>(
+              jsonSerialization['user'],
             ),
-      purpose: jsonSerialization['purpose'] as String,
-      type: jsonSerialization['type'] as String,
-      action: jsonSerialization['action'] as String,
-      usageType: jsonSerialization['usageType'] as String,
+      purpose: _i3.FirearmPurpose.fromJson(
+        (jsonSerialization['purpose'] as String),
+      ),
+      type: _i4.FirearmType.fromJson((jsonSerialization['type'] as String)),
+      action: _i5.FirearmAction.fromJson(
+        (jsonSerialization['action'] as String),
+      ),
+      usageType: _i6.UsageType.fromJson(
+        (jsonSerialization['usageType'] as String),
+      ),
       serialNumber: jsonSerialization['serialNumber'] as String,
       manufactureCountry: jsonSerialization['manufactureCountry'] as String,
       manufacturer: jsonSerialization['manufacturer'] as String,
       model: jsonSerialization['model'] as String,
+      bolt: jsonSerialization['bolt'] as String?,
+      frame: jsonSerialization['frame'] as String?,
+      grip: jsonSerialization['grip'] as String?,
+      conservationState: _i7.ConservationState.fromJson(
+        (jsonSerialization['conservationState'] as String),
+      ),
       caliber: jsonSerialization['caliber'] as String,
+      barrelsCount: jsonSerialization['barrelsCount'] as int?,
+      barrelLength: jsonSerialization['barrelLength'] as String?,
+      soulType: jsonSerialization['soulType'] as String?,
+      sightType: jsonSerialization['sightType'] as String?,
+      riflingCount: jsonSerialization['riflingCount'] as int?,
+      riflingDirection: jsonSerialization['riflingDirection'] as String?,
       magazineCapacity: jsonSerialization['magazineCapacity'] as int,
-      barrelLength: jsonSerialization['barrelLength'] as String,
-      weight: (jsonSerialization['weight'] as num).toDouble(),
+      magazineCount: jsonSerialization['magazineCount'] as int?,
+      dimensions: jsonSerialization['dimensions'] as String?,
+      weight: (jsonSerialization['weight'] as num?)?.toDouble(),
       acquisitionDate: jsonSerialization['acquisitionDate'] == null
           ? null
           : _i1.DateTimeJsonExtension.fromJson(
@@ -96,7 +154,16 @@ abstract class Firearm
           ? null
           : _i1.DateTimeJsonExtension.fromJson(jsonSerialization['saleDate']),
       salePrice: (jsonSerialization['salePrice'] as num?)?.toDouble(),
-      condition: jsonSerialization['condition'] as String,
+      buyerData: jsonSerialization['buyerData'] as String?,
+      customizations: jsonSerialization['customizations'] as String?,
+      images: jsonSerialization['images'] == null
+          ? null
+          : _i8.Protocol().deserialize<List<String>>(
+              jsonSerialization['images'],
+            ),
+      cleaningHistory: jsonSerialization['cleaningHistory'] as String?,
+      maintenanceHistory: jsonSerialization['maintenanceHistory'] as String?,
+      totalShots: jsonSerialization['totalShots'] as int?,
     );
   }
 
@@ -107,17 +174,17 @@ abstract class Firearm
   @override
   _i1.UuidValue id;
 
-  int? userInfoId;
+  _i1.UuidValue? userId;
 
-  _i2.UserInfo? userInfo;
+  _i2.UserProfile? user;
 
-  String purpose;
+  _i3.FirearmPurpose purpose;
 
-  String type;
+  _i4.FirearmType type;
 
-  String action;
+  _i5.FirearmAction action;
 
-  String usageType;
+  _i6.UsageType usageType;
 
   String serialNumber;
 
@@ -127,13 +194,35 @@ abstract class Firearm
 
   String model;
 
+  String? bolt;
+
+  String? frame;
+
+  String? grip;
+
+  _i7.ConservationState conservationState;
+
   String caliber;
+
+  int? barrelsCount;
+
+  String? barrelLength;
+
+  String? soulType;
+
+  String? sightType;
+
+  int? riflingCount;
+
+  String? riflingDirection;
 
   int magazineCapacity;
 
-  String barrelLength;
+  int? magazineCount;
 
-  double weight;
+  String? dimensions;
+
+  double? weight;
 
   DateTime? acquisitionDate;
 
@@ -143,7 +232,17 @@ abstract class Firearm
 
   double? salePrice;
 
-  String condition;
+  String? buyerData;
+
+  String? customizations;
+
+  List<String>? images;
+
+  String? cleaningHistory;
+
+  String? maintenanceHistory;
+
+  int? totalShots;
 
   @override
   _i1.Table<_i1.UuidValue> get table => t;
@@ -153,50 +252,82 @@ abstract class Firearm
   @_i1.useResult
   Firearm copyWith({
     _i1.UuidValue? id,
-    int? userInfoId,
-    _i2.UserInfo? userInfo,
-    String? purpose,
-    String? type,
-    String? action,
-    String? usageType,
+    _i1.UuidValue? userId,
+    _i2.UserProfile? user,
+    _i3.FirearmPurpose? purpose,
+    _i4.FirearmType? type,
+    _i5.FirearmAction? action,
+    _i6.UsageType? usageType,
     String? serialNumber,
     String? manufactureCountry,
     String? manufacturer,
     String? model,
+    String? bolt,
+    String? frame,
+    String? grip,
+    _i7.ConservationState? conservationState,
     String? caliber,
-    int? magazineCapacity,
+    int? barrelsCount,
     String? barrelLength,
+    String? soulType,
+    String? sightType,
+    int? riflingCount,
+    String? riflingDirection,
+    int? magazineCapacity,
+    int? magazineCount,
+    String? dimensions,
     double? weight,
     DateTime? acquisitionDate,
     double? purchasePrice,
     DateTime? saleDate,
     double? salePrice,
-    String? condition,
+    String? buyerData,
+    String? customizations,
+    List<String>? images,
+    String? cleaningHistory,
+    String? maintenanceHistory,
+    int? totalShots,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Firearm',
       'id': id.toJson(),
-      if (userInfoId != null) 'userInfoId': userInfoId,
-      if (userInfo != null) 'userInfo': userInfo?.toJson(),
-      'purpose': purpose,
-      'type': type,
-      'action': action,
-      'usageType': usageType,
+      if (userId != null) 'userId': userId?.toJson(),
+      if (user != null) 'user': user?.toJson(),
+      'purpose': purpose.toJson(),
+      'type': type.toJson(),
+      'action': action.toJson(),
+      'usageType': usageType.toJson(),
       'serialNumber': serialNumber,
       'manufactureCountry': manufactureCountry,
       'manufacturer': manufacturer,
       'model': model,
+      if (bolt != null) 'bolt': bolt,
+      if (frame != null) 'frame': frame,
+      if (grip != null) 'grip': grip,
+      'conservationState': conservationState.toJson(),
       'caliber': caliber,
+      if (barrelsCount != null) 'barrelsCount': barrelsCount,
+      if (barrelLength != null) 'barrelLength': barrelLength,
+      if (soulType != null) 'soulType': soulType,
+      if (sightType != null) 'sightType': sightType,
+      if (riflingCount != null) 'riflingCount': riflingCount,
+      if (riflingDirection != null) 'riflingDirection': riflingDirection,
       'magazineCapacity': magazineCapacity,
-      'barrelLength': barrelLength,
-      'weight': weight,
+      if (magazineCount != null) 'magazineCount': magazineCount,
+      if (dimensions != null) 'dimensions': dimensions,
+      if (weight != null) 'weight': weight,
       if (acquisitionDate != null) 'acquisitionDate': acquisitionDate?.toJson(),
       if (purchasePrice != null) 'purchasePrice': purchasePrice,
       if (saleDate != null) 'saleDate': saleDate?.toJson(),
       if (salePrice != null) 'salePrice': salePrice,
-      'condition': condition,
+      if (buyerData != null) 'buyerData': buyerData,
+      if (customizations != null) 'customizations': customizations,
+      if (images != null) 'images': images?.toJson(),
+      if (cleaningHistory != null) 'cleaningHistory': cleaningHistory,
+      if (maintenanceHistory != null) 'maintenanceHistory': maintenanceHistory,
+      if (totalShots != null) 'totalShots': totalShots,
     };
   }
 
@@ -205,30 +336,46 @@ abstract class Firearm
     return {
       '__className__': 'Firearm',
       'id': id.toJson(),
-      if (userInfoId != null) 'userInfoId': userInfoId,
-      if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
-      'purpose': purpose,
-      'type': type,
-      'action': action,
-      'usageType': usageType,
+      if (userId != null) 'userId': userId?.toJson(),
+      if (user != null) 'user': user?.toJsonForProtocol(),
+      'purpose': purpose.toJson(),
+      'type': type.toJson(),
+      'action': action.toJson(),
+      'usageType': usageType.toJson(),
       'serialNumber': serialNumber,
       'manufactureCountry': manufactureCountry,
       'manufacturer': manufacturer,
       'model': model,
+      if (bolt != null) 'bolt': bolt,
+      if (frame != null) 'frame': frame,
+      if (grip != null) 'grip': grip,
+      'conservationState': conservationState.toJson(),
       'caliber': caliber,
+      if (barrelsCount != null) 'barrelsCount': barrelsCount,
+      if (barrelLength != null) 'barrelLength': barrelLength,
+      if (soulType != null) 'soulType': soulType,
+      if (sightType != null) 'sightType': sightType,
+      if (riflingCount != null) 'riflingCount': riflingCount,
+      if (riflingDirection != null) 'riflingDirection': riflingDirection,
       'magazineCapacity': magazineCapacity,
-      'barrelLength': barrelLength,
-      'weight': weight,
+      if (magazineCount != null) 'magazineCount': magazineCount,
+      if (dimensions != null) 'dimensions': dimensions,
+      if (weight != null) 'weight': weight,
       if (acquisitionDate != null) 'acquisitionDate': acquisitionDate?.toJson(),
       if (purchasePrice != null) 'purchasePrice': purchasePrice,
       if (saleDate != null) 'saleDate': saleDate?.toJson(),
       if (salePrice != null) 'salePrice': salePrice,
-      'condition': condition,
+      if (buyerData != null) 'buyerData': buyerData,
+      if (customizations != null) 'customizations': customizations,
+      if (images != null) 'images': images?.toJson(),
+      if (cleaningHistory != null) 'cleaningHistory': cleaningHistory,
+      if (maintenanceHistory != null) 'maintenanceHistory': maintenanceHistory,
+      if (totalShots != null) 'totalShots': totalShots,
     };
   }
 
-  static FirearmInclude include({_i2.UserInfoInclude? userInfo}) {
-    return FirearmInclude._(userInfo: userInfo);
+  static FirearmInclude include({_i2.UserProfileInclude? user}) {
+    return FirearmInclude._(user: user);
   }
 
   static FirearmIncludeList includeList({
@@ -262,29 +409,45 @@ class _Undefined {}
 class _FirearmImpl extends Firearm {
   _FirearmImpl({
     _i1.UuidValue? id,
-    int? userInfoId,
-    _i2.UserInfo? userInfo,
-    required String purpose,
-    required String type,
-    required String action,
-    required String usageType,
+    _i1.UuidValue? userId,
+    _i2.UserProfile? user,
+    required _i3.FirearmPurpose purpose,
+    required _i4.FirearmType type,
+    required _i5.FirearmAction action,
+    required _i6.UsageType usageType,
     required String serialNumber,
     required String manufactureCountry,
     required String manufacturer,
     required String model,
+    String? bolt,
+    String? frame,
+    String? grip,
+    required _i7.ConservationState conservationState,
     required String caliber,
+    int? barrelsCount,
+    String? barrelLength,
+    String? soulType,
+    String? sightType,
+    int? riflingCount,
+    String? riflingDirection,
     required int magazineCapacity,
-    required String barrelLength,
-    required double weight,
+    int? magazineCount,
+    String? dimensions,
+    double? weight,
     DateTime? acquisitionDate,
     double? purchasePrice,
     DateTime? saleDate,
     double? salePrice,
-    required String condition,
+    String? buyerData,
+    String? customizations,
+    List<String>? images,
+    String? cleaningHistory,
+    String? maintenanceHistory,
+    int? totalShots,
   }) : super._(
          id: id,
-         userInfoId: userInfoId,
-         userInfo: userInfo,
+         userId: userId,
+         user: user,
          purpose: purpose,
          type: type,
          action: action,
@@ -293,15 +456,31 @@ class _FirearmImpl extends Firearm {
          manufactureCountry: manufactureCountry,
          manufacturer: manufacturer,
          model: model,
+         bolt: bolt,
+         frame: frame,
+         grip: grip,
+         conservationState: conservationState,
          caliber: caliber,
-         magazineCapacity: magazineCapacity,
+         barrelsCount: barrelsCount,
          barrelLength: barrelLength,
+         soulType: soulType,
+         sightType: sightType,
+         riflingCount: riflingCount,
+         riflingDirection: riflingDirection,
+         magazineCapacity: magazineCapacity,
+         magazineCount: magazineCount,
+         dimensions: dimensions,
          weight: weight,
          acquisitionDate: acquisitionDate,
          purchasePrice: purchasePrice,
          saleDate: saleDate,
          salePrice: salePrice,
-         condition: condition,
+         buyerData: buyerData,
+         customizations: customizations,
+         images: images,
+         cleaningHistory: cleaningHistory,
+         maintenanceHistory: maintenanceHistory,
+         totalShots: totalShots,
        );
 
   /// Returns a shallow copy of this [Firearm]
@@ -310,32 +489,46 @@ class _FirearmImpl extends Firearm {
   @override
   Firearm copyWith({
     _i1.UuidValue? id,
-    Object? userInfoId = _Undefined,
-    Object? userInfo = _Undefined,
-    String? purpose,
-    String? type,
-    String? action,
-    String? usageType,
+    Object? userId = _Undefined,
+    Object? user = _Undefined,
+    _i3.FirearmPurpose? purpose,
+    _i4.FirearmType? type,
+    _i5.FirearmAction? action,
+    _i6.UsageType? usageType,
     String? serialNumber,
     String? manufactureCountry,
     String? manufacturer,
     String? model,
+    Object? bolt = _Undefined,
+    Object? frame = _Undefined,
+    Object? grip = _Undefined,
+    _i7.ConservationState? conservationState,
     String? caliber,
+    Object? barrelsCount = _Undefined,
+    Object? barrelLength = _Undefined,
+    Object? soulType = _Undefined,
+    Object? sightType = _Undefined,
+    Object? riflingCount = _Undefined,
+    Object? riflingDirection = _Undefined,
     int? magazineCapacity,
-    String? barrelLength,
-    double? weight,
+    Object? magazineCount = _Undefined,
+    Object? dimensions = _Undefined,
+    Object? weight = _Undefined,
     Object? acquisitionDate = _Undefined,
     Object? purchasePrice = _Undefined,
     Object? saleDate = _Undefined,
     Object? salePrice = _Undefined,
-    String? condition,
+    Object? buyerData = _Undefined,
+    Object? customizations = _Undefined,
+    Object? images = _Undefined,
+    Object? cleaningHistory = _Undefined,
+    Object? maintenanceHistory = _Undefined,
+    Object? totalShots = _Undefined,
   }) {
     return Firearm(
       id: id ?? this.id,
-      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i2.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userId: userId is _i1.UuidValue? ? userId : this.userId,
+      user: user is _i2.UserProfile? ? user : this.user?.copyWith(),
       purpose: purpose ?? this.purpose,
       type: type ?? this.type,
       action: action ?? this.action,
@@ -344,10 +537,23 @@ class _FirearmImpl extends Firearm {
       manufactureCountry: manufactureCountry ?? this.manufactureCountry,
       manufacturer: manufacturer ?? this.manufacturer,
       model: model ?? this.model,
+      bolt: bolt is String? ? bolt : this.bolt,
+      frame: frame is String? ? frame : this.frame,
+      grip: grip is String? ? grip : this.grip,
+      conservationState: conservationState ?? this.conservationState,
       caliber: caliber ?? this.caliber,
+      barrelsCount: barrelsCount is int? ? barrelsCount : this.barrelsCount,
+      barrelLength: barrelLength is String? ? barrelLength : this.barrelLength,
+      soulType: soulType is String? ? soulType : this.soulType,
+      sightType: sightType is String? ? sightType : this.sightType,
+      riflingCount: riflingCount is int? ? riflingCount : this.riflingCount,
+      riflingDirection: riflingDirection is String?
+          ? riflingDirection
+          : this.riflingDirection,
       magazineCapacity: magazineCapacity ?? this.magazineCapacity,
-      barrelLength: barrelLength ?? this.barrelLength,
-      weight: weight ?? this.weight,
+      magazineCount: magazineCount is int? ? magazineCount : this.magazineCount,
+      dimensions: dimensions is String? ? dimensions : this.dimensions,
+      weight: weight is double? ? weight : this.weight,
       acquisitionDate: acquisitionDate is DateTime?
           ? acquisitionDate
           : this.acquisitionDate,
@@ -356,7 +562,20 @@ class _FirearmImpl extends Firearm {
           : this.purchasePrice,
       saleDate: saleDate is DateTime? ? saleDate : this.saleDate,
       salePrice: salePrice is double? ? salePrice : this.salePrice,
-      condition: condition ?? this.condition,
+      buyerData: buyerData is String? ? buyerData : this.buyerData,
+      customizations: customizations is String?
+          ? customizations
+          : this.customizations,
+      images: images is List<String>?
+          ? images
+          : this.images?.map((e0) => e0).toList(),
+      cleaningHistory: cleaningHistory is String?
+          ? cleaningHistory
+          : this.cleaningHistory,
+      maintenanceHistory: maintenanceHistory is String?
+          ? maintenanceHistory
+          : this.maintenanceHistory,
+      totalShots: totalShots is int? ? totalShots : this.totalShots,
     );
   }
 }
@@ -364,27 +583,36 @@ class _FirearmImpl extends Firearm {
 class FirearmUpdateTable extends _i1.UpdateTable<FirearmTable> {
   FirearmUpdateTable(super.table);
 
-  _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
-    table.userInfoId,
-    value,
-  );
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
+      _i1.ColumnValue(
+        table.userId,
+        value,
+      );
 
-  _i1.ColumnValue<String, String> purpose(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<_i3.FirearmPurpose, _i3.FirearmPurpose> purpose(
+    _i3.FirearmPurpose value,
+  ) => _i1.ColumnValue(
     table.purpose,
     value,
   );
 
-  _i1.ColumnValue<String, String> type(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<_i4.FirearmType, _i4.FirearmType> type(
+    _i4.FirearmType value,
+  ) => _i1.ColumnValue(
     table.type,
     value,
   );
 
-  _i1.ColumnValue<String, String> action(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<_i5.FirearmAction, _i5.FirearmAction> action(
+    _i5.FirearmAction value,
+  ) => _i1.ColumnValue(
     table.action,
     value,
   );
 
-  _i1.ColumnValue<String, String> usageType(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<_i6.UsageType, _i6.UsageType> usageType(
+    _i6.UsageType value,
+  ) => _i1.ColumnValue(
     table.usageType,
     value,
   );
@@ -410,22 +638,80 @@ class FirearmUpdateTable extends _i1.UpdateTable<FirearmTable> {
     value,
   );
 
+  _i1.ColumnValue<String, String> bolt(String? value) => _i1.ColumnValue(
+    table.bolt,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> frame(String? value) => _i1.ColumnValue(
+    table.frame,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> grip(String? value) => _i1.ColumnValue(
+    table.grip,
+    value,
+  );
+
+  _i1.ColumnValue<_i7.ConservationState, _i7.ConservationState>
+  conservationState(_i7.ConservationState value) => _i1.ColumnValue(
+    table.conservationState,
+    value,
+  );
+
   _i1.ColumnValue<String, String> caliber(String value) => _i1.ColumnValue(
     table.caliber,
     value,
   );
+
+  _i1.ColumnValue<int, int> barrelsCount(int? value) => _i1.ColumnValue(
+    table.barrelsCount,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> barrelLength(String? value) =>
+      _i1.ColumnValue(
+        table.barrelLength,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> soulType(String? value) => _i1.ColumnValue(
+    table.soulType,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> sightType(String? value) => _i1.ColumnValue(
+    table.sightType,
+    value,
+  );
+
+  _i1.ColumnValue<int, int> riflingCount(int? value) => _i1.ColumnValue(
+    table.riflingCount,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> riflingDirection(String? value) =>
+      _i1.ColumnValue(
+        table.riflingDirection,
+        value,
+      );
 
   _i1.ColumnValue<int, int> magazineCapacity(int value) => _i1.ColumnValue(
     table.magazineCapacity,
     value,
   );
 
-  _i1.ColumnValue<String, String> barrelLength(String value) => _i1.ColumnValue(
-    table.barrelLength,
+  _i1.ColumnValue<int, int> magazineCount(int? value) => _i1.ColumnValue(
+    table.magazineCount,
     value,
   );
 
-  _i1.ColumnValue<double, double> weight(double value) => _i1.ColumnValue(
+  _i1.ColumnValue<String, String> dimensions(String? value) => _i1.ColumnValue(
+    table.dimensions,
+    value,
+  );
+
+  _i1.ColumnValue<double, double> weight(double? value) => _i1.ColumnValue(
     table.weight,
     value,
   );
@@ -453,8 +739,37 @@ class FirearmUpdateTable extends _i1.UpdateTable<FirearmTable> {
     value,
   );
 
-  _i1.ColumnValue<String, String> condition(String value) => _i1.ColumnValue(
-    table.condition,
+  _i1.ColumnValue<String, String> buyerData(String? value) => _i1.ColumnValue(
+    table.buyerData,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> customizations(String? value) =>
+      _i1.ColumnValue(
+        table.customizations,
+        value,
+      );
+
+  _i1.ColumnValue<List<String>, List<String>> images(List<String>? value) =>
+      _i1.ColumnValue(
+        table.images,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> cleaningHistory(String? value) =>
+      _i1.ColumnValue(
+        table.cleaningHistory,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> maintenanceHistory(String? value) =>
+      _i1.ColumnValue(
+        table.maintenanceHistory,
+        value,
+      );
+
+  _i1.ColumnValue<int, int> totalShots(int? value) => _i1.ColumnValue(
+    table.totalShots,
     value,
   );
 }
@@ -462,25 +777,29 @@ class FirearmUpdateTable extends _i1.UpdateTable<FirearmTable> {
 class FirearmTable extends _i1.Table<_i1.UuidValue> {
   FirearmTable({super.tableRelation}) : super(tableName: 'firearms') {
     updateTable = FirearmUpdateTable(this);
-    userInfoId = _i1.ColumnInt(
-      'userInfoId',
+    userId = _i1.ColumnUuid(
+      'userId',
       this,
     );
-    purpose = _i1.ColumnString(
+    purpose = _i1.ColumnEnum(
       'purpose',
       this,
+      _i1.EnumSerialization.byName,
     );
-    type = _i1.ColumnString(
+    type = _i1.ColumnEnum(
       'type',
       this,
+      _i1.EnumSerialization.byName,
     );
-    action = _i1.ColumnString(
+    action = _i1.ColumnEnum(
       'action',
       this,
+      _i1.EnumSerialization.byName,
     );
-    usageType = _i1.ColumnString(
+    usageType = _i1.ColumnEnum(
       'usageType',
       this,
+      _i1.EnumSerialization.byName,
     );
     serialNumber = _i1.ColumnString(
       'serialNumber',
@@ -498,16 +817,61 @@ class FirearmTable extends _i1.Table<_i1.UuidValue> {
       'model',
       this,
     );
+    bolt = _i1.ColumnString(
+      'bolt',
+      this,
+    );
+    frame = _i1.ColumnString(
+      'frame',
+      this,
+    );
+    grip = _i1.ColumnString(
+      'grip',
+      this,
+    );
+    conservationState = _i1.ColumnEnum(
+      'conservationState',
+      this,
+      _i1.EnumSerialization.byName,
+    );
     caliber = _i1.ColumnString(
       'caliber',
+      this,
+    );
+    barrelsCount = _i1.ColumnInt(
+      'barrelsCount',
+      this,
+    );
+    barrelLength = _i1.ColumnString(
+      'barrelLength',
+      this,
+    );
+    soulType = _i1.ColumnString(
+      'soulType',
+      this,
+    );
+    sightType = _i1.ColumnString(
+      'sightType',
+      this,
+    );
+    riflingCount = _i1.ColumnInt(
+      'riflingCount',
+      this,
+    );
+    riflingDirection = _i1.ColumnString(
+      'riflingDirection',
       this,
     );
     magazineCapacity = _i1.ColumnInt(
       'magazineCapacity',
       this,
     );
-    barrelLength = _i1.ColumnString(
-      'barrelLength',
+    magazineCount = _i1.ColumnInt(
+      'magazineCount',
+      this,
+    );
+    dimensions = _i1.ColumnString(
+      'dimensions',
       this,
     );
     weight = _i1.ColumnDouble(
@@ -530,25 +894,45 @@ class FirearmTable extends _i1.Table<_i1.UuidValue> {
       'salePrice',
       this,
     );
-    condition = _i1.ColumnString(
-      'condition',
+    buyerData = _i1.ColumnString(
+      'buyerData',
+      this,
+    );
+    customizations = _i1.ColumnString(
+      'customizations',
+      this,
+    );
+    images = _i1.ColumnSerializable<List<String>>(
+      'images',
+      this,
+    );
+    cleaningHistory = _i1.ColumnString(
+      'cleaningHistory',
+      this,
+    );
+    maintenanceHistory = _i1.ColumnString(
+      'maintenanceHistory',
+      this,
+    );
+    totalShots = _i1.ColumnInt(
+      'totalShots',
       this,
     );
   }
 
   late final FirearmUpdateTable updateTable;
 
-  late final _i1.ColumnInt userInfoId;
+  late final _i1.ColumnUuid userId;
 
-  _i2.UserInfoTable? _userInfo;
+  _i2.UserProfileTable? _user;
 
-  late final _i1.ColumnString purpose;
+  late final _i1.ColumnEnum<_i3.FirearmPurpose> purpose;
 
-  late final _i1.ColumnString type;
+  late final _i1.ColumnEnum<_i4.FirearmType> type;
 
-  late final _i1.ColumnString action;
+  late final _i1.ColumnEnum<_i5.FirearmAction> action;
 
-  late final _i1.ColumnString usageType;
+  late final _i1.ColumnEnum<_i6.UsageType> usageType;
 
   late final _i1.ColumnString serialNumber;
 
@@ -558,11 +942,33 @@ class FirearmTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnString model;
 
+  late final _i1.ColumnString bolt;
+
+  late final _i1.ColumnString frame;
+
+  late final _i1.ColumnString grip;
+
+  late final _i1.ColumnEnum<_i7.ConservationState> conservationState;
+
   late final _i1.ColumnString caliber;
+
+  late final _i1.ColumnInt barrelsCount;
+
+  late final _i1.ColumnString barrelLength;
+
+  late final _i1.ColumnString soulType;
+
+  late final _i1.ColumnString sightType;
+
+  late final _i1.ColumnInt riflingCount;
+
+  late final _i1.ColumnString riflingDirection;
 
   late final _i1.ColumnInt magazineCapacity;
 
-  late final _i1.ColumnString barrelLength;
+  late final _i1.ColumnInt magazineCount;
+
+  late final _i1.ColumnString dimensions;
 
   late final _i1.ColumnDouble weight;
 
@@ -574,25 +980,35 @@ class FirearmTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnDouble salePrice;
 
-  late final _i1.ColumnString condition;
+  late final _i1.ColumnString buyerData;
 
-  _i2.UserInfoTable get userInfo {
-    if (_userInfo != null) return _userInfo!;
-    _userInfo = _i1.createRelationTable(
-      relationFieldName: 'userInfo',
-      field: Firearm.t.userInfoId,
-      foreignField: _i2.UserInfo.t.id,
+  late final _i1.ColumnString customizations;
+
+  late final _i1.ColumnSerializable<List<String>> images;
+
+  late final _i1.ColumnString cleaningHistory;
+
+  late final _i1.ColumnString maintenanceHistory;
+
+  late final _i1.ColumnInt totalShots;
+
+  _i2.UserProfileTable get user {
+    if (_user != null) return _user!;
+    _user = _i1.createRelationTable(
+      relationFieldName: 'user',
+      field: Firearm.t.userId,
+      foreignField: _i2.UserProfile.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.UserInfoTable(tableRelation: foreignTableRelation),
+          _i2.UserProfileTable(tableRelation: foreignTableRelation),
     );
-    return _userInfo!;
+    return _user!;
   }
 
   @override
   List<_i1.Column> get columns => [
     id,
-    userInfoId,
+    userId,
     purpose,
     type,
     action,
@@ -601,35 +1017,51 @@ class FirearmTable extends _i1.Table<_i1.UuidValue> {
     manufactureCountry,
     manufacturer,
     model,
+    bolt,
+    frame,
+    grip,
+    conservationState,
     caliber,
-    magazineCapacity,
+    barrelsCount,
     barrelLength,
+    soulType,
+    sightType,
+    riflingCount,
+    riflingDirection,
+    magazineCapacity,
+    magazineCount,
+    dimensions,
     weight,
     acquisitionDate,
     purchasePrice,
     saleDate,
     salePrice,
-    condition,
+    buyerData,
+    customizations,
+    images,
+    cleaningHistory,
+    maintenanceHistory,
+    totalShots,
   ];
 
   @override
   _i1.Table? getRelationTable(String relationField) {
-    if (relationField == 'userInfo') {
-      return userInfo;
+    if (relationField == 'user') {
+      return user;
     }
     return null;
   }
 }
 
 class FirearmInclude extends _i1.IncludeObject {
-  FirearmInclude._({_i2.UserInfoInclude? userInfo}) {
-    _userInfo = userInfo;
+  FirearmInclude._({_i2.UserProfileInclude? user}) {
+    _user = user;
   }
 
-  _i2.UserInfoInclude? _userInfo;
+  _i2.UserProfileInclude? _user;
 
   @override
-  Map<String, _i1.Include?> get includes => {'userInfo': _userInfo};
+  Map<String, _i1.Include?> get includes => {'user': _user};
 
   @override
   _i1.Table<_i1.UuidValue> get table => Firearm.t;
@@ -955,25 +1387,25 @@ class FirearmRepository {
 class FirearmAttachRowRepository {
   const FirearmAttachRowRepository._();
 
-  /// Creates a relation between the given [Firearm] and [UserInfo]
-  /// by setting the [Firearm]'s foreign key `userInfoId` to refer to the [UserInfo].
-  Future<void> userInfo(
+  /// Creates a relation between the given [Firearm] and [UserProfile]
+  /// by setting the [Firearm]'s foreign key `userId` to refer to the [UserProfile].
+  Future<void> user(
     _i1.DatabaseSession session,
     Firearm firearm,
-    _i2.UserInfo userInfo, {
+    _i2.UserProfile user, {
     _i1.Transaction? transaction,
   }) async {
     if (firearm.id == null) {
       throw ArgumentError.notNull('firearm.id');
     }
-    if (userInfo.id == null) {
-      throw ArgumentError.notNull('userInfo.id');
+    if (user.id == null) {
+      throw ArgumentError.notNull('user.id');
     }
 
-    var $firearm = firearm.copyWith(userInfoId: userInfo.id);
+    var $firearm = firearm.copyWith(userId: user.id);
     await session.db.updateRow<Firearm>(
       $firearm,
-      columns: [Firearm.t.userInfoId],
+      columns: [Firearm.t.userId],
       transaction: transaction,
     );
   }
@@ -982,12 +1414,12 @@ class FirearmAttachRowRepository {
 class FirearmDetachRowRepository {
   const FirearmDetachRowRepository._();
 
-  /// Detaches the relation between this [Firearm] and the [UserInfo] set in `userInfo`
-  /// by setting the [Firearm]'s foreign key `userInfoId` to `null`.
+  /// Detaches the relation between this [Firearm] and the [UserProfile] set in `user`
+  /// by setting the [Firearm]'s foreign key `userId` to `null`.
   ///
   /// This removes the association between the two models without deleting
   /// the related record.
-  Future<void> userInfo(
+  Future<void> user(
     _i1.DatabaseSession session,
     Firearm firearm, {
     _i1.Transaction? transaction,
@@ -996,10 +1428,10 @@ class FirearmDetachRowRepository {
       throw ArgumentError.notNull('firearm.id');
     }
 
-    var $firearm = firearm.copyWith(userInfoId: null);
+    var $firearm = firearm.copyWith(userId: null);
     await session.db.updateRow<Firearm>(
       $firearm,
-      columns: [Firearm.t.userInfoId],
+      columns: [Firearm.t.userId],
       transaction: transaction,
     );
   }

@@ -2,26 +2,48 @@ class: Firearm
 table: firearms
 fields:
   id: UuidValue, defaultModel=random
-  userInfo: module:auth:UserInfo?, relation(optional)
-  purpose: String      # Defense, Sport, Collection, Hunting
-  type: String         # Pistol, Revolver, Rifle
-  action: String
-  usageType: String    # Permitted, Restricted
+  user: UserProfile?, relation(optional)
+  
+  # Technical fields
+  purpose: FirearmPurpose
+  type: FirearmType
+  action: FirearmAction
+  usageType: UsageType
   serialNumber: String
   manufactureCountry: String
   manufacturer: String
   model: String
+  bolt: String?
+  frame: String?
+  grip: String?
+  conservationState: ConservationState
   caliber: String
+  barrelsCount: int?
+  barrelLength: String?
+  soulType: String?
+  sightType: String?
+  riflingCount: int?
+  riflingDirection: String?
   magazineCapacity: int
-  barrelLength: String
-  weight: double
+  magazineCount: int?
+  dimensions: String?     # A x C x L
+  weight: double?
+  
+  # History and Value
   acquisitionDate: DateTime?
   purchasePrice: double?
   saleDate: DateTime?
   salePrice: double?
-  condition: String
+  buyerData: String?
+  customizations: String?
+  images: List<String>?
+  cleaningHistory: String?
+  maintenanceHistory: String?
+  totalShots: int?
+
 indexes:
   firearm_user_id_idx:
-    fields: userInfoId
+    fields: userId
   firearm_serial_number_idx:
     fields: serialNumber
+    unique: true

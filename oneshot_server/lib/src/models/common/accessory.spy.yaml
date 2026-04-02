@@ -2,18 +2,39 @@ class: Accessory
 table: accessories
 fields:
   id: UuidValue, defaultModel=random
-  userInfo: module:auth:UserInfo?, relation(optional)
+  user: UserProfile?, relation
   firearm: Firearm?, relation(optional)
-  purpose: String
-  type: String         # Press, Die, Scope, Magazine
-  manufacturer: String
-  model: String
+  
+  # Technical Fields
+  purpose: String?
+  type: AccessoryType
   serialNumber: String?
-  condition: String
-  purchasePrice: double?
+  manufactureCountry: String?
+  manufacturer: String?
+  model: String?
+  description: String?
+  conservationState: ConservationState?
+  usageType: UsageType?
+  dimensions: String?
+  weight: double?
+  color: String?
+  finishMaterial: String?
+  
+  # History and Value
   acquisitionDate: DateTime?
+  purchasePrice: double?
+  invoiceNumber: String?
+  invoiceEmissionDate: DateTime?
+  sellerData: String?      # Seller/CNPJ
+  registryBody: RegistryBody?
+  customizations: String?
+  maintenanceHistory: String?
+  images: List<String>?
+
 indexes:
   accessory_user_id_idx:
-    fields: userInfoId
+    fields: userId
   accessory_firearm_id_idx:
     fields: firearmId
+  accessory_serial_number_idx:
+    fields: serialNumber

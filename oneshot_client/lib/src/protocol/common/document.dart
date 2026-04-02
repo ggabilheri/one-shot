@@ -11,49 +11,52 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i2;
+import '../common/user_profile.dart' as _i2;
 import '../shooter/firearm.dart' as _i3;
 import '../common/accessory.dart' as _i4;
-import '../common/address.dart' as _i5;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i6;
+import '../enums/document_type.enum.dart' as _i5;
+import '../enums/registry_body.enum.dart' as _i6;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _i7;
 
 abstract class Document implements _i1.SerializableModel {
   Document._({
     _i1.UuidValue? id,
-    this.userInfoId,
-    this.userInfo,
+    required this.userId,
+    this.user,
     this.firearmId,
     this.firearm,
     this.accessoryId,
     this.accessory,
-    required this.documentType,
-    required this.registryAgency,
-    required this.documentNumber,
-    required this.issueDate,
-    required this.expirationDate,
-    this.documentImageUrl,
+    required this.type,
+    required this.registryBody,
+    required this.number,
+    required this.emissionDate,
+    this.expirationDate,
+    this.filePath,
     this.supplierName,
-    this.supplierAddressId,
+    this.supplierCpfCnpj,
+    this.supplierPhone,
     this.supplierAddress,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory Document({
     _i1.UuidValue? id,
-    int? userInfoId,
-    _i2.UserInfo? userInfo,
+    required _i1.UuidValue userId,
+    _i2.UserProfile? user,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     _i1.UuidValue? accessoryId,
     _i4.Accessory? accessory,
-    required String documentType,
-    required String registryAgency,
-    required String documentNumber,
-    required DateTime issueDate,
-    required DateTime expirationDate,
-    String? documentImageUrl,
+    required _i5.DocumentType type,
+    required _i6.RegistryBody registryBody,
+    required String number,
+    required DateTime emissionDate,
+    DateTime? expirationDate,
+    String? filePath,
     String? supplierName,
-    _i1.UuidValue? supplierAddressId,
-    _i5.Address? supplierAddress,
+    String? supplierCpfCnpj,
+    String? supplierPhone,
+    String? supplierAddress,
   }) = _DocumentImpl;
 
   factory Document.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -61,18 +64,18 @@ abstract class Document implements _i1.SerializableModel {
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userInfoId: jsonSerialization['userInfoId'] as int?,
-      userInfo: jsonSerialization['userInfo'] == null
+      userId: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+      user: jsonSerialization['user'] == null
           ? null
-          : _i6.Protocol().deserialize<_i2.UserInfo>(
-              jsonSerialization['userInfo'],
+          : _i7.Protocol().deserialize<_i2.UserProfile>(
+              jsonSerialization['user'],
             ),
       firearmId: jsonSerialization['firearmId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
-          : _i6.Protocol().deserialize<_i3.Firearm>(
+          : _i7.Protocol().deserialize<_i3.Firearm>(
               jsonSerialization['firearm'],
             ),
       accessoryId: jsonSerialization['accessoryId'] == null
@@ -82,39 +85,36 @@ abstract class Document implements _i1.SerializableModel {
             ),
       accessory: jsonSerialization['accessory'] == null
           ? null
-          : _i6.Protocol().deserialize<_i4.Accessory>(
+          : _i7.Protocol().deserialize<_i4.Accessory>(
               jsonSerialization['accessory'],
             ),
-      documentType: jsonSerialization['documentType'] as String,
-      registryAgency: jsonSerialization['registryAgency'] as String,
-      documentNumber: jsonSerialization['documentNumber'] as String,
-      issueDate: _i1.DateTimeJsonExtension.fromJson(
-        jsonSerialization['issueDate'],
+      type: _i5.DocumentType.fromJson((jsonSerialization['type'] as String)),
+      registryBody: _i6.RegistryBody.fromJson(
+        (jsonSerialization['registryBody'] as String),
       ),
-      expirationDate: _i1.DateTimeJsonExtension.fromJson(
-        jsonSerialization['expirationDate'],
+      number: jsonSerialization['number'] as String,
+      emissionDate: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['emissionDate'],
       ),
-      documentImageUrl: jsonSerialization['documentImageUrl'] as String?,
+      expirationDate: jsonSerialization['expirationDate'] == null
+          ? null
+          : _i1.DateTimeJsonExtension.fromJson(
+              jsonSerialization['expirationDate'],
+            ),
+      filePath: jsonSerialization['filePath'] as String?,
       supplierName: jsonSerialization['supplierName'] as String?,
-      supplierAddressId: jsonSerialization['supplierAddressId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(
-              jsonSerialization['supplierAddressId'],
-            ),
-      supplierAddress: jsonSerialization['supplierAddress'] == null
-          ? null
-          : _i6.Protocol().deserialize<_i5.Address>(
-              jsonSerialization['supplierAddress'],
-            ),
+      supplierCpfCnpj: jsonSerialization['supplierCpfCnpj'] as String?,
+      supplierPhone: jsonSerialization['supplierPhone'] as String?,
+      supplierAddress: jsonSerialization['supplierAddress'] as String?,
     );
   }
 
   /// The id of the object.
   _i1.UuidValue id;
 
-  int? userInfoId;
+  _i1.UuidValue userId;
 
-  _i2.UserInfo? userInfo;
+  _i2.UserProfile? user;
 
   _i1.UuidValue? firearmId;
 
@@ -124,66 +124,69 @@ abstract class Document implements _i1.SerializableModel {
 
   _i4.Accessory? accessory;
 
-  String documentType;
+  _i5.DocumentType type;
 
-  String registryAgency;
+  _i6.RegistryBody registryBody;
 
-  String documentNumber;
+  String number;
 
-  DateTime issueDate;
+  DateTime emissionDate;
 
-  DateTime expirationDate;
+  DateTime? expirationDate;
 
-  String? documentImageUrl;
+  String? filePath;
 
   String? supplierName;
 
-  _i1.UuidValue? supplierAddressId;
+  String? supplierCpfCnpj;
 
-  _i5.Address? supplierAddress;
+  String? supplierPhone;
+
+  String? supplierAddress;
 
   /// Returns a shallow copy of this [Document]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   Document copyWith({
     _i1.UuidValue? id,
-    int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i1.UuidValue? userId,
+    _i2.UserProfile? user,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     _i1.UuidValue? accessoryId,
     _i4.Accessory? accessory,
-    String? documentType,
-    String? registryAgency,
-    String? documentNumber,
-    DateTime? issueDate,
+    _i5.DocumentType? type,
+    _i6.RegistryBody? registryBody,
+    String? number,
+    DateTime? emissionDate,
     DateTime? expirationDate,
-    String? documentImageUrl,
+    String? filePath,
     String? supplierName,
-    _i1.UuidValue? supplierAddressId,
-    _i5.Address? supplierAddress,
+    String? supplierCpfCnpj,
+    String? supplierPhone,
+    String? supplierAddress,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Document',
       'id': id.toJson(),
-      if (userInfoId != null) 'userInfoId': userInfoId,
-      if (userInfo != null) 'userInfo': userInfo?.toJson(),
+      'userId': userId.toJson(),
+      if (user != null) 'user': user?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       if (accessoryId != null) 'accessoryId': accessoryId?.toJson(),
       if (accessory != null) 'accessory': accessory?.toJson(),
-      'documentType': documentType,
-      'registryAgency': registryAgency,
-      'documentNumber': documentNumber,
-      'issueDate': issueDate.toJson(),
-      'expirationDate': expirationDate.toJson(),
-      if (documentImageUrl != null) 'documentImageUrl': documentImageUrl,
+      'type': type.toJson(),
+      'registryBody': registryBody.toJson(),
+      'number': number,
+      'emissionDate': emissionDate.toJson(),
+      if (expirationDate != null) 'expirationDate': expirationDate?.toJson(),
+      if (filePath != null) 'filePath': filePath,
       if (supplierName != null) 'supplierName': supplierName,
-      if (supplierAddressId != null)
-        'supplierAddressId': supplierAddressId?.toJson(),
-      if (supplierAddress != null) 'supplierAddress': supplierAddress?.toJson(),
+      if (supplierCpfCnpj != null) 'supplierCpfCnpj': supplierCpfCnpj,
+      if (supplierPhone != null) 'supplierPhone': supplierPhone,
+      if (supplierAddress != null) 'supplierAddress': supplierAddress,
     };
   }
 
@@ -198,37 +201,39 @@ class _Undefined {}
 class _DocumentImpl extends Document {
   _DocumentImpl({
     _i1.UuidValue? id,
-    int? userInfoId,
-    _i2.UserInfo? userInfo,
+    required _i1.UuidValue userId,
+    _i2.UserProfile? user,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     _i1.UuidValue? accessoryId,
     _i4.Accessory? accessory,
-    required String documentType,
-    required String registryAgency,
-    required String documentNumber,
-    required DateTime issueDate,
-    required DateTime expirationDate,
-    String? documentImageUrl,
+    required _i5.DocumentType type,
+    required _i6.RegistryBody registryBody,
+    required String number,
+    required DateTime emissionDate,
+    DateTime? expirationDate,
+    String? filePath,
     String? supplierName,
-    _i1.UuidValue? supplierAddressId,
-    _i5.Address? supplierAddress,
+    String? supplierCpfCnpj,
+    String? supplierPhone,
+    String? supplierAddress,
   }) : super._(
          id: id,
-         userInfoId: userInfoId,
-         userInfo: userInfo,
+         userId: userId,
+         user: user,
          firearmId: firearmId,
          firearm: firearm,
          accessoryId: accessoryId,
          accessory: accessory,
-         documentType: documentType,
-         registryAgency: registryAgency,
-         documentNumber: documentNumber,
-         issueDate: issueDate,
+         type: type,
+         registryBody: registryBody,
+         number: number,
+         emissionDate: emissionDate,
          expirationDate: expirationDate,
-         documentImageUrl: documentImageUrl,
+         filePath: filePath,
          supplierName: supplierName,
-         supplierAddressId: supplierAddressId,
+         supplierCpfCnpj: supplierCpfCnpj,
+         supplierPhone: supplierPhone,
          supplierAddress: supplierAddress,
        );
 
@@ -238,28 +243,27 @@ class _DocumentImpl extends Document {
   @override
   Document copyWith({
     _i1.UuidValue? id,
-    Object? userInfoId = _Undefined,
-    Object? userInfo = _Undefined,
+    _i1.UuidValue? userId,
+    Object? user = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     Object? accessoryId = _Undefined,
     Object? accessory = _Undefined,
-    String? documentType,
-    String? registryAgency,
-    String? documentNumber,
-    DateTime? issueDate,
-    DateTime? expirationDate,
-    Object? documentImageUrl = _Undefined,
+    _i5.DocumentType? type,
+    _i6.RegistryBody? registryBody,
+    String? number,
+    DateTime? emissionDate,
+    Object? expirationDate = _Undefined,
+    Object? filePath = _Undefined,
     Object? supplierName = _Undefined,
-    Object? supplierAddressId = _Undefined,
+    Object? supplierCpfCnpj = _Undefined,
+    Object? supplierPhone = _Undefined,
     Object? supplierAddress = _Undefined,
   }) {
     return Document(
       id: id ?? this.id,
-      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i2.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userId: userId ?? this.userId,
+      user: user is _i2.UserProfile? ? user : this.user?.copyWith(),
       firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
       firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
       accessoryId: accessoryId is _i1.UuidValue?
@@ -268,21 +272,24 @@ class _DocumentImpl extends Document {
       accessory: accessory is _i4.Accessory?
           ? accessory
           : this.accessory?.copyWith(),
-      documentType: documentType ?? this.documentType,
-      registryAgency: registryAgency ?? this.registryAgency,
-      documentNumber: documentNumber ?? this.documentNumber,
-      issueDate: issueDate ?? this.issueDate,
-      expirationDate: expirationDate ?? this.expirationDate,
-      documentImageUrl: documentImageUrl is String?
-          ? documentImageUrl
-          : this.documentImageUrl,
+      type: type ?? this.type,
+      registryBody: registryBody ?? this.registryBody,
+      number: number ?? this.number,
+      emissionDate: emissionDate ?? this.emissionDate,
+      expirationDate: expirationDate is DateTime?
+          ? expirationDate
+          : this.expirationDate,
+      filePath: filePath is String? ? filePath : this.filePath,
       supplierName: supplierName is String? ? supplierName : this.supplierName,
-      supplierAddressId: supplierAddressId is _i1.UuidValue?
-          ? supplierAddressId
-          : this.supplierAddressId,
-      supplierAddress: supplierAddress is _i5.Address?
+      supplierCpfCnpj: supplierCpfCnpj is String?
+          ? supplierCpfCnpj
+          : this.supplierCpfCnpj,
+      supplierPhone: supplierPhone is String?
+          ? supplierPhone
+          : this.supplierPhone,
+      supplierAddress: supplierAddress is String?
           ? supplierAddress
-          : this.supplierAddress?.copyWith(),
+          : this.supplierAddress,
     );
   }
 }

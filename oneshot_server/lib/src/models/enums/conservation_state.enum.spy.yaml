@@ -1,0 +1,8 @@
+enum: ConservationState
+serialized: byName
+values:
+  - brandNew
+  - excellent
+  - good
+  - fair
+  - poor

@@ -12,50 +12,53 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i2;
+import '../common/user_profile.dart' as _i2;
 import '../shooter/firearm.dart' as _i3;
 import '../common/accessory.dart' as _i4;
-import '../common/address.dart' as _i5;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i6;
+import '../enums/document_type.enum.dart' as _i5;
+import '../enums/registry_body.enum.dart' as _i6;
+import 'package:oneshot_server/src/generated/protocol.dart' as _i7;
 
 abstract class Document
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Document._({
     _i1.UuidValue? id,
-    this.userInfoId,
-    this.userInfo,
+    required this.userId,
+    this.user,
     this.firearmId,
     this.firearm,
     this.accessoryId,
     this.accessory,
-    required this.documentType,
-    required this.registryAgency,
-    required this.documentNumber,
-    required this.issueDate,
-    required this.expirationDate,
-    this.documentImageUrl,
+    required this.type,
+    required this.registryBody,
+    required this.number,
+    required this.emissionDate,
+    this.expirationDate,
+    this.filePath,
     this.supplierName,
-    this.supplierAddressId,
+    this.supplierCpfCnpj,
+    this.supplierPhone,
     this.supplierAddress,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory Document({
     _i1.UuidValue? id,
-    int? userInfoId,
-    _i2.UserInfo? userInfo,
+    required _i1.UuidValue userId,
+    _i2.UserProfile? user,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     _i1.UuidValue? accessoryId,
     _i4.Accessory? accessory,
-    required String documentType,
-    required String registryAgency,
-    required String documentNumber,
-    required DateTime issueDate,
-    required DateTime expirationDate,
-    String? documentImageUrl,
+    required _i5.DocumentType type,
+    required _i6.RegistryBody registryBody,
+    required String number,
+    required DateTime emissionDate,
+    DateTime? expirationDate,
+    String? filePath,
     String? supplierName,
-    _i1.UuidValue? supplierAddressId,
-    _i5.Address? supplierAddress,
+    String? supplierCpfCnpj,
+    String? supplierPhone,
+    String? supplierAddress,
   }) = _DocumentImpl;
 
   factory Document.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -63,18 +66,18 @@ abstract class Document
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userInfoId: jsonSerialization['userInfoId'] as int?,
-      userInfo: jsonSerialization['userInfo'] == null
+      userId: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+      user: jsonSerialization['user'] == null
           ? null
-          : _i6.Protocol().deserialize<_i2.UserInfo>(
-              jsonSerialization['userInfo'],
+          : _i7.Protocol().deserialize<_i2.UserProfile>(
+              jsonSerialization['user'],
             ),
       firearmId: jsonSerialization['firearmId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
-          : _i6.Protocol().deserialize<_i3.Firearm>(
+          : _i7.Protocol().deserialize<_i3.Firearm>(
               jsonSerialization['firearm'],
             ),
       accessoryId: jsonSerialization['accessoryId'] == null
@@ -84,30 +87,27 @@ abstract class Document
             ),
       accessory: jsonSerialization['accessory'] == null
           ? null
-          : _i6.Protocol().deserialize<_i4.Accessory>(
+          : _i7.Protocol().deserialize<_i4.Accessory>(
               jsonSerialization['accessory'],
             ),
-      documentType: jsonSerialization['documentType'] as String,
-      registryAgency: jsonSerialization['registryAgency'] as String,
-      documentNumber: jsonSerialization['documentNumber'] as String,
-      issueDate: _i1.DateTimeJsonExtension.fromJson(
-        jsonSerialization['issueDate'],
+      type: _i5.DocumentType.fromJson((jsonSerialization['type'] as String)),
+      registryBody: _i6.RegistryBody.fromJson(
+        (jsonSerialization['registryBody'] as String),
       ),
-      expirationDate: _i1.DateTimeJsonExtension.fromJson(
-        jsonSerialization['expirationDate'],
+      number: jsonSerialization['number'] as String,
+      emissionDate: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['emissionDate'],
       ),
-      documentImageUrl: jsonSerialization['documentImageUrl'] as String?,
+      expirationDate: jsonSerialization['expirationDate'] == null
+          ? null
+          : _i1.DateTimeJsonExtension.fromJson(
+              jsonSerialization['expirationDate'],
+            ),
+      filePath: jsonSerialization['filePath'] as String?,
       supplierName: jsonSerialization['supplierName'] as String?,
-      supplierAddressId: jsonSerialization['supplierAddressId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(
-              jsonSerialization['supplierAddressId'],
-            ),
-      supplierAddress: jsonSerialization['supplierAddress'] == null
-          ? null
-          : _i6.Protocol().deserialize<_i5.Address>(
-              jsonSerialization['supplierAddress'],
-            ),
+      supplierCpfCnpj: jsonSerialization['supplierCpfCnpj'] as String?,
+      supplierPhone: jsonSerialization['supplierPhone'] as String?,
+      supplierAddress: jsonSerialization['supplierAddress'] as String?,
     );
   }
 
@@ -118,9 +118,9 @@ abstract class Document
   @override
   _i1.UuidValue id;
 
-  int? userInfoId;
+  _i1.UuidValue userId;
 
-  _i2.UserInfo? userInfo;
+  _i2.UserProfile? user;
 
   _i1.UuidValue? firearmId;
 
@@ -130,23 +130,25 @@ abstract class Document
 
   _i4.Accessory? accessory;
 
-  String documentType;
+  _i5.DocumentType type;
 
-  String registryAgency;
+  _i6.RegistryBody registryBody;
 
-  String documentNumber;
+  String number;
 
-  DateTime issueDate;
+  DateTime emissionDate;
 
-  DateTime expirationDate;
+  DateTime? expirationDate;
 
-  String? documentImageUrl;
+  String? filePath;
 
   String? supplierName;
 
-  _i1.UuidValue? supplierAddressId;
+  String? supplierCpfCnpj;
 
-  _i5.Address? supplierAddress;
+  String? supplierPhone;
+
+  String? supplierAddress;
 
   @override
   _i1.Table<_i1.UuidValue> get table => t;
@@ -156,43 +158,44 @@ abstract class Document
   @_i1.useResult
   Document copyWith({
     _i1.UuidValue? id,
-    int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i1.UuidValue? userId,
+    _i2.UserProfile? user,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     _i1.UuidValue? accessoryId,
     _i4.Accessory? accessory,
-    String? documentType,
-    String? registryAgency,
-    String? documentNumber,
-    DateTime? issueDate,
+    _i5.DocumentType? type,
+    _i6.RegistryBody? registryBody,
+    String? number,
+    DateTime? emissionDate,
     DateTime? expirationDate,
-    String? documentImageUrl,
+    String? filePath,
     String? supplierName,
-    _i1.UuidValue? supplierAddressId,
-    _i5.Address? supplierAddress,
+    String? supplierCpfCnpj,
+    String? supplierPhone,
+    String? supplierAddress,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Document',
       'id': id.toJson(),
-      if (userInfoId != null) 'userInfoId': userInfoId,
-      if (userInfo != null) 'userInfo': userInfo?.toJson(),
+      'userId': userId.toJson(),
+      if (user != null) 'user': user?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       if (accessoryId != null) 'accessoryId': accessoryId?.toJson(),
       if (accessory != null) 'accessory': accessory?.toJson(),
-      'documentType': documentType,
-      'registryAgency': registryAgency,
-      'documentNumber': documentNumber,
-      'issueDate': issueDate.toJson(),
-      'expirationDate': expirationDate.toJson(),
-      if (documentImageUrl != null) 'documentImageUrl': documentImageUrl,
+      'type': type.toJson(),
+      'registryBody': registryBody.toJson(),
+      'number': number,
+      'emissionDate': emissionDate.toJson(),
+      if (expirationDate != null) 'expirationDate': expirationDate?.toJson(),
+      if (filePath != null) 'filePath': filePath,
       if (supplierName != null) 'supplierName': supplierName,
-      if (supplierAddressId != null)
-        'supplierAddressId': supplierAddressId?.toJson(),
-      if (supplierAddress != null) 'supplierAddress': supplierAddress?.toJson(),
+      if (supplierCpfCnpj != null) 'supplierCpfCnpj': supplierCpfCnpj,
+      if (supplierPhone != null) 'supplierPhone': supplierPhone,
+      if (supplierAddress != null) 'supplierAddress': supplierAddress,
     };
   }
 
@@ -201,37 +204,34 @@ abstract class Document
     return {
       '__className__': 'Document',
       'id': id.toJson(),
-      if (userInfoId != null) 'userInfoId': userInfoId,
-      if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
+      'userId': userId.toJson(),
+      if (user != null) 'user': user?.toJsonForProtocol(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
       if (accessoryId != null) 'accessoryId': accessoryId?.toJson(),
       if (accessory != null) 'accessory': accessory?.toJsonForProtocol(),
-      'documentType': documentType,
-      'registryAgency': registryAgency,
-      'documentNumber': documentNumber,
-      'issueDate': issueDate.toJson(),
-      'expirationDate': expirationDate.toJson(),
-      if (documentImageUrl != null) 'documentImageUrl': documentImageUrl,
+      'type': type.toJson(),
+      'registryBody': registryBody.toJson(),
+      'number': number,
+      'emissionDate': emissionDate.toJson(),
+      if (expirationDate != null) 'expirationDate': expirationDate?.toJson(),
+      if (filePath != null) 'filePath': filePath,
       if (supplierName != null) 'supplierName': supplierName,
-      if (supplierAddressId != null)
-        'supplierAddressId': supplierAddressId?.toJson(),
-      if (supplierAddress != null)
-        'supplierAddress': supplierAddress?.toJsonForProtocol(),
+      if (supplierCpfCnpj != null) 'supplierCpfCnpj': supplierCpfCnpj,
+      if (supplierPhone != null) 'supplierPhone': supplierPhone,
+      if (supplierAddress != null) 'supplierAddress': supplierAddress,
     };
   }
 
   static DocumentInclude include({
-    _i2.UserInfoInclude? userInfo,
+    _i2.UserProfileInclude? user,
     _i3.FirearmInclude? firearm,
     _i4.AccessoryInclude? accessory,
-    _i5.AddressInclude? supplierAddress,
   }) {
     return DocumentInclude._(
-      userInfo: userInfo,
+      user: user,
       firearm: firearm,
       accessory: accessory,
-      supplierAddress: supplierAddress,
     );
   }
 
@@ -266,37 +266,39 @@ class _Undefined {}
 class _DocumentImpl extends Document {
   _DocumentImpl({
     _i1.UuidValue? id,
-    int? userInfoId,
-    _i2.UserInfo? userInfo,
+    required _i1.UuidValue userId,
+    _i2.UserProfile? user,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     _i1.UuidValue? accessoryId,
     _i4.Accessory? accessory,
-    required String documentType,
-    required String registryAgency,
-    required String documentNumber,
-    required DateTime issueDate,
-    required DateTime expirationDate,
-    String? documentImageUrl,
+    required _i5.DocumentType type,
+    required _i6.RegistryBody registryBody,
+    required String number,
+    required DateTime emissionDate,
+    DateTime? expirationDate,
+    String? filePath,
     String? supplierName,
-    _i1.UuidValue? supplierAddressId,
-    _i5.Address? supplierAddress,
+    String? supplierCpfCnpj,
+    String? supplierPhone,
+    String? supplierAddress,
   }) : super._(
          id: id,
-         userInfoId: userInfoId,
-         userInfo: userInfo,
+         userId: userId,
+         user: user,
          firearmId: firearmId,
          firearm: firearm,
          accessoryId: accessoryId,
          accessory: accessory,
-         documentType: documentType,
-         registryAgency: registryAgency,
-         documentNumber: documentNumber,
-         issueDate: issueDate,
+         type: type,
+         registryBody: registryBody,
+         number: number,
+         emissionDate: emissionDate,
          expirationDate: expirationDate,
-         documentImageUrl: documentImageUrl,
+         filePath: filePath,
          supplierName: supplierName,
-         supplierAddressId: supplierAddressId,
+         supplierCpfCnpj: supplierCpfCnpj,
+         supplierPhone: supplierPhone,
          supplierAddress: supplierAddress,
        );
 
@@ -306,28 +308,27 @@ class _DocumentImpl extends Document {
   @override
   Document copyWith({
     _i1.UuidValue? id,
-    Object? userInfoId = _Undefined,
-    Object? userInfo = _Undefined,
+    _i1.UuidValue? userId,
+    Object? user = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     Object? accessoryId = _Undefined,
     Object? accessory = _Undefined,
-    String? documentType,
-    String? registryAgency,
-    String? documentNumber,
-    DateTime? issueDate,
-    DateTime? expirationDate,
-    Object? documentImageUrl = _Undefined,
+    _i5.DocumentType? type,
+    _i6.RegistryBody? registryBody,
+    String? number,
+    DateTime? emissionDate,
+    Object? expirationDate = _Undefined,
+    Object? filePath = _Undefined,
     Object? supplierName = _Undefined,
-    Object? supplierAddressId = _Undefined,
+    Object? supplierCpfCnpj = _Undefined,
+    Object? supplierPhone = _Undefined,
     Object? supplierAddress = _Undefined,
   }) {
     return Document(
       id: id ?? this.id,
-      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i2.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userId: userId ?? this.userId,
+      user: user is _i2.UserProfile? ? user : this.user?.copyWith(),
       firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
       firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
       accessoryId: accessoryId is _i1.UuidValue?
@@ -336,21 +337,24 @@ class _DocumentImpl extends Document {
       accessory: accessory is _i4.Accessory?
           ? accessory
           : this.accessory?.copyWith(),
-      documentType: documentType ?? this.documentType,
-      registryAgency: registryAgency ?? this.registryAgency,
-      documentNumber: documentNumber ?? this.documentNumber,
-      issueDate: issueDate ?? this.issueDate,
-      expirationDate: expirationDate ?? this.expirationDate,
-      documentImageUrl: documentImageUrl is String?
-          ? documentImageUrl
-          : this.documentImageUrl,
+      type: type ?? this.type,
+      registryBody: registryBody ?? this.registryBody,
+      number: number ?? this.number,
+      emissionDate: emissionDate ?? this.emissionDate,
+      expirationDate: expirationDate is DateTime?
+          ? expirationDate
+          : this.expirationDate,
+      filePath: filePath is String? ? filePath : this.filePath,
       supplierName: supplierName is String? ? supplierName : this.supplierName,
-      supplierAddressId: supplierAddressId is _i1.UuidValue?
-          ? supplierAddressId
-          : this.supplierAddressId,
-      supplierAddress: supplierAddress is _i5.Address?
+      supplierCpfCnpj: supplierCpfCnpj is String?
+          ? supplierCpfCnpj
+          : this.supplierCpfCnpj,
+      supplierPhone: supplierPhone is String?
+          ? supplierPhone
+          : this.supplierPhone,
+      supplierAddress: supplierAddress is String?
           ? supplierAddress
-          : this.supplierAddress?.copyWith(),
+          : this.supplierAddress,
     );
   }
 }
@@ -358,10 +362,11 @@ class _DocumentImpl extends Document {
 class DocumentUpdateTable extends _i1.UpdateTable<DocumentTable> {
   DocumentUpdateTable(super.table);
 
-  _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
-    table.userInfoId,
-    value,
-  );
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue value) =>
+      _i1.ColumnValue(
+        table.userId,
+        value,
+      );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
     _i1.UuidValue? value,
@@ -377,40 +382,41 @@ class DocumentUpdateTable extends _i1.UpdateTable<DocumentTable> {
     value,
   );
 
-  _i1.ColumnValue<String, String> documentType(String value) => _i1.ColumnValue(
-    table.documentType,
+  _i1.ColumnValue<_i5.DocumentType, _i5.DocumentType> type(
+    _i5.DocumentType value,
+  ) => _i1.ColumnValue(
+    table.type,
     value,
   );
 
-  _i1.ColumnValue<String, String> registryAgency(String value) =>
+  _i1.ColumnValue<_i6.RegistryBody, _i6.RegistryBody> registryBody(
+    _i6.RegistryBody value,
+  ) => _i1.ColumnValue(
+    table.registryBody,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> number(String value) => _i1.ColumnValue(
+    table.number,
+    value,
+  );
+
+  _i1.ColumnValue<DateTime, DateTime> emissionDate(DateTime value) =>
       _i1.ColumnValue(
-        table.registryAgency,
+        table.emissionDate,
         value,
       );
 
-  _i1.ColumnValue<String, String> documentNumber(String value) =>
-      _i1.ColumnValue(
-        table.documentNumber,
-        value,
-      );
-
-  _i1.ColumnValue<DateTime, DateTime> issueDate(DateTime value) =>
-      _i1.ColumnValue(
-        table.issueDate,
-        value,
-      );
-
-  _i1.ColumnValue<DateTime, DateTime> expirationDate(DateTime value) =>
+  _i1.ColumnValue<DateTime, DateTime> expirationDate(DateTime? value) =>
       _i1.ColumnValue(
         table.expirationDate,
         value,
       );
 
-  _i1.ColumnValue<String, String> documentImageUrl(String? value) =>
-      _i1.ColumnValue(
-        table.documentImageUrl,
-        value,
-      );
+  _i1.ColumnValue<String, String> filePath(String? value) => _i1.ColumnValue(
+    table.filePath,
+    value,
+  );
 
   _i1.ColumnValue<String, String> supplierName(String? value) =>
       _i1.ColumnValue(
@@ -418,19 +424,30 @@ class DocumentUpdateTable extends _i1.UpdateTable<DocumentTable> {
         value,
       );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> supplierAddressId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.supplierAddressId,
-    value,
-  );
+  _i1.ColumnValue<String, String> supplierCpfCnpj(String? value) =>
+      _i1.ColumnValue(
+        table.supplierCpfCnpj,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> supplierPhone(String? value) =>
+      _i1.ColumnValue(
+        table.supplierPhone,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> supplierAddress(String? value) =>
+      _i1.ColumnValue(
+        table.supplierAddress,
+        value,
+      );
 }
 
 class DocumentTable extends _i1.Table<_i1.UuidValue> {
   DocumentTable({super.tableRelation}) : super(tableName: 'documents') {
     updateTable = DocumentUpdateTable(this);
-    userInfoId = _i1.ColumnInt(
-      'userInfoId',
+    userId = _i1.ColumnUuid(
+      'userId',
       this,
     );
     firearmId = _i1.ColumnUuid(
@@ -441,45 +458,55 @@ class DocumentTable extends _i1.Table<_i1.UuidValue> {
       'accessoryId',
       this,
     );
-    documentType = _i1.ColumnString(
-      'documentType',
+    type = _i1.ColumnEnum(
+      'type',
+      this,
+      _i1.EnumSerialization.byName,
+    );
+    registryBody = _i1.ColumnEnum(
+      'registryBody',
+      this,
+      _i1.EnumSerialization.byName,
+    );
+    number = _i1.ColumnString(
+      'number',
       this,
     );
-    registryAgency = _i1.ColumnString(
-      'registryAgency',
-      this,
-    );
-    documentNumber = _i1.ColumnString(
-      'documentNumber',
-      this,
-    );
-    issueDate = _i1.ColumnDateTime(
-      'issueDate',
+    emissionDate = _i1.ColumnDateTime(
+      'emissionDate',
       this,
     );
     expirationDate = _i1.ColumnDateTime(
       'expirationDate',
       this,
     );
-    documentImageUrl = _i1.ColumnString(
-      'documentImageUrl',
+    filePath = _i1.ColumnString(
+      'filePath',
       this,
     );
     supplierName = _i1.ColumnString(
       'supplierName',
       this,
     );
-    supplierAddressId = _i1.ColumnUuid(
-      'supplierAddressId',
+    supplierCpfCnpj = _i1.ColumnString(
+      'supplierCpfCnpj',
+      this,
+    );
+    supplierPhone = _i1.ColumnString(
+      'supplierPhone',
+      this,
+    );
+    supplierAddress = _i1.ColumnString(
+      'supplierAddress',
       this,
     );
   }
 
   late final DocumentUpdateTable updateTable;
 
-  late final _i1.ColumnInt userInfoId;
+  late final _i1.ColumnUuid userId;
 
-  _i2.UserInfoTable? _userInfo;
+  _i2.UserProfileTable? _user;
 
   late final _i1.ColumnUuid firearmId;
 
@@ -489,35 +516,37 @@ class DocumentTable extends _i1.Table<_i1.UuidValue> {
 
   _i4.AccessoryTable? _accessory;
 
-  late final _i1.ColumnString documentType;
+  late final _i1.ColumnEnum<_i5.DocumentType> type;
 
-  late final _i1.ColumnString registryAgency;
+  late final _i1.ColumnEnum<_i6.RegistryBody> registryBody;
 
-  late final _i1.ColumnString documentNumber;
+  late final _i1.ColumnString number;
 
-  late final _i1.ColumnDateTime issueDate;
+  late final _i1.ColumnDateTime emissionDate;
 
   late final _i1.ColumnDateTime expirationDate;
 
-  late final _i1.ColumnString documentImageUrl;
+  late final _i1.ColumnString filePath;
 
   late final _i1.ColumnString supplierName;
 
-  late final _i1.ColumnUuid supplierAddressId;
+  late final _i1.ColumnString supplierCpfCnpj;
 
-  _i5.AddressTable? _supplierAddress;
+  late final _i1.ColumnString supplierPhone;
 
-  _i2.UserInfoTable get userInfo {
-    if (_userInfo != null) return _userInfo!;
-    _userInfo = _i1.createRelationTable(
-      relationFieldName: 'userInfo',
-      field: Document.t.userInfoId,
-      foreignField: _i2.UserInfo.t.id,
+  late final _i1.ColumnString supplierAddress;
+
+  _i2.UserProfileTable get user {
+    if (_user != null) return _user!;
+    _user = _i1.createRelationTable(
+      relationFieldName: 'user',
+      field: Document.t.userId,
+      foreignField: _i2.UserProfile.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.UserInfoTable(tableRelation: foreignTableRelation),
+          _i2.UserProfileTable(tableRelation: foreignTableRelation),
     );
-    return _userInfo!;
+    return _user!;
   }
 
   _i3.FirearmTable get firearm {
@@ -546,39 +575,28 @@ class DocumentTable extends _i1.Table<_i1.UuidValue> {
     return _accessory!;
   }
 
-  _i5.AddressTable get supplierAddress {
-    if (_supplierAddress != null) return _supplierAddress!;
-    _supplierAddress = _i1.createRelationTable(
-      relationFieldName: 'supplierAddress',
-      field: Document.t.supplierAddressId,
-      foreignField: _i5.Address.t.id,
-      tableRelation: tableRelation,
-      createTable: (foreignTableRelation) =>
-          _i5.AddressTable(tableRelation: foreignTableRelation),
-    );
-    return _supplierAddress!;
-  }
-
   @override
   List<_i1.Column> get columns => [
     id,
-    userInfoId,
+    userId,
     firearmId,
     accessoryId,
-    documentType,
-    registryAgency,
-    documentNumber,
-    issueDate,
+    type,
+    registryBody,
+    number,
+    emissionDate,
     expirationDate,
-    documentImageUrl,
+    filePath,
     supplierName,
-    supplierAddressId,
+    supplierCpfCnpj,
+    supplierPhone,
+    supplierAddress,
   ];
 
   @override
   _i1.Table? getRelationTable(String relationField) {
-    if (relationField == 'userInfo') {
-      return userInfo;
+    if (relationField == 'user') {
+      return user;
     }
     if (relationField == 'firearm') {
       return firearm;
@@ -586,40 +604,32 @@ class DocumentTable extends _i1.Table<_i1.UuidValue> {
     if (relationField == 'accessory') {
       return accessory;
     }
-    if (relationField == 'supplierAddress') {
-      return supplierAddress;
-    }
     return null;
   }
 }
 
 class DocumentInclude extends _i1.IncludeObject {
   DocumentInclude._({
-    _i2.UserInfoInclude? userInfo,
+    _i2.UserProfileInclude? user,
     _i3.FirearmInclude? firearm,
     _i4.AccessoryInclude? accessory,
-    _i5.AddressInclude? supplierAddress,
   }) {
-    _userInfo = userInfo;
+    _user = user;
     _firearm = firearm;
     _accessory = accessory;
-    _supplierAddress = supplierAddress;
   }
 
-  _i2.UserInfoInclude? _userInfo;
+  _i2.UserProfileInclude? _user;
 
   _i3.FirearmInclude? _firearm;
 
   _i4.AccessoryInclude? _accessory;
 
-  _i5.AddressInclude? _supplierAddress;
-
   @override
   Map<String, _i1.Include?> get includes => {
-    'userInfo': _userInfo,
+    'user': _user,
     'firearm': _firearm,
     'accessory': _accessory,
-    'supplierAddress': _supplierAddress,
   };
 
   @override
@@ -946,25 +956,25 @@ class DocumentRepository {
 class DocumentAttachRowRepository {
   const DocumentAttachRowRepository._();
 
-  /// Creates a relation between the given [Document] and [UserInfo]
-  /// by setting the [Document]'s foreign key `userInfoId` to refer to the [UserInfo].
-  Future<void> userInfo(
+  /// Creates a relation between the given [Document] and [UserProfile]
+  /// by setting the [Document]'s foreign key `userId` to refer to the [UserProfile].
+  Future<void> user(
     _i1.DatabaseSession session,
     Document document,
-    _i2.UserInfo userInfo, {
+    _i2.UserProfile user, {
     _i1.Transaction? transaction,
   }) async {
     if (document.id == null) {
       throw ArgumentError.notNull('document.id');
     }
-    if (userInfo.id == null) {
-      throw ArgumentError.notNull('userInfo.id');
+    if (user.id == null) {
+      throw ArgumentError.notNull('user.id');
     }
 
-    var $document = document.copyWith(userInfoId: userInfo.id);
+    var $document = document.copyWith(userId: user.id);
     await session.db.updateRow<Document>(
       $document,
-      columns: [Document.t.userInfoId],
+      columns: [Document.t.userId],
       transaction: transaction,
     );
   }
@@ -1014,55 +1024,10 @@ class DocumentAttachRowRepository {
       transaction: transaction,
     );
   }
-
-  /// Creates a relation between the given [Document] and [Address]
-  /// by setting the [Document]'s foreign key `supplierAddressId` to refer to the [Address].
-  Future<void> supplierAddress(
-    _i1.DatabaseSession session,
-    Document document,
-    _i5.Address supplierAddress, {
-    _i1.Transaction? transaction,
-  }) async {
-    if (document.id == null) {
-      throw ArgumentError.notNull('document.id');
-    }
-    if (supplierAddress.id == null) {
-      throw ArgumentError.notNull('supplierAddress.id');
-    }
-
-    var $document = document.copyWith(supplierAddressId: supplierAddress.id);
-    await session.db.updateRow<Document>(
-      $document,
-      columns: [Document.t.supplierAddressId],
-      transaction: transaction,
-    );
-  }
 }
 
 class DocumentDetachRowRepository {
   const DocumentDetachRowRepository._();
-
-  /// Detaches the relation between this [Document] and the [UserInfo] set in `userInfo`
-  /// by setting the [Document]'s foreign key `userInfoId` to `null`.
-  ///
-  /// This removes the association between the two models without deleting
-  /// the related record.
-  Future<void> userInfo(
-    _i1.DatabaseSession session,
-    Document document, {
-    _i1.Transaction? transaction,
-  }) async {
-    if (document.id == null) {
-      throw ArgumentError.notNull('document.id');
-    }
-
-    var $document = document.copyWith(userInfoId: null);
-    await session.db.updateRow<Document>(
-      $document,
-      columns: [Document.t.userInfoId],
-      transaction: transaction,
-    );
-  }
 
   /// Detaches the relation between this [Document] and the [Firearm] set in `firearm`
   /// by setting the [Document]'s foreign key `firearmId` to `null`.
@@ -1104,28 +1069,6 @@ class DocumentDetachRowRepository {
     await session.db.updateRow<Document>(
       $document,
       columns: [Document.t.accessoryId],
-      transaction: transaction,
-    );
-  }
-
-  /// Detaches the relation between this [Document] and the [Address] set in `supplierAddress`
-  /// by setting the [Document]'s foreign key `supplierAddressId` to `null`.
-  ///
-  /// This removes the association between the two models without deleting
-  /// the related record.
-  Future<void> supplierAddress(
-    _i1.DatabaseSession session,
-    Document document, {
-    _i1.Transaction? transaction,
-  }) async {
-    if (document.id == null) {
-      throw ArgumentError.notNull('document.id');
-    }
-
-    var $document = document.copyWith(supplierAddressId: null);
-    await session.db.updateRow<Document>(
-      $document,
-      columns: [Document.t.supplierAddressId],
       transaction: transaction,
     );
   }

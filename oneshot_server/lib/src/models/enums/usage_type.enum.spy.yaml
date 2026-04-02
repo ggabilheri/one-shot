@@ -1,0 +1,5 @@
+enum: UsageType
+serialized: byName
+values:
+  - permitted
+  - restricted

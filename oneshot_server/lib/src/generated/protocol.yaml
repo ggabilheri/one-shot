@@ -1,3 +1,9 @@
+accessory:
+  - getById:
+  - create:
+  - update:
+  - delete:
+  - listByUser:
 ammunition:
   - getMyAmmunition:
   - addAmmunition:
@@ -11,11 +17,23 @@ club:
   - checkIn:
   - checkOut:
   - getMyVisits:
+document:
+  - getById:
+  - create:
+  - update:
+  - delete:
+  - listByUser:
+  - listByFirearm:
+  - listByAccessory:
+  - getUploadDescription:
+  - verifyUpload:
 firearm:
-  - getMyFirearms:
-  - registerFirearm:
-  - updateFirearm:
-  - deleteFirearm:
+  - getById:
+  - getBySerialNumber:
+  - create:
+  - update:
+  - delete:
+  - listByUser:
 gunsmith:
   - createClient:
   - findClientByCpf:
@@ -39,5 +57,12 @@ training:
   - register:
   - getMyTrainings:
   - getTraining:
+user:
+  - getById:
+  - getByCpf:
+  - create:
+  - update:
+  - delete:
+  - list:
 greeting:
   - hello:

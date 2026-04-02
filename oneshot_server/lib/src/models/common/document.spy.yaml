@@ -2,21 +2,30 @@ class: Document
 table: documents
 fields:
   id: UuidValue, defaultModel=random
-  userInfo: module:auth:UserInfo?, relation(optional)
-  firearm: Firearm?, relation(optional)(optional)
-  accessory: Accessory?, relation(optional)(optional)
-  documentType: String   
-  registryAgency: String   
-  documentNumber: String
-  issueDate: DateTime
-  expirationDate: DateTime
-  documentImageUrl: String?
+  user: UserProfile?, relation
+  firearm: Firearm?, relation(optional)
+  accessory: Accessory?, relation(optional)
+  
+  # Fields
+  type: DocumentType
+  registryBody: RegistryBody
+  number: String
+  emissionDate: DateTime
+  expirationDate: DateTime?
+  filePath: String?
+  
+  # Supplier Info
   supplierName: String?
-  supplierAddress: Address?, relation(optional)(optional)
+  supplierCpfCnpj: String?
+  supplierPhone: String?
+  supplierAddress: String?
+
 indexes:
   document_user_id_idx:
-    fields: userInfoId
+    fields: userId
+  document_number_idx:
+    fields: number
   document_firearm_id_idx:
     fields: firearmId
-  document_expiration_date_idx:
-    fields: expirationDate
+  document_accessory_id_idx:
+    fields: accessoryId

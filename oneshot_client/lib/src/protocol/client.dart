@@ -12,26 +12,78 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
+import 'package:oneshot_client/src/protocol/common/accessory.dart' as _i3;
 import 'package:oneshot_client/src/protocol/shooter/ammunition_stock.dart'
-    as _i3;
-import 'package:oneshot_client/src/protocol/club/club.dart' as _i4;
-import 'package:oneshot_client/src/protocol/club/membership.dart' as _i5;
-import 'package:oneshot_client/src/protocol/club/range_visit.dart' as _i6;
-import 'package:oneshot_client/src/protocol/shooter/firearm.dart' as _i7;
+    as _i4;
+import 'package:oneshot_client/src/protocol/club/club.dart' as _i5;
+import 'package:oneshot_client/src/protocol/club/membership.dart' as _i6;
+import 'package:oneshot_client/src/protocol/club/range_visit.dart' as _i7;
+import 'package:oneshot_client/src/protocol/common/document.dart' as _i8;
+import 'package:oneshot_client/src/protocol/shooter/firearm.dart' as _i9;
 import 'package:oneshot_client/src/protocol/gunsmith/gunsmith_client.dart'
-    as _i8;
-import 'package:oneshot_client/src/protocol/gunsmith/service_order.dart' as _i9;
-import 'package:oneshot_client/src/protocol/gunsmith/service_order_item.dart'
     as _i10;
-import 'package:oneshot_client/src/protocol/common/user_profile.dart' as _i11;
-import 'package:oneshot_client/src/protocol/shooter/reload_session.dart'
+import 'package:oneshot_client/src/protocol/gunsmith/service_order.dart'
+    as _i11;
+import 'package:oneshot_client/src/protocol/gunsmith/service_order_item.dart'
     as _i12;
-import 'package:oneshot_client/src/protocol/shooter/reload_test.dart' as _i13;
-import 'package:oneshot_client/src/protocol/common/supply_stock.dart' as _i14;
-import 'package:oneshot_client/src/protocol/shooter/training.dart' as _i15;
-import 'package:oneshot_client/src/protocol/greeting.dart' as _i16;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i17;
-import 'protocol.dart' as _i18;
+import 'package:oneshot_client/src/protocol/common/user_profile.dart' as _i13;
+import 'package:oneshot_client/src/protocol/shooter/reload_session.dart'
+    as _i14;
+import 'package:oneshot_client/src/protocol/shooter/reload_test.dart' as _i15;
+import 'package:oneshot_client/src/protocol/common/supply_stock.dart' as _i16;
+import 'package:oneshot_client/src/protocol/shooter/training.dart' as _i17;
+import 'package:oneshot_client/src/protocol/greeting.dart' as _i18;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i19;
+import 'protocol.dart' as _i20;
+
+/// {@category Endpoint}
+class EndpointAccessory extends _i1.EndpointRef {
+  EndpointAccessory(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'accessory';
+
+  _i2.Future<_i3.Accessory?> getById(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i3.Accessory?>(
+        'accessory',
+        'getById',
+        {'id': id},
+      );
+
+  _i2.Future<_i3.Accessory> create(_i3.Accessory accessory) =>
+      caller.callServerEndpoint<_i3.Accessory>(
+        'accessory',
+        'create',
+        {'accessory': accessory},
+      );
+
+  _i2.Future<_i3.Accessory> update(_i3.Accessory accessory) =>
+      caller.callServerEndpoint<_i3.Accessory>(
+        'accessory',
+        'update',
+        {'accessory': accessory},
+      );
+
+  _i2.Future<bool> delete(_i1.UuidValue id) => caller.callServerEndpoint<bool>(
+    'accessory',
+    'delete',
+    {'id': id},
+  );
+
+  _i2.Future<List<_i3.Accessory>> listByUser(
+    _i1.UuidValue userId, {
+    int? limit,
+    int? offset,
+  }) => caller.callServerEndpoint<List<_i3.Accessory>>(
+    'accessory',
+    'listByUser',
+    {
+      'userId': userId,
+      'limit': limit,
+      'offset': offset,
+    },
+  );
+}
 
 /// {@category Endpoint}
 class EndpointAmmunition extends _i1.EndpointRef {
@@ -41,26 +93,26 @@ class EndpointAmmunition extends _i1.EndpointRef {
   String get name => 'ammunition';
 
   /// Lista todo o estoque de munições prontas do usuário logado.
-  _i2.Future<List<_i3.AmmunitionStock>> getMyAmmunition() =>
-      caller.callServerEndpoint<List<_i3.AmmunitionStock>>(
+  _i2.Future<List<_i4.AmmunitionStock>> getMyAmmunition() =>
+      caller.callServerEndpoint<List<_i4.AmmunitionStock>>(
         'ammunition',
         'getMyAmmunition',
         {},
       );
 
   /// Adiciona uma nova munição ao estoque (ex: compra).
-  _i2.Future<_i3.AmmunitionStock> addAmmunition(_i3.AmmunitionStock ammo) =>
-      caller.callServerEndpoint<_i3.AmmunitionStock>(
+  _i2.Future<_i4.AmmunitionStock> addAmmunition(_i4.AmmunitionStock ammo) =>
+      caller.callServerEndpoint<_i4.AmmunitionStock>(
         'ammunition',
         'addAmmunition',
         {'ammo': ammo},
       );
 
   /// Ajusta a quantidade manualmente.
-  _i2.Future<_i3.AmmunitionStock?> adjustQuantity(
+  _i2.Future<_i4.AmmunitionStock?> adjustQuantity(
     _i1.UuidValue id,
     int change,
-  ) => caller.callServerEndpoint<_i3.AmmunitionStock?>(
+  ) => caller.callServerEndpoint<_i4.AmmunitionStock?>(
     'ammunition',
     'adjustQuantity',
     {
@@ -86,42 +138,42 @@ class EndpointClub extends _i1.EndpointRef {
   String get name => 'club';
 
   /// Cria um novo clube de tiro no sistema.
-  _i2.Future<_i4.Club> createClub(_i4.Club club) =>
-      caller.callServerEndpoint<_i4.Club>(
+  _i2.Future<_i5.Club> createClub(_i5.Club club) =>
+      caller.callServerEndpoint<_i5.Club>(
         'club',
         'createClub',
         {'club': club},
       );
 
   /// Lista todos os clubes ativos.
-  _i2.Future<List<_i4.Club>> listClubs() =>
-      caller.callServerEndpoint<List<_i4.Club>>(
+  _i2.Future<List<_i5.Club>> listClubs() =>
+      caller.callServerEndpoint<List<_i5.Club>>(
         'club',
         'listClubs',
         {},
       );
 
   /// Solicita filiação a um clube.
-  _i2.Future<_i5.Membership> requestMembership(_i1.UuidValue clubId) =>
-      caller.callServerEndpoint<_i5.Membership>(
+  _i2.Future<_i6.Membership> requestMembership(_i1.UuidValue clubId) =>
+      caller.callServerEndpoint<_i6.Membership>(
         'club',
         'requestMembership',
         {'clubId': clubId},
       );
 
   /// Lista minhas filiações.
-  _i2.Future<List<_i5.Membership>> getMyMemberships() =>
-      caller.callServerEndpoint<List<_i5.Membership>>(
+  _i2.Future<List<_i6.Membership>> getMyMemberships() =>
+      caller.callServerEndpoint<List<_i6.Membership>>(
         'club',
         'getMyMemberships',
         {},
       );
 
   /// Registra entrada no estande (Check-in).
-  _i2.Future<_i6.RangeVisit> checkIn(
+  _i2.Future<_i7.RangeVisit> checkIn(
     _i1.UuidValue clubId,
     _i1.UuidValue? firearmId,
-  ) => caller.callServerEndpoint<_i6.RangeVisit>(
+  ) => caller.callServerEndpoint<_i7.RangeVisit>(
     'club',
     'checkIn',
     {
@@ -131,10 +183,10 @@ class EndpointClub extends _i1.EndpointRef {
   );
 
   /// Registra saída do estande (Check-out).
-  _i2.Future<_i6.RangeVisit> checkOut(
+  _i2.Future<_i7.RangeVisit> checkOut(
     _i1.UuidValue visitId,
     int shotsFired,
-  ) => caller.callServerEndpoint<_i6.RangeVisit>(
+  ) => caller.callServerEndpoint<_i7.RangeVisit>(
     'club',
     'checkOut',
     {
@@ -144,11 +196,90 @@ class EndpointClub extends _i1.EndpointRef {
   );
 
   /// Lista minhas visitas.
-  _i2.Future<List<_i6.RangeVisit>> getMyVisits() =>
-      caller.callServerEndpoint<List<_i6.RangeVisit>>(
+  _i2.Future<List<_i7.RangeVisit>> getMyVisits() =>
+      caller.callServerEndpoint<List<_i7.RangeVisit>>(
         'club',
         'getMyVisits',
         {},
+      );
+}
+
+/// {@category Endpoint}
+class EndpointDocument extends _i1.EndpointRef {
+  EndpointDocument(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'document';
+
+  _i2.Future<_i8.Document?> getById(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i8.Document?>(
+        'document',
+        'getById',
+        {'id': id},
+      );
+
+  _i2.Future<_i8.Document> create(_i8.Document document) =>
+      caller.callServerEndpoint<_i8.Document>(
+        'document',
+        'create',
+        {'document': document},
+      );
+
+  _i2.Future<_i8.Document> update(_i8.Document document) =>
+      caller.callServerEndpoint<_i8.Document>(
+        'document',
+        'update',
+        {'document': document},
+      );
+
+  _i2.Future<bool> delete(_i1.UuidValue id) => caller.callServerEndpoint<bool>(
+    'document',
+    'delete',
+    {'id': id},
+  );
+
+  _i2.Future<List<_i8.Document>> listByUser(
+    _i1.UuidValue userId, {
+    int? limit,
+    int? offset,
+  }) => caller.callServerEndpoint<List<_i8.Document>>(
+    'document',
+    'listByUser',
+    {
+      'userId': userId,
+      'limit': limit,
+      'offset': offset,
+    },
+  );
+
+  _i2.Future<List<_i8.Document>> listByFirearm(_i1.UuidValue firearmId) =>
+      caller.callServerEndpoint<List<_i8.Document>>(
+        'document',
+        'listByFirearm',
+        {'firearmId': firearmId},
+      );
+
+  _i2.Future<List<_i8.Document>> listByAccessory(_i1.UuidValue accessoryId) =>
+      caller.callServerEndpoint<List<_i8.Document>>(
+        'document',
+        'listByAccessory',
+        {'accessoryId': accessoryId},
+      );
+
+  /// Gera uma descrição de upload para o arquivo.
+  _i2.Future<String?> getUploadDescription(String path) =>
+      caller.callServerEndpoint<String?>(
+        'document',
+        'getUploadDescription',
+        {'path': path},
+      );
+
+  /// Verifica se o upload ocorreu e retorna a URL pública.
+  _i2.Future<String?> verifyUpload(String path) =>
+      caller.callServerEndpoint<String?>(
+        'document',
+        'verifyUpload',
+        {'path': path},
       );
 }
 
@@ -159,37 +290,53 @@ class EndpointFirearm extends _i1.EndpointRef {
   @override
   String get name => 'firearm';
 
-  /// Lista todas as armas do usuário logado.
-  _i2.Future<List<_i7.Firearm>> getMyFirearms() =>
-      caller.callServerEndpoint<List<_i7.Firearm>>(
+  _i2.Future<_i9.Firearm?> getById(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i9.Firearm?>(
         'firearm',
-        'getMyFirearms',
-        {},
-      );
-
-  /// Registra uma nova arma de fogo.
-  _i2.Future<_i7.Firearm> registerFirearm(_i7.Firearm firearm) =>
-      caller.callServerEndpoint<_i7.Firearm>(
-        'firearm',
-        'registerFirearm',
-        {'firearm': firearm},
-      );
-
-  /// Atualiza os dados de uma arma existente.
-  _i2.Future<_i7.Firearm> updateFirearm(_i7.Firearm firearm) =>
-      caller.callServerEndpoint<_i7.Firearm>(
-        'firearm',
-        'updateFirearm',
-        {'firearm': firearm},
-      );
-
-  /// Remove uma arma de fogo.
-  _i2.Future<bool> deleteFirearm(_i1.UuidValue id) =>
-      caller.callServerEndpoint<bool>(
-        'firearm',
-        'deleteFirearm',
+        'getById',
         {'id': id},
       );
+
+  _i2.Future<_i9.Firearm?> getBySerialNumber(String serialNumber) =>
+      caller.callServerEndpoint<_i9.Firearm?>(
+        'firearm',
+        'getBySerialNumber',
+        {'serialNumber': serialNumber},
+      );
+
+  _i2.Future<_i9.Firearm> create(_i9.Firearm firearm) =>
+      caller.callServerEndpoint<_i9.Firearm>(
+        'firearm',
+        'create',
+        {'firearm': firearm},
+      );
+
+  _i2.Future<_i9.Firearm> update(_i9.Firearm firearm) =>
+      caller.callServerEndpoint<_i9.Firearm>(
+        'firearm',
+        'update',
+        {'firearm': firearm},
+      );
+
+  _i2.Future<bool> delete(_i1.UuidValue id) => caller.callServerEndpoint<bool>(
+    'firearm',
+    'delete',
+    {'id': id},
+  );
+
+  _i2.Future<List<_i9.Firearm>> listByUser(
+    _i1.UuidValue userId, {
+    int? limit,
+    int? offset,
+  }) => caller.callServerEndpoint<List<_i9.Firearm>>(
+    'firearm',
+    'listByUser',
+    {
+      'userId': userId,
+      'limit': limit,
+      'offset': offset,
+    },
+  );
 }
 
 /// {@category Endpoint}
@@ -200,34 +347,34 @@ class EndpointGunsmith extends _i1.EndpointRef {
   String get name => 'gunsmith';
 
   /// Cria um novo cliente para o armeiro logado.
-  _i2.Future<_i8.GunsmithClient> createClient(_i8.GunsmithClient client) =>
-      caller.callServerEndpoint<_i8.GunsmithClient>(
+  _i2.Future<_i10.GunsmithClient> createClient(_i10.GunsmithClient client) =>
+      caller.callServerEndpoint<_i10.GunsmithClient>(
         'gunsmith',
         'createClient',
         {'client': client},
       );
 
   /// Busca um cliente pelo CPF.
-  _i2.Future<_i8.GunsmithClient?> findClientByCpf(String cpf) =>
-      caller.callServerEndpoint<_i8.GunsmithClient?>(
+  _i2.Future<_i10.GunsmithClient?> findClientByCpf(String cpf) =>
+      caller.callServerEndpoint<_i10.GunsmithClient?>(
         'gunsmith',
         'findClientByCpf',
         {'cpf': cpf},
       );
 
   /// Lista todos os clientes de um armeiro específico.
-  _i2.Future<List<_i8.GunsmithClient>> getMyClients() =>
-      caller.callServerEndpoint<List<_i8.GunsmithClient>>(
+  _i2.Future<List<_i10.GunsmithClient>> getMyClients() =>
+      caller.callServerEndpoint<List<_i10.GunsmithClient>>(
         'gunsmith',
         'getMyClients',
         {},
       );
 
   /// Registra uma nova Ordem de Serviço com seus itens.
-  _i2.Future<_i9.ServiceOrder> registerServiceOrder(
-    _i9.ServiceOrder order,
-    List<_i10.ServiceOrderItem> items,
-  ) => caller.callServerEndpoint<_i9.ServiceOrder>(
+  _i2.Future<_i11.ServiceOrder> registerServiceOrder(
+    _i11.ServiceOrder order,
+    List<_i12.ServiceOrderItem> items,
+  ) => caller.callServerEndpoint<_i11.ServiceOrder>(
     'gunsmith',
     'registerServiceOrder',
     {
@@ -237,18 +384,18 @@ class EndpointGunsmith extends _i1.EndpointRef {
   );
 
   /// Lista as ordens de serviço de um cliente.
-  _i2.Future<List<_i9.ServiceOrder>> getOrdersByClient(
+  _i2.Future<List<_i11.ServiceOrder>> getOrdersByClient(
     _i1.UuidValue clientId,
-  ) => caller.callServerEndpoint<List<_i9.ServiceOrder>>(
+  ) => caller.callServerEndpoint<List<_i11.ServiceOrder>>(
     'gunsmith',
     'getOrdersByClient',
     {'clientId': clientId},
   );
 
   /// Busca os itens de uma ordem específica.
-  _i2.Future<List<_i10.ServiceOrderItem>> getOrderItems(
+  _i2.Future<List<_i12.ServiceOrderItem>> getOrderItems(
     _i1.UuidValue serviceOrderId,
-  ) => caller.callServerEndpoint<List<_i10.ServiceOrderItem>>(
+  ) => caller.callServerEndpoint<List<_i12.ServiceOrderItem>>(
     'gunsmith',
     'getOrderItems',
     {'serviceOrderId': serviceOrderId},
@@ -263,24 +410,24 @@ class EndpointProfile extends _i1.EndpointRef {
   String get name => 'profile';
 
   /// Garante que o perfil do usuário logado exista no domínio OneShot.
-  _i2.Future<_i11.UserProfile> getOrCreateMyProfile() =>
-      caller.callServerEndpoint<_i11.UserProfile>(
+  _i2.Future<_i13.UserProfile> getOrCreateMyProfile() =>
+      caller.callServerEndpoint<_i13.UserProfile>(
         'profile',
         'getOrCreateMyProfile',
         {},
       );
 
   /// Atualiza os dados do perfil (CPF, CR, etc).
-  _i2.Future<_i11.UserProfile> updateMyProfile(_i11.UserProfile profile) =>
-      caller.callServerEndpoint<_i11.UserProfile>(
+  _i2.Future<_i13.UserProfile> updateMyProfile(_i13.UserProfile profile) =>
+      caller.callServerEndpoint<_i13.UserProfile>(
         'profile',
         'updateMyProfile',
         {'profile': profile},
       );
 
   /// Busca o perfil pelo ID (para visualização de outros administradores ou clubes).
-  _i2.Future<_i11.UserProfile?> getProfileById(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i11.UserProfile?>(
+  _i2.Future<_i13.UserProfile?> getProfileById(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i13.UserProfile?>(
         'profile',
         'getProfileById',
         {'id': id},
@@ -295,58 +442,58 @@ class EndpointReload extends _i1.EndpointRef {
   String get name => 'reload';
 
   /// Executa uma nova sessão de recarga completa com débito de insumos e entrada no estoque.
-  _i2.Future<_i12.ReloadSession> executeReloadSession(
-    _i12.ReloadSession reloadSession,
-  ) => caller.callServerEndpoint<_i12.ReloadSession>(
+  _i2.Future<_i14.ReloadSession> executeReloadSession(
+    _i14.ReloadSession reloadSession,
+  ) => caller.callServerEndpoint<_i14.ReloadSession>(
     'reload',
     'executeReloadSession',
     {'reloadSession': reloadSession},
   );
 
   /// Lista sessões de recarga do usuário logado.
-  _i2.Future<List<_i12.ReloadSession>> getMyReloadSessions() =>
-      caller.callServerEndpoint<List<_i12.ReloadSession>>(
+  _i2.Future<List<_i14.ReloadSession>> getMyReloadSessions() =>
+      caller.callServerEndpoint<List<_i14.ReloadSession>>(
         'reload',
         'getMyReloadSessions',
         {},
       );
 
   /// Registra resultados de um teste de cronógrafo vinculado a uma sessão.
-  _i2.Future<_i13.ReloadTest> registerTest(_i13.ReloadTest test) =>
-      caller.callServerEndpoint<_i13.ReloadTest>(
+  _i2.Future<_i15.ReloadTest> registerTest(_i15.ReloadTest test) =>
+      caller.callServerEndpoint<_i15.ReloadTest>(
         'reload',
         'registerTest',
         {'test': test},
       );
 
   /// Lista testes de uma sessão específica.
-  _i2.Future<List<_i13.ReloadTest>> getTestsBySession(
+  _i2.Future<List<_i15.ReloadTest>> getTestsBySession(
     _i1.UuidValue sessionId,
-  ) => caller.callServerEndpoint<List<_i13.ReloadTest>>(
+  ) => caller.callServerEndpoint<List<_i15.ReloadTest>>(
     'reload',
     'getTestsBySession',
     {'sessionId': sessionId},
   );
 
   /// Lista todo o estoque de insumos (Pólvora, Espoleta, Projetis etc) do usuário.
-  _i2.Future<List<_i14.SupplyStock>> getMySupplies() =>
-      caller.callServerEndpoint<List<_i14.SupplyStock>>(
+  _i2.Future<List<_i16.SupplyStock>> getMySupplies() =>
+      caller.callServerEndpoint<List<_i16.SupplyStock>>(
         'reload',
         'getMySupplies',
         {},
       );
 
   /// Cadastra um novo insumo ao estoque.
-  _i2.Future<_i14.SupplyStock> addSupply(_i14.SupplyStock supply) =>
-      caller.callServerEndpoint<_i14.SupplyStock>(
+  _i2.Future<_i16.SupplyStock> addSupply(_i16.SupplyStock supply) =>
+      caller.callServerEndpoint<_i16.SupplyStock>(
         'reload',
         'addSupply',
         {'supply': supply},
       );
 
   /// Atualiza dados de um insumo.
-  _i2.Future<_i14.SupplyStock> updateSupply(_i14.SupplyStock supply) =>
-      caller.callServerEndpoint<_i14.SupplyStock>(
+  _i2.Future<_i16.SupplyStock> updateSupply(_i16.SupplyStock supply) =>
+      caller.callServerEndpoint<_i16.SupplyStock>(
         'reload',
         'updateSupply',
         {'supply': supply},
@@ -362,28 +509,82 @@ class EndpointTraining extends _i1.EndpointRef {
 
   /// Registro de um novo treino.
   /// O userId será validado dentro do caso de uso.
-  _i2.Future<_i15.Training> register(_i15.Training training) =>
-      caller.callServerEndpoint<_i15.Training>(
+  _i2.Future<_i17.Training> register(_i17.Training training) =>
+      caller.callServerEndpoint<_i17.Training>(
         'training',
         'register',
         {'training': training},
       );
 
   /// Lista todos os treinos do usuário logado.
-  _i2.Future<List<_i15.Training>> getMyTrainings() =>
-      caller.callServerEndpoint<List<_i15.Training>>(
+  _i2.Future<List<_i17.Training>> getMyTrainings() =>
+      caller.callServerEndpoint<List<_i17.Training>>(
         'training',
         'getMyTrainings',
         {},
       );
 
   /// Busca um treino específico.
-  _i2.Future<_i15.Training?> getTraining(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i15.Training?>(
+  _i2.Future<_i17.Training?> getTraining(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i17.Training?>(
         'training',
         'getTraining',
         {'id': id},
       );
+}
+
+/// {@category Endpoint}
+class EndpointUser extends _i1.EndpointRef {
+  EndpointUser(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'user';
+
+  _i2.Future<_i13.UserProfile?> getById(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i13.UserProfile?>(
+        'user',
+        'getById',
+        {'id': id},
+      );
+
+  _i2.Future<_i13.UserProfile?> getByCpf(String cpf) =>
+      caller.callServerEndpoint<_i13.UserProfile?>(
+        'user',
+        'getByCpf',
+        {'cpf': cpf},
+      );
+
+  _i2.Future<_i13.UserProfile> create(_i13.UserProfile user) =>
+      caller.callServerEndpoint<_i13.UserProfile>(
+        'user',
+        'create',
+        {'user': user},
+      );
+
+  _i2.Future<_i13.UserProfile> update(_i13.UserProfile user) =>
+      caller.callServerEndpoint<_i13.UserProfile>(
+        'user',
+        'update',
+        {'user': user},
+      );
+
+  _i2.Future<bool> delete(_i1.UuidValue id) => caller.callServerEndpoint<bool>(
+    'user',
+    'delete',
+    {'id': id},
+  );
+
+  _i2.Future<List<_i13.UserProfile>> list({
+    int? limit,
+    int? offset,
+  }) => caller.callServerEndpoint<List<_i13.UserProfile>>(
+    'user',
+    'list',
+    {
+      'limit': limit,
+      'offset': offset,
+    },
+  );
 }
 
 /// This is an example endpoint that returns a greeting message through
@@ -396,8 +597,8 @@ class EndpointGreeting extends _i1.EndpointRef {
   String get name => 'greeting';
 
   /// Returns a personalized greeting message: "Hello {name}".
-  _i2.Future<_i16.Greeting> hello(String name) =>
-      caller.callServerEndpoint<_i16.Greeting>(
+  _i2.Future<_i18.Greeting> hello(String name) =>
+      caller.callServerEndpoint<_i18.Greeting>(
         'greeting',
         'hello',
         {'name': name},
@@ -406,10 +607,10 @@ class EndpointGreeting extends _i1.EndpointRef {
 
 class Modules {
   Modules(Client client) {
-    auth = _i17.Caller(client);
+    auth = _i19.Caller(client);
   }
 
-  late final _i17.Caller auth;
+  late final _i19.Caller auth;
 }
 
 class Client extends _i1.ServerpodClientShared {
@@ -432,7 +633,7 @@ class Client extends _i1.ServerpodClientShared {
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
          host,
-         _i18.Protocol(),
+         _i20.Protocol(),
          securityContext: securityContext,
          streamingConnectionTimeout: streamingConnectionTimeout,
          connectionTimeout: connectionTimeout,
@@ -441,20 +642,27 @@ class Client extends _i1.ServerpodClientShared {
          disconnectStreamsOnLostInternetConnection:
              disconnectStreamsOnLostInternetConnection,
        ) {
+    accessory = EndpointAccessory(this);
     ammunition = EndpointAmmunition(this);
     club = EndpointClub(this);
+    document = EndpointDocument(this);
     firearm = EndpointFirearm(this);
     gunsmith = EndpointGunsmith(this);
     profile = EndpointProfile(this);
     reload = EndpointReload(this);
     training = EndpointTraining(this);
+    user = EndpointUser(this);
     greeting = EndpointGreeting(this);
     modules = Modules(this);
   }
 
+  late final EndpointAccessory accessory;
+
   late final EndpointAmmunition ammunition;
 
   late final EndpointClub club;
+
+  late final EndpointDocument document;
 
   late final EndpointFirearm firearm;
 
@@ -466,19 +674,24 @@ class Client extends _i1.ServerpodClientShared {
 
   late final EndpointTraining training;
 
+  late final EndpointUser user;
+
   late final EndpointGreeting greeting;
 
   late final Modules modules;
 
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
+    'accessory': accessory,
     'ammunition': ammunition,
     'club': club,
+    'document': document,
     'firearm': firearm,
     'gunsmith': gunsmith,
     'profile': profile,
     'reload': reload,
     'training': training,
+    'user': user,
     'greeting': greeting,
   };
 

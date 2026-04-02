@@ -1,0 +1,40 @@
+{
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "oneshot_client",
+            "cwd": "oneshot_client",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "oneshot_server",
+            "cwd": "oneshot_server",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "shooter_app",
+            "cwd": "apps/shooter_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "shooter_app (profile mode)",
+            "cwd": "apps/shooter_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "shooter_app (release mode)",
+            "cwd": "apps/shooter_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

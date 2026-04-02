@@ -1,0 +1,11 @@
+enum: FirearmAction
+serialized: byName
+values:
+  - singleAction
+  - doubleAction
+  - boltAction
+  - semiAutomatic
+  - automatic
+  - pumpAction
+  - leverAction
+  - breakAction

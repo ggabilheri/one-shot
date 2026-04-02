@@ -1,6 +1,7 @@
 import 'package:oneshot_server/src/core/injections/injections.dart';
 import 'package:oneshot_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
+import 'package:serverpod_auth_server/serverpod_auth_server.dart';
 
 class ClubEndpoint extends Endpoint {
   // -- Clubes --
@@ -8,7 +9,7 @@ class ClubEndpoint extends Endpoint {
   /// Cria um novo clube de tiro no sistema.
   Future<Club> createClub(Session session, Club club) async {
     final profile = await sl.getOrCreateProfileUseCase.execute(session);
-    club.ownerId = profile.id!;
+    club.ownerId = profile.id;
     return await sl.clubRepository.create(session, club);
   }
 
@@ -25,12 +26,14 @@ class ClubEndpoint extends Endpoint {
     final profile = await sl.getOrCreateProfileUseCase.execute(session);
 
     // Validar se já existe.
+    final authInfo = await session.authenticated;
+    if (authInfo == null) throw Exception('Não autorizado.');
     final existing = await sl.membershipRepository
-        .findByUserAndClub(session, profile.id!, clubId);
+        .findByUserAndClub(session, profile.id, clubId);
     if (existing != null) return existing;
 
     final membership = Membership(
-      userId: profile.id!,
+      userId: profile.id,
       clubId: clubId,
       startDate: DateTime.now(),
       status: MembershipStatus.active,
@@ -43,7 +46,7 @@ class ClubEndpoint extends Endpoint {
   /// Lista minhas filiações.
   Future<List<Membership>> getMyMemberships(Session session) async {
     final profile = await sl.getOrCreateProfileUseCase.execute(session);
-    return await sl.membershipRepository.listByUser(session, profile.id!);
+    return await sl.membershipRepository.listByUser(session, profile.id);
   }
 
   // -- Visitas (Range Visits) --
@@ -73,6 +76,6 @@ class ClubEndpoint extends Endpoint {
   /// Lista minhas visitas.
   Future<List<RangeVisit>> getMyVisits(Session session) async {
     final profile = await sl.getOrCreateProfileUseCase.execute(session);
-    return await sl.rangeVisitRepository.listByUser(session, profile.id!);
+    return await sl.rangeVisitRepository.listByUser(session, profile.id);
   }
 }

@@ -16,7 +16,13 @@ enum AccessoryType implements _i1.SerializableModel {
   press,
   die,
   scope,
-  magazine;
+  redDot,
+  laser,
+  silencer,
+  magazine,
+  grip,
+  holster,
+  boxCase;
 
   static AccessoryType fromJson(String name) {
     switch (name) {
@@ -26,10 +32,24 @@ enum AccessoryType implements _i1.SerializableModel {
         return AccessoryType.die;
       case 'scope':
         return AccessoryType.scope;
+      case 'redDot':
+        return AccessoryType.redDot;
+      case 'laser':
+        return AccessoryType.laser;
+      case 'silencer':
+        return AccessoryType.silencer;
       case 'magazine':
         return AccessoryType.magazine;
+      case 'grip':
+        return AccessoryType.grip;
+      case 'holster':
+        return AccessoryType.holster;
+      case 'boxCase':
+        return AccessoryType.boxCase;
       default:
-        return AccessoryType.press;
+        throw ArgumentError(
+          'Value "$name" cannot be converted to "AccessoryType"',
+        );
     }
   }
 

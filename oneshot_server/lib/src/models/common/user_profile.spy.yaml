@@ -2,15 +2,19 @@ class: UserProfile
 table: user_profile
 fields:
   id: UuidValue, defaultModel=random
-  userInfo: module:auth:UserInfo?, relation(optional)(optional)
+  userInfo: module:auth:UserInfo?, relation(optional)
   name: String
+  gender: Gender?
+  birthDate: DateTime?
+  rg: String?
   cpf: String?
-  cr: String?
-  address: Address?, relation(optional)(optional)
+  phone: String?
+  email: String?
+  address: Address?, relation(optional)
   types: List<UserType>?
 indexes:
   user_cpf_idx:
     fields: cpf
     unique: true
-  user_address_id_idx:
-    fields: addressId  
+  user_email_idx:
+    fields: email

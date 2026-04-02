@@ -22,34 +22,45 @@ import 'common/document.dart' as _i9;
 import 'common/supply_stock.dart' as _i10;
 import 'common/user_profile.dart' as _i11;
 import 'enums/accessory.enum.dart' as _i12;
-import 'enums/membership_status.dart' as _i13;
-import 'enums/user_type.enum.dart' as _i14;
-import 'greeting.dart' as _i15;
-import 'gunsmith/gunsmith_client.dart' as _i16;
-import 'gunsmith/service_order.dart' as _i17;
-import 'gunsmith/service_order_item.dart' as _i18;
-import 'shooter/ammunition_stock.dart' as _i19;
-import 'shooter/firearm.dart' as _i20;
-import 'shooter/reload_session.dart' as _i21;
-import 'shooter/reload_test.dart' as _i22;
-import 'shooter/training.dart' as _i23;
+import 'enums/conservation_state.enum.dart' as _i13;
+import 'enums/document_type.enum.dart' as _i14;
+import 'enums/firearm_action.enum.dart' as _i15;
+import 'enums/firearm_purpose.enum.dart' as _i16;
+import 'enums/firearm_type.enum.dart' as _i17;
+import 'enums/gender.enum.dart' as _i18;
+import 'enums/membership_status.dart' as _i19;
+import 'enums/registry_body.enum.dart' as _i20;
+import 'enums/usage_type.enum.dart' as _i21;
+import 'enums/user_type.enum.dart' as _i22;
+import 'greeting.dart' as _i23;
+import 'gunsmith/gunsmith_client.dart' as _i24;
+import 'gunsmith/service_order.dart' as _i25;
+import 'gunsmith/service_order_item.dart' as _i26;
+import 'shooter/ammunition_stock.dart' as _i27;
+import 'shooter/firearm.dart' as _i28;
+import 'shooter/reload_session.dart' as _i29;
+import 'shooter/reload_test.dart' as _i30;
+import 'shooter/training.dart' as _i31;
+import 'package:oneshot_server/src/generated/common/accessory.dart' as _i32;
 import 'package:oneshot_server/src/generated/shooter/ammunition_stock.dart'
-    as _i24;
-import 'package:oneshot_server/src/generated/club/club.dart' as _i25;
-import 'package:oneshot_server/src/generated/club/membership.dart' as _i26;
-import 'package:oneshot_server/src/generated/club/range_visit.dart' as _i27;
-import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _i28;
+    as _i33;
+import 'package:oneshot_server/src/generated/club/club.dart' as _i34;
+import 'package:oneshot_server/src/generated/club/membership.dart' as _i35;
+import 'package:oneshot_server/src/generated/club/range_visit.dart' as _i36;
+import 'package:oneshot_server/src/generated/common/document.dart' as _i37;
+import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _i38;
 import 'package:oneshot_server/src/generated/gunsmith/gunsmith_client.dart'
-    as _i29;
+    as _i39;
 import 'package:oneshot_server/src/generated/gunsmith/service_order_item.dart'
-    as _i30;
+    as _i40;
 import 'package:oneshot_server/src/generated/gunsmith/service_order.dart'
-    as _i31;
+    as _i41;
 import 'package:oneshot_server/src/generated/shooter/reload_session.dart'
-    as _i32;
-import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i33;
-import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i34;
-import 'package:oneshot_server/src/generated/shooter/training.dart' as _i35;
+    as _i42;
+import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i43;
+import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i44;
+import 'package:oneshot_server/src/generated/shooter/training.dart' as _i45;
+import 'package:oneshot_server/src/generated/common/user_profile.dart' as _i46;
 export 'club/club.dart';
 export 'club/membership.dart';
 export 'club/range_visit.dart';
@@ -59,7 +70,15 @@ export 'common/document.dart';
 export 'common/supply_stock.dart';
 export 'common/user_profile.dart';
 export 'enums/accessory.enum.dart';
+export 'enums/conservation_state.enum.dart';
+export 'enums/document_type.enum.dart';
+export 'enums/firearm_action.enum.dart';
+export 'enums/firearm_purpose.enum.dart';
+export 'enums/firearm_type.enum.dart';
+export 'enums/gender.enum.dart';
 export 'enums/membership_status.dart';
+export 'enums/registry_body.enum.dart';
+export 'enums/usage_type.enum.dart';
 export 'enums/user_type.enum.dart';
 export 'greeting.dart';
 export 'gunsmith/gunsmith_client.dart';
@@ -93,10 +112,10 @@ class Protocol extends _i1.SerializationManagerServer {
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
-          name: 'userInfoId',
-          columnType: _i2.ColumnType.bigint,
-          isNullable: true,
-          dartType: 'int?',
+          name: 'userId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue',
         ),
         _i2.ColumnDefinition(
           name: 'firearmId',
@@ -107,26 +126,14 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'purpose',
           columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
+          isNullable: true,
+          dartType: 'String?',
         ),
         _i2.ColumnDefinition(
           name: 'type',
           columnType: _i2.ColumnType.text,
           isNullable: false,
-          dartType: 'String',
-        ),
-        _i2.ColumnDefinition(
-          name: 'manufacturer',
-          columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
-        ),
-        _i2.ColumnDefinition(
-          name: 'model',
-          columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
+          dartType: 'protocol:AccessoryType',
         ),
         _i2.ColumnDefinition(
           name: 'serialNumber',
@@ -135,10 +142,70 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'String?',
         ),
         _i2.ColumnDefinition(
-          name: 'condition',
+          name: 'manufactureCountry',
           columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'manufacturer',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'model',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'description',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'conservationState',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'protocol:ConservationState?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'usageType',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'protocol:UsageType?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'dimensions',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'weight',
+          columnType: _i2.ColumnType.doublePrecision,
+          isNullable: true,
+          dartType: 'double?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'color',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'finishMaterial',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'acquisitionDate',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
         ),
         _i2.ColumnDefinition(
           name: 'purchasePrice',
@@ -147,17 +214,53 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'double?',
         ),
         _i2.ColumnDefinition(
-          name: 'acquisitionDate',
+          name: 'invoiceNumber',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'invoiceEmissionDate',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'sellerData',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'registryBody',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'protocol:RegistryBody?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'customizations',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'maintenanceHistory',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'images',
+          columnType: _i2.ColumnType.json,
+          isNullable: true,
+          dartType: 'List<String>?',
         ),
       ],
       foreignKeys: [
         _i2.ForeignKeyDefinition(
           constraintName: 'accessories_fk_0',
-          columns: ['userInfoId'],
-          referenceTable: 'serverpod_user_info',
+          columns: ['userId'],
+          referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
           onUpdate: _i2.ForeignKeyAction.noAction,
@@ -195,7 +298,7 @@ class Protocol extends _i1.SerializationManagerServer {
           elements: [
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
-              definition: 'userInfoId',
+              definition: 'userId',
             ),
           ],
           type: 'btree',
@@ -209,6 +312,19 @@ class Protocol extends _i1.SerializationManagerServer {
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
               definition: 'firearmId',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
+          isPrimary: false,
+        ),
+        _i2.IndexDefinition(
+          indexName: 'accessory_serial_number_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'serialNumber',
             ),
           ],
           type: 'btree',
@@ -587,10 +703,10 @@ class Protocol extends _i1.SerializationManagerServer {
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
-          name: 'userInfoId',
-          columnType: _i2.ColumnType.bigint,
-          isNullable: true,
-          dartType: 'int?',
+          name: 'userId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue',
         ),
         _i2.ColumnDefinition(
           name: 'firearmId',
@@ -605,25 +721,25 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
-          name: 'documentType',
+          name: 'type',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'protocol:DocumentType',
+        ),
+        _i2.ColumnDefinition(
+          name: 'registryBody',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'protocol:RegistryBody',
+        ),
+        _i2.ColumnDefinition(
+          name: 'number',
           columnType: _i2.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
         _i2.ColumnDefinition(
-          name: 'registryAgency',
-          columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
-        ),
-        _i2.ColumnDefinition(
-          name: 'documentNumber',
-          columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
-        ),
-        _i2.ColumnDefinition(
-          name: 'issueDate',
+          name: 'emissionDate',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
@@ -631,11 +747,11 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'expirationDate',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: false,
-          dartType: 'DateTime',
+          isNullable: true,
+          dartType: 'DateTime?',
         ),
         _i2.ColumnDefinition(
-          name: 'documentImageUrl',
+          name: 'filePath',
           columnType: _i2.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
@@ -647,17 +763,29 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'String?',
         ),
         _i2.ColumnDefinition(
-          name: 'supplierAddressId',
-          columnType: _i2.ColumnType.uuid,
+          name: 'supplierCpfCnpj',
+          columnType: _i2.ColumnType.text,
           isNullable: true,
-          dartType: 'UuidValue?',
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'supplierPhone',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'supplierAddress',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
         ),
       ],
       foreignKeys: [
         _i2.ForeignKeyDefinition(
           constraintName: 'documents_fk_0',
-          columns: ['userInfoId'],
-          referenceTable: 'serverpod_user_info',
+          columns: ['userId'],
+          referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
           onUpdate: _i2.ForeignKeyAction.noAction,
@@ -678,16 +806,6 @@ class Protocol extends _i1.SerializationManagerServer {
           constraintName: 'documents_fk_2',
           columns: ['accessoryId'],
           referenceTable: 'accessories',
-          referenceTableSchema: 'public',
-          referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
-          matchType: null,
-        ),
-        _i2.ForeignKeyDefinition(
-          constraintName: 'documents_fk_3',
-          columns: ['supplierAddressId'],
-          referenceTable: 'addresses',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
           onUpdate: _i2.ForeignKeyAction.noAction,
@@ -715,7 +833,20 @@ class Protocol extends _i1.SerializationManagerServer {
           elements: [
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
-              definition: 'userInfoId',
+              definition: 'userId',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
+          isPrimary: false,
+        ),
+        _i2.IndexDefinition(
+          indexName: 'document_number_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'number',
             ),
           ],
           type: 'btree',
@@ -736,12 +867,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isPrimary: false,
         ),
         _i2.IndexDefinition(
-          indexName: 'document_expiration_date_idx',
+          indexName: 'document_accessory_id_idx',
           tableSpace: null,
           elements: [
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
-              definition: 'expirationDate',
+              definition: 'accessoryId',
             ),
           ],
           type: 'btree',
@@ -765,34 +896,34 @@ class Protocol extends _i1.SerializationManagerServer {
           columnDefault: 'gen_random_uuid()',
         ),
         _i2.ColumnDefinition(
-          name: 'userInfoId',
-          columnType: _i2.ColumnType.bigint,
+          name: 'userId',
+          columnType: _i2.ColumnType.uuid,
           isNullable: true,
-          dartType: 'int?',
+          dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
           name: 'purpose',
           columnType: _i2.ColumnType.text,
           isNullable: false,
-          dartType: 'String',
+          dartType: 'protocol:FirearmPurpose',
         ),
         _i2.ColumnDefinition(
           name: 'type',
           columnType: _i2.ColumnType.text,
           isNullable: false,
-          dartType: 'String',
+          dartType: 'protocol:FirearmType',
         ),
         _i2.ColumnDefinition(
           name: 'action',
           columnType: _i2.ColumnType.text,
           isNullable: false,
-          dartType: 'String',
+          dartType: 'protocol:FirearmAction',
         ),
         _i2.ColumnDefinition(
           name: 'usageType',
           columnType: _i2.ColumnType.text,
           isNullable: false,
-          dartType: 'String',
+          dartType: 'protocol:UsageType',
         ),
         _i2.ColumnDefinition(
           name: 'serialNumber',
@@ -819,10 +950,70 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'String',
         ),
         _i2.ColumnDefinition(
+          name: 'bolt',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'frame',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'grip',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'conservationState',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'protocol:ConservationState',
+        ),
+        _i2.ColumnDefinition(
           name: 'caliber',
           columnType: _i2.ColumnType.text,
           isNullable: false,
           dartType: 'String',
+        ),
+        _i2.ColumnDefinition(
+          name: 'barrelsCount',
+          columnType: _i2.ColumnType.bigint,
+          isNullable: true,
+          dartType: 'int?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'barrelLength',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'soulType',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'sightType',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'riflingCount',
+          columnType: _i2.ColumnType.bigint,
+          isNullable: true,
+          dartType: 'int?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'riflingDirection',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
         ),
         _i2.ColumnDefinition(
           name: 'magazineCapacity',
@@ -831,16 +1022,22 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'int',
         ),
         _i2.ColumnDefinition(
-          name: 'barrelLength',
+          name: 'magazineCount',
+          columnType: _i2.ColumnType.bigint,
+          isNullable: true,
+          dartType: 'int?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'dimensions',
           columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
+          isNullable: true,
+          dartType: 'String?',
         ),
         _i2.ColumnDefinition(
           name: 'weight',
           columnType: _i2.ColumnType.doublePrecision,
-          isNullable: false,
-          dartType: 'double',
+          isNullable: true,
+          dartType: 'double?',
         ),
         _i2.ColumnDefinition(
           name: 'acquisitionDate',
@@ -867,17 +1064,47 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'double?',
         ),
         _i2.ColumnDefinition(
-          name: 'condition',
+          name: 'buyerData',
           columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'customizations',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'images',
+          columnType: _i2.ColumnType.json,
+          isNullable: true,
+          dartType: 'List<String>?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'cleaningHistory',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'maintenanceHistory',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'totalShots',
+          columnType: _i2.ColumnType.bigint,
+          isNullable: true,
+          dartType: 'int?',
         ),
       ],
       foreignKeys: [
         _i2.ForeignKeyDefinition(
           constraintName: 'firearms_fk_0',
-          columns: ['userInfoId'],
-          referenceTable: 'serverpod_user_info',
+          columns: ['userId'],
+          referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
           onUpdate: _i2.ForeignKeyAction.noAction,
@@ -905,7 +1132,7 @@ class Protocol extends _i1.SerializationManagerServer {
           elements: [
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
-              definition: 'userInfoId',
+              definition: 'userId',
             ),
           ],
           type: 'btree',
@@ -922,7 +1149,7 @@ class Protocol extends _i1.SerializationManagerServer {
             ),
           ],
           type: 'btree',
-          isUnique: false,
+          isUnique: true,
           isPrimary: false,
         ),
       ],
@@ -2155,13 +2382,37 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'String',
         ),
         _i2.ColumnDefinition(
+          name: 'gender',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'protocol:Gender?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'birthDate',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'rg',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
           name: 'cpf',
           columnType: _i2.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
         _i2.ColumnDefinition(
-          name: 'cr',
+          name: 'phone',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'email',
           columnType: _i2.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
@@ -2229,12 +2480,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isPrimary: false,
         ),
         _i2.IndexDefinition(
-          indexName: 'user_address_id_idx',
+          indexName: 'user_email_idx',
           tableSpace: null,
           elements: [
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
-              definition: 'addressId',
+              definition: 'email',
             ),
           ],
           type: 'btree',
@@ -2302,38 +2553,62 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i12.AccessoryType) {
       return _i12.AccessoryType.fromJson(data) as T;
     }
-    if (t == _i13.MembershipStatus) {
-      return _i13.MembershipStatus.fromJson(data) as T;
+    if (t == _i13.ConservationState) {
+      return _i13.ConservationState.fromJson(data) as T;
     }
-    if (t == _i14.UserType) {
-      return _i14.UserType.fromJson(data) as T;
+    if (t == _i14.DocumentType) {
+      return _i14.DocumentType.fromJson(data) as T;
     }
-    if (t == _i15.Greeting) {
-      return _i15.Greeting.fromJson(data) as T;
+    if (t == _i15.FirearmAction) {
+      return _i15.FirearmAction.fromJson(data) as T;
     }
-    if (t == _i16.GunsmithClient) {
-      return _i16.GunsmithClient.fromJson(data) as T;
+    if (t == _i16.FirearmPurpose) {
+      return _i16.FirearmPurpose.fromJson(data) as T;
     }
-    if (t == _i17.ServiceOrder) {
-      return _i17.ServiceOrder.fromJson(data) as T;
+    if (t == _i17.FirearmType) {
+      return _i17.FirearmType.fromJson(data) as T;
     }
-    if (t == _i18.ServiceOrderItem) {
-      return _i18.ServiceOrderItem.fromJson(data) as T;
+    if (t == _i18.Gender) {
+      return _i18.Gender.fromJson(data) as T;
     }
-    if (t == _i19.AmmunitionStock) {
-      return _i19.AmmunitionStock.fromJson(data) as T;
+    if (t == _i19.MembershipStatus) {
+      return _i19.MembershipStatus.fromJson(data) as T;
     }
-    if (t == _i20.Firearm) {
-      return _i20.Firearm.fromJson(data) as T;
+    if (t == _i20.RegistryBody) {
+      return _i20.RegistryBody.fromJson(data) as T;
     }
-    if (t == _i21.ReloadSession) {
-      return _i21.ReloadSession.fromJson(data) as T;
+    if (t == _i21.UsageType) {
+      return _i21.UsageType.fromJson(data) as T;
     }
-    if (t == _i22.ReloadTest) {
-      return _i22.ReloadTest.fromJson(data) as T;
+    if (t == _i22.UserType) {
+      return _i22.UserType.fromJson(data) as T;
     }
-    if (t == _i23.Training) {
-      return _i23.Training.fromJson(data) as T;
+    if (t == _i23.Greeting) {
+      return _i23.Greeting.fromJson(data) as T;
+    }
+    if (t == _i24.GunsmithClient) {
+      return _i24.GunsmithClient.fromJson(data) as T;
+    }
+    if (t == _i25.ServiceOrder) {
+      return _i25.ServiceOrder.fromJson(data) as T;
+    }
+    if (t == _i26.ServiceOrderItem) {
+      return _i26.ServiceOrderItem.fromJson(data) as T;
+    }
+    if (t == _i27.AmmunitionStock) {
+      return _i27.AmmunitionStock.fromJson(data) as T;
+    }
+    if (t == _i28.Firearm) {
+      return _i28.Firearm.fromJson(data) as T;
+    }
+    if (t == _i29.ReloadSession) {
+      return _i29.ReloadSession.fromJson(data) as T;
+    }
+    if (t == _i30.ReloadTest) {
+      return _i30.ReloadTest.fromJson(data) as T;
+    }
+    if (t == _i31.Training) {
+      return _i31.Training.fromJson(data) as T;
     }
     if (t == _i1.getType<_i4.Club?>()) {
       return (data != null ? _i4.Club.fromJson(data) : null) as T;
@@ -2362,108 +2637,155 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i1.getType<_i12.AccessoryType?>()) {
       return (data != null ? _i12.AccessoryType.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i13.MembershipStatus?>()) {
-      return (data != null ? _i13.MembershipStatus.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i13.ConservationState?>()) {
+      return (data != null ? _i13.ConservationState.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i14.UserType?>()) {
-      return (data != null ? _i14.UserType.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i14.DocumentType?>()) {
+      return (data != null ? _i14.DocumentType.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i15.Greeting?>()) {
-      return (data != null ? _i15.Greeting.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i15.FirearmAction?>()) {
+      return (data != null ? _i15.FirearmAction.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i16.GunsmithClient?>()) {
-      return (data != null ? _i16.GunsmithClient.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i16.FirearmPurpose?>()) {
+      return (data != null ? _i16.FirearmPurpose.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i17.ServiceOrder?>()) {
-      return (data != null ? _i17.ServiceOrder.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i17.FirearmType?>()) {
+      return (data != null ? _i17.FirearmType.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i18.ServiceOrderItem?>()) {
-      return (data != null ? _i18.ServiceOrderItem.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i18.Gender?>()) {
+      return (data != null ? _i18.Gender.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i19.AmmunitionStock?>()) {
-      return (data != null ? _i19.AmmunitionStock.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i19.MembershipStatus?>()) {
+      return (data != null ? _i19.MembershipStatus.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i20.Firearm?>()) {
-      return (data != null ? _i20.Firearm.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i20.RegistryBody?>()) {
+      return (data != null ? _i20.RegistryBody.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i21.ReloadSession?>()) {
-      return (data != null ? _i21.ReloadSession.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i21.UsageType?>()) {
+      return (data != null ? _i21.UsageType.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i22.ReloadTest?>()) {
-      return (data != null ? _i22.ReloadTest.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i22.UserType?>()) {
+      return (data != null ? _i22.UserType.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i23.Training?>()) {
-      return (data != null ? _i23.Training.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i23.Greeting?>()) {
+      return (data != null ? _i23.Greeting.fromJson(data) : null) as T;
     }
-    if (t == List<_i14.UserType>) {
-      return (data as List).map((e) => deserialize<_i14.UserType>(e)).toList()
+    if (t == _i1.getType<_i24.GunsmithClient?>()) {
+      return (data != null ? _i24.GunsmithClient.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i25.ServiceOrder?>()) {
+      return (data != null ? _i25.ServiceOrder.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i26.ServiceOrderItem?>()) {
+      return (data != null ? _i26.ServiceOrderItem.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i27.AmmunitionStock?>()) {
+      return (data != null ? _i27.AmmunitionStock.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i28.Firearm?>()) {
+      return (data != null ? _i28.Firearm.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i29.ReloadSession?>()) {
+      return (data != null ? _i29.ReloadSession.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i30.ReloadTest?>()) {
+      return (data != null ? _i30.ReloadTest.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i31.Training?>()) {
+      return (data != null ? _i31.Training.fromJson(data) : null) as T;
+    }
+    if (t == List<String>) {
+      return (data as List).map((e) => deserialize<String>(e)).toList() as T;
+    }
+    if (t == _i1.getType<List<String>?>()) {
+      return (data != null
+              ? (data as List).map((e) => deserialize<String>(e)).toList()
+              : null)
           as T;
     }
-    if (t == _i1.getType<List<_i14.UserType>?>()) {
+    if (t == List<_i22.UserType>) {
+      return (data as List).map((e) => deserialize<_i22.UserType>(e)).toList()
+          as T;
+    }
+    if (t == _i1.getType<List<_i22.UserType>?>()) {
       return (data != null
               ? (data as List)
-                    .map((e) => deserialize<_i14.UserType>(e))
+                    .map((e) => deserialize<_i22.UserType>(e))
                     .toList()
               : null)
           as T;
     }
-    if (t == List<_i24.AmmunitionStock>) {
+    if (t == List<_i32.Accessory>) {
+      return (data as List).map((e) => deserialize<_i32.Accessory>(e)).toList()
+          as T;
+    }
+    if (t == List<_i33.AmmunitionStock>) {
       return (data as List)
-              .map((e) => deserialize<_i24.AmmunitionStock>(e))
+              .map((e) => deserialize<_i33.AmmunitionStock>(e))
               .toList()
           as T;
     }
-    if (t == List<_i25.Club>) {
-      return (data as List).map((e) => deserialize<_i25.Club>(e)).toList() as T;
+    if (t == List<_i34.Club>) {
+      return (data as List).map((e) => deserialize<_i34.Club>(e)).toList() as T;
     }
-    if (t == List<_i26.Membership>) {
-      return (data as List).map((e) => deserialize<_i26.Membership>(e)).toList()
+    if (t == List<_i35.Membership>) {
+      return (data as List).map((e) => deserialize<_i35.Membership>(e)).toList()
           as T;
     }
-    if (t == List<_i27.RangeVisit>) {
-      return (data as List).map((e) => deserialize<_i27.RangeVisit>(e)).toList()
+    if (t == List<_i36.RangeVisit>) {
+      return (data as List).map((e) => deserialize<_i36.RangeVisit>(e)).toList()
           as T;
     }
-    if (t == List<_i28.Firearm>) {
-      return (data as List).map((e) => deserialize<_i28.Firearm>(e)).toList()
+    if (t == List<_i37.Document>) {
+      return (data as List).map((e) => deserialize<_i37.Document>(e)).toList()
           as T;
     }
-    if (t == List<_i29.GunsmithClient>) {
+    if (t == List<_i38.Firearm>) {
+      return (data as List).map((e) => deserialize<_i38.Firearm>(e)).toList()
+          as T;
+    }
+    if (t == List<_i39.GunsmithClient>) {
       return (data as List)
-              .map((e) => deserialize<_i29.GunsmithClient>(e))
+              .map((e) => deserialize<_i39.GunsmithClient>(e))
               .toList()
           as T;
     }
-    if (t == List<_i30.ServiceOrderItem>) {
+    if (t == List<_i40.ServiceOrderItem>) {
       return (data as List)
-              .map((e) => deserialize<_i30.ServiceOrderItem>(e))
+              .map((e) => deserialize<_i40.ServiceOrderItem>(e))
               .toList()
           as T;
     }
-    if (t == List<_i31.ServiceOrder>) {
+    if (t == List<_i41.ServiceOrder>) {
       return (data as List)
-              .map((e) => deserialize<_i31.ServiceOrder>(e))
+              .map((e) => deserialize<_i41.ServiceOrder>(e))
               .toList()
           as T;
     }
-    if (t == List<_i32.ReloadSession>) {
+    if (t == List<_i42.ReloadSession>) {
       return (data as List)
-              .map((e) => deserialize<_i32.ReloadSession>(e))
+              .map((e) => deserialize<_i42.ReloadSession>(e))
               .toList()
           as T;
     }
-    if (t == List<_i33.ReloadTest>) {
-      return (data as List).map((e) => deserialize<_i33.ReloadTest>(e)).toList()
+    if (t == List<_i43.ReloadTest>) {
+      return (data as List).map((e) => deserialize<_i43.ReloadTest>(e)).toList()
           as T;
     }
-    if (t == List<_i34.SupplyStock>) {
+    if (t == List<_i44.SupplyStock>) {
       return (data as List)
-              .map((e) => deserialize<_i34.SupplyStock>(e))
+              .map((e) => deserialize<_i44.SupplyStock>(e))
               .toList()
           as T;
     }
-    if (t == List<_i35.Training>) {
-      return (data as List).map((e) => deserialize<_i35.Training>(e)).toList()
+    if (t == List<_i45.Training>) {
+      return (data as List).map((e) => deserialize<_i45.Training>(e)).toList()
+          as T;
+    }
+    if (t == List<_i46.UserProfile>) {
+      return (data as List)
+              .map((e) => deserialize<_i46.UserProfile>(e))
+              .toList()
           as T;
     }
     try {
@@ -2486,17 +2808,25 @@ class Protocol extends _i1.SerializationManagerServer {
       _i10.SupplyStock => 'SupplyStock',
       _i11.UserProfile => 'UserProfile',
       _i12.AccessoryType => 'AccessoryType',
-      _i13.MembershipStatus => 'MembershipStatus',
-      _i14.UserType => 'UserType',
-      _i15.Greeting => 'Greeting',
-      _i16.GunsmithClient => 'GunsmithClient',
-      _i17.ServiceOrder => 'ServiceOrder',
-      _i18.ServiceOrderItem => 'ServiceOrderItem',
-      _i19.AmmunitionStock => 'AmmunitionStock',
-      _i20.Firearm => 'Firearm',
-      _i21.ReloadSession => 'ReloadSession',
-      _i22.ReloadTest => 'ReloadTest',
-      _i23.Training => 'Training',
+      _i13.ConservationState => 'ConservationState',
+      _i14.DocumentType => 'DocumentType',
+      _i15.FirearmAction => 'FirearmAction',
+      _i16.FirearmPurpose => 'FirearmPurpose',
+      _i17.FirearmType => 'FirearmType',
+      _i18.Gender => 'Gender',
+      _i19.MembershipStatus => 'MembershipStatus',
+      _i20.RegistryBody => 'RegistryBody',
+      _i21.UsageType => 'UsageType',
+      _i22.UserType => 'UserType',
+      _i23.Greeting => 'Greeting',
+      _i24.GunsmithClient => 'GunsmithClient',
+      _i25.ServiceOrder => 'ServiceOrder',
+      _i26.ServiceOrderItem => 'ServiceOrderItem',
+      _i27.AmmunitionStock => 'AmmunitionStock',
+      _i28.Firearm => 'Firearm',
+      _i29.ReloadSession => 'ReloadSession',
+      _i30.ReloadTest => 'ReloadTest',
+      _i31.Training => 'Training',
       _ => null,
     };
   }
@@ -2529,27 +2859,43 @@ class Protocol extends _i1.SerializationManagerServer {
         return 'UserProfile';
       case _i12.AccessoryType():
         return 'AccessoryType';
-      case _i13.MembershipStatus():
+      case _i13.ConservationState():
+        return 'ConservationState';
+      case _i14.DocumentType():
+        return 'DocumentType';
+      case _i15.FirearmAction():
+        return 'FirearmAction';
+      case _i16.FirearmPurpose():
+        return 'FirearmPurpose';
+      case _i17.FirearmType():
+        return 'FirearmType';
+      case _i18.Gender():
+        return 'Gender';
+      case _i19.MembershipStatus():
         return 'MembershipStatus';
-      case _i14.UserType():
+      case _i20.RegistryBody():
+        return 'RegistryBody';
+      case _i21.UsageType():
+        return 'UsageType';
+      case _i22.UserType():
         return 'UserType';
-      case _i15.Greeting():
+      case _i23.Greeting():
         return 'Greeting';
-      case _i16.GunsmithClient():
+      case _i24.GunsmithClient():
         return 'GunsmithClient';
-      case _i17.ServiceOrder():
+      case _i25.ServiceOrder():
         return 'ServiceOrder';
-      case _i18.ServiceOrderItem():
+      case _i26.ServiceOrderItem():
         return 'ServiceOrderItem';
-      case _i19.AmmunitionStock():
+      case _i27.AmmunitionStock():
         return 'AmmunitionStock';
-      case _i20.Firearm():
+      case _i28.Firearm():
         return 'Firearm';
-      case _i21.ReloadSession():
+      case _i29.ReloadSession():
         return 'ReloadSession';
-      case _i22.ReloadTest():
+      case _i30.ReloadTest():
         return 'ReloadTest';
-      case _i23.Training():
+      case _i31.Training():
         return 'Training';
     }
     className = _i2.Protocol().getClassNameForObject(data);
@@ -2596,38 +2942,62 @@ class Protocol extends _i1.SerializationManagerServer {
     if (dataClassName == 'AccessoryType') {
       return deserialize<_i12.AccessoryType>(data['data']);
     }
+    if (dataClassName == 'ConservationState') {
+      return deserialize<_i13.ConservationState>(data['data']);
+    }
+    if (dataClassName == 'DocumentType') {
+      return deserialize<_i14.DocumentType>(data['data']);
+    }
+    if (dataClassName == 'FirearmAction') {
+      return deserialize<_i15.FirearmAction>(data['data']);
+    }
+    if (dataClassName == 'FirearmPurpose') {
+      return deserialize<_i16.FirearmPurpose>(data['data']);
+    }
+    if (dataClassName == 'FirearmType') {
+      return deserialize<_i17.FirearmType>(data['data']);
+    }
+    if (dataClassName == 'Gender') {
+      return deserialize<_i18.Gender>(data['data']);
+    }
     if (dataClassName == 'MembershipStatus') {
-      return deserialize<_i13.MembershipStatus>(data['data']);
+      return deserialize<_i19.MembershipStatus>(data['data']);
+    }
+    if (dataClassName == 'RegistryBody') {
+      return deserialize<_i20.RegistryBody>(data['data']);
+    }
+    if (dataClassName == 'UsageType') {
+      return deserialize<_i21.UsageType>(data['data']);
     }
     if (dataClassName == 'UserType') {
-      return deserialize<_i14.UserType>(data['data']);
+      return deserialize<_i22.UserType>(data['data']);
     }
     if (dataClassName == 'Greeting') {
-      return deserialize<_i15.Greeting>(data['data']);
+      return deserialize<_i23.Greeting>(data['data']);
     }
     if (dataClassName == 'GunsmithClient') {
-      return deserialize<_i16.GunsmithClient>(data['data']);
+      return deserialize<_i24.GunsmithClient>(data['data']);
     }
     if (dataClassName == 'ServiceOrder') {
-      return deserialize<_i17.ServiceOrder>(data['data']);
+      return deserialize<_i25.ServiceOrder>(data['data']);
     }
     if (dataClassName == 'ServiceOrderItem') {
-      return deserialize<_i18.ServiceOrderItem>(data['data']);
+      return deserialize<_i26.ServiceOrderItem>(data['data']);
     }
     if (dataClassName == 'AmmunitionStock') {
-      return deserialize<_i19.AmmunitionStock>(data['data']);
+      return deserialize<_i27.AmmunitionStock>(data['data']);
     }
     if (dataClassName == 'Firearm') {
-      return deserialize<_i20.Firearm>(data['data']);
+      return deserialize<_i28.Firearm>(data['data']);
     }
     if (dataClassName == 'ReloadSession') {
-      return deserialize<_i21.ReloadSession>(data['data']);
+      return deserialize<_i29.ReloadSession>(data['data']);
     }
     if (dataClassName == 'ReloadTest') {
-      return deserialize<_i22.ReloadTest>(data['data']);
+      return deserialize<_i30.ReloadTest>(data['data']);
     }
     if (dataClassName == 'Training') {
-      return deserialize<_i23.Training>(data['data']);
+      return deserialize<_i31.Training>(data['data']);
     }
     if (dataClassName.startsWith('serverpod.')) {
       data['className'] = dataClassName.substring(10);
@@ -2671,22 +3041,22 @@ class Protocol extends _i1.SerializationManagerServer {
         return _i10.SupplyStock.t;
       case _i11.UserProfile:
         return _i11.UserProfile.t;
-      case _i16.GunsmithClient:
-        return _i16.GunsmithClient.t;
-      case _i17.ServiceOrder:
-        return _i17.ServiceOrder.t;
-      case _i18.ServiceOrderItem:
-        return _i18.ServiceOrderItem.t;
-      case _i19.AmmunitionStock:
-        return _i19.AmmunitionStock.t;
-      case _i20.Firearm:
-        return _i20.Firearm.t;
-      case _i21.ReloadSession:
-        return _i21.ReloadSession.t;
-      case _i22.ReloadTest:
-        return _i22.ReloadTest.t;
-      case _i23.Training:
-        return _i23.Training.t;
+      case _i24.GunsmithClient:
+        return _i24.GunsmithClient.t;
+      case _i25.ServiceOrder:
+        return _i25.ServiceOrder.t;
+      case _i26.ServiceOrderItem:
+        return _i26.ServiceOrderItem.t;
+      case _i27.AmmunitionStock:
+        return _i27.AmmunitionStock.t;
+      case _i28.Firearm:
+        return _i28.Firearm.t;
+      case _i29.ReloadSession:
+        return _i29.ReloadSession.t;
+      case _i30.ReloadTest:
+        return _i30.ReloadTest.t;
+      case _i31.Training:
+        return _i31.Training.t;
     }
     return null;
   }

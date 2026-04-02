@@ -12,42 +12,74 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i2;
+import '../common/user_profile.dart' as _i2;
 import '../shooter/firearm.dart' as _i3;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i4;
+import '../enums/accessory.enum.dart' as _i4;
+import '../enums/conservation_state.enum.dart' as _i5;
+import '../enums/usage_type.enum.dart' as _i6;
+import '../enums/registry_body.enum.dart' as _i7;
+import 'package:oneshot_server/src/generated/protocol.dart' as _i8;
 
 abstract class Accessory
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Accessory._({
     _i1.UuidValue? id,
-    this.userInfoId,
-    this.userInfo,
+    required this.userId,
+    this.user,
     this.firearmId,
     this.firearm,
-    required this.purpose,
+    this.purpose,
     required this.type,
-    required this.manufacturer,
-    required this.model,
     this.serialNumber,
-    required this.condition,
-    this.purchasePrice,
+    this.manufactureCountry,
+    this.manufacturer,
+    this.model,
+    this.description,
+    this.conservationState,
+    this.usageType,
+    this.dimensions,
+    this.weight,
+    this.color,
+    this.finishMaterial,
     this.acquisitionDate,
+    this.purchasePrice,
+    this.invoiceNumber,
+    this.invoiceEmissionDate,
+    this.sellerData,
+    this.registryBody,
+    this.customizations,
+    this.maintenanceHistory,
+    this.images,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory Accessory({
     _i1.UuidValue? id,
-    int? userInfoId,
-    _i2.UserInfo? userInfo,
+    required _i1.UuidValue userId,
+    _i2.UserProfile? user,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    required String purpose,
-    required String type,
-    required String manufacturer,
-    required String model,
+    String? purpose,
+    required _i4.AccessoryType type,
     String? serialNumber,
-    required String condition,
-    double? purchasePrice,
+    String? manufactureCountry,
+    String? manufacturer,
+    String? model,
+    String? description,
+    _i5.ConservationState? conservationState,
+    _i6.UsageType? usageType,
+    String? dimensions,
+    double? weight,
+    String? color,
+    String? finishMaterial,
     DateTime? acquisitionDate,
+    double? purchasePrice,
+    String? invoiceNumber,
+    DateTime? invoiceEmissionDate,
+    String? sellerData,
+    _i7.RegistryBody? registryBody,
+    String? customizations,
+    String? maintenanceHistory,
+    List<String>? images,
   }) = _AccessoryImpl;
 
   factory Accessory.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -55,31 +87,63 @@ abstract class Accessory
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userInfoId: jsonSerialization['userInfoId'] as int?,
-      userInfo: jsonSerialization['userInfo'] == null
+      userId: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+      user: jsonSerialization['user'] == null
           ? null
-          : _i4.Protocol().deserialize<_i2.UserInfo>(
-              jsonSerialization['userInfo'],
+          : _i8.Protocol().deserialize<_i2.UserProfile>(
+              jsonSerialization['user'],
             ),
       firearmId: jsonSerialization['firearmId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
-          : _i4.Protocol().deserialize<_i3.Firearm>(
+          : _i8.Protocol().deserialize<_i3.Firearm>(
               jsonSerialization['firearm'],
             ),
-      purpose: jsonSerialization['purpose'] as String,
-      type: jsonSerialization['type'] as String,
-      manufacturer: jsonSerialization['manufacturer'] as String,
-      model: jsonSerialization['model'] as String,
+      purpose: jsonSerialization['purpose'] as String?,
+      type: _i4.AccessoryType.fromJson((jsonSerialization['type'] as String)),
       serialNumber: jsonSerialization['serialNumber'] as String?,
-      condition: jsonSerialization['condition'] as String,
-      purchasePrice: (jsonSerialization['purchasePrice'] as num?)?.toDouble(),
+      manufactureCountry: jsonSerialization['manufactureCountry'] as String?,
+      manufacturer: jsonSerialization['manufacturer'] as String?,
+      model: jsonSerialization['model'] as String?,
+      description: jsonSerialization['description'] as String?,
+      conservationState: jsonSerialization['conservationState'] == null
+          ? null
+          : _i5.ConservationState.fromJson(
+              (jsonSerialization['conservationState'] as String),
+            ),
+      usageType: jsonSerialization['usageType'] == null
+          ? null
+          : _i6.UsageType.fromJson((jsonSerialization['usageType'] as String)),
+      dimensions: jsonSerialization['dimensions'] as String?,
+      weight: (jsonSerialization['weight'] as num?)?.toDouble(),
+      color: jsonSerialization['color'] as String?,
+      finishMaterial: jsonSerialization['finishMaterial'] as String?,
       acquisitionDate: jsonSerialization['acquisitionDate'] == null
           ? null
           : _i1.DateTimeJsonExtension.fromJson(
               jsonSerialization['acquisitionDate'],
+            ),
+      purchasePrice: (jsonSerialization['purchasePrice'] as num?)?.toDouble(),
+      invoiceNumber: jsonSerialization['invoiceNumber'] as String?,
+      invoiceEmissionDate: jsonSerialization['invoiceEmissionDate'] == null
+          ? null
+          : _i1.DateTimeJsonExtension.fromJson(
+              jsonSerialization['invoiceEmissionDate'],
+            ),
+      sellerData: jsonSerialization['sellerData'] as String?,
+      registryBody: jsonSerialization['registryBody'] == null
+          ? null
+          : _i7.RegistryBody.fromJson(
+              (jsonSerialization['registryBody'] as String),
+            ),
+      customizations: jsonSerialization['customizations'] as String?,
+      maintenanceHistory: jsonSerialization['maintenanceHistory'] as String?,
+      images: jsonSerialization['images'] == null
+          ? null
+          : _i8.Protocol().deserialize<List<String>>(
+              jsonSerialization['images'],
             ),
     );
   }
@@ -91,29 +155,57 @@ abstract class Accessory
   @override
   _i1.UuidValue id;
 
-  int? userInfoId;
+  _i1.UuidValue userId;
 
-  _i2.UserInfo? userInfo;
+  _i2.UserProfile? user;
 
   _i1.UuidValue? firearmId;
 
   _i3.Firearm? firearm;
 
-  String purpose;
+  String? purpose;
 
-  String type;
-
-  String manufacturer;
-
-  String model;
+  _i4.AccessoryType type;
 
   String? serialNumber;
 
-  String condition;
+  String? manufactureCountry;
+
+  String? manufacturer;
+
+  String? model;
+
+  String? description;
+
+  _i5.ConservationState? conservationState;
+
+  _i6.UsageType? usageType;
+
+  String? dimensions;
+
+  double? weight;
+
+  String? color;
+
+  String? finishMaterial;
+
+  DateTime? acquisitionDate;
 
   double? purchasePrice;
 
-  DateTime? acquisitionDate;
+  String? invoiceNumber;
+
+  DateTime? invoiceEmissionDate;
+
+  String? sellerData;
+
+  _i7.RegistryBody? registryBody;
+
+  String? customizations;
+
+  String? maintenanceHistory;
+
+  List<String>? images;
 
   @override
   _i1.Table<_i1.UuidValue> get table => t;
@@ -123,36 +215,66 @@ abstract class Accessory
   @_i1.useResult
   Accessory copyWith({
     _i1.UuidValue? id,
-    int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i1.UuidValue? userId,
+    _i2.UserProfile? user,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     String? purpose,
-    String? type,
+    _i4.AccessoryType? type,
+    String? serialNumber,
+    String? manufactureCountry,
     String? manufacturer,
     String? model,
-    String? serialNumber,
-    String? condition,
-    double? purchasePrice,
+    String? description,
+    _i5.ConservationState? conservationState,
+    _i6.UsageType? usageType,
+    String? dimensions,
+    double? weight,
+    String? color,
+    String? finishMaterial,
     DateTime? acquisitionDate,
+    double? purchasePrice,
+    String? invoiceNumber,
+    DateTime? invoiceEmissionDate,
+    String? sellerData,
+    _i7.RegistryBody? registryBody,
+    String? customizations,
+    String? maintenanceHistory,
+    List<String>? images,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       '__className__': 'Accessory',
       'id': id.toJson(),
-      if (userInfoId != null) 'userInfoId': userInfoId,
-      if (userInfo != null) 'userInfo': userInfo?.toJson(),
+      'userId': userId.toJson(),
+      if (user != null) 'user': user?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
-      'purpose': purpose,
-      'type': type,
-      'manufacturer': manufacturer,
-      'model': model,
+      if (purpose != null) 'purpose': purpose,
+      'type': type.toJson(),
       if (serialNumber != null) 'serialNumber': serialNumber,
-      'condition': condition,
-      if (purchasePrice != null) 'purchasePrice': purchasePrice,
+      if (manufactureCountry != null) 'manufactureCountry': manufactureCountry,
+      if (manufacturer != null) 'manufacturer': manufacturer,
+      if (model != null) 'model': model,
+      if (description != null) 'description': description,
+      if (conservationState != null)
+        'conservationState': conservationState?.toJson(),
+      if (usageType != null) 'usageType': usageType?.toJson(),
+      if (dimensions != null) 'dimensions': dimensions,
+      if (weight != null) 'weight': weight,
+      if (color != null) 'color': color,
+      if (finishMaterial != null) 'finishMaterial': finishMaterial,
       if (acquisitionDate != null) 'acquisitionDate': acquisitionDate?.toJson(),
+      if (purchasePrice != null) 'purchasePrice': purchasePrice,
+      if (invoiceNumber != null) 'invoiceNumber': invoiceNumber,
+      if (invoiceEmissionDate != null)
+        'invoiceEmissionDate': invoiceEmissionDate?.toJson(),
+      if (sellerData != null) 'sellerData': sellerData,
+      if (registryBody != null) 'registryBody': registryBody?.toJson(),
+      if (customizations != null) 'customizations': customizations,
+      if (maintenanceHistory != null) 'maintenanceHistory': maintenanceHistory,
+      if (images != null) 'images': images?.toJson(),
     };
   }
 
@@ -161,27 +283,43 @@ abstract class Accessory
     return {
       '__className__': 'Accessory',
       'id': id.toJson(),
-      if (userInfoId != null) 'userInfoId': userInfoId,
-      if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
+      'userId': userId.toJson(),
+      if (user != null) 'user': user?.toJsonForProtocol(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
-      'purpose': purpose,
-      'type': type,
-      'manufacturer': manufacturer,
-      'model': model,
+      if (purpose != null) 'purpose': purpose,
+      'type': type.toJson(),
       if (serialNumber != null) 'serialNumber': serialNumber,
-      'condition': condition,
-      if (purchasePrice != null) 'purchasePrice': purchasePrice,
+      if (manufactureCountry != null) 'manufactureCountry': manufactureCountry,
+      if (manufacturer != null) 'manufacturer': manufacturer,
+      if (model != null) 'model': model,
+      if (description != null) 'description': description,
+      if (conservationState != null)
+        'conservationState': conservationState?.toJson(),
+      if (usageType != null) 'usageType': usageType?.toJson(),
+      if (dimensions != null) 'dimensions': dimensions,
+      if (weight != null) 'weight': weight,
+      if (color != null) 'color': color,
+      if (finishMaterial != null) 'finishMaterial': finishMaterial,
       if (acquisitionDate != null) 'acquisitionDate': acquisitionDate?.toJson(),
+      if (purchasePrice != null) 'purchasePrice': purchasePrice,
+      if (invoiceNumber != null) 'invoiceNumber': invoiceNumber,
+      if (invoiceEmissionDate != null)
+        'invoiceEmissionDate': invoiceEmissionDate?.toJson(),
+      if (sellerData != null) 'sellerData': sellerData,
+      if (registryBody != null) 'registryBody': registryBody?.toJson(),
+      if (customizations != null) 'customizations': customizations,
+      if (maintenanceHistory != null) 'maintenanceHistory': maintenanceHistory,
+      if (images != null) 'images': images?.toJson(),
     };
   }
 
   static AccessoryInclude include({
-    _i2.UserInfoInclude? userInfo,
+    _i2.UserProfileInclude? user,
     _i3.FirearmInclude? firearm,
   }) {
     return AccessoryInclude._(
-      userInfo: userInfo,
+      user: user,
       firearm: firearm,
     );
   }
@@ -217,32 +355,60 @@ class _Undefined {}
 class _AccessoryImpl extends Accessory {
   _AccessoryImpl({
     _i1.UuidValue? id,
-    int? userInfoId,
-    _i2.UserInfo? userInfo,
+    required _i1.UuidValue userId,
+    _i2.UserProfile? user,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    required String purpose,
-    required String type,
-    required String manufacturer,
-    required String model,
+    String? purpose,
+    required _i4.AccessoryType type,
     String? serialNumber,
-    required String condition,
-    double? purchasePrice,
+    String? manufactureCountry,
+    String? manufacturer,
+    String? model,
+    String? description,
+    _i5.ConservationState? conservationState,
+    _i6.UsageType? usageType,
+    String? dimensions,
+    double? weight,
+    String? color,
+    String? finishMaterial,
     DateTime? acquisitionDate,
+    double? purchasePrice,
+    String? invoiceNumber,
+    DateTime? invoiceEmissionDate,
+    String? sellerData,
+    _i7.RegistryBody? registryBody,
+    String? customizations,
+    String? maintenanceHistory,
+    List<String>? images,
   }) : super._(
          id: id,
-         userInfoId: userInfoId,
-         userInfo: userInfo,
+         userId: userId,
+         user: user,
          firearmId: firearmId,
          firearm: firearm,
          purpose: purpose,
          type: type,
+         serialNumber: serialNumber,
+         manufactureCountry: manufactureCountry,
          manufacturer: manufacturer,
          model: model,
-         serialNumber: serialNumber,
-         condition: condition,
-         purchasePrice: purchasePrice,
+         description: description,
+         conservationState: conservationState,
+         usageType: usageType,
+         dimensions: dimensions,
+         weight: weight,
+         color: color,
+         finishMaterial: finishMaterial,
          acquisitionDate: acquisitionDate,
+         purchasePrice: purchasePrice,
+         invoiceNumber: invoiceNumber,
+         invoiceEmissionDate: invoiceEmissionDate,
+         sellerData: sellerData,
+         registryBody: registryBody,
+         customizations: customizations,
+         maintenanceHistory: maintenanceHistory,
+         images: images,
        );
 
   /// Returns a shallow copy of this [Accessory]
@@ -251,39 +417,83 @@ class _AccessoryImpl extends Accessory {
   @override
   Accessory copyWith({
     _i1.UuidValue? id,
-    Object? userInfoId = _Undefined,
-    Object? userInfo = _Undefined,
+    _i1.UuidValue? userId,
+    Object? user = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
-    String? purpose,
-    String? type,
-    String? manufacturer,
-    String? model,
+    Object? purpose = _Undefined,
+    _i4.AccessoryType? type,
     Object? serialNumber = _Undefined,
-    String? condition,
-    Object? purchasePrice = _Undefined,
+    Object? manufactureCountry = _Undefined,
+    Object? manufacturer = _Undefined,
+    Object? model = _Undefined,
+    Object? description = _Undefined,
+    Object? conservationState = _Undefined,
+    Object? usageType = _Undefined,
+    Object? dimensions = _Undefined,
+    Object? weight = _Undefined,
+    Object? color = _Undefined,
+    Object? finishMaterial = _Undefined,
     Object? acquisitionDate = _Undefined,
+    Object? purchasePrice = _Undefined,
+    Object? invoiceNumber = _Undefined,
+    Object? invoiceEmissionDate = _Undefined,
+    Object? sellerData = _Undefined,
+    Object? registryBody = _Undefined,
+    Object? customizations = _Undefined,
+    Object? maintenanceHistory = _Undefined,
+    Object? images = _Undefined,
   }) {
     return Accessory(
       id: id ?? this.id,
-      userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i2.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userId: userId ?? this.userId,
+      user: user is _i2.UserProfile? ? user : this.user?.copyWith(),
       firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
       firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
-      purpose: purpose ?? this.purpose,
+      purpose: purpose is String? ? purpose : this.purpose,
       type: type ?? this.type,
-      manufacturer: manufacturer ?? this.manufacturer,
-      model: model ?? this.model,
       serialNumber: serialNumber is String? ? serialNumber : this.serialNumber,
-      condition: condition ?? this.condition,
-      purchasePrice: purchasePrice is double?
-          ? purchasePrice
-          : this.purchasePrice,
+      manufactureCountry: manufactureCountry is String?
+          ? manufactureCountry
+          : this.manufactureCountry,
+      manufacturer: manufacturer is String? ? manufacturer : this.manufacturer,
+      model: model is String? ? model : this.model,
+      description: description is String? ? description : this.description,
+      conservationState: conservationState is _i5.ConservationState?
+          ? conservationState
+          : this.conservationState,
+      usageType: usageType is _i6.UsageType? ? usageType : this.usageType,
+      dimensions: dimensions is String? ? dimensions : this.dimensions,
+      weight: weight is double? ? weight : this.weight,
+      color: color is String? ? color : this.color,
+      finishMaterial: finishMaterial is String?
+          ? finishMaterial
+          : this.finishMaterial,
       acquisitionDate: acquisitionDate is DateTime?
           ? acquisitionDate
           : this.acquisitionDate,
+      purchasePrice: purchasePrice is double?
+          ? purchasePrice
+          : this.purchasePrice,
+      invoiceNumber: invoiceNumber is String?
+          ? invoiceNumber
+          : this.invoiceNumber,
+      invoiceEmissionDate: invoiceEmissionDate is DateTime?
+          ? invoiceEmissionDate
+          : this.invoiceEmissionDate,
+      sellerData: sellerData is String? ? sellerData : this.sellerData,
+      registryBody: registryBody is _i7.RegistryBody?
+          ? registryBody
+          : this.registryBody,
+      customizations: customizations is String?
+          ? customizations
+          : this.customizations,
+      maintenanceHistory: maintenanceHistory is String?
+          ? maintenanceHistory
+          : this.maintenanceHistory,
+      images: images is List<String>?
+          ? images
+          : this.images?.map((e0) => e0).toList(),
     );
   }
 }
@@ -291,10 +501,11 @@ class _AccessoryImpl extends Accessory {
 class AccessoryUpdateTable extends _i1.UpdateTable<AccessoryTable> {
   AccessoryUpdateTable(super.table);
 
-  _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
-    table.userInfoId,
-    value,
-  );
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue value) =>
+      _i1.ColumnValue(
+        table.userId,
+        value,
+      );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
     _i1.UuidValue? value,
@@ -303,23 +514,15 @@ class AccessoryUpdateTable extends _i1.UpdateTable<AccessoryTable> {
     value,
   );
 
-  _i1.ColumnValue<String, String> purpose(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<String, String> purpose(String? value) => _i1.ColumnValue(
     table.purpose,
     value,
   );
 
-  _i1.ColumnValue<String, String> type(String value) => _i1.ColumnValue(
+  _i1.ColumnValue<_i4.AccessoryType, _i4.AccessoryType> type(
+    _i4.AccessoryType value,
+  ) => _i1.ColumnValue(
     table.type,
-    value,
-  );
-
-  _i1.ColumnValue<String, String> manufacturer(String value) => _i1.ColumnValue(
-    table.manufacturer,
-    value,
-  );
-
-  _i1.ColumnValue<String, String> model(String value) => _i1.ColumnValue(
-    table.model,
     value,
   );
 
@@ -329,14 +532,59 @@ class AccessoryUpdateTable extends _i1.UpdateTable<AccessoryTable> {
         value,
       );
 
-  _i1.ColumnValue<String, String> condition(String value) => _i1.ColumnValue(
-    table.condition,
+  _i1.ColumnValue<String, String> manufactureCountry(String? value) =>
+      _i1.ColumnValue(
+        table.manufactureCountry,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> manufacturer(String? value) =>
+      _i1.ColumnValue(
+        table.manufacturer,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> model(String? value) => _i1.ColumnValue(
+    table.model,
     value,
   );
 
-  _i1.ColumnValue<double, double> purchasePrice(double? value) =>
+  _i1.ColumnValue<String, String> description(String? value) => _i1.ColumnValue(
+    table.description,
+    value,
+  );
+
+  _i1.ColumnValue<_i5.ConservationState, _i5.ConservationState>
+  conservationState(_i5.ConservationState? value) => _i1.ColumnValue(
+    table.conservationState,
+    value,
+  );
+
+  _i1.ColumnValue<_i6.UsageType, _i6.UsageType> usageType(
+    _i6.UsageType? value,
+  ) => _i1.ColumnValue(
+    table.usageType,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> dimensions(String? value) => _i1.ColumnValue(
+    table.dimensions,
+    value,
+  );
+
+  _i1.ColumnValue<double, double> weight(double? value) => _i1.ColumnValue(
+    table.weight,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> color(String? value) => _i1.ColumnValue(
+    table.color,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> finishMaterial(String? value) =>
       _i1.ColumnValue(
-        table.purchasePrice,
+        table.finishMaterial,
         value,
       );
 
@@ -345,13 +593,61 @@ class AccessoryUpdateTable extends _i1.UpdateTable<AccessoryTable> {
         table.acquisitionDate,
         value,
       );
+
+  _i1.ColumnValue<double, double> purchasePrice(double? value) =>
+      _i1.ColumnValue(
+        table.purchasePrice,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> invoiceNumber(String? value) =>
+      _i1.ColumnValue(
+        table.invoiceNumber,
+        value,
+      );
+
+  _i1.ColumnValue<DateTime, DateTime> invoiceEmissionDate(DateTime? value) =>
+      _i1.ColumnValue(
+        table.invoiceEmissionDate,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> sellerData(String? value) => _i1.ColumnValue(
+    table.sellerData,
+    value,
+  );
+
+  _i1.ColumnValue<_i7.RegistryBody, _i7.RegistryBody> registryBody(
+    _i7.RegistryBody? value,
+  ) => _i1.ColumnValue(
+    table.registryBody,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> customizations(String? value) =>
+      _i1.ColumnValue(
+        table.customizations,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> maintenanceHistory(String? value) =>
+      _i1.ColumnValue(
+        table.maintenanceHistory,
+        value,
+      );
+
+  _i1.ColumnValue<List<String>, List<String>> images(List<String>? value) =>
+      _i1.ColumnValue(
+        table.images,
+        value,
+      );
 }
 
 class AccessoryTable extends _i1.Table<_i1.UuidValue> {
   AccessoryTable({super.tableRelation}) : super(tableName: 'accessories') {
     updateTable = AccessoryUpdateTable(this);
-    userInfoId = _i1.ColumnInt(
-      'userInfoId',
+    userId = _i1.ColumnUuid(
+      'userId',
       this,
     );
     firearmId = _i1.ColumnUuid(
@@ -362,8 +658,17 @@ class AccessoryTable extends _i1.Table<_i1.UuidValue> {
       'purpose',
       this,
     );
-    type = _i1.ColumnString(
+    type = _i1.ColumnEnum(
       'type',
+      this,
+      _i1.EnumSerialization.byName,
+    );
+    serialNumber = _i1.ColumnString(
+      'serialNumber',
+      this,
+    );
+    manufactureCountry = _i1.ColumnString(
+      'manufactureCountry',
       this,
     );
     manufacturer = _i1.ColumnString(
@@ -374,29 +679,80 @@ class AccessoryTable extends _i1.Table<_i1.UuidValue> {
       'model',
       this,
     );
-    serialNumber = _i1.ColumnString(
-      'serialNumber',
+    description = _i1.ColumnString(
+      'description',
       this,
     );
-    condition = _i1.ColumnString(
-      'condition',
+    conservationState = _i1.ColumnEnum(
+      'conservationState',
+      this,
+      _i1.EnumSerialization.byName,
+    );
+    usageType = _i1.ColumnEnum(
+      'usageType',
+      this,
+      _i1.EnumSerialization.byName,
+    );
+    dimensions = _i1.ColumnString(
+      'dimensions',
       this,
     );
-    purchasePrice = _i1.ColumnDouble(
-      'purchasePrice',
+    weight = _i1.ColumnDouble(
+      'weight',
+      this,
+    );
+    color = _i1.ColumnString(
+      'color',
+      this,
+    );
+    finishMaterial = _i1.ColumnString(
+      'finishMaterial',
       this,
     );
     acquisitionDate = _i1.ColumnDateTime(
       'acquisitionDate',
       this,
     );
+    purchasePrice = _i1.ColumnDouble(
+      'purchasePrice',
+      this,
+    );
+    invoiceNumber = _i1.ColumnString(
+      'invoiceNumber',
+      this,
+    );
+    invoiceEmissionDate = _i1.ColumnDateTime(
+      'invoiceEmissionDate',
+      this,
+    );
+    sellerData = _i1.ColumnString(
+      'sellerData',
+      this,
+    );
+    registryBody = _i1.ColumnEnum(
+      'registryBody',
+      this,
+      _i1.EnumSerialization.byName,
+    );
+    customizations = _i1.ColumnString(
+      'customizations',
+      this,
+    );
+    maintenanceHistory = _i1.ColumnString(
+      'maintenanceHistory',
+      this,
+    );
+    images = _i1.ColumnSerializable<List<String>>(
+      'images',
+      this,
+    );
   }
 
   late final AccessoryUpdateTable updateTable;
 
-  late final _i1.ColumnInt userInfoId;
+  late final _i1.ColumnUuid userId;
 
-  _i2.UserInfoTable? _userInfo;
+  _i2.UserProfileTable? _user;
 
   late final _i1.ColumnUuid firearmId;
 
@@ -404,31 +760,59 @@ class AccessoryTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnString purpose;
 
-  late final _i1.ColumnString type;
+  late final _i1.ColumnEnum<_i4.AccessoryType> type;
+
+  late final _i1.ColumnString serialNumber;
+
+  late final _i1.ColumnString manufactureCountry;
 
   late final _i1.ColumnString manufacturer;
 
   late final _i1.ColumnString model;
 
-  late final _i1.ColumnString serialNumber;
+  late final _i1.ColumnString description;
 
-  late final _i1.ColumnString condition;
+  late final _i1.ColumnEnum<_i5.ConservationState> conservationState;
 
-  late final _i1.ColumnDouble purchasePrice;
+  late final _i1.ColumnEnum<_i6.UsageType> usageType;
+
+  late final _i1.ColumnString dimensions;
+
+  late final _i1.ColumnDouble weight;
+
+  late final _i1.ColumnString color;
+
+  late final _i1.ColumnString finishMaterial;
 
   late final _i1.ColumnDateTime acquisitionDate;
 
-  _i2.UserInfoTable get userInfo {
-    if (_userInfo != null) return _userInfo!;
-    _userInfo = _i1.createRelationTable(
-      relationFieldName: 'userInfo',
-      field: Accessory.t.userInfoId,
-      foreignField: _i2.UserInfo.t.id,
+  late final _i1.ColumnDouble purchasePrice;
+
+  late final _i1.ColumnString invoiceNumber;
+
+  late final _i1.ColumnDateTime invoiceEmissionDate;
+
+  late final _i1.ColumnString sellerData;
+
+  late final _i1.ColumnEnum<_i7.RegistryBody> registryBody;
+
+  late final _i1.ColumnString customizations;
+
+  late final _i1.ColumnString maintenanceHistory;
+
+  late final _i1.ColumnSerializable<List<String>> images;
+
+  _i2.UserProfileTable get user {
+    if (_user != null) return _user!;
+    _user = _i1.createRelationTable(
+      relationFieldName: 'user',
+      field: Accessory.t.userId,
+      foreignField: _i2.UserProfile.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.UserInfoTable(tableRelation: foreignTableRelation),
+          _i2.UserProfileTable(tableRelation: foreignTableRelation),
     );
-    return _userInfo!;
+    return _user!;
   }
 
   _i3.FirearmTable get firearm {
@@ -447,22 +831,36 @@ class AccessoryTable extends _i1.Table<_i1.UuidValue> {
   @override
   List<_i1.Column> get columns => [
     id,
-    userInfoId,
+    userId,
     firearmId,
     purpose,
     type,
+    serialNumber,
+    manufactureCountry,
     manufacturer,
     model,
-    serialNumber,
-    condition,
-    purchasePrice,
+    description,
+    conservationState,
+    usageType,
+    dimensions,
+    weight,
+    color,
+    finishMaterial,
     acquisitionDate,
+    purchasePrice,
+    invoiceNumber,
+    invoiceEmissionDate,
+    sellerData,
+    registryBody,
+    customizations,
+    maintenanceHistory,
+    images,
   ];
 
   @override
   _i1.Table? getRelationTable(String relationField) {
-    if (relationField == 'userInfo') {
-      return userInfo;
+    if (relationField == 'user') {
+      return user;
     }
     if (relationField == 'firearm') {
       return firearm;
@@ -473,20 +871,20 @@ class AccessoryTable extends _i1.Table<_i1.UuidValue> {
 
 class AccessoryInclude extends _i1.IncludeObject {
   AccessoryInclude._({
-    _i2.UserInfoInclude? userInfo,
+    _i2.UserProfileInclude? user,
     _i3.FirearmInclude? firearm,
   }) {
-    _userInfo = userInfo;
+    _user = user;
     _firearm = firearm;
   }
 
-  _i2.UserInfoInclude? _userInfo;
+  _i2.UserProfileInclude? _user;
 
   _i3.FirearmInclude? _firearm;
 
   @override
   Map<String, _i1.Include?> get includes => {
-    'userInfo': _userInfo,
+    'user': _user,
     'firearm': _firearm,
   };
 
@@ -814,25 +1212,25 @@ class AccessoryRepository {
 class AccessoryAttachRowRepository {
   const AccessoryAttachRowRepository._();
 
-  /// Creates a relation between the given [Accessory] and [UserInfo]
-  /// by setting the [Accessory]'s foreign key `userInfoId` to refer to the [UserInfo].
-  Future<void> userInfo(
+  /// Creates a relation between the given [Accessory] and [UserProfile]
+  /// by setting the [Accessory]'s foreign key `userId` to refer to the [UserProfile].
+  Future<void> user(
     _i1.DatabaseSession session,
     Accessory accessory,
-    _i2.UserInfo userInfo, {
+    _i2.UserProfile user, {
     _i1.Transaction? transaction,
   }) async {
     if (accessory.id == null) {
       throw ArgumentError.notNull('accessory.id');
     }
-    if (userInfo.id == null) {
-      throw ArgumentError.notNull('userInfo.id');
+    if (user.id == null) {
+      throw ArgumentError.notNull('user.id');
     }
 
-    var $accessory = accessory.copyWith(userInfoId: userInfo.id);
+    var $accessory = accessory.copyWith(userId: user.id);
     await session.db.updateRow<Accessory>(
       $accessory,
-      columns: [Accessory.t.userInfoId],
+      columns: [Accessory.t.userId],
       transaction: transaction,
     );
   }
@@ -863,28 +1261,6 @@ class AccessoryAttachRowRepository {
 
 class AccessoryDetachRowRepository {
   const AccessoryDetachRowRepository._();
-
-  /// Detaches the relation between this [Accessory] and the [UserInfo] set in `userInfo`
-  /// by setting the [Accessory]'s foreign key `userInfoId` to `null`.
-  ///
-  /// This removes the association between the two models without deleting
-  /// the related record.
-  Future<void> userInfo(
-    _i1.DatabaseSession session,
-    Accessory accessory, {
-    _i1.Transaction? transaction,
-  }) async {
-    if (accessory.id == null) {
-      throw ArgumentError.notNull('accessory.id');
-    }
-
-    var $accessory = accessory.copyWith(userInfoId: null);
-    await session.db.updateRow<Accessory>(
-      $accessory,
-      columns: [Accessory.t.userInfoId],
-      transaction: transaction,
-    );
-  }
 
   /// Detaches the relation between this [Accessory] and the [Firearm] set in `firearm`
   /// by setting the [Accessory]'s foreign key `firearmId` to `null`.

@@ -1,0 +1,7 @@
+enum: FirearmPurpose
+serialized: byName
+values:
+  - defense
+  - sport
+  - collection
+  - hunting

@@ -1,0 +1,12 @@
+enum: FirearmType
+serialized: byName
+values:
+  - pistol
+  - revolver
+  - rifle
+  - carbine
+  - shotgun
+  - machine_gun
+  - submachine_gun
+  - air_pistol
+  - air_rifle

@@ -1,0 +1,7 @@
+enum: DocumentType
+serialized: byName
+values:
+  - nf
+  - cr
+  - craf
+  - gt

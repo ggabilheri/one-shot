@@ -1,8 +1,13 @@
 enum: AccessoryType
-default: press
 serialized: byName
 values:
   - press
   - die
   - scope
+  - redDot
+  - laser
+  - silencer
   - magazine
+  - grip
+  - holster
+  - boxCase

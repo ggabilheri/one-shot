@@ -30,6 +30,7 @@ dependencies:
   qlevar_router: ^1.2.6
   oneshot_client:
     path: ../../oneshot_client
+  google_fonts: ^6.2.1
 
 
   # The following adds the Cupertino Icons font to your application.
