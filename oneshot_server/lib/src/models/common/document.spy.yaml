@@ -3,9 +3,7 @@ table: documents
 fields:
   id: UuidValue, defaultModel=random
   userInfo: module:auth:UserInfo?, relation(optional)
-  firearmId: UuidValue?
   firearm: Firearm?, relation(optional)(optional)
-  accessoryId: UuidValue?
   accessory: Accessory?, relation(optional)(optional)
   documentType: String   
   registryAgency: String   
