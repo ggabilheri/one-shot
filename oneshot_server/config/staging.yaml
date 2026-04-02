@@ -36,7 +36,7 @@ webServer:
 database:
   host: postgres
   port: 5432
-  name: serverpod
+  name: oneshot
   user: postgres
   requireSsl: false
   #isUnixSocket: true # defaults to false
