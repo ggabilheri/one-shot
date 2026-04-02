@@ -5,10 +5,8 @@ BEGIN;
 --
 CREATE TABLE "accessories" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL,
+    "userInfoId" bigint,
     "firearmId" uuid,
-    "firearmId" uuid NOT NULL,
     "purpose" text NOT NULL,
     "type" text NOT NULL,
     "manufacturer" text NOT NULL,
@@ -20,7 +18,7 @@ CREATE TABLE "accessories" (
 );
 
 -- Indexes
-CREATE INDEX "accessory_user_id_idx" ON "accessories" USING btree ("userId");
+CREATE INDEX "accessory_user_id_idx" ON "accessories" USING btree ("userInfoId");
 CREATE INDEX "accessory_firearm_id_idx" ON "accessories" USING btree ("firearmId");
 
 --
@@ -35,7 +33,7 @@ CREATE TABLE "addresses" (
     "city" text NOT NULL,
     "state" text NOT NULL,
     "zipCode" text NOT NULL,
-    "userProfileId" uuid NOT NULL
+    "userProfileId" uuid
 );
 
 -- Indexes
@@ -46,8 +44,7 @@ CREATE INDEX "address_zip_code_idx" ON "addresses" USING btree ("zipCode");
 --
 CREATE TABLE "ammunition_stocks" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL,
+    "userInfoId" bigint,
     "type" text NOT NULL,
     "manufacturer" text NOT NULL,
     "caliber" text NOT NULL,
@@ -60,7 +57,7 @@ CREATE TABLE "ammunition_stocks" (
 );
 
 -- Indexes
-CREATE INDEX "ammo_stock_user_id_idx" ON "ammunition_stocks" USING btree ("userId");
+CREATE INDEX "ammo_stock_user_id_idx" ON "ammunition_stocks" USING btree ("userInfoId");
 CREATE INDEX "ammo_stock_caliber_idx" ON "ammunition_stocks" USING btree ("caliber");
 
 --
@@ -71,9 +68,7 @@ CREATE TABLE "clubs" (
     "name" text NOT NULL,
     "cnpj" text NOT NULL,
     "addressId" uuid,
-    "addressId" uuid NOT NULL,
     "ownerId" uuid,
-    "ownerId" uuid NOT NULL,
     "phoneNumber" text,
     "email" text,
     "active" boolean NOT NULL DEFAULT true
@@ -88,11 +83,8 @@ CREATE INDEX "club_owner_id_idx" ON "clubs" USING btree ("ownerId");
 --
 CREATE TABLE "documents" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL,
+    "userInfoId" bigint,
     "firearmId" uuid,
-    "firearmId" uuid,
-    "accessoryId" uuid,
     "accessoryId" uuid,
     "documentType" text NOT NULL,
     "registryAgency" text NOT NULL,
@@ -101,12 +93,11 @@ CREATE TABLE "documents" (
     "expirationDate" timestamp without time zone NOT NULL,
     "documentImageUrl" text,
     "supplierName" text,
-    "supplierAddressId" uuid,
     "supplierAddressId" uuid
 );
 
 -- Indexes
-CREATE INDEX "document_user_id_idx" ON "documents" USING btree ("userId");
+CREATE INDEX "document_user_id_idx" ON "documents" USING btree ("userInfoId");
 CREATE INDEX "document_firearm_id_idx" ON "documents" USING btree ("firearmId");
 CREATE INDEX "document_expiration_date_idx" ON "documents" USING btree ("expirationDate");
 
@@ -115,8 +106,7 @@ CREATE INDEX "document_expiration_date_idx" ON "documents" USING btree ("expirat
 --
 CREATE TABLE "firearms" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL,
+    "userInfoId" bigint,
     "purpose" text NOT NULL,
     "type" text NOT NULL,
     "action" text NOT NULL,
@@ -137,7 +127,7 @@ CREATE TABLE "firearms" (
 );
 
 -- Indexes
-CREATE INDEX "firearm_user_id_idx" ON "firearms" USING btree ("userId");
+CREATE INDEX "firearm_user_id_idx" ON "firearms" USING btree ("userInfoId");
 CREATE INDEX "firearm_serial_number_idx" ON "firearms" USING btree ("serialNumber");
 
 --
@@ -145,18 +135,16 @@ CREATE INDEX "firearm_serial_number_idx" ON "firearms" USING btree ("serialNumbe
 --
 CREATE TABLE "gunsmith_clients" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "gunsmithUserId" uuid,
-    "gunsmithUserInfoId" bigint NOT NULL,
+    "gunsmithUserInfoId" bigint,
     "name" text NOT NULL,
     "cpf" text NOT NULL,
     "rg" text,
     "phone" text NOT NULL,
-    "addressId" uuid,
-    "addressId" uuid NOT NULL
+    "addressId" uuid
 );
 
 -- Indexes
-CREATE INDEX "gunsmith_client_user_id_idx" ON "gunsmith_clients" USING btree ("gunsmithUserId");
+CREATE INDEX "gunsmith_client_user_id_idx" ON "gunsmith_clients" USING btree ("gunsmithUserInfoId");
 CREATE UNIQUE INDEX "gunsmith_client_cpf_idx" ON "gunsmith_clients" USING btree ("cpf");
 
 --
@@ -165,9 +153,7 @@ CREATE UNIQUE INDEX "gunsmith_client_cpf_idx" ON "gunsmith_clients" USING btree 
 CREATE TABLE "memberships" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     "userId" uuid,
-    "userId" uuid NOT NULL,
     "clubId" uuid,
-    "clubId" uuid NOT NULL,
     "membershipNumber" text,
     "startDate" timestamp without time zone NOT NULL,
     "validUntil" timestamp without time zone,
@@ -185,11 +171,8 @@ CREATE INDEX "membership_club_idx" ON "memberships" USING btree ("clubId");
 CREATE TABLE "range_visits" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     "userId" uuid,
-    "userId" uuid NOT NULL,
     "clubId" uuid,
-    "clubId" uuid NOT NULL,
     "firearmId" uuid,
-    "firearmId" uuid NOT NULL,
     "checkIn" timestamp without time zone NOT NULL,
     "checkOut" timestamp without time zone,
     "shotsFired" bigint NOT NULL DEFAULT 0,
@@ -207,28 +190,23 @@ CREATE INDEX "range_visit_date_idx" ON "range_visits" USING btree ("checkIn");
 --
 CREATE TABLE "reload_sessions" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL,
+    "userInfoId" bigint,
     "reloadDate" timestamp without time zone NOT NULL,
     "pressId" uuid,
-    "pressId" uuid NOT NULL,
     "caliber" text NOT NULL,
     "casingBatch" text NOT NULL,
     "reloadsCompleted" bigint NOT NULL,
     "powderId" uuid,
-    "powderId" uuid NOT NULL,
     "powderGrains" double precision NOT NULL,
     "primerId" uuid,
-    "primerId" uuid NOT NULL,
     "projectileId" uuid,
-    "projectileId" uuid NOT NULL,
     "oal" double precision NOT NULL,
     "totalCost" double precision NOT NULL,
     "unitCost" double precision NOT NULL
 );
 
 -- Indexes
-CREATE INDEX "reload_session_user_id_idx" ON "reload_sessions" USING btree ("userId");
+CREATE INDEX "reload_session_user_id_idx" ON "reload_sessions" USING btree ("userInfoId");
 CREATE INDEX "reload_session_date_idx" ON "reload_sessions" USING btree ("reloadDate");
 
 --
@@ -237,9 +215,7 @@ CREATE INDEX "reload_session_date_idx" ON "reload_sessions" USING btree ("reload
 CREATE TABLE "reload_tests" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     "reloadSessionId" uuid,
-    "reloadSessionId" uuid NOT NULL,
     "firearmId" uuid,
-    "firearmId" uuid NOT NULL,
     "testDate" timestamp without time zone NOT NULL,
     "shotsFired" bigint NOT NULL,
     "highestVelocityFps" double precision NOT NULL,
@@ -261,11 +237,9 @@ CREATE INDEX "reload_test_firearm_id_idx" ON "reload_tests" USING btree ("firear
 CREATE TABLE "service_order_items" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     "serviceOrderId" uuid,
-    "serviceOrderId" uuid NOT NULL,
     "description" text NOT NULL,
     "isStockPart" boolean NOT NULL,
     "supplyPartId" uuid,
-    "supplyPartId" uuid NOT NULL,
     "servicePrice" double precision NOT NULL
 );
 
@@ -278,9 +252,7 @@ CREATE INDEX "service_order_item_order_id_idx" ON "service_order_items" USING bt
 CREATE TABLE "service_orders" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     "clientId" uuid,
-    "clientId" uuid NOT NULL,
     "firearmId" uuid,
-    "firearmId" uuid NOT NULL,
     "entryDate" timestamp without time zone NOT NULL,
     "estimatedDeliveryDate" timestamp without time zone,
     "totalPrice" double precision NOT NULL,
@@ -305,27 +277,23 @@ CREATE TABLE "supply_stocks" (
     "unit" text NOT NULL,
     "acquisitionDate" timestamp without time zone,
     "batchNumber" text,
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL
+    "userInfoId" bigint
 );
 
 -- Indexes
-CREATE INDEX "supply_stock_user_id_idx" ON "supply_stocks" USING btree ("userId");
+CREATE INDEX "supply_stock_user_id_idx" ON "supply_stocks" USING btree ("userInfoId");
 
 --
 -- Class Training as table trainings
 --
 CREATE TABLE "trainings" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL,
+    "userInfoId" bigint,
     "date" timestamp without time zone NOT NULL,
     "location" text NOT NULL,
     "environmentType" text NOT NULL,
     "firearmId" uuid,
-    "firearmId" uuid NOT NULL,
     "ammunitionId" uuid,
-    "ammunitionId" uuid NOT NULL,
     "shotsFired" bigint NOT NULL,
     "distanceMeters" double precision NOT NULL,
     "score" bigint,
@@ -333,7 +301,7 @@ CREATE TABLE "trainings" (
 );
 
 -- Indexes
-CREATE INDEX "training_user_id_idx" ON "trainings" USING btree ("userId");
+CREATE INDEX "training_user_id_idx" ON "trainings" USING btree ("userInfoId");
 CREATE INDEX "training_date_idx" ON "trainings" USING btree ("date");
 
 --
@@ -982,9 +950,9 @@ ALTER TABLE ONLY "serverpod_query_log"
 -- MIGRATION VERSION FOR oneshot
 --
 INSERT INTO "serverpod_migrations" ("module", "version", "timestamp")
-    VALUES ('oneshot', '20260331031549796', now())
+    VALUES ('oneshot', '20260402162939507', now())
     ON CONFLICT ("module")
-    DO UPDATE SET "version" = '20260331031549796', "timestamp" = now();
+    DO UPDATE SET "version" = '20260402162939507', "timestamp" = now();
 
 --
 -- MIGRATION VERSION FOR serverpod

@@ -5,10 +5,8 @@ BEGIN;
 --
 CREATE TABLE "accessories" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL,
+    "userInfoId" bigint,
     "firearmId" uuid,
-    "firearmId" uuid NOT NULL,
     "purpose" text NOT NULL,
     "type" text NOT NULL,
     "manufacturer" text NOT NULL,
@@ -20,7 +18,7 @@ CREATE TABLE "accessories" (
 );
 
 -- Indexes
-CREATE INDEX "accessory_user_id_idx" ON "accessories" USING btree ("userId");
+CREATE INDEX "accessory_user_id_idx" ON "accessories" USING btree ("userInfoId");
 CREATE INDEX "accessory_firearm_id_idx" ON "accessories" USING btree ("firearmId");
 
 --
@@ -35,7 +33,7 @@ CREATE TABLE "addresses" (
     "city" text NOT NULL,
     "state" text NOT NULL,
     "zipCode" text NOT NULL,
-    "userProfileId" uuid NOT NULL
+    "userProfileId" uuid
 );
 
 -- Indexes
@@ -46,8 +44,7 @@ CREATE INDEX "address_zip_code_idx" ON "addresses" USING btree ("zipCode");
 --
 CREATE TABLE "ammunition_stocks" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL,
+    "userInfoId" bigint,
     "type" text NOT NULL,
     "manufacturer" text NOT NULL,
     "caliber" text NOT NULL,
@@ -60,7 +57,7 @@ CREATE TABLE "ammunition_stocks" (
 );
 
 -- Indexes
-CREATE INDEX "ammo_stock_user_id_idx" ON "ammunition_stocks" USING btree ("userId");
+CREATE INDEX "ammo_stock_user_id_idx" ON "ammunition_stocks" USING btree ("userInfoId");
 CREATE INDEX "ammo_stock_caliber_idx" ON "ammunition_stocks" USING btree ("caliber");
 
 --
@@ -71,9 +68,7 @@ CREATE TABLE "clubs" (
     "name" text NOT NULL,
     "cnpj" text NOT NULL,
     "addressId" uuid,
-    "addressId" uuid NOT NULL,
     "ownerId" uuid,
-    "ownerId" uuid NOT NULL,
     "phoneNumber" text,
     "email" text,
     "active" boolean NOT NULL DEFAULT true
@@ -88,11 +83,8 @@ CREATE INDEX "club_owner_id_idx" ON "clubs" USING btree ("ownerId");
 --
 CREATE TABLE "documents" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL,
+    "userInfoId" bigint,
     "firearmId" uuid,
-    "firearmId" uuid,
-    "accessoryId" uuid,
     "accessoryId" uuid,
     "documentType" text NOT NULL,
     "registryAgency" text NOT NULL,
@@ -101,12 +93,11 @@ CREATE TABLE "documents" (
     "expirationDate" timestamp without time zone NOT NULL,
     "documentImageUrl" text,
     "supplierName" text,
-    "supplierAddressId" uuid,
     "supplierAddressId" uuid
 );
 
 -- Indexes
-CREATE INDEX "document_user_id_idx" ON "documents" USING btree ("userId");
+CREATE INDEX "document_user_id_idx" ON "documents" USING btree ("userInfoId");
 CREATE INDEX "document_firearm_id_idx" ON "documents" USING btree ("firearmId");
 CREATE INDEX "document_expiration_date_idx" ON "documents" USING btree ("expirationDate");
 
@@ -115,8 +106,7 @@ CREATE INDEX "document_expiration_date_idx" ON "documents" USING btree ("expirat
 --
 CREATE TABLE "firearms" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL,
+    "userInfoId" bigint,
     "purpose" text NOT NULL,
     "type" text NOT NULL,
     "action" text NOT NULL,
@@ -137,7 +127,7 @@ CREATE TABLE "firearms" (
 );
 
 -- Indexes
-CREATE INDEX "firearm_user_id_idx" ON "firearms" USING btree ("userId");
+CREATE INDEX "firearm_user_id_idx" ON "firearms" USING btree ("userInfoId");
 CREATE INDEX "firearm_serial_number_idx" ON "firearms" USING btree ("serialNumber");
 
 --
@@ -145,18 +135,16 @@ CREATE INDEX "firearm_serial_number_idx" ON "firearms" USING btree ("serialNumbe
 --
 CREATE TABLE "gunsmith_clients" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "gunsmithUserId" uuid,
-    "gunsmithUserInfoId" bigint NOT NULL,
+    "gunsmithUserInfoId" bigint,
     "name" text NOT NULL,
     "cpf" text NOT NULL,
     "rg" text,
     "phone" text NOT NULL,
-    "addressId" uuid,
-    "addressId" uuid NOT NULL
+    "addressId" uuid
 );
 
 -- Indexes
-CREATE INDEX "gunsmith_client_user_id_idx" ON "gunsmith_clients" USING btree ("gunsmithUserId");
+CREATE INDEX "gunsmith_client_user_id_idx" ON "gunsmith_clients" USING btree ("gunsmithUserInfoId");
 CREATE UNIQUE INDEX "gunsmith_client_cpf_idx" ON "gunsmith_clients" USING btree ("cpf");
 
 --
@@ -165,9 +153,7 @@ CREATE UNIQUE INDEX "gunsmith_client_cpf_idx" ON "gunsmith_clients" USING btree 
 CREATE TABLE "memberships" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     "userId" uuid,
-    "userId" uuid NOT NULL,
     "clubId" uuid,
-    "clubId" uuid NOT NULL,
     "membershipNumber" text,
     "startDate" timestamp without time zone NOT NULL,
     "validUntil" timestamp without time zone,
@@ -185,11 +171,8 @@ CREATE INDEX "membership_club_idx" ON "memberships" USING btree ("clubId");
 CREATE TABLE "range_visits" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     "userId" uuid,
-    "userId" uuid NOT NULL,
     "clubId" uuid,
-    "clubId" uuid NOT NULL,
     "firearmId" uuid,
-    "firearmId" uuid NOT NULL,
     "checkIn" timestamp without time zone NOT NULL,
     "checkOut" timestamp without time zone,
     "shotsFired" bigint NOT NULL DEFAULT 0,
@@ -207,28 +190,23 @@ CREATE INDEX "range_visit_date_idx" ON "range_visits" USING btree ("checkIn");
 --
 CREATE TABLE "reload_sessions" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL,
+    "userInfoId" bigint,
     "reloadDate" timestamp without time zone NOT NULL,
     "pressId" uuid,
-    "pressId" uuid NOT NULL,
     "caliber" text NOT NULL,
     "casingBatch" text NOT NULL,
     "reloadsCompleted" bigint NOT NULL,
     "powderId" uuid,
-    "powderId" uuid NOT NULL,
     "powderGrains" double precision NOT NULL,
     "primerId" uuid,
-    "primerId" uuid NOT NULL,
     "projectileId" uuid,
-    "projectileId" uuid NOT NULL,
     "oal" double precision NOT NULL,
     "totalCost" double precision NOT NULL,
     "unitCost" double precision NOT NULL
 );
 
 -- Indexes
-CREATE INDEX "reload_session_user_id_idx" ON "reload_sessions" USING btree ("userId");
+CREATE INDEX "reload_session_user_id_idx" ON "reload_sessions" USING btree ("userInfoId");
 CREATE INDEX "reload_session_date_idx" ON "reload_sessions" USING btree ("reloadDate");
 
 --
@@ -237,9 +215,7 @@ CREATE INDEX "reload_session_date_idx" ON "reload_sessions" USING btree ("reload
 CREATE TABLE "reload_tests" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     "reloadSessionId" uuid,
-    "reloadSessionId" uuid NOT NULL,
     "firearmId" uuid,
-    "firearmId" uuid NOT NULL,
     "testDate" timestamp without time zone NOT NULL,
     "shotsFired" bigint NOT NULL,
     "highestVelocityFps" double precision NOT NULL,
@@ -261,11 +237,9 @@ CREATE INDEX "reload_test_firearm_id_idx" ON "reload_tests" USING btree ("firear
 CREATE TABLE "service_order_items" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     "serviceOrderId" uuid,
-    "serviceOrderId" uuid NOT NULL,
     "description" text NOT NULL,
     "isStockPart" boolean NOT NULL,
     "supplyPartId" uuid,
-    "supplyPartId" uuid NOT NULL,
     "servicePrice" double precision NOT NULL
 );
 
@@ -278,9 +252,7 @@ CREATE INDEX "service_order_item_order_id_idx" ON "service_order_items" USING bt
 CREATE TABLE "service_orders" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     "clientId" uuid,
-    "clientId" uuid NOT NULL,
     "firearmId" uuid,
-    "firearmId" uuid NOT NULL,
     "entryDate" timestamp without time zone NOT NULL,
     "estimatedDeliveryDate" timestamp without time zone,
     "totalPrice" double precision NOT NULL,
@@ -305,27 +277,23 @@ CREATE TABLE "supply_stocks" (
     "unit" text NOT NULL,
     "acquisitionDate" timestamp without time zone,
     "batchNumber" text,
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL
+    "userInfoId" bigint
 );
 
 -- Indexes
-CREATE INDEX "supply_stock_user_id_idx" ON "supply_stocks" USING btree ("userId");
+CREATE INDEX "supply_stock_user_id_idx" ON "supply_stocks" USING btree ("userInfoId");
 
 --
 -- ACTION CREATE TABLE
 --
 CREATE TABLE "trainings" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" uuid,
-    "userInfoId" bigint NOT NULL,
+    "userInfoId" bigint,
     "date" timestamp without time zone NOT NULL,
     "location" text NOT NULL,
     "environmentType" text NOT NULL,
     "firearmId" uuid,
-    "firearmId" uuid NOT NULL,
     "ammunitionId" uuid,
-    "ammunitionId" uuid NOT NULL,
     "shotsFired" bigint NOT NULL,
     "distanceMeters" double precision NOT NULL,
     "score" bigint,
@@ -333,13 +301,8 @@ CREATE TABLE "trainings" (
 );
 
 -- Indexes
-CREATE INDEX "training_user_id_idx" ON "trainings" USING btree ("userId");
+CREATE INDEX "training_user_id_idx" ON "trainings" USING btree ("userInfoId");
 CREATE INDEX "training_date_idx" ON "trainings" USING btree ("date");
-
---
--- ACTION DROP TABLE
---
-DROP TABLE "user_profile" CASCADE;
 
 --
 -- ACTION CREATE TABLE
@@ -359,10 +322,325 @@ CREATE UNIQUE INDEX "user_cpf_idx" ON "user_profile" USING btree ("cpf");
 CREATE INDEX "user_address_id_idx" ON "user_profile" USING btree ("addressId");
 
 --
--- ACTION ALTER TABLE
+-- ACTION CREATE TABLE
 --
-ALTER TABLE "serverpod_session_log" ADD COLUMN "userId" text;
+CREATE TABLE "serverpod_cloud_storage" (
+    "id" bigserial PRIMARY KEY,
+    "storageId" text NOT NULL,
+    "path" text NOT NULL,
+    "addedTime" timestamp without time zone NOT NULL,
+    "expiration" timestamp without time zone,
+    "byteData" bytea NOT NULL,
+    "verified" boolean NOT NULL
+);
+
+-- Indexes
+CREATE UNIQUE INDEX "serverpod_cloud_storage_path_idx" ON "serverpod_cloud_storage" USING btree ("storageId", "path");
+CREATE INDEX "serverpod_cloud_storage_expiration" ON "serverpod_cloud_storage" USING btree ("expiration");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_cloud_storage_direct_upload" (
+    "id" bigserial PRIMARY KEY,
+    "storageId" text NOT NULL,
+    "path" text NOT NULL,
+    "expiration" timestamp without time zone NOT NULL,
+    "authKey" text NOT NULL
+);
+
+-- Indexes
+CREATE UNIQUE INDEX "serverpod_cloud_storage_direct_upload_storage_path" ON "serverpod_cloud_storage_direct_upload" USING btree ("storageId", "path");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_future_call" (
+    "id" bigserial PRIMARY KEY,
+    "name" text NOT NULL,
+    "time" timestamp without time zone NOT NULL,
+    "serializedObject" text,
+    "serverId" text NOT NULL,
+    "identifier" text
+);
+
+-- Indexes
+CREATE INDEX "serverpod_future_call_time_idx" ON "serverpod_future_call" USING btree ("time");
+CREATE INDEX "serverpod_future_call_serverId_idx" ON "serverpod_future_call" USING btree ("serverId");
+CREATE INDEX "serverpod_future_call_identifier_idx" ON "serverpod_future_call" USING btree ("identifier");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_health_connection_info" (
+    "id" bigserial PRIMARY KEY,
+    "serverId" text NOT NULL,
+    "timestamp" timestamp without time zone NOT NULL,
+    "active" bigint NOT NULL,
+    "closing" bigint NOT NULL,
+    "idle" bigint NOT NULL,
+    "granularity" bigint NOT NULL
+);
+
+-- Indexes
+CREATE UNIQUE INDEX "serverpod_health_connection_info_timestamp_idx" ON "serverpod_health_connection_info" USING btree ("timestamp", "serverId", "granularity");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_health_metric" (
+    "id" bigserial PRIMARY KEY,
+    "name" text NOT NULL,
+    "serverId" text NOT NULL,
+    "timestamp" timestamp without time zone NOT NULL,
+    "isHealthy" boolean NOT NULL,
+    "value" double precision NOT NULL,
+    "granularity" bigint NOT NULL
+);
+
+-- Indexes
+CREATE UNIQUE INDEX "serverpod_health_metric_timestamp_idx" ON "serverpod_health_metric" USING btree ("timestamp", "serverId", "name", "granularity");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_log" (
+    "id" bigserial PRIMARY KEY,
+    "sessionLogId" bigint NOT NULL,
+    "messageId" bigint,
+    "reference" text,
+    "serverId" text NOT NULL,
+    "time" timestamp without time zone NOT NULL,
+    "logLevel" bigint NOT NULL,
+    "message" text NOT NULL,
+    "error" text,
+    "stackTrace" text,
+    "order" bigint NOT NULL
+);
+
+-- Indexes
+CREATE INDEX "serverpod_log_sessionLogId_idx" ON "serverpod_log" USING btree ("sessionLogId");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_message_log" (
+    "id" bigserial PRIMARY KEY,
+    "sessionLogId" bigint NOT NULL,
+    "serverId" text NOT NULL,
+    "messageId" bigint NOT NULL,
+    "endpoint" text NOT NULL,
+    "messageName" text NOT NULL,
+    "duration" double precision NOT NULL,
+    "error" text,
+    "stackTrace" text,
+    "slow" boolean NOT NULL,
+    "order" bigint NOT NULL
+);
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_method" (
+    "id" bigserial PRIMARY KEY,
+    "endpoint" text NOT NULL,
+    "method" text NOT NULL
+);
+
+-- Indexes
+CREATE UNIQUE INDEX "serverpod_method_endpoint_method_idx" ON "serverpod_method" USING btree ("endpoint", "method");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_migrations" (
+    "id" bigserial PRIMARY KEY,
+    "module" text NOT NULL,
+    "version" text NOT NULL,
+    "timestamp" timestamp without time zone
+);
+
+-- Indexes
+CREATE UNIQUE INDEX "serverpod_migrations_ids" ON "serverpod_migrations" USING btree ("module");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_query_log" (
+    "id" bigserial PRIMARY KEY,
+    "serverId" text NOT NULL,
+    "sessionLogId" bigint NOT NULL,
+    "messageId" bigint,
+    "query" text NOT NULL,
+    "duration" double precision NOT NULL,
+    "numRows" bigint,
+    "error" text,
+    "stackTrace" text,
+    "slow" boolean NOT NULL,
+    "order" bigint NOT NULL
+);
+
+-- Indexes
+CREATE INDEX "serverpod_query_log_sessionLogId_idx" ON "serverpod_query_log" USING btree ("sessionLogId");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_readwrite_test" (
+    "id" bigserial PRIMARY KEY,
+    "number" bigint NOT NULL
+);
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_runtime_settings" (
+    "id" bigserial PRIMARY KEY,
+    "logSettings" json NOT NULL,
+    "logSettingsOverrides" json NOT NULL,
+    "logServiceCalls" boolean NOT NULL,
+    "logMalformedCalls" boolean NOT NULL
+);
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_session_log" (
+    "id" bigserial PRIMARY KEY,
+    "serverId" text NOT NULL,
+    "time" timestamp without time zone NOT NULL,
+    "module" text,
+    "endpoint" text,
+    "method" text,
+    "duration" double precision,
+    "numQueries" bigint,
+    "slow" boolean,
+    "error" text,
+    "stackTrace" text,
+    "authenticatedUserId" bigint,
+    "userId" text,
+    "isOpen" boolean,
+    "touched" timestamp without time zone NOT NULL
+);
+
+-- Indexes
+CREATE INDEX "serverpod_session_log_serverid_idx" ON "serverpod_session_log" USING btree ("serverId");
 CREATE INDEX "serverpod_session_log_time_idx" ON "serverpod_session_log" USING btree ("time");
+CREATE INDEX "serverpod_session_log_touched_idx" ON "serverpod_session_log" USING btree ("touched");
+CREATE INDEX "serverpod_session_log_isopen_idx" ON "serverpod_session_log" USING btree ("isOpen");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_auth_key" (
+    "id" bigserial PRIMARY KEY,
+    "userId" bigint NOT NULL,
+    "hash" text NOT NULL,
+    "scopeNames" json NOT NULL,
+    "method" text NOT NULL
+);
+
+-- Indexes
+CREATE INDEX "serverpod_auth_key_userId_idx" ON "serverpod_auth_key" USING btree ("userId");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_email_auth" (
+    "id" bigserial PRIMARY KEY,
+    "userId" bigint NOT NULL,
+    "email" text NOT NULL,
+    "hash" text NOT NULL
+);
+
+-- Indexes
+CREATE UNIQUE INDEX "serverpod_email_auth_email" ON "serverpod_email_auth" USING btree ("email");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_email_create_request" (
+    "id" bigserial PRIMARY KEY,
+    "userName" text NOT NULL,
+    "email" text NOT NULL,
+    "hash" text NOT NULL,
+    "verificationCode" text NOT NULL
+);
+
+-- Indexes
+CREATE UNIQUE INDEX "serverpod_email_auth_create_account_request_idx" ON "serverpod_email_create_request" USING btree ("email");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_email_failed_sign_in" (
+    "id" bigserial PRIMARY KEY,
+    "email" text NOT NULL,
+    "time" timestamp without time zone NOT NULL,
+    "ipAddress" text NOT NULL
+);
+
+-- Indexes
+CREATE INDEX "serverpod_email_failed_sign_in_email_idx" ON "serverpod_email_failed_sign_in" USING btree ("email");
+CREATE INDEX "serverpod_email_failed_sign_in_time_idx" ON "serverpod_email_failed_sign_in" USING btree ("time");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_email_reset" (
+    "id" bigserial PRIMARY KEY,
+    "userId" bigint NOT NULL,
+    "verificationCode" text NOT NULL,
+    "expiration" timestamp without time zone NOT NULL
+);
+
+-- Indexes
+CREATE UNIQUE INDEX "serverpod_email_reset_verification_idx" ON "serverpod_email_reset" USING btree ("verificationCode");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_google_refresh_token" (
+    "id" bigserial PRIMARY KEY,
+    "userId" bigint NOT NULL,
+    "refreshToken" text NOT NULL
+);
+
+-- Indexes
+CREATE UNIQUE INDEX "serverpod_google_refresh_token_userId_idx" ON "serverpod_google_refresh_token" USING btree ("userId");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_user_image" (
+    "id" bigserial PRIMARY KEY,
+    "userId" bigint NOT NULL,
+    "version" bigint NOT NULL,
+    "url" text NOT NULL
+);
+
+-- Indexes
+CREATE INDEX "serverpod_user_image_user_id" ON "serverpod_user_image" USING btree ("userId", "version");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "serverpod_user_info" (
+    "id" bigserial PRIMARY KEY,
+    "userIdentifier" text NOT NULL,
+    "userName" text,
+    "fullName" text,
+    "email" text,
+    "created" timestamp without time zone NOT NULL,
+    "imageUrl" text,
+    "scopeNames" json NOT NULL,
+    "blocked" boolean NOT NULL
+);
+
+-- Indexes
+CREATE UNIQUE INDEX "serverpod_user_info_user_identifier" ON "serverpod_user_info" USING btree ("userIdentifier");
+CREATE INDEX "serverpod_user_info_email" ON "serverpod_user_info" USING btree ("email");
+
 --
 -- ACTION CREATE FOREIGN KEY
 --
@@ -637,14 +915,44 @@ ALTER TABLE ONLY "user_profile"
     ON DELETE NO ACTION
     ON UPDATE NO ACTION;
 
+--
+-- ACTION CREATE FOREIGN KEY
+--
+ALTER TABLE ONLY "serverpod_log"
+    ADD CONSTRAINT "serverpod_log_fk_0"
+    FOREIGN KEY("sessionLogId")
+    REFERENCES "serverpod_session_log"("id")
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION;
+
+--
+-- ACTION CREATE FOREIGN KEY
+--
+ALTER TABLE ONLY "serverpod_message_log"
+    ADD CONSTRAINT "serverpod_message_log_fk_0"
+    FOREIGN KEY("sessionLogId")
+    REFERENCES "serverpod_session_log"("id")
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION;
+
+--
+-- ACTION CREATE FOREIGN KEY
+--
+ALTER TABLE ONLY "serverpod_query_log"
+    ADD CONSTRAINT "serverpod_query_log_fk_0"
+    FOREIGN KEY("sessionLogId")
+    REFERENCES "serverpod_session_log"("id")
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION;
+
 
 --
 -- MIGRATION VERSION FOR oneshot
 --
 INSERT INTO "serverpod_migrations" ("module", "version", "timestamp")
-    VALUES ('oneshot', '20260331031549796', now())
+    VALUES ('oneshot', '20260402162939507', now())
     ON CONFLICT ("module")
-    DO UPDATE SET "version" = '20260331031549796', "timestamp" = now();
+    DO UPDATE SET "version" = '20260402162939507', "timestamp" = now();
 
 --
 -- MIGRATION VERSION FOR serverpod

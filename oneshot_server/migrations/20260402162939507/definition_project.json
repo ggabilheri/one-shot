@@ -15,21 +15,14 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "userId",
-          "columnType": 7,
-          "isNullable": true,
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
           "name": "userInfoId",
           "columnType": 6,
-          "isNullable": false,
-          "dartType": "int"
+          "isNullable": true,
+          "dartType": "int?"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -37,13 +30,6 @@
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "firearmId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -154,7 +140,7 @@
             {
               "__className__": "serverpod.IndexElementDefinition",
               "type": 0,
-              "definition": "userId"
+              "definition": "userInfoId"
             }
           ],
           "type": "btree",
@@ -191,7 +177,7 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -246,8 +232,8 @@
           "__className__": "serverpod.ColumnDefinition",
           "name": "userProfileId",
           "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
+          "isNullable": true,
+          "dartType": "UuidValue?"
         }
       ],
       "foreignKeys": [
@@ -311,21 +297,14 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "userId",
-          "columnType": 7,
-          "isNullable": true,
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
           "name": "userInfoId",
           "columnType": 6,
-          "isNullable": false,
-          "dartType": "int"
+          "isNullable": true,
+          "dartType": "int?"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -429,7 +408,7 @@
             {
               "__className__": "serverpod.IndexElementDefinition",
               "type": 0,
-              "definition": "userId"
+              "definition": "userInfoId"
             }
           ],
           "type": "btree",
@@ -466,7 +445,7 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -491,24 +470,10 @@
         },
         {
           "__className__": "serverpod.ColumnDefinition",
-          "name": "addressId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
           "name": "ownerId",
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "ownerId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -622,39 +587,18 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "userId",
-          "columnType": 7,
-          "isNullable": true,
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
           "name": "userInfoId",
           "columnType": 6,
-          "isNullable": false,
-          "dartType": "int"
+          "isNullable": true,
+          "dartType": "int?"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
           "name": "firearmId",
-          "columnType": 7,
-          "isNullable": true,
-          "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "firearmId",
-          "columnType": 7,
-          "isNullable": true,
-          "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "accessoryId",
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
@@ -714,13 +658,6 @@
           "columnType": 0,
           "isNullable": true,
           "dartType": "String?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "supplierAddressId",
-          "columnType": 7,
-          "isNullable": true,
-          "dartType": "UuidValue?"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -810,7 +747,7 @@
             {
               "__className__": "serverpod.IndexElementDefinition",
               "type": 0,
-              "definition": "userId"
+              "definition": "userInfoId"
             }
           ],
           "type": "btree",
@@ -861,21 +798,14 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "userId",
-          "columnType": 7,
-          "isNullable": true,
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
           "name": "userInfoId",
           "columnType": 6,
-          "isNullable": false,
-          "dartType": "int"
+          "isNullable": true,
+          "dartType": "int?"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -1035,7 +965,7 @@
             {
               "__className__": "serverpod.IndexElementDefinition",
               "type": 0,
-              "definition": "userId"
+              "definition": "userInfoId"
             }
           ],
           "type": "btree",
@@ -1072,21 +1002,14 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "gunsmithUserId",
-          "columnType": 7,
-          "isNullable": true,
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
           "name": "gunsmithUserInfoId",
           "columnType": 6,
-          "isNullable": false,
-          "dartType": "int"
+          "isNullable": true,
+          "dartType": "int?"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -1122,13 +1045,6 @@
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "addressId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
         }
       ],
       "foreignKeys": [
@@ -1183,7 +1099,7 @@
             {
               "__className__": "serverpod.IndexElementDefinition",
               "type": 0,
-              "definition": "gunsmithUserId"
+              "definition": "gunsmithUserInfoId"
             }
           ],
           "type": "btree",
@@ -1220,7 +1136,7 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -1231,24 +1147,10 @@
         },
         {
           "__className__": "serverpod.ColumnDefinition",
-          "name": "userId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
           "name": "clubId",
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "clubId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -1381,7 +1283,7 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -1392,28 +1294,7 @@
         },
         {
           "__className__": "serverpod.ColumnDefinition",
-          "name": "userId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
           "name": "clubId",
-          "columnType": 7,
-          "isNullable": true,
-          "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "clubId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "firearmId",
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
@@ -1422,8 +1303,8 @@
           "__className__": "serverpod.ColumnDefinition",
           "name": "firearmId",
           "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
+          "isNullable": true,
+          "dartType": "UuidValue?"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -1580,21 +1461,14 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "userId",
-          "columnType": 7,
-          "isNullable": true,
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
           "name": "userInfoId",
           "columnType": 6,
-          "isNullable": false,
-          "dartType": "int"
+          "isNullable": true,
+          "dartType": "int?"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -1609,13 +1483,6 @@
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "pressId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -1647,13 +1514,6 @@
         },
         {
           "__className__": "serverpod.ColumnDefinition",
-          "name": "powderId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
           "name": "powderGrains",
           "columnType": 3,
           "isNullable": false,
@@ -1668,24 +1528,10 @@
         },
         {
           "__className__": "serverpod.ColumnDefinition",
-          "name": "primerId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
           "name": "projectileId",
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "projectileId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -1803,7 +1649,7 @@
             {
               "__className__": "serverpod.IndexElementDefinition",
               "type": 0,
-              "definition": "userId"
+              "definition": "userInfoId"
             }
           ],
           "type": "btree",
@@ -1840,7 +1686,7 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -1851,24 +1697,10 @@
         },
         {
           "__className__": "serverpod.ColumnDefinition",
-          "name": "reloadSessionId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
           "name": "firearmId",
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "firearmId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -2023,7 +1855,7 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -2031,13 +1863,6 @@
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "serviceOrderId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -2059,13 +1884,6 @@
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "supplyPartId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -2150,7 +1968,7 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -2161,24 +1979,10 @@
         },
         {
           "__className__": "serverpod.ColumnDefinition",
-          "name": "clientId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
           "name": "firearmId",
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "firearmId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -2319,7 +2123,7 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -2365,17 +2169,10 @@
         },
         {
           "__className__": "serverpod.ColumnDefinition",
-          "name": "userId",
-          "columnType": 7,
-          "isNullable": true,
-          "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
           "name": "userInfoId",
           "columnType": 6,
-          "isNullable": false,
-          "dartType": "int"
+          "isNullable": true,
+          "dartType": "int?"
         }
       ],
       "foreignKeys": [
@@ -2416,7 +2213,7 @@
             {
               "__className__": "serverpod.IndexElementDefinition",
               "type": 0,
-              "definition": "userId"
+              "definition": "userInfoId"
             }
           ],
           "type": "btree",
@@ -2439,21 +2236,14 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "userId",
-          "columnType": 7,
-          "isNullable": true,
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
           "name": "userInfoId",
           "columnType": 6,
-          "isNullable": false,
-          "dartType": "int"
+          "isNullable": true,
+          "dartType": "int?"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -2485,24 +2275,10 @@
         },
         {
           "__className__": "serverpod.ColumnDefinition",
-          "name": "firearmId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
           "name": "ammunitionId",
           "columnType": 7,
           "isNullable": true,
           "dartType": "UuidValue?"
-        },
-        {
-          "__className__": "serverpod.ColumnDefinition",
-          "name": "ammunitionId",
-          "columnType": 7,
-          "isNullable": false,
-          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
@@ -2599,7 +2375,7 @@
             {
               "__className__": "serverpod.IndexElementDefinition",
               "type": 0,
-              "definition": "userId"
+              "definition": "userInfoId"
             }
           ],
           "type": "btree",
@@ -2636,7 +2412,7 @@
           "columnType": 7,
           "isNullable": false,
           "columnDefault": "gen_random_uuid()",
-          "dartType": "UuidValue?"
+          "dartType": "UuidValue"
         },
         {
           "__className__": "serverpod.ColumnDefinition",
