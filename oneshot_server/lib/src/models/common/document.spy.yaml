@@ -12,7 +12,6 @@ fields:
   expirationDate: DateTime
   documentImageUrl: String?
   supplierName: String?
-  supplierAddressId: UuidValue?
   supplierAddress: Address?, relation(optional)(optional)
 indexes:
   document_user_id_idx:

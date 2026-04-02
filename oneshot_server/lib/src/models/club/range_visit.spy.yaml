@@ -2,11 +2,8 @@ class: RangeVisit
 table: range_visits
 fields:
   id: UuidValue, defaultModel=random
-  userId: UuidValue?
   user: UserProfile?, relation(optional)
-  clubId: UuidValue?
   club: Club?, relation(optional)
-  firearmId: UuidValue?
   firearm: Firearm?, relation(optional)
   checkIn: DateTime
   checkOut: DateTime?

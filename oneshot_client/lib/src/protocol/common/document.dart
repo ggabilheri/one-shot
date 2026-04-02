@@ -34,7 +34,6 @@ abstract class Document implements _i1.SerializableModel {
     this.documentImageUrl,
     this.supplierName,
     this.supplierAddressId,
-    this.supplierAddressId,
     this.supplierAddress,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
@@ -53,7 +52,6 @@ abstract class Document implements _i1.SerializableModel {
     required DateTime expirationDate,
     String? documentImageUrl,
     String? supplierName,
-    _i1.UuidValue? supplierAddressId,
     _i1.UuidValue? supplierAddressId,
     _i5.Address? supplierAddress,
   }) = _DocumentImpl;
@@ -142,8 +140,6 @@ abstract class Document implements _i1.SerializableModel {
 
   _i1.UuidValue? supplierAddressId;
 
-  _i1.UuidValue? supplierAddressId;
-
   _i5.Address? supplierAddress;
 
   /// Returns a shallow copy of this [Document]
@@ -165,7 +161,6 @@ abstract class Document implements _i1.SerializableModel {
     String? documentImageUrl,
     String? supplierName,
     _i1.UuidValue? supplierAddressId,
-    _i1.UuidValue? supplierAddressId,
     _i5.Address? supplierAddress,
   });
   @override
@@ -186,8 +181,6 @@ abstract class Document implements _i1.SerializableModel {
       'expirationDate': expirationDate.toJson(),
       if (documentImageUrl != null) 'documentImageUrl': documentImageUrl,
       if (supplierName != null) 'supplierName': supplierName,
-      if (supplierAddressId != null)
-        'supplierAddressId': supplierAddressId?.toJson(),
       if (supplierAddressId != null)
         'supplierAddressId': supplierAddressId?.toJson(),
       if (supplierAddress != null) 'supplierAddress': supplierAddress?.toJson(),
@@ -218,7 +211,6 @@ class _DocumentImpl extends Document {
     required DateTime expirationDate,
     String? documentImageUrl,
     String? supplierName,
-    _i1.UuidValue? supplierAddressId,
     _i1.UuidValue? supplierAddressId,
     _i5.Address? supplierAddress,
   }) : super._(
@@ -259,7 +251,6 @@ class _DocumentImpl extends Document {
     DateTime? expirationDate,
     Object? documentImageUrl = _Undefined,
     Object? supplierName = _Undefined,
-    Object? supplierAddressId = _Undefined,
     Object? supplierAddressId = _Undefined,
     Object? supplierAddress = _Undefined,
   }) {

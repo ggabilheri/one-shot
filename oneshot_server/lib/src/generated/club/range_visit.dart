@@ -22,12 +22,9 @@ abstract class RangeVisit
   RangeVisit._({
     _i1.UuidValue? id,
     this.userId,
-    this.userId,
     this.user,
     this.clubId,
-    this.clubId,
     this.club,
-    this.firearmId,
     this.firearmId,
     this.firearm,
     required this.checkIn,
@@ -42,12 +39,9 @@ abstract class RangeVisit
   factory RangeVisit({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    _i1.UuidValue? userId,
     _i2.UserProfile? user,
     _i1.UuidValue? clubId,
-    _i1.UuidValue? clubId,
     _i3.Club? club,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i4.Firearm? firearm,
     required DateTime checkIn,
@@ -108,17 +102,11 @@ abstract class RangeVisit
 
   _i1.UuidValue? userId;
 
-  _i1.UuidValue? userId;
-
   _i2.UserProfile? user;
 
   _i1.UuidValue? clubId;
 
-  _i1.UuidValue? clubId;
-
   _i3.Club? club;
-
-  _i1.UuidValue? firearmId;
 
   _i1.UuidValue? firearmId;
 
@@ -143,12 +131,9 @@ abstract class RangeVisit
   RangeVisit copyWith({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    _i1.UuidValue? userId,
     _i2.UserProfile? user,
     _i1.UuidValue? clubId,
-    _i1.UuidValue? clubId,
     _i3.Club? club,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i4.Firearm? firearm,
     DateTime? checkIn,
@@ -163,12 +148,9 @@ abstract class RangeVisit
       '__className__': 'RangeVisit',
       'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (user != null) 'user': user?.toJson(),
       if (clubId != null) 'clubId': clubId?.toJson(),
-      if (clubId != null) 'clubId': clubId?.toJson(),
       if (club != null) 'club': club?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'checkIn': checkIn.toJson(),
@@ -185,12 +167,9 @@ abstract class RangeVisit
       '__className__': 'RangeVisit',
       'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (user != null) 'user': user?.toJsonForProtocol(),
       if (clubId != null) 'clubId': clubId?.toJson(),
-      if (clubId != null) 'clubId': clubId?.toJson(),
       if (club != null) 'club': club?.toJsonForProtocol(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
       'checkIn': checkIn.toJson(),
@@ -245,12 +224,9 @@ class _RangeVisitImpl extends RangeVisit {
   _RangeVisitImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    _i1.UuidValue? userId,
     _i2.UserProfile? user,
     _i1.UuidValue? clubId,
-    _i1.UuidValue? clubId,
     _i3.Club? club,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i4.Firearm? firearm,
     required DateTime checkIn,
@@ -280,12 +256,9 @@ class _RangeVisitImpl extends RangeVisit {
   RangeVisit copyWith({
     _i1.UuidValue? id,
     Object? userId = _Undefined,
-    Object? userId = _Undefined,
     Object? user = _Undefined,
     Object? clubId = _Undefined,
-    Object? clubId = _Undefined,
     Object? club = _Undefined,
-    Object? firearmId = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     DateTime? checkIn,
@@ -321,30 +294,11 @@ class RangeVisitUpdateTable extends _i1.UpdateTable<RangeVisitTable> {
         value,
       );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.userId,
-        value,
-      );
-
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> clubId(_i1.UuidValue? value) =>
       _i1.ColumnValue(
         table.clubId,
         value,
       );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> clubId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.clubId,
-        value,
-      );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.firearmId,
-    value,
-  );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
     _i1.UuidValue? value,
@@ -389,20 +343,8 @@ class RangeVisitTable extends _i1.Table<_i1.UuidValue> {
       'userId',
       this,
     );
-    userId = _i1.ColumnUuid(
-      'userId',
-      this,
-    );
     clubId = _i1.ColumnUuid(
       'clubId',
-      this,
-    );
-    clubId = _i1.ColumnUuid(
-      'clubId',
-      this,
-    );
-    firearmId = _i1.ColumnUuid(
-      'firearmId',
       this,
     );
     firearmId = _i1.ColumnUuid(
@@ -437,17 +379,11 @@ class RangeVisitTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnUuid userId;
 
-  late final _i1.ColumnUuid userId;
-
   _i2.UserProfileTable? _user;
 
   late final _i1.ColumnUuid clubId;
 
-  late final _i1.ColumnUuid clubId;
-
   _i3.ClubTable? _club;
-
-  late final _i1.ColumnUuid firearmId;
 
   late final _i1.ColumnUuid firearmId;
 
@@ -506,10 +442,7 @@ class RangeVisitTable extends _i1.Table<_i1.UuidValue> {
   List<_i1.Column> get columns => [
     id,
     userId,
-    userId,
     clubId,
-    clubId,
-    firearmId,
     firearmId,
     checkIn,
     checkOut,

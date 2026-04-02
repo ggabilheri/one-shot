@@ -36,7 +36,6 @@ abstract class Document
     this.documentImageUrl,
     this.supplierName,
     this.supplierAddressId,
-    this.supplierAddressId,
     this.supplierAddress,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
@@ -55,7 +54,6 @@ abstract class Document
     required DateTime expirationDate,
     String? documentImageUrl,
     String? supplierName,
-    _i1.UuidValue? supplierAddressId,
     _i1.UuidValue? supplierAddressId,
     _i5.Address? supplierAddress,
   }) = _DocumentImpl;
@@ -148,8 +146,6 @@ abstract class Document
 
   _i1.UuidValue? supplierAddressId;
 
-  _i1.UuidValue? supplierAddressId;
-
   _i5.Address? supplierAddress;
 
   @override
@@ -174,7 +170,6 @@ abstract class Document
     String? documentImageUrl,
     String? supplierName,
     _i1.UuidValue? supplierAddressId,
-    _i1.UuidValue? supplierAddressId,
     _i5.Address? supplierAddress,
   });
   @override
@@ -195,8 +190,6 @@ abstract class Document
       'expirationDate': expirationDate.toJson(),
       if (documentImageUrl != null) 'documentImageUrl': documentImageUrl,
       if (supplierName != null) 'supplierName': supplierName,
-      if (supplierAddressId != null)
-        'supplierAddressId': supplierAddressId?.toJson(),
       if (supplierAddressId != null)
         'supplierAddressId': supplierAddressId?.toJson(),
       if (supplierAddress != null) 'supplierAddress': supplierAddress?.toJson(),
@@ -221,8 +214,6 @@ abstract class Document
       'expirationDate': expirationDate.toJson(),
       if (documentImageUrl != null) 'documentImageUrl': documentImageUrl,
       if (supplierName != null) 'supplierName': supplierName,
-      if (supplierAddressId != null)
-        'supplierAddressId': supplierAddressId?.toJson(),
       if (supplierAddressId != null)
         'supplierAddressId': supplierAddressId?.toJson(),
       if (supplierAddress != null)
@@ -289,7 +280,6 @@ class _DocumentImpl extends Document {
     String? documentImageUrl,
     String? supplierName,
     _i1.UuidValue? supplierAddressId,
-    _i1.UuidValue? supplierAddressId,
     _i5.Address? supplierAddress,
   }) : super._(
          id: id,
@@ -329,7 +319,6 @@ class _DocumentImpl extends Document {
     DateTime? expirationDate,
     Object? documentImageUrl = _Undefined,
     Object? supplierName = _Undefined,
-    Object? supplierAddressId = _Undefined,
     Object? supplierAddressId = _Undefined,
     Object? supplierAddress = _Undefined,
   }) {
@@ -435,13 +424,6 @@ class DocumentUpdateTable extends _i1.UpdateTable<DocumentTable> {
     table.supplierAddressId,
     value,
   );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> supplierAddressId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.supplierAddressId,
-    value,
-  );
 }
 
 class DocumentTable extends _i1.Table<_i1.UuidValue> {
@@ -491,10 +473,6 @@ class DocumentTable extends _i1.Table<_i1.UuidValue> {
       'supplierAddressId',
       this,
     );
-    supplierAddressId = _i1.ColumnUuid(
-      'supplierAddressId',
-      this,
-    );
   }
 
   late final DocumentUpdateTable updateTable;
@@ -524,8 +502,6 @@ class DocumentTable extends _i1.Table<_i1.UuidValue> {
   late final _i1.ColumnString documentImageUrl;
 
   late final _i1.ColumnString supplierName;
-
-  late final _i1.ColumnUuid supplierAddressId;
 
   late final _i1.ColumnUuid supplierAddressId;
 
@@ -596,7 +572,6 @@ class DocumentTable extends _i1.Table<_i1.UuidValue> {
     expirationDate,
     documentImageUrl,
     supplierName,
-    supplierAddressId,
     supplierAddressId,
   ];
 

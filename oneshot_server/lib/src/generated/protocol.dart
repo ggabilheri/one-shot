@@ -652,12 +652,6 @@ class Protocol extends _i1.SerializationManagerServer {
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
-          name: 'supplierAddressId',
-          columnType: _i2.ColumnType.uuid,
-          isNullable: true,
-          dartType: 'UuidValue?',
-        ),
       ],
       foreignKeys: [
         _i2.ForeignKeyDefinition(
@@ -1195,25 +1189,7 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'UuidValue?',
         ),
         _i2.ColumnDefinition(
-          name: 'userId',
-          columnType: _i2.ColumnType.uuid,
-          isNullable: true,
-          dartType: 'UuidValue?',
-        ),
-        _i2.ColumnDefinition(
           name: 'clubId',
-          columnType: _i2.ColumnType.uuid,
-          isNullable: true,
-          dartType: 'UuidValue?',
-        ),
-        _i2.ColumnDefinition(
-          name: 'clubId',
-          columnType: _i2.ColumnType.uuid,
-          isNullable: true,
-          dartType: 'UuidValue?',
-        ),
-        _i2.ColumnDefinition(
-          name: 'firearmId',
           columnType: _i2.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
