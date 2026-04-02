@@ -17,7 +17,6 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i3;
 abstract class AmmunitionStock implements _i1.SerializableModel {
   AmmunitionStock._({
     _i1.UuidValue? id,
-    this.userId,
     this.userInfoId,
     this.userInfo,
     required this.type,
@@ -33,7 +32,6 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
 
   factory AmmunitionStock({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required String type,
@@ -52,9 +50,6 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: jsonSerialization['userId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
@@ -78,8 +73,6 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
 
   /// The id of the object.
   _i1.UuidValue id;
-
-  _i1.UuidValue? userId;
 
   int? userInfoId;
 
@@ -108,7 +101,6 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
   @_i1.useResult
   AmmunitionStock copyWith({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     String? type,
@@ -126,7 +118,6 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
     return {
       '__className__': 'AmmunitionStock',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'type': type,
@@ -153,7 +144,6 @@ class _Undefined {}
 class _AmmunitionStockImpl extends AmmunitionStock {
   _AmmunitionStockImpl({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required String type,
@@ -167,7 +157,6 @@ class _AmmunitionStockImpl extends AmmunitionStock {
     String? casingBatch,
   }) : super._(
          id: id,
-         userId: userId,
          userInfoId: userInfoId,
          userInfo: userInfo,
          type: type,
@@ -187,7 +176,6 @@ class _AmmunitionStockImpl extends AmmunitionStock {
   @override
   AmmunitionStock copyWith({
     _i1.UuidValue? id,
-    Object? userId = _Undefined,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     String? type,
@@ -202,7 +190,6 @@ class _AmmunitionStockImpl extends AmmunitionStock {
   }) {
     return AmmunitionStock(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo

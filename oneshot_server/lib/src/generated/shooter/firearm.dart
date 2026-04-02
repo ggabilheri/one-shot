@@ -19,7 +19,6 @@ abstract class Firearm
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Firearm._({
     _i1.UuidValue? id,
-    this.userId,
     this.userInfoId,
     this.userInfo,
     required this.purpose,
@@ -43,7 +42,6 @@ abstract class Firearm
 
   factory Firearm({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required String purpose,
@@ -70,9 +68,6 @@ abstract class Firearm
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: jsonSerialization['userId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
@@ -111,8 +106,6 @@ abstract class Firearm
 
   @override
   _i1.UuidValue id;
-
-  _i1.UuidValue? userId;
 
   int? userInfoId;
 
@@ -160,7 +153,6 @@ abstract class Firearm
   @_i1.useResult
   Firearm copyWith({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     String? purpose,
@@ -186,7 +178,6 @@ abstract class Firearm
     return {
       '__className__': 'Firearm',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'purpose': purpose,
@@ -214,7 +205,6 @@ abstract class Firearm
     return {
       '__className__': 'Firearm',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
       'purpose': purpose,
@@ -272,7 +262,6 @@ class _Undefined {}
 class _FirearmImpl extends Firearm {
   _FirearmImpl({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required String purpose,
@@ -294,7 +283,6 @@ class _FirearmImpl extends Firearm {
     required String condition,
   }) : super._(
          id: id,
-         userId: userId,
          userInfoId: userInfoId,
          userInfo: userInfo,
          purpose: purpose,
@@ -322,7 +310,6 @@ class _FirearmImpl extends Firearm {
   @override
   Firearm copyWith({
     _i1.UuidValue? id,
-    Object? userId = _Undefined,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     String? purpose,
@@ -345,7 +332,6 @@ class _FirearmImpl extends Firearm {
   }) {
     return Firearm(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
@@ -377,12 +363,6 @@ class _FirearmImpl extends Firearm {
 
 class FirearmUpdateTable extends _i1.UpdateTable<FirearmTable> {
   FirearmUpdateTable(super.table);
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.userId,
-        value,
-      );
 
   _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
     table.userInfoId,
@@ -482,10 +462,6 @@ class FirearmUpdateTable extends _i1.UpdateTable<FirearmTable> {
 class FirearmTable extends _i1.Table<_i1.UuidValue> {
   FirearmTable({super.tableRelation}) : super(tableName: 'firearms') {
     updateTable = FirearmUpdateTable(this);
-    userId = _i1.ColumnUuid(
-      'userId',
-      this,
-    );
     userInfoId = _i1.ColumnInt(
       'userInfoId',
       this,
@@ -562,8 +538,6 @@ class FirearmTable extends _i1.Table<_i1.UuidValue> {
 
   late final FirearmUpdateTable updateTable;
 
-  late final _i1.ColumnUuid userId;
-
   late final _i1.ColumnInt userInfoId;
 
   _i2.UserInfoTable? _userInfo;
@@ -618,7 +592,6 @@ class FirearmTable extends _i1.Table<_i1.UuidValue> {
   @override
   List<_i1.Column> get columns => [
     id,
-    userId,
     userInfoId,
     purpose,
     type,

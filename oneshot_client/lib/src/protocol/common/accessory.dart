@@ -18,10 +18,8 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i4;
 abstract class Accessory implements _i1.SerializableModel {
   Accessory._({
     _i1.UuidValue? id,
-    this.userId,
     this.userInfoId,
     this.userInfo,
-    this.firearmId,
     this.firearmId,
     this.firearm,
     required this.purpose,
@@ -36,10 +34,8 @@ abstract class Accessory implements _i1.SerializableModel {
 
   factory Accessory({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required String purpose,
@@ -57,9 +53,6 @@ abstract class Accessory implements _i1.SerializableModel {
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: jsonSerialization['userId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
@@ -92,13 +85,9 @@ abstract class Accessory implements _i1.SerializableModel {
   /// The id of the object.
   _i1.UuidValue id;
 
-  _i1.UuidValue? userId;
-
   int? userInfoId;
 
   _i2.UserInfo? userInfo;
-
-  _i1.UuidValue? firearmId;
 
   _i1.UuidValue? firearmId;
 
@@ -125,10 +114,8 @@ abstract class Accessory implements _i1.SerializableModel {
   @_i1.useResult
   Accessory copyWith({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     String? purpose,
@@ -145,10 +132,8 @@ abstract class Accessory implements _i1.SerializableModel {
     return {
       '__className__': 'Accessory',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'purpose': purpose,
@@ -173,10 +158,8 @@ class _Undefined {}
 class _AccessoryImpl extends Accessory {
   _AccessoryImpl({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required String purpose,
@@ -189,7 +172,6 @@ class _AccessoryImpl extends Accessory {
     DateTime? acquisitionDate,
   }) : super._(
          id: id,
-         userId: userId,
          userInfoId: userInfoId,
          userInfo: userInfo,
          firearmId: firearmId,
@@ -210,10 +192,8 @@ class _AccessoryImpl extends Accessory {
   @override
   Accessory copyWith({
     _i1.UuidValue? id,
-    Object? userId = _Undefined,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
-    Object? firearmId = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     String? purpose,
@@ -227,7 +207,6 @@ class _AccessoryImpl extends Accessory {
   }) {
     return Accessory(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo

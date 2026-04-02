@@ -13,13 +13,13 @@ class TrainingEndpoint extends Endpoint {
 
   /// Lista todos os treinos do usuário logado.
   Future<List<Training>> getMyTrainings(Session session) async {
-    final authId = session.authenticated!.authId;
+    final profile = await sl.getOrCreateProfileUseCase.execute(session);
 
     // Busca direta via repositório (ou use case de listagem se houver regras complexas)
     // Por simplicidade inicial, usamos o repositório diretamente via SL.
     // Nota: O ideal é que o repositório lide com o mapeamento de authId se necessário.
     return await sl.trainingRepository
-        .findByUserId(session, UuidValue.fromString(authId.toString()));
+        .findByUserId(session, profile.userInfoId!);
   }
 
   /// Busca um treino específico.

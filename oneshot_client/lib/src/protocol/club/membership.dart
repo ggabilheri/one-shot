@@ -20,9 +20,7 @@ abstract class Membership implements _i1.SerializableModel {
   Membership._({
     _i1.UuidValue? id,
     this.userId,
-    this.userId,
     this.user,
-    this.clubId,
     this.clubId,
     this.club,
     this.membershipNumber,
@@ -36,9 +34,7 @@ abstract class Membership implements _i1.SerializableModel {
   factory Membership({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    _i1.UuidValue? userId,
     _i3.UserProfile? user,
-    _i1.UuidValue? clubId,
     _i1.UuidValue? clubId,
     _i4.Club? club,
     String? membershipNumber,
@@ -88,11 +84,7 @@ abstract class Membership implements _i1.SerializableModel {
 
   _i1.UuidValue? userId;
 
-  _i1.UuidValue? userId;
-
   _i3.UserProfile? user;
-
-  _i1.UuidValue? clubId;
 
   _i1.UuidValue? clubId;
 
@@ -114,9 +106,7 @@ abstract class Membership implements _i1.SerializableModel {
   Membership copyWith({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    _i1.UuidValue? userId,
     _i3.UserProfile? user,
-    _i1.UuidValue? clubId,
     _i1.UuidValue? clubId,
     _i4.Club? club,
     String? membershipNumber,
@@ -131,9 +121,7 @@ abstract class Membership implements _i1.SerializableModel {
       '__className__': 'Membership',
       'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (user != null) 'user': user?.toJson(),
-      if (clubId != null) 'clubId': clubId?.toJson(),
       if (clubId != null) 'clubId': clubId?.toJson(),
       if (club != null) 'club': club?.toJson(),
       if (membershipNumber != null) 'membershipNumber': membershipNumber,
@@ -156,9 +144,7 @@ class _MembershipImpl extends Membership {
   _MembershipImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    _i1.UuidValue? userId,
     _i3.UserProfile? user,
-    _i1.UuidValue? clubId,
     _i1.UuidValue? clubId,
     _i4.Club? club,
     String? membershipNumber,
@@ -186,9 +172,7 @@ class _MembershipImpl extends Membership {
   Membership copyWith({
     _i1.UuidValue? id,
     Object? userId = _Undefined,
-    Object? userId = _Undefined,
     Object? user = _Undefined,
-    Object? clubId = _Undefined,
     Object? clubId = _Undefined,
     Object? club = _Undefined,
     Object? membershipNumber = _Undefined,

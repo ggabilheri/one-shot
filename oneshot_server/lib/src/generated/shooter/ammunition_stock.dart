@@ -19,7 +19,6 @@ abstract class AmmunitionStock
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   AmmunitionStock._({
     _i1.UuidValue? id,
-    this.userId,
     this.userInfoId,
     this.userInfo,
     required this.type,
@@ -35,7 +34,6 @@ abstract class AmmunitionStock
 
   factory AmmunitionStock({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required String type,
@@ -54,9 +52,6 @@ abstract class AmmunitionStock
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: jsonSerialization['userId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
@@ -84,8 +79,6 @@ abstract class AmmunitionStock
 
   @override
   _i1.UuidValue id;
-
-  _i1.UuidValue? userId;
 
   int? userInfoId;
 
@@ -117,7 +110,6 @@ abstract class AmmunitionStock
   @_i1.useResult
   AmmunitionStock copyWith({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     String? type,
@@ -135,7 +127,6 @@ abstract class AmmunitionStock
     return {
       '__className__': 'AmmunitionStock',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'type': type,
@@ -156,7 +147,6 @@ abstract class AmmunitionStock
     return {
       '__className__': 'AmmunitionStock',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
       'type': type,
@@ -207,7 +197,6 @@ class _Undefined {}
 class _AmmunitionStockImpl extends AmmunitionStock {
   _AmmunitionStockImpl({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required String type,
@@ -221,7 +210,6 @@ class _AmmunitionStockImpl extends AmmunitionStock {
     String? casingBatch,
   }) : super._(
          id: id,
-         userId: userId,
          userInfoId: userInfoId,
          userInfo: userInfo,
          type: type,
@@ -241,7 +229,6 @@ class _AmmunitionStockImpl extends AmmunitionStock {
   @override
   AmmunitionStock copyWith({
     _i1.UuidValue? id,
-    Object? userId = _Undefined,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     String? type,
@@ -256,7 +243,6 @@ class _AmmunitionStockImpl extends AmmunitionStock {
   }) {
     return AmmunitionStock(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
@@ -280,12 +266,6 @@ class _AmmunitionStockImpl extends AmmunitionStock {
 
 class AmmunitionStockUpdateTable extends _i1.UpdateTable<AmmunitionStockTable> {
   AmmunitionStockUpdateTable(super.table);
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.userId,
-        value,
-      );
 
   _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
     table.userInfoId,
@@ -346,10 +326,6 @@ class AmmunitionStockTable extends _i1.Table<_i1.UuidValue> {
   AmmunitionStockTable({super.tableRelation})
     : super(tableName: 'ammunition_stocks') {
     updateTable = AmmunitionStockUpdateTable(this);
-    userId = _i1.ColumnUuid(
-      'userId',
-      this,
-    );
     userInfoId = _i1.ColumnInt(
       'userInfoId',
       this,
@@ -394,8 +370,6 @@ class AmmunitionStockTable extends _i1.Table<_i1.UuidValue> {
 
   late final AmmunitionStockUpdateTable updateTable;
 
-  late final _i1.ColumnUuid userId;
-
   late final _i1.ColumnInt userInfoId;
 
   _i2.UserInfoTable? _userInfo;
@@ -434,7 +408,6 @@ class AmmunitionStockTable extends _i1.Table<_i1.UuidValue> {
   @override
   List<_i1.Column> get columns => [
     id,
-    userId,
     userInfoId,
     type,
     manufacturer,

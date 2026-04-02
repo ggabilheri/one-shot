@@ -4,10 +4,10 @@ import 'package:serverpod/serverpod.dart';
 
 /// Implementação do Repositório de Recarga usando o DB do Serverpod.
 class ReloadRepository implements IReloadRepository {
-  
   // Sessões de Recarga
   @override
-  Future<ReloadSession> createSession(Session session, ReloadSession reloadSession) async {
+  Future<ReloadSession> createSession(
+      Session session, ReloadSession reloadSession) async {
     return await ReloadSession.db.insertRow(session, reloadSession);
   }
 
@@ -17,10 +17,11 @@ class ReloadRepository implements IReloadRepository {
   }
 
   @override
-  Future<List<ReloadSession>> listSessionsByUser(Session session, UuidValue userId) async {
+  Future<List<ReloadSession>> listSessionsByUser(
+      Session session, int userId) async {
     return await ReloadSession.db.find(
       session,
-      where: (t) => t.userId.equals(userId),
+      where: (t) => t.userInfo.id.equals(userId),
     );
   }
 
@@ -31,7 +32,8 @@ class ReloadRepository implements IReloadRepository {
   }
 
   @override
-  Future<List<ReloadTest>> listTestsBySession(Session session, UuidValue sessionId) async {
+  Future<List<ReloadTest>> listTestsBySession(
+      Session session, UuidValue sessionId) async {
     return await ReloadTest.db.find(
       session,
       where: (t) => t.reloadSessionId.equals(sessionId),
@@ -50,10 +52,11 @@ class ReloadRepository implements IReloadRepository {
   }
 
   @override
-  Future<List<SupplyStock>> listSuppliesByUser(Session session, UuidValue userId) async {
+  Future<List<SupplyStock>> listSuppliesByUser(
+      Session session, int userId) async {
     return await SupplyStock.db.find(
       session,
-      where: (t) => t.userId.equals(userId),
+      where: (t) => t.userInfo.id.equals(userId),
     );
   }
 
@@ -63,13 +66,14 @@ class ReloadRepository implements IReloadRepository {
   }
 
   @override
-  Future<SupplyStock> adjustSupplyQuantity(Session session, UuidValue id, double change) async {
+  Future<SupplyStock> adjustSupplyQuantity(
+      Session session, UuidValue id, double change) async {
     final supply = await SupplyStock.db.findById(session, id);
     if (supply == null) throw Exception('Insumo não encontrado no estoque.');
-    
+
     supply.quantity += change;
     if (supply.quantity < 0) supply.quantity = 0; // Evita estoque negativo
-    
+
     return await SupplyStock.db.updateRow(session, supply);
   }
 }

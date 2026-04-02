@@ -23,9 +23,7 @@ abstract class Club
     required this.name,
     required this.cnpj,
     this.addressId,
-    this.addressId,
     this.address,
-    this.ownerId,
     this.ownerId,
     this.owner,
     this.phoneNumber,
@@ -39,9 +37,7 @@ abstract class Club
     required String name,
     required String cnpj,
     _i1.UuidValue? addressId,
-    _i1.UuidValue? addressId,
     _i2.Address? address,
-    _i1.UuidValue? ownerId,
     _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     String? phoneNumber,
@@ -93,11 +89,7 @@ abstract class Club
 
   _i1.UuidValue? addressId;
 
-  _i1.UuidValue? addressId;
-
   _i2.Address? address;
-
-  _i1.UuidValue? ownerId;
 
   _i1.UuidValue? ownerId;
 
@@ -120,9 +112,7 @@ abstract class Club
     String? name,
     String? cnpj,
     _i1.UuidValue? addressId,
-    _i1.UuidValue? addressId,
     _i2.Address? address,
-    _i1.UuidValue? ownerId,
     _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     String? phoneNumber,
@@ -137,9 +127,7 @@ abstract class Club
       'name': name,
       'cnpj': cnpj,
       if (addressId != null) 'addressId': addressId?.toJson(),
-      if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJson(),
-      if (ownerId != null) 'ownerId': ownerId?.toJson(),
       if (ownerId != null) 'ownerId': ownerId?.toJson(),
       if (owner != null) 'owner': owner?.toJson(),
       if (phoneNumber != null) 'phoneNumber': phoneNumber,
@@ -156,9 +144,7 @@ abstract class Club
       'name': name,
       'cnpj': cnpj,
       if (addressId != null) 'addressId': addressId?.toJson(),
-      if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJsonForProtocol(),
-      if (ownerId != null) 'ownerId': ownerId?.toJson(),
       if (ownerId != null) 'ownerId': ownerId?.toJson(),
       if (owner != null) 'owner': owner?.toJsonForProtocol(),
       if (phoneNumber != null) 'phoneNumber': phoneNumber,
@@ -211,9 +197,7 @@ class _ClubImpl extends Club {
     required String name,
     required String cnpj,
     _i1.UuidValue? addressId,
-    _i1.UuidValue? addressId,
     _i2.Address? address,
-    _i1.UuidValue? ownerId,
     _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     String? phoneNumber,
@@ -241,9 +225,7 @@ class _ClubImpl extends Club {
     String? name,
     String? cnpj,
     Object? addressId = _Undefined,
-    Object? addressId = _Undefined,
     Object? address = _Undefined,
-    Object? ownerId = _Undefined,
     Object? ownerId = _Undefined,
     Object? owner = _Undefined,
     Object? phoneNumber = _Undefined,
@@ -285,19 +267,6 @@ class ClubUpdateTable extends _i1.UpdateTable<ClubTable> {
     value,
   );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> addressId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.addressId,
-    value,
-  );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> ownerId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.ownerId,
-        value,
-      );
-
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> ownerId(_i1.UuidValue? value) =>
       _i1.ColumnValue(
         table.ownerId,
@@ -335,14 +304,6 @@ class ClubTable extends _i1.Table<_i1.UuidValue> {
       'addressId',
       this,
     );
-    addressId = _i1.ColumnUuid(
-      'addressId',
-      this,
-    );
-    ownerId = _i1.ColumnUuid(
-      'ownerId',
-      this,
-    );
     ownerId = _i1.ColumnUuid(
       'ownerId',
       this,
@@ -370,11 +331,7 @@ class ClubTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnUuid addressId;
 
-  late final _i1.ColumnUuid addressId;
-
   _i2.AddressTable? _address;
-
-  late final _i1.ColumnUuid ownerId;
 
   late final _i1.ColumnUuid ownerId;
 
@@ -418,8 +375,6 @@ class ClubTable extends _i1.Table<_i1.UuidValue> {
     name,
     cnpj,
     addressId,
-    addressId,
-    ownerId,
     ownerId,
     phoneNumber,
     email,

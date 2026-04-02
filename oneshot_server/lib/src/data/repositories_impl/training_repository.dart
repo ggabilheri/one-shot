@@ -14,10 +14,10 @@ class TrainingRepository implements ITrainingRepository {
   }
 
   @override
-  Future<List<Training>> findByUserId(Session session, UuidValue userId) async {
+  Future<List<Training>> findByUserId(Session session, int userId) async {
     return await Training.db.find(
       session,
-      where: (t) => t.userId.equals(userId),
+      where: (t) => t.userInfoId.equals(userId),
       orderBy: (t) => t.date,
       orderDescending: true,
     );

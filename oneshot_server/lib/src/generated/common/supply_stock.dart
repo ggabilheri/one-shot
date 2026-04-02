@@ -25,7 +25,6 @@ abstract class SupplyStock
     required this.unit,
     this.acquisitionDate,
     this.batchNumber,
-    this.userId,
     this.userInfoId,
     this.userInfo,
   }) : id = id ?? const _i1.Uuid().v4obj();
@@ -38,7 +37,6 @@ abstract class SupplyStock
     required String unit,
     DateTime? acquisitionDate,
     String? batchNumber,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
   }) = _SupplyStockImpl;
@@ -58,9 +56,6 @@ abstract class SupplyStock
               jsonSerialization['acquisitionDate'],
             ),
       batchNumber: jsonSerialization['batchNumber'] as String?,
-      userId: jsonSerialization['userId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
@@ -89,8 +84,6 @@ abstract class SupplyStock
 
   String? batchNumber;
 
-  _i1.UuidValue? userId;
-
   int? userInfoId;
 
   _i2.UserInfo? userInfo;
@@ -109,7 +102,6 @@ abstract class SupplyStock
     String? unit,
     DateTime? acquisitionDate,
     String? batchNumber,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
   });
@@ -124,7 +116,6 @@ abstract class SupplyStock
       'unit': unit,
       if (acquisitionDate != null) 'acquisitionDate': acquisitionDate?.toJson(),
       if (batchNumber != null) 'batchNumber': batchNumber,
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
     };
@@ -141,7 +132,6 @@ abstract class SupplyStock
       'unit': unit,
       if (acquisitionDate != null) 'acquisitionDate': acquisitionDate?.toJson(),
       if (batchNumber != null) 'batchNumber': batchNumber,
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
     };
@@ -188,7 +178,6 @@ class _SupplyStockImpl extends SupplyStock {
     required String unit,
     DateTime? acquisitionDate,
     String? batchNumber,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
   }) : super._(
@@ -199,7 +188,6 @@ class _SupplyStockImpl extends SupplyStock {
          unit: unit,
          acquisitionDate: acquisitionDate,
          batchNumber: batchNumber,
-         userId: userId,
          userInfoId: userInfoId,
          userInfo: userInfo,
        );
@@ -216,7 +204,6 @@ class _SupplyStockImpl extends SupplyStock {
     String? unit,
     Object? acquisitionDate = _Undefined,
     Object? batchNumber = _Undefined,
-    Object? userId = _Undefined,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
   }) {
@@ -230,7 +217,6 @@ class _SupplyStockImpl extends SupplyStock {
           ? acquisitionDate
           : this.acquisitionDate,
       batchNumber: batchNumber is String? ? batchNumber : this.batchNumber,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
@@ -273,12 +259,6 @@ class SupplyStockUpdateTable extends _i1.UpdateTable<SupplyStockTable> {
     value,
   );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.userId,
-        value,
-      );
-
   _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
     table.userInfoId,
     value,
@@ -312,10 +292,6 @@ class SupplyStockTable extends _i1.Table<_i1.UuidValue> {
       'batchNumber',
       this,
     );
-    userId = _i1.ColumnUuid(
-      'userId',
-      this,
-    );
     userInfoId = _i1.ColumnInt(
       'userInfoId',
       this,
@@ -335,8 +311,6 @@ class SupplyStockTable extends _i1.Table<_i1.UuidValue> {
   late final _i1.ColumnDateTime acquisitionDate;
 
   late final _i1.ColumnString batchNumber;
-
-  late final _i1.ColumnUuid userId;
 
   late final _i1.ColumnInt userInfoId;
 
@@ -364,7 +338,6 @@ class SupplyStockTable extends _i1.Table<_i1.UuidValue> {
     unit,
     acquisitionDate,
     batchNumber,
-    userId,
     userInfoId,
   ];
 

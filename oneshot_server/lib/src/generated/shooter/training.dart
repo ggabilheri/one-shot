@@ -21,16 +21,13 @@ abstract class Training
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Training._({
     _i1.UuidValue? id,
-    this.userId,
     this.userInfoId,
     this.userInfo,
     required this.date,
     required this.location,
     required this.environmentType,
     this.firearmId,
-    this.firearmId,
     this.firearm,
-    this.ammunitionId,
     this.ammunitionId,
     this.ammunition,
     required this.shotsFired,
@@ -41,16 +38,13 @@ abstract class Training
 
   factory Training({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required DateTime date,
     required String location,
     required String environmentType,
     _i1.UuidValue? firearmId,
-    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    _i1.UuidValue? ammunitionId,
     _i1.UuidValue? ammunitionId,
     _i4.AmmunitionStock? ammunition,
     required int shotsFired,
@@ -64,9 +58,6 @@ abstract class Training
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: jsonSerialization['userId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
@@ -108,8 +99,6 @@ abstract class Training
   @override
   _i1.UuidValue id;
 
-  _i1.UuidValue? userId;
-
   int? userInfoId;
 
   _i2.UserInfo? userInfo;
@@ -122,11 +111,7 @@ abstract class Training
 
   _i1.UuidValue? firearmId;
 
-  _i1.UuidValue? firearmId;
-
   _i3.Firearm? firearm;
-
-  _i1.UuidValue? ammunitionId;
 
   _i1.UuidValue? ammunitionId;
 
@@ -148,16 +133,13 @@ abstract class Training
   @_i1.useResult
   Training copyWith({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     DateTime? date,
     String? location,
     String? environmentType,
     _i1.UuidValue? firearmId,
-    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    _i1.UuidValue? ammunitionId,
     _i1.UuidValue? ammunitionId,
     _i4.AmmunitionStock? ammunition,
     int? shotsFired,
@@ -170,16 +152,13 @@ abstract class Training
     return {
       '__className__': 'Training',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'date': date.toJson(),
       'location': location,
       'environmentType': environmentType,
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
-      if (ammunitionId != null) 'ammunitionId': ammunitionId?.toJson(),
       if (ammunitionId != null) 'ammunitionId': ammunitionId?.toJson(),
       if (ammunition != null) 'ammunition': ammunition?.toJson(),
       'shotsFired': shotsFired,
@@ -194,16 +173,13 @@ abstract class Training
     return {
       '__className__': 'Training',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
       'date': date.toJson(),
       'location': location,
       'environmentType': environmentType,
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
-      if (ammunitionId != null) 'ammunitionId': ammunitionId?.toJson(),
       if (ammunitionId != null) 'ammunitionId': ammunitionId?.toJson(),
       if (ammunition != null) 'ammunition': ammunition?.toJsonForProtocol(),
       'shotsFired': shotsFired,
@@ -256,16 +232,13 @@ class _Undefined {}
 class _TrainingImpl extends Training {
   _TrainingImpl({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required DateTime date,
     required String location,
     required String environmentType,
     _i1.UuidValue? firearmId,
-    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    _i1.UuidValue? ammunitionId,
     _i1.UuidValue? ammunitionId,
     _i4.AmmunitionStock? ammunition,
     required int shotsFired,
@@ -274,7 +247,6 @@ class _TrainingImpl extends Training {
     String? targetImagesUrl,
   }) : super._(
          id: id,
-         userId: userId,
          userInfoId: userInfoId,
          userInfo: userInfo,
          date: date,
@@ -296,16 +268,13 @@ class _TrainingImpl extends Training {
   @override
   Training copyWith({
     _i1.UuidValue? id,
-    Object? userId = _Undefined,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     DateTime? date,
     String? location,
     String? environmentType,
     Object? firearmId = _Undefined,
-    Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
-    Object? ammunitionId = _Undefined,
     Object? ammunitionId = _Undefined,
     Object? ammunition = _Undefined,
     int? shotsFired,
@@ -315,7 +284,6 @@ class _TrainingImpl extends Training {
   }) {
     return Training(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
@@ -344,12 +312,6 @@ class _TrainingImpl extends Training {
 class TrainingUpdateTable extends _i1.UpdateTable<TrainingTable> {
   TrainingUpdateTable(super.table);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.userId,
-        value,
-      );
-
   _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
     table.userInfoId,
     value,
@@ -375,20 +337,6 @@ class TrainingUpdateTable extends _i1.UpdateTable<TrainingTable> {
     _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.firearmId,
-    value,
-  );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.firearmId,
-    value,
-  );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> ammunitionId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.ammunitionId,
     value,
   );
 
@@ -425,10 +373,6 @@ class TrainingUpdateTable extends _i1.UpdateTable<TrainingTable> {
 class TrainingTable extends _i1.Table<_i1.UuidValue> {
   TrainingTable({super.tableRelation}) : super(tableName: 'trainings') {
     updateTable = TrainingUpdateTable(this);
-    userId = _i1.ColumnUuid(
-      'userId',
-      this,
-    );
     userInfoId = _i1.ColumnInt(
       'userInfoId',
       this,
@@ -447,14 +391,6 @@ class TrainingTable extends _i1.Table<_i1.UuidValue> {
     );
     firearmId = _i1.ColumnUuid(
       'firearmId',
-      this,
-    );
-    firearmId = _i1.ColumnUuid(
-      'firearmId',
-      this,
-    );
-    ammunitionId = _i1.ColumnUuid(
-      'ammunitionId',
       this,
     );
     ammunitionId = _i1.ColumnUuid(
@@ -481,8 +417,6 @@ class TrainingTable extends _i1.Table<_i1.UuidValue> {
 
   late final TrainingUpdateTable updateTable;
 
-  late final _i1.ColumnUuid userId;
-
   late final _i1.ColumnInt userInfoId;
 
   _i2.UserInfoTable? _userInfo;
@@ -495,11 +429,7 @@ class TrainingTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnUuid firearmId;
 
-  late final _i1.ColumnUuid firearmId;
-
   _i3.FirearmTable? _firearm;
-
-  late final _i1.ColumnUuid ammunitionId;
 
   late final _i1.ColumnUuid ammunitionId;
 
@@ -555,14 +485,11 @@ class TrainingTable extends _i1.Table<_i1.UuidValue> {
   @override
   List<_i1.Column> get columns => [
     id,
-    userId,
     userInfoId,
     date,
     location,
     environmentType,
     firearmId,
-    firearmId,
-    ammunitionId,
     ammunitionId,
     shotsFired,
     distanceMeters,

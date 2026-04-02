@@ -21,9 +21,7 @@ abstract class ReloadTest
   ReloadTest._({
     _i1.UuidValue? id,
     this.reloadSessionId,
-    this.reloadSessionId,
     this.reloadSession,
-    this.firearmId,
     this.firearmId,
     this.firearm,
     required this.testDate,
@@ -40,9 +38,7 @@ abstract class ReloadTest
   factory ReloadTest({
     _i1.UuidValue? id,
     _i1.UuidValue? reloadSessionId,
-    _i1.UuidValue? reloadSessionId,
     _i2.ReloadSession? reloadSession,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime testDate,
@@ -106,11 +102,7 @@ abstract class ReloadTest
 
   _i1.UuidValue? reloadSessionId;
 
-  _i1.UuidValue? reloadSessionId;
-
   _i2.ReloadSession? reloadSession;
-
-  _i1.UuidValue? firearmId;
 
   _i1.UuidValue? firearmId;
 
@@ -143,9 +135,7 @@ abstract class ReloadTest
   ReloadTest copyWith({
     _i1.UuidValue? id,
     _i1.UuidValue? reloadSessionId,
-    _i1.UuidValue? reloadSessionId,
     _i2.ReloadSession? reloadSession,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     DateTime? testDate,
@@ -164,9 +154,7 @@ abstract class ReloadTest
       '__className__': 'ReloadTest',
       'id': id.toJson(),
       if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
-      if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
       if (reloadSession != null) 'reloadSession': reloadSession?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'testDate': testDate.toJson(),
@@ -188,10 +176,8 @@ abstract class ReloadTest
       '__className__': 'ReloadTest',
       'id': id.toJson(),
       if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
-      if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
       if (reloadSession != null)
         'reloadSession': reloadSession?.toJsonForProtocol(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
       'testDate': testDate.toJson(),
@@ -249,9 +235,7 @@ class _ReloadTestImpl extends ReloadTest {
   _ReloadTestImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? reloadSessionId,
-    _i1.UuidValue? reloadSessionId,
     _i2.ReloadSession? reloadSession,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime testDate,
@@ -287,9 +271,7 @@ class _ReloadTestImpl extends ReloadTest {
   ReloadTest copyWith({
     _i1.UuidValue? id,
     Object? reloadSessionId = _Undefined,
-    Object? reloadSessionId = _Undefined,
     Object? reloadSession = _Undefined,
-    Object? firearmId = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     DateTime? testDate,
@@ -334,20 +316,6 @@ class ReloadTestUpdateTable extends _i1.UpdateTable<ReloadTestTable> {
     _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.reloadSessionId,
-    value,
-  );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> reloadSessionId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.reloadSessionId,
-    value,
-  );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.firearmId,
     value,
   );
 
@@ -417,14 +385,6 @@ class ReloadTestTable extends _i1.Table<_i1.UuidValue> {
       'reloadSessionId',
       this,
     );
-    reloadSessionId = _i1.ColumnUuid(
-      'reloadSessionId',
-      this,
-    );
-    firearmId = _i1.ColumnUuid(
-      'firearmId',
-      this,
-    );
     firearmId = _i1.ColumnUuid(
       'firearmId',
       this,
@@ -471,11 +431,7 @@ class ReloadTestTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnUuid reloadSessionId;
 
-  late final _i1.ColumnUuid reloadSessionId;
-
   _i2.ReloadSessionTable? _reloadSession;
-
-  late final _i1.ColumnUuid firearmId;
 
   late final _i1.ColumnUuid firearmId;
 
@@ -529,8 +485,6 @@ class ReloadTestTable extends _i1.Table<_i1.UuidValue> {
   List<_i1.Column> get columns => [
     id,
     reloadSessionId,
-    reloadSessionId,
-    firearmId,
     firearmId,
     testDate,
     shotsFired,

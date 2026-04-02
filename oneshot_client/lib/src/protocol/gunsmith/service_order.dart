@@ -19,9 +19,7 @@ abstract class ServiceOrder implements _i1.SerializableModel {
   ServiceOrder._({
     _i1.UuidValue? id,
     this.clientId,
-    this.clientId,
     this.client,
-    this.firearmId,
     this.firearmId,
     this.firearm,
     required this.entryDate,
@@ -36,9 +34,7 @@ abstract class ServiceOrder implements _i1.SerializableModel {
   factory ServiceOrder({
     _i1.UuidValue? id,
     _i1.UuidValue? clientId,
-    _i1.UuidValue? clientId,
     _i2.GunsmithClient? client,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime entryDate,
@@ -92,11 +88,7 @@ abstract class ServiceOrder implements _i1.SerializableModel {
 
   _i1.UuidValue? clientId;
 
-  _i1.UuidValue? clientId;
-
   _i2.GunsmithClient? client;
-
-  _i1.UuidValue? firearmId;
 
   _i1.UuidValue? firearmId;
 
@@ -122,9 +114,7 @@ abstract class ServiceOrder implements _i1.SerializableModel {
   ServiceOrder copyWith({
     _i1.UuidValue? id,
     _i1.UuidValue? clientId,
-    _i1.UuidValue? clientId,
     _i2.GunsmithClient? client,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     DateTime? entryDate,
@@ -141,9 +131,7 @@ abstract class ServiceOrder implements _i1.SerializableModel {
       '__className__': 'ServiceOrder',
       'id': id.toJson(),
       if (clientId != null) 'clientId': clientId?.toJson(),
-      if (clientId != null) 'clientId': clientId?.toJson(),
       if (client != null) 'client': client?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'entryDate': entryDate.toJson(),
@@ -169,9 +157,7 @@ class _ServiceOrderImpl extends ServiceOrder {
   _ServiceOrderImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? clientId,
-    _i1.UuidValue? clientId,
     _i2.GunsmithClient? client,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime entryDate,
@@ -203,9 +189,7 @@ class _ServiceOrderImpl extends ServiceOrder {
   ServiceOrder copyWith({
     _i1.UuidValue? id,
     Object? clientId = _Undefined,
-    Object? clientId = _Undefined,
     Object? client = _Undefined,
-    Object? firearmId = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     DateTime? entryDate,

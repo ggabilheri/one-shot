@@ -21,9 +21,7 @@ abstract class Club implements _i1.SerializableModel {
     required this.name,
     required this.cnpj,
     this.addressId,
-    this.addressId,
     this.address,
-    this.ownerId,
     this.ownerId,
     this.owner,
     this.phoneNumber,
@@ -37,9 +35,7 @@ abstract class Club implements _i1.SerializableModel {
     required String name,
     required String cnpj,
     _i1.UuidValue? addressId,
-    _i1.UuidValue? addressId,
     _i2.Address? address,
-    _i1.UuidValue? ownerId,
     _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     String? phoneNumber,
@@ -87,11 +83,7 @@ abstract class Club implements _i1.SerializableModel {
 
   _i1.UuidValue? addressId;
 
-  _i1.UuidValue? addressId;
-
   _i2.Address? address;
-
-  _i1.UuidValue? ownerId;
 
   _i1.UuidValue? ownerId;
 
@@ -111,9 +103,7 @@ abstract class Club implements _i1.SerializableModel {
     String? name,
     String? cnpj,
     _i1.UuidValue? addressId,
-    _i1.UuidValue? addressId,
     _i2.Address? address,
-    _i1.UuidValue? ownerId,
     _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     String? phoneNumber,
@@ -128,9 +118,7 @@ abstract class Club implements _i1.SerializableModel {
       'name': name,
       'cnpj': cnpj,
       if (addressId != null) 'addressId': addressId?.toJson(),
-      if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJson(),
-      if (ownerId != null) 'ownerId': ownerId?.toJson(),
       if (ownerId != null) 'ownerId': ownerId?.toJson(),
       if (owner != null) 'owner': owner?.toJson(),
       if (phoneNumber != null) 'phoneNumber': phoneNumber,
@@ -153,9 +141,7 @@ class _ClubImpl extends Club {
     required String name,
     required String cnpj,
     _i1.UuidValue? addressId,
-    _i1.UuidValue? addressId,
     _i2.Address? address,
-    _i1.UuidValue? ownerId,
     _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     String? phoneNumber,
@@ -183,9 +169,7 @@ class _ClubImpl extends Club {
     String? name,
     String? cnpj,
     Object? addressId = _Undefined,
-    Object? addressId = _Undefined,
     Object? address = _Undefined,
-    Object? ownerId = _Undefined,
     Object? ownerId = _Undefined,
     Object? owner = _Undefined,
     Object? phoneNumber = _Undefined,

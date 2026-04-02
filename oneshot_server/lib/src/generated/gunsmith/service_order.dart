@@ -21,9 +21,7 @@ abstract class ServiceOrder
   ServiceOrder._({
     _i1.UuidValue? id,
     this.clientId,
-    this.clientId,
     this.client,
-    this.firearmId,
     this.firearmId,
     this.firearm,
     required this.entryDate,
@@ -38,9 +36,7 @@ abstract class ServiceOrder
   factory ServiceOrder({
     _i1.UuidValue? id,
     _i1.UuidValue? clientId,
-    _i1.UuidValue? clientId,
     _i2.GunsmithClient? client,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime entryDate,
@@ -98,11 +94,7 @@ abstract class ServiceOrder
 
   _i1.UuidValue? clientId;
 
-  _i1.UuidValue? clientId;
-
   _i2.GunsmithClient? client;
-
-  _i1.UuidValue? firearmId;
 
   _i1.UuidValue? firearmId;
 
@@ -131,9 +123,7 @@ abstract class ServiceOrder
   ServiceOrder copyWith({
     _i1.UuidValue? id,
     _i1.UuidValue? clientId,
-    _i1.UuidValue? clientId,
     _i2.GunsmithClient? client,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     DateTime? entryDate,
@@ -150,9 +140,7 @@ abstract class ServiceOrder
       '__className__': 'ServiceOrder',
       'id': id.toJson(),
       if (clientId != null) 'clientId': clientId?.toJson(),
-      if (clientId != null) 'clientId': clientId?.toJson(),
       if (client != null) 'client': client?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'entryDate': entryDate.toJson(),
@@ -172,9 +160,7 @@ abstract class ServiceOrder
       '__className__': 'ServiceOrder',
       'id': id.toJson(),
       if (clientId != null) 'clientId': clientId?.toJson(),
-      if (clientId != null) 'clientId': clientId?.toJson(),
       if (client != null) 'client': client?.toJsonForProtocol(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
       'entryDate': entryDate.toJson(),
@@ -230,9 +216,7 @@ class _ServiceOrderImpl extends ServiceOrder {
   _ServiceOrderImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? clientId,
-    _i1.UuidValue? clientId,
     _i2.GunsmithClient? client,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime entryDate,
@@ -264,9 +248,7 @@ class _ServiceOrderImpl extends ServiceOrder {
   ServiceOrder copyWith({
     _i1.UuidValue? id,
     Object? clientId = _Undefined,
-    Object? clientId = _Undefined,
     Object? client = _Undefined,
-    Object? firearmId = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     DateTime? entryDate,
@@ -305,20 +287,6 @@ class ServiceOrderUpdateTable extends _i1.UpdateTable<ServiceOrderTable> {
     _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.clientId,
-    value,
-  );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> clientId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.clientId,
-    value,
-  );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.firearmId,
     value,
   );
 
@@ -376,14 +344,6 @@ class ServiceOrderTable extends _i1.Table<_i1.UuidValue> {
       'clientId',
       this,
     );
-    clientId = _i1.ColumnUuid(
-      'clientId',
-      this,
-    );
-    firearmId = _i1.ColumnUuid(
-      'firearmId',
-      this,
-    );
     firearmId = _i1.ColumnUuid(
       'firearmId',
       this,
@@ -422,11 +382,7 @@ class ServiceOrderTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnUuid clientId;
 
-  late final _i1.ColumnUuid clientId;
-
   _i2.GunsmithClientTable? _client;
-
-  late final _i1.ColumnUuid firearmId;
 
   late final _i1.ColumnUuid firearmId;
 
@@ -476,8 +432,6 @@ class ServiceOrderTable extends _i1.Table<_i1.UuidValue> {
   List<_i1.Column> get columns => [
     id,
     clientId,
-    clientId,
-    firearmId,
     firearmId,
     entryDate,
     estimatedDeliveryDate,

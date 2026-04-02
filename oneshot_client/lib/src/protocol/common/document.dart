@@ -20,7 +20,6 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i6;
 abstract class Document implements _i1.SerializableModel {
   Document._({
     _i1.UuidValue? id,
-    this.userId,
     this.userInfoId,
     this.userInfo,
     this.firearmId,
@@ -43,7 +42,6 @@ abstract class Document implements _i1.SerializableModel {
 
   factory Document({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
@@ -69,9 +67,6 @@ abstract class Document implements _i1.SerializableModel {
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: jsonSerialization['userId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
@@ -123,8 +118,6 @@ abstract class Document implements _i1.SerializableModel {
   /// The id of the object.
   _i1.UuidValue id;
 
-  _i1.UuidValue? userId;
-
   int? userInfoId;
 
   _i2.UserInfo? userInfo;
@@ -166,7 +159,6 @@ abstract class Document implements _i1.SerializableModel {
   @_i1.useResult
   Document copyWith({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
@@ -191,7 +183,6 @@ abstract class Document implements _i1.SerializableModel {
     return {
       '__className__': 'Document',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
@@ -226,7 +217,6 @@ class _Undefined {}
 class _DocumentImpl extends Document {
   _DocumentImpl({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     _i1.UuidValue? firearmId,
@@ -247,7 +237,6 @@ class _DocumentImpl extends Document {
     _i5.Address? supplierAddress,
   }) : super._(
          id: id,
-         userId: userId,
          userInfoId: userInfoId,
          userInfo: userInfo,
          firearmId: firearmId,
@@ -271,7 +260,6 @@ class _DocumentImpl extends Document {
   @override
   Document copyWith({
     _i1.UuidValue? id,
-    Object? userId = _Undefined,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     Object? firearmId = _Undefined,
@@ -293,7 +281,6 @@ class _DocumentImpl extends Document {
   }) {
     return Document(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo

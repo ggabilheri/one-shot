@@ -17,7 +17,6 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i3;
 abstract class Firearm implements _i1.SerializableModel {
   Firearm._({
     _i1.UuidValue? id,
-    this.userId,
     this.userInfoId,
     this.userInfo,
     required this.purpose,
@@ -41,7 +40,6 @@ abstract class Firearm implements _i1.SerializableModel {
 
   factory Firearm({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required String purpose,
@@ -68,9 +66,6 @@ abstract class Firearm implements _i1.SerializableModel {
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: jsonSerialization['userId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
@@ -105,8 +100,6 @@ abstract class Firearm implements _i1.SerializableModel {
 
   /// The id of the object.
   _i1.UuidValue id;
-
-  _i1.UuidValue? userId;
 
   int? userInfoId;
 
@@ -151,7 +144,6 @@ abstract class Firearm implements _i1.SerializableModel {
   @_i1.useResult
   Firearm copyWith({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     String? purpose,
@@ -177,7 +169,6 @@ abstract class Firearm implements _i1.SerializableModel {
     return {
       '__className__': 'Firearm',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'purpose': purpose,
@@ -211,7 +202,6 @@ class _Undefined {}
 class _FirearmImpl extends Firearm {
   _FirearmImpl({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required String purpose,
@@ -233,7 +223,6 @@ class _FirearmImpl extends Firearm {
     required String condition,
   }) : super._(
          id: id,
-         userId: userId,
          userInfoId: userInfoId,
          userInfo: userInfo,
          purpose: purpose,
@@ -261,7 +250,6 @@ class _FirearmImpl extends Firearm {
   @override
   Firearm copyWith({
     _i1.UuidValue? id,
-    Object? userId = _Undefined,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     String? purpose,
@@ -284,7 +272,6 @@ class _FirearmImpl extends Firearm {
   }) {
     return Firearm(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo

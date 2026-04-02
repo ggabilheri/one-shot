@@ -20,10 +20,8 @@ abstract class Accessory
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   Accessory._({
     _i1.UuidValue? id,
-    this.userId,
     this.userInfoId,
     this.userInfo,
-    this.firearmId,
     this.firearmId,
     this.firearm,
     required this.purpose,
@@ -38,10 +36,8 @@ abstract class Accessory
 
   factory Accessory({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required String purpose,
@@ -59,9 +55,6 @@ abstract class Accessory
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: jsonSerialization['userId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
@@ -98,13 +91,9 @@ abstract class Accessory
   @override
   _i1.UuidValue id;
 
-  _i1.UuidValue? userId;
-
   int? userInfoId;
 
   _i2.UserInfo? userInfo;
-
-  _i1.UuidValue? firearmId;
 
   _i1.UuidValue? firearmId;
 
@@ -134,10 +123,8 @@ abstract class Accessory
   @_i1.useResult
   Accessory copyWith({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     String? purpose,
@@ -154,10 +141,8 @@ abstract class Accessory
     return {
       '__className__': 'Accessory',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'purpose': purpose,
@@ -176,10 +161,8 @@ abstract class Accessory
     return {
       '__className__': 'Accessory',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
       'purpose': purpose,
@@ -234,10 +217,8 @@ class _Undefined {}
 class _AccessoryImpl extends Accessory {
   _AccessoryImpl({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required String purpose,
@@ -250,7 +231,6 @@ class _AccessoryImpl extends Accessory {
     DateTime? acquisitionDate,
   }) : super._(
          id: id,
-         userId: userId,
          userInfoId: userInfoId,
          userInfo: userInfo,
          firearmId: firearmId,
@@ -271,10 +251,8 @@ class _AccessoryImpl extends Accessory {
   @override
   Accessory copyWith({
     _i1.UuidValue? id,
-    Object? userId = _Undefined,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
-    Object? firearmId = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     String? purpose,
@@ -288,7 +266,6 @@ class _AccessoryImpl extends Accessory {
   }) {
     return Accessory(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo
@@ -314,21 +291,8 @@ class _AccessoryImpl extends Accessory {
 class AccessoryUpdateTable extends _i1.UpdateTable<AccessoryTable> {
   AccessoryUpdateTable(super.table);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.userId,
-        value,
-      );
-
   _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
     table.userInfoId,
-    value,
-  );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.firearmId,
     value,
   );
 
@@ -386,16 +350,8 @@ class AccessoryUpdateTable extends _i1.UpdateTable<AccessoryTable> {
 class AccessoryTable extends _i1.Table<_i1.UuidValue> {
   AccessoryTable({super.tableRelation}) : super(tableName: 'accessories') {
     updateTable = AccessoryUpdateTable(this);
-    userId = _i1.ColumnUuid(
-      'userId',
-      this,
-    );
     userInfoId = _i1.ColumnInt(
       'userInfoId',
-      this,
-    );
-    firearmId = _i1.ColumnUuid(
-      'firearmId',
       this,
     );
     firearmId = _i1.ColumnUuid(
@@ -438,13 +394,9 @@ class AccessoryTable extends _i1.Table<_i1.UuidValue> {
 
   late final AccessoryUpdateTable updateTable;
 
-  late final _i1.ColumnUuid userId;
-
   late final _i1.ColumnInt userInfoId;
 
   _i2.UserInfoTable? _userInfo;
-
-  late final _i1.ColumnUuid firearmId;
 
   late final _i1.ColumnUuid firearmId;
 
@@ -495,9 +447,7 @@ class AccessoryTable extends _i1.Table<_i1.UuidValue> {
   @override
   List<_i1.Column> get columns => [
     id,
-    userId,
     userInfoId,
-    firearmId,
     firearmId,
     purpose,
     type,

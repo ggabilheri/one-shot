@@ -22,9 +22,7 @@ abstract class Membership
   Membership._({
     _i1.UuidValue? id,
     this.userId,
-    this.userId,
     this.user,
-    this.clubId,
     this.clubId,
     this.club,
     this.membershipNumber,
@@ -38,9 +36,7 @@ abstract class Membership
   factory Membership({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    _i1.UuidValue? userId,
     _i3.UserProfile? user,
-    _i1.UuidValue? clubId,
     _i1.UuidValue? clubId,
     _i4.Club? club,
     String? membershipNumber,
@@ -94,11 +90,7 @@ abstract class Membership
 
   _i1.UuidValue? userId;
 
-  _i1.UuidValue? userId;
-
   _i3.UserProfile? user;
-
-  _i1.UuidValue? clubId;
 
   _i1.UuidValue? clubId;
 
@@ -123,9 +115,7 @@ abstract class Membership
   Membership copyWith({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    _i1.UuidValue? userId,
     _i3.UserProfile? user,
-    _i1.UuidValue? clubId,
     _i1.UuidValue? clubId,
     _i4.Club? club,
     String? membershipNumber,
@@ -140,9 +130,7 @@ abstract class Membership
       '__className__': 'Membership',
       'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (user != null) 'user': user?.toJson(),
-      if (clubId != null) 'clubId': clubId?.toJson(),
       if (clubId != null) 'clubId': clubId?.toJson(),
       if (club != null) 'club': club?.toJson(),
       if (membershipNumber != null) 'membershipNumber': membershipNumber,
@@ -159,9 +147,7 @@ abstract class Membership
       '__className__': 'Membership',
       'id': id.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (user != null) 'user': user?.toJsonForProtocol(),
-      if (clubId != null) 'clubId': clubId?.toJson(),
       if (clubId != null) 'clubId': clubId?.toJson(),
       if (club != null) 'club': club?.toJsonForProtocol(),
       if (membershipNumber != null) 'membershipNumber': membershipNumber,
@@ -214,9 +200,7 @@ class _MembershipImpl extends Membership {
   _MembershipImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? userId,
-    _i1.UuidValue? userId,
     _i3.UserProfile? user,
-    _i1.UuidValue? clubId,
     _i1.UuidValue? clubId,
     _i4.Club? club,
     String? membershipNumber,
@@ -244,9 +228,7 @@ class _MembershipImpl extends Membership {
   Membership copyWith({
     _i1.UuidValue? id,
     Object? userId = _Undefined,
-    Object? userId = _Undefined,
     Object? user = _Undefined,
-    Object? clubId = _Undefined,
     Object? clubId = _Undefined,
     Object? club = _Undefined,
     Object? membershipNumber = _Undefined,
@@ -278,18 +260,6 @@ class MembershipUpdateTable extends _i1.UpdateTable<MembershipTable> {
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
       _i1.ColumnValue(
         table.userId,
-        value,
-      );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.userId,
-        value,
-      );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> clubId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.clubId,
         value,
       );
 
@@ -337,14 +307,6 @@ class MembershipTable extends _i1.Table<_i1.UuidValue> {
       'userId',
       this,
     );
-    userId = _i1.ColumnUuid(
-      'userId',
-      this,
-    );
-    clubId = _i1.ColumnUuid(
-      'clubId',
-      this,
-    );
     clubId = _i1.ColumnUuid(
       'clubId',
       this,
@@ -377,11 +339,7 @@ class MembershipTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnUuid userId;
 
-  late final _i1.ColumnUuid userId;
-
   _i3.UserProfileTable? _user;
-
-  late final _i1.ColumnUuid clubId;
 
   late final _i1.ColumnUuid clubId;
 
@@ -427,8 +385,6 @@ class MembershipTable extends _i1.Table<_i1.UuidValue> {
   List<_i1.Column> get columns => [
     id,
     userId,
-    userId,
-    clubId,
     clubId,
     membershipNumber,
     startDate,

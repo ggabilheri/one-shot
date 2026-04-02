@@ -23,7 +23,6 @@ abstract class SupplyStock implements _i1.SerializableModel {
     required this.unit,
     this.acquisitionDate,
     this.batchNumber,
-    this.userId,
     this.userInfoId,
     this.userInfo,
   }) : id = id ?? const _i1.Uuid().v4obj();
@@ -36,7 +35,6 @@ abstract class SupplyStock implements _i1.SerializableModel {
     required String unit,
     DateTime? acquisitionDate,
     String? batchNumber,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
   }) = _SupplyStockImpl;
@@ -56,9 +54,6 @@ abstract class SupplyStock implements _i1.SerializableModel {
               jsonSerialization['acquisitionDate'],
             ),
       batchNumber: jsonSerialization['batchNumber'] as String?,
-      userId: jsonSerialization['userId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
@@ -83,8 +78,6 @@ abstract class SupplyStock implements _i1.SerializableModel {
 
   String? batchNumber;
 
-  _i1.UuidValue? userId;
-
   int? userInfoId;
 
   _i2.UserInfo? userInfo;
@@ -100,7 +93,6 @@ abstract class SupplyStock implements _i1.SerializableModel {
     String? unit,
     DateTime? acquisitionDate,
     String? batchNumber,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
   });
@@ -115,7 +107,6 @@ abstract class SupplyStock implements _i1.SerializableModel {
       'unit': unit,
       if (acquisitionDate != null) 'acquisitionDate': acquisitionDate?.toJson(),
       if (batchNumber != null) 'batchNumber': batchNumber,
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
     };
@@ -138,7 +129,6 @@ class _SupplyStockImpl extends SupplyStock {
     required String unit,
     DateTime? acquisitionDate,
     String? batchNumber,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
   }) : super._(
@@ -149,7 +139,6 @@ class _SupplyStockImpl extends SupplyStock {
          unit: unit,
          acquisitionDate: acquisitionDate,
          batchNumber: batchNumber,
-         userId: userId,
          userInfoId: userInfoId,
          userInfo: userInfo,
        );
@@ -166,7 +155,6 @@ class _SupplyStockImpl extends SupplyStock {
     String? unit,
     Object? acquisitionDate = _Undefined,
     Object? batchNumber = _Undefined,
-    Object? userId = _Undefined,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
   }) {
@@ -180,7 +168,6 @@ class _SupplyStockImpl extends SupplyStock {
           ? acquisitionDate
           : this.acquisitionDate,
       batchNumber: batchNumber is String? ? batchNumber : this.batchNumber,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo

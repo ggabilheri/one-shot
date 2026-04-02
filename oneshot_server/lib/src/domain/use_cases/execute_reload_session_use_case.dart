@@ -42,7 +42,7 @@ class ExecuteReloadSessionUseCase implements IExecuteReloadSessionUseCase {
     // 3. Adicionar automaticamente ao estoque de munições prontas correspondente
     // Busca um estoque de munição recarregada para este calibre
     final existingAmmos = await _ammunitionRepository.findByUserId(
-        session, reloadSession.userId!);
+        session, reloadSession.userInfoId!);
 
     AmmunitionStock? targetAmmo;
     for (var a in existingAmmos) {
@@ -54,8 +54,7 @@ class ExecuteReloadSessionUseCase implements IExecuteReloadSessionUseCase {
 
     if (targetAmmo == null) {
       targetAmmo = AmmunitionStock(
-        userId: reloadSession.userId!,
-        userInfoId: reloadSession.userInfoId,
+        userInfo: reloadSession.userInfo,
         type: 'Reloaded',
         manufacturer: 'Self Reload',
         caliber: reloadSession.caliber,

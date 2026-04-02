@@ -19,24 +19,19 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i5;
 abstract class ReloadSession implements _i1.SerializableModel {
   ReloadSession._({
     _i1.UuidValue? id,
-    this.userId,
     this.userInfoId,
     this.userInfo,
     required this.reloadDate,
-    this.pressId,
     this.pressId,
     this.press,
     required this.caliber,
     required this.casingBatch,
     required this.reloadsCompleted,
     this.powderId,
-    this.powderId,
     this.powder,
     required this.powderGrains,
     this.primerId,
-    this.primerId,
     this.primer,
-    this.projectileId,
     this.projectileId,
     this.projectile,
     required this.oal,
@@ -46,24 +41,19 @@ abstract class ReloadSession implements _i1.SerializableModel {
 
   factory ReloadSession({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required DateTime reloadDate,
-    _i1.UuidValue? pressId,
     _i1.UuidValue? pressId,
     _i3.Accessory? press,
     required String caliber,
     required String casingBatch,
     required int reloadsCompleted,
     _i1.UuidValue? powderId,
-    _i1.UuidValue? powderId,
     _i4.SupplyStock? powder,
     required double powderGrains,
     _i1.UuidValue? primerId,
-    _i1.UuidValue? primerId,
     _i4.SupplyStock? primer,
-    _i1.UuidValue? projectileId,
     _i1.UuidValue? projectileId,
     _i4.SupplyStock? projectile,
     required double oal,
@@ -76,9 +66,6 @@ abstract class ReloadSession implements _i1.SerializableModel {
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: jsonSerialization['userId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
@@ -135,15 +122,11 @@ abstract class ReloadSession implements _i1.SerializableModel {
   /// The id of the object.
   _i1.UuidValue id;
 
-  _i1.UuidValue? userId;
-
   int? userInfoId;
 
   _i2.UserInfo? userInfo;
 
   DateTime reloadDate;
-
-  _i1.UuidValue? pressId;
 
   _i1.UuidValue? pressId;
 
@@ -157,19 +140,13 @@ abstract class ReloadSession implements _i1.SerializableModel {
 
   _i1.UuidValue? powderId;
 
-  _i1.UuidValue? powderId;
-
   _i4.SupplyStock? powder;
 
   double powderGrains;
 
   _i1.UuidValue? primerId;
 
-  _i1.UuidValue? primerId;
-
   _i4.SupplyStock? primer;
-
-  _i1.UuidValue? projectileId;
 
   _i1.UuidValue? projectileId;
 
@@ -186,24 +163,19 @@ abstract class ReloadSession implements _i1.SerializableModel {
   @_i1.useResult
   ReloadSession copyWith({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     DateTime? reloadDate,
-    _i1.UuidValue? pressId,
     _i1.UuidValue? pressId,
     _i3.Accessory? press,
     String? caliber,
     String? casingBatch,
     int? reloadsCompleted,
     _i1.UuidValue? powderId,
-    _i1.UuidValue? powderId,
     _i4.SupplyStock? powder,
     double? powderGrains,
     _i1.UuidValue? primerId,
-    _i1.UuidValue? primerId,
     _i4.SupplyStock? primer,
-    _i1.UuidValue? projectileId,
     _i1.UuidValue? projectileId,
     _i4.SupplyStock? projectile,
     double? oal,
@@ -215,24 +187,19 @@ abstract class ReloadSession implements _i1.SerializableModel {
     return {
       '__className__': 'ReloadSession',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'reloadDate': reloadDate.toJson(),
-      if (pressId != null) 'pressId': pressId?.toJson(),
       if (pressId != null) 'pressId': pressId?.toJson(),
       if (press != null) 'press': press?.toJson(),
       'caliber': caliber,
       'casingBatch': casingBatch,
       'reloadsCompleted': reloadsCompleted,
       if (powderId != null) 'powderId': powderId?.toJson(),
-      if (powderId != null) 'powderId': powderId?.toJson(),
       if (powder != null) 'powder': powder?.toJson(),
       'powderGrains': powderGrains,
       if (primerId != null) 'primerId': primerId?.toJson(),
-      if (primerId != null) 'primerId': primerId?.toJson(),
       if (primer != null) 'primer': primer?.toJson(),
-      if (projectileId != null) 'projectileId': projectileId?.toJson(),
       if (projectileId != null) 'projectileId': projectileId?.toJson(),
       if (projectile != null) 'projectile': projectile?.toJson(),
       'oal': oal,
@@ -252,24 +219,19 @@ class _Undefined {}
 class _ReloadSessionImpl extends ReloadSession {
   _ReloadSessionImpl({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required DateTime reloadDate,
-    _i1.UuidValue? pressId,
     _i1.UuidValue? pressId,
     _i3.Accessory? press,
     required String caliber,
     required String casingBatch,
     required int reloadsCompleted,
     _i1.UuidValue? powderId,
-    _i1.UuidValue? powderId,
     _i4.SupplyStock? powder,
     required double powderGrains,
     _i1.UuidValue? primerId,
-    _i1.UuidValue? primerId,
     _i4.SupplyStock? primer,
-    _i1.UuidValue? projectileId,
     _i1.UuidValue? projectileId,
     _i4.SupplyStock? projectile,
     required double oal,
@@ -277,7 +239,6 @@ class _ReloadSessionImpl extends ReloadSession {
     required double unitCost,
   }) : super._(
          id: id,
-         userId: userId,
          userInfoId: userInfoId,
          userInfo: userInfo,
          reloadDate: reloadDate,
@@ -304,24 +265,19 @@ class _ReloadSessionImpl extends ReloadSession {
   @override
   ReloadSession copyWith({
     _i1.UuidValue? id,
-    Object? userId = _Undefined,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     DateTime? reloadDate,
-    Object? pressId = _Undefined,
     Object? pressId = _Undefined,
     Object? press = _Undefined,
     String? caliber,
     String? casingBatch,
     int? reloadsCompleted,
     Object? powderId = _Undefined,
-    Object? powderId = _Undefined,
     Object? powder = _Undefined,
     double? powderGrains,
     Object? primerId = _Undefined,
-    Object? primerId = _Undefined,
     Object? primer = _Undefined,
-    Object? projectileId = _Undefined,
     Object? projectileId = _Undefined,
     Object? projectile = _Undefined,
     double? oal,
@@ -330,7 +286,6 @@ class _ReloadSessionImpl extends ReloadSession {
   }) {
     return ReloadSession(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo

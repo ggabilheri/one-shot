@@ -15,10 +15,11 @@ class AmmunitionRepository implements IAmmunitionRepository {
   }
 
   @override
-  Future<List<AmmunitionStock>> findByUserId(Session session, UuidValue userId) async {
+  Future<List<AmmunitionStock>> findByUserId(
+      Session session, int userId) async {
     return await AmmunitionStock.db.find(
       session,
-      where: (t) => t.userId.equals(userId),
+      where: (t) => t.userInfoId.equals(userId),
     );
   }
 
@@ -37,13 +38,14 @@ class AmmunitionRepository implements IAmmunitionRepository {
   }
 
   @override
-  Future<AmmunitionStock> adjustQuantity(Session session, UuidValue id, int change) async {
+  Future<AmmunitionStock> adjustQuantity(
+      Session session, UuidValue id, int change) async {
     final ammo = await AmmunitionStock.db.findById(session, id);
     if (ammo == null) throw Exception('Estoque de munição não encontrado.');
-    
+
     ammo.quantity += change;
     if (ammo.quantity < 0) ammo.quantity = 0; // Evita estoque negativo
-    
+
     return await AmmunitionStock.db.updateRow(session, ammo);
   }
 }

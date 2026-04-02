@@ -21,11 +21,9 @@ abstract class ServiceOrderItem
   ServiceOrderItem._({
     _i1.UuidValue? id,
     this.serviceOrderId,
-    this.serviceOrderId,
     this.serviceOrder,
     required this.description,
     required this.isStockPart,
-    this.supplyPartId,
     this.supplyPartId,
     this.supplyPart,
     required this.servicePrice,
@@ -34,11 +32,9 @@ abstract class ServiceOrderItem
   factory ServiceOrderItem({
     _i1.UuidValue? id,
     _i1.UuidValue? serviceOrderId,
-    _i1.UuidValue? serviceOrderId,
     _i2.ServiceOrder? serviceOrder,
     required String description,
     required bool isStockPart,
-    _i1.UuidValue? supplyPartId,
     _i1.UuidValue? supplyPartId,
     _i3.SupplyStock? supplyPart,
     required double servicePrice,
@@ -86,15 +82,11 @@ abstract class ServiceOrderItem
 
   _i1.UuidValue? serviceOrderId;
 
-  _i1.UuidValue? serviceOrderId;
-
   _i2.ServiceOrder? serviceOrder;
 
   String description;
 
   bool isStockPart;
-
-  _i1.UuidValue? supplyPartId;
 
   _i1.UuidValue? supplyPartId;
 
@@ -111,11 +103,9 @@ abstract class ServiceOrderItem
   ServiceOrderItem copyWith({
     _i1.UuidValue? id,
     _i1.UuidValue? serviceOrderId,
-    _i1.UuidValue? serviceOrderId,
     _i2.ServiceOrder? serviceOrder,
     String? description,
     bool? isStockPart,
-    _i1.UuidValue? supplyPartId,
     _i1.UuidValue? supplyPartId,
     _i3.SupplyStock? supplyPart,
     double? servicePrice,
@@ -126,11 +116,9 @@ abstract class ServiceOrderItem
       '__className__': 'ServiceOrderItem',
       'id': id.toJson(),
       if (serviceOrderId != null) 'serviceOrderId': serviceOrderId?.toJson(),
-      if (serviceOrderId != null) 'serviceOrderId': serviceOrderId?.toJson(),
       if (serviceOrder != null) 'serviceOrder': serviceOrder?.toJson(),
       'description': description,
       'isStockPart': isStockPart,
-      if (supplyPartId != null) 'supplyPartId': supplyPartId?.toJson(),
       if (supplyPartId != null) 'supplyPartId': supplyPartId?.toJson(),
       if (supplyPart != null) 'supplyPart': supplyPart?.toJson(),
       'servicePrice': servicePrice,
@@ -143,12 +131,10 @@ abstract class ServiceOrderItem
       '__className__': 'ServiceOrderItem',
       'id': id.toJson(),
       if (serviceOrderId != null) 'serviceOrderId': serviceOrderId?.toJson(),
-      if (serviceOrderId != null) 'serviceOrderId': serviceOrderId?.toJson(),
       if (serviceOrder != null)
         'serviceOrder': serviceOrder?.toJsonForProtocol(),
       'description': description,
       'isStockPart': isStockPart,
-      if (supplyPartId != null) 'supplyPartId': supplyPartId?.toJson(),
       if (supplyPartId != null) 'supplyPartId': supplyPartId?.toJson(),
       if (supplyPart != null) 'supplyPart': supplyPart?.toJsonForProtocol(),
       'servicePrice': servicePrice,
@@ -197,11 +183,9 @@ class _ServiceOrderItemImpl extends ServiceOrderItem {
   _ServiceOrderItemImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? serviceOrderId,
-    _i1.UuidValue? serviceOrderId,
     _i2.ServiceOrder? serviceOrder,
     required String description,
     required bool isStockPart,
-    _i1.UuidValue? supplyPartId,
     _i1.UuidValue? supplyPartId,
     _i3.SupplyStock? supplyPart,
     required double servicePrice,
@@ -223,11 +207,9 @@ class _ServiceOrderItemImpl extends ServiceOrderItem {
   ServiceOrderItem copyWith({
     _i1.UuidValue? id,
     Object? serviceOrderId = _Undefined,
-    Object? serviceOrderId = _Undefined,
     Object? serviceOrder = _Undefined,
     String? description,
     bool? isStockPart,
-    Object? supplyPartId = _Undefined,
     Object? supplyPartId = _Undefined,
     Object? supplyPart = _Undefined,
     double? servicePrice,
@@ -264,13 +246,6 @@ class ServiceOrderItemUpdateTable
     value,
   );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> serviceOrderId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.serviceOrderId,
-    value,
-  );
-
   _i1.ColumnValue<String, String> description(String value) => _i1.ColumnValue(
     table.description,
     value,
@@ -278,13 +253,6 @@ class ServiceOrderItemUpdateTable
 
   _i1.ColumnValue<bool, bool> isStockPart(bool value) => _i1.ColumnValue(
     table.isStockPart,
-    value,
-  );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> supplyPartId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.supplyPartId,
     value,
   );
 
@@ -309,20 +277,12 @@ class ServiceOrderItemTable extends _i1.Table<_i1.UuidValue> {
       'serviceOrderId',
       this,
     );
-    serviceOrderId = _i1.ColumnUuid(
-      'serviceOrderId',
-      this,
-    );
     description = _i1.ColumnString(
       'description',
       this,
     );
     isStockPart = _i1.ColumnBool(
       'isStockPart',
-      this,
-    );
-    supplyPartId = _i1.ColumnUuid(
-      'supplyPartId',
       this,
     );
     supplyPartId = _i1.ColumnUuid(
@@ -339,15 +299,11 @@ class ServiceOrderItemTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnUuid serviceOrderId;
 
-  late final _i1.ColumnUuid serviceOrderId;
-
   _i2.ServiceOrderTable? _serviceOrder;
 
   late final _i1.ColumnString description;
 
   late final _i1.ColumnBool isStockPart;
-
-  late final _i1.ColumnUuid supplyPartId;
 
   late final _i1.ColumnUuid supplyPartId;
 
@@ -385,10 +341,8 @@ class ServiceOrderItemTable extends _i1.Table<_i1.UuidValue> {
   List<_i1.Column> get columns => [
     id,
     serviceOrderId,
-    serviceOrderId,
     description,
     isStockPart,
-    supplyPartId,
     supplyPartId,
     servicePrice,
   ];

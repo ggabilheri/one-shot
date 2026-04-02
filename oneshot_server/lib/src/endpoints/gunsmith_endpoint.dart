@@ -1,6 +1,7 @@
 import 'package:oneshot_server/src/core/injections/injections.dart';
 import 'package:oneshot_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
+import 'package:serverpod_auth_server/serverpod_auth_server.dart';
 
 class GunsmithEndpoint extends Endpoint {
   /// Cria um novo cliente para o armeiro logado.
@@ -16,12 +17,11 @@ class GunsmithEndpoint extends Endpoint {
 
   /// Lista todos os clientes de um armeiro específico.
   Future<List<GunsmithClient>> getMyClients(Session session) async {
-    final authId = session.authenticated!.authId;
+    final authId = session.authenticated!.userId;
 
     // Aqui usamos o authId (int) para buscar o perfil do armeiro (UuidValue)
     // No futuro, teremos um UseCase para resolver essa identidade.
-    return await sl.gunsmithRepository
-        .listClients(session, UuidValue.fromString(authId.toString()));
+    return await sl.gunsmithRepository.listClients(session, authId);
   }
 
   /// Registra uma nova Ordem de Serviço com seus itens.

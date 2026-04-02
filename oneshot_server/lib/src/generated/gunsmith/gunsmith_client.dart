@@ -20,7 +20,6 @@ abstract class GunsmithClient
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
   GunsmithClient._({
     _i1.UuidValue? id,
-    this.gunsmithUserId,
     this.gunsmithUserInfoId,
     this.gunsmithUserInfo,
     required this.name,
@@ -28,20 +27,17 @@ abstract class GunsmithClient
     this.rg,
     required this.phone,
     this.addressId,
-    this.addressId,
     this.address,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory GunsmithClient({
     _i1.UuidValue? id,
-    _i1.UuidValue? gunsmithUserId,
     int? gunsmithUserInfoId,
     _i2.UserInfo? gunsmithUserInfo,
     required String name,
     required String cpf,
     String? rg,
     required String phone,
-    _i1.UuidValue? addressId,
     _i1.UuidValue? addressId,
     _i3.Address? address,
   }) = _GunsmithClientImpl;
@@ -51,11 +47,6 @@ abstract class GunsmithClient
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      gunsmithUserId: jsonSerialization['gunsmithUserId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(
-              jsonSerialization['gunsmithUserId'],
-            ),
       gunsmithUserInfoId: jsonSerialization['gunsmithUserInfoId'] as int?,
       gunsmithUserInfo: jsonSerialization['gunsmithUserInfo'] == null
           ? null
@@ -84,8 +75,6 @@ abstract class GunsmithClient
   @override
   _i1.UuidValue id;
 
-  _i1.UuidValue? gunsmithUserId;
-
   int? gunsmithUserInfoId;
 
   _i2.UserInfo? gunsmithUserInfo;
@@ -100,8 +89,6 @@ abstract class GunsmithClient
 
   _i1.UuidValue? addressId;
 
-  _i1.UuidValue? addressId;
-
   _i3.Address? address;
 
   @override
@@ -112,14 +99,12 @@ abstract class GunsmithClient
   @_i1.useResult
   GunsmithClient copyWith({
     _i1.UuidValue? id,
-    _i1.UuidValue? gunsmithUserId,
     int? gunsmithUserInfoId,
     _i2.UserInfo? gunsmithUserInfo,
     String? name,
     String? cpf,
     String? rg,
     String? phone,
-    _i1.UuidValue? addressId,
     _i1.UuidValue? addressId,
     _i3.Address? address,
   });
@@ -128,7 +113,6 @@ abstract class GunsmithClient
     return {
       '__className__': 'GunsmithClient',
       'id': id.toJson(),
-      if (gunsmithUserId != null) 'gunsmithUserId': gunsmithUserId?.toJson(),
       if (gunsmithUserInfoId != null) 'gunsmithUserInfoId': gunsmithUserInfoId,
       if (gunsmithUserInfo != null)
         'gunsmithUserInfo': gunsmithUserInfo?.toJson(),
@@ -136,7 +120,6 @@ abstract class GunsmithClient
       'cpf': cpf,
       if (rg != null) 'rg': rg,
       'phone': phone,
-      if (addressId != null) 'addressId': addressId?.toJson(),
       if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJson(),
     };
@@ -147,7 +130,6 @@ abstract class GunsmithClient
     return {
       '__className__': 'GunsmithClient',
       'id': id.toJson(),
-      if (gunsmithUserId != null) 'gunsmithUserId': gunsmithUserId?.toJson(),
       if (gunsmithUserInfoId != null) 'gunsmithUserInfoId': gunsmithUserInfoId,
       if (gunsmithUserInfo != null)
         'gunsmithUserInfo': gunsmithUserInfo?.toJsonForProtocol(),
@@ -155,7 +137,6 @@ abstract class GunsmithClient
       'cpf': cpf,
       if (rg != null) 'rg': rg,
       'phone': phone,
-      if (addressId != null) 'addressId': addressId?.toJson(),
       if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJsonForProtocol(),
     };
@@ -202,7 +183,6 @@ class _Undefined {}
 class _GunsmithClientImpl extends GunsmithClient {
   _GunsmithClientImpl({
     _i1.UuidValue? id,
-    _i1.UuidValue? gunsmithUserId,
     int? gunsmithUserInfoId,
     _i2.UserInfo? gunsmithUserInfo,
     required String name,
@@ -210,11 +190,9 @@ class _GunsmithClientImpl extends GunsmithClient {
     String? rg,
     required String phone,
     _i1.UuidValue? addressId,
-    _i1.UuidValue? addressId,
     _i3.Address? address,
   }) : super._(
          id: id,
-         gunsmithUserId: gunsmithUserId,
          gunsmithUserInfoId: gunsmithUserInfoId,
          gunsmithUserInfo: gunsmithUserInfo,
          name: name,
@@ -231,7 +209,6 @@ class _GunsmithClientImpl extends GunsmithClient {
   @override
   GunsmithClient copyWith({
     _i1.UuidValue? id,
-    Object? gunsmithUserId = _Undefined,
     Object? gunsmithUserInfoId = _Undefined,
     Object? gunsmithUserInfo = _Undefined,
     String? name,
@@ -239,14 +216,10 @@ class _GunsmithClientImpl extends GunsmithClient {
     Object? rg = _Undefined,
     String? phone,
     Object? addressId = _Undefined,
-    Object? addressId = _Undefined,
     Object? address = _Undefined,
   }) {
     return GunsmithClient(
       id: id ?? this.id,
-      gunsmithUserId: gunsmithUserId is _i1.UuidValue?
-          ? gunsmithUserId
-          : this.gunsmithUserId,
       gunsmithUserInfoId: gunsmithUserInfoId is int?
           ? gunsmithUserInfoId
           : this.gunsmithUserInfoId,
@@ -265,13 +238,6 @@ class _GunsmithClientImpl extends GunsmithClient {
 
 class GunsmithClientUpdateTable extends _i1.UpdateTable<GunsmithClientTable> {
   GunsmithClientUpdateTable(super.table);
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> gunsmithUserId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.gunsmithUserId,
-    value,
-  );
 
   _i1.ColumnValue<int, int> gunsmithUserInfoId(int? value) => _i1.ColumnValue(
     table.gunsmithUserInfoId,
@@ -304,23 +270,12 @@ class GunsmithClientUpdateTable extends _i1.UpdateTable<GunsmithClientTable> {
     table.addressId,
     value,
   );
-
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> addressId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.addressId,
-    value,
-  );
 }
 
 class GunsmithClientTable extends _i1.Table<_i1.UuidValue> {
   GunsmithClientTable({super.tableRelation})
     : super(tableName: 'gunsmith_clients') {
     updateTable = GunsmithClientUpdateTable(this);
-    gunsmithUserId = _i1.ColumnUuid(
-      'gunsmithUserId',
-      this,
-    );
     gunsmithUserInfoId = _i1.ColumnInt(
       'gunsmithUserInfoId',
       this,
@@ -345,15 +300,9 @@ class GunsmithClientTable extends _i1.Table<_i1.UuidValue> {
       'addressId',
       this,
     );
-    addressId = _i1.ColumnUuid(
-      'addressId',
-      this,
-    );
   }
 
   late final GunsmithClientUpdateTable updateTable;
-
-  late final _i1.ColumnUuid gunsmithUserId;
 
   late final _i1.ColumnInt gunsmithUserInfoId;
 
@@ -366,8 +315,6 @@ class GunsmithClientTable extends _i1.Table<_i1.UuidValue> {
   late final _i1.ColumnString rg;
 
   late final _i1.ColumnString phone;
-
-  late final _i1.ColumnUuid addressId;
 
   late final _i1.ColumnUuid addressId;
 
@@ -402,13 +349,11 @@ class GunsmithClientTable extends _i1.Table<_i1.UuidValue> {
   @override
   List<_i1.Column> get columns => [
     id,
-    gunsmithUserId,
     gunsmithUserInfoId,
     name,
     cpf,
     rg,
     phone,
-    addressId,
     addressId,
   ];
 

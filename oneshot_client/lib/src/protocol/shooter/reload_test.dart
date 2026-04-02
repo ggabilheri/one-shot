@@ -19,9 +19,7 @@ abstract class ReloadTest implements _i1.SerializableModel {
   ReloadTest._({
     _i1.UuidValue? id,
     this.reloadSessionId,
-    this.reloadSessionId,
     this.reloadSession,
-    this.firearmId,
     this.firearmId,
     this.firearm,
     required this.testDate,
@@ -38,9 +36,7 @@ abstract class ReloadTest implements _i1.SerializableModel {
   factory ReloadTest({
     _i1.UuidValue? id,
     _i1.UuidValue? reloadSessionId,
-    _i1.UuidValue? reloadSessionId,
     _i2.ReloadSession? reloadSession,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime testDate,
@@ -100,11 +96,7 @@ abstract class ReloadTest implements _i1.SerializableModel {
 
   _i1.UuidValue? reloadSessionId;
 
-  _i1.UuidValue? reloadSessionId;
-
   _i2.ReloadSession? reloadSession;
-
-  _i1.UuidValue? firearmId;
 
   _i1.UuidValue? firearmId;
 
@@ -134,9 +126,7 @@ abstract class ReloadTest implements _i1.SerializableModel {
   ReloadTest copyWith({
     _i1.UuidValue? id,
     _i1.UuidValue? reloadSessionId,
-    _i1.UuidValue? reloadSessionId,
     _i2.ReloadSession? reloadSession,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     DateTime? testDate,
@@ -155,9 +145,7 @@ abstract class ReloadTest implements _i1.SerializableModel {
       '__className__': 'ReloadTest',
       'id': id.toJson(),
       if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
-      if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
       if (reloadSession != null) 'reloadSession': reloadSession?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
       'testDate': testDate.toJson(),
@@ -185,9 +173,7 @@ class _ReloadTestImpl extends ReloadTest {
   _ReloadTestImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? reloadSessionId,
-    _i1.UuidValue? reloadSessionId,
     _i2.ReloadSession? reloadSession,
-    _i1.UuidValue? firearmId,
     _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
     required DateTime testDate,
@@ -223,9 +209,7 @@ class _ReloadTestImpl extends ReloadTest {
   ReloadTest copyWith({
     _i1.UuidValue? id,
     Object? reloadSessionId = _Undefined,
-    Object? reloadSessionId = _Undefined,
     Object? reloadSession = _Undefined,
-    Object? firearmId = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     DateTime? testDate,

@@ -19,11 +19,9 @@ abstract class ServiceOrderItem implements _i1.SerializableModel {
   ServiceOrderItem._({
     _i1.UuidValue? id,
     this.serviceOrderId,
-    this.serviceOrderId,
     this.serviceOrder,
     required this.description,
     required this.isStockPart,
-    this.supplyPartId,
     this.supplyPartId,
     this.supplyPart,
     required this.servicePrice,
@@ -32,11 +30,9 @@ abstract class ServiceOrderItem implements _i1.SerializableModel {
   factory ServiceOrderItem({
     _i1.UuidValue? id,
     _i1.UuidValue? serviceOrderId,
-    _i1.UuidValue? serviceOrderId,
     _i2.ServiceOrder? serviceOrder,
     required String description,
     required bool isStockPart,
-    _i1.UuidValue? supplyPartId,
     _i1.UuidValue? supplyPartId,
     _i3.SupplyStock? supplyPart,
     required double servicePrice,
@@ -80,15 +76,11 @@ abstract class ServiceOrderItem implements _i1.SerializableModel {
 
   _i1.UuidValue? serviceOrderId;
 
-  _i1.UuidValue? serviceOrderId;
-
   _i2.ServiceOrder? serviceOrder;
 
   String description;
 
   bool isStockPart;
-
-  _i1.UuidValue? supplyPartId;
 
   _i1.UuidValue? supplyPartId;
 
@@ -102,11 +94,9 @@ abstract class ServiceOrderItem implements _i1.SerializableModel {
   ServiceOrderItem copyWith({
     _i1.UuidValue? id,
     _i1.UuidValue? serviceOrderId,
-    _i1.UuidValue? serviceOrderId,
     _i2.ServiceOrder? serviceOrder,
     String? description,
     bool? isStockPart,
-    _i1.UuidValue? supplyPartId,
     _i1.UuidValue? supplyPartId,
     _i3.SupplyStock? supplyPart,
     double? servicePrice,
@@ -117,11 +107,9 @@ abstract class ServiceOrderItem implements _i1.SerializableModel {
       '__className__': 'ServiceOrderItem',
       'id': id.toJson(),
       if (serviceOrderId != null) 'serviceOrderId': serviceOrderId?.toJson(),
-      if (serviceOrderId != null) 'serviceOrderId': serviceOrderId?.toJson(),
       if (serviceOrder != null) 'serviceOrder': serviceOrder?.toJson(),
       'description': description,
       'isStockPart': isStockPart,
-      if (supplyPartId != null) 'supplyPartId': supplyPartId?.toJson(),
       if (supplyPartId != null) 'supplyPartId': supplyPartId?.toJson(),
       if (supplyPart != null) 'supplyPart': supplyPart?.toJson(),
       'servicePrice': servicePrice,
@@ -140,11 +128,9 @@ class _ServiceOrderItemImpl extends ServiceOrderItem {
   _ServiceOrderItemImpl({
     _i1.UuidValue? id,
     _i1.UuidValue? serviceOrderId,
-    _i1.UuidValue? serviceOrderId,
     _i2.ServiceOrder? serviceOrder,
     required String description,
     required bool isStockPart,
-    _i1.UuidValue? supplyPartId,
     _i1.UuidValue? supplyPartId,
     _i3.SupplyStock? supplyPart,
     required double servicePrice,
@@ -166,11 +152,9 @@ class _ServiceOrderItemImpl extends ServiceOrderItem {
   ServiceOrderItem copyWith({
     _i1.UuidValue? id,
     Object? serviceOrderId = _Undefined,
-    Object? serviceOrderId = _Undefined,
     Object? serviceOrder = _Undefined,
     String? description,
     bool? isStockPart,
-    Object? supplyPartId = _Undefined,
     Object? supplyPartId = _Undefined,
     Object? supplyPart = _Undefined,
     double? servicePrice,

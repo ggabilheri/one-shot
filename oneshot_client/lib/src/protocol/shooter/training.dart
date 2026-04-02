@@ -19,16 +19,13 @@ import 'package:oneshot_client/src/protocol/protocol.dart' as _i5;
 abstract class Training implements _i1.SerializableModel {
   Training._({
     _i1.UuidValue? id,
-    this.userId,
     this.userInfoId,
     this.userInfo,
     required this.date,
     required this.location,
     required this.environmentType,
     this.firearmId,
-    this.firearmId,
     this.firearm,
-    this.ammunitionId,
     this.ammunitionId,
     this.ammunition,
     required this.shotsFired,
@@ -39,16 +36,13 @@ abstract class Training implements _i1.SerializableModel {
 
   factory Training({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required DateTime date,
     required String location,
     required String environmentType,
     _i1.UuidValue? firearmId,
-    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    _i1.UuidValue? ammunitionId,
     _i1.UuidValue? ammunitionId,
     _i4.AmmunitionStock? ammunition,
     required int shotsFired,
@@ -62,9 +56,6 @@ abstract class Training implements _i1.SerializableModel {
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: jsonSerialization['userId'] == null
-          ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
@@ -102,8 +93,6 @@ abstract class Training implements _i1.SerializableModel {
   /// The id of the object.
   _i1.UuidValue id;
 
-  _i1.UuidValue? userId;
-
   int? userInfoId;
 
   _i2.UserInfo? userInfo;
@@ -116,11 +105,7 @@ abstract class Training implements _i1.SerializableModel {
 
   _i1.UuidValue? firearmId;
 
-  _i1.UuidValue? firearmId;
-
   _i3.Firearm? firearm;
-
-  _i1.UuidValue? ammunitionId;
 
   _i1.UuidValue? ammunitionId;
 
@@ -139,16 +124,13 @@ abstract class Training implements _i1.SerializableModel {
   @_i1.useResult
   Training copyWith({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     DateTime? date,
     String? location,
     String? environmentType,
     _i1.UuidValue? firearmId,
-    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    _i1.UuidValue? ammunitionId,
     _i1.UuidValue? ammunitionId,
     _i4.AmmunitionStock? ammunition,
     int? shotsFired,
@@ -161,16 +143,13 @@ abstract class Training implements _i1.SerializableModel {
     return {
       '__className__': 'Training',
       'id': id.toJson(),
-      if (userId != null) 'userId': userId?.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
       if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'date': date.toJson(),
       'location': location,
       'environmentType': environmentType,
       if (firearmId != null) 'firearmId': firearmId?.toJson(),
-      if (firearmId != null) 'firearmId': firearmId?.toJson(),
       if (firearm != null) 'firearm': firearm?.toJson(),
-      if (ammunitionId != null) 'ammunitionId': ammunitionId?.toJson(),
       if (ammunitionId != null) 'ammunitionId': ammunitionId?.toJson(),
       if (ammunition != null) 'ammunition': ammunition?.toJson(),
       'shotsFired': shotsFired,
@@ -191,16 +170,13 @@ class _Undefined {}
 class _TrainingImpl extends Training {
   _TrainingImpl({
     _i1.UuidValue? id,
-    _i1.UuidValue? userId,
     int? userInfoId,
     _i2.UserInfo? userInfo,
     required DateTime date,
     required String location,
     required String environmentType,
     _i1.UuidValue? firearmId,
-    _i1.UuidValue? firearmId,
     _i3.Firearm? firearm,
-    _i1.UuidValue? ammunitionId,
     _i1.UuidValue? ammunitionId,
     _i4.AmmunitionStock? ammunition,
     required int shotsFired,
@@ -209,7 +185,6 @@ class _TrainingImpl extends Training {
     String? targetImagesUrl,
   }) : super._(
          id: id,
-         userId: userId,
          userInfoId: userInfoId,
          userInfo: userInfo,
          date: date,
@@ -231,16 +206,13 @@ class _TrainingImpl extends Training {
   @override
   Training copyWith({
     _i1.UuidValue? id,
-    Object? userId = _Undefined,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     DateTime? date,
     String? location,
     String? environmentType,
     Object? firearmId = _Undefined,
-    Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
-    Object? ammunitionId = _Undefined,
     Object? ammunitionId = _Undefined,
     Object? ammunition = _Undefined,
     int? shotsFired,
@@ -250,7 +222,6 @@ class _TrainingImpl extends Training {
   }) {
     return Training(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
       userInfo: userInfo is _i2.UserInfo?
           ? userInfo

@@ -15,10 +15,10 @@ class FirearmRepository implements IFirearmRepository {
   }
 
   @override
-  Future<List<Firearm>> findByUserId(Session session, UuidValue userId) async {
+  Future<List<Firearm>> findByUserId(Session session, int userId) async {
     return await Firearm.db.find(
       session,
-      where: (t) => t.userId.equals(userId),
+      where: (t) => t.userInfoId.equals(userId),
     );
   }
 
