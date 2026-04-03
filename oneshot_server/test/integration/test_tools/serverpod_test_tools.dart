@@ -33,9 +33,13 @@ import 'package:oneshot_server/src/generated/shooter/reload_session.dart'
     as _i15;
 import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i16;
 import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i17;
-import 'package:oneshot_server/src/generated/shooter/training.dart' as _i18;
-import 'package:oneshot_server/src/generated/common/address.dart' as _i19;
-import 'package:oneshot_server/src/generated/greeting.dart' as _i20;
+import 'package:oneshot_server/src/generated/access_control/security_role.dart'
+    as _i18;
+import 'package:oneshot_server/src/generated/access_control/role_permission.dart'
+    as _i19;
+import 'package:oneshot_server/src/generated/shooter/training.dart' as _i20;
+import 'package:oneshot_server/src/generated/common/address.dart' as _i21;
+import 'package:oneshot_server/src/generated/greeting.dart' as _i22;
 import 'package:oneshot_server/src/generated/protocol.dart';
 import 'package:oneshot_server/src/generated/endpoints.dart';
 export 'package:serverpod_test/serverpod_test_public_exports.dart';
@@ -159,6 +163,8 @@ class TestEndpoints {
 
   late final _ReloadEndpoint reload;
 
+  late final _SecurityRoleEndpoint securityRole;
+
   late final _TrainingEndpoint training;
 
   late final _UserEndpoint user;
@@ -204,6 +210,10 @@ class _InternalTestEndpoints extends TestEndpoints
       serializationManager,
     );
     reload = _ReloadEndpoint(
+      endpoints,
+      serializationManager,
+    );
+    securityRole = _SecurityRoleEndpoint(
       endpoints,
       serializationManager,
     );
@@ -1859,6 +1869,179 @@ class _ReloadEndpoint {
   }
 }
 
+class _SecurityRoleEndpoint {
+  _SecurityRoleEndpoint(
+    this._endpointDispatch,
+    this._serializationManager,
+  );
+
+  final _i2.EndpointDispatch _endpointDispatch;
+
+  final _i2.SerializationManager _serializationManager;
+
+  _i3.Future<_i18.SecurityRole> createRole(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i18.SecurityRole role,
+    List<_i19.RolePermission> permissions,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'securityRole',
+            method: 'createRole',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'securityRole',
+          methodName: 'createRole',
+          parameters: _i1.testObjectToJson({
+            'role': role,
+            'permissions': permissions,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<_i18.SecurityRole>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<_i18.SecurityRole> updateRole(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i18.SecurityRole role,
+    List<_i19.RolePermission> permissions,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'securityRole',
+            method: 'updateRole',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'securityRole',
+          methodName: 'updateRole',
+          parameters: _i1.testObjectToJson({
+            'role': role,
+            'permissions': permissions,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<_i18.SecurityRole>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<bool> deleteRole(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i18.SecurityRole role,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'securityRole',
+            method: 'deleteRole',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'securityRole',
+          methodName: 'deleteRole',
+          parameters: _i1.testObjectToJson({'role': role}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<bool>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<List<_i18.SecurityRole>> listRoles(
+    _i1.TestSessionBuilder sessionBuilder,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'securityRole',
+            method: 'listRoles',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'securityRole',
+          methodName: 'listRoles',
+          parameters: _i1.testObjectToJson({}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<List<_i18.SecurityRole>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<List<_i19.RolePermission>> listRolePermissions(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i18.SecurityRole role,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'securityRole',
+            method: 'listRolePermissions',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'securityRole',
+          methodName: 'listRolePermissions',
+          parameters: _i1.testObjectToJson({'role': role}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<List<_i19.RolePermission>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+}
+
 class _TrainingEndpoint {
   _TrainingEndpoint(
     this._endpointDispatch,
@@ -1869,9 +2052,9 @@ class _TrainingEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<_i18.Training> register(
+  _i3.Future<_i20.Training> register(
     _i1.TestSessionBuilder sessionBuilder,
-    _i18.Training training,
+    _i20.Training training,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
@@ -1892,7 +2075,7 @@ class _TrainingEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i18.Training>);
+                as _i3.Future<_i20.Training>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1900,7 +2083,7 @@ class _TrainingEndpoint {
     });
   }
 
-  _i3.Future<List<_i18.Training>> getMyTrainings(
+  _i3.Future<List<_i20.Training>> getMyTrainings(
     _i1.TestSessionBuilder sessionBuilder,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
@@ -1922,7 +2105,7 @@ class _TrainingEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<List<_i18.Training>>);
+                as _i3.Future<List<_i20.Training>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1930,7 +2113,7 @@ class _TrainingEndpoint {
     });
   }
 
-  _i3.Future<_i18.Training?> getTraining(
+  _i3.Future<_i20.Training?> getTraining(
     _i1.TestSessionBuilder sessionBuilder,
     _i2.UuidValue id,
   ) async {
@@ -1953,7 +2136,7 @@ class _TrainingEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i18.Training?>);
+                as _i3.Future<_i20.Training?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2161,6 +2344,72 @@ class _UserEndpoint {
       }
     });
   }
+
+  _i3.Future<List<_i18.SecurityRole>> getRoles(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i2.UuidValue userId,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'user',
+            method: 'getRoles',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'user',
+          methodName: 'getRoles',
+          parameters: _i1.testObjectToJson({'userId': userId}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<List<_i18.SecurityRole>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<void> updateRoles(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i2.UuidValue userId,
+    List<_i2.UuidValue> roleIds,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'user',
+            method: 'updateRoles',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'user',
+          methodName: 'updateRoles',
+          parameters: _i1.testObjectToJson({
+            'userId': userId,
+            'roleIds': roleIds,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<void>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
 }
 
 class _ViaCepGatewayEndpoint {
@@ -2173,7 +2422,7 @@ class _ViaCepGatewayEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<_i19.Address?> getAddressByCep(
+  _i3.Future<_i21.Address?> getAddressByCep(
     _i1.TestSessionBuilder sessionBuilder,
     String zipcode,
   ) async {
@@ -2196,7 +2445,7 @@ class _ViaCepGatewayEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i19.Address?>);
+                as _i3.Future<_i21.Address?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2215,7 +2464,7 @@ class _GreetingEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<_i20.Greeting> hello(
+  _i3.Future<_i22.Greeting> hello(
     _i1.TestSessionBuilder sessionBuilder,
     String name,
   ) async {
@@ -2238,7 +2487,7 @@ class _GreetingEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i20.Greeting>);
+                as _i3.Future<_i22.Greeting>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

@@ -31,11 +31,15 @@ import 'package:oneshot_client/src/protocol/shooter/reload_session.dart'
     as _i14;
 import 'package:oneshot_client/src/protocol/shooter/reload_test.dart' as _i15;
 import 'package:oneshot_client/src/protocol/common/supply_stock.dart' as _i16;
-import 'package:oneshot_client/src/protocol/shooter/training.dart' as _i17;
-import 'package:oneshot_client/src/protocol/common/address.dart' as _i18;
-import 'package:oneshot_client/src/protocol/greeting.dart' as _i19;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i20;
-import 'protocol.dart' as _i21;
+import 'package:oneshot_client/src/protocol/access_control/security_role.dart'
+    as _i17;
+import 'package:oneshot_client/src/protocol/access_control/role_permission.dart'
+    as _i18;
+import 'package:oneshot_client/src/protocol/shooter/training.dart' as _i19;
+import 'package:oneshot_client/src/protocol/common/address.dart' as _i20;
+import 'package:oneshot_client/src/protocol/greeting.dart' as _i21;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i22;
+import 'protocol.dart' as _i23;
 
 /// {@category Endpoint}
 class EndpointAccessory extends _i1.EndpointRef {
@@ -518,6 +522,60 @@ class EndpointReload extends _i1.EndpointRef {
 }
 
 /// {@category Endpoint}
+class EndpointSecurityRole extends _i1.EndpointRef {
+  EndpointSecurityRole(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'securityRole';
+
+  _i2.Future<_i17.SecurityRole> createRole(
+    _i17.SecurityRole role,
+    List<_i18.RolePermission> permissions,
+  ) => caller.callServerEndpoint<_i17.SecurityRole>(
+    'securityRole',
+    'createRole',
+    {
+      'role': role,
+      'permissions': permissions,
+    },
+  );
+
+  _i2.Future<_i17.SecurityRole> updateRole(
+    _i17.SecurityRole role,
+    List<_i18.RolePermission> permissions,
+  ) => caller.callServerEndpoint<_i17.SecurityRole>(
+    'securityRole',
+    'updateRole',
+    {
+      'role': role,
+      'permissions': permissions,
+    },
+  );
+
+  _i2.Future<bool> deleteRole(_i17.SecurityRole role) =>
+      caller.callServerEndpoint<bool>(
+        'securityRole',
+        'deleteRole',
+        {'role': role},
+      );
+
+  _i2.Future<List<_i17.SecurityRole>> listRoles() =>
+      caller.callServerEndpoint<List<_i17.SecurityRole>>(
+        'securityRole',
+        'listRoles',
+        {},
+      );
+
+  _i2.Future<List<_i18.RolePermission>> listRolePermissions(
+    _i17.SecurityRole role,
+  ) => caller.callServerEndpoint<List<_i18.RolePermission>>(
+    'securityRole',
+    'listRolePermissions',
+    {'role': role},
+  );
+}
+
+/// {@category Endpoint}
 class EndpointTraining extends _i1.EndpointRef {
   EndpointTraining(_i1.EndpointCaller caller) : super(caller);
 
@@ -526,24 +584,24 @@ class EndpointTraining extends _i1.EndpointRef {
 
   /// Registro de um novo treino.
   /// O userId será validado dentro do caso de uso.
-  _i2.Future<_i17.Training> register(_i17.Training training) =>
-      caller.callServerEndpoint<_i17.Training>(
+  _i2.Future<_i19.Training> register(_i19.Training training) =>
+      caller.callServerEndpoint<_i19.Training>(
         'training',
         'register',
         {'training': training},
       );
 
   /// Lista todos os treinos do usuário logado.
-  _i2.Future<List<_i17.Training>> getMyTrainings() =>
-      caller.callServerEndpoint<List<_i17.Training>>(
+  _i2.Future<List<_i19.Training>> getMyTrainings() =>
+      caller.callServerEndpoint<List<_i19.Training>>(
         'training',
         'getMyTrainings',
         {},
       );
 
   /// Busca um treino específico.
-  _i2.Future<_i17.Training?> getTraining(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i17.Training?>(
+  _i2.Future<_i19.Training?> getTraining(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i19.Training?>(
         'training',
         'getTraining',
         {'id': id},
@@ -602,6 +660,25 @@ class EndpointUser extends _i1.EndpointRef {
       'offset': offset,
     },
   );
+
+  _i2.Future<List<_i17.SecurityRole>> getRoles(_i1.UuidValue userId) =>
+      caller.callServerEndpoint<List<_i17.SecurityRole>>(
+        'user',
+        'getRoles',
+        {'userId': userId},
+      );
+
+  _i2.Future<void> updateRoles(
+    _i1.UuidValue userId,
+    List<_i1.UuidValue> roleIds,
+  ) => caller.callServerEndpoint<void>(
+    'user',
+    'updateRoles',
+    {
+      'userId': userId,
+      'roleIds': roleIds,
+    },
+  );
 }
 
 /// {@category Endpoint}
@@ -611,8 +688,8 @@ class EndpointViaCepGateway extends _i1.EndpointRef {
   @override
   String get name => 'viaCepGateway';
 
-  _i2.Future<_i18.Address?> getAddressByCep(String zipcode) =>
-      caller.callServerEndpoint<_i18.Address?>(
+  _i2.Future<_i20.Address?> getAddressByCep(String zipcode) =>
+      caller.callServerEndpoint<_i20.Address?>(
         'viaCepGateway',
         'getAddressByCep',
         {'zipcode': zipcode},
@@ -629,8 +706,8 @@ class EndpointGreeting extends _i1.EndpointRef {
   String get name => 'greeting';
 
   /// Returns a personalized greeting message: "Hello {name}".
-  _i2.Future<_i19.Greeting> hello(String name) =>
-      caller.callServerEndpoint<_i19.Greeting>(
+  _i2.Future<_i21.Greeting> hello(String name) =>
+      caller.callServerEndpoint<_i21.Greeting>(
         'greeting',
         'hello',
         {'name': name},
@@ -639,10 +716,10 @@ class EndpointGreeting extends _i1.EndpointRef {
 
 class Modules {
   Modules(Client client) {
-    auth = _i20.Caller(client);
+    auth = _i22.Caller(client);
   }
 
-  late final _i20.Caller auth;
+  late final _i22.Caller auth;
 }
 
 class Client extends _i1.ServerpodClientShared {
@@ -665,7 +742,7 @@ class Client extends _i1.ServerpodClientShared {
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
          host,
-         _i21.Protocol(),
+         _i23.Protocol(),
          securityContext: securityContext,
          streamingConnectionTimeout: streamingConnectionTimeout,
          connectionTimeout: connectionTimeout,
@@ -682,6 +759,7 @@ class Client extends _i1.ServerpodClientShared {
     gunsmith = EndpointGunsmith(this);
     profile = EndpointProfile(this);
     reload = EndpointReload(this);
+    securityRole = EndpointSecurityRole(this);
     training = EndpointTraining(this);
     user = EndpointUser(this);
     viaCepGateway = EndpointViaCepGateway(this);
@@ -705,6 +783,8 @@ class Client extends _i1.ServerpodClientShared {
 
   late final EndpointReload reload;
 
+  late final EndpointSecurityRole securityRole;
+
   late final EndpointTraining training;
 
   late final EndpointUser user;
@@ -725,6 +805,7 @@ class Client extends _i1.ServerpodClientShared {
     'gunsmith': gunsmith,
     'profile': profile,
     'reload': reload,
+    'securityRole': securityRole,
     'training': training,
     'user': user,
     'viaCepGateway': viaCepGateway,

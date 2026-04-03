@@ -41,6 +41,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
   Gender _selectedGender = Gender.other;
   UserStatus _selectedStatus = UserStatus.active;
   List<UserType> _selectedTypes = [];
+  List<SecurityRole> _selectedRoles = [];
 
   bool _isSaving = false;
 
@@ -49,6 +50,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
   @override
   void initState() {
     super.initState();
+    _initRoles();
     _cpfMask = MaskTextInputFormatter(
       mask: '###.###.###-##',
       filter: {"#": RegExp(r'[0-9]')},
@@ -129,6 +131,17 @@ class _UserFormDialogState extends State<UserFormDialog> {
 
     if (_selectedTypes.isEmpty) {
       _selectedTypes.add(UserType.shooter);
+    }
+  }
+
+  Future<void> _initRoles() async {
+    if (isEditing) {
+      final roles = await widget.vm.getUserRoles(widget.user!.id.toString());
+      if (mounted) {
+        setState(() {
+          _selectedRoles = roles;
+        });
+      }
     }
   }
 
@@ -248,6 +261,12 @@ class _UserFormDialogState extends State<UserFormDialog> {
       } else {
         await widget.vm.createUser(userData);
       }
+
+      // Save Roles
+      await widget.vm.updateUserRoles(
+        userData.id.toString(),
+        _selectedRoles.map((r) => r.id.toString()).toList(),
+      );
 
       if (mounted) {
         Navigator.of(context).pop();
@@ -468,6 +487,46 @@ class _UserFormDialogState extends State<UserFormDialog> {
                         ],
                       ),
                       const SizedBox(height: DSTokens.spacingMd),
+                      if (widget.vm.availableRoles.isNotEmpty) ...[
+                        Text(
+                          'PAPÉIS DE SEGURANÇA (RBAC)',
+                          style: DSTokens.label.copyWith(
+                            color: DSTokens.outline,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Wrap(
+                          spacing: 8.0,
+                          runSpacing: 8.0,
+                          children: widget.vm.availableRoles.map((role) {
+                            final isSelected = _selectedRoles.any(
+                              (r) => r.id == role.id,
+                            );
+                            return FilterChip(
+                              label: Text(
+                                role.name.toUpperCase(),
+                                style: DSTokens.body.copyWith(fontSize: 12),
+                              ),
+                              selected: isSelected,
+                              onSelected: (bool selected) {
+                                setState(() {
+                                  if (selected) {
+                                    _selectedRoles.add(role);
+                                  } else {
+                                    _selectedRoles.removeWhere(
+                                      (r) => r.id == role.id,
+                                    );
+                                  }
+                                });
+                              },
+                              selectedColor: DSTokens.primary.withOpacity(0.2),
+                              checkmarkColor: DSTokens.primary,
+                              backgroundColor: DSTokens.surfaceContainerHigh,
+                            );
+                          }).toList(),
+                        ),
+                        const SizedBox(height: DSTokens.spacingMd),
+                      ],
                       const SizedBox(height: DSTokens.spacingLg),
                       Text(
                         'ENDEREÇO BÁSICO',

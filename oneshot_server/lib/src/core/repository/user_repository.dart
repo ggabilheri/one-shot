@@ -10,6 +10,10 @@ abstract class IUserProfileRepository {
   Future<UserProfile> update(Session session, UserProfile user);
   Future<bool> delete(Session session, UuidValue id);
   Future<List<UserProfile>> list(Session session, {int? limit, int? offset});
+  
+  // RBAC methods
+  Future<List<SecurityRole>> getRolesForUser(Session session, UuidValue userId);
+  Future<void> updateUserRoles(Session session, UuidValue userId, List<UuidValue> roleIds);
 }
 
 class UserProfileRepository implements IUserProfileRepository {
@@ -85,5 +89,47 @@ class UserProfileRepository implements IUserProfileRepository {
       orderBy: (t) => t.name,
       include: UserProfile.include(address: Address.include()),
     );
+  }
+
+  @override
+  Future<List<SecurityRole>> getRolesForUser(Session session, UuidValue userId) async {
+    final userRoles = await UserRole.db.find(
+      session,
+      where: (t) => t.userProfileId.equals(userId),
+      include: UserRole.include(securityRole: SecurityRole.include()),
+    );
+    return userRoles
+        .where((ur) => ur.securityRole != null)
+        .map((ur) => ur.securityRole!)
+        .toList();
+  }
+
+  @override
+  Future<void> updateUserRoles(
+    Session session, 
+    UuidValue userId, 
+    List<UuidValue> roleIds
+  ) async {
+    // Transactional update of roles
+    await session.db.transaction((transaction) async {
+      // 1. Delete current associations
+      await UserRole.db.deleteWhere(
+        session,
+        where: (t) => t.userProfileId.equals(userId),
+        transaction: transaction,
+      );
+
+      // 2. Insert new associations
+      for (final roleId in roleIds) {
+        await UserRole.db.insertRow(
+          session,
+          UserRole(
+            userProfileId: userId,
+            securityRoleId: roleId,
+          ),
+          transaction: transaction,
+        );
+      }
+    });
   }
 }

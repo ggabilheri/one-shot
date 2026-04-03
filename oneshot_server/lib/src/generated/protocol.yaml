@@ -55,6 +55,12 @@ reload:
   - getMySupplies:
   - addSupply:
   - updateSupply:
+securityRole:
+  - createRole:
+  - updateRole:
+  - deleteRole:
+  - listRoles:
+  - listRolePermissions:
 training:
   - register:
   - getMyTrainings:
@@ -66,6 +72,8 @@ user:
   - update:
   - delete:
   - list:
+  - getRoles:
+  - updateRoles:
 viaCepGateway:
   - getAddressByCep:
 greeting:

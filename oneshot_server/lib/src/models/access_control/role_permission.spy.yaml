@@ -1,0 +1,8 @@
+class: RolePermission
+table: role_permissions
+fields:
+  id: UuidValue, defaultModel=random
+  securityRole: SecurityRole?, relation(optional)
+  platform: PlatformApp
+  module: AppModule?
+  level: AccessLevel

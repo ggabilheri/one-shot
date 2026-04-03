@@ -8,5 +8,6 @@ enum DashboardPageType {
   plans,
   settings,
   catalogs,
-  gunTechnicalSpec
+  gunTechnicalSpec,
+  roles
 }

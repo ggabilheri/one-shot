@@ -26,4 +26,12 @@ class UserEndpoint extends Endpoint {
   Future<List<UserProfile>> list(Session session, {int? limit, int? offset}) async {
     return await sl.userProfileRepository.list(session, limit: limit, offset: offset);
   }
+
+  Future<List<SecurityRole>> getRoles(Session session, UuidValue userId) async {
+    return await sl.userProfileRepository.getRolesForUser(session, userId);
+  }
+
+  Future<void> updateRoles(Session session, UuidValue userId, List<UuidValue> roleIds) async {
+    await sl.userProfileRepository.updateUserRoles(session, userId, roleIds);
+  }
 }

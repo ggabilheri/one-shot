@@ -12,6 +12,8 @@ import 'package:oneshot_server/src/domain/repositories/i_club_repositories.dart'
 import 'package:oneshot_server/src/domain/repositories/i_gunsmith_repository.dart';
 import 'package:oneshot_server/src/domain/repositories/i_reload_repository.dart';
 import 'package:oneshot_server/src/domain/repositories/i_training_repository.dart';
+import 'package:oneshot_server/src/domain/repositories/i_security_role_repository.dart';
+import 'package:oneshot_server/src/data/repositories_impl/security_role_repository.dart';
 import 'package:oneshot_server/src/domain/use_cases/execute_reload_session_use_case.dart';
 import 'package:oneshot_server/src/domain/use_cases/get_or_create_profile_use_case.dart';
 import 'package:oneshot_server/src/domain/use_cases/register_range_visit_use_case.dart';
@@ -35,6 +37,7 @@ class Injections {
   late final IClubRepository clubRepository;
   late final IMembershipRepository membershipRepository;
   late final IRangeVisitRepository rangeVisitRepository;
+  late final ISecurityRoleRepository securityRoleRepository;
 
   // Use Cases
   late final IRegisterTrainingUseCase registerTrainingUseCase;
@@ -55,6 +58,7 @@ class Injections {
     clubRepository = ClubRepository();
     membershipRepository = MembershipRepository();
     rangeVisitRepository = RangeVisitRepository();
+    securityRoleRepository = SecurityRoleRepository();
 
     // 2. Use Cases
     registerTrainingUseCase = RegisterTrainingUseCase(trainingRepository);

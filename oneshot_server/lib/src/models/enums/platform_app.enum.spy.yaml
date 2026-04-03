@@ -1,0 +1,6 @@
+enum: PlatformApp
+serialized: byName
+values:
+  - backoffice_web
+  - shooter_mobile
+  - club_manager

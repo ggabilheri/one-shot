@@ -1,26 +1,49 @@
+import 'package:flutter/foundation.dart';
 import 'package:backoffice_web/src/core/viewmodel.dart';
 import 'package:backoffice_web/src/domain/repositories/user_repository.dart';
+import 'package:backoffice_web/src/domain/repositories/security_role_repository.dart';
 import 'package:oneshot_client/oneshot_client.dart';
-
 abstract class IUsersViewmodel extends Viewmodel {
   List<UserProfile> get users;
+  List<SecurityRole> get availableRoles;
   Future<void> loadUsers();
+  Future<void> loadAvailableRoles();
   Future<void> createUser(UserProfile user);
   Future<void> updateUser(UserProfile user);
   Future<void> deleteUser(String id);
   Future<Address?> getAddressByCep(String cep);
+
+  // RBAC
+  Future<List<SecurityRole>> getUserRoles(String userId);
+  Future<void> updateUserRoles(String userId, List<String> roleIds);
 }
 
 class UsersViewmodel extends Viewmodel implements IUsersViewmodel {
   final IUserRepository _userRepository;
+  final ISecurityRoleRepository _securityRoleRepository;
 
-  UsersViewmodel(this._userRepository) {
+  UsersViewmodel(this._userRepository, this._securityRoleRepository) {
     loadUsers();
+    loadAvailableRoles();
   }
 
   List<UserProfile> _users = [];
+  List<SecurityRole> _availableRoles = [];
+
   @override
   List<UserProfile> get users => _users;
+  @override
+  List<SecurityRole> get availableRoles => _availableRoles;
+
+  @override
+  Future<void> loadAvailableRoles() async {
+    try {
+      _availableRoles = await _securityRoleRepository.listRoles();
+      notifyListeners();
+    } catch (e) {
+      // Ignorar ou logar
+    }
+  }
 
   @override
   Future<void> loadUsers() async {
@@ -89,6 +112,28 @@ class UsersViewmodel extends Viewmodel implements IUsersViewmodel {
     } catch (e) {
       setError('Erro ao buscar o CEP');
       return null;
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  @override
+  Future<List<SecurityRole>> getUserRoles(String userId) async {
+    try {
+      return await _userRepository.getRoles(userId);
+    } catch (e) {
+      debugPrint('Erro ao obter roles do usuário: \$e');
+      return [];
+    }
+  }
+
+  @override
+  Future<void> updateUserRoles(String userId, List<String> roleIds) async {
+    setLoading(true);
+    try {
+      await _userRepository.updateRoles(userId, roleIds);
+    } catch (e) {
+      setError(e.toString());
     } finally {
       setLoading(false);
     }

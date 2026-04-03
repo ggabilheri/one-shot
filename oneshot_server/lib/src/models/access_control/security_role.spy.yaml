@@ -1,0 +1,7 @@
+class: SecurityRole
+table: security_roles
+fields:
+  id: UuidValue, defaultModel=random
+  name: String
+  description: String?
+  active: bool, defaultModel=true

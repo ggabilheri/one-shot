@@ -7,6 +7,10 @@ abstract class IUserRepository {
   Future<UserProfile> updateUser(UserProfile user);
   Future<bool> deleteUser(String userId);
   Future<Address?> fetchAddressByCep(String cep);
+
+  // RBAC
+  Future<List<SecurityRole>> getRoles(String userId);
+  Future<void> updateRoles(String userId, List<String> roleIds);
 }
 
 class UserRepository implements IUserRepository {
@@ -52,6 +56,27 @@ class UserRepository implements IUserRepository {
       return await client.viaCepGateway.getAddressByCep(cep);
     } catch (e) {
       return null;
+    }
+  }
+
+  @override
+  Future<List<SecurityRole>> getRoles(String userId) async {
+    try {
+      return await client.user.getRoles(UuidValue.fromString(userId));
+    } catch (e) {
+      throw Exception('Falha ao obter papéis do usuário: \$e');
+    }
+  }
+
+  @override
+  Future<void> updateRoles(String userId, List<String> roleIds) async {
+    try {
+      await client.user.updateRoles(
+        UuidValue.fromString(userId),
+        roleIds.map((id) => UuidValue.fromString(id)).toList(),
+      );
+    } catch (e) {
+      throw Exception('Falha ao atualizar papéis do usuário: \$e');
     }
   }
 }

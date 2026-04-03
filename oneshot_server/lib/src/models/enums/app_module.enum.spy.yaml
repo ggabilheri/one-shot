@@ -1,0 +1,8 @@
+enum: AppModule
+serialized: byName
+values:
+  - userManagement
+  - clubManagement
+  - billing
+  - store
+  - security

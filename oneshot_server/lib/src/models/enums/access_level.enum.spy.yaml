@@ -1,0 +1,7 @@
+enum: AccessLevel
+serialized: byName
+values:
+  - none
+  - readOnly
+  - readWrite
+  - fullAdmin
