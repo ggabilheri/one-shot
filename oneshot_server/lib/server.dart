@@ -18,7 +18,12 @@ void run(List<String> args) async {
   sl.init();
 
   // Initialize Serverpod and connect it with your generated code.
-  final pod = Serverpod(args, Protocol(), Endpoints());
+  final pod = Serverpod(
+    args, 
+    Protocol(), 
+    Endpoints(),
+    authenticationHandler: auth.authenticationHandler,
+  );
 
   auth.AuthConfig.set(auth.AuthConfig(
     sendValidationEmail: (session, email, validationCode) async {

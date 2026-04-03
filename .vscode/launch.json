@@ -17,6 +17,26 @@
             "type": "dart"
         },
         {
+            "name": "backoffice_web",
+            "cwd": "apps/backoffice_web",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "backoffice_web (profile mode)",
+            "cwd": "apps/backoffice_web",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "backoffice_web (release mode)",
+            "cwd": "apps/backoffice_web",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
             "name": "shooter_app",
             "cwd": "apps/shooter_app",
             "request": "launch",

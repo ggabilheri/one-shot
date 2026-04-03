@@ -161,6 +161,22 @@ class EndpointClub extends _i1.EndpointRef {
         {'clubId': clubId},
       );
 
+  /// Atualiza um clube existente.
+  _i2.Future<_i5.Club> updateClub(_i5.Club club) =>
+      caller.callServerEndpoint<_i5.Club>(
+        'club',
+        'updateClub',
+        {'club': club},
+      );
+
+  /// Exclui um clube (Soft Delete) definindo active = false.
+  _i2.Future<_i5.Club> deleteClub(_i1.UuidValue clubId) =>
+      caller.callServerEndpoint<_i5.Club>(
+        'club',
+        'deleteClub',
+        {'clubId': clubId},
+      );
+
   /// Lista minhas filiações.
   _i2.Future<List<_i6.Membership>> getMyMemberships() =>
       caller.callServerEndpoint<List<_i6.Membership>>(

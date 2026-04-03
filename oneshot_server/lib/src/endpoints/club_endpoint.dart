@@ -18,6 +18,19 @@ class ClubEndpoint extends Endpoint {
     return await sl.clubRepository.listAll(session);
   }
 
+  /// Atualiza um clube existente.
+  Future<Club> updateClub(Session session, Club club) async {
+    return await sl.clubRepository.update(session, club);
+  }
+
+  /// Exclui um clube (Soft Delete) definindo active = false.
+  Future<Club> deleteClub(Session session, UuidValue clubId) async {
+    final club = await sl.clubRepository.findById(session, clubId);
+    if (club == null) throw Exception('Clube não encontrado.');
+    club.active = false;
+    return await sl.clubRepository.update(session, club);
+  }
+
   // -- Filiação (Membership) --
 
   /// Solicita filiação a um clube.

@@ -1,0 +1,12 @@
+enum DashboardPageType {
+  summary,
+  clubs,
+  users,
+  inventory,
+  stock,
+  serviceOrders,
+  plans,
+  settings,
+  catalogs,
+  gunTechnicalSpec
+}
