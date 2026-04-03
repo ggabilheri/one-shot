@@ -32,9 +32,10 @@ import 'package:oneshot_client/src/protocol/shooter/reload_session.dart'
 import 'package:oneshot_client/src/protocol/shooter/reload_test.dart' as _i15;
 import 'package:oneshot_client/src/protocol/common/supply_stock.dart' as _i16;
 import 'package:oneshot_client/src/protocol/shooter/training.dart' as _i17;
-import 'package:oneshot_client/src/protocol/greeting.dart' as _i18;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i19;
-import 'protocol.dart' as _i20;
+import 'package:oneshot_client/src/protocol/common/address.dart' as _i18;
+import 'package:oneshot_client/src/protocol/greeting.dart' as _i19;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i20;
+import 'protocol.dart' as _i21;
 
 /// {@category Endpoint}
 class EndpointAccessory extends _i1.EndpointRef {
@@ -153,14 +154,6 @@ class EndpointClub extends _i1.EndpointRef {
         {},
       );
 
-  /// Solicita filiação a um clube.
-  _i2.Future<_i6.Membership> requestMembership(_i1.UuidValue clubId) =>
-      caller.callServerEndpoint<_i6.Membership>(
-        'club',
-        'requestMembership',
-        {'clubId': clubId},
-      );
-
   /// Atualiza um clube existente.
   _i2.Future<_i5.Club> updateClub(_i5.Club club) =>
       caller.callServerEndpoint<_i5.Club>(
@@ -174,6 +167,14 @@ class EndpointClub extends _i1.EndpointRef {
       caller.callServerEndpoint<_i5.Club>(
         'club',
         'deleteClub',
+        {'clubId': clubId},
+      );
+
+  /// Solicita filiação a um clube.
+  _i2.Future<_i6.Membership> requestMembership(_i1.UuidValue clubId) =>
+      caller.callServerEndpoint<_i6.Membership>(
+        'club',
+        'requestMembership',
         {'clubId': clubId},
       );
 
@@ -603,6 +604,21 @@ class EndpointUser extends _i1.EndpointRef {
   );
 }
 
+/// {@category Endpoint}
+class EndpointViaCepGateway extends _i1.EndpointRef {
+  EndpointViaCepGateway(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'viaCepGateway';
+
+  _i2.Future<_i18.Address?> getAddressByCep(String zipcode) =>
+      caller.callServerEndpoint<_i18.Address?>(
+        'viaCepGateway',
+        'getAddressByCep',
+        {'zipcode': zipcode},
+      );
+}
+
 /// This is an example endpoint that returns a greeting message through
 /// its [hello] method.
 /// {@category Endpoint}
@@ -613,8 +629,8 @@ class EndpointGreeting extends _i1.EndpointRef {
   String get name => 'greeting';
 
   /// Returns a personalized greeting message: "Hello {name}".
-  _i2.Future<_i18.Greeting> hello(String name) =>
-      caller.callServerEndpoint<_i18.Greeting>(
+  _i2.Future<_i19.Greeting> hello(String name) =>
+      caller.callServerEndpoint<_i19.Greeting>(
         'greeting',
         'hello',
         {'name': name},
@@ -623,10 +639,10 @@ class EndpointGreeting extends _i1.EndpointRef {
 
 class Modules {
   Modules(Client client) {
-    auth = _i19.Caller(client);
+    auth = _i20.Caller(client);
   }
 
-  late final _i19.Caller auth;
+  late final _i20.Caller auth;
 }
 
 class Client extends _i1.ServerpodClientShared {
@@ -649,7 +665,7 @@ class Client extends _i1.ServerpodClientShared {
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
          host,
-         _i20.Protocol(),
+         _i21.Protocol(),
          securityContext: securityContext,
          streamingConnectionTimeout: streamingConnectionTimeout,
          connectionTimeout: connectionTimeout,
@@ -668,6 +684,7 @@ class Client extends _i1.ServerpodClientShared {
     reload = EndpointReload(this);
     training = EndpointTraining(this);
     user = EndpointUser(this);
+    viaCepGateway = EndpointViaCepGateway(this);
     greeting = EndpointGreeting(this);
     modules = Modules(this);
   }
@@ -692,6 +709,8 @@ class Client extends _i1.ServerpodClientShared {
 
   late final EndpointUser user;
 
+  late final EndpointViaCepGateway viaCepGateway;
+
   late final EndpointGreeting greeting;
 
   late final Modules modules;
@@ -708,6 +727,7 @@ class Client extends _i1.ServerpodClientShared {
     'reload': reload,
     'training': training,
     'user': user,
+    'viaCepGateway': viaCepGateway,
     'greeting': greeting,
   };
 

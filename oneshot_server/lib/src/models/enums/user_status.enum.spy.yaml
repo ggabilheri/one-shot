@@ -1,0 +1,8 @@
+enum: UserStatus
+default: active
+serialized: byName
+values:
+  - active
+  - inactive
+  - blocked
+  - suspended

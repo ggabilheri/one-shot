@@ -33,6 +33,7 @@ class GetOrCreateProfileUseCase implements IGetOrCreateProfileUseCase {
         userInfoId: userId,
         name: userInfo?.userName ?? 'Novo Atirador',
         types: [UserType.shooter], // Default para todo novo usuário.
+        status: UserStatus.active,
       );
 
       profile = await _userProfileRepository.create(session, profile);

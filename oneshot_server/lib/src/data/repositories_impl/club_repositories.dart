@@ -6,12 +6,25 @@ import 'package:serverpod/serverpod.dart';
 class ClubRepository implements IClubRepository {
   @override
   Future<Club> create(Session session, Club club) async {
+    if (club.address != null) {
+      final existing = await Address.db.findById(session, club.address!.id);
+      if (existing == null) {
+        await Address.db.insertRow(session, club.address!);
+      } else {
+        await Address.db.updateRow(session, club.address!);
+      }
+      club.addressId = club.address!.id;
+    }
     return await Club.db.insertRow(session, club);
   }
 
   @override
   Future<Club?> findById(Session session, UuidValue id) async {
-    return await Club.db.findById(session, id);
+    return await Club.db.findById(
+      session,
+      id,
+      include: Club.include(address: Address.include()),
+    );
   }
 
   @override
@@ -19,6 +32,7 @@ class ClubRepository implements IClubRepository {
     return await Club.db.find(
       session,
       where: (t) => t.ownerId.equals(ownerId),
+      include: Club.include(address: Address.include()),
     );
   }
 
@@ -27,11 +41,21 @@ class ClubRepository implements IClubRepository {
     return await Club.db.find(
       session,
       where: (t) => t.active.equals(true),
+      include: Club.include(address: Address.include()),
     );
   }
 
   @override
   Future<Club> update(Session session, Club club) async {
+    if (club.address != null) {
+      final existing = await Address.db.findById(session, club.address!.id);
+      if (existing != null) {
+        await Address.db.updateRow(session, club.address!);
+      } else {
+        await Address.db.insertRow(session, club.address!);
+      }
+      club.addressId = club.address!.id;
+    }
     return await Club.db.updateRow(session, club);
   }
 }

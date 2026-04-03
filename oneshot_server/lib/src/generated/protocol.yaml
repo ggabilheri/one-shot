@@ -12,6 +12,8 @@ ammunition:
 club:
   - createClub:
   - listClubs:
+  - updateClub:
+  - deleteClub:
   - requestMembership:
   - getMyMemberships:
   - checkIn:
@@ -64,5 +66,7 @@ user:
   - update:
   - delete:
   - list:
+viaCepGateway:
+  - getAddressByCep:
 greeting:
   - hello:

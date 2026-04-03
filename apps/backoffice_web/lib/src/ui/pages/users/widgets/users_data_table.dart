@@ -1,41 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:backoffice_web/src/ui/pages/clubs/clubs_viewmodel.dart';
+import 'package:backoffice_web/src/ui/pages/users/users_viewmodel.dart';
 import 'package:backoffice_web/src/ui/widgets/brutalist_card.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'club_form_dialog.dart';
+import 'package:oneshot_client/oneshot_client.dart';
+import 'user_form_dialog.dart';
 
-class ClubsDataTable extends StatelessWidget {
-  final IClubsViewmodel vm;
+class UsersDataTable extends StatelessWidget {
+  final IUsersViewmodel vm;
 
-  const ClubsDataTable({super.key, required this.vm});
-
-  String _formatCpf(String? cpf) {
-    if (cpf == null || cpf.isEmpty) return '--';
-    var formatter = MaskTextInputFormatter(
-      mask: '###.###.###-##',
-      filter: {"#": RegExp(r'[0-9]')},
-    );
-    return formatter.maskText(cpf);
-  }
-
-  String _formatCnpj(String? cnpj) {
-    if (cnpj == null || cnpj.isEmpty) return '--';
-    var formatter = MaskTextInputFormatter(
-      mask: '##.###.###/####-##',
-      filter: {"#": RegExp(r'[0-9]')},
-    );
-    return formatter.maskText(cnpj);
-  }
-
-  String _formatPhone(String? phone) {
-    if (phone == null || phone.isEmpty) return '--';
-    var formatter = MaskTextInputFormatter(
-      mask: '(##) #####-####',
-      filter: {"#": RegExp(r'[0-9]')},
-    );
-    return formatter.maskText(phone);
-  }
+  const UsersDataTable({super.key, required this.vm});
 
   @override
   Widget build(BuildContext context) {
@@ -45,21 +19,21 @@ class ClubsDataTable extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _buildTableHeader(),
-          if (vm.clubs.isEmpty)
+          if (vm.users.isEmpty)
             Padding(
               padding: const EdgeInsets.all(32.0),
               child: Center(
-                child: Text('NENHUM CLUBE ENCONTRADO', style: DSTokens.body),
+                child: Text('NENHUM USUÁRIO ENCONTRADO', style: DSTokens.body),
               ),
             )
           else
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: vm.clubs.length,
+              itemCount: vm.users.length,
               itemBuilder: (context, index) {
-                final club = vm.clubs[index];
-                return _buildTableRow(context, club, index);
+                final user = vm.users[index];
+                return _buildTableRow(context, user, index);
               },
             ),
         ],
@@ -79,12 +53,11 @@ class ClubsDataTable extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(width: 40, child: Text('STS', style: DSTokens.label)),
-          Expanded(
-            flex: 3,
-            child: Text('NOME DA ENTIDADE', style: DSTokens.label),
-          ),
-          Expanded(flex: 2, child: Text('CNPJ', style: DSTokens.label)),
-          Expanded(flex: 2, child: Text('CONTATO', style: DSTokens.label)),
+          Expanded(flex: 3, child: Text('NOME', style: DSTokens.label)),
+          Expanded(flex: 2, child: Text('CPF', style: DSTokens.label)),
+          Expanded(flex: 2, child: Text('TELEFONE', style: DSTokens.label)),
+          Expanded(flex: 2, child: Text('CIDADE/UF', style: DSTokens.label)),
+          Expanded(flex: 1, child: Text('TIPO', style: DSTokens.label)),
           SizedBox(
             width: 80,
             child: Text(
@@ -98,8 +71,25 @@ class ClubsDataTable extends StatelessWidget {
     );
   }
 
-  Widget _buildTableRow(BuildContext context, dynamic club, int index) {
-    // Linha Zebra: Intercala transparent e micro overlay light
+  String _formatCpf(String? cpf) {
+    if (cpf == null || cpf.isEmpty) return '--';
+    var formatter = MaskTextInputFormatter(
+      mask: '###.###.###-##',
+      filter: {"#": RegExp(r'[0-9]')},
+    );
+    return formatter.maskText(cpf);
+  }
+
+  String _formatPhone(String? phone) {
+    if (phone == null || phone.isEmpty) return '--';
+    var formatter = MaskTextInputFormatter(
+      mask: '(##) #####-####',
+      filter: {"#": RegExp(r'[0-9]')},
+    );
+    return formatter.maskText(phone);
+  }
+
+  Widget _buildTableRow(BuildContext context, UserProfile user, int index) {
     final isEven = index % 2 == 0;
 
     return Container(
@@ -116,8 +106,12 @@ class ClubsDataTable extends StatelessWidget {
           SizedBox(
             width: 40,
             child: Icon(
-              club.active ? Icons.circle : Icons.circle_outlined,
-              color: club.active ? DSTokens.primary : DSTokens.outline,
+              user.status == UserStatus.active
+                  ? Icons.circle
+                  : Icons.circle_outlined,
+              color: user.status == UserStatus.active
+                  ? DSTokens.primary
+                  : DSTokens.outline,
               size: 14,
             ),
           ),
@@ -125,29 +119,53 @@ class ClubsDataTable extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Text(
-              club.name,
+              user.name,
               style: DSTokens.body.copyWith(
                 color: DSTokens.highlight,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          // CNPJ
+          // CPF
           Expanded(
             flex: 2,
             child: Text(
-              _formatCnpj(club.cnpj),
+              _formatCpf(user.cpf),
               style: DSTokens.data.copyWith(
                 color: DSTokens.outline,
                 fontSize: 14,
               ),
             ),
           ),
-          // CONTATO
+          // TELEFONE
           Expanded(
             flex: 2,
             child: Text(
-              _formatPhone(club.phoneNumber),
+              _formatPhone(user.phone),
+              style: DSTokens.data.copyWith(
+                color: DSTokens.outline,
+                fontSize: 14,
+              ),
+            ),
+          ),
+          // CIDADE/UF
+          Expanded(
+            flex: 2,
+            child: Text(
+              user.address != null && user.address!.city.isNotEmpty
+                  ? '${user.address!.city} / ${user.address!.state}'
+                  : '--',
+              style: DSTokens.data.copyWith(
+                color: DSTokens.outline,
+                fontSize: 14,
+              ),
+            ),
+          ),
+          // TIPO
+          Expanded(
+            flex: 1,
+            child: Text(
+              user.types?.isNotEmpty == true ? user.types!.first.name : '--',
               style: DSTokens.data.copyWith(
                 color: DSTokens.outline,
                 fontSize: 14,
@@ -168,7 +186,7 @@ class ClubsDataTable extends StatelessWidget {
                         context: context,
                         barrierColor: DSTokens.background.withOpacity(0.8),
                         builder: (context) =>
-                            ClubFormDialog(vm: vm, club: club),
+                            UserFormDialog(vm: vm, user: user),
                       );
                     },
                     child: const Icon(
@@ -182,7 +200,7 @@ class ClubsDataTable extends StatelessWidget {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
-                    onTap: () => vm.deleteClub(club.id.toString()),
+                    onTap: () => vm.deleteUser(user.id.toString()),
                     child: const Icon(
                       Icons.delete_outline,
                       color: DSTokens.alert,

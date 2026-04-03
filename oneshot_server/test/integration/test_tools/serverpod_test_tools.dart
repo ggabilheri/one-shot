@@ -34,7 +34,8 @@ import 'package:oneshot_server/src/generated/shooter/reload_session.dart'
 import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i16;
 import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i17;
 import 'package:oneshot_server/src/generated/shooter/training.dart' as _i18;
-import 'package:oneshot_server/src/generated/greeting.dart' as _i19;
+import 'package:oneshot_server/src/generated/common/address.dart' as _i19;
+import 'package:oneshot_server/src/generated/greeting.dart' as _i20;
 import 'package:oneshot_server/src/generated/protocol.dart';
 import 'package:oneshot_server/src/generated/endpoints.dart';
 export 'package:serverpod_test/serverpod_test_public_exports.dart';
@@ -162,6 +163,8 @@ class TestEndpoints {
 
   late final _UserEndpoint user;
 
+  late final _ViaCepGatewayEndpoint viaCepGateway;
+
   late final _GreetingEndpoint greeting;
 }
 
@@ -209,6 +212,10 @@ class _InternalTestEndpoints extends TestEndpoints
       serializationManager,
     );
     user = _UserEndpoint(
+      endpoints,
+      serializationManager,
+    );
+    viaCepGateway = _ViaCepGatewayEndpoint(
       endpoints,
       serializationManager,
     );
@@ -593,6 +600,68 @@ class _ClubEndpoint {
                   _localCallContext.arguments,
                 )
                 as _i3.Future<List<_i6.Club>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<_i6.Club> updateClub(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i6.Club club,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'club',
+            method: 'updateClub',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'club',
+          methodName: 'updateClub',
+          parameters: _i1.testObjectToJson({'club': club}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<_i6.Club>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<_i6.Club> deleteClub(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i2.UuidValue clubId,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'club',
+            method: 'deleteClub',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'club',
+          methodName: 'deleteClub',
+          parameters: _i1.testObjectToJson({'clubId': clubId}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<_i6.Club>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2094,6 +2163,48 @@ class _UserEndpoint {
   }
 }
 
+class _ViaCepGatewayEndpoint {
+  _ViaCepGatewayEndpoint(
+    this._endpointDispatch,
+    this._serializationManager,
+  );
+
+  final _i2.EndpointDispatch _endpointDispatch;
+
+  final _i2.SerializationManager _serializationManager;
+
+  _i3.Future<_i19.Address?> getAddressByCep(
+    _i1.TestSessionBuilder sessionBuilder,
+    String zipcode,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'viaCepGateway',
+            method: 'getAddressByCep',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'viaCepGateway',
+          methodName: 'getAddressByCep',
+          parameters: _i1.testObjectToJson({'zipcode': zipcode}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<_i19.Address?>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+}
+
 class _GreetingEndpoint {
   _GreetingEndpoint(
     this._endpointDispatch,
@@ -2104,7 +2215,7 @@ class _GreetingEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<_i19.Greeting> hello(
+  _i3.Future<_i20.Greeting> hello(
     _i1.TestSessionBuilder sessionBuilder,
     String name,
   ) async {
@@ -2127,7 +2238,7 @@ class _GreetingEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i19.Greeting>);
+                as _i3.Future<_i20.Greeting>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

@@ -12,6 +12,7 @@ fields:
   email: String?
   address: Address?, relation(optional)
   types: List<UserType>?
+  status: UserStatus
 indexes:
   user_cpf_idx:
     fields: cpf

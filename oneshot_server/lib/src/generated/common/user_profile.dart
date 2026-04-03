@@ -16,7 +16,8 @@ import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i2;
 import '../enums/gender.enum.dart' as _i3;
 import '../common/address.dart' as _i4;
 import '../enums/user_type.enum.dart' as _i5;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i6;
+import '../enums/user_status.enum.dart' as _i6;
+import 'package:oneshot_server/src/generated/protocol.dart' as _i7;
 
 abstract class UserProfile
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
@@ -34,6 +35,7 @@ abstract class UserProfile
     this.addressId,
     this.address,
     this.types,
+    required this.status,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory UserProfile({
@@ -50,6 +52,7 @@ abstract class UserProfile
     _i1.UuidValue? addressId,
     _i4.Address? address,
     List<_i5.UserType>? types,
+    required _i6.UserStatus status,
   }) = _UserProfileImpl;
 
   factory UserProfile.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -60,7 +63,7 @@ abstract class UserProfile
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
-          : _i6.Protocol().deserialize<_i2.UserInfo>(
+          : _i7.Protocol().deserialize<_i2.UserInfo>(
               jsonSerialization['userInfo'],
             ),
       name: jsonSerialization['name'] as String,
@@ -79,14 +82,15 @@ abstract class UserProfile
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
       address: jsonSerialization['address'] == null
           ? null
-          : _i6.Protocol().deserialize<_i4.Address>(
+          : _i7.Protocol().deserialize<_i4.Address>(
               jsonSerialization['address'],
             ),
       types: jsonSerialization['types'] == null
           ? null
-          : _i6.Protocol().deserialize<List<_i5.UserType>>(
+          : _i7.Protocol().deserialize<List<_i5.UserType>>(
               jsonSerialization['types'],
             ),
+      status: _i6.UserStatus.fromJson((jsonSerialization['status'] as String)),
     );
   }
 
@@ -121,6 +125,8 @@ abstract class UserProfile
 
   List<_i5.UserType>? types;
 
+  _i6.UserStatus status;
+
   @override
   _i1.Table<_i1.UuidValue> get table => t;
 
@@ -141,6 +147,7 @@ abstract class UserProfile
     _i1.UuidValue? addressId,
     _i4.Address? address,
     List<_i5.UserType>? types,
+    _i6.UserStatus? status,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -159,6 +166,7 @@ abstract class UserProfile
       if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJson(),
       if (types != null) 'types': types?.toJson(valueToJson: (v) => v.toJson()),
+      'status': status.toJson(),
     };
   }
 
@@ -179,6 +187,7 @@ abstract class UserProfile
       if (addressId != null) 'addressId': addressId?.toJson(),
       if (address != null) 'address': address?.toJsonForProtocol(),
       if (types != null) 'types': types?.toJson(valueToJson: (v) => v.toJson()),
+      'status': status.toJson(),
     };
   }
 
@@ -235,6 +244,7 @@ class _UserProfileImpl extends UserProfile {
     _i1.UuidValue? addressId,
     _i4.Address? address,
     List<_i5.UserType>? types,
+    required _i6.UserStatus status,
   }) : super._(
          id: id,
          userInfoId: userInfoId,
@@ -249,6 +259,7 @@ class _UserProfileImpl extends UserProfile {
          addressId: addressId,
          address: address,
          types: types,
+         status: status,
        );
 
   /// Returns a shallow copy of this [UserProfile]
@@ -269,6 +280,7 @@ class _UserProfileImpl extends UserProfile {
     Object? addressId = _Undefined,
     Object? address = _Undefined,
     Object? types = _Undefined,
+    _i6.UserStatus? status,
   }) {
     return UserProfile(
       id: id ?? this.id,
@@ -288,6 +300,7 @@ class _UserProfileImpl extends UserProfile {
       types: types is List<_i5.UserType>?
           ? types
           : this.types?.map((e0) => e0).toList(),
+      status: status ?? this.status,
     );
   }
 }
@@ -350,6 +363,13 @@ class UserProfileUpdateTable extends _i1.UpdateTable<UserProfileTable> {
     table.types,
     value,
   );
+
+  _i1.ColumnValue<_i6.UserStatus, _i6.UserStatus> status(
+    _i6.UserStatus value,
+  ) => _i1.ColumnValue(
+    table.status,
+    value,
+  );
 }
 
 class UserProfileTable extends _i1.Table<_i1.UuidValue> {
@@ -396,6 +416,11 @@ class UserProfileTable extends _i1.Table<_i1.UuidValue> {
       'types',
       this,
     );
+    status = _i1.ColumnEnum(
+      'status',
+      this,
+      _i1.EnumSerialization.byName,
+    );
   }
 
   late final UserProfileUpdateTable updateTable;
@@ -423,6 +448,8 @@ class UserProfileTable extends _i1.Table<_i1.UuidValue> {
   _i4.AddressTable? _address;
 
   late final _i1.ColumnSerializable<List<_i5.UserType>> types;
+
+  late final _i1.ColumnEnum<_i6.UserStatus> status;
 
   _i2.UserInfoTable get userInfo {
     if (_userInfo != null) return _userInfo!;
@@ -463,6 +490,7 @@ class UserProfileTable extends _i1.Table<_i1.UuidValue> {
     email,
     addressId,
     types,
+    status,
   ];
 
   @override

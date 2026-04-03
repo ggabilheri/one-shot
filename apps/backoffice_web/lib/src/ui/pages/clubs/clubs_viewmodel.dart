@@ -8,6 +8,7 @@ abstract class IClubsViewmodel extends IViewmodel {
   Future<void> loadClubs();
   Future<void> saveClub(Club club, {bool isEditing = false});
   Future<void> deleteClub(String id);
+  Future<Address?> getAddressByCep(String cep);
 }
 
 class ClubsViewmodel extends Viewmodel implements IClubsViewmodel {
@@ -15,6 +16,11 @@ class ClubsViewmodel extends Viewmodel implements IClubsViewmodel {
   
   bool _isLoading = false;
   List<Club> _clubs = [];
+
+  @override
+  Future<Address?> getAddressByCep(String cep) async {
+    return await _repository.fetchAddressByCep(cep);
+  }
 
   @override
   bool get isLoading => _isLoading;

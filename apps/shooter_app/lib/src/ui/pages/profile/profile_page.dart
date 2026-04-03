@@ -49,6 +49,7 @@ class _ProfilePageState extends ViewmodelState<ProfilePage, IProfileViewmodel>
         phone: _phoneController.text,
         email: _emailController.text,
         gender: vm.profile?.gender ?? Gender.other,
+        status: vm.profile?.status ?? UserStatus.active,
       );
       vm.saveProfile(profile);
     }

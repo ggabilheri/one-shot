@@ -15,7 +15,11 @@ abstract class IUserProfileRepository {
 class UserProfileRepository implements IUserProfileRepository {
   @override
   Future<UserProfile?> findById(Session session, UuidValue id) async {
-    return await UserProfile.db.findById(session, id);
+    return await UserProfile.db.findById(
+      session, 
+      id, 
+      include: UserProfile.include(address: Address.include())
+    );
   }
 
   @override
@@ -23,6 +27,7 @@ class UserProfileRepository implements IUserProfileRepository {
     return await UserProfile.db.findFirstRow(
       session,
       where: (t) => t.cpf.equals(cpf),
+      include: UserProfile.include(address: Address.include()),
     );
   }
 
@@ -31,16 +36,35 @@ class UserProfileRepository implements IUserProfileRepository {
     return await UserProfile.db.findFirstRow(
       session,
       where: (t) => t.userInfoId.equals(userInfoId),
+      include: UserProfile.include(address: Address.include()),
     );
   }
 
   @override
   Future<UserProfile> create(Session session, UserProfile user) async {
+    if (user.address != null) {
+      final existing = await Address.db.findById(session, user.address!.id);
+      if (existing == null) {
+        await Address.db.insertRow(session, user.address!);
+      } else {
+        await Address.db.updateRow(session, user.address!);
+      }
+      user.addressId = user.address!.id;
+    }
     return await UserProfile.db.insertRow(session, user);
   }
 
   @override
   Future<UserProfile> update(Session session, UserProfile user) async {
+    if (user.address != null) {
+      final existing = await Address.db.findById(session, user.address!.id);
+      if (existing != null) {
+        await Address.db.updateRow(session, user.address!);
+      } else {
+        await Address.db.insertRow(session, user.address!);
+      }
+      user.addressId = user.address!.id;
+    }
     return await UserProfile.db.updateRow(session, user);
   }
 
@@ -59,6 +83,7 @@ class UserProfileRepository implements IUserProfileRepository {
       limit: limit,
       offset: offset,
       orderBy: (t) => t.name,
+      include: UserProfile.include(address: Address.include()),
     );
   }
 }

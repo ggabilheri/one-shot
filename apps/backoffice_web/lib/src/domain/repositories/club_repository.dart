@@ -6,9 +6,18 @@ abstract class IClubRepository {
   Future<Club> createClub(Club club);
   Future<Club> updateClub(Club club);
   Future<Club> deleteClub(String clubId);
+  Future<Address?> fetchAddressByCep(String cep);
 }
 
 class ClubRepository implements IClubRepository {
+  @override
+  Future<Address?> fetchAddressByCep(String cep) async {
+    try {
+      return await client.viaCepGateway.getAddressByCep(cep);
+    } catch (e) {
+      throw Exception('Falha ao buscar CEP: \$e');
+    }
+  }
   @override
   Future<List<Club>> listClubs() async {
     try {
