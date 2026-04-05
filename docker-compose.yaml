@@ -21,15 +21,31 @@ services:
       - postgres
       - redis
 
-  # front_end:
-  #   build:
-  #     context: ./oneshot_flutter
-  #     dockerfile: Dockerfile
-  #   restart: always
-  #   ports:
-  #     - "8092:80"
-  #   depends_on:
-  #     - backend
+  backoffice-web:
+    build:
+      context: .
+      dockerfile: apps/backoffice_web/Dockerfile
+    restart: always
+    # Expomos a porta 8092 apenas para acesso direto se necessário,
+    # Mas o NPM gerenciará o tráfego nas portas 80/443.
+    ports:
+      - "8092:80"
+    depends_on:
+      - backend
+
+  npm:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+    depends_on:
+      - backoffice-web
+      - backend
 
   postgres:
     image: pgvector/pgvector:pg16
@@ -72,3 +88,5 @@ services:
 volumes:
   oneshot_data:
   oneshot_test_data:
+  npm_data:
+  npm_letsencrypt:
