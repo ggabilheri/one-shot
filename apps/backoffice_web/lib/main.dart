@@ -19,7 +19,7 @@ void main() async {
   // Serverpod Client Setup
   const serverUrlFromEnv = String.fromEnvironment('SERVER_URL');
   final serverUrl = serverUrlFromEnv.isEmpty
-      ? 'http://localhost:8080/'
+      ? 'http://192.168.30.190:8080/'
       : serverUrlFromEnv;
 
   client = Client(
