@@ -9,6 +9,7 @@ abstract class IProductsViewmodel extends IViewmodel {
   bool get isLoading;
   String get selectedOrigin;
   UuidValue? get selectedGroupId;
+  bool get isFilteredByGroup;
 
   void setOrigin(String origin);
   void setSelectedGroup(UuidValue? groupId);
@@ -17,6 +18,8 @@ abstract class IProductsViewmodel extends IViewmodel {
   Future<void> loadGroups();
   Future<void> saveProduct(Product product, {bool isEditing = false});
   Future<void> deleteProduct(UuidValue id);
+
+  void setProductGroup(ProductGroup? productGroup);
 }
 
 class ProductsViewmodel extends Viewmodel implements IProductsViewmodel {
@@ -28,6 +31,7 @@ class ProductsViewmodel extends Viewmodel implements IProductsViewmodel {
   List<ProductGroup> _groups = [];
   String _selectedOrigin = 'BACKOFFICE';
   UuidValue? _selectedGroupId;
+  bool _isFilteredByGroup = false;
 
   ProductsViewmodel(this._repository, this._groupRepository) {
     loadGroups();
@@ -50,10 +54,13 @@ class ProductsViewmodel extends Viewmodel implements IProductsViewmodel {
   UuidValue? get selectedGroupId => _selectedGroupId;
 
   @override
+  bool get isFilteredByGroup => _isFilteredByGroup;
+
+  @override
   void setOrigin(String origin) {
     _selectedOrigin = origin;
     _selectedGroupId = null; // Reset group filter when origin changes
-    loadGroups();
+    _isFilteredByGroup = false;
     loadProducts();
   }
 
@@ -127,5 +134,12 @@ class ProductsViewmodel extends Viewmodel implements IProductsViewmodel {
     } finally {
       setLoading(false);
     }
+  }
+
+  @override
+  void setProductGroup(ProductGroup? productGroup) {
+    _selectedGroupId = productGroup?.id;
+    _isFilteredByGroup = productGroup != null;
+    loadProducts();
   }
 }

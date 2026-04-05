@@ -25,6 +25,7 @@ class ProductRepository implements IProductRepository {
     try {
       return await client.product.listProducts(
         originModule: originModule,
+        groupId: groupId,
         limit: limit,
         offset: offset,
       );

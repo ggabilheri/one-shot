@@ -11,6 +11,7 @@ import 'package:backoffice_web/src/ui/pages/users/users_viewmodel.dart';
 import 'package:backoffice_web/src/ui/pages/roles/roles_viewmodel.dart';
 import 'package:backoffice_web/src/domain/repositories/security_role_repository.dart';
 import 'package:backoffice_web/src/domain/repositories/product_repository.dart';
+import 'package:backoffice_web/src/domain/repositories/product_group_repository.dart';
 import 'package:backoffice_web/src/ui/pages/products/product_groups_viewmodel.dart';
 import 'package:backoffice_web/src/ui/pages/products/products_viewmodel.dart';
 
@@ -23,6 +24,6 @@ void setupViewModelInjections() {
   getIt.registerFactory<IClubsViewmodel>(() => ClubsViewmodel(getIt<IClubRepository>()));
   getIt.registerFactory<IUsersViewmodel>(() => UsersViewmodel(getIt<IUserRepository>(), getIt<ISecurityRoleRepository>()));
   getIt.registerFactory<IRolesViewmodel>(() => RolesViewmodel(getIt<ISecurityRoleRepository>()));
-  getIt.registerFactory<IProductsViewmodel>(() => ProductsViewmodel(getIt<IProductRepository>(), getIt()));
-  getIt.registerFactory<IProductGroupsViewmodel>(() => ProductGroupsViewmodel(getIt()));
+  getIt.registerFactory<IProductsViewmodel>(() => ProductsViewmodel(getIt<IProductRepository>(), getIt<IProductGroupRepository>()));
+  getIt.registerFactory<IProductGroupsViewmodel>(() => ProductGroupsViewmodel(getIt<IProductGroupRepository>(), getIt<IProductRepository>()));
 }

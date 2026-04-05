@@ -13,5 +13,5 @@ void setupRepositoryInjections() {
   getIt.registerLazySingleton<IUserRepository>(() => UserRepository());
   getIt.registerLazySingleton<ISecurityRoleRepository>(() => SecurityRoleRepository());
   getIt.registerLazySingleton<IProductRepository>(() => ProductRepository());
-  getIt.registerLazySingleton<IProductGroupRepository>(() => ProductGroupRepository(getIt()));
+  getIt.registerLazySingleton<IProductGroupRepository>(() => ProductGroupRepository());
 }

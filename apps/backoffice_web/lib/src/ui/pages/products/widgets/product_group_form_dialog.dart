@@ -1,4 +1,3 @@
-import 'package:backoffice_web/main.dart';
 import 'package:flutter/material.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
@@ -23,10 +22,12 @@ class _ProductGroupFormDialogState extends State<ProductGroupFormDialog> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
   late TextEditingController _descriptionController;
+  late bool _isNew;
 
   @override
   void initState() {
     super.initState();
+    _isNew = widget.group == null;
     _nameController = TextEditingController(text: widget.group?.name);
     _descriptionController = TextEditingController(
       text: widget.group?.description,

@@ -1,4 +1,5 @@
 import 'package:oneshot_client/oneshot_client.dart';
+import 'package:backoffice_web/main.dart'; // import global client instance
 
 abstract class IProductGroupRepository {
   Future<List<ProductGroup>> listGroups({
@@ -14,10 +15,6 @@ abstract class IProductGroupRepository {
 }
 
 class ProductGroupRepository implements IProductGroupRepository {
-  final Client client;
-
-  ProductGroupRepository(this.client);
-
   @override
   Future<List<ProductGroup>> listGroups({
     required String originModule,

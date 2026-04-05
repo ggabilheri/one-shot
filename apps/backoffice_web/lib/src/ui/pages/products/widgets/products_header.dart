@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oneshot_client/oneshot_client.dart';
 import 'package:backoffice_web/src/ui/pages/products/products_viewmodel.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 import 'product_form_dialog.dart';
@@ -30,10 +31,42 @@ class ProductsHeader extends StatelessWidget {
           children: [
             _buildOriginFilter(),
             const SizedBox(width: DSTokens.spacingMd),
+            if (!vm.isFilteredByGroup) ...[
+              _buildGroupFilter(),
+              const SizedBox(width: DSTokens.spacingMd),
+            ],
             _buildActionBtn(context),
           ],
         ),
       ],
+    );
+  }
+
+  Widget _buildGroupFilter() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        color: DSTokens.surfaceContainer,
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(color: DSTokens.surfaceContainerHigh),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<UuidValue?>(
+          value: vm.selectedGroupId,
+          dropdownColor: DSTokens.surface,
+          hint: const Text('TODOS OS GRUPOS'),
+          items: [
+            const DropdownMenuItem(value: null, child: Text('TODOS OS GRUPOS')),
+            ...vm.groups.map((g) => DropdownMenuItem(
+                  value: g.id,
+                  child: Text(g.name.toUpperCase()),
+                )),
+          ],
+          onChanged: (val) {
+            vm.setSelectedGroup(val);
+          },
+        ),
+      ),
     );
   }
 
@@ -70,7 +103,10 @@ class ProductsHeader extends StatelessWidget {
           showDialog(
             context: context,
             barrierColor: DSTokens.background.withOpacity(0.8),
-            builder: (context) => ProductFormDialog(vm: vm),
+            builder: (context) => ProductFormDialog(
+              vm: vm,
+              initialGroupId: vm.selectedGroupId,
+            ),
           );
         },
         child: Container(

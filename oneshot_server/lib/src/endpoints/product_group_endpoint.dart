@@ -19,11 +19,13 @@ class ProductGroupEndpoint extends Endpoint {
     );
   }
 
-  Future<ProductGroup> createProductGroup(Session session, ProductGroup group) async {
+  Future<ProductGroup> createProductGroup(
+      Session session, ProductGroup group) async {
     return await sl.productGroupRepository.create(session, group);
   }
 
-  Future<ProductGroup> updateProductGroup(Session session, ProductGroup group) async {
+  Future<ProductGroup> updateProductGroup(
+      Session session, ProductGroup group) async {
     return await sl.productGroupRepository.update(session, group);
   }
 

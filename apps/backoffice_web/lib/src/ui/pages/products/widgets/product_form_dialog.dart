@@ -6,7 +6,14 @@ import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 class ProductFormDialog extends StatefulWidget {
   final IProductsViewmodel vm;
   final Product? product;
-  const ProductFormDialog({super.key, required this.vm, this.product});
+  final UuidValue? initialGroupId;
+
+  const ProductFormDialog({
+    super.key,
+    required this.vm,
+    this.product,
+    this.initialGroupId,
+  });
 
   @override
   State<ProductFormDialog> createState() => _ProductFormDialogState();
@@ -31,7 +38,7 @@ class _ProductFormDialogState extends State<ProductFormDialog> {
       text: widget.product?.unitPrice.toString() ?? '0.0',
     );
     _unit = widget.product?.unit ?? 'UN';
-    _selectedGroupId = widget.product?.groupId;
+    _selectedGroupId = widget.product?.groupId ?? widget.initialGroupId;
   }
 
   @override
