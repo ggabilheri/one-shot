@@ -1,0 +1,21 @@
+class: Payment
+table: payments
+fields:
+  id: UuidValue, defaultModel=random
+  paymentDate: DateTime
+  amountPaid: double
+  paymentMethod: PaymentMethod
+  status: PaymentStatus
+  currency: Currency
+  gatewayTransactionId: String?
+  
+  # Relacionamento
+  invoice: Invoice?, relation(optional)
+  
+indexes:
+  payment_invoice_id_idx:
+    fields: invoiceId
+  payment_status_idx:
+    fields: status
+  payment_date_idx:
+    fields: paymentDate

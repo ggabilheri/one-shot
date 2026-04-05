@@ -1,4 +1,4 @@
-import 'package:oneshot_server/src/domain/repositories/i_gunsmith_repository.dart';
+import 'package:oneshot_server/src/core/repository/gunsmith_repository.dart';
 import 'package:oneshot_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 

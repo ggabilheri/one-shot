@@ -37,12 +37,28 @@ firearm:
   - delete:
   - listByUser:
 gunsmith:
+  - createGunsmith:
+  - getGunsmith:
+  - findGunsmithByOwner:
+  - listGunsmiths:
+  - updateGunsmith:
   - createClient:
   - findClientByCpf:
   - getMyClients:
   - registerServiceOrder:
   - getOrdersByClient:
   - getOrderItems:
+invoice:
+  - createInvoice:
+  - getInvoice:
+  - listInvoices:
+  - updateInvoice:
+  - deleteInvoice:
+  - getInvoiceItems:
+payment:
+  - registerPayment:
+  - getPaymentsByInvoice:
+  - listPayments:
 profile:
   - getOrCreateMyProfile:
   - updateMyProfile:

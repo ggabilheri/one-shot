@@ -1,9 +1,39 @@
 import 'package:oneshot_server/src/core/injections/injections.dart';
 import 'package:oneshot_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
-import 'package:serverpod_auth_server/serverpod_auth_server.dart';
 
 class GunsmithEndpoint extends Endpoint {
+  // --- Gestão de Estabelecimento (Armaria) ---
+
+  /// Registra uma nova armaria no sistema.
+  Future<Gunsmith> createGunsmith(Session session, Gunsmith gunsmith) async {
+    return await sl.gunsmithRepository.createGunsmith(session, gunsmith);
+  }
+
+  /// Busca os detalhes de uma armaria pelo ID.
+  Future<Gunsmith?> getGunsmith(Session session, UuidValue id) async {
+    return await sl.gunsmithRepository.findGunsmithById(session, id);
+  }
+
+  /// Busca a armaria de um proprietário específico.
+  Future<Gunsmith?> findGunsmithByOwner(Session session, UuidValue ownerId) async {
+    return await sl.gunsmithRepository.findGunsmithByOwner(session, ownerId);
+  }
+
+  /// Lista todas as armarias cadastradas.
+  Future<List<Gunsmith>> listGunsmiths(Session session,
+      {int? limit, int? offset}) async {
+    return await sl.gunsmithRepository.listGunsmiths(session,
+        limit: limit, offset: offset);
+  }
+
+  /// Atualiza os dados de uma armaria.
+  Future<Gunsmith> updateGunsmith(Session session, Gunsmith gunsmith) async {
+    return await sl.gunsmithRepository.updateGunsmith(session, gunsmith);
+  }
+
+  // --- Clientes ---
+
   /// Cria um novo cliente para o armeiro logado.
   Future<GunsmithClient> createClient(
       Session session, GunsmithClient client) async {
@@ -17,12 +47,11 @@ class GunsmithEndpoint extends Endpoint {
 
   /// Lista todos os clientes de um armeiro específico.
   Future<List<GunsmithClient>> getMyClients(Session session) async {
-    final authId = session.authenticated!.userId;
-
-    // Aqui usamos o authId (int) para buscar o perfil do armeiro (UuidValue)
-    // No futuro, teremos um UseCase para resolver essa identidade.
-    return await sl.gunsmithRepository.listClients(session, authId);
+    final profile = await sl.getOrCreateProfileUseCase.execute(session);
+    return await sl.gunsmithRepository.listClients(session, profile.userInfoId!);
   }
+
+  // --- Ordens de Serviço ---
 
   /// Registra uma nova Ordem de Serviço com seus itens.
   Future<ServiceOrder> registerServiceOrder(

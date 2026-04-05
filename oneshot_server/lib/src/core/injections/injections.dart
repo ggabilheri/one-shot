@@ -1,15 +1,17 @@
 import 'package:oneshot_server/src/core/repository/accessory_repository.dart';
 import 'package:oneshot_server/src/core/repository/document_repository.dart';
 import 'package:oneshot_server/src/core/repository/firearm_repository.dart';
+import 'package:oneshot_server/src/core/repository/gunsmith_repository.dart';
+import 'package:oneshot_server/src/core/repository/invoice_item_repository.dart';
+import 'package:oneshot_server/src/core/repository/invoice_repository.dart';
+import 'package:oneshot_server/src/core/repository/payment_repository.dart';
 import 'package:oneshot_server/src/core/repository/user_repository.dart';
 import 'package:oneshot_server/src/data/repositories_impl/ammunition_repository.dart';
 import 'package:oneshot_server/src/data/repositories_impl/club_repositories.dart';
-import 'package:oneshot_server/src/data/repositories_impl/gunsmith_repository.dart';
 import 'package:oneshot_server/src/data/repositories_impl/reload_repository.dart';
 import 'package:oneshot_server/src/data/repositories_impl/training_repository.dart';
 import 'package:oneshot_server/src/domain/repositories/i_ammunition_repository.dart';
 import 'package:oneshot_server/src/domain/repositories/i_club_repositories.dart';
-import 'package:oneshot_server/src/domain/repositories/i_gunsmith_repository.dart';
 import 'package:oneshot_server/src/domain/repositories/i_reload_repository.dart';
 import 'package:oneshot_server/src/domain/repositories/i_training_repository.dart';
 import 'package:oneshot_server/src/domain/repositories/i_security_role_repository.dart';
@@ -39,6 +41,11 @@ class Injections {
   late final IRangeVisitRepository rangeVisitRepository;
   late final ISecurityRoleRepository securityRoleRepository;
 
+  // Finance Repositories
+  late final IInvoiceRepository invoiceRepository;
+  late final IInvoiceItemRepository invoiceItemRepository;
+  late final IPaymentRepository paymentRepository;
+
   // Use Cases
   late final IRegisterTrainingUseCase registerTrainingUseCase;
   late final IRegisterServiceOrderUseCase registerServiceOrderUseCase;
@@ -59,6 +66,11 @@ class Injections {
     membershipRepository = MembershipRepository();
     rangeVisitRepository = RangeVisitRepository();
     securityRoleRepository = SecurityRoleRepository();
+
+    // Finance
+    invoiceRepository = InvoiceRepository();
+    invoiceItemRepository = InvoiceItemRepository();
+    paymentRepository = PaymentRepository();
 
     // 2. Use Cases
     registerTrainingUseCase = RegisterTrainingUseCase(trainingRepository);

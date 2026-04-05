@@ -1,0 +1,34 @@
+class: Invoice
+table: invoices
+fields:
+  id: UuidValue, defaultModel=random
+  originModule: String # Enum AppModule string
+  direction: String # INBOUND / OUTBOUND
+  status: InvoiceStatus
+  issueDate: DateTime
+  dueDate: DateTime
+  totalAmount: double
+  discount: double?
+  finalAmount: double
+  currency: Currency
+  notes: String?
+  
+  # Contexto/Proprietário
+  club: Club?, relation(optional)
+  gunsmith: Gunsmith?, relation(optional)
+  user: UserProfile?, relation(optional) # CAC/Shooter Owner
+  
+  # Pagador (Drawee)
+  drawee: UserProfile?, relation(optional)
+  
+indexes:
+  invoice_status_idx:
+    fields: status
+  invoice_due_date_idx:
+    fields: dueDate
+  invoice_club_id_idx:
+    fields: clubId
+  invoice_gunsmith_id_idx:
+    fields: gunsmithId
+  invoice_user_id_idx:
+    fields: userId

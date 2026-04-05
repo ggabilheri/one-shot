@@ -17,36 +17,44 @@ import '../endpoints/club_endpoint.dart' as _i4;
 import '../endpoints/document_endpoint.dart' as _i5;
 import '../endpoints/firearm_endpoint.dart' as _i6;
 import '../endpoints/gunsmith_endpoint.dart' as _i7;
-import '../endpoints/profile_endpoint.dart' as _i8;
-import '../endpoints/reload_endpoint.dart' as _i9;
-import '../endpoints/security_role_endpoint.dart' as _i10;
-import '../endpoints/training_endpoint.dart' as _i11;
-import '../endpoints/user_endpoint.dart' as _i12;
-import '../endpoints/via_cep_gateway_endpoint.dart' as _i13;
-import '../greeting_endpoint.dart' as _i14;
-import 'package:oneshot_server/src/generated/common/accessory.dart' as _i15;
+import '../endpoints/invoice_endpoint.dart' as _i8;
+import '../endpoints/payment_endpoint.dart' as _i9;
+import '../endpoints/profile_endpoint.dart' as _i10;
+import '../endpoints/reload_endpoint.dart' as _i11;
+import '../endpoints/security_role_endpoint.dart' as _i12;
+import '../endpoints/training_endpoint.dart' as _i13;
+import '../endpoints/user_endpoint.dart' as _i14;
+import '../endpoints/via_cep_gateway_endpoint.dart' as _i15;
+import '../greeting_endpoint.dart' as _i16;
+import 'package:oneshot_server/src/generated/common/accessory.dart' as _i17;
 import 'package:oneshot_server/src/generated/shooter/ammunition_stock.dart'
-    as _i16;
-import 'package:oneshot_server/src/generated/club/club.dart' as _i17;
-import 'package:oneshot_server/src/generated/common/document.dart' as _i18;
-import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _i19;
+    as _i18;
+import 'package:oneshot_server/src/generated/club/club.dart' as _i19;
+import 'package:oneshot_server/src/generated/common/document.dart' as _i20;
+import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _i21;
+import 'package:oneshot_server/src/generated/gunsmith/gunsmith.dart' as _i22;
 import 'package:oneshot_server/src/generated/gunsmith/gunsmith_client.dart'
-    as _i20;
+    as _i23;
 import 'package:oneshot_server/src/generated/gunsmith/service_order.dart'
-    as _i21;
-import 'package:oneshot_server/src/generated/gunsmith/service_order_item.dart'
-    as _i22;
-import 'package:oneshot_server/src/generated/common/user_profile.dart' as _i23;
-import 'package:oneshot_server/src/generated/shooter/reload_session.dart'
     as _i24;
-import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i25;
-import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i26;
-import 'package:oneshot_server/src/generated/access_control/security_role.dart'
-    as _i27;
-import 'package:oneshot_server/src/generated/access_control/role_permission.dart'
+import 'package:oneshot_server/src/generated/gunsmith/service_order_item.dart'
+    as _i25;
+import 'package:oneshot_server/src/generated/finance/invoice.dart' as _i26;
+import 'package:oneshot_server/src/generated/finance/invoice_item.dart' as _i27;
+import 'package:oneshot_server/src/generated/enums/invoice_status.enum.dart'
     as _i28;
-import 'package:oneshot_server/src/generated/shooter/training.dart' as _i29;
-import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i30;
+import 'package:oneshot_server/src/generated/finance/payment.dart' as _i29;
+import 'package:oneshot_server/src/generated/common/user_profile.dart' as _i30;
+import 'package:oneshot_server/src/generated/shooter/reload_session.dart'
+    as _i31;
+import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i32;
+import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i33;
+import 'package:oneshot_server/src/generated/access_control/security_role.dart'
+    as _i34;
+import 'package:oneshot_server/src/generated/access_control/role_permission.dart'
+    as _i35;
+import 'package:oneshot_server/src/generated/shooter/training.dart' as _i36;
+import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i37;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -88,43 +96,55 @@ class Endpoints extends _i1.EndpointDispatch {
           'gunsmith',
           null,
         ),
-      'profile': _i8.ProfileEndpoint()
+      'invoice': _i8.InvoiceEndpoint()
+        ..initialize(
+          server,
+          'invoice',
+          null,
+        ),
+      'payment': _i9.PaymentEndpoint()
+        ..initialize(
+          server,
+          'payment',
+          null,
+        ),
+      'profile': _i10.ProfileEndpoint()
         ..initialize(
           server,
           'profile',
           null,
         ),
-      'reload': _i9.ReloadEndpoint()
+      'reload': _i11.ReloadEndpoint()
         ..initialize(
           server,
           'reload',
           null,
         ),
-      'securityRole': _i10.SecurityRoleEndpoint()
+      'securityRole': _i12.SecurityRoleEndpoint()
         ..initialize(
           server,
           'securityRole',
           null,
         ),
-      'training': _i11.TrainingEndpoint()
+      'training': _i13.TrainingEndpoint()
         ..initialize(
           server,
           'training',
           null,
         ),
-      'user': _i12.UserEndpoint()
+      'user': _i14.UserEndpoint()
         ..initialize(
           server,
           'user',
           null,
         ),
-      'viaCepGateway': _i13.ViaCepGatewayEndpoint()
+      'viaCepGateway': _i15.ViaCepGatewayEndpoint()
         ..initialize(
           server,
           'viaCepGateway',
           null,
         ),
-      'greeting': _i14.GreetingEndpoint()
+      'greeting': _i16.GreetingEndpoint()
         ..initialize(
           server,
           'greeting',
@@ -159,7 +179,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'accessory': _i1.ParameterDescription(
               name: 'accessory',
-              type: _i1.getType<_i15.Accessory>(),
+              type: _i1.getType<_i17.Accessory>(),
               nullable: false,
             ),
           },
@@ -178,7 +198,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'accessory': _i1.ParameterDescription(
               name: 'accessory',
-              type: _i1.getType<_i15.Accessory>(),
+              type: _i1.getType<_i17.Accessory>(),
               nullable: false,
             ),
           },
@@ -263,7 +283,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'ammo': _i1.ParameterDescription(
               name: 'ammo',
-              type: _i1.getType<_i16.AmmunitionStock>(),
+              type: _i1.getType<_i18.AmmunitionStock>(),
               nullable: false,
             ),
           },
@@ -332,7 +352,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'club': _i1.ParameterDescription(
               name: 'club',
-              type: _i1.getType<_i17.Club>(),
+              type: _i1.getType<_i19.Club>(),
               nullable: false,
             ),
           },
@@ -360,7 +380,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'club': _i1.ParameterDescription(
               name: 'club',
-              type: _i1.getType<_i17.Club>(),
+              type: _i1.getType<_i19.Club>(),
               nullable: false,
             ),
           },
@@ -508,7 +528,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'document': _i1.ParameterDescription(
               name: 'document',
-              type: _i1.getType<_i18.Document>(),
+              type: _i1.getType<_i20.Document>(),
               nullable: false,
             ),
           },
@@ -526,7 +546,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'document': _i1.ParameterDescription(
               name: 'document',
-              type: _i1.getType<_i18.Document>(),
+              type: _i1.getType<_i20.Document>(),
               nullable: false,
             ),
           },
@@ -712,7 +732,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'firearm': _i1.ParameterDescription(
               name: 'firearm',
-              type: _i1.getType<_i19.Firearm>(),
+              type: _i1.getType<_i21.Firearm>(),
               nullable: false,
             ),
           },
@@ -730,7 +750,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'firearm': _i1.ParameterDescription(
               name: 'firearm',
-              type: _i1.getType<_i19.Firearm>(),
+              type: _i1.getType<_i21.Firearm>(),
               nullable: false,
             ),
           },
@@ -798,12 +818,113 @@ class Endpoints extends _i1.EndpointDispatch {
       name: 'gunsmith',
       endpoint: endpoints['gunsmith']!,
       methodConnectors: {
+        'createGunsmith': _i1.MethodConnector(
+          name: 'createGunsmith',
+          params: {
+            'gunsmith': _i1.ParameterDescription(
+              name: 'gunsmith',
+              type: _i1.getType<_i22.Gunsmith>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['gunsmith'] as _i7.GunsmithEndpoint)
+                  .createGunsmith(
+                    session,
+                    params['gunsmith'],
+                  ),
+        ),
+        'getGunsmith': _i1.MethodConnector(
+          name: 'getGunsmith',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<_i1.UuidValue>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['gunsmith'] as _i7.GunsmithEndpoint).getGunsmith(
+                    session,
+                    params['id'],
+                  ),
+        ),
+        'findGunsmithByOwner': _i1.MethodConnector(
+          name: 'findGunsmithByOwner',
+          params: {
+            'ownerId': _i1.ParameterDescription(
+              name: 'ownerId',
+              type: _i1.getType<_i1.UuidValue>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['gunsmith'] as _i7.GunsmithEndpoint)
+                  .findGunsmithByOwner(
+                    session,
+                    params['ownerId'],
+                  ),
+        ),
+        'listGunsmiths': _i1.MethodConnector(
+          name: 'listGunsmiths',
+          params: {
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['gunsmith'] as _i7.GunsmithEndpoint).listGunsmiths(
+                    session,
+                    limit: params['limit'],
+                    offset: params['offset'],
+                  ),
+        ),
+        'updateGunsmith': _i1.MethodConnector(
+          name: 'updateGunsmith',
+          params: {
+            'gunsmith': _i1.ParameterDescription(
+              name: 'gunsmith',
+              type: _i1.getType<_i22.Gunsmith>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['gunsmith'] as _i7.GunsmithEndpoint)
+                  .updateGunsmith(
+                    session,
+                    params['gunsmith'],
+                  ),
+        ),
         'createClient': _i1.MethodConnector(
           name: 'createClient',
           params: {
             'client': _i1.ParameterDescription(
               name: 'client',
-              type: _i1.getType<_i20.GunsmithClient>(),
+              type: _i1.getType<_i23.GunsmithClient>(),
               nullable: false,
             ),
           },
@@ -851,12 +972,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'order': _i1.ParameterDescription(
               name: 'order',
-              type: _i1.getType<_i21.ServiceOrder>(),
+              type: _i1.getType<_i24.ServiceOrder>(),
               nullable: false,
             ),
             'items': _i1.ParameterDescription(
               name: 'items',
-              type: _i1.getType<List<_i22.ServiceOrderItem>>(),
+              type: _i1.getType<List<_i25.ServiceOrderItem>>(),
               nullable: false,
             ),
           },
@@ -911,6 +1032,243 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
+    connectors['invoice'] = _i1.EndpointConnector(
+      name: 'invoice',
+      endpoint: endpoints['invoice']!,
+      methodConnectors: {
+        'createInvoice': _i1.MethodConnector(
+          name: 'createInvoice',
+          params: {
+            'invoice': _i1.ParameterDescription(
+              name: 'invoice',
+              type: _i1.getType<_i26.Invoice>(),
+              nullable: false,
+            ),
+            'items': _i1.ParameterDescription(
+              name: 'items',
+              type: _i1.getType<List<_i27.InvoiceItem>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['invoice'] as _i8.InvoiceEndpoint).createInvoice(
+                    session,
+                    params['invoice'],
+                    params['items'],
+                  ),
+        ),
+        'getInvoice': _i1.MethodConnector(
+          name: 'getInvoice',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<_i1.UuidValue>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['invoice'] as _i8.InvoiceEndpoint).getInvoice(
+                    session,
+                    params['id'],
+                  ),
+        ),
+        'listInvoices': _i1.MethodConnector(
+          name: 'listInvoices',
+          params: {
+            'originModule': _i1.ParameterDescription(
+              name: 'originModule',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+            'direction': _i1.ParameterDescription(
+              name: 'direction',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+            'status': _i1.ParameterDescription(
+              name: 'status',
+              type: _i1.getType<_i28.InvoiceStatus?>(),
+              nullable: true,
+            ),
+            'clubId': _i1.ParameterDescription(
+              name: 'clubId',
+              type: _i1.getType<_i1.UuidValue?>(),
+              nullable: true,
+            ),
+            'gunsmithId': _i1.ParameterDescription(
+              name: 'gunsmithId',
+              type: _i1.getType<_i1.UuidValue?>(),
+              nullable: true,
+            ),
+            'userId': _i1.ParameterDescription(
+              name: 'userId',
+              type: _i1.getType<_i1.UuidValue?>(),
+              nullable: true,
+            ),
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['invoice'] as _i8.InvoiceEndpoint).listInvoices(
+                    session,
+                    originModule: params['originModule'],
+                    direction: params['direction'],
+                    status: params['status'],
+                    clubId: params['clubId'],
+                    gunsmithId: params['gunsmithId'],
+                    userId: params['userId'],
+                    limit: params['limit'],
+                    offset: params['offset'],
+                  ),
+        ),
+        'updateInvoice': _i1.MethodConnector(
+          name: 'updateInvoice',
+          params: {
+            'invoice': _i1.ParameterDescription(
+              name: 'invoice',
+              type: _i1.getType<_i26.Invoice>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['invoice'] as _i8.InvoiceEndpoint).updateInvoice(
+                    session,
+                    params['invoice'],
+                  ),
+        ),
+        'deleteInvoice': _i1.MethodConnector(
+          name: 'deleteInvoice',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<_i1.UuidValue>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['invoice'] as _i8.InvoiceEndpoint).deleteInvoice(
+                    session,
+                    params['id'],
+                  ),
+        ),
+        'getInvoiceItems': _i1.MethodConnector(
+          name: 'getInvoiceItems',
+          params: {
+            'invoiceId': _i1.ParameterDescription(
+              name: 'invoiceId',
+              type: _i1.getType<_i1.UuidValue>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['invoice'] as _i8.InvoiceEndpoint).getInvoiceItems(
+                    session,
+                    params['invoiceId'],
+                  ),
+        ),
+      },
+    );
+    connectors['payment'] = _i1.EndpointConnector(
+      name: 'payment',
+      endpoint: endpoints['payment']!,
+      methodConnectors: {
+        'registerPayment': _i1.MethodConnector(
+          name: 'registerPayment',
+          params: {
+            'payment': _i1.ParameterDescription(
+              name: 'payment',
+              type: _i1.getType<_i29.Payment>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['payment'] as _i9.PaymentEndpoint).registerPayment(
+                    session,
+                    params['payment'],
+                  ),
+        ),
+        'getPaymentsByInvoice': _i1.MethodConnector(
+          name: 'getPaymentsByInvoice',
+          params: {
+            'invoiceId': _i1.ParameterDescription(
+              name: 'invoiceId',
+              type: _i1.getType<_i1.UuidValue>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['payment'] as _i9.PaymentEndpoint)
+                  .getPaymentsByInvoice(
+                    session,
+                    params['invoiceId'],
+                  ),
+        ),
+        'listPayments': _i1.MethodConnector(
+          name: 'listPayments',
+          params: {
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['payment'] as _i9.PaymentEndpoint).listPayments(
+                    session,
+                    limit: params['limit'],
+                    offset: params['offset'],
+                  ),
+        ),
+      },
+    );
     connectors['profile'] = _i1.EndpointConnector(
       name: 'profile',
       endpoint: endpoints['profile']!,
@@ -922,7 +1280,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['profile'] as _i8.ProfileEndpoint)
+              ) async => (endpoints['profile'] as _i10.ProfileEndpoint)
                   .getOrCreateMyProfile(session),
         ),
         'updateMyProfile': _i1.MethodConnector(
@@ -930,7 +1288,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'profile': _i1.ParameterDescription(
               name: 'profile',
-              type: _i1.getType<_i23.UserProfile>(),
+              type: _i1.getType<_i30.UserProfile>(),
               nullable: false,
             ),
           },
@@ -938,8 +1296,8 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async =>
-                  (endpoints['profile'] as _i8.ProfileEndpoint).updateMyProfile(
+              ) async => (endpoints['profile'] as _i10.ProfileEndpoint)
+                  .updateMyProfile(
                     session,
                     params['profile'],
                   ),
@@ -958,7 +1316,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['profile'] as _i8.ProfileEndpoint).getProfileById(
+                  (endpoints['profile'] as _i10.ProfileEndpoint).getProfileById(
                     session,
                     params['id'],
                   ),
@@ -974,7 +1332,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'reloadSession': _i1.ParameterDescription(
               name: 'reloadSession',
-              type: _i1.getType<_i24.ReloadSession>(),
+              type: _i1.getType<_i31.ReloadSession>(),
               nullable: false,
             ),
           },
@@ -982,7 +1340,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['reload'] as _i9.ReloadEndpoint)
+              ) async => (endpoints['reload'] as _i11.ReloadEndpoint)
                   .executeReloadSession(
                     session,
                     params['reloadSession'],
@@ -995,7 +1353,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['reload'] as _i9.ReloadEndpoint)
+              ) async => (endpoints['reload'] as _i11.ReloadEndpoint)
                   .getMyReloadSessions(session),
         ),
         'registerTest': _i1.MethodConnector(
@@ -1003,7 +1361,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'test': _i1.ParameterDescription(
               name: 'test',
-              type: _i1.getType<_i25.ReloadTest>(),
+              type: _i1.getType<_i32.ReloadTest>(),
               nullable: false,
             ),
           },
@@ -1012,7 +1370,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['reload'] as _i9.ReloadEndpoint).registerTest(
+                  (endpoints['reload'] as _i11.ReloadEndpoint).registerTest(
                     session,
                     params['test'],
                   ),
@@ -1030,8 +1388,8 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async =>
-                  (endpoints['reload'] as _i9.ReloadEndpoint).getTestsBySession(
+              ) async => (endpoints['reload'] as _i11.ReloadEndpoint)
+                  .getTestsBySession(
                     session,
                     params['sessionId'],
                   ),
@@ -1043,7 +1401,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['reload'] as _i9.ReloadEndpoint)
+              ) async => (endpoints['reload'] as _i11.ReloadEndpoint)
                   .getMySupplies(session),
         ),
         'addSupply': _i1.MethodConnector(
@@ -1051,7 +1409,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'supply': _i1.ParameterDescription(
               name: 'supply',
-              type: _i1.getType<_i26.SupplyStock>(),
+              type: _i1.getType<_i33.SupplyStock>(),
               nullable: false,
             ),
           },
@@ -1059,7 +1417,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['reload'] as _i9.ReloadEndpoint).addSupply(
+              ) async => (endpoints['reload'] as _i11.ReloadEndpoint).addSupply(
                 session,
                 params['supply'],
               ),
@@ -1069,7 +1427,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'supply': _i1.ParameterDescription(
               name: 'supply',
-              type: _i1.getType<_i26.SupplyStock>(),
+              type: _i1.getType<_i33.SupplyStock>(),
               nullable: false,
             ),
           },
@@ -1078,7 +1436,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['reload'] as _i9.ReloadEndpoint).updateSupply(
+                  (endpoints['reload'] as _i11.ReloadEndpoint).updateSupply(
                     session,
                     params['supply'],
                   ),
@@ -1094,12 +1452,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i27.SecurityRole>(),
+              type: _i1.getType<_i34.SecurityRole>(),
               nullable: false,
             ),
             'permissions': _i1.ParameterDescription(
               name: 'permissions',
-              type: _i1.getType<List<_i28.RolePermission>>(),
+              type: _i1.getType<List<_i35.RolePermission>>(),
               nullable: false,
             ),
           },
@@ -1108,7 +1466,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['securityRole'] as _i10.SecurityRoleEndpoint)
+                  (endpoints['securityRole'] as _i12.SecurityRoleEndpoint)
                       .createRole(
                         session,
                         params['role'],
@@ -1120,12 +1478,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i27.SecurityRole>(),
+              type: _i1.getType<_i34.SecurityRole>(),
               nullable: false,
             ),
             'permissions': _i1.ParameterDescription(
               name: 'permissions',
-              type: _i1.getType<List<_i28.RolePermission>>(),
+              type: _i1.getType<List<_i35.RolePermission>>(),
               nullable: false,
             ),
           },
@@ -1134,7 +1492,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['securityRole'] as _i10.SecurityRoleEndpoint)
+                  (endpoints['securityRole'] as _i12.SecurityRoleEndpoint)
                       .updateRole(
                         session,
                         params['role'],
@@ -1146,7 +1504,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i27.SecurityRole>(),
+              type: _i1.getType<_i34.SecurityRole>(),
               nullable: false,
             ),
           },
@@ -1155,7 +1513,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['securityRole'] as _i10.SecurityRoleEndpoint)
+                  (endpoints['securityRole'] as _i12.SecurityRoleEndpoint)
                       .deleteRole(
                         session,
                         params['role'],
@@ -1169,7 +1527,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['securityRole'] as _i10.SecurityRoleEndpoint)
+                  (endpoints['securityRole'] as _i12.SecurityRoleEndpoint)
                       .listRoles(session),
         ),
         'listRolePermissions': _i1.MethodConnector(
@@ -1177,7 +1535,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i27.SecurityRole>(),
+              type: _i1.getType<_i34.SecurityRole>(),
               nullable: false,
             ),
           },
@@ -1186,7 +1544,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['securityRole'] as _i10.SecurityRoleEndpoint)
+                  (endpoints['securityRole'] as _i12.SecurityRoleEndpoint)
                       .listRolePermissions(
                         session,
                         params['role'],
@@ -1203,7 +1561,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'training': _i1.ParameterDescription(
               name: 'training',
-              type: _i1.getType<_i29.Training>(),
+              type: _i1.getType<_i36.Training>(),
               nullable: false,
             ),
           },
@@ -1212,7 +1570,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['training'] as _i11.TrainingEndpoint).register(
+                  (endpoints['training'] as _i13.TrainingEndpoint).register(
                     session,
                     params['training'],
                   ),
@@ -1224,7 +1582,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['training'] as _i11.TrainingEndpoint)
+              ) async => (endpoints['training'] as _i13.TrainingEndpoint)
                   .getMyTrainings(session),
         ),
         'getTraining': _i1.MethodConnector(
@@ -1241,7 +1599,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['training'] as _i11.TrainingEndpoint).getTraining(
+                  (endpoints['training'] as _i13.TrainingEndpoint).getTraining(
                     session,
                     params['id'],
                   ),
@@ -1265,7 +1623,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i12.UserEndpoint).getById(
+              ) async => (endpoints['user'] as _i14.UserEndpoint).getById(
                 session,
                 params['id'],
               ),
@@ -1283,7 +1641,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i12.UserEndpoint).getByCpf(
+              ) async => (endpoints['user'] as _i14.UserEndpoint).getByCpf(
                 session,
                 params['cpf'],
               ),
@@ -1293,7 +1651,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'user': _i1.ParameterDescription(
               name: 'user',
-              type: _i1.getType<_i23.UserProfile>(),
+              type: _i1.getType<_i30.UserProfile>(),
               nullable: false,
             ),
           },
@@ -1301,7 +1659,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i12.UserEndpoint).create(
+              ) async => (endpoints['user'] as _i14.UserEndpoint).create(
                 session,
                 params['user'],
               ),
@@ -1311,7 +1669,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'user': _i1.ParameterDescription(
               name: 'user',
-              type: _i1.getType<_i23.UserProfile>(),
+              type: _i1.getType<_i30.UserProfile>(),
               nullable: false,
             ),
           },
@@ -1319,7 +1677,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i12.UserEndpoint).update(
+              ) async => (endpoints['user'] as _i14.UserEndpoint).update(
                 session,
                 params['user'],
               ),
@@ -1337,7 +1695,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i12.UserEndpoint).delete(
+              ) async => (endpoints['user'] as _i14.UserEndpoint).delete(
                 session,
                 params['id'],
               ),
@@ -1360,7 +1718,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i12.UserEndpoint).list(
+              ) async => (endpoints['user'] as _i14.UserEndpoint).list(
                 session,
                 limit: params['limit'],
                 offset: params['offset'],
@@ -1379,7 +1737,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i12.UserEndpoint).getRoles(
+              ) async => (endpoints['user'] as _i14.UserEndpoint).getRoles(
                 session,
                 params['userId'],
               ),
@@ -1402,7 +1760,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i12.UserEndpoint).updateRoles(
+              ) async => (endpoints['user'] as _i14.UserEndpoint).updateRoles(
                 session,
                 params['userId'],
                 params['roleIds'],
@@ -1428,7 +1786,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['viaCepGateway'] as _i13.ViaCepGatewayEndpoint)
+                  (endpoints['viaCepGateway'] as _i15.ViaCepGatewayEndpoint)
                       .getAddressByCep(
                         session,
                         params['zipcode'],
@@ -1453,13 +1811,13 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['greeting'] as _i14.GreetingEndpoint).hello(
+              ) async => (endpoints['greeting'] as _i16.GreetingEndpoint).hello(
                 session,
                 params['name'],
               ),
         ),
       },
     );
-    modules['serverpod_auth'] = _i30.Endpoints()..initializeEndpoints(server);
+    modules['serverpod_auth'] = _i37.Endpoints()..initializeEndpoints(server);
   }
 }

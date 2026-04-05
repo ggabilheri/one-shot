@@ -1,0 +1,15 @@
+class: InvoiceItem
+table: invoice_items
+fields:
+  id: UuidValue, defaultModel=random
+  description: String
+  quantity: double
+  unitPrice: double
+  totalPrice: double
+  
+  # Relacionamento
+  invoice: Invoice?, relation(optional)
+  
+indexes:
+  invoice_item_invoice_id_idx:
+    fields: invoiceId

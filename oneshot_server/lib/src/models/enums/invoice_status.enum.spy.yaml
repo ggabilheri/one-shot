@@ -1,0 +1,8 @@
+enum: InvoiceStatus
+serialized: byName
+values:
+  - pending
+  - paid
+  - partiallyPaid
+  - canceled
+  - overdue
