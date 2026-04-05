@@ -5,6 +5,8 @@ import 'package:oneshot_server/src/core/repository/gunsmith_repository.dart';
 import 'package:oneshot_server/src/core/repository/invoice_item_repository.dart';
 import 'package:oneshot_server/src/core/repository/invoice_repository.dart';
 import 'package:oneshot_server/src/core/repository/payment_repository.dart';
+import 'package:oneshot_server/src/core/repository/product_group_repository.dart';
+import 'package:oneshot_server/src/core/repository/product_repository.dart';
 import 'package:oneshot_server/src/core/repository/user_repository.dart';
 import 'package:oneshot_server/src/data/repositories_impl/ammunition_repository.dart';
 import 'package:oneshot_server/src/data/repositories_impl/club_repositories.dart';
@@ -40,6 +42,8 @@ class Injections {
   late final IMembershipRepository membershipRepository;
   late final IRangeVisitRepository rangeVisitRepository;
   late final ISecurityRoleRepository securityRoleRepository;
+  late final IProductRepository productRepository;
+  late final IProductGroupRepository productGroupRepository;
 
   // Finance Repositories
   late final IInvoiceRepository invoiceRepository;
@@ -66,6 +70,8 @@ class Injections {
     membershipRepository = MembershipRepository();
     rangeVisitRepository = RangeVisitRepository();
     securityRoleRepository = SecurityRoleRepository();
+    productRepository = ProductRepository();
+    productGroupRepository = ProductGroupRepository();
 
     // Finance
     invoiceRepository = InvoiceRepository();

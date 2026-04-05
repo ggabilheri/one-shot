@@ -1,3 +1,4 @@
+import 'package:oneshot_client/oneshot_client.dart';
 import 'package:serverpod_auth_client/serverpod_auth_client.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 import 'package:backoffice_web/main.dart'; // import client & sessionManager
@@ -5,12 +6,18 @@ import 'package:backoffice_web/main.dart'; // import client & sessionManager
 abstract class IAuthRepository {
   /// Realiza o login. Retorna NULL caso as credenciais sejam inválidas, ou lance Exception.
   Future<UserInfo?> login(String email, String password);
-  
+
   /// Inicia o processo de criação de conta no Serverpod (dispara e-mail com código)
-  Future<bool> createAccountRequest(String userName, String email, String password);
+  Future<bool> createAccountRequest(
+    String userName,
+    String email,
+    String password,
+  );
 
   /// Valida o código recebido pelo e-mail e ativa a conta no Serverpod
   Future<UserInfo?> validateAccount(String email, String validationCode);
+
+  Future<UserProfile?> getOwner(UuidValue id);
 }
 
 class AuthRepository implements IAuthRepository {
@@ -25,14 +32,18 @@ class AuthRepository implements IAuthRepository {
     try {
       final result = await _emailAuth.signIn(email, password);
       // Se deu certo, ele guarda no sessionManager internamente, mas precisamos retornar
-      return result; 
+      return result;
     } catch (e) {
       throw Exception('Falha ao autenticar.');
     }
   }
 
   @override
-  Future<bool> createAccountRequest(String userName, String email, String password) async {
+  Future<bool> createAccountRequest(
+    String userName,
+    String email,
+    String password,
+  ) async {
     try {
       return await _emailAuth.createAccountRequest(userName, email, password);
     } catch (e) {
@@ -48,6 +59,15 @@ class AuthRepository implements IAuthRepository {
       return userInfo;
     } catch (e) {
       throw Exception('Falha na validação da conta: \$e');
+    }
+  }
+
+  @override
+  Future<UserProfile?> getOwner(UuidValue id) async {
+    try {
+      return await client.user.getById(id);
+    } catch (e) {
+      throw Exception('Falha ao buscar proprietário');
     }
   }
 }

@@ -1,0 +1,18 @@
+class: Product
+table: products
+fields:
+  id: UuidValue, defaultModel=random
+  code: String
+  description: String
+  unit: String
+  unitPrice: double
+  originModule: String # Enum AppModule string: BACKOFFICE, CLUB, GUNSMITH
+  group: ProductGroup?, relation     # Relacionamento explícito com o Grupo
+indexes:
+  products_code_idx:
+    fields: code
+    unique: true
+  products_origin_idx:
+    fields: originModule
+  product_group_idx:                 # Novo índice para otimizar buscas por categoria
+    fields: groupId

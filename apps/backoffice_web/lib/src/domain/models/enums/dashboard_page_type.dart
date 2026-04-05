@@ -9,5 +9,7 @@ enum DashboardPageType {
   settings,
   catalogs,
   gunTechnicalSpec,
-  roles
+  roles,
+  products,
+  productGroups,
 }

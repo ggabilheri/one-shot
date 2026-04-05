@@ -1,0 +1,13 @@
+class: ProductGroup
+table: product_groups
+fields:
+  id: UuidValue, defaultModel=random
+  name: String
+  description: String?
+  originModule: String      # BACKOFFICE, CLUB ou GUNSMITH
+  owner: UserProfile?, relation(optional) # Relacionamento opcional com o dono do grupo
+indexes:
+  product_group_origin_idx:
+    fields: originModule
+  product_group_owner_idx:
+    fields: ownerId

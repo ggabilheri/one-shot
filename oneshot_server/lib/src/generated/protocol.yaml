@@ -59,6 +59,19 @@ payment:
   - registerPayment:
   - getPaymentsByInvoice:
   - listPayments:
+product:
+  - createProduct:
+  - readProduct:
+  - findByCode:
+  - updateProduct:
+  - deleteProduct:
+  - listProducts:
+productGroup:
+  - listGroups:
+  - createProductGroup:
+  - updateProductGroup:
+  - deleteProductGroup:
+  - findById:
 profile:
   - getOrCreateMyProfile:
   - updateMyProfile:

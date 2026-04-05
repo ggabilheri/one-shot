@@ -4,6 +4,8 @@ import 'package:backoffice_web/src/ui/pages/dashboard/summary/dashboard_summary_
 import 'package:backoffice_web/src/ui/pages/clubs/clubs_page.dart';
 import 'package:backoffice_web/src/ui/pages/users/users_page.dart';
 import 'package:backoffice_web/src/ui/pages/roles/roles_page.dart';
+import 'package:backoffice_web/src/ui/pages/products/product_groups_page.dart';
+import 'package:backoffice_web/src/ui/pages/products/products_page.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 
 class DashboardModuleSwitcher extends StatelessWidget {
@@ -25,6 +27,10 @@ class DashboardModuleSwitcher extends StatelessWidget {
         return const UsersPage();
       case DashboardPageType.roles:
         return const RolesPage();
+      case DashboardPageType.products:
+        return const ProductsPage();
+      case DashboardPageType.productGroups:
+        return const ProductGroupsPage();
       case DashboardPageType.stock:
         return Center(child: Text('MÓDULO DE ESTOQUE EM BREVE', style: DSTokens.body));
       case DashboardPageType.serviceOrders:
