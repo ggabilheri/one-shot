@@ -1,0 +1,7 @@
+enum: PlanPeriodicity
+values:
+  - MONTHLY
+  - QUARTERLY
+  - SEMIANNUALLY 
+  - ANNUALLY
+serialized: byName

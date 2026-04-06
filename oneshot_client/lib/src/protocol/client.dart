@@ -43,11 +43,16 @@ import 'package:oneshot_client/src/protocol/access_control/security_role.dart'
     as _i24;
 import 'package:oneshot_client/src/protocol/access_control/role_permission.dart'
     as _i25;
-import 'package:oneshot_client/src/protocol/shooter/training.dart' as _i26;
-import 'package:oneshot_client/src/protocol/common/address.dart' as _i27;
-import 'package:oneshot_client/src/protocol/greeting.dart' as _i28;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i29;
-import 'protocol.dart' as _i30;
+import 'package:oneshot_client/src/protocol/subscription/subscription_plan.dart'
+    as _i26;
+import 'package:oneshot_client/src/protocol/enums/plan_type.enum.dart' as _i27;
+import 'package:oneshot_client/src/protocol/enums/plan_status.enum.dart'
+    as _i28;
+import 'package:oneshot_client/src/protocol/shooter/training.dart' as _i29;
+import 'package:oneshot_client/src/protocol/common/address.dart' as _i30;
+import 'package:oneshot_client/src/protocol/greeting.dart' as _i31;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i32;
+import 'protocol.dart' as _i33;
 
 /// {@category Endpoint}
 class EndpointAccessory extends _i1.EndpointRef {
@@ -862,6 +867,63 @@ class EndpointSecurityRole extends _i1.EndpointRef {
 }
 
 /// {@category Endpoint}
+class EndpointSubscriptionPlan extends _i1.EndpointRef {
+  EndpointSubscriptionPlan(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'subscriptionPlan';
+
+  /// Cria um novo plano de assinatura.
+  _i2.Future<_i26.SubscriptionPlan> createPlan(_i26.SubscriptionPlan plan) =>
+      caller.callServerEndpoint<_i26.SubscriptionPlan>(
+        'subscriptionPlan',
+        'createPlan',
+        {'plan': plan},
+      );
+
+  /// Busca um plano de assinatura por ID.
+  _i2.Future<_i26.SubscriptionPlan?> readPlan(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i26.SubscriptionPlan?>(
+        'subscriptionPlan',
+        'readPlan',
+        {'id': id},
+      );
+
+  /// Atualiza um plano de assinatura existente.
+  _i2.Future<_i26.SubscriptionPlan> updatePlan(_i26.SubscriptionPlan plan) =>
+      caller.callServerEndpoint<_i26.SubscriptionPlan>(
+        'subscriptionPlan',
+        'updatePlan',
+        {'plan': plan},
+      );
+
+  /// Remove um plano de assinatura por ID.
+  _i2.Future<bool> deletePlan(_i1.UuidValue id) =>
+      caller.callServerEndpoint<bool>(
+        'subscriptionPlan',
+        'deletePlan',
+        {'id': id},
+      );
+
+  /// Lista planos de assinatura com filtros opcionais.
+  _i2.Future<List<_i26.SubscriptionPlan>> listPlans({
+    _i27.PlanType? planType,
+    _i28.PlanStatus? status,
+    int? limit,
+    int? offset,
+  }) => caller.callServerEndpoint<List<_i26.SubscriptionPlan>>(
+    'subscriptionPlan',
+    'listPlans',
+    {
+      'planType': planType,
+      'status': status,
+      'limit': limit,
+      'offset': offset,
+    },
+  );
+}
+
+/// {@category Endpoint}
 class EndpointTraining extends _i1.EndpointRef {
   EndpointTraining(_i1.EndpointCaller caller) : super(caller);
 
@@ -870,24 +932,24 @@ class EndpointTraining extends _i1.EndpointRef {
 
   /// Registro de um novo treino.
   /// O userId será validado dentro do caso de uso.
-  _i2.Future<_i26.Training> register(_i26.Training training) =>
-      caller.callServerEndpoint<_i26.Training>(
+  _i2.Future<_i29.Training> register(_i29.Training training) =>
+      caller.callServerEndpoint<_i29.Training>(
         'training',
         'register',
         {'training': training},
       );
 
   /// Lista todos os treinos do usuário logado.
-  _i2.Future<List<_i26.Training>> getMyTrainings() =>
-      caller.callServerEndpoint<List<_i26.Training>>(
+  _i2.Future<List<_i29.Training>> getMyTrainings() =>
+      caller.callServerEndpoint<List<_i29.Training>>(
         'training',
         'getMyTrainings',
         {},
       );
 
   /// Busca um treino específico.
-  _i2.Future<_i26.Training?> getTraining(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i26.Training?>(
+  _i2.Future<_i29.Training?> getTraining(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i29.Training?>(
         'training',
         'getTraining',
         {'id': id},
@@ -974,8 +1036,8 @@ class EndpointViaCepGateway extends _i1.EndpointRef {
   @override
   String get name => 'viaCepGateway';
 
-  _i2.Future<_i27.Address?> getAddressByCep(String zipcode) =>
-      caller.callServerEndpoint<_i27.Address?>(
+  _i2.Future<_i30.Address?> getAddressByCep(String zipcode) =>
+      caller.callServerEndpoint<_i30.Address?>(
         'viaCepGateway',
         'getAddressByCep',
         {'zipcode': zipcode},
@@ -992,8 +1054,8 @@ class EndpointGreeting extends _i1.EndpointRef {
   String get name => 'greeting';
 
   /// Returns a personalized greeting message: "Hello {name}".
-  _i2.Future<_i28.Greeting> hello(String name) =>
-      caller.callServerEndpoint<_i28.Greeting>(
+  _i2.Future<_i31.Greeting> hello(String name) =>
+      caller.callServerEndpoint<_i31.Greeting>(
         'greeting',
         'hello',
         {'name': name},
@@ -1002,10 +1064,10 @@ class EndpointGreeting extends _i1.EndpointRef {
 
 class Modules {
   Modules(Client client) {
-    auth = _i29.Caller(client);
+    auth = _i32.Caller(client);
   }
 
-  late final _i29.Caller auth;
+  late final _i32.Caller auth;
 }
 
 class Client extends _i1.ServerpodClientShared {
@@ -1028,7 +1090,7 @@ class Client extends _i1.ServerpodClientShared {
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
          host,
-         _i30.Protocol(),
+         _i33.Protocol(),
          securityContext: securityContext,
          streamingConnectionTimeout: streamingConnectionTimeout,
          connectionTimeout: connectionTimeout,
@@ -1050,6 +1112,7 @@ class Client extends _i1.ServerpodClientShared {
     profile = EndpointProfile(this);
     reload = EndpointReload(this);
     securityRole = EndpointSecurityRole(this);
+    subscriptionPlan = EndpointSubscriptionPlan(this);
     training = EndpointTraining(this);
     user = EndpointUser(this);
     viaCepGateway = EndpointViaCepGateway(this);
@@ -1083,6 +1146,8 @@ class Client extends _i1.ServerpodClientShared {
 
   late final EndpointSecurityRole securityRole;
 
+  late final EndpointSubscriptionPlan subscriptionPlan;
+
   late final EndpointTraining training;
 
   late final EndpointUser user;
@@ -1108,6 +1173,7 @@ class Client extends _i1.ServerpodClientShared {
     'profile': profile,
     'reload': reload,
     'securityRole': securityRole,
+    'subscriptionPlan': subscriptionPlan,
     'training': training,
     'user': user,
     'viaCepGateway': viaCepGateway,

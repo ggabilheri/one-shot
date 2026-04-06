@@ -90,6 +90,12 @@ securityRole:
   - deleteRole:
   - listRoles:
   - listRolePermissions:
+subscriptionPlan:
+  - createPlan:
+  - readPlan:
+  - updatePlan:
+  - deletePlan:
+  - listPlans:
 training:
   - register:
   - getMyTrainings:

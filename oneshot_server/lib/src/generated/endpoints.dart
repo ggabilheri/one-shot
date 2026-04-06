@@ -24,42 +24,48 @@ import '../endpoints/product_group_endpoint.dart' as _i11;
 import '../endpoints/profile_endpoint.dart' as _i12;
 import '../endpoints/reload_endpoint.dart' as _i13;
 import '../endpoints/security_role_endpoint.dart' as _i14;
-import '../endpoints/training_endpoint.dart' as _i15;
-import '../endpoints/user_endpoint.dart' as _i16;
-import '../endpoints/via_cep_gateway_endpoint.dart' as _i17;
-import '../greeting_endpoint.dart' as _i18;
-import 'package:oneshot_server/src/generated/common/accessory.dart' as _i19;
+import '../endpoints/subscription_plan_endpoint.dart' as _i15;
+import '../endpoints/training_endpoint.dart' as _i16;
+import '../endpoints/user_endpoint.dart' as _i17;
+import '../endpoints/via_cep_gateway_endpoint.dart' as _i18;
+import '../greeting_endpoint.dart' as _i19;
+import 'package:oneshot_server/src/generated/common/accessory.dart' as _i20;
 import 'package:oneshot_server/src/generated/shooter/ammunition_stock.dart'
-    as _i20;
-import 'package:oneshot_server/src/generated/club/club.dart' as _i21;
-import 'package:oneshot_server/src/generated/common/document.dart' as _i22;
-import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _i23;
-import 'package:oneshot_server/src/generated/gunsmith/gunsmith.dart' as _i24;
+    as _i21;
+import 'package:oneshot_server/src/generated/club/club.dart' as _i22;
+import 'package:oneshot_server/src/generated/common/document.dart' as _i23;
+import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _i24;
+import 'package:oneshot_server/src/generated/gunsmith/gunsmith.dart' as _i25;
 import 'package:oneshot_server/src/generated/gunsmith/gunsmith_client.dart'
-    as _i25;
-import 'package:oneshot_server/src/generated/gunsmith/service_order.dart'
     as _i26;
-import 'package:oneshot_server/src/generated/gunsmith/service_order_item.dart'
+import 'package:oneshot_server/src/generated/gunsmith/service_order.dart'
     as _i27;
-import 'package:oneshot_server/src/generated/finance/invoice.dart' as _i28;
-import 'package:oneshot_server/src/generated/finance/invoice_item.dart' as _i29;
+import 'package:oneshot_server/src/generated/gunsmith/service_order_item.dart'
+    as _i28;
+import 'package:oneshot_server/src/generated/finance/invoice.dart' as _i29;
+import 'package:oneshot_server/src/generated/finance/invoice_item.dart' as _i30;
 import 'package:oneshot_server/src/generated/enums/invoice_status.enum.dart'
-    as _i30;
-import 'package:oneshot_server/src/generated/finance/payment.dart' as _i31;
-import 'package:oneshot_server/src/generated/product/product.dart' as _i32;
+    as _i31;
+import 'package:oneshot_server/src/generated/finance/payment.dart' as _i32;
+import 'package:oneshot_server/src/generated/product/product.dart' as _i33;
 import 'package:oneshot_server/src/generated/product/product_group.dart'
-    as _i33;
-import 'package:oneshot_server/src/generated/common/user_profile.dart' as _i34;
+    as _i34;
+import 'package:oneshot_server/src/generated/common/user_profile.dart' as _i35;
 import 'package:oneshot_server/src/generated/shooter/reload_session.dart'
-    as _i35;
-import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i36;
-import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i37;
+    as _i36;
+import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i37;
+import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i38;
 import 'package:oneshot_server/src/generated/access_control/security_role.dart'
-    as _i38;
-import 'package:oneshot_server/src/generated/access_control/role_permission.dart'
     as _i39;
-import 'package:oneshot_server/src/generated/shooter/training.dart' as _i40;
-import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i41;
+import 'package:oneshot_server/src/generated/access_control/role_permission.dart'
+    as _i40;
+import 'package:oneshot_server/src/generated/subscription/subscription_plan.dart'
+    as _i41;
+import 'package:oneshot_server/src/generated/enums/plan_type.enum.dart' as _i42;
+import 'package:oneshot_server/src/generated/enums/plan_status.enum.dart'
+    as _i43;
+import 'package:oneshot_server/src/generated/shooter/training.dart' as _i44;
+import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i45;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -143,25 +149,31 @@ class Endpoints extends _i1.EndpointDispatch {
           'securityRole',
           null,
         ),
-      'training': _i15.TrainingEndpoint()
+      'subscriptionPlan': _i15.SubscriptionPlanEndpoint()
+        ..initialize(
+          server,
+          'subscriptionPlan',
+          null,
+        ),
+      'training': _i16.TrainingEndpoint()
         ..initialize(
           server,
           'training',
           null,
         ),
-      'user': _i16.UserEndpoint()
+      'user': _i17.UserEndpoint()
         ..initialize(
           server,
           'user',
           null,
         ),
-      'viaCepGateway': _i17.ViaCepGatewayEndpoint()
+      'viaCepGateway': _i18.ViaCepGatewayEndpoint()
         ..initialize(
           server,
           'viaCepGateway',
           null,
         ),
-      'greeting': _i18.GreetingEndpoint()
+      'greeting': _i19.GreetingEndpoint()
         ..initialize(
           server,
           'greeting',
@@ -196,7 +208,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'accessory': _i1.ParameterDescription(
               name: 'accessory',
-              type: _i1.getType<_i19.Accessory>(),
+              type: _i1.getType<_i20.Accessory>(),
               nullable: false,
             ),
           },
@@ -215,7 +227,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'accessory': _i1.ParameterDescription(
               name: 'accessory',
-              type: _i1.getType<_i19.Accessory>(),
+              type: _i1.getType<_i20.Accessory>(),
               nullable: false,
             ),
           },
@@ -300,7 +312,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'ammo': _i1.ParameterDescription(
               name: 'ammo',
-              type: _i1.getType<_i20.AmmunitionStock>(),
+              type: _i1.getType<_i21.AmmunitionStock>(),
               nullable: false,
             ),
           },
@@ -369,7 +381,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'club': _i1.ParameterDescription(
               name: 'club',
-              type: _i1.getType<_i21.Club>(),
+              type: _i1.getType<_i22.Club>(),
               nullable: false,
             ),
           },
@@ -397,7 +409,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'club': _i1.ParameterDescription(
               name: 'club',
-              type: _i1.getType<_i21.Club>(),
+              type: _i1.getType<_i22.Club>(),
               nullable: false,
             ),
           },
@@ -545,7 +557,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'document': _i1.ParameterDescription(
               name: 'document',
-              type: _i1.getType<_i22.Document>(),
+              type: _i1.getType<_i23.Document>(),
               nullable: false,
             ),
           },
@@ -563,7 +575,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'document': _i1.ParameterDescription(
               name: 'document',
-              type: _i1.getType<_i22.Document>(),
+              type: _i1.getType<_i23.Document>(),
               nullable: false,
             ),
           },
@@ -749,7 +761,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'firearm': _i1.ParameterDescription(
               name: 'firearm',
-              type: _i1.getType<_i23.Firearm>(),
+              type: _i1.getType<_i24.Firearm>(),
               nullable: false,
             ),
           },
@@ -767,7 +779,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'firearm': _i1.ParameterDescription(
               name: 'firearm',
-              type: _i1.getType<_i23.Firearm>(),
+              type: _i1.getType<_i24.Firearm>(),
               nullable: false,
             ),
           },
@@ -840,7 +852,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'gunsmith': _i1.ParameterDescription(
               name: 'gunsmith',
-              type: _i1.getType<_i24.Gunsmith>(),
+              type: _i1.getType<_i25.Gunsmith>(),
               nullable: false,
             ),
           },
@@ -922,7 +934,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'gunsmith': _i1.ParameterDescription(
               name: 'gunsmith',
-              type: _i1.getType<_i24.Gunsmith>(),
+              type: _i1.getType<_i25.Gunsmith>(),
               nullable: false,
             ),
           },
@@ -941,7 +953,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'client': _i1.ParameterDescription(
               name: 'client',
-              type: _i1.getType<_i25.GunsmithClient>(),
+              type: _i1.getType<_i26.GunsmithClient>(),
               nullable: false,
             ),
           },
@@ -989,12 +1001,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'order': _i1.ParameterDescription(
               name: 'order',
-              type: _i1.getType<_i26.ServiceOrder>(),
+              type: _i1.getType<_i27.ServiceOrder>(),
               nullable: false,
             ),
             'items': _i1.ParameterDescription(
               name: 'items',
-              type: _i1.getType<List<_i27.ServiceOrderItem>>(),
+              type: _i1.getType<List<_i28.ServiceOrderItem>>(),
               nullable: false,
             ),
           },
@@ -1058,12 +1070,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'invoice': _i1.ParameterDescription(
               name: 'invoice',
-              type: _i1.getType<_i28.Invoice>(),
+              type: _i1.getType<_i29.Invoice>(),
               nullable: false,
             ),
             'items': _i1.ParameterDescription(
               name: 'items',
-              type: _i1.getType<List<_i29.InvoiceItem>>(),
+              type: _i1.getType<List<_i30.InvoiceItem>>(),
               nullable: false,
             ),
           },
@@ -1112,7 +1124,7 @@ class Endpoints extends _i1.EndpointDispatch {
             ),
             'status': _i1.ParameterDescription(
               name: 'status',
-              type: _i1.getType<_i30.InvoiceStatus?>(),
+              type: _i1.getType<_i31.InvoiceStatus?>(),
               nullable: true,
             ),
             'clubId': _i1.ParameterDescription(
@@ -1163,7 +1175,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'invoice': _i1.ParameterDescription(
               name: 'invoice',
-              type: _i1.getType<_i28.Invoice>(),
+              type: _i1.getType<_i29.Invoice>(),
               nullable: false,
             ),
           },
@@ -1226,7 +1238,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'payment': _i1.ParameterDescription(
               name: 'payment',
-              type: _i1.getType<_i31.Payment>(),
+              type: _i1.getType<_i32.Payment>(),
               nullable: false,
             ),
           },
@@ -1295,7 +1307,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'product': _i1.ParameterDescription(
               name: 'product',
-              type: _i1.getType<_i32.Product>(),
+              type: _i1.getType<_i33.Product>(),
               nullable: false,
             ),
           },
@@ -1352,7 +1364,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'product': _i1.ParameterDescription(
               name: 'product',
-              type: _i1.getType<_i32.Product>(),
+              type: _i1.getType<_i33.Product>(),
               nullable: false,
             ),
           },
@@ -1471,7 +1483,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'group': _i1.ParameterDescription(
               name: 'group',
-              type: _i1.getType<_i33.ProductGroup>(),
+              type: _i1.getType<_i34.ProductGroup>(),
               nullable: false,
             ),
           },
@@ -1491,7 +1503,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'group': _i1.ParameterDescription(
               name: 'group',
-              type: _i1.getType<_i33.ProductGroup>(),
+              type: _i1.getType<_i34.ProductGroup>(),
               nullable: false,
             ),
           },
@@ -1567,7 +1579,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'profile': _i1.ParameterDescription(
               name: 'profile',
-              type: _i1.getType<_i34.UserProfile>(),
+              type: _i1.getType<_i35.UserProfile>(),
               nullable: false,
             ),
           },
@@ -1611,7 +1623,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'reloadSession': _i1.ParameterDescription(
               name: 'reloadSession',
-              type: _i1.getType<_i35.ReloadSession>(),
+              type: _i1.getType<_i36.ReloadSession>(),
               nullable: false,
             ),
           },
@@ -1640,7 +1652,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'test': _i1.ParameterDescription(
               name: 'test',
-              type: _i1.getType<_i36.ReloadTest>(),
+              type: _i1.getType<_i37.ReloadTest>(),
               nullable: false,
             ),
           },
@@ -1688,7 +1700,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'supply': _i1.ParameterDescription(
               name: 'supply',
-              type: _i1.getType<_i37.SupplyStock>(),
+              type: _i1.getType<_i38.SupplyStock>(),
               nullable: false,
             ),
           },
@@ -1706,7 +1718,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'supply': _i1.ParameterDescription(
               name: 'supply',
-              type: _i1.getType<_i37.SupplyStock>(),
+              type: _i1.getType<_i38.SupplyStock>(),
               nullable: false,
             ),
           },
@@ -1731,12 +1743,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i38.SecurityRole>(),
+              type: _i1.getType<_i39.SecurityRole>(),
               nullable: false,
             ),
             'permissions': _i1.ParameterDescription(
               name: 'permissions',
-              type: _i1.getType<List<_i39.RolePermission>>(),
+              type: _i1.getType<List<_i40.RolePermission>>(),
               nullable: false,
             ),
           },
@@ -1757,12 +1769,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i38.SecurityRole>(),
+              type: _i1.getType<_i39.SecurityRole>(),
               nullable: false,
             ),
             'permissions': _i1.ParameterDescription(
               name: 'permissions',
-              type: _i1.getType<List<_i39.RolePermission>>(),
+              type: _i1.getType<List<_i40.RolePermission>>(),
               nullable: false,
             ),
           },
@@ -1783,7 +1795,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i38.SecurityRole>(),
+              type: _i1.getType<_i39.SecurityRole>(),
               nullable: false,
             ),
           },
@@ -1814,7 +1826,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i38.SecurityRole>(),
+              type: _i1.getType<_i39.SecurityRole>(),
               nullable: false,
             ),
           },
@@ -1831,6 +1843,135 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
+    connectors['subscriptionPlan'] = _i1.EndpointConnector(
+      name: 'subscriptionPlan',
+      endpoint: endpoints['subscriptionPlan']!,
+      methodConnectors: {
+        'createPlan': _i1.MethodConnector(
+          name: 'createPlan',
+          params: {
+            'plan': _i1.ParameterDescription(
+              name: 'plan',
+              type: _i1.getType<_i41.SubscriptionPlan>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['subscriptionPlan']
+                          as _i15.SubscriptionPlanEndpoint)
+                      .createPlan(
+                        session,
+                        params['plan'],
+                      ),
+        ),
+        'readPlan': _i1.MethodConnector(
+          name: 'readPlan',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<_i1.UuidValue>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['subscriptionPlan']
+                          as _i15.SubscriptionPlanEndpoint)
+                      .readPlan(
+                        session,
+                        params['id'],
+                      ),
+        ),
+        'updatePlan': _i1.MethodConnector(
+          name: 'updatePlan',
+          params: {
+            'plan': _i1.ParameterDescription(
+              name: 'plan',
+              type: _i1.getType<_i41.SubscriptionPlan>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['subscriptionPlan']
+                          as _i15.SubscriptionPlanEndpoint)
+                      .updatePlan(
+                        session,
+                        params['plan'],
+                      ),
+        ),
+        'deletePlan': _i1.MethodConnector(
+          name: 'deletePlan',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<_i1.UuidValue>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['subscriptionPlan']
+                          as _i15.SubscriptionPlanEndpoint)
+                      .deletePlan(
+                        session,
+                        params['id'],
+                      ),
+        ),
+        'listPlans': _i1.MethodConnector(
+          name: 'listPlans',
+          params: {
+            'planType': _i1.ParameterDescription(
+              name: 'planType',
+              type: _i1.getType<_i42.PlanType?>(),
+              nullable: true,
+            ),
+            'status': _i1.ParameterDescription(
+              name: 'status',
+              type: _i1.getType<_i43.PlanStatus?>(),
+              nullable: true,
+            ),
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['subscriptionPlan']
+                          as _i15.SubscriptionPlanEndpoint)
+                      .listPlans(
+                        session,
+                        planType: params['planType'],
+                        status: params['status'],
+                        limit: params['limit'],
+                        offset: params['offset'],
+                      ),
+        ),
+      },
+    );
     connectors['training'] = _i1.EndpointConnector(
       name: 'training',
       endpoint: endpoints['training']!,
@@ -1840,7 +1981,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'training': _i1.ParameterDescription(
               name: 'training',
-              type: _i1.getType<_i40.Training>(),
+              type: _i1.getType<_i44.Training>(),
               nullable: false,
             ),
           },
@@ -1849,7 +1990,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['training'] as _i15.TrainingEndpoint).register(
+                  (endpoints['training'] as _i16.TrainingEndpoint).register(
                     session,
                     params['training'],
                   ),
@@ -1861,7 +2002,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['training'] as _i15.TrainingEndpoint)
+              ) async => (endpoints['training'] as _i16.TrainingEndpoint)
                   .getMyTrainings(session),
         ),
         'getTraining': _i1.MethodConnector(
@@ -1878,7 +2019,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['training'] as _i15.TrainingEndpoint).getTraining(
+                  (endpoints['training'] as _i16.TrainingEndpoint).getTraining(
                     session,
                     params['id'],
                   ),
@@ -1902,7 +2043,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i16.UserEndpoint).getById(
+              ) async => (endpoints['user'] as _i17.UserEndpoint).getById(
                 session,
                 params['id'],
               ),
@@ -1920,7 +2061,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i16.UserEndpoint).getByCpf(
+              ) async => (endpoints['user'] as _i17.UserEndpoint).getByCpf(
                 session,
                 params['cpf'],
               ),
@@ -1930,7 +2071,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'user': _i1.ParameterDescription(
               name: 'user',
-              type: _i1.getType<_i34.UserProfile>(),
+              type: _i1.getType<_i35.UserProfile>(),
               nullable: false,
             ),
           },
@@ -1938,7 +2079,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i16.UserEndpoint).create(
+              ) async => (endpoints['user'] as _i17.UserEndpoint).create(
                 session,
                 params['user'],
               ),
@@ -1948,7 +2089,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'user': _i1.ParameterDescription(
               name: 'user',
-              type: _i1.getType<_i34.UserProfile>(),
+              type: _i1.getType<_i35.UserProfile>(),
               nullable: false,
             ),
           },
@@ -1956,7 +2097,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i16.UserEndpoint).update(
+              ) async => (endpoints['user'] as _i17.UserEndpoint).update(
                 session,
                 params['user'],
               ),
@@ -1974,7 +2115,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i16.UserEndpoint).delete(
+              ) async => (endpoints['user'] as _i17.UserEndpoint).delete(
                 session,
                 params['id'],
               ),
@@ -1997,7 +2138,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i16.UserEndpoint).list(
+              ) async => (endpoints['user'] as _i17.UserEndpoint).list(
                 session,
                 limit: params['limit'],
                 offset: params['offset'],
@@ -2016,7 +2157,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i16.UserEndpoint).getRoles(
+              ) async => (endpoints['user'] as _i17.UserEndpoint).getRoles(
                 session,
                 params['userId'],
               ),
@@ -2039,7 +2180,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['user'] as _i16.UserEndpoint).updateRoles(
+              ) async => (endpoints['user'] as _i17.UserEndpoint).updateRoles(
                 session,
                 params['userId'],
                 params['roleIds'],
@@ -2065,7 +2206,7 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['viaCepGateway'] as _i17.ViaCepGatewayEndpoint)
+                  (endpoints['viaCepGateway'] as _i18.ViaCepGatewayEndpoint)
                       .getAddressByCep(
                         session,
                         params['zipcode'],
@@ -2090,13 +2231,13 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['greeting'] as _i18.GreetingEndpoint).hello(
+              ) async => (endpoints['greeting'] as _i19.GreetingEndpoint).hello(
                 session,
                 params['name'],
               ),
         ),
       },
     );
-    modules['serverpod_auth'] = _i41.Endpoints()..initializeEndpoints(server);
+    modules['serverpod_auth'] = _i45.Endpoints()..initializeEndpoints(server);
   }
 }

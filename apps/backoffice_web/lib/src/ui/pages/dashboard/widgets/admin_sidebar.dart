@@ -63,6 +63,14 @@ class AdminSidebar extends StatelessWidget {
                   isSelected: currentPage == DashboardPageType.users,
                   onTap: () => onPageChanged(DashboardPageType.users),
                 ),
+                AdminSidebarItem(
+                  icon: Icons.card_membership_outlined,
+                  activeIcon: Icons.card_membership,
+                  label: 'ASSINATURAS',
+                  isCollapsed: isCollapsed,
+                  isSelected: currentPage == DashboardPageType.subscriptions,
+                  onTap: () => onPageChanged(DashboardPageType.subscriptions),
+                ),
                 // AdminSidebarItem(
                 //   icon: Icons.inventory_2_outlined,
                 //   activeIcon: Icons.inventory_2,

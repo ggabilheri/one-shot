@@ -6,6 +6,7 @@ enum DashboardPageType {
   stock,
   serviceOrders,
   plans,
+  subscriptions,
   settings,
   catalogs,
   gunTechnicalSpec,

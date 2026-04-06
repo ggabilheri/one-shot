@@ -148,12 +148,8 @@ class _ProductGroupsPageState
                             color: DSTokens.primary,
                             tooltip: 'Editar',
                             onPressed: () {
-                              // showDialog(
-                              //   context: context,
-                              //   barrierDismissible: false,
-                              //   builder: (_) {
-                              //   },
-                              // );
+                              vm.setIsNew(false);
+                              _openGroupForm(context, group: group);
                             },
                           ),
                           IconButton(
@@ -164,9 +160,9 @@ class _ProductGroupsPageState
                               final confirm = await showDialog<bool>(
                                 context: context,
                                 builder: (context) => AlertDialog(
-                                  title: const Text('Excluir Perfil?'),
+                                  title: const Text('Excluir Categoria?'),
                                   content: Text(
-                                    'Deseja realmente excluir o perfil "\${role.name}"?',
+                                    'Deseja realmente excluir a categoria "${group.name}"?',
                                   ),
                                   actions: [
                                     TextButton(
@@ -186,7 +182,7 @@ class _ProductGroupsPageState
                                 ),
                               );
                               if (confirm == true) {
-                                vm.deleteGroup(vm.selectedGroup!.id);
+                                vm.deleteGroup(group.id);
                               }
                             },
                           ),

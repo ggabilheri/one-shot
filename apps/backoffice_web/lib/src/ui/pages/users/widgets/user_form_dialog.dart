@@ -1,9 +1,11 @@
+import 'package:backoffice_web/src/core/extensions/enum_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 import 'package:backoffice_web/src/ui/pages/users/users_viewmodel.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:uuid/uuid.dart';
 
 class UserFormDialog extends StatefulWidget {
   final IUsersViewmodel vm;
@@ -70,7 +72,6 @@ class _UserFormDialogState extends State<UserFormDialog> {
 
     _nameController = TextEditingController(text: widget.user?.name ?? '');
 
-    // As in widget we store without mask, we apply it when initiating via text using maskFormatter manually or just let controller text be masked
     var initialCpf = widget.user?.cpf ?? '';
     _cpfController = TextEditingController(text: _cpfMask.maskText(initialCpf));
 
@@ -214,7 +215,6 @@ class _UserFormDialogState extends State<UserFormDialog> {
         }
       } catch (_) {}
 
-      // Creates or preserves address
       final Address currentAddress =
           widget.user?.address ??
           Address(
@@ -262,7 +262,6 @@ class _UserFormDialogState extends State<UserFormDialog> {
         await widget.vm.createUser(userData);
       }
 
-      // Save Roles
       await widget.vm.updateUserRoles(
         userData.id.toString(),
         _selectedRoles.map((r) => r.id.toString()).toList(),
@@ -301,7 +300,6 @@ class _UserFormDialogState extends State<UserFormDialog> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Header
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,
@@ -334,7 +332,6 @@ class _UserFormDialogState extends State<UserFormDialog> {
                   ),
                 ),
 
-                // Body Fields
                 Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: Column(
@@ -379,7 +376,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
                           ),
                           const SizedBox(width: DSTokens.spacingMd),
                           Expanded(
-                            child: _buildDropdownField(
+                            child: _buildDropdownField<Gender>(
                               'GÊNERO',
                               Gender.values,
                               _selectedGender,
@@ -390,6 +387,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
                                   });
                                 }
                               },
+                              labelBuilder: (g) => g.name.toUpperCase(),
                             ),
                           ),
                         ],
@@ -421,7 +419,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
                         children: [
                           Expanded(
                             flex: 1,
-                            child: _buildDropdownField(
+                            child: _buildDropdownField<UserStatus>(
                               'STATUS',
                               UserStatus.values,
                               _selectedStatus,
@@ -432,11 +430,14 @@ class _UserFormDialogState extends State<UserFormDialog> {
                                   });
                                 }
                               },
+                              labelBuilder: (s) => s.name.toUpperCase(), // UserStatus mapping if needed
                             ),
                           ),
+                          const SizedBox(width: DSTokens.spacingMd),
                           Expanded(
                             flex: 2,
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   'PERFIS DE ACESSO (TIPOS)',
@@ -454,11 +455,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
                                     );
                                     return FilterChip(
                                       label: Text(
-                                        type
-                                            .toString()
-                                            .split('.')
-                                            .last
-                                            .toUpperCase(),
+                                        type.label.toUpperCase(),
                                         style: DSTokens.body.copyWith(
                                           fontSize: 12,
                                         ),
@@ -612,7 +609,6 @@ class _UserFormDialogState extends State<UserFormDialog> {
                   ),
                 ),
 
-                // Footer Actions
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,
@@ -718,8 +714,9 @@ class _UserFormDialogState extends State<UserFormDialog> {
     String label,
     List<T> items,
     T value,
-    ValueChanged<T?> onChanged,
-  ) {
+    ValueChanged<T?> onChanged, {
+    required String Function(T) labelBuilder,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -743,7 +740,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
               items: items.map((T item) {
                 return DropdownMenuItem<T>(
                   value: item,
-                  child: Text(item.toString().split('.').last.toUpperCase()),
+                  child: Text(labelBuilder(item)),
                 );
               }).toList(),
             ),

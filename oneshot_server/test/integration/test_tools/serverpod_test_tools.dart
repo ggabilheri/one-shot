@@ -46,9 +46,14 @@ import 'package:oneshot_server/src/generated/access_control/security_role.dart'
     as _i25;
 import 'package:oneshot_server/src/generated/access_control/role_permission.dart'
     as _i26;
-import 'package:oneshot_server/src/generated/shooter/training.dart' as _i27;
-import 'package:oneshot_server/src/generated/common/address.dart' as _i28;
-import 'package:oneshot_server/src/generated/greeting.dart' as _i29;
+import 'package:oneshot_server/src/generated/subscription/subscription_plan.dart'
+    as _i27;
+import 'package:oneshot_server/src/generated/enums/plan_type.enum.dart' as _i28;
+import 'package:oneshot_server/src/generated/enums/plan_status.enum.dart'
+    as _i29;
+import 'package:oneshot_server/src/generated/shooter/training.dart' as _i30;
+import 'package:oneshot_server/src/generated/common/address.dart' as _i31;
+import 'package:oneshot_server/src/generated/greeting.dart' as _i32;
 import 'package:oneshot_server/src/generated/protocol.dart';
 import 'package:oneshot_server/src/generated/endpoints.dart';
 export 'package:serverpod_test/serverpod_test_public_exports.dart';
@@ -182,6 +187,8 @@ class TestEndpoints {
 
   late final _SecurityRoleEndpoint securityRole;
 
+  late final _SubscriptionPlanEndpoint subscriptionPlan;
+
   late final _TrainingEndpoint training;
 
   late final _UserEndpoint user;
@@ -247,6 +254,10 @@ class _InternalTestEndpoints extends TestEndpoints
       serializationManager,
     );
     securityRole = _SecurityRoleEndpoint(
+      endpoints,
+      serializationManager,
+    );
+    subscriptionPlan = _SubscriptionPlanEndpoint(
       endpoints,
       serializationManager,
     );
@@ -2938,6 +2949,180 @@ class _SecurityRoleEndpoint {
   }
 }
 
+class _SubscriptionPlanEndpoint {
+  _SubscriptionPlanEndpoint(
+    this._endpointDispatch,
+    this._serializationManager,
+  );
+
+  final _i2.EndpointDispatch _endpointDispatch;
+
+  final _i2.SerializationManager _serializationManager;
+
+  _i3.Future<_i27.SubscriptionPlan> createPlan(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i27.SubscriptionPlan plan,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'subscriptionPlan',
+            method: 'createPlan',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'subscriptionPlan',
+          methodName: 'createPlan',
+          parameters: _i1.testObjectToJson({'plan': plan}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<_i27.SubscriptionPlan>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<_i27.SubscriptionPlan?> readPlan(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i2.UuidValue id,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'subscriptionPlan',
+            method: 'readPlan',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'subscriptionPlan',
+          methodName: 'readPlan',
+          parameters: _i1.testObjectToJson({'id': id}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<_i27.SubscriptionPlan?>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<_i27.SubscriptionPlan> updatePlan(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i27.SubscriptionPlan plan,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'subscriptionPlan',
+            method: 'updatePlan',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'subscriptionPlan',
+          methodName: 'updatePlan',
+          parameters: _i1.testObjectToJson({'plan': plan}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<_i27.SubscriptionPlan>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<bool> deletePlan(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i2.UuidValue id,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'subscriptionPlan',
+            method: 'deletePlan',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'subscriptionPlan',
+          methodName: 'deletePlan',
+          parameters: _i1.testObjectToJson({'id': id}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<bool>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<List<_i27.SubscriptionPlan>> listPlans(
+    _i1.TestSessionBuilder sessionBuilder, {
+    _i28.PlanType? planType,
+    _i29.PlanStatus? status,
+    int? limit,
+    int? offset,
+  }) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'subscriptionPlan',
+            method: 'listPlans',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'subscriptionPlan',
+          methodName: 'listPlans',
+          parameters: _i1.testObjectToJson({
+            'planType': planType,
+            'status': status,
+            'limit': limit,
+            'offset': offset,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<List<_i27.SubscriptionPlan>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+}
+
 class _TrainingEndpoint {
   _TrainingEndpoint(
     this._endpointDispatch,
@@ -2948,9 +3133,9 @@ class _TrainingEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<_i27.Training> register(
+  _i3.Future<_i30.Training> register(
     _i1.TestSessionBuilder sessionBuilder,
-    _i27.Training training,
+    _i30.Training training,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
@@ -2971,7 +3156,7 @@ class _TrainingEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i27.Training>);
+                as _i3.Future<_i30.Training>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2979,7 +3164,7 @@ class _TrainingEndpoint {
     });
   }
 
-  _i3.Future<List<_i27.Training>> getMyTrainings(
+  _i3.Future<List<_i30.Training>> getMyTrainings(
     _i1.TestSessionBuilder sessionBuilder,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
@@ -3001,7 +3186,7 @@ class _TrainingEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<List<_i27.Training>>);
+                as _i3.Future<List<_i30.Training>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3009,7 +3194,7 @@ class _TrainingEndpoint {
     });
   }
 
-  _i3.Future<_i27.Training?> getTraining(
+  _i3.Future<_i30.Training?> getTraining(
     _i1.TestSessionBuilder sessionBuilder,
     _i2.UuidValue id,
   ) async {
@@ -3032,7 +3217,7 @@ class _TrainingEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i27.Training?>);
+                as _i3.Future<_i30.Training?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3318,7 +3503,7 @@ class _ViaCepGatewayEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<_i28.Address?> getAddressByCep(
+  _i3.Future<_i31.Address?> getAddressByCep(
     _i1.TestSessionBuilder sessionBuilder,
     String zipcode,
   ) async {
@@ -3341,7 +3526,7 @@ class _ViaCepGatewayEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i28.Address?>);
+                as _i3.Future<_i31.Address?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3360,7 +3545,7 @@ class _GreetingEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<_i29.Greeting> hello(
+  _i3.Future<_i32.Greeting> hello(
     _i1.TestSessionBuilder sessionBuilder,
     String name,
   ) async {
@@ -3383,7 +3568,7 @@ class _GreetingEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i29.Greeting>);
+                as _i3.Future<_i32.Greeting>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

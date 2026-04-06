@@ -8,31 +8,31 @@
 
 # Configuration for the main API server.
 apiServer:
-  host: 192.168.30.190
+  host: promopulse.ddns.net
   port: 8080
-  publicHost: localhost
+  publicHost: 1promopulse.ddns.net
   publicPort: 8080
   publicScheme: http
 
 # Configuration for the Insights server.
 insightsServer:
-  host: 192.168.30.190
+  host: promopulse.ddns.net
   port: 8081
-  publicHost: localhost
+  publicHost: promopulse.ddns.net
   publicPort: 8081
   publicScheme: http
 
 # Configuration for the web server.
 webServer:
-  host: 192.168.30.190
+  host: promopulse.ddns.net
   port: 8082
-  publicHost: localhost
+  publicHost: promopulse.ddns.net
   publicPort: 8082
   publicScheme: http
 
 # This is the database setup for your server.
 database:
-  host: 192.168.30.190
+  host: promopulse.ddns.net
   port: 8090
   name: oneshot
   user: postgres
@@ -42,7 +42,7 @@ database:
 # This is the setup for Redis.
 redis:
   enabled: false
-  host: localhost
+  host: promopulse.ddns.net
   port: 8091
   #user: # defaults to empty
   #requireSsl: true # defaults to false

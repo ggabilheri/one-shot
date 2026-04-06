@@ -1,3 +1,4 @@
+import 'package:backoffice_web/src/core/extensions/enum_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:backoffice_web/src/ui/pages/roles/roles_viewmodel.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
@@ -260,11 +261,14 @@ class _RoleFormDialogState extends State<RoleFormDialog> {
                               tileColor: DSTokens.surfaceContainer,
                               leading: const Icon(Icons.lock_outline, size: 20, color: DSTokens.primary),
                               title: Text(
-                                '${perm.platform.name.toUpperCase()} > ${perm.module?.name.toUpperCase() ?? 'TODOS'}',
-                                style: DSTokens.body.copyWith(fontWeight: FontWeight.bold),
+                                '${perm.platform.label.toUpperCase()} > ${perm.module?.label.toUpperCase() ?? 'TODOS'}',
+                                style: DSTokens.body.copyWith(
+                                  color: DSTokens.highlight,
+                                  fontSize: 14,
+                                ),
                               ),
                               subtitle: Text(
-                                'NÍVEL DE ACESSO: ${perm.level.name.toUpperCase()}',
+                                'NÍVEL DE ACESSO: ${perm.level.label.toUpperCase()}',
                                 style: DSTokens.label.copyWith(fontSize: 10),
                               ),
                               trailing: IconButton(
@@ -361,7 +365,10 @@ class _RoleFormDialogState extends State<RoleFormDialog> {
               items: items.map((item) {
                 final text = labelMapper != null 
                     ? labelMapper(item) 
-                    : (item is Enum ? item.name.toUpperCase() : item.toString().toUpperCase());
+                    : (item is PlatformApp ? (item as PlatformApp).label.toUpperCase() : 
+                      item is AppModule ? (item as AppModule).label.toUpperCase() :
+                      item is AccessLevel ? (item as AccessLevel).label.toUpperCase() :
+                      item.toString().toUpperCase());
                 return DropdownMenuItem<T>(
                   value: item,
                   child: Text(text, style: DSTokens.body.copyWith(fontSize: 12)),

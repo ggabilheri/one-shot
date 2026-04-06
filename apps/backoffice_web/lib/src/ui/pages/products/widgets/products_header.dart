@@ -1,3 +1,4 @@
+import 'package:backoffice_web/src/core/extensions/enum_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import 'package:backoffice_web/src/ui/pages/products/products_viewmodel.dart';

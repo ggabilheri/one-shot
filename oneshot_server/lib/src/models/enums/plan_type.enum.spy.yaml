@@ -1,0 +1,6 @@
+enum: PlanType
+values:
+  - CLUB
+  - GUNSMITH
+  - CAC
+serialized: byName

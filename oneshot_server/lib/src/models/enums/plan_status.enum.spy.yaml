@@ -1,0 +1,7 @@
+enum: PlanStatus
+values:
+  - ACTIVE
+  - INACTIVE
+  - PAUSED
+  - CANCELED
+serialized: byName

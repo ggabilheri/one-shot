@@ -18,9 +18,10 @@ class DSTokens {
   static const Color outlineVariant = Color(0xFF44474A);
   
   static const Color highlight = Color(0xFFFFFFFD); // Bright highlight
-  static const Color alert = Color(0xFFFF8C00); // Tactical Orange
-
   static const Color success = Color(0xFF4CAF50);
+  static const Color info = Color(0xFF2196F3);
+  static const Color warning = Color(0xFFFF8C00); // Tactical Orange
+  static const Color alert = warning;
   static const Color error = Color(0xFFE53935);
 
   // Espaçamento

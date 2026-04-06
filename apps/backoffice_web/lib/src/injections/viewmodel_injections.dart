@@ -1,4 +1,6 @@
+import 'package:backoffice_web/src/ui/pages/subscriptions/subscription_plans_viewmodel.dart';
 import 'package:get_it/get_it.dart';
+import 'package:backoffice_web/src/domain/repositories/subscription_plan_repository.dart';
 import 'package:backoffice_web/src/ui/pages/login/login_viewmodel.dart';
 import 'package:backoffice_web/src/domain/repositories/auth_repository.dart';
 import 'package:backoffice_web/src/ui/pages/dashboard/dashboard_viewmodel.dart';
@@ -26,4 +28,5 @@ void setupViewModelInjections() {
   getIt.registerFactory<IRolesViewmodel>(() => RolesViewmodel(getIt<ISecurityRoleRepository>()));
   getIt.registerFactory<IProductsViewmodel>(() => ProductsViewmodel(getIt<IProductRepository>(), getIt<IProductGroupRepository>()));
   getIt.registerFactory<IProductGroupsViewmodel>(() => ProductGroupsViewmodel(getIt<IProductGroupRepository>(), getIt<IProductRepository>()));
+  getIt.registerFactory<ISubscriptionPlansViewModel>(() => SubscriptionPlansViewModel(getIt<ISubscriptionPlanRepository>()));
 }

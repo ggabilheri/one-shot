@@ -1,0 +1,16 @@
+class: SubscriptionPlan
+table: subscription_plans
+fields:
+  id: UuidValue, defaultModel=random
+  name: String
+  planType: PlanType
+  unitValue: double
+  quantity: int
+  totalValue: double
+  periodicity: PlanPeriodicity
+  status: PlanStatus
+indexes:
+  plan_type_idx:
+    fields: planType
+  plan_status_idx:
+    fields: status
