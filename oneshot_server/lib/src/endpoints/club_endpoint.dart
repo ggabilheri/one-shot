@@ -1,4 +1,5 @@
 import 'package:oneshot_server/src/core/injections/injections.dart';
+import 'package:oneshot_server/src/gateway/asaas/services/asaas_onboarding_service.dart';
 import 'package:oneshot_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 import 'package:serverpod_auth_server/serverpod_auth_server.dart';
@@ -6,11 +7,49 @@ import 'package:serverpod_auth_server/serverpod_auth_server.dart';
 class ClubEndpoint extends Endpoint {
   // -- Clubes --
 
-  /// Cria um novo clube de tiro no sistema.
+  /// Cria um novo clube de tiro no sistema e uma subconta Asaas correspondente.
+  /// A criação da subconta Asaas é não-bloqueante: em caso de falha, o clube
+  /// é criado normalmente e [asaasAccountId] permanece nulo.
   Future<Club> createClub(Session session, Club club) async {
-    final profile = await sl.getOrCreateProfileUseCase.execute(session);
-    club.ownerId = profile.id;
-    return await sl.clubRepository.create(session, club);
+    // 1. Obtém/cria o perfil do proprietário
+    final ownerProfile = await sl.getOrCreateProfileUseCase.execute(session);
+    club.ownerId = ownerProfile.id;
+
+    // 2. Persiste o clube localmente
+    var createdClub = await sl.clubRepository.create(session, club);
+
+    // 3. Garante que o endereço do clube seja carregado para o onboarding
+    if (createdClub.addressId != null && createdClub.address == null) {
+      final fullClub = await sl.clubRepository.findById(session, createdClub.id);
+      createdClub = fullClub ?? createdClub;
+    }
+
+    // 4. Cria subconta no Asaas (não-bloqueante)
+    try {
+      final onboarding = AsaasOnboardingService();
+      final asaasResponse = await onboarding.createSubaccountForClub(
+        session,
+        createdClub,
+        ownerProfile,
+      );
+
+      // 5. Se a subconta foi criada, persiste os IDs retornados
+      if (asaasResponse != null) {
+        createdClub = createdClub.copyWith(
+          asaasAccountId: asaasResponse.id,
+          asaasWalletId: asaasResponse.walletId,
+          asaasApiKey: asaasResponse.apiKey,
+        );
+        createdClub = await sl.clubRepository.update(session, createdClub);
+      }
+    } catch (e) {
+      session.log(
+        'ClubEndpoint.createClub: erro não tratado no onboarding Asaas: $e',
+        level: LogLevel.error,
+      );
+    }
+
+    return createdClub;
   }
 
   /// Lista todos os clubes ativos.

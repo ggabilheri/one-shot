@@ -29,8 +29,13 @@ abstract class Club
     this.phoneNumber,
     this.email,
     bool? active,
+    double? incomeValue,
+    this.asaasAccountId,
+    this.asaasWalletId,
+    this.asaasApiKey,
   }) : id = id ?? const _i1.Uuid().v4obj(),
-       active = active ?? true;
+       active = active ?? true,
+       incomeValue = incomeValue ?? 1000.0;
 
   factory Club({
     _i1.UuidValue? id,
@@ -43,6 +48,10 @@ abstract class Club
     String? phoneNumber,
     String? email,
     bool? active,
+    double? incomeValue,
+    String? asaasAccountId,
+    String? asaasWalletId,
+    String? asaasApiKey,
   }) = _ClubImpl;
 
   factory Club.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -73,6 +82,10 @@ abstract class Club
       active: jsonSerialization['active'] == null
           ? null
           : _i1.BoolJsonExtension.fromJson(jsonSerialization['active']),
+      incomeValue: (jsonSerialization['incomeValue'] as num?)?.toDouble(),
+      asaasAccountId: jsonSerialization['asaasAccountId'] as String?,
+      asaasWalletId: jsonSerialization['asaasWalletId'] as String?,
+      asaasApiKey: jsonSerialization['asaasApiKey'] as String?,
     );
   }
 
@@ -101,6 +114,14 @@ abstract class Club
 
   bool active;
 
+  double incomeValue;
+
+  String? asaasAccountId;
+
+  String? asaasWalletId;
+
+  String? asaasApiKey;
+
   @override
   _i1.Table<_i1.UuidValue> get table => t;
 
@@ -118,6 +139,10 @@ abstract class Club
     String? phoneNumber,
     String? email,
     bool? active,
+    double? incomeValue,
+    String? asaasAccountId,
+    String? asaasWalletId,
+    String? asaasApiKey,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -133,6 +158,10 @@ abstract class Club
       if (phoneNumber != null) 'phoneNumber': phoneNumber,
       if (email != null) 'email': email,
       'active': active,
+      'incomeValue': incomeValue,
+      if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
+      if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
+      if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
     };
   }
 
@@ -150,6 +179,10 @@ abstract class Club
       if (phoneNumber != null) 'phoneNumber': phoneNumber,
       if (email != null) 'email': email,
       'active': active,
+      'incomeValue': incomeValue,
+      if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
+      if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
+      if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
     };
   }
 
@@ -203,6 +236,10 @@ class _ClubImpl extends Club {
     String? phoneNumber,
     String? email,
     bool? active,
+    double? incomeValue,
+    String? asaasAccountId,
+    String? asaasWalletId,
+    String? asaasApiKey,
   }) : super._(
          id: id,
          name: name,
@@ -214,6 +251,10 @@ class _ClubImpl extends Club {
          phoneNumber: phoneNumber,
          email: email,
          active: active,
+         incomeValue: incomeValue,
+         asaasAccountId: asaasAccountId,
+         asaasWalletId: asaasWalletId,
+         asaasApiKey: asaasApiKey,
        );
 
   /// Returns a shallow copy of this [Club]
@@ -231,6 +272,10 @@ class _ClubImpl extends Club {
     Object? phoneNumber = _Undefined,
     Object? email = _Undefined,
     bool? active,
+    double? incomeValue,
+    Object? asaasAccountId = _Undefined,
+    Object? asaasWalletId = _Undefined,
+    Object? asaasApiKey = _Undefined,
   }) {
     return Club(
       id: id ?? this.id,
@@ -243,6 +288,14 @@ class _ClubImpl extends Club {
       phoneNumber: phoneNumber is String? ? phoneNumber : this.phoneNumber,
       email: email is String? ? email : this.email,
       active: active ?? this.active,
+      incomeValue: incomeValue ?? this.incomeValue,
+      asaasAccountId: asaasAccountId is String?
+          ? asaasAccountId
+          : this.asaasAccountId,
+      asaasWalletId: asaasWalletId is String?
+          ? asaasWalletId
+          : this.asaasWalletId,
+      asaasApiKey: asaasApiKey is String? ? asaasApiKey : this.asaasApiKey,
     );
   }
 }
@@ -287,6 +340,28 @@ class ClubUpdateTable extends _i1.UpdateTable<ClubTable> {
     table.active,
     value,
   );
+
+  _i1.ColumnValue<double, double> incomeValue(double value) => _i1.ColumnValue(
+    table.incomeValue,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> asaasAccountId(String? value) =>
+      _i1.ColumnValue(
+        table.asaasAccountId,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> asaasWalletId(String? value) =>
+      _i1.ColumnValue(
+        table.asaasWalletId,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> asaasApiKey(String? value) => _i1.ColumnValue(
+    table.asaasApiKey,
+    value,
+  );
 }
 
 class ClubTable extends _i1.Table<_i1.UuidValue> {
@@ -321,6 +396,23 @@ class ClubTable extends _i1.Table<_i1.UuidValue> {
       this,
       hasDefault: true,
     );
+    incomeValue = _i1.ColumnDouble(
+      'incomeValue',
+      this,
+      hasDefault: true,
+    );
+    asaasAccountId = _i1.ColumnString(
+      'asaasAccountId',
+      this,
+    );
+    asaasWalletId = _i1.ColumnString(
+      'asaasWalletId',
+      this,
+    );
+    asaasApiKey = _i1.ColumnString(
+      'asaasApiKey',
+      this,
+    );
   }
 
   late final ClubUpdateTable updateTable;
@@ -342,6 +434,14 @@ class ClubTable extends _i1.Table<_i1.UuidValue> {
   late final _i1.ColumnString email;
 
   late final _i1.ColumnBool active;
+
+  late final _i1.ColumnDouble incomeValue;
+
+  late final _i1.ColumnString asaasAccountId;
+
+  late final _i1.ColumnString asaasWalletId;
+
+  late final _i1.ColumnString asaasApiKey;
 
   _i2.AddressTable get address {
     if (_address != null) return _address!;
@@ -379,6 +479,10 @@ class ClubTable extends _i1.Table<_i1.UuidValue> {
     phoneNumber,
     email,
     active,
+    incomeValue,
+    asaasAccountId,
+    asaasWalletId,
+    asaasApiKey,
   ];
 
   @override

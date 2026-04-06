@@ -7,6 +7,13 @@ fields:
   address: Address?, relation(optional)
   owner: UserProfile?, relation(optional)
   active: bool, default=true
+  incomeValue: double, default=1000.00
+
+  # Campos do gateway Asaas (subconta)
+  asaasAccountId: String?   # ID da subconta no Asaas
+  asaasWalletId: String?    # Wallet ID para split de pagamentos
+  asaasApiKey: String?      # API key da subconta (armazenar com segurança)
+
 indexes:
   gunsmith_tax_id_idx:
     fields: taxId

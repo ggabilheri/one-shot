@@ -22,19 +22,21 @@ class AsaasAccountEndpoint extends Endpoint {
       birthDate: requestData['birthDate'] as String?,
       companyType: requestData['companyType'] as String?,
       phone: requestData['phone'] as String?,
-      mobilePhone: requestData['mobilePhone'] as String?,
-      address: requestData['address'] as String?,
-      addressNumber: requestData['addressNumber'] as String?,
-      province: requestData['province'] as String?,
-      postalCode: requestData['postalCode'] as String?,
+      mobilePhone: requestData['mobilePhone']! as String,
+      address: requestData['address']! as String,
+      addressNumber: requestData['addressNumber']! as String,
+      province: requestData['province']! as String,
+      postalCode: requestData['postalCode']! as String,
+      incomeValue: 10000,
     );
     final result = await _service(session).createSubaccount(request);
     return result.toJson();
   }
 
-  Future<List<Map<String, dynamic>>> listSubaccounts(
-      Session session, {int? limit, int? offset}) async {
-    final result = await _service(session).listSubaccounts(limit: limit, offset: offset);
+  Future<List<Map<String, dynamic>>> listSubaccounts(Session session,
+      {int? limit, int? offset}) async {
+    final result =
+        await _service(session).listSubaccounts(limit: limit, offset: offset);
     return result.map((a) => a.toJson()).toList();
   }
 

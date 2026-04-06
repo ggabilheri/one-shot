@@ -155,7 +155,9 @@ class EndpointClub extends _i1.EndpointRef {
   @override
   String get name => 'club';
 
-  /// Cria um novo clube de tiro no sistema.
+  /// Cria um novo clube de tiro no sistema e uma subconta Asaas correspondente.
+  /// A criação da subconta Asaas é não-bloqueante: em caso de falha, o clube
+  /// é criado normalmente e [asaasAccountId] permanece nulo.
   _i2.Future<_i5.Club> createClub(_i5.Club club) =>
       caller.callServerEndpoint<_i5.Club>(
         'club',
@@ -380,7 +382,9 @@ class EndpointGunsmith extends _i1.EndpointRef {
   @override
   String get name => 'gunsmith';
 
-  /// Registra uma nova armaria no sistema.
+  /// Registra uma nova armaria no sistema e cria uma subconta Asaas para ela.
+  /// A criação da subconta Asaas é não-bloqueante: em caso de falha, o armeiro
+  /// é cadastrado normalmente e [asaasAccountId] permanece nulo.
   _i2.Future<_i10.Gunsmith> createGunsmith(_i10.Gunsmith gunsmith) =>
       caller.callServerEndpoint<_i10.Gunsmith>(
         'gunsmith',

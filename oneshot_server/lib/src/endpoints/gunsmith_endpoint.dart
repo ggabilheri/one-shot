@@ -1,13 +1,57 @@
 import 'package:oneshot_server/src/core/injections/injections.dart';
+import 'package:oneshot_server/src/gateway/asaas/services/asaas_onboarding_service.dart';
 import 'package:oneshot_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 
 class GunsmithEndpoint extends Endpoint {
   // --- Gestão de Estabelecimento (Armaria) ---
 
-  /// Registra uma nova armaria no sistema.
+  /// Registra uma nova armaria no sistema e cria uma subconta Asaas para ela.
+  /// A criação da subconta Asaas é não-bloqueante: em caso de falha, o armeiro
+  /// é cadastrado normalmente e [asaasAccountId] permanece nulo.
   Future<Gunsmith> createGunsmith(Session session, Gunsmith gunsmith) async {
-    return await sl.gunsmithRepository.createGunsmith(session, gunsmith);
+    // 1. Obtém o perfil do proprietário (usuário autenticado)
+    final ownerProfile = await sl.getOrCreateProfileUseCase.execute(session);
+    gunsmith.ownerId = ownerProfile.id;
+
+    // 2. Persiste o armeiro localmente
+    var createdGunsmith =
+        await sl.gunsmithRepository.createGunsmith(session, gunsmith);
+
+    // 3. Garante que o endereço seja carregado para o onboarding
+    if (createdGunsmith.addressId != null && createdGunsmith.address == null) {
+      final full = await sl.gunsmithRepository
+          .findGunsmithById(session, createdGunsmith.id);
+      createdGunsmith = full ?? createdGunsmith;
+    }
+
+    // 4. Cria subconta no Asaas (não-bloqueante)
+    try {
+      final onboarding = AsaasOnboardingService();
+      final asaasResponse = await onboarding.createSubaccountForGunsmith(
+        session,
+        createdGunsmith,
+        ownerProfile,
+      );
+
+      // 5. Persiste os IDs retornados quando sucesso
+      if (asaasResponse != null) {
+        createdGunsmith = createdGunsmith.copyWith(
+          asaasAccountId: asaasResponse.id,
+          asaasWalletId: asaasResponse.walletId,
+          asaasApiKey: asaasResponse.apiKey,
+        );
+        createdGunsmith =
+            await sl.gunsmithRepository.updateGunsmith(session, createdGunsmith);
+      }
+    } catch (e) {
+      session.log(
+        'GunsmithEndpoint.createGunsmith: erro não tratado no onboarding Asaas: $e',
+        level: LogLevel.error,
+      );
+    }
+
+    return createdGunsmith;
   }
 
   /// Busca os detalhes de uma armaria pelo ID.
@@ -16,15 +60,16 @@ class GunsmithEndpoint extends Endpoint {
   }
 
   /// Busca a armaria de um proprietário específico.
-  Future<Gunsmith?> findGunsmithByOwner(Session session, UuidValue ownerId) async {
+  Future<Gunsmith?> findGunsmithByOwner(
+      Session session, UuidValue ownerId) async {
     return await sl.gunsmithRepository.findGunsmithByOwner(session, ownerId);
   }
 
   /// Lista todas as armarias cadastradas.
   Future<List<Gunsmith>> listGunsmiths(Session session,
       {int? limit, int? offset}) async {
-    return await sl.gunsmithRepository.listGunsmiths(session,
-        limit: limit, offset: offset);
+    return await sl.gunsmithRepository
+        .listGunsmiths(session, limit: limit, offset: offset);
   }
 
   /// Atualiza os dados de uma armaria.
@@ -48,7 +93,8 @@ class GunsmithEndpoint extends Endpoint {
   /// Lista todos os clientes de um armeiro específico.
   Future<List<GunsmithClient>> getMyClients(Session session) async {
     final profile = await sl.getOrCreateProfileUseCase.execute(session);
-    return await sl.gunsmithRepository.listClients(session, profile.userInfoId!);
+    return await sl.gunsmithRepository
+        .listClients(session, profile.userInfoId!);
   }
 
   // --- Ordens de Serviço ---

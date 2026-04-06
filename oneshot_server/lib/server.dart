@@ -1,4 +1,5 @@
 import 'package:oneshot_server/src/birthday_reminder.dart';
+import 'package:oneshot_server/src/core/config/app_config.dart';
 import 'package:serverpod/serverpod.dart';
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as auth;
 
@@ -14,6 +15,9 @@ import 'src/generated/endpoints.dart';
 // configuring Relic (Serverpod's web-server), or need custom setup work.
 
 void run(List<String> args) async {
+  // Carrega configurações customizadas do config/*.yaml (ex: asaas.baseUrl)
+  await AppConfig.load(args);
+
   // Initialize Service Locator
   sl.init();
 

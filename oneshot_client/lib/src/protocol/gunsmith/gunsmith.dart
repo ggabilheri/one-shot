@@ -25,8 +25,13 @@ abstract class Gunsmith implements _i1.SerializableModel {
     this.ownerId,
     this.owner,
     bool? active,
+    double? incomeValue,
+    this.asaasAccountId,
+    this.asaasWalletId,
+    this.asaasApiKey,
   }) : id = id ?? const _i1.Uuid().v4obj(),
-       active = active ?? true;
+       active = active ?? true,
+       incomeValue = incomeValue ?? 1000.0;
 
   factory Gunsmith({
     _i1.UuidValue? id,
@@ -37,6 +42,10 @@ abstract class Gunsmith implements _i1.SerializableModel {
     _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     bool? active,
+    double? incomeValue,
+    String? asaasAccountId,
+    String? asaasWalletId,
+    String? asaasApiKey,
   }) = _GunsmithImpl;
 
   factory Gunsmith.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -65,6 +74,10 @@ abstract class Gunsmith implements _i1.SerializableModel {
       active: jsonSerialization['active'] == null
           ? null
           : _i1.BoolJsonExtension.fromJson(jsonSerialization['active']),
+      incomeValue: (jsonSerialization['incomeValue'] as num?)?.toDouble(),
+      asaasAccountId: jsonSerialization['asaasAccountId'] as String?,
+      asaasWalletId: jsonSerialization['asaasWalletId'] as String?,
+      asaasApiKey: jsonSerialization['asaasApiKey'] as String?,
     );
   }
 
@@ -85,6 +98,14 @@ abstract class Gunsmith implements _i1.SerializableModel {
 
   bool active;
 
+  double incomeValue;
+
+  String? asaasAccountId;
+
+  String? asaasWalletId;
+
+  String? asaasApiKey;
+
   /// Returns a shallow copy of this [Gunsmith]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
@@ -97,6 +118,10 @@ abstract class Gunsmith implements _i1.SerializableModel {
     _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     bool? active,
+    double? incomeValue,
+    String? asaasAccountId,
+    String? asaasWalletId,
+    String? asaasApiKey,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -110,6 +135,10 @@ abstract class Gunsmith implements _i1.SerializableModel {
       if (ownerId != null) 'ownerId': ownerId?.toJson(),
       if (owner != null) 'owner': owner?.toJson(),
       'active': active,
+      'incomeValue': incomeValue,
+      if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
+      if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
+      if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
     };
   }
 
@@ -131,6 +160,10 @@ class _GunsmithImpl extends Gunsmith {
     _i1.UuidValue? ownerId,
     _i3.UserProfile? owner,
     bool? active,
+    double? incomeValue,
+    String? asaasAccountId,
+    String? asaasWalletId,
+    String? asaasApiKey,
   }) : super._(
          id: id,
          name: name,
@@ -140,6 +173,10 @@ class _GunsmithImpl extends Gunsmith {
          ownerId: ownerId,
          owner: owner,
          active: active,
+         incomeValue: incomeValue,
+         asaasAccountId: asaasAccountId,
+         asaasWalletId: asaasWalletId,
+         asaasApiKey: asaasApiKey,
        );
 
   /// Returns a shallow copy of this [Gunsmith]
@@ -155,6 +192,10 @@ class _GunsmithImpl extends Gunsmith {
     Object? ownerId = _Undefined,
     Object? owner = _Undefined,
     bool? active,
+    double? incomeValue,
+    Object? asaasAccountId = _Undefined,
+    Object? asaasWalletId = _Undefined,
+    Object? asaasApiKey = _Undefined,
   }) {
     return Gunsmith(
       id: id ?? this.id,
@@ -165,6 +206,14 @@ class _GunsmithImpl extends Gunsmith {
       ownerId: ownerId is _i1.UuidValue? ? ownerId : this.ownerId,
       owner: owner is _i3.UserProfile? ? owner : this.owner?.copyWith(),
       active: active ?? this.active,
+      incomeValue: incomeValue ?? this.incomeValue,
+      asaasAccountId: asaasAccountId is String?
+          ? asaasAccountId
+          : this.asaasAccountId,
+      asaasWalletId: asaasWalletId is String?
+          ? asaasWalletId
+          : this.asaasWalletId,
+      asaasApiKey: asaasApiKey is String? ? asaasApiKey : this.asaasApiKey,
     );
   }
 }
