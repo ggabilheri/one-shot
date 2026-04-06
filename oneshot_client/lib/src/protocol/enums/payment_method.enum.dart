@@ -14,20 +14,32 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
 enum PaymentMethod implements _i1.SerializableModel {
   creditCard,
+  debitCard,
   pix,
   boleto,
-  cash;
+  cash,
+  transfer,
+  deposit,
+  undefined;
 
   static PaymentMethod fromJson(String name) {
     switch (name) {
       case 'creditCard':
         return PaymentMethod.creditCard;
+      case 'debitCard':
+        return PaymentMethod.debitCard;
       case 'pix':
         return PaymentMethod.pix;
       case 'boleto':
         return PaymentMethod.boleto;
       case 'cash':
         return PaymentMethod.cash;
+      case 'transfer':
+        return PaymentMethod.transfer;
+      case 'deposit':
+        return PaymentMethod.deposit;
+      case 'undefined':
+        return PaymentMethod.undefined;
       default:
         throw ArgumentError(
           'Value "$name" cannot be converted to "PaymentMethod"',

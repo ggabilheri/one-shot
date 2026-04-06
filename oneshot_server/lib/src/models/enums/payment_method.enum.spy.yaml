@@ -2,6 +2,10 @@ enum: PaymentMethod
 serialized: byName
 values:
   - creditCard
+  - debitCard
   - pix
   - boleto
   - cash
+  - transfer
+  - deposit
+  - undefined

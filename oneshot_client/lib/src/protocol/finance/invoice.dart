@@ -31,6 +31,8 @@ abstract class Invoice implements _i1.SerializableModel {
     required this.finalAmount,
     required this.currency,
     this.notes,
+    this.asaasInstallmentId,
+    this.asaasCustomerId,
     this.clubId,
     this.club,
     this.gunsmithId,
@@ -53,6 +55,8 @@ abstract class Invoice implements _i1.SerializableModel {
     required double finalAmount,
     required _i3.Currency currency,
     String? notes,
+    String? asaasInstallmentId,
+    String? asaasCustomerId,
     _i1.UuidValue? clubId,
     _i4.Club? club,
     _i1.UuidValue? gunsmithId,
@@ -84,6 +88,8 @@ abstract class Invoice implements _i1.SerializableModel {
         (jsonSerialization['currency'] as String),
       ),
       notes: jsonSerialization['notes'] as String?,
+      asaasInstallmentId: jsonSerialization['asaasInstallmentId'] as String?,
+      asaasCustomerId: jsonSerialization['asaasCustomerId'] as String?,
       clubId: jsonSerialization['clubId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['clubId']),
@@ -142,6 +148,10 @@ abstract class Invoice implements _i1.SerializableModel {
 
   String? notes;
 
+  String? asaasInstallmentId;
+
+  String? asaasCustomerId;
+
   _i1.UuidValue? clubId;
 
   _i4.Club? club;
@@ -173,6 +183,8 @@ abstract class Invoice implements _i1.SerializableModel {
     double? finalAmount,
     _i3.Currency? currency,
     String? notes,
+    String? asaasInstallmentId,
+    String? asaasCustomerId,
     _i1.UuidValue? clubId,
     _i4.Club? club,
     _i1.UuidValue? gunsmithId,
@@ -197,6 +209,8 @@ abstract class Invoice implements _i1.SerializableModel {
       'finalAmount': finalAmount,
       'currency': currency.toJson(),
       if (notes != null) 'notes': notes,
+      if (asaasInstallmentId != null) 'asaasInstallmentId': asaasInstallmentId,
+      if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
       if (clubId != null) 'clubId': clubId?.toJson(),
       if (club != null) 'club': club?.toJson(),
       if (gunsmithId != null) 'gunsmithId': gunsmithId?.toJson(),
@@ -229,6 +243,8 @@ class _InvoiceImpl extends Invoice {
     required double finalAmount,
     required _i3.Currency currency,
     String? notes,
+    String? asaasInstallmentId,
+    String? asaasCustomerId,
     _i1.UuidValue? clubId,
     _i4.Club? club,
     _i1.UuidValue? gunsmithId,
@@ -249,6 +265,8 @@ class _InvoiceImpl extends Invoice {
          finalAmount: finalAmount,
          currency: currency,
          notes: notes,
+         asaasInstallmentId: asaasInstallmentId,
+         asaasCustomerId: asaasCustomerId,
          clubId: clubId,
          club: club,
          gunsmithId: gunsmithId,
@@ -275,6 +293,8 @@ class _InvoiceImpl extends Invoice {
     double? finalAmount,
     _i3.Currency? currency,
     Object? notes = _Undefined,
+    Object? asaasInstallmentId = _Undefined,
+    Object? asaasCustomerId = _Undefined,
     Object? clubId = _Undefined,
     Object? club = _Undefined,
     Object? gunsmithId = _Undefined,
@@ -296,6 +316,12 @@ class _InvoiceImpl extends Invoice {
       finalAmount: finalAmount ?? this.finalAmount,
       currency: currency ?? this.currency,
       notes: notes is String? ? notes : this.notes,
+      asaasInstallmentId: asaasInstallmentId is String?
+          ? asaasInstallmentId
+          : this.asaasInstallmentId,
+      asaasCustomerId: asaasCustomerId is String?
+          ? asaasCustomerId
+          : this.asaasCustomerId,
       clubId: clubId is _i1.UuidValue? ? clubId : this.clubId,
       club: club is _i4.Club? ? club : this.club?.copyWith(),
       gunsmithId: gunsmithId is _i1.UuidValue? ? gunsmithId : this.gunsmithId,

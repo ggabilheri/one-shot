@@ -1,0 +1,59 @@
+enum: AsaasWebhookEventType
+serialized: byName
+values:
+  # Pagamentos
+  - paymentAuthorized
+  - paymentAwaitingRiskAnalysis
+  - paymentApprovedByRiskAnalysis
+  - paymentReprovedByRiskAnalysis
+  - paymentCreated
+  - paymentUpdated
+  - paymentConfirmed
+  - paymentReceived
+  - paymentAnticipated
+  - paymentOverdue
+  - paymentDeleted
+  - paymentRestored
+  - paymentRefunded
+  - paymentRefundInProgress
+  - paymentRefundDenied
+  - paymentReceivedInCashUndone
+  - paymentChargebackRequested
+  - paymentChargebackDispute
+  - paymentAwaitingChargebackReversal
+  - paymentDunningReceived
+  - paymentDunningRequested
+  - paymentBankSlipCancelled
+  - paymentCreditCardCaptureRefused
+  - paymentPartiallyRefunded
+  # Transferências
+  - transferCreated
+  - transferPending
+  - transferInBankProcessing
+  - transferBlocked
+  - transferDone
+  - transferFailed
+  - transferCancelled
+  # Status de Conta
+  - accountStatusBankAccountInfoApproved
+  - accountStatusBankAccountInfoRejected
+  - accountStatusCommercialInfoApproved
+  - accountStatusCommercialInfoRejected
+  - accountStatusDocumentApproved
+  - accountStatusDocumentRejected
+  - accountStatusGeneralApprovalApproved
+  - accountStatusGeneralApprovalRejected
+  # Balanço
+  - balanceValueBlocked
+  - balanceValueUnblocked
+  - internalTransferCredit
+  - internalTransferDebit
+  # Assinaturas, Checkout e Outros
+  - subscriptionCreated
+  - subscriptionUpdated
+  - subscriptionInactivated
+  - checkoutPaid
+  - checkoutCancelled
+  - checkoutExpired
+  # Fallback para eventos não mapeados
+  - unknown

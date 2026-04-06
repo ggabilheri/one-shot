@@ -111,5 +111,51 @@ user:
   - updateRoles:
 viaCepGateway:
   - getAddressByCep:
+asaasAccount:
+  - createSubaccount:
+  - listSubaccounts:
+  - getAccountNumber:
+  - getAccountStatus:
+asaasCustomer:
+  - createCustomer:
+  - listCustomers:
+  - getCustomer:
+  - updateCustomer:
+  - deleteCustomer:
+  - restoreCustomer:
+  - getCustomerNotifications:
+asaasInstallment:
+  - createInstallment:
+  - listInstallments:
+  - getInstallment:
+  - deleteInstallment:
+  - listInstallmentPayments:
+asaasPayment:
+  - createPayment:
+  - listPayments:
+  - captureAuthorizedPayment:
+  - payWithCreditCard:
+  - getBillingInfo:
+  - getPaymentStatus:
+  - refundPayment:
+  - getPixQrCode:
+asaasPix:
+  - createKey:
+  - listKeys:
+  - createStaticQrCode:
+  - payQrCode:
+  - listTransactions:
+asaasTransfer:
+  - createTransfer:
+  - listTransfers:
+  - getExtract:
+  - getBalance:
+asaasWebhookConfig:
+  - createWebhook:
+  - listWebhooks:
+  - updateWebhook:
+  - deleteWebhook:
+asaasWebhookReceiver:
+  - handleEvent:
 greeting:
   - hello:

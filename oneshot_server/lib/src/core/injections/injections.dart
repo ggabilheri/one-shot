@@ -52,6 +52,10 @@ class Injections {
   late final IInvoiceItemRepository invoiceItemRepository;
   late final IPaymentRepository paymentRepository;
 
+  // Gateway Asaas
+  // Os repositórios e serviços do Asaas são instanciados por request nos endpoints
+  // (AsaasConfig exige a Session para ler passwords.yaml e config/*.yaml).
+
   // Use Cases
   late final IRegisterTrainingUseCase registerTrainingUseCase;
   late final IRegisterServiceOrderUseCase registerServiceOrderUseCase;

@@ -27,7 +27,16 @@ abstract class Payment
     required this.paymentMethod,
     required this.status,
     required this.currency,
-    this.gatewayTransactionId,
+    this.asaasPaymentId,
+    this.asaasCustomerId,
+    this.asaasBillingType,
+    this.asaasDueDate,
+    this.asaasNetValue,
+    this.asaasInvoiceUrl,
+    this.asaasBankSlipUrl,
+    this.asaasPixQrCodePayload,
+    this.asaasPixQrCodeImage,
+    this.asaasRefundedAt,
     this.invoiceId,
     this.invoice,
   }) : id = id ?? const _i1.Uuid().v4obj();
@@ -39,7 +48,16 @@ abstract class Payment
     required _i2.PaymentMethod paymentMethod,
     required _i3.PaymentStatus status,
     required _i4.Currency currency,
-    String? gatewayTransactionId,
+    String? asaasPaymentId,
+    String? asaasCustomerId,
+    String? asaasBillingType,
+    DateTime? asaasDueDate,
+    double? asaasNetValue,
+    String? asaasInvoiceUrl,
+    String? asaasBankSlipUrl,
+    String? asaasPixQrCodePayload,
+    String? asaasPixQrCodeImage,
+    DateTime? asaasRefundedAt,
     _i1.UuidValue? invoiceId,
     _i5.Invoice? invoice,
   }) = _PaymentImpl;
@@ -62,8 +80,25 @@ abstract class Payment
       currency: _i4.Currency.fromJson(
         (jsonSerialization['currency'] as String),
       ),
-      gatewayTransactionId:
-          jsonSerialization['gatewayTransactionId'] as String?,
+      asaasPaymentId: jsonSerialization['asaasPaymentId'] as String?,
+      asaasCustomerId: jsonSerialization['asaasCustomerId'] as String?,
+      asaasBillingType: jsonSerialization['asaasBillingType'] as String?,
+      asaasDueDate: jsonSerialization['asaasDueDate'] == null
+          ? null
+          : _i1.DateTimeJsonExtension.fromJson(
+              jsonSerialization['asaasDueDate'],
+            ),
+      asaasNetValue: (jsonSerialization['asaasNetValue'] as num?)?.toDouble(),
+      asaasInvoiceUrl: jsonSerialization['asaasInvoiceUrl'] as String?,
+      asaasBankSlipUrl: jsonSerialization['asaasBankSlipUrl'] as String?,
+      asaasPixQrCodePayload:
+          jsonSerialization['asaasPixQrCodePayload'] as String?,
+      asaasPixQrCodeImage: jsonSerialization['asaasPixQrCodeImage'] as String?,
+      asaasRefundedAt: jsonSerialization['asaasRefundedAt'] == null
+          ? null
+          : _i1.DateTimeJsonExtension.fromJson(
+              jsonSerialization['asaasRefundedAt'],
+            ),
       invoiceId: jsonSerialization['invoiceId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['invoiceId']),
@@ -92,7 +127,25 @@ abstract class Payment
 
   _i4.Currency currency;
 
-  String? gatewayTransactionId;
+  String? asaasPaymentId;
+
+  String? asaasCustomerId;
+
+  String? asaasBillingType;
+
+  DateTime? asaasDueDate;
+
+  double? asaasNetValue;
+
+  String? asaasInvoiceUrl;
+
+  String? asaasBankSlipUrl;
+
+  String? asaasPixQrCodePayload;
+
+  String? asaasPixQrCodeImage;
+
+  DateTime? asaasRefundedAt;
 
   _i1.UuidValue? invoiceId;
 
@@ -111,7 +164,16 @@ abstract class Payment
     _i2.PaymentMethod? paymentMethod,
     _i3.PaymentStatus? status,
     _i4.Currency? currency,
-    String? gatewayTransactionId,
+    String? asaasPaymentId,
+    String? asaasCustomerId,
+    String? asaasBillingType,
+    DateTime? asaasDueDate,
+    double? asaasNetValue,
+    String? asaasInvoiceUrl,
+    String? asaasBankSlipUrl,
+    String? asaasPixQrCodePayload,
+    String? asaasPixQrCodeImage,
+    DateTime? asaasRefundedAt,
     _i1.UuidValue? invoiceId,
     _i5.Invoice? invoice,
   });
@@ -125,8 +187,18 @@ abstract class Payment
       'paymentMethod': paymentMethod.toJson(),
       'status': status.toJson(),
       'currency': currency.toJson(),
-      if (gatewayTransactionId != null)
-        'gatewayTransactionId': gatewayTransactionId,
+      if (asaasPaymentId != null) 'asaasPaymentId': asaasPaymentId,
+      if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
+      if (asaasBillingType != null) 'asaasBillingType': asaasBillingType,
+      if (asaasDueDate != null) 'asaasDueDate': asaasDueDate?.toJson(),
+      if (asaasNetValue != null) 'asaasNetValue': asaasNetValue,
+      if (asaasInvoiceUrl != null) 'asaasInvoiceUrl': asaasInvoiceUrl,
+      if (asaasBankSlipUrl != null) 'asaasBankSlipUrl': asaasBankSlipUrl,
+      if (asaasPixQrCodePayload != null)
+        'asaasPixQrCodePayload': asaasPixQrCodePayload,
+      if (asaasPixQrCodeImage != null)
+        'asaasPixQrCodeImage': asaasPixQrCodeImage,
+      if (asaasRefundedAt != null) 'asaasRefundedAt': asaasRefundedAt?.toJson(),
       if (invoiceId != null) 'invoiceId': invoiceId?.toJson(),
       if (invoice != null) 'invoice': invoice?.toJson(),
     };
@@ -142,8 +214,18 @@ abstract class Payment
       'paymentMethod': paymentMethod.toJson(),
       'status': status.toJson(),
       'currency': currency.toJson(),
-      if (gatewayTransactionId != null)
-        'gatewayTransactionId': gatewayTransactionId,
+      if (asaasPaymentId != null) 'asaasPaymentId': asaasPaymentId,
+      if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
+      if (asaasBillingType != null) 'asaasBillingType': asaasBillingType,
+      if (asaasDueDate != null) 'asaasDueDate': asaasDueDate?.toJson(),
+      if (asaasNetValue != null) 'asaasNetValue': asaasNetValue,
+      if (asaasInvoiceUrl != null) 'asaasInvoiceUrl': asaasInvoiceUrl,
+      if (asaasBankSlipUrl != null) 'asaasBankSlipUrl': asaasBankSlipUrl,
+      if (asaasPixQrCodePayload != null)
+        'asaasPixQrCodePayload': asaasPixQrCodePayload,
+      if (asaasPixQrCodeImage != null)
+        'asaasPixQrCodeImage': asaasPixQrCodeImage,
+      if (asaasRefundedAt != null) 'asaasRefundedAt': asaasRefundedAt?.toJson(),
       if (invoiceId != null) 'invoiceId': invoiceId?.toJson(),
       if (invoice != null) 'invoice': invoice?.toJsonForProtocol(),
     };
@@ -189,7 +271,16 @@ class _PaymentImpl extends Payment {
     required _i2.PaymentMethod paymentMethod,
     required _i3.PaymentStatus status,
     required _i4.Currency currency,
-    String? gatewayTransactionId,
+    String? asaasPaymentId,
+    String? asaasCustomerId,
+    String? asaasBillingType,
+    DateTime? asaasDueDate,
+    double? asaasNetValue,
+    String? asaasInvoiceUrl,
+    String? asaasBankSlipUrl,
+    String? asaasPixQrCodePayload,
+    String? asaasPixQrCodeImage,
+    DateTime? asaasRefundedAt,
     _i1.UuidValue? invoiceId,
     _i5.Invoice? invoice,
   }) : super._(
@@ -199,7 +290,16 @@ class _PaymentImpl extends Payment {
          paymentMethod: paymentMethod,
          status: status,
          currency: currency,
-         gatewayTransactionId: gatewayTransactionId,
+         asaasPaymentId: asaasPaymentId,
+         asaasCustomerId: asaasCustomerId,
+         asaasBillingType: asaasBillingType,
+         asaasDueDate: asaasDueDate,
+         asaasNetValue: asaasNetValue,
+         asaasInvoiceUrl: asaasInvoiceUrl,
+         asaasBankSlipUrl: asaasBankSlipUrl,
+         asaasPixQrCodePayload: asaasPixQrCodePayload,
+         asaasPixQrCodeImage: asaasPixQrCodeImage,
+         asaasRefundedAt: asaasRefundedAt,
          invoiceId: invoiceId,
          invoice: invoice,
        );
@@ -215,7 +315,16 @@ class _PaymentImpl extends Payment {
     _i2.PaymentMethod? paymentMethod,
     _i3.PaymentStatus? status,
     _i4.Currency? currency,
-    Object? gatewayTransactionId = _Undefined,
+    Object? asaasPaymentId = _Undefined,
+    Object? asaasCustomerId = _Undefined,
+    Object? asaasBillingType = _Undefined,
+    Object? asaasDueDate = _Undefined,
+    Object? asaasNetValue = _Undefined,
+    Object? asaasInvoiceUrl = _Undefined,
+    Object? asaasBankSlipUrl = _Undefined,
+    Object? asaasPixQrCodePayload = _Undefined,
+    Object? asaasPixQrCodeImage = _Undefined,
+    Object? asaasRefundedAt = _Undefined,
     Object? invoiceId = _Undefined,
     Object? invoice = _Undefined,
   }) {
@@ -226,9 +335,36 @@ class _PaymentImpl extends Payment {
       paymentMethod: paymentMethod ?? this.paymentMethod,
       status: status ?? this.status,
       currency: currency ?? this.currency,
-      gatewayTransactionId: gatewayTransactionId is String?
-          ? gatewayTransactionId
-          : this.gatewayTransactionId,
+      asaasPaymentId: asaasPaymentId is String?
+          ? asaasPaymentId
+          : this.asaasPaymentId,
+      asaasCustomerId: asaasCustomerId is String?
+          ? asaasCustomerId
+          : this.asaasCustomerId,
+      asaasBillingType: asaasBillingType is String?
+          ? asaasBillingType
+          : this.asaasBillingType,
+      asaasDueDate: asaasDueDate is DateTime?
+          ? asaasDueDate
+          : this.asaasDueDate,
+      asaasNetValue: asaasNetValue is double?
+          ? asaasNetValue
+          : this.asaasNetValue,
+      asaasInvoiceUrl: asaasInvoiceUrl is String?
+          ? asaasInvoiceUrl
+          : this.asaasInvoiceUrl,
+      asaasBankSlipUrl: asaasBankSlipUrl is String?
+          ? asaasBankSlipUrl
+          : this.asaasBankSlipUrl,
+      asaasPixQrCodePayload: asaasPixQrCodePayload is String?
+          ? asaasPixQrCodePayload
+          : this.asaasPixQrCodePayload,
+      asaasPixQrCodeImage: asaasPixQrCodeImage is String?
+          ? asaasPixQrCodeImage
+          : this.asaasPixQrCodeImage,
+      asaasRefundedAt: asaasRefundedAt is DateTime?
+          ? asaasRefundedAt
+          : this.asaasRefundedAt,
       invoiceId: invoiceId is _i1.UuidValue? ? invoiceId : this.invoiceId,
       invoice: invoice is _i5.Invoice? ? invoice : this.invoice?.copyWith(),
     );
@@ -269,9 +405,63 @@ class PaymentUpdateTable extends _i1.UpdateTable<PaymentTable> {
         value,
       );
 
-  _i1.ColumnValue<String, String> gatewayTransactionId(String? value) =>
+  _i1.ColumnValue<String, String> asaasPaymentId(String? value) =>
       _i1.ColumnValue(
-        table.gatewayTransactionId,
+        table.asaasPaymentId,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> asaasCustomerId(String? value) =>
+      _i1.ColumnValue(
+        table.asaasCustomerId,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> asaasBillingType(String? value) =>
+      _i1.ColumnValue(
+        table.asaasBillingType,
+        value,
+      );
+
+  _i1.ColumnValue<DateTime, DateTime> asaasDueDate(DateTime? value) =>
+      _i1.ColumnValue(
+        table.asaasDueDate,
+        value,
+      );
+
+  _i1.ColumnValue<double, double> asaasNetValue(double? value) =>
+      _i1.ColumnValue(
+        table.asaasNetValue,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> asaasInvoiceUrl(String? value) =>
+      _i1.ColumnValue(
+        table.asaasInvoiceUrl,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> asaasBankSlipUrl(String? value) =>
+      _i1.ColumnValue(
+        table.asaasBankSlipUrl,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> asaasPixQrCodePayload(String? value) =>
+      _i1.ColumnValue(
+        table.asaasPixQrCodePayload,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> asaasPixQrCodeImage(String? value) =>
+      _i1.ColumnValue(
+        table.asaasPixQrCodeImage,
+        value,
+      );
+
+  _i1.ColumnValue<DateTime, DateTime> asaasRefundedAt(DateTime? value) =>
+      _i1.ColumnValue(
+        table.asaasRefundedAt,
         value,
       );
 
@@ -309,8 +499,44 @@ class PaymentTable extends _i1.Table<_i1.UuidValue> {
       this,
       _i1.EnumSerialization.byName,
     );
-    gatewayTransactionId = _i1.ColumnString(
-      'gatewayTransactionId',
+    asaasPaymentId = _i1.ColumnString(
+      'asaasPaymentId',
+      this,
+    );
+    asaasCustomerId = _i1.ColumnString(
+      'asaasCustomerId',
+      this,
+    );
+    asaasBillingType = _i1.ColumnString(
+      'asaasBillingType',
+      this,
+    );
+    asaasDueDate = _i1.ColumnDateTime(
+      'asaasDueDate',
+      this,
+    );
+    asaasNetValue = _i1.ColumnDouble(
+      'asaasNetValue',
+      this,
+    );
+    asaasInvoiceUrl = _i1.ColumnString(
+      'asaasInvoiceUrl',
+      this,
+    );
+    asaasBankSlipUrl = _i1.ColumnString(
+      'asaasBankSlipUrl',
+      this,
+    );
+    asaasPixQrCodePayload = _i1.ColumnString(
+      'asaasPixQrCodePayload',
+      this,
+    );
+    asaasPixQrCodeImage = _i1.ColumnString(
+      'asaasPixQrCodeImage',
+      this,
+    );
+    asaasRefundedAt = _i1.ColumnDateTime(
+      'asaasRefundedAt',
       this,
     );
     invoiceId = _i1.ColumnUuid(
@@ -331,7 +557,25 @@ class PaymentTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnEnum<_i4.Currency> currency;
 
-  late final _i1.ColumnString gatewayTransactionId;
+  late final _i1.ColumnString asaasPaymentId;
+
+  late final _i1.ColumnString asaasCustomerId;
+
+  late final _i1.ColumnString asaasBillingType;
+
+  late final _i1.ColumnDateTime asaasDueDate;
+
+  late final _i1.ColumnDouble asaasNetValue;
+
+  late final _i1.ColumnString asaasInvoiceUrl;
+
+  late final _i1.ColumnString asaasBankSlipUrl;
+
+  late final _i1.ColumnString asaasPixQrCodePayload;
+
+  late final _i1.ColumnString asaasPixQrCodeImage;
+
+  late final _i1.ColumnDateTime asaasRefundedAt;
 
   late final _i1.ColumnUuid invoiceId;
 
@@ -358,7 +602,16 @@ class PaymentTable extends _i1.Table<_i1.UuidValue> {
     paymentMethod,
     status,
     currency,
-    gatewayTransactionId,
+    asaasPaymentId,
+    asaasCustomerId,
+    asaasBillingType,
+    asaasDueDate,
+    asaasNetValue,
+    asaasInvoiceUrl,
+    asaasBankSlipUrl,
+    asaasPixQrCodePayload,
+    asaasPixQrCodeImage,
+    asaasRefundedAt,
     invoiceId,
   ];
 

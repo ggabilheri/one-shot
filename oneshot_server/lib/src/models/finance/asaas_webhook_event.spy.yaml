@@ -1,0 +1,22 @@
+class: AsaasWebhookEvent
+table: asaas_webhook_events
+fields:
+  id: UuidValue, defaultModel=random
+  eventId: String              # ID único do evento enviado pelo Asaas
+  event: String                # Tipo do evento (ex: PAYMENT_RECEIVED)
+  payload: String              # JSON completo do evento (raw)
+  processed: bool, default=false
+  processedAt: DateTime?
+  error: String?               # Mensagem de erro se o processamento falhou
+  receivedAt: DateTime, default=now
+
+indexes:
+  asaas_event_id_idx:
+    fields: eventId
+    unique: true
+  asaas_event_processed_idx:
+    fields: processed
+  asaas_event_type_idx:
+    fields: event
+  asaas_event_received_idx:
+    fields: receivedAt

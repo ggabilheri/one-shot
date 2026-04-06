@@ -1044,6 +1044,411 @@ class EndpointViaCepGateway extends _i1.EndpointRef {
       );
 }
 
+/// {@category Endpoint}
+class EndpointAsaasAccount extends _i1.EndpointRef {
+  EndpointAsaasAccount(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'asaasAccount';
+
+  _i2.Future<Map<String, dynamic>> createSubaccount(
+    Map<String, dynamic> requestData,
+  ) => caller.callServerEndpoint<Map<String, dynamic>>(
+    'asaasAccount',
+    'createSubaccount',
+    {'requestData': requestData},
+  );
+
+  _i2.Future<List<Map<String, dynamic>>> listSubaccounts({
+    int? limit,
+    int? offset,
+  }) => caller.callServerEndpoint<List<Map<String, dynamic>>>(
+    'asaasAccount',
+    'listSubaccounts',
+    {
+      'limit': limit,
+      'offset': offset,
+    },
+  );
+
+  _i2.Future<Map<String, dynamic>> getAccountNumber() =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasAccount',
+        'getAccountNumber',
+        {},
+      );
+
+  _i2.Future<Map<String, dynamic>> getAccountStatus() =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasAccount',
+        'getAccountStatus',
+        {},
+      );
+}
+
+/// {@category Endpoint}
+class EndpointAsaasCustomer extends _i1.EndpointRef {
+  EndpointAsaasCustomer(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'asaasCustomer';
+
+  _i2.Future<Map<String, dynamic>> createCustomer(
+    Map<String, dynamic> requestData,
+  ) => caller.callServerEndpoint<Map<String, dynamic>>(
+    'asaasCustomer',
+    'createCustomer',
+    {'requestData': requestData},
+  );
+
+  _i2.Future<Map<String, dynamic>> listCustomers({
+    int? limit,
+    int? offset,
+    String? name,
+    String? cpfCnpj,
+  }) => caller.callServerEndpoint<Map<String, dynamic>>(
+    'asaasCustomer',
+    'listCustomers',
+    {
+      'limit': limit,
+      'offset': offset,
+      'name': name,
+      'cpfCnpj': cpfCnpj,
+    },
+  );
+
+  _i2.Future<Map<String, dynamic>> getCustomer(String id) =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasCustomer',
+        'getCustomer',
+        {'id': id},
+      );
+
+  _i2.Future<Map<String, dynamic>> updateCustomer(
+    String id,
+    Map<String, dynamic> requestData,
+  ) => caller.callServerEndpoint<Map<String, dynamic>>(
+    'asaasCustomer',
+    'updateCustomer',
+    {
+      'id': id,
+      'requestData': requestData,
+    },
+  );
+
+  _i2.Future<void> deleteCustomer(String id) => caller.callServerEndpoint<void>(
+    'asaasCustomer',
+    'deleteCustomer',
+    {'id': id},
+  );
+
+  _i2.Future<Map<String, dynamic>> restoreCustomer(String id) =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasCustomer',
+        'restoreCustomer',
+        {'id': id},
+      );
+
+  _i2.Future<Map<String, dynamic>> getCustomerNotifications(String id) =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasCustomer',
+        'getCustomerNotifications',
+        {'id': id},
+      );
+}
+
+/// {@category Endpoint}
+class EndpointAsaasInstallment extends _i1.EndpointRef {
+  EndpointAsaasInstallment(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'asaasInstallment';
+
+  _i2.Future<Map<String, dynamic>> createInstallment(
+    Map<String, dynamic> requestData,
+  ) => caller.callServerEndpoint<Map<String, dynamic>>(
+    'asaasInstallment',
+    'createInstallment',
+    {'requestData': requestData},
+  );
+
+  _i2.Future<List<Map<String, dynamic>>> listInstallments({
+    int? limit,
+    int? offset,
+  }) => caller.callServerEndpoint<List<Map<String, dynamic>>>(
+    'asaasInstallment',
+    'listInstallments',
+    {
+      'limit': limit,
+      'offset': offset,
+    },
+  );
+
+  _i2.Future<Map<String, dynamic>> getInstallment(String id) =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasInstallment',
+        'getInstallment',
+        {'id': id},
+      );
+
+  _i2.Future<void> deleteInstallment(String id) =>
+      caller.callServerEndpoint<void>(
+        'asaasInstallment',
+        'deleteInstallment',
+        {'id': id},
+      );
+
+  _i2.Future<List<Map<String, dynamic>>> listInstallmentPayments(String id) =>
+      caller.callServerEndpoint<List<Map<String, dynamic>>>(
+        'asaasInstallment',
+        'listInstallmentPayments',
+        {'id': id},
+      );
+}
+
+/// {@category Endpoint}
+class EndpointAsaasPayment extends _i1.EndpointRef {
+  EndpointAsaasPayment(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'asaasPayment';
+
+  _i2.Future<Map<String, dynamic>> createPayment(
+    Map<String, dynamic> requestData,
+  ) => caller.callServerEndpoint<Map<String, dynamic>>(
+    'asaasPayment',
+    'createPayment',
+    {'requestData': requestData},
+  );
+
+  _i2.Future<List<Map<String, dynamic>>> listPayments({
+    String? customer,
+    String? status,
+    int? limit,
+    int? offset,
+  }) => caller.callServerEndpoint<List<Map<String, dynamic>>>(
+    'asaasPayment',
+    'listPayments',
+    {
+      'customer': customer,
+      'status': status,
+      'limit': limit,
+      'offset': offset,
+    },
+  );
+
+  _i2.Future<Map<String, dynamic>> captureAuthorizedPayment(String paymentId) =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasPayment',
+        'captureAuthorizedPayment',
+        {'paymentId': paymentId},
+      );
+
+  _i2.Future<Map<String, dynamic>> payWithCreditCard(
+    String paymentId,
+    Map<String, dynamic> requestData,
+  ) => caller.callServerEndpoint<Map<String, dynamic>>(
+    'asaasPayment',
+    'payWithCreditCard',
+    {
+      'paymentId': paymentId,
+      'requestData': requestData,
+    },
+  );
+
+  _i2.Future<Map<String, dynamic>> getBillingInfo(String paymentId) =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasPayment',
+        'getBillingInfo',
+        {'paymentId': paymentId},
+      );
+
+  _i2.Future<String> getPaymentStatus(String paymentId) =>
+      caller.callServerEndpoint<String>(
+        'asaasPayment',
+        'getPaymentStatus',
+        {'paymentId': paymentId},
+      );
+
+  _i2.Future<Map<String, dynamic>> refundPayment(String paymentId) =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasPayment',
+        'refundPayment',
+        {'paymentId': paymentId},
+      );
+
+  _i2.Future<Map<String, dynamic>> getPixQrCode(String paymentId) =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasPayment',
+        'getPixQrCode',
+        {'paymentId': paymentId},
+      );
+}
+
+/// {@category Endpoint}
+class EndpointAsaasPix extends _i1.EndpointRef {
+  EndpointAsaasPix(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'asaasPix';
+
+  _i2.Future<Map<String, dynamic>> createKey(String type) =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasPix',
+        'createKey',
+        {'type': type},
+      );
+
+  _i2.Future<List<Map<String, dynamic>>> listKeys() =>
+      caller.callServerEndpoint<List<Map<String, dynamic>>>(
+        'asaasPix',
+        'listKeys',
+        {},
+      );
+
+  _i2.Future<Map<String, dynamic>> createStaticQrCode(
+    Map<String, dynamic> request,
+  ) => caller.callServerEndpoint<Map<String, dynamic>>(
+    'asaasPix',
+    'createStaticQrCode',
+    {'request': request},
+  );
+
+  _i2.Future<Map<String, dynamic>> payQrCode(Map<String, dynamic> request) =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasPix',
+        'payQrCode',
+        {'request': request},
+      );
+
+  _i2.Future<List<Map<String, dynamic>>> listTransactions({
+    int? limit,
+    int? offset,
+    String? startDate,
+    String? endDate,
+  }) => caller.callServerEndpoint<List<Map<String, dynamic>>>(
+    'asaasPix',
+    'listTransactions',
+    {
+      'limit': limit,
+      'offset': offset,
+      'startDate': startDate,
+      'endDate': endDate,
+    },
+  );
+}
+
+/// {@category Endpoint}
+class EndpointAsaasTransfer extends _i1.EndpointRef {
+  EndpointAsaasTransfer(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'asaasTransfer';
+
+  _i2.Future<Map<String, dynamic>> createTransfer(
+    Map<String, dynamic> requestData,
+  ) => caller.callServerEndpoint<Map<String, dynamic>>(
+    'asaasTransfer',
+    'createTransfer',
+    {'requestData': requestData},
+  );
+
+  _i2.Future<List<Map<String, dynamic>>> listTransfers({
+    int? limit,
+    int? offset,
+  }) => caller.callServerEndpoint<List<Map<String, dynamic>>>(
+    'asaasTransfer',
+    'listTransfers',
+    {
+      'limit': limit,
+      'offset': offset,
+    },
+  );
+
+  _i2.Future<List<Map<String, dynamic>>> getExtract({
+    String? startDate,
+    String? endDate,
+    int? limit,
+    int? offset,
+  }) => caller.callServerEndpoint<List<Map<String, dynamic>>>(
+    'asaasTransfer',
+    'getExtract',
+    {
+      'startDate': startDate,
+      'endDate': endDate,
+      'limit': limit,
+      'offset': offset,
+    },
+  );
+
+  _i2.Future<Map<String, dynamic>> getBalance() =>
+      caller.callServerEndpoint<Map<String, dynamic>>(
+        'asaasTransfer',
+        'getBalance',
+        {},
+      );
+}
+
+/// {@category Endpoint}
+class EndpointAsaasWebhookConfig extends _i1.EndpointRef {
+  EndpointAsaasWebhookConfig(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'asaasWebhookConfig';
+
+  _i2.Future<Map<String, dynamic>> createWebhook(
+    Map<String, dynamic> requestData,
+  ) => caller.callServerEndpoint<Map<String, dynamic>>(
+    'asaasWebhookConfig',
+    'createWebhook',
+    {'requestData': requestData},
+  );
+
+  _i2.Future<List<Map<String, dynamic>>> listWebhooks() =>
+      caller.callServerEndpoint<List<Map<String, dynamic>>>(
+        'asaasWebhookConfig',
+        'listWebhooks',
+        {},
+      );
+
+  _i2.Future<Map<String, dynamic>> updateWebhook(
+    String id,
+    Map<String, dynamic> requestData,
+  ) => caller.callServerEndpoint<Map<String, dynamic>>(
+    'asaasWebhookConfig',
+    'updateWebhook',
+    {
+      'id': id,
+      'requestData': requestData,
+    },
+  );
+
+  _i2.Future<void> deleteWebhook(String id) => caller.callServerEndpoint<void>(
+    'asaasWebhookConfig',
+    'deleteWebhook',
+    {'id': id},
+  );
+}
+
+/// Endpoint público que recebe notificações de eventos enviados pelo Asaas via webhook.
+/// A URL deste endpoint deve ser configurada no painel do Asaas como URL de webhook.
+/// Não requer autenticação de usuário Serverpod (server-to-server).
+/// {@category Endpoint}
+class EndpointAsaasWebhookReceiver extends _i1.EndpointRef {
+  EndpointAsaasWebhookReceiver(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'asaasWebhookReceiver';
+
+  /// Recebe e processa um evento de webhook enviado pelo Asaas.
+  _i2.Future<void> handleEvent(Map<String, dynamic> payload) =>
+      caller.callServerEndpoint<void>(
+        'asaasWebhookReceiver',
+        'handleEvent',
+        {'payload': payload},
+      );
+}
+
 /// This is an example endpoint that returns a greeting message through
 /// its [hello] method.
 /// {@category Endpoint}
@@ -1116,6 +1521,14 @@ class Client extends _i1.ServerpodClientShared {
     training = EndpointTraining(this);
     user = EndpointUser(this);
     viaCepGateway = EndpointViaCepGateway(this);
+    asaasAccount = EndpointAsaasAccount(this);
+    asaasCustomer = EndpointAsaasCustomer(this);
+    asaasInstallment = EndpointAsaasInstallment(this);
+    asaasPayment = EndpointAsaasPayment(this);
+    asaasPix = EndpointAsaasPix(this);
+    asaasTransfer = EndpointAsaasTransfer(this);
+    asaasWebhookConfig = EndpointAsaasWebhookConfig(this);
+    asaasWebhookReceiver = EndpointAsaasWebhookReceiver(this);
     greeting = EndpointGreeting(this);
     modules = Modules(this);
   }
@@ -1154,6 +1567,22 @@ class Client extends _i1.ServerpodClientShared {
 
   late final EndpointViaCepGateway viaCepGateway;
 
+  late final EndpointAsaasAccount asaasAccount;
+
+  late final EndpointAsaasCustomer asaasCustomer;
+
+  late final EndpointAsaasInstallment asaasInstallment;
+
+  late final EndpointAsaasPayment asaasPayment;
+
+  late final EndpointAsaasPix asaasPix;
+
+  late final EndpointAsaasTransfer asaasTransfer;
+
+  late final EndpointAsaasWebhookConfig asaasWebhookConfig;
+
+  late final EndpointAsaasWebhookReceiver asaasWebhookReceiver;
+
   late final EndpointGreeting greeting;
 
   late final Modules modules;
@@ -1177,6 +1606,14 @@ class Client extends _i1.ServerpodClientShared {
     'training': training,
     'user': user,
     'viaCepGateway': viaCepGateway,
+    'asaasAccount': asaasAccount,
+    'asaasCustomer': asaasCustomer,
+    'asaasInstallment': asaasInstallment,
+    'asaasPayment': asaasPayment,
+    'asaasPix': asaasPix,
+    'asaasTransfer': asaasTransfer,
+    'asaasWebhookConfig': asaasWebhookConfig,
+    'asaasWebhookReceiver': asaasWebhookReceiver,
     'greeting': greeting,
   };
 

@@ -1,7 +1,18 @@
 enum: PaymentStatus
 serialized: byName
 values:
-  - processing
-  - completed
-  - failed
+  - pending
+  - received
+  - confirmed
+  - overdue
   - refunded
+  - receivedInCash
+  - refundRequested
+  - refundInProgress
+  - chargebackRequested
+  - chargebackDispute
+  - awaitingChargebackReversal
+  - dunningRequested
+  - dunningReceived
+  - awaitingRiskAnalysis
+  - partiallyRefunded

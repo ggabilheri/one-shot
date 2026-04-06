@@ -28,44 +28,53 @@ import '../endpoints/subscription_plan_endpoint.dart' as _i15;
 import '../endpoints/training_endpoint.dart' as _i16;
 import '../endpoints/user_endpoint.dart' as _i17;
 import '../endpoints/via_cep_gateway_endpoint.dart' as _i18;
-import '../greeting_endpoint.dart' as _i19;
-import 'package:oneshot_server/src/generated/common/accessory.dart' as _i20;
-import 'package:oneshot_server/src/generated/shooter/ammunition_stock.dart'
-    as _i21;
-import 'package:oneshot_server/src/generated/club/club.dart' as _i22;
-import 'package:oneshot_server/src/generated/common/document.dart' as _i23;
-import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _i24;
-import 'package:oneshot_server/src/generated/gunsmith/gunsmith.dart' as _i25;
-import 'package:oneshot_server/src/generated/gunsmith/gunsmith_client.dart'
+import '../gateway/asaas/endpoints/asaas_account_endpoint.dart' as _i19;
+import '../gateway/asaas/endpoints/asaas_customer_endpoint.dart' as _i20;
+import '../gateway/asaas/endpoints/asaas_installment_endpoint.dart' as _i21;
+import '../gateway/asaas/endpoints/asaas_payment_endpoint.dart' as _i22;
+import '../gateway/asaas/endpoints/asaas_pix_endpoint.dart' as _i23;
+import '../gateway/asaas/endpoints/asaas_transfer_endpoint.dart' as _i24;
+import '../gateway/asaas/endpoints/asaas_webhook_config_endpoint.dart' as _i25;
+import '../gateway/asaas/endpoints/asaas_webhook_receiver_endpoint.dart'
     as _i26;
-import 'package:oneshot_server/src/generated/gunsmith/service_order.dart'
-    as _i27;
-import 'package:oneshot_server/src/generated/gunsmith/service_order_item.dart'
-    as _i28;
-import 'package:oneshot_server/src/generated/finance/invoice.dart' as _i29;
-import 'package:oneshot_server/src/generated/finance/invoice_item.dart' as _i30;
-import 'package:oneshot_server/src/generated/enums/invoice_status.enum.dart'
-    as _i31;
-import 'package:oneshot_server/src/generated/finance/payment.dart' as _i32;
-import 'package:oneshot_server/src/generated/product/product.dart' as _i33;
-import 'package:oneshot_server/src/generated/product/product_group.dart'
+import '../greeting_endpoint.dart' as _i27;
+import 'package:oneshot_server/src/generated/common/accessory.dart' as _i28;
+import 'package:oneshot_server/src/generated/shooter/ammunition_stock.dart'
+    as _i29;
+import 'package:oneshot_server/src/generated/club/club.dart' as _i30;
+import 'package:oneshot_server/src/generated/common/document.dart' as _i31;
+import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _i32;
+import 'package:oneshot_server/src/generated/gunsmith/gunsmith.dart' as _i33;
+import 'package:oneshot_server/src/generated/gunsmith/gunsmith_client.dart'
     as _i34;
-import 'package:oneshot_server/src/generated/common/user_profile.dart' as _i35;
-import 'package:oneshot_server/src/generated/shooter/reload_session.dart'
+import 'package:oneshot_server/src/generated/gunsmith/service_order.dart'
+    as _i35;
+import 'package:oneshot_server/src/generated/gunsmith/service_order_item.dart'
     as _i36;
-import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i37;
-import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i38;
-import 'package:oneshot_server/src/generated/access_control/security_role.dart'
+import 'package:oneshot_server/src/generated/finance/invoice.dart' as _i37;
+import 'package:oneshot_server/src/generated/finance/invoice_item.dart' as _i38;
+import 'package:oneshot_server/src/generated/enums/invoice_status.enum.dart'
     as _i39;
+import 'package:oneshot_server/src/generated/finance/payment.dart' as _i40;
+import 'package:oneshot_server/src/generated/product/product.dart' as _i41;
+import 'package:oneshot_server/src/generated/product/product_group.dart'
+    as _i42;
+import 'package:oneshot_server/src/generated/common/user_profile.dart' as _i43;
+import 'package:oneshot_server/src/generated/shooter/reload_session.dart'
+    as _i44;
+import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i45;
+import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i46;
+import 'package:oneshot_server/src/generated/access_control/security_role.dart'
+    as _i47;
 import 'package:oneshot_server/src/generated/access_control/role_permission.dart'
-    as _i40;
+    as _i48;
 import 'package:oneshot_server/src/generated/subscription/subscription_plan.dart'
-    as _i41;
-import 'package:oneshot_server/src/generated/enums/plan_type.enum.dart' as _i42;
+    as _i49;
+import 'package:oneshot_server/src/generated/enums/plan_type.enum.dart' as _i50;
 import 'package:oneshot_server/src/generated/enums/plan_status.enum.dart'
-    as _i43;
-import 'package:oneshot_server/src/generated/shooter/training.dart' as _i44;
-import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i45;
+    as _i51;
+import 'package:oneshot_server/src/generated/shooter/training.dart' as _i52;
+import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i53;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -173,7 +182,55 @@ class Endpoints extends _i1.EndpointDispatch {
           'viaCepGateway',
           null,
         ),
-      'greeting': _i19.GreetingEndpoint()
+      'asaasAccount': _i19.AsaasAccountEndpoint()
+        ..initialize(
+          server,
+          'asaasAccount',
+          null,
+        ),
+      'asaasCustomer': _i20.AsaasCustomerEndpoint()
+        ..initialize(
+          server,
+          'asaasCustomer',
+          null,
+        ),
+      'asaasInstallment': _i21.AsaasInstallmentEndpoint()
+        ..initialize(
+          server,
+          'asaasInstallment',
+          null,
+        ),
+      'asaasPayment': _i22.AsaasPaymentEndpoint()
+        ..initialize(
+          server,
+          'asaasPayment',
+          null,
+        ),
+      'asaasPix': _i23.AsaasPixEndpoint()
+        ..initialize(
+          server,
+          'asaasPix',
+          null,
+        ),
+      'asaasTransfer': _i24.AsaasTransferEndpoint()
+        ..initialize(
+          server,
+          'asaasTransfer',
+          null,
+        ),
+      'asaasWebhookConfig': _i25.AsaasWebhookConfigEndpoint()
+        ..initialize(
+          server,
+          'asaasWebhookConfig',
+          null,
+        ),
+      'asaasWebhookReceiver': _i26.AsaasWebhookReceiverEndpoint()
+        ..initialize(
+          server,
+          'asaasWebhookReceiver',
+          null,
+        ),
+      'greeting': _i27.GreetingEndpoint()
         ..initialize(
           server,
           'greeting',
@@ -208,7 +265,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'accessory': _i1.ParameterDescription(
               name: 'accessory',
-              type: _i1.getType<_i20.Accessory>(),
+              type: _i1.getType<_i28.Accessory>(),
               nullable: false,
             ),
           },
@@ -227,7 +284,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'accessory': _i1.ParameterDescription(
               name: 'accessory',
-              type: _i1.getType<_i20.Accessory>(),
+              type: _i1.getType<_i28.Accessory>(),
               nullable: false,
             ),
           },
@@ -312,7 +369,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'ammo': _i1.ParameterDescription(
               name: 'ammo',
-              type: _i1.getType<_i21.AmmunitionStock>(),
+              type: _i1.getType<_i29.AmmunitionStock>(),
               nullable: false,
             ),
           },
@@ -381,7 +438,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'club': _i1.ParameterDescription(
               name: 'club',
-              type: _i1.getType<_i22.Club>(),
+              type: _i1.getType<_i30.Club>(),
               nullable: false,
             ),
           },
@@ -409,7 +466,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'club': _i1.ParameterDescription(
               name: 'club',
-              type: _i1.getType<_i22.Club>(),
+              type: _i1.getType<_i30.Club>(),
               nullable: false,
             ),
           },
@@ -557,7 +614,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'document': _i1.ParameterDescription(
               name: 'document',
-              type: _i1.getType<_i23.Document>(),
+              type: _i1.getType<_i31.Document>(),
               nullable: false,
             ),
           },
@@ -575,7 +632,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'document': _i1.ParameterDescription(
               name: 'document',
-              type: _i1.getType<_i23.Document>(),
+              type: _i1.getType<_i31.Document>(),
               nullable: false,
             ),
           },
@@ -761,7 +818,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'firearm': _i1.ParameterDescription(
               name: 'firearm',
-              type: _i1.getType<_i24.Firearm>(),
+              type: _i1.getType<_i32.Firearm>(),
               nullable: false,
             ),
           },
@@ -779,7 +836,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'firearm': _i1.ParameterDescription(
               name: 'firearm',
-              type: _i1.getType<_i24.Firearm>(),
+              type: _i1.getType<_i32.Firearm>(),
               nullable: false,
             ),
           },
@@ -852,7 +909,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'gunsmith': _i1.ParameterDescription(
               name: 'gunsmith',
-              type: _i1.getType<_i25.Gunsmith>(),
+              type: _i1.getType<_i33.Gunsmith>(),
               nullable: false,
             ),
           },
@@ -934,7 +991,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'gunsmith': _i1.ParameterDescription(
               name: 'gunsmith',
-              type: _i1.getType<_i25.Gunsmith>(),
+              type: _i1.getType<_i33.Gunsmith>(),
               nullable: false,
             ),
           },
@@ -953,7 +1010,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'client': _i1.ParameterDescription(
               name: 'client',
-              type: _i1.getType<_i26.GunsmithClient>(),
+              type: _i1.getType<_i34.GunsmithClient>(),
               nullable: false,
             ),
           },
@@ -1001,12 +1058,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'order': _i1.ParameterDescription(
               name: 'order',
-              type: _i1.getType<_i27.ServiceOrder>(),
+              type: _i1.getType<_i35.ServiceOrder>(),
               nullable: false,
             ),
             'items': _i1.ParameterDescription(
               name: 'items',
-              type: _i1.getType<List<_i28.ServiceOrderItem>>(),
+              type: _i1.getType<List<_i36.ServiceOrderItem>>(),
               nullable: false,
             ),
           },
@@ -1070,12 +1127,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'invoice': _i1.ParameterDescription(
               name: 'invoice',
-              type: _i1.getType<_i29.Invoice>(),
+              type: _i1.getType<_i37.Invoice>(),
               nullable: false,
             ),
             'items': _i1.ParameterDescription(
               name: 'items',
-              type: _i1.getType<List<_i30.InvoiceItem>>(),
+              type: _i1.getType<List<_i38.InvoiceItem>>(),
               nullable: false,
             ),
           },
@@ -1124,7 +1181,7 @@ class Endpoints extends _i1.EndpointDispatch {
             ),
             'status': _i1.ParameterDescription(
               name: 'status',
-              type: _i1.getType<_i31.InvoiceStatus?>(),
+              type: _i1.getType<_i39.InvoiceStatus?>(),
               nullable: true,
             ),
             'clubId': _i1.ParameterDescription(
@@ -1175,7 +1232,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'invoice': _i1.ParameterDescription(
               name: 'invoice',
-              type: _i1.getType<_i29.Invoice>(),
+              type: _i1.getType<_i37.Invoice>(),
               nullable: false,
             ),
           },
@@ -1238,7 +1295,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'payment': _i1.ParameterDescription(
               name: 'payment',
-              type: _i1.getType<_i32.Payment>(),
+              type: _i1.getType<_i40.Payment>(),
               nullable: false,
             ),
           },
@@ -1307,7 +1364,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'product': _i1.ParameterDescription(
               name: 'product',
-              type: _i1.getType<_i33.Product>(),
+              type: _i1.getType<_i41.Product>(),
               nullable: false,
             ),
           },
@@ -1364,7 +1421,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'product': _i1.ParameterDescription(
               name: 'product',
-              type: _i1.getType<_i33.Product>(),
+              type: _i1.getType<_i41.Product>(),
               nullable: false,
             ),
           },
@@ -1483,7 +1540,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'group': _i1.ParameterDescription(
               name: 'group',
-              type: _i1.getType<_i34.ProductGroup>(),
+              type: _i1.getType<_i42.ProductGroup>(),
               nullable: false,
             ),
           },
@@ -1503,7 +1560,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'group': _i1.ParameterDescription(
               name: 'group',
-              type: _i1.getType<_i34.ProductGroup>(),
+              type: _i1.getType<_i42.ProductGroup>(),
               nullable: false,
             ),
           },
@@ -1579,7 +1636,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'profile': _i1.ParameterDescription(
               name: 'profile',
-              type: _i1.getType<_i35.UserProfile>(),
+              type: _i1.getType<_i43.UserProfile>(),
               nullable: false,
             ),
           },
@@ -1623,7 +1680,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'reloadSession': _i1.ParameterDescription(
               name: 'reloadSession',
-              type: _i1.getType<_i36.ReloadSession>(),
+              type: _i1.getType<_i44.ReloadSession>(),
               nullable: false,
             ),
           },
@@ -1652,7 +1709,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'test': _i1.ParameterDescription(
               name: 'test',
-              type: _i1.getType<_i37.ReloadTest>(),
+              type: _i1.getType<_i45.ReloadTest>(),
               nullable: false,
             ),
           },
@@ -1700,7 +1757,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'supply': _i1.ParameterDescription(
               name: 'supply',
-              type: _i1.getType<_i38.SupplyStock>(),
+              type: _i1.getType<_i46.SupplyStock>(),
               nullable: false,
             ),
           },
@@ -1718,7 +1775,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'supply': _i1.ParameterDescription(
               name: 'supply',
-              type: _i1.getType<_i38.SupplyStock>(),
+              type: _i1.getType<_i46.SupplyStock>(),
               nullable: false,
             ),
           },
@@ -1743,12 +1800,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i39.SecurityRole>(),
+              type: _i1.getType<_i47.SecurityRole>(),
               nullable: false,
             ),
             'permissions': _i1.ParameterDescription(
               name: 'permissions',
-              type: _i1.getType<List<_i40.RolePermission>>(),
+              type: _i1.getType<List<_i48.RolePermission>>(),
               nullable: false,
             ),
           },
@@ -1769,12 +1826,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i39.SecurityRole>(),
+              type: _i1.getType<_i47.SecurityRole>(),
               nullable: false,
             ),
             'permissions': _i1.ParameterDescription(
               name: 'permissions',
-              type: _i1.getType<List<_i40.RolePermission>>(),
+              type: _i1.getType<List<_i48.RolePermission>>(),
               nullable: false,
             ),
           },
@@ -1795,7 +1852,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i39.SecurityRole>(),
+              type: _i1.getType<_i47.SecurityRole>(),
               nullable: false,
             ),
           },
@@ -1826,7 +1883,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i39.SecurityRole>(),
+              type: _i1.getType<_i47.SecurityRole>(),
               nullable: false,
             ),
           },
@@ -1852,7 +1909,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'plan': _i1.ParameterDescription(
               name: 'plan',
-              type: _i1.getType<_i41.SubscriptionPlan>(),
+              type: _i1.getType<_i49.SubscriptionPlan>(),
               nullable: false,
             ),
           },
@@ -1894,7 +1951,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'plan': _i1.ParameterDescription(
               name: 'plan',
-              type: _i1.getType<_i41.SubscriptionPlan>(),
+              type: _i1.getType<_i49.SubscriptionPlan>(),
               nullable: false,
             ),
           },
@@ -1936,12 +1993,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'planType': _i1.ParameterDescription(
               name: 'planType',
-              type: _i1.getType<_i42.PlanType?>(),
+              type: _i1.getType<_i50.PlanType?>(),
               nullable: true,
             ),
             'status': _i1.ParameterDescription(
               name: 'status',
-              type: _i1.getType<_i43.PlanStatus?>(),
+              type: _i1.getType<_i51.PlanStatus?>(),
               nullable: true,
             ),
             'limit': _i1.ParameterDescription(
@@ -1981,7 +2038,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'training': _i1.ParameterDescription(
               name: 'training',
-              type: _i1.getType<_i44.Training>(),
+              type: _i1.getType<_i52.Training>(),
               nullable: false,
             ),
           },
@@ -2071,7 +2128,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'user': _i1.ParameterDescription(
               name: 'user',
-              type: _i1.getType<_i35.UserProfile>(),
+              type: _i1.getType<_i43.UserProfile>(),
               nullable: false,
             ),
           },
@@ -2089,7 +2146,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'user': _i1.ParameterDescription(
               name: 'user',
-              type: _i1.getType<_i35.UserProfile>(),
+              type: _i1.getType<_i43.UserProfile>(),
               nullable: false,
             ),
           },
@@ -2214,6 +2271,882 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
+    connectors['asaasAccount'] = _i1.EndpointConnector(
+      name: 'asaasAccount',
+      endpoint: endpoints['asaasAccount']!,
+      methodConnectors: {
+        'createSubaccount': _i1.MethodConnector(
+          name: 'createSubaccount',
+          params: {
+            'requestData': _i1.ParameterDescription(
+              name: 'requestData',
+              type: _i1.getType<Map<String, dynamic>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasAccount'] as _i19.AsaasAccountEndpoint)
+                      .createSubaccount(
+                        session,
+                        params['requestData'],
+                      ),
+        ),
+        'listSubaccounts': _i1.MethodConnector(
+          name: 'listSubaccounts',
+          params: {
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasAccount'] as _i19.AsaasAccountEndpoint)
+                      .listSubaccounts(
+                        session,
+                        limit: params['limit'],
+                        offset: params['offset'],
+                      ),
+        ),
+        'getAccountNumber': _i1.MethodConnector(
+          name: 'getAccountNumber',
+          params: {},
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasAccount'] as _i19.AsaasAccountEndpoint)
+                      .getAccountNumber(session),
+        ),
+        'getAccountStatus': _i1.MethodConnector(
+          name: 'getAccountStatus',
+          params: {},
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasAccount'] as _i19.AsaasAccountEndpoint)
+                      .getAccountStatus(session),
+        ),
+      },
+    );
+    connectors['asaasCustomer'] = _i1.EndpointConnector(
+      name: 'asaasCustomer',
+      endpoint: endpoints['asaasCustomer']!,
+      methodConnectors: {
+        'createCustomer': _i1.MethodConnector(
+          name: 'createCustomer',
+          params: {
+            'requestData': _i1.ParameterDescription(
+              name: 'requestData',
+              type: _i1.getType<Map<String, dynamic>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasCustomer'] as _i20.AsaasCustomerEndpoint)
+                      .createCustomer(
+                        session,
+                        params['requestData'],
+                      ),
+        ),
+        'listCustomers': _i1.MethodConnector(
+          name: 'listCustomers',
+          params: {
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'name': _i1.ParameterDescription(
+              name: 'name',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+            'cpfCnpj': _i1.ParameterDescription(
+              name: 'cpfCnpj',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasCustomer'] as _i20.AsaasCustomerEndpoint)
+                      .listCustomers(
+                        session,
+                        limit: params['limit'],
+                        offset: params['offset'],
+                        name: params['name'],
+                        cpfCnpj: params['cpfCnpj'],
+                      ),
+        ),
+        'getCustomer': _i1.MethodConnector(
+          name: 'getCustomer',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasCustomer'] as _i20.AsaasCustomerEndpoint)
+                      .getCustomer(
+                        session,
+                        params['id'],
+                      ),
+        ),
+        'updateCustomer': _i1.MethodConnector(
+          name: 'updateCustomer',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'requestData': _i1.ParameterDescription(
+              name: 'requestData',
+              type: _i1.getType<Map<String, dynamic>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasCustomer'] as _i20.AsaasCustomerEndpoint)
+                      .updateCustomer(
+                        session,
+                        params['id'],
+                        params['requestData'],
+                      ),
+        ),
+        'deleteCustomer': _i1.MethodConnector(
+          name: 'deleteCustomer',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasCustomer'] as _i20.AsaasCustomerEndpoint)
+                      .deleteCustomer(
+                        session,
+                        params['id'],
+                      ),
+        ),
+        'restoreCustomer': _i1.MethodConnector(
+          name: 'restoreCustomer',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasCustomer'] as _i20.AsaasCustomerEndpoint)
+                      .restoreCustomer(
+                        session,
+                        params['id'],
+                      ),
+        ),
+        'getCustomerNotifications': _i1.MethodConnector(
+          name: 'getCustomerNotifications',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasCustomer'] as _i20.AsaasCustomerEndpoint)
+                      .getCustomerNotifications(
+                        session,
+                        params['id'],
+                      ),
+        ),
+      },
+    );
+    connectors['asaasInstallment'] = _i1.EndpointConnector(
+      name: 'asaasInstallment',
+      endpoint: endpoints['asaasInstallment']!,
+      methodConnectors: {
+        'createInstallment': _i1.MethodConnector(
+          name: 'createInstallment',
+          params: {
+            'requestData': _i1.ParameterDescription(
+              name: 'requestData',
+              type: _i1.getType<Map<String, dynamic>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasInstallment']
+                          as _i21.AsaasInstallmentEndpoint)
+                      .createInstallment(
+                        session,
+                        params['requestData'],
+                      ),
+        ),
+        'listInstallments': _i1.MethodConnector(
+          name: 'listInstallments',
+          params: {
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasInstallment']
+                          as _i21.AsaasInstallmentEndpoint)
+                      .listInstallments(
+                        session,
+                        limit: params['limit'],
+                        offset: params['offset'],
+                      ),
+        ),
+        'getInstallment': _i1.MethodConnector(
+          name: 'getInstallment',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasInstallment']
+                          as _i21.AsaasInstallmentEndpoint)
+                      .getInstallment(
+                        session,
+                        params['id'],
+                      ),
+        ),
+        'deleteInstallment': _i1.MethodConnector(
+          name: 'deleteInstallment',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasInstallment']
+                          as _i21.AsaasInstallmentEndpoint)
+                      .deleteInstallment(
+                        session,
+                        params['id'],
+                      ),
+        ),
+        'listInstallmentPayments': _i1.MethodConnector(
+          name: 'listInstallmentPayments',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasInstallment']
+                          as _i21.AsaasInstallmentEndpoint)
+                      .listInstallmentPayments(
+                        session,
+                        params['id'],
+                      ),
+        ),
+      },
+    );
+    connectors['asaasPayment'] = _i1.EndpointConnector(
+      name: 'asaasPayment',
+      endpoint: endpoints['asaasPayment']!,
+      methodConnectors: {
+        'createPayment': _i1.MethodConnector(
+          name: 'createPayment',
+          params: {
+            'requestData': _i1.ParameterDescription(
+              name: 'requestData',
+              type: _i1.getType<Map<String, dynamic>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasPayment'] as _i22.AsaasPaymentEndpoint)
+                      .createPayment(
+                        session,
+                        params['requestData'],
+                      ),
+        ),
+        'listPayments': _i1.MethodConnector(
+          name: 'listPayments',
+          params: {
+            'customer': _i1.ParameterDescription(
+              name: 'customer',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+            'status': _i1.ParameterDescription(
+              name: 'status',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasPayment'] as _i22.AsaasPaymentEndpoint)
+                      .listPayments(
+                        session,
+                        customer: params['customer'],
+                        status: params['status'],
+                        limit: params['limit'],
+                        offset: params['offset'],
+                      ),
+        ),
+        'captureAuthorizedPayment': _i1.MethodConnector(
+          name: 'captureAuthorizedPayment',
+          params: {
+            'paymentId': _i1.ParameterDescription(
+              name: 'paymentId',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasPayment'] as _i22.AsaasPaymentEndpoint)
+                      .captureAuthorizedPayment(
+                        session,
+                        params['paymentId'],
+                      ),
+        ),
+        'payWithCreditCard': _i1.MethodConnector(
+          name: 'payWithCreditCard',
+          params: {
+            'paymentId': _i1.ParameterDescription(
+              name: 'paymentId',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'requestData': _i1.ParameterDescription(
+              name: 'requestData',
+              type: _i1.getType<Map<String, dynamic>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasPayment'] as _i22.AsaasPaymentEndpoint)
+                      .payWithCreditCard(
+                        session,
+                        params['paymentId'],
+                        params['requestData'],
+                      ),
+        ),
+        'getBillingInfo': _i1.MethodConnector(
+          name: 'getBillingInfo',
+          params: {
+            'paymentId': _i1.ParameterDescription(
+              name: 'paymentId',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasPayment'] as _i22.AsaasPaymentEndpoint)
+                      .getBillingInfo(
+                        session,
+                        params['paymentId'],
+                      ),
+        ),
+        'getPaymentStatus': _i1.MethodConnector(
+          name: 'getPaymentStatus',
+          params: {
+            'paymentId': _i1.ParameterDescription(
+              name: 'paymentId',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasPayment'] as _i22.AsaasPaymentEndpoint)
+                      .getPaymentStatus(
+                        session,
+                        params['paymentId'],
+                      ),
+        ),
+        'refundPayment': _i1.MethodConnector(
+          name: 'refundPayment',
+          params: {
+            'paymentId': _i1.ParameterDescription(
+              name: 'paymentId',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasPayment'] as _i22.AsaasPaymentEndpoint)
+                      .refundPayment(
+                        session,
+                        params['paymentId'],
+                      ),
+        ),
+        'getPixQrCode': _i1.MethodConnector(
+          name: 'getPixQrCode',
+          params: {
+            'paymentId': _i1.ParameterDescription(
+              name: 'paymentId',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasPayment'] as _i22.AsaasPaymentEndpoint)
+                      .getPixQrCode(
+                        session,
+                        params['paymentId'],
+                      ),
+        ),
+      },
+    );
+    connectors['asaasPix'] = _i1.EndpointConnector(
+      name: 'asaasPix',
+      endpoint: endpoints['asaasPix']!,
+      methodConnectors: {
+        'createKey': _i1.MethodConnector(
+          name: 'createKey',
+          params: {
+            'type': _i1.ParameterDescription(
+              name: 'type',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasPix'] as _i23.AsaasPixEndpoint).createKey(
+                    session,
+                    params['type'],
+                  ),
+        ),
+        'listKeys': _i1.MethodConnector(
+          name: 'listKeys',
+          params: {},
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['asaasPix'] as _i23.AsaasPixEndpoint)
+                  .listKeys(session),
+        ),
+        'createStaticQrCode': _i1.MethodConnector(
+          name: 'createStaticQrCode',
+          params: {
+            'request': _i1.ParameterDescription(
+              name: 'request',
+              type: _i1.getType<Map<String, dynamic>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['asaasPix'] as _i23.AsaasPixEndpoint)
+                  .createStaticQrCode(
+                    session,
+                    params['request'],
+                  ),
+        ),
+        'payQrCode': _i1.MethodConnector(
+          name: 'payQrCode',
+          params: {
+            'request': _i1.ParameterDescription(
+              name: 'request',
+              type: _i1.getType<Map<String, dynamic>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasPix'] as _i23.AsaasPixEndpoint).payQrCode(
+                    session,
+                    params['request'],
+                  ),
+        ),
+        'listTransactions': _i1.MethodConnector(
+          name: 'listTransactions',
+          params: {
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'startDate': _i1.ParameterDescription(
+              name: 'startDate',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+            'endDate': _i1.ParameterDescription(
+              name: 'endDate',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['asaasPix'] as _i23.AsaasPixEndpoint)
+                  .listTransactions(
+                    session,
+                    limit: params['limit'],
+                    offset: params['offset'],
+                    startDate: params['startDate'],
+                    endDate: params['endDate'],
+                  ),
+        ),
+      },
+    );
+    connectors['asaasTransfer'] = _i1.EndpointConnector(
+      name: 'asaasTransfer',
+      endpoint: endpoints['asaasTransfer']!,
+      methodConnectors: {
+        'createTransfer': _i1.MethodConnector(
+          name: 'createTransfer',
+          params: {
+            'requestData': _i1.ParameterDescription(
+              name: 'requestData',
+              type: _i1.getType<Map<String, dynamic>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasTransfer'] as _i24.AsaasTransferEndpoint)
+                      .createTransfer(
+                        session,
+                        params['requestData'],
+                      ),
+        ),
+        'listTransfers': _i1.MethodConnector(
+          name: 'listTransfers',
+          params: {
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasTransfer'] as _i24.AsaasTransferEndpoint)
+                      .listTransfers(
+                        session,
+                        limit: params['limit'],
+                        offset: params['offset'],
+                      ),
+        ),
+        'getExtract': _i1.MethodConnector(
+          name: 'getExtract',
+          params: {
+            'startDate': _i1.ParameterDescription(
+              name: 'startDate',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+            'endDate': _i1.ParameterDescription(
+              name: 'endDate',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasTransfer'] as _i24.AsaasTransferEndpoint)
+                      .getExtract(
+                        session,
+                        startDate: params['startDate'],
+                        endDate: params['endDate'],
+                        limit: params['limit'],
+                        offset: params['offset'],
+                      ),
+        ),
+        'getBalance': _i1.MethodConnector(
+          name: 'getBalance',
+          params: {},
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasTransfer'] as _i24.AsaasTransferEndpoint)
+                      .getBalance(session),
+        ),
+      },
+    );
+    connectors['asaasWebhookConfig'] = _i1.EndpointConnector(
+      name: 'asaasWebhookConfig',
+      endpoint: endpoints['asaasWebhookConfig']!,
+      methodConnectors: {
+        'createWebhook': _i1.MethodConnector(
+          name: 'createWebhook',
+          params: {
+            'requestData': _i1.ParameterDescription(
+              name: 'requestData',
+              type: _i1.getType<Map<String, dynamic>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasWebhookConfig']
+                          as _i25.AsaasWebhookConfigEndpoint)
+                      .createWebhook(
+                        session,
+                        params['requestData'],
+                      ),
+        ),
+        'listWebhooks': _i1.MethodConnector(
+          name: 'listWebhooks',
+          params: {},
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasWebhookConfig']
+                          as _i25.AsaasWebhookConfigEndpoint)
+                      .listWebhooks(session),
+        ),
+        'updateWebhook': _i1.MethodConnector(
+          name: 'updateWebhook',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'requestData': _i1.ParameterDescription(
+              name: 'requestData',
+              type: _i1.getType<Map<String, dynamic>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasWebhookConfig']
+                          as _i25.AsaasWebhookConfigEndpoint)
+                      .updateWebhook(
+                        session,
+                        params['id'],
+                        params['requestData'],
+                      ),
+        ),
+        'deleteWebhook': _i1.MethodConnector(
+          name: 'deleteWebhook',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasWebhookConfig']
+                          as _i25.AsaasWebhookConfigEndpoint)
+                      .deleteWebhook(
+                        session,
+                        params['id'],
+                      ),
+        ),
+      },
+    );
+    connectors['asaasWebhookReceiver'] = _i1.EndpointConnector(
+      name: 'asaasWebhookReceiver',
+      endpoint: endpoints['asaasWebhookReceiver']!,
+      methodConnectors: {
+        'handleEvent': _i1.MethodConnector(
+          name: 'handleEvent',
+          params: {
+            'payload': _i1.ParameterDescription(
+              name: 'payload',
+              type: _i1.getType<Map<String, dynamic>>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['asaasWebhookReceiver']
+                          as _i26.AsaasWebhookReceiverEndpoint)
+                      .handleEvent(
+                        session,
+                        params['payload'],
+                      ),
+        ),
+      },
+    );
     connectors['greeting'] = _i1.EndpointConnector(
       name: 'greeting',
       endpoint: endpoints['greeting']!,
@@ -2231,13 +3164,13 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['greeting'] as _i19.GreetingEndpoint).hello(
+              ) async => (endpoints['greeting'] as _i27.GreetingEndpoint).hello(
                 session,
                 params['name'],
               ),
         ),
       },
     );
-    modules['serverpod_auth'] = _i45.Endpoints()..initializeEndpoints(server);
+    modules['serverpod_auth'] = _i53.Endpoints()..initializeEndpoints(server);
   }
 }

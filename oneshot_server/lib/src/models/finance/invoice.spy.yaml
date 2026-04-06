@@ -12,15 +12,19 @@ fields:
   finalAmount: double
   currency: Currency
   notes: String?
-  
+
+  # Campos do gateway Asaas
+  asaasInstallmentId: String?   # ID do parcelamento no Asaas
+  asaasCustomerId: String?      # ID do cliente Asaas associado à fatura
+
   # Contexto/Proprietário
   club: Club?, relation(optional)
   gunsmith: Gunsmith?, relation(optional)
   user: UserProfile?, relation(optional) # CAC/Shooter Owner
-  
+
   # Pagador (Drawee)
   drawee: UserProfile?, relation(optional)
-  
+
 indexes:
   invoice_status_idx:
     fields: status
@@ -32,3 +36,5 @@ indexes:
     fields: gunsmithId
   invoice_user_id_idx:
     fields: userId
+  invoice_asaas_installment_idx:
+    fields: asaasInstallmentId

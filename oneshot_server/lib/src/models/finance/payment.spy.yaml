@@ -7,11 +7,22 @@ fields:
   paymentMethod: PaymentMethod
   status: PaymentStatus
   currency: Currency
-  gatewayTransactionId: String?
-  
+
+  # Campos do gateway Asaas
+  asaasPaymentId: String?          # ID do pagamento no Asaas (ex: pay_abc123)
+  asaasCustomerId: String?         # ID do cliente vinculado no Asaas
+  asaasBillingType: String?        # BOLETO | PIX | CREDIT_CARD | DEBIT_CARD
+  asaasDueDate: DateTime?          # Data de vencimento definida no Asaas
+  asaasNetValue: double?           # Valor líquido após taxas do Asaas
+  asaasInvoiceUrl: String?         # URL da fatura gerada pelo Asaas
+  asaasBankSlipUrl: String?        # URL do boleto (quando billingType = BOLETO)
+  asaasPixQrCodePayload: String?   # Payload Pix copia e cola
+  asaasPixQrCodeImage: String?     # QR Code em base64
+  asaasRefundedAt: DateTime?       # Data do estorno
+
   # Relacionamento
   invoice: Invoice?, relation(optional)
-  
+
 indexes:
   payment_invoice_id_idx:
     fields: invoiceId
@@ -19,3 +30,5 @@ indexes:
     fields: status
   payment_date_idx:
     fields: paymentDate
+  payment_asaas_id_idx:
+    fields: asaasPaymentId

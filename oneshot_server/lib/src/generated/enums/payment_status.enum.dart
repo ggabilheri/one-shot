@@ -13,21 +13,54 @@
 import 'package:serverpod/serverpod.dart' as _i1;
 
 enum PaymentStatus implements _i1.SerializableModel {
-  processing,
-  completed,
-  failed,
-  refunded;
+  pending,
+  received,
+  confirmed,
+  overdue,
+  refunded,
+  receivedInCash,
+  refundRequested,
+  refundInProgress,
+  chargebackRequested,
+  chargebackDispute,
+  awaitingChargebackReversal,
+  dunningRequested,
+  dunningReceived,
+  awaitingRiskAnalysis,
+  partiallyRefunded;
 
   static PaymentStatus fromJson(String name) {
     switch (name) {
-      case 'processing':
-        return PaymentStatus.processing;
-      case 'completed':
-        return PaymentStatus.completed;
-      case 'failed':
-        return PaymentStatus.failed;
+      case 'pending':
+        return PaymentStatus.pending;
+      case 'received':
+        return PaymentStatus.received;
+      case 'confirmed':
+        return PaymentStatus.confirmed;
+      case 'overdue':
+        return PaymentStatus.overdue;
       case 'refunded':
         return PaymentStatus.refunded;
+      case 'receivedInCash':
+        return PaymentStatus.receivedInCash;
+      case 'refundRequested':
+        return PaymentStatus.refundRequested;
+      case 'refundInProgress':
+        return PaymentStatus.refundInProgress;
+      case 'chargebackRequested':
+        return PaymentStatus.chargebackRequested;
+      case 'chargebackDispute':
+        return PaymentStatus.chargebackDispute;
+      case 'awaitingChargebackReversal':
+        return PaymentStatus.awaitingChargebackReversal;
+      case 'dunningRequested':
+        return PaymentStatus.dunningRequested;
+      case 'dunningReceived':
+        return PaymentStatus.dunningReceived;
+      case 'awaitingRiskAnalysis':
+        return PaymentStatus.awaitingRiskAnalysis;
+      case 'partiallyRefunded':
+        return PaymentStatus.partiallyRefunded;
       default:
         throw ArgumentError(
           'Value "$name" cannot be converted to "PaymentStatus"',
