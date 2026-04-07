@@ -5,12 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "oneshot_client",
-            "cwd": "oneshot_client",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
             "name": "oneshot_server",
             "cwd": "oneshot_server",
             "request": "launch",
@@ -21,20 +15,6 @@
             "cwd": "apps/backoffice_web",
             "request": "launch",
             "type": "dart"
-        },
-        {
-            "name": "backoffice_web (profile mode)",
-            "cwd": "apps/backoffice_web",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "backoffice_web (release mode)",
-            "cwd": "apps/backoffice_web",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
         },
         {
             "name": "shooter_app",

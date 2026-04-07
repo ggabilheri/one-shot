@@ -1,5 +1,6 @@
 import 'package:backoffice_web/src/core/viewmodel.dart';
 import 'package:backoffice_web/src/domain/repositories/auth_repository.dart';
+import 'package:oneshot_client/oneshot_client.dart';
 
 abstract class ILoginPresenter {
   void navigateToDashboard();
@@ -46,6 +47,8 @@ class LoginViewModel extends Viewmodel implements ILoginViewModel {
       } else {
         setError('Falha ao autenticar. Tente novamente.');
       }
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
       setError('E-mail ou senha incorretos.');
     } finally {

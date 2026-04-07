@@ -14,16 +14,21 @@ class ClubRepository implements IClubRepository {
   Future<Address?> fetchAddressByCep(String cep) async {
     try {
       return await client.viaCepGateway.getAddressByCep(cep);
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao buscar CEP: \$e');
+      throw Exception('Falha ao buscar CEP.');
     }
   }
+
   @override
   Future<List<Club>> listClubs() async {
     try {
       return await client.club.listClubs();
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao listar os clubes: \$e');
+      throw Exception('Falha ao listar os clubes.');
     }
   }
 
@@ -31,8 +36,10 @@ class ClubRepository implements IClubRepository {
   Future<Club> createClub(Club club) async {
     try {
       return await client.club.createClub(club);
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao registrar novo clube: \$e');
+      throw Exception('Falha ao registrar novo clube.');
     }
   }
 
@@ -40,8 +47,10 @@ class ClubRepository implements IClubRepository {
   Future<Club> updateClub(Club club) async {
     try {
       return await client.club.updateClub(club);
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao atualizar o clube: \$e');
+      throw Exception('Falha ao atualizar o clube.');
     }
   }
 
@@ -49,8 +58,10 @@ class ClubRepository implements IClubRepository {
   Future<Club> deleteClub(String clubId) async {
     try {
       return await client.club.deleteClub(UuidValue.fromString(clubId));
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao desativar o clube: \$e');
+      throw Exception('Falha ao desativar o clube.');
     }
   }
 }

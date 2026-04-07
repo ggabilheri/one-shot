@@ -19,7 +19,15 @@ class ClubsViewmodel extends Viewmodel implements IClubsViewmodel {
 
   @override
   Future<Address?> getAddressByCep(String cep) async {
-    return await _repository.fetchAddressByCep(cep);
+    try {
+      return await _repository.fetchAddressByCep(cep);
+    } on AppException catch (e) {
+      setError(e.message);
+      return null;
+    } catch (e) {
+      setError('Falha ao buscar endereço pelo CEP.');
+      return null;
+    }
   }
 
   @override
@@ -41,8 +49,10 @@ class ClubsViewmodel extends Viewmodel implements IClubsViewmodel {
     try {
       _clubs = await _repository.listClubs();
       setError(null);
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao carregar clubes.');
     } finally {
       _isLoading = false;
       setLoading(false);
@@ -53,16 +63,18 @@ class ClubsViewmodel extends Viewmodel implements IClubsViewmodel {
   @override
   Future<void> saveClub(Club club, {bool isEditing = false}) async {
     setLoading(true);
+    setError(null);
     try {
       if (!isEditing) {
         await _repository.createClub(club);
       } else {
         await _repository.updateClub(club);
       }
-      setError(null);
       await loadClubs(); // Atualizar a listagem logo em seguida
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao salvar clube.');
     } finally {
       setLoading(false);
     }
@@ -71,12 +83,14 @@ class ClubsViewmodel extends Viewmodel implements IClubsViewmodel {
   @override
   Future<void> deleteClub(String id) async {
     setLoading(true);
+    setError(null);
     try {
       await _repository.deleteClub(id);
-      setError(null);
       await loadClubs(); // Atualizar a listagem após exclusão "soft-delete"
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao excluir clube.');
     } finally {
       setLoading(false);
     }

@@ -65,11 +65,14 @@ class ProductGroupsViewmodel extends Viewmodel
   @override
   Future<void> loadGroups() async {
     setLoading(true);
+    setError(null);
     try {
       _groups = await _groupRepo.listGroups(originModule: _originModule);
       notifyListeners();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao carregar grupos de produtos.');
     } finally {
       setLoading(false);
     }
@@ -84,14 +87,17 @@ class ProductGroupsViewmodel extends Viewmodel
         groupId: _selectedGroup!.id,
       );
       notifyListeners();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao carregar produtos do grupo.');
     }
   }
 
   @override
   Future<void> saveGroup(ProductGroup group) async {
     setLoading(true);
+    setError(null);
     try {
       if (_isNew) {
         await _groupRepo.create(group);
@@ -99,8 +105,10 @@ class ProductGroupsViewmodel extends Viewmodel
         await _groupRepo.update(group);
       }
       await loadGroups();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao salvar grupo de produtos.');
     } finally {
       setLoading(false);
     }
@@ -109,12 +117,15 @@ class ProductGroupsViewmodel extends Viewmodel
   @override
   Future<void> deleteGroup(UuidValue id) async {
     setLoading(true);
+    setError(null);
     try {
       await _groupRepo.delete(id);
       if (_selectedGroup?.id == id) _selectedGroup = null;
       await loadGroups();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao excluir grupo de produtos.');
     } finally {
       setLoading(false);
     }
@@ -122,11 +133,14 @@ class ProductGroupsViewmodel extends Viewmodel
 
   @override
   Future<void> deleteProduct(UuidValue id) async {
+    setError(null);
     try {
       await _productRepo.deleteProduct(id);
       await loadProducts();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao excluir produto.');
     }
   }
 

@@ -29,8 +29,10 @@ class ProductRepository implements IProductRepository {
         limit: limit,
         offset: offset,
       );
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao listar produtos: \$e');
+      throw Exception('Falha ao listar produtos.');
     }
   }
 
@@ -38,8 +40,10 @@ class ProductRepository implements IProductRepository {
   Future<Product> createProduct(Product product) async {
     try {
       return await client.product.createProduct(product);
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao cadastrar produto: \$e');
+      throw Exception('Falha ao cadastrar produto.');
     }
   }
 
@@ -47,8 +51,10 @@ class ProductRepository implements IProductRepository {
   Future<Product> updateProduct(Product product) async {
     try {
       return await client.product.updateProduct(product);
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao atualizar produto: \$e');
+      throw Exception('Falha ao atualizar produto.');
     }
   }
 
@@ -56,8 +62,10 @@ class ProductRepository implements IProductRepository {
   Future<bool> deleteProduct(UuidValue id) async {
     try {
       return await client.product.deleteProduct(id);
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao excluir produto: \$e');
+      throw Exception('Falha ao excluir produto.');
     }
   }
 
@@ -65,8 +73,10 @@ class ProductRepository implements IProductRepository {
   Future<Product?> findByCode(String code) async {
     try {
       return await client.product.findByCode(code);
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao buscar produto por código: \$e');
+      throw Exception('Falha ao buscar produto por código.');
     }
   }
 }

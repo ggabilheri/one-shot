@@ -22,10 +22,13 @@ class RolesViewmodel extends Viewmodel implements IRolesViewmodel {
   @override
   Future<void> loadRoles() async {
     setLoading(true);
+    setError(null);
     try {
       _roles = await repository.listRoles();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao carregar papéis de segurança.');
     } finally {
       setLoading(false);
     }
@@ -34,6 +37,7 @@ class RolesViewmodel extends Viewmodel implements IRolesViewmodel {
   @override
   Future<void> saveRole(SecurityRole role, List<RolePermission> permissions, {bool isNew = false}) async {
     setLoading(true);
+    setError(null);
     try {
       if (isNew) {
         await repository.createRole(role, permissions);
@@ -41,8 +45,10 @@ class RolesViewmodel extends Viewmodel implements IRolesViewmodel {
         await repository.updateRole(role, permissions);
       }
       await loadRoles();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao salvar papel de segurança.');
     } finally {
       setLoading(false);
     }
@@ -51,12 +57,17 @@ class RolesViewmodel extends Viewmodel implements IRolesViewmodel {
   @override
   Future<bool> deleteRole(SecurityRole role) async {
     setLoading(true);
+    setError(null);
     try {
       await repository.deleteRole(role);
       await loadRoles();
       return true;
+    } on AppException catch (e) {
+      setError(e.message);
+      setLoading(false);
+      return false;
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao excluir papel de segurança.');
       setLoading(false);
       return false;
     }

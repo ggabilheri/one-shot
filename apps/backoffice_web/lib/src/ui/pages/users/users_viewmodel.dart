@@ -48,10 +48,13 @@ class UsersViewmodel extends Viewmodel implements IUsersViewmodel {
   @override
   Future<void> loadUsers() async {
     setLoading(true);
+    setError(null);
     try {
       _users = await _userRepository.listUsers();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao listar usuários.');
     } finally {
       setLoading(false);
     }
@@ -60,12 +63,15 @@ class UsersViewmodel extends Viewmodel implements IUsersViewmodel {
   @override
   Future<void> createUser(UserProfile user) async {
     setLoading(true);
+    setError(null);
     try {
       final newUser = await _userRepository.createUser(user);
       _users.add(newUser);
       notifyListeners();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao criar usuário.');
     } finally {
       setLoading(false);
     }
@@ -74,6 +80,7 @@ class UsersViewmodel extends Viewmodel implements IUsersViewmodel {
   @override
   Future<void> updateUser(UserProfile user) async {
     setLoading(true);
+    setError(null);
     try {
       final updatedUser = await _userRepository.updateUser(user);
       final index = _users.indexWhere((c) => c.id == updatedUser.id);
@@ -81,8 +88,10 @@ class UsersViewmodel extends Viewmodel implements IUsersViewmodel {
         _users[index] = updatedUser;
         notifyListeners();
       }
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao atualizar usuário.');
     } finally {
       setLoading(false);
     }
@@ -91,14 +100,17 @@ class UsersViewmodel extends Viewmodel implements IUsersViewmodel {
   @override
   Future<void> deleteUser(String id) async {
     setLoading(true);
+    setError(null);
     try {
       final success = await _userRepository.deleteUser(id);
       if (success) {
         _users.removeWhere((c) => c.id.toString() == id);
         notifyListeners();
       }
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao remover usuário.');
     } finally {
       setLoading(false);
     }
@@ -107,8 +119,12 @@ class UsersViewmodel extends Viewmodel implements IUsersViewmodel {
   @override
   Future<Address?> getAddressByCep(String cep) async {
     setLoading(true);
+    setError(null);
     try {
       return await _userRepository.fetchAddressByCep(cep);
+    } on AppException catch (e) {
+      setError(e.message);
+      return null;
     } catch (e) {
       setError('Erro ao buscar o CEP');
       return null;
@@ -121,8 +137,11 @@ class UsersViewmodel extends Viewmodel implements IUsersViewmodel {
   Future<List<SecurityRole>> getUserRoles(String userId) async {
     try {
       return await _userRepository.getRoles(userId);
+    } on AppException catch (e) {
+      setError(e.message);
+      return [];
     } catch (e) {
-      debugPrint('Erro ao obter roles do usuário: \$e');
+      debugPrint('Erro ao obter roles do usuário: $e');
       return [];
     }
   }
@@ -130,10 +149,13 @@ class UsersViewmodel extends Viewmodel implements IUsersViewmodel {
   @override
   Future<void> updateUserRoles(String userId, List<String> roleIds) async {
     setLoading(true);
+    setError(null);
     try {
       await _userRepository.updateRoles(userId, roleIds);
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao atualizar papéis do usuário.');
     } finally {
       setLoading(false);
     }

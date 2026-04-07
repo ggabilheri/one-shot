@@ -62,8 +62,10 @@ class SubscriptionPlansViewModel extends Viewmodel implements ISubscriptionPlans
         status: _filterStatus,
       );
       setError(null);
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao carregar planos de assinatura.');
     } finally {
       _isLoading = false;
       setLoading(false);
@@ -74,6 +76,7 @@ class SubscriptionPlansViewModel extends Viewmodel implements ISubscriptionPlans
   @override
   Future<void> savePlan(SubscriptionPlan plan, {bool isEditing = false}) async {
     setLoading(true);
+    setError(null);
     try {
       if (isEditing) {
         await _repository.updatePlan(plan);
@@ -81,9 +84,10 @@ class SubscriptionPlansViewModel extends Viewmodel implements ISubscriptionPlans
         await _repository.createPlan(plan);
       }
       await loadPlans();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
-      rethrow;
+      setError('Falha ao salvar plano de assinatura.');
     } finally {
       setLoading(false);
     }
@@ -92,11 +96,14 @@ class SubscriptionPlansViewModel extends Viewmodel implements ISubscriptionPlans
   @override
   Future<void> deletePlan(UuidValue id) async {
     setLoading(true);
+    setError(null);
     try {
       await _repository.deletePlan(id);
       await loadPlans();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao excluir plano de assinatura.');
     } finally {
       setLoading(false);
     }

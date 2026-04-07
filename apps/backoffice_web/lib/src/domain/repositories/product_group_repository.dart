@@ -23,26 +23,50 @@ class ProductGroupRepository implements IProductGroupRepository {
     int? limit,
     int? offset,
   }) async {
-    return await client.productGroup.listGroups(
-      originModule: originModule,
-      ownerId: ownerId,
-      limit: limit,
-      offset: offset,
-    );
+    try {
+      return await client.productGroup.listGroups(
+        originModule: originModule,
+        ownerId: ownerId,
+        limit: limit,
+        offset: offset,
+      );
+    } on AppException {
+      rethrow;
+    } catch (e) {
+      throw Exception('Falha ao listar grupos de produtos.');
+    }
   }
 
   @override
   Future<ProductGroup> create(ProductGroup group) async {
-    return await client.productGroup.createProductGroup(group);
+    try {
+      return await client.productGroup.createProductGroup(group);
+    } on AppException {
+      rethrow;
+    } catch (e) {
+      throw Exception('Falha ao criar grupo de produtos.');
+    }
   }
 
   @override
   Future<ProductGroup> update(ProductGroup group) async {
-    return await client.productGroup.updateProductGroup(group);
+    try {
+      return await client.productGroup.updateProductGroup(group);
+    } on AppException {
+      rethrow;
+    } catch (e) {
+      throw Exception('Falha ao atualizar grupo de produtos.');
+    }
   }
 
   @override
   Future<bool> delete(UuidValue id) async {
-    return await client.productGroup.deleteProductGroup(id);
+    try {
+      return await client.productGroup.deleteProductGroup(id);
+    } on AppException {
+      rethrow;
+    } catch (e) {
+      throw Exception('Falha ao deletar grupo de produtos.');
+    }
   }
 }

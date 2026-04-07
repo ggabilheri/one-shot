@@ -77,8 +77,10 @@ class ProductsViewmodel extends Viewmodel implements IProductsViewmodel {
         originModule: _selectedOrigin,
       );
       notifyListeners();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao carregar grupos.');
     }
   }
 
@@ -94,8 +96,10 @@ class ProductsViewmodel extends Viewmodel implements IProductsViewmodel {
         groupId: _selectedGroupId,
       );
       setError(null);
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao carregar produtos.');
     } finally {
       _isLoading = false;
       setLoading(false);
@@ -106,17 +110,18 @@ class ProductsViewmodel extends Viewmodel implements IProductsViewmodel {
   @override
   Future<void> saveProduct(Product product, {bool isEditing = false}) async {
     setLoading(true);
+    setError(null);
     try {
       if (!isEditing) {
         await _repository.createProduct(product);
       } else {
         await _repository.updateProduct(product);
       }
-      setError(null);
       await loadProducts();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
-      rethrow;
+      setError('Falha ao salvar produto.');
     } finally {
       setLoading(false);
     }
@@ -125,12 +130,14 @@ class ProductsViewmodel extends Viewmodel implements IProductsViewmodel {
   @override
   Future<void> deleteProduct(UuidValue id) async {
     setLoading(true);
+    setError(null);
     try {
       await _repository.deleteProduct(id);
-      setError(null);
       await loadProducts();
+    } on AppException catch (e) {
+      setError(e.message);
     } catch (e) {
-      setError(e.toString());
+      setError('Falha ao excluir produto.');
     } finally {
       setLoading(false);
     }
