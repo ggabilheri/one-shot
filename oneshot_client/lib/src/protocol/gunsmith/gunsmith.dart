@@ -29,6 +29,7 @@ abstract class Gunsmith implements _i1.SerializableModel {
     this.asaasAccountId,
     this.asaasWalletId,
     this.asaasApiKey,
+    this.asaasOnboardingFailureReason,
   }) : id = id ?? const _i1.Uuid().v4obj(),
        active = active ?? true,
        incomeValue = incomeValue ?? 1000.0;
@@ -46,6 +47,7 @@ abstract class Gunsmith implements _i1.SerializableModel {
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
+    String? asaasOnboardingFailureReason,
   }) = _GunsmithImpl;
 
   factory Gunsmith.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -78,6 +80,8 @@ abstract class Gunsmith implements _i1.SerializableModel {
       asaasAccountId: jsonSerialization['asaasAccountId'] as String?,
       asaasWalletId: jsonSerialization['asaasWalletId'] as String?,
       asaasApiKey: jsonSerialization['asaasApiKey'] as String?,
+      asaasOnboardingFailureReason:
+          jsonSerialization['asaasOnboardingFailureReason'] as String?,
     );
   }
 
@@ -106,6 +110,8 @@ abstract class Gunsmith implements _i1.SerializableModel {
 
   String? asaasApiKey;
 
+  String? asaasOnboardingFailureReason;
+
   /// Returns a shallow copy of this [Gunsmith]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
@@ -122,6 +128,7 @@ abstract class Gunsmith implements _i1.SerializableModel {
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
+    String? asaasOnboardingFailureReason,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -139,6 +146,8 @@ abstract class Gunsmith implements _i1.SerializableModel {
       if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
       if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
       if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
+      if (asaasOnboardingFailureReason != null)
+        'asaasOnboardingFailureReason': asaasOnboardingFailureReason,
     };
   }
 
@@ -164,6 +173,7 @@ class _GunsmithImpl extends Gunsmith {
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
+    String? asaasOnboardingFailureReason,
   }) : super._(
          id: id,
          name: name,
@@ -177,6 +187,7 @@ class _GunsmithImpl extends Gunsmith {
          asaasAccountId: asaasAccountId,
          asaasWalletId: asaasWalletId,
          asaasApiKey: asaasApiKey,
+         asaasOnboardingFailureReason: asaasOnboardingFailureReason,
        );
 
   /// Returns a shallow copy of this [Gunsmith]
@@ -196,6 +207,7 @@ class _GunsmithImpl extends Gunsmith {
     Object? asaasAccountId = _Undefined,
     Object? asaasWalletId = _Undefined,
     Object? asaasApiKey = _Undefined,
+    Object? asaasOnboardingFailureReason = _Undefined,
   }) {
     return Gunsmith(
       id: id ?? this.id,
@@ -214,6 +226,9 @@ class _GunsmithImpl extends Gunsmith {
           ? asaasWalletId
           : this.asaasWalletId,
       asaasApiKey: asaasApiKey is String? ? asaasApiKey : this.asaasApiKey,
+      asaasOnboardingFailureReason: asaasOnboardingFailureReason is String?
+          ? asaasOnboardingFailureReason
+          : this.asaasOnboardingFailureReason,
     );
   }
 }

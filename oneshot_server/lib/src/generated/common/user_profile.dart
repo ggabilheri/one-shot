@@ -36,6 +36,8 @@ abstract class UserProfile
     this.address,
     this.types,
     required this.status,
+    this.asaasCustomerId,
+    this.asaasOnboardingFailureReason,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory UserProfile({
@@ -53,6 +55,8 @@ abstract class UserProfile
     _i4.Address? address,
     List<_i5.UserType>? types,
     required _i6.UserStatus status,
+    String? asaasCustomerId,
+    String? asaasOnboardingFailureReason,
   }) = _UserProfileImpl;
 
   factory UserProfile.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -91,6 +95,9 @@ abstract class UserProfile
               jsonSerialization['types'],
             ),
       status: _i6.UserStatus.fromJson((jsonSerialization['status'] as String)),
+      asaasCustomerId: jsonSerialization['asaasCustomerId'] as String?,
+      asaasOnboardingFailureReason:
+          jsonSerialization['asaasOnboardingFailureReason'] as String?,
     );
   }
 
@@ -127,6 +134,10 @@ abstract class UserProfile
 
   _i6.UserStatus status;
 
+  String? asaasCustomerId;
+
+  String? asaasOnboardingFailureReason;
+
   @override
   _i1.Table<_i1.UuidValue> get table => t;
 
@@ -148,6 +159,8 @@ abstract class UserProfile
     _i4.Address? address,
     List<_i5.UserType>? types,
     _i6.UserStatus? status,
+    String? asaasCustomerId,
+    String? asaasOnboardingFailureReason,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -167,6 +180,9 @@ abstract class UserProfile
       if (address != null) 'address': address?.toJson(),
       if (types != null) 'types': types?.toJson(valueToJson: (v) => v.toJson()),
       'status': status.toJson(),
+      if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
+      if (asaasOnboardingFailureReason != null)
+        'asaasOnboardingFailureReason': asaasOnboardingFailureReason,
     };
   }
 
@@ -188,6 +204,9 @@ abstract class UserProfile
       if (address != null) 'address': address?.toJsonForProtocol(),
       if (types != null) 'types': types?.toJson(valueToJson: (v) => v.toJson()),
       'status': status.toJson(),
+      if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
+      if (asaasOnboardingFailureReason != null)
+        'asaasOnboardingFailureReason': asaasOnboardingFailureReason,
     };
   }
 
@@ -245,6 +264,8 @@ class _UserProfileImpl extends UserProfile {
     _i4.Address? address,
     List<_i5.UserType>? types,
     required _i6.UserStatus status,
+    String? asaasCustomerId,
+    String? asaasOnboardingFailureReason,
   }) : super._(
          id: id,
          userInfoId: userInfoId,
@@ -260,6 +281,8 @@ class _UserProfileImpl extends UserProfile {
          address: address,
          types: types,
          status: status,
+         asaasCustomerId: asaasCustomerId,
+         asaasOnboardingFailureReason: asaasOnboardingFailureReason,
        );
 
   /// Returns a shallow copy of this [UserProfile]
@@ -281,6 +304,8 @@ class _UserProfileImpl extends UserProfile {
     Object? address = _Undefined,
     Object? types = _Undefined,
     _i6.UserStatus? status,
+    Object? asaasCustomerId = _Undefined,
+    Object? asaasOnboardingFailureReason = _Undefined,
   }) {
     return UserProfile(
       id: id ?? this.id,
@@ -301,6 +326,12 @@ class _UserProfileImpl extends UserProfile {
           ? types
           : this.types?.map((e0) => e0).toList(),
       status: status ?? this.status,
+      asaasCustomerId: asaasCustomerId is String?
+          ? asaasCustomerId
+          : this.asaasCustomerId,
+      asaasOnboardingFailureReason: asaasOnboardingFailureReason is String?
+          ? asaasOnboardingFailureReason
+          : this.asaasOnboardingFailureReason,
     );
   }
 }
@@ -370,6 +401,18 @@ class UserProfileUpdateTable extends _i1.UpdateTable<UserProfileTable> {
     table.status,
     value,
   );
+
+  _i1.ColumnValue<String, String> asaasCustomerId(String? value) =>
+      _i1.ColumnValue(
+        table.asaasCustomerId,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> asaasOnboardingFailureReason(String? value) =>
+      _i1.ColumnValue(
+        table.asaasOnboardingFailureReason,
+        value,
+      );
 }
 
 class UserProfileTable extends _i1.Table<_i1.UuidValue> {
@@ -421,6 +464,14 @@ class UserProfileTable extends _i1.Table<_i1.UuidValue> {
       this,
       _i1.EnumSerialization.byName,
     );
+    asaasCustomerId = _i1.ColumnString(
+      'asaasCustomerId',
+      this,
+    );
+    asaasOnboardingFailureReason = _i1.ColumnString(
+      'asaasOnboardingFailureReason',
+      this,
+    );
   }
 
   late final UserProfileUpdateTable updateTable;
@@ -450,6 +501,10 @@ class UserProfileTable extends _i1.Table<_i1.UuidValue> {
   late final _i1.ColumnSerializable<List<_i5.UserType>> types;
 
   late final _i1.ColumnEnum<_i6.UserStatus> status;
+
+  late final _i1.ColumnString asaasCustomerId;
+
+  late final _i1.ColumnString asaasOnboardingFailureReason;
 
   _i2.UserInfoTable get userInfo {
     if (_userInfo != null) return _userInfo!;
@@ -491,6 +546,8 @@ class UserProfileTable extends _i1.Table<_i1.UuidValue> {
     addressId,
     types,
     status,
+    asaasCustomerId,
+    asaasOnboardingFailureReason,
   ];
 
   @override

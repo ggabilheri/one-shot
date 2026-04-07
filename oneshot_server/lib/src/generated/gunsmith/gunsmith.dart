@@ -31,6 +31,7 @@ abstract class Gunsmith
     this.asaasAccountId,
     this.asaasWalletId,
     this.asaasApiKey,
+    this.asaasOnboardingFailureReason,
   }) : id = id ?? const _i1.Uuid().v4obj(),
        active = active ?? true,
        incomeValue = incomeValue ?? 1000.0;
@@ -48,6 +49,7 @@ abstract class Gunsmith
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
+    String? asaasOnboardingFailureReason,
   }) = _GunsmithImpl;
 
   factory Gunsmith.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -80,6 +82,8 @@ abstract class Gunsmith
       asaasAccountId: jsonSerialization['asaasAccountId'] as String?,
       asaasWalletId: jsonSerialization['asaasWalletId'] as String?,
       asaasApiKey: jsonSerialization['asaasApiKey'] as String?,
+      asaasOnboardingFailureReason:
+          jsonSerialization['asaasOnboardingFailureReason'] as String?,
     );
   }
 
@@ -112,6 +116,8 @@ abstract class Gunsmith
 
   String? asaasApiKey;
 
+  String? asaasOnboardingFailureReason;
+
   @override
   _i1.Table<_i1.UuidValue> get table => t;
 
@@ -131,6 +137,7 @@ abstract class Gunsmith
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
+    String? asaasOnboardingFailureReason,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -148,6 +155,8 @@ abstract class Gunsmith
       if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
       if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
       if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
+      if (asaasOnboardingFailureReason != null)
+        'asaasOnboardingFailureReason': asaasOnboardingFailureReason,
     };
   }
 
@@ -167,6 +176,8 @@ abstract class Gunsmith
       if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
       if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
       if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
+      if (asaasOnboardingFailureReason != null)
+        'asaasOnboardingFailureReason': asaasOnboardingFailureReason,
     };
   }
 
@@ -222,6 +233,7 @@ class _GunsmithImpl extends Gunsmith {
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
+    String? asaasOnboardingFailureReason,
   }) : super._(
          id: id,
          name: name,
@@ -235,6 +247,7 @@ class _GunsmithImpl extends Gunsmith {
          asaasAccountId: asaasAccountId,
          asaasWalletId: asaasWalletId,
          asaasApiKey: asaasApiKey,
+         asaasOnboardingFailureReason: asaasOnboardingFailureReason,
        );
 
   /// Returns a shallow copy of this [Gunsmith]
@@ -254,6 +267,7 @@ class _GunsmithImpl extends Gunsmith {
     Object? asaasAccountId = _Undefined,
     Object? asaasWalletId = _Undefined,
     Object? asaasApiKey = _Undefined,
+    Object? asaasOnboardingFailureReason = _Undefined,
   }) {
     return Gunsmith(
       id: id ?? this.id,
@@ -272,6 +286,9 @@ class _GunsmithImpl extends Gunsmith {
           ? asaasWalletId
           : this.asaasWalletId,
       asaasApiKey: asaasApiKey is String? ? asaasApiKey : this.asaasApiKey,
+      asaasOnboardingFailureReason: asaasOnboardingFailureReason is String?
+          ? asaasOnboardingFailureReason
+          : this.asaasOnboardingFailureReason,
     );
   }
 }
@@ -328,6 +345,12 @@ class GunsmithUpdateTable extends _i1.UpdateTable<GunsmithTable> {
     table.asaasApiKey,
     value,
   );
+
+  _i1.ColumnValue<String, String> asaasOnboardingFailureReason(String? value) =>
+      _i1.ColumnValue(
+        table.asaasOnboardingFailureReason,
+        value,
+      );
 }
 
 class GunsmithTable extends _i1.Table<_i1.UuidValue> {
@@ -371,6 +394,10 @@ class GunsmithTable extends _i1.Table<_i1.UuidValue> {
       'asaasApiKey',
       this,
     );
+    asaasOnboardingFailureReason = _i1.ColumnString(
+      'asaasOnboardingFailureReason',
+      this,
+    );
   }
 
   late final GunsmithUpdateTable updateTable;
@@ -396,6 +423,8 @@ class GunsmithTable extends _i1.Table<_i1.UuidValue> {
   late final _i1.ColumnString asaasWalletId;
 
   late final _i1.ColumnString asaasApiKey;
+
+  late final _i1.ColumnString asaasOnboardingFailureReason;
 
   _i2.AddressTable get address {
     if (_address != null) return _address!;
@@ -435,6 +464,7 @@ class GunsmithTable extends _i1.Table<_i1.UuidValue> {
     asaasAccountId,
     asaasWalletId,
     asaasApiKey,
+    asaasOnboardingFailureReason,
   ];
 
   @override

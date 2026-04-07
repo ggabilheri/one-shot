@@ -34,21 +34,34 @@ class GunsmithEndpoint extends Endpoint {
         ownerProfile,
       );
 
-      // 5. Persiste os IDs retornados quando sucesso
+      // 5. Persiste os IDs retornados ou o motivo da falha
       if (asaasResponse != null) {
         createdGunsmith = createdGunsmith.copyWith(
           asaasAccountId: asaasResponse.id,
           asaasWalletId: asaasResponse.walletId,
           asaasApiKey: asaasResponse.apiKey,
+          asaasOnboardingFailureReason: null,
         );
-        createdGunsmith =
-            await sl.gunsmithRepository.updateGunsmith(session, createdGunsmith);
+      } else {
+        createdGunsmith = createdGunsmith.copyWith(
+          asaasOnboardingFailureReason:
+              'Dados insuficientes para criar subconta (email, endereço ou telefone ausente).',
+        );
       }
+      createdGunsmith =
+          await sl.gunsmithRepository.updateGunsmith(session, createdGunsmith);
     } catch (e) {
       session.log(
         'GunsmithEndpoint.createGunsmith: erro não tratado no onboarding Asaas: $e',
         level: LogLevel.error,
       );
+      try {
+        createdGunsmith = createdGunsmith.copyWith(
+          asaasOnboardingFailureReason: e.toString(),
+        );
+        createdGunsmith =
+            await sl.gunsmithRepository.updateGunsmith(session, createdGunsmith);
+      } catch (_) {}
     }
 
     return createdGunsmith;

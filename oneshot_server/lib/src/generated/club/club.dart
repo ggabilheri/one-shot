@@ -33,6 +33,7 @@ abstract class Club
     this.asaasAccountId,
     this.asaasWalletId,
     this.asaasApiKey,
+    this.asaasOnboardingFailureReason,
   }) : id = id ?? const _i1.Uuid().v4obj(),
        active = active ?? true,
        incomeValue = incomeValue ?? 1000.0;
@@ -52,6 +53,7 @@ abstract class Club
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
+    String? asaasOnboardingFailureReason,
   }) = _ClubImpl;
 
   factory Club.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -86,6 +88,8 @@ abstract class Club
       asaasAccountId: jsonSerialization['asaasAccountId'] as String?,
       asaasWalletId: jsonSerialization['asaasWalletId'] as String?,
       asaasApiKey: jsonSerialization['asaasApiKey'] as String?,
+      asaasOnboardingFailureReason:
+          jsonSerialization['asaasOnboardingFailureReason'] as String?,
     );
   }
 
@@ -122,6 +126,8 @@ abstract class Club
 
   String? asaasApiKey;
 
+  String? asaasOnboardingFailureReason;
+
   @override
   _i1.Table<_i1.UuidValue> get table => t;
 
@@ -143,6 +149,7 @@ abstract class Club
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
+    String? asaasOnboardingFailureReason,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -162,6 +169,8 @@ abstract class Club
       if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
       if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
       if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
+      if (asaasOnboardingFailureReason != null)
+        'asaasOnboardingFailureReason': asaasOnboardingFailureReason,
     };
   }
 
@@ -183,6 +192,8 @@ abstract class Club
       if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
       if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
       if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
+      if (asaasOnboardingFailureReason != null)
+        'asaasOnboardingFailureReason': asaasOnboardingFailureReason,
     };
   }
 
@@ -240,6 +251,7 @@ class _ClubImpl extends Club {
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
+    String? asaasOnboardingFailureReason,
   }) : super._(
          id: id,
          name: name,
@@ -255,6 +267,7 @@ class _ClubImpl extends Club {
          asaasAccountId: asaasAccountId,
          asaasWalletId: asaasWalletId,
          asaasApiKey: asaasApiKey,
+         asaasOnboardingFailureReason: asaasOnboardingFailureReason,
        );
 
   /// Returns a shallow copy of this [Club]
@@ -276,6 +289,7 @@ class _ClubImpl extends Club {
     Object? asaasAccountId = _Undefined,
     Object? asaasWalletId = _Undefined,
     Object? asaasApiKey = _Undefined,
+    Object? asaasOnboardingFailureReason = _Undefined,
   }) {
     return Club(
       id: id ?? this.id,
@@ -296,6 +310,9 @@ class _ClubImpl extends Club {
           ? asaasWalletId
           : this.asaasWalletId,
       asaasApiKey: asaasApiKey is String? ? asaasApiKey : this.asaasApiKey,
+      asaasOnboardingFailureReason: asaasOnboardingFailureReason is String?
+          ? asaasOnboardingFailureReason
+          : this.asaasOnboardingFailureReason,
     );
   }
 }
@@ -362,6 +379,12 @@ class ClubUpdateTable extends _i1.UpdateTable<ClubTable> {
     table.asaasApiKey,
     value,
   );
+
+  _i1.ColumnValue<String, String> asaasOnboardingFailureReason(String? value) =>
+      _i1.ColumnValue(
+        table.asaasOnboardingFailureReason,
+        value,
+      );
 }
 
 class ClubTable extends _i1.Table<_i1.UuidValue> {
@@ -413,6 +436,10 @@ class ClubTable extends _i1.Table<_i1.UuidValue> {
       'asaasApiKey',
       this,
     );
+    asaasOnboardingFailureReason = _i1.ColumnString(
+      'asaasOnboardingFailureReason',
+      this,
+    );
   }
 
   late final ClubUpdateTable updateTable;
@@ -442,6 +469,8 @@ class ClubTable extends _i1.Table<_i1.UuidValue> {
   late final _i1.ColumnString asaasWalletId;
 
   late final _i1.ColumnString asaasApiKey;
+
+  late final _i1.ColumnString asaasOnboardingFailureReason;
 
   _i2.AddressTable get address {
     if (_address != null) return _address!;
@@ -483,6 +512,7 @@ class ClubTable extends _i1.Table<_i1.UuidValue> {
     asaasAccountId,
     asaasWalletId,
     asaasApiKey,
+    asaasOnboardingFailureReason,
   ];
 
   @override

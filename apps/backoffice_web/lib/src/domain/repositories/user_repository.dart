@@ -18,8 +18,10 @@ class UserRepository implements IUserRepository {
   Future<List<UserProfile>> listUsers() async {
     try {
       return await client.user.list();
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao listar os usuários: \$e');
+      throw Exception('Falha ao listar os usuários.');
     }
   }
 
@@ -27,8 +29,10 @@ class UserRepository implements IUserRepository {
   Future<UserProfile> createUser(UserProfile user) async {
     try {
       return await client.user.create(user);
+    } on AppException {
+      rethrow; // Exibe mensagem real (ex: "Já existe um cadastro com este CPF.")
     } catch (e) {
-      throw Exception('Falha ao registrar novo usuário: \$e');
+      throw Exception('Falha ao criar o usuário.');
     }
   }
 
@@ -36,8 +40,10 @@ class UserRepository implements IUserRepository {
   Future<UserProfile> updateUser(UserProfile user) async {
     try {
       return await client.user.update(user);
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao atualizar o usuário: \$e');
+      throw Exception('Falha ao atualizar o usuário.');
     }
   }
 
@@ -45,8 +51,10 @@ class UserRepository implements IUserRepository {
   Future<bool> deleteUser(String userId) async {
     try {
       return await client.user.delete(UuidValue.fromString(userId));
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao deletar o usuário: \$e');
+      throw Exception('Falha ao remover o usuário.');
     }
   }
 
@@ -55,7 +63,7 @@ class UserRepository implements IUserRepository {
     try {
       return await client.viaCepGateway.getAddressByCep(cep);
     } catch (e) {
-      return null;
+      return null; // Falha de CEP não é crítica
     }
   }
 
@@ -63,8 +71,10 @@ class UserRepository implements IUserRepository {
   Future<List<SecurityRole>> getRoles(String userId) async {
     try {
       return await client.user.getRoles(UuidValue.fromString(userId));
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao obter papéis do usuário: \$e');
+      throw Exception('Falha ao obter papéis do usuário.');
     }
   }
 
@@ -75,8 +85,10 @@ class UserRepository implements IUserRepository {
         UuidValue.fromString(userId),
         roleIds.map((id) => UuidValue.fromString(id)).toList(),
       );
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao atualizar papéis do usuário: \$e');
+      throw Exception('Falha ao atualizar papéis do usuário.');
     }
   }
 }

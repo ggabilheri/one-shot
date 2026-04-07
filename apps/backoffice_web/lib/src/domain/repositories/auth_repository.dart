@@ -30,11 +30,11 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<UserInfo?> login(String email, String password) async {
     try {
-      final result = await _emailAuth.signIn(email, password);
-      // Se deu certo, ele guarda no sessionManager internamente, mas precisamos retornar
-      return result;
+      return await _emailAuth.signIn(email, password);
+    } on AppException {
+      rethrow; // Propaga a mensagem do servidor ao ViewModel
     } catch (e) {
-      throw Exception('Falha ao autenticar.');
+      throw Exception('Falha ao autenticar. Verifique suas credenciais.');
     }
   }
 
@@ -46,19 +46,21 @@ class AuthRepository implements IAuthRepository {
   ) async {
     try {
       return await _emailAuth.createAccountRequest(userName, email, password);
+    } on AppException {
+      rethrow; // Propaga a mensagem do servidor ao ViewModel
     } catch (e) {
-      throw Exception('Falha na requisição de criação de conta: \$e');
+      throw Exception('Falha ao criar conta. Tente novamente.');
     }
   }
 
   @override
   Future<UserInfo?> validateAccount(String email, String validationCode) async {
     try {
-      final userInfo = await _emailAuth.validateAccount(email, validationCode);
-      // Aqui, idealmente interagiríamos com client.user.create se a regra exigisse.
-      return userInfo;
+      return await _emailAuth.validateAccount(email, validationCode);
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha na validação da conta: \$e');
+      throw Exception('Falha na validação do código. Tente novamente.');
     }
   }
 
@@ -66,8 +68,10 @@ class AuthRepository implements IAuthRepository {
   Future<UserProfile?> getOwner(UuidValue id) async {
     try {
       return await client.user.getById(id);
+    } on AppException {
+      rethrow;
     } catch (e) {
-      throw Exception('Falha ao buscar proprietário');
+      throw Exception('Falha ao buscar proprietário.');
     }
   }
 }

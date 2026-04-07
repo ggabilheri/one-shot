@@ -2,7 +2,6 @@ import 'package:oneshot_server/src/core/injections/injections.dart';
 import 'package:oneshot_server/src/gateway/asaas/services/asaas_onboarding_service.dart';
 import 'package:oneshot_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
-import 'package:serverpod_auth_server/serverpod_auth_server.dart';
 
 class ClubEndpoint extends Endpoint {
   // -- Clubes --
@@ -20,7 +19,8 @@ class ClubEndpoint extends Endpoint {
 
     // 3. Garante que o endereço do clube seja carregado para o onboarding
     if (createdClub.addressId != null && createdClub.address == null) {
-      final fullClub = await sl.clubRepository.findById(session, createdClub.id);
+      final fullClub =
+          await sl.clubRepository.findById(session, createdClub.id);
       createdClub = fullClub ?? createdClub;
     }
 
@@ -33,20 +33,32 @@ class ClubEndpoint extends Endpoint {
         ownerProfile,
       );
 
-      // 5. Se a subconta foi criada, persiste os IDs retornados
+      // 5. Persiste os IDs retornados ou o motivo da falha
       if (asaasResponse != null) {
         createdClub = createdClub.copyWith(
           asaasAccountId: asaasResponse.id,
           asaasWalletId: asaasResponse.walletId,
           asaasApiKey: asaasResponse.apiKey,
+          asaasOnboardingFailureReason: null,
         );
-        createdClub = await sl.clubRepository.update(session, createdClub);
+      } else {
+        createdClub = createdClub.copyWith(
+          asaasOnboardingFailureReason:
+              'Dados insuficientes para criar subconta (email, endereço ou telefone ausente).',
+        );
       }
+      createdClub = await sl.clubRepository.update(session, createdClub);
     } catch (e) {
       session.log(
         'ClubEndpoint.createClub: erro não tratado no onboarding Asaas: $e',
         level: LogLevel.error,
       );
+      try {
+        createdClub = createdClub.copyWith(
+          asaasOnboardingFailureReason: e.toString(),
+        );
+        createdClub = await sl.clubRepository.update(session, createdClub);
+      } catch (_) {}
     }
 
     return createdClub;

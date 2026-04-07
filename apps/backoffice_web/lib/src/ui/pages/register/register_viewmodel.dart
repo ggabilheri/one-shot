@@ -1,5 +1,6 @@
 import 'package:backoffice_web/src/core/viewmodel.dart';
 import 'package:backoffice_web/src/domain/repositories/auth_repository.dart';
+import 'package:oneshot_client/oneshot_client.dart';
 
 abstract class IRegisterPresenter {
   Future<String?> showValidationDialog();
@@ -40,30 +41,41 @@ class RegisterViewModel extends Viewmodel implements IRegisterViewModel {
     setLoading(true);
     setError(null);
     try {
-      final success = await _authRepository.createAccountRequest(name, email, password);
-      
+      final success = await _authRepository.createAccountRequest(
+        name,
+        email,
+        password,
+      );
+
       if (success) {
-         setLoading(false); // Removemos o loading de background pq vamos exibir Modal
-         if (_presenter != null) {
-            final validationCode = await _presenter!.showValidationDialog();
-            
-            if (validationCode != null && validationCode.isNotEmpty) {
-               setLoading(true);
-               final userInfo = await _authRepository.validateAccount(email, validationCode);
-               if (userInfo != null) {
-                  _presenter!.navigateToLogin();
-               } else {
-                  setError('Código inválido ou expirado.');
-               }
+        setLoading(
+          false,
+        ); // Removemos o loading de background pq vamos exibir Modal
+        if (_presenter != null) {
+          final validationCode = await _presenter!.showValidationDialog();
+
+          if (validationCode != null && validationCode.isNotEmpty) {
+            setLoading(true);
+            final userInfo = await _authRepository.validateAccount(
+              email,
+              validationCode,
+            );
+            if (userInfo != null) {
+              _presenter!.navigateToLogin();
             } else {
-               setError('Validação cancelada.');
+              setError('Código inválido ou expirado.');
             }
-         }
+          } else {
+            setError('Validação cancelada.');
+          }
+        }
       } else {
-         setError('Falha ao registrar a conta. O e-mail já existe?');
+        setError('Falha ao registrar a conta. O e-mail já existe?');
       }
+    } on AppException catch (e) {
+      setError(e.message); // Mensagem real do servidor
     } catch (e) {
-      setError('Erro ao realizar cadastro: \$e');
+      setError('Erro ao realizar cadastro. Tente novamente.');
     } finally {
       if (isLoading) {
         setLoading(false);

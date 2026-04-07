@@ -8,15 +8,15 @@
 
 # Configuration for the main API server.
 apiServer:
-  host: promopulse.ddns.net
+  host: 192.168.30.190
   port: 8080
-  publicHost: 1promopulse.ddns.net
+  publicHost: promopulse.ddns.net
   publicPort: 8080
   publicScheme: http
 
 # Configuration for the Insights server.
 insightsServer:
-  host: promopulse.ddns.net
+  host: 192.168.30.190
   port: 8081
   publicHost: promopulse.ddns.net
   publicPort: 8081
@@ -24,7 +24,7 @@ insightsServer:
 
 # Configuration for the web server.
 webServer:
-  host: promopulse.ddns.net
+  host:  192.168.30.190
   port: 8082
   publicHost: promopulse.ddns.net
   publicPort: 8082
@@ -32,7 +32,7 @@ webServer:
 
 # This is the database setup for your server.
 database:
-  host: promopulse.ddns.net
+  host: 192.168.30.190
   port: 8090
   name: oneshot
   user: postgres

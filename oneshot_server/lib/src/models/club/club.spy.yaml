@@ -12,9 +12,10 @@ fields:
   incomeValue: double, default=1000.00
 
   # Campos do gateway Asaas (subconta)
-  asaasAccountId: String?   # ID da subconta no Asaas
-  asaasWalletId: String?    # Wallet ID para split de pagamentos
-  asaasApiKey: String?      # API key da subconta (armazenar com segurança)
+  asaasAccountId: String?              # ID da subconta no Asaas
+  asaasWalletId: String?               # Wallet ID para split de pagamentos
+  asaasApiKey: String?                 # API key da subconta
+  asaasOnboardingFailureReason: String? # Motivo da falha no cadastro Asaas
 
 indexes:
   club_cnpj_idx:
