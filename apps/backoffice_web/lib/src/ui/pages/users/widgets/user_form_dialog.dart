@@ -1,4 +1,6 @@
 import 'package:backoffice_web/src/core/extensions/enum_translations.dart';
+import 'package:backoffice_web/src/ui/pages/users/widgets/user_form_dropdown_field.dart';
+import 'package:backoffice_web/src/ui/pages/users/widgets/user_form_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oneshot_client/oneshot_client.dart';
@@ -337,28 +339,28 @@ class _UserFormDialogState extends State<UserFormDialog> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildInputField(
-                        'NOME COMPLETO',
-                        'Ex: João da Silva',
-                        _nameController,
+                      UserFormInputField(
+                        label: 'NOME COMPLETO',
+                        hint: 'Ex: João da Silva',
+                        controller: _nameController,
                       ),
                       const SizedBox(height: DSTokens.spacingMd),
                       Row(
                         children: [
                           Expanded(
-                            child: _buildInputField(
-                              'CPF',
-                              '000.000.000-00',
-                              _cpfController,
+                            child: UserFormInputField(
+                              label: 'CPF',
+                              hint: '000.000.000-00',
+                              controller: _cpfController,
                               inputFormatters: [_cpfMask],
                             ),
                           ),
                           const SizedBox(width: DSTokens.spacingMd),
                           Expanded(
-                            child: _buildInputField(
-                              'RG',
-                              '00.000.000-0',
-                              _rgController,
+                            child: UserFormInputField(
+                              label: 'RG',
+                              hint: '00.000.000-0',
+                              controller: _rgController,
                             ),
                           ),
                         ],
@@ -367,20 +369,20 @@ class _UserFormDialogState extends State<UserFormDialog> {
                       Row(
                         children: [
                           Expanded(
-                            child: _buildInputField(
-                              'DATA DE NASCIMENTO',
-                              'DD/MM/AAAA',
-                              _birthDateController,
+                            child: UserFormInputField(
+                              label: 'DATA DE NASCIMENTO',
+                              hint: 'DD/MM/AAAA',
+                              controller: _birthDateController,
                               inputFormatters: [_dateMask],
                             ),
                           ),
                           const SizedBox(width: DSTokens.spacingMd),
                           Expanded(
-                            child: _buildDropdownField<Gender>(
-                              'GÊNERO',
-                              Gender.values,
-                              _selectedGender,
-                              (newVal) {
+                            child: UserFormDropdownField<Gender>(
+                              label: 'GÊNERO',
+                              items: Gender.values,
+                              value: _selectedGender,
+                              onChanged: (newVal) {
                                 if (newVal != null) {
                                   setState(() {
                                     _selectedGender = newVal;
@@ -396,19 +398,19 @@ class _UserFormDialogState extends State<UserFormDialog> {
                       Row(
                         children: [
                           Expanded(
-                            child: _buildInputField(
-                              'TELEFONE',
-                              '(00) 00000-0000',
-                              _phoneController,
+                            child: UserFormInputField(
+                              label: 'TELEFONE',
+                              hint: '(00) 00000-0000',
+                              controller: _phoneController,
                               inputFormatters: [_phoneMask],
                             ),
                           ),
                           const SizedBox(width: DSTokens.spacingMd),
                           Expanded(
-                            child: _buildInputField(
-                              'EMAIL',
-                              'usuario@email.com',
-                              _emailController,
+                            child: UserFormInputField(
+                              label: 'EMAIL',
+                              hint: 'usuario@email.com',
+                              controller: _emailController,
                             ),
                           ),
                         ],
@@ -419,18 +421,18 @@ class _UserFormDialogState extends State<UserFormDialog> {
                         children: [
                           Expanded(
                             flex: 1,
-                            child: _buildDropdownField<UserStatus>(
-                              'STATUS',
-                              UserStatus.values,
-                              _selectedStatus,
-                              (newVal) {
+                            child: UserFormDropdownField<UserStatus>(
+                              label: 'STATUS',
+                              items: UserStatus.values,
+                              value: _selectedStatus,
+                              onChanged: (newVal) {
                                 if (newVal != null) {
                                   setState(() {
                                     _selectedStatus = newVal;
                                   });
                                 }
                               },
-                              labelBuilder: (s) => s.name.toUpperCase(), // UserStatus mapping if needed
+                              labelBuilder: (s) => s.name.toUpperCase(),
                             ),
                           ),
                           const SizedBox(width: DSTokens.spacingMd),
@@ -535,10 +537,10 @@ class _UserFormDialogState extends State<UserFormDialog> {
                         children: [
                           Expanded(
                             flex: 3,
-                            child: _buildInputField(
-                              'CEP',
-                              '00000-000',
-                              _zipCodeController,
+                            child: UserFormInputField(
+                              label: 'CEP',
+                              hint: '00000-000',
+                              controller: _zipCodeController,
                               inputFormatters: [_zipCodeMask],
                               focusNode: _zipCodeFocusNode,
                             ),
@@ -546,10 +548,10 @@ class _UserFormDialogState extends State<UserFormDialog> {
                           const SizedBox(width: DSTokens.spacingMd),
                           Expanded(
                             flex: 7,
-                            child: _buildInputField(
-                              'ENDEREÇO (RUA/AVENIDA)',
-                              'Logradouro',
-                              _streetController,
+                            child: UserFormInputField(
+                              label: 'ENDEREÇO (RUA/AVENIDA)',
+                              hint: 'Logradouro',
+                              controller: _streetController,
                             ),
                           ),
                         ],
@@ -559,28 +561,28 @@ class _UserFormDialogState extends State<UserFormDialog> {
                         children: [
                           Expanded(
                             flex: 3,
-                            child: _buildInputField(
-                              'NÚMERO',
-                              'Nr',
-                              _numberController,
+                            child: UserFormInputField(
+                              label: 'NÚMERO',
+                              hint: 'Nr',
+                              controller: _numberController,
                             ),
                           ),
                           const SizedBox(width: DSTokens.spacingMd),
                           Expanded(
                             flex: 3,
-                            child: _buildInputField(
-                              'COMPLEMENTO',
-                              'Compl.',
-                              _complementController,
+                            child: UserFormInputField(
+                              label: 'COMPLEMENTO',
+                              hint: 'Compl.',
+                              controller: _complementController,
                             ),
                           ),
                           const SizedBox(width: DSTokens.spacingMd),
                           Expanded(
                             flex: 4,
-                            child: _buildInputField(
-                              'BAIRRO',
-                              'Bairro',
-                              _neighborhoodController,
+                            child: UserFormInputField(
+                              label: 'BAIRRO',
+                              hint: 'Bairro',
+                              controller: _neighborhoodController,
                             ),
                           ),
                         ],
@@ -589,18 +591,18 @@ class _UserFormDialogState extends State<UserFormDialog> {
                       Row(
                         children: [
                           Expanded(
-                            child: _buildInputField(
-                              'CIDADE',
-                              'Nome da Cidade',
-                              _cityController,
+                            child: UserFormInputField(
+                              label: 'CIDADE',
+                              hint: 'Nome da Cidade',
+                              controller: _cityController,
                             ),
                           ),
                           const SizedBox(width: DSTokens.spacingMd),
                           Expanded(
-                            child: _buildInputField(
-                              'ESTADO (UF)',
-                              'Ex: SP',
-                              _stateController,
+                            child: UserFormInputField(
+                              label: 'ESTADO (UF)',
+                              hint: 'Ex: SP',
+                              controller: _stateController,
                             ),
                           ),
                         ],
@@ -672,81 +674,6 @@ class _UserFormDialogState extends State<UserFormDialog> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildInputField(
-    String label,
-    String hint,
-    TextEditingController controller, {
-    List<TextInputFormatter>? inputFormatters,
-    FocusNode? focusNode,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: DSTokens.label),
-        const SizedBox(height: 8),
-        Container(
-          height: 48,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          decoration: BoxDecoration(
-            color: DSTokens.background,
-            border: Border.all(color: DSTokens.surfaceContainerHigh),
-          ),
-          child: TextField(
-            controller: controller,
-            focusNode: focusNode,
-            inputFormatters: inputFormatters,
-            style: DSTokens.body.copyWith(color: DSTokens.highlight),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: hint,
-              hintStyle: DSTokens.body.copyWith(color: DSTokens.outline),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildDropdownField<T>(
-    String label,
-    List<T> items,
-    T value,
-    ValueChanged<T?> onChanged, {
-    required String Function(T) labelBuilder,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: DSTokens.label),
-        const SizedBox(height: 8),
-        Container(
-          height: 48,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          decoration: BoxDecoration(
-            color: DSTokens.background,
-            border: Border.all(color: DSTokens.surfaceContainerHigh),
-          ),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton<T>(
-              value: value,
-              isExpanded: true,
-              icon: const Icon(Icons.arrow_drop_down, color: DSTokens.outline),
-              dropdownColor: DSTokens.background,
-              style: DSTokens.body.copyWith(color: DSTokens.highlight),
-              onChanged: onChanged,
-              items: items.map((T item) {
-                return DropdownMenuItem<T>(
-                  value: item,
-                  child: Text(labelBuilder(item)),
-                );
-              }).toList(),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

@@ -5,10 +5,7 @@ import 'package:backoffice_web/src/ui/widgets/brutalist_card.dart';
 class BankAccountsAddButton extends StatelessWidget {
   final VoidCallback onTap;
 
-  const BankAccountsAddButton({
-    super.key,
-    required this.onTap,
-  });
+  const BankAccountsAddButton({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +18,12 @@ class BankAccountsAddButton extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           child: Row(
             children: [
-              Icon(Icons.add, color: Colors.white),
+              Icon(Icons.add, color: DSTokens.background),
               SizedBox(width: 8),
               Text(
                 'NOVA CONTA',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: DSTokens.background,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.2,
                 ),
