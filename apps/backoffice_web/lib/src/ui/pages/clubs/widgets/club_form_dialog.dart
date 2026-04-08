@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 import 'package:backoffice_web/src/ui/pages/clubs/clubs_viewmodel.dart';
+import 'package:backoffice_web/src/ui/widgets/dialogs/user_search_dialog.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ClubFormDialog extends StatefulWidget {
@@ -32,6 +33,7 @@ class _ClubFormDialogState extends State<ClubFormDialog> {
   late MaskTextInputFormatter _cnpjMask;
   late MaskTextInputFormatter _phoneMask;
   late MaskTextInputFormatter _zipCodeMask;
+  UserProfile? _selectedOwner;
 
   bool _isSaving = false;
 
@@ -86,6 +88,17 @@ class _ClubFormDialogState extends State<ClubFormDialog> {
 
     _zipCodeFocusNode = FocusNode();
     _zipCodeFocusNode.addListener(_onZipCodeFocusChange);
+
+    if (isEditing && widget.club?.ownerId != null) {
+      _loadOwner();
+    }
+  }
+
+  Future<void> _loadOwner() async {
+    final owner = await widget.vm.getUserById(widget.club!.ownerId.toString());
+    if (mounted) {
+      setState(() => _selectedOwner = owner);
+    }
   }
 
   void _onZipCodeFocusChange() {
@@ -173,7 +186,7 @@ class _ClubFormDialogState extends State<ClubFormDialog> {
         addressId: isEditing
             ? widget.club?.addressId ?? currentAddress.id
             : currentAddress.id,
-        ownerId: widget.club?.ownerId,
+        ownerId: _selectedOwner?.id,
         name: _nameController.text.trim(),
         cnpj: clearCnpj,
         phoneNumber: clearPhone.isNotEmpty ? clearPhone : null,
@@ -287,6 +300,8 @@ class _ClubFormDialogState extends State<ClubFormDialog> {
                       'admin@clube.com',
                       _emailController,
                     ),
+                    const SizedBox(height: DSTokens.spacingMd),
+                    _buildOwnerSelector(),
                     const SizedBox(height: DSTokens.spacingLg),
                     Text(
                       'ENDEREÇO DA ENTIDADE',
@@ -422,6 +437,74 @@ class _ClubFormDialogState extends State<ClubFormDialog> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildOwnerSelector() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('PROPRIETÁRIO / RESPONSÁVEL', style: DSTokens.label),
+        const SizedBox(height: 8),
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: DSTokens.background,
+            border: Border.all(color: DSTokens.surfaceContainerHigh),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _selectedOwner?.name ?? 'NENHUM PROPRIETÁRIO SELECIONADO',
+                      style: DSTokens.body.copyWith(
+                        color: _selectedOwner != null
+                            ? DSTokens.highlight
+                            : DSTokens.outline,
+                        fontWeight: _selectedOwner != null
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                      ),
+                    ),
+                    if (_selectedOwner != null)
+                      Text(
+                        'CPF: ${_selectedOwner?.cpf ?? "N/A"}',
+                        style: DSTokens.label.copyWith(color: DSTokens.outline),
+                      ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 16),
+              ElevatedButton(
+                onPressed: _showUserSearch,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: DSTokens.surfaceContainerHigh,
+                  foregroundColor: DSTokens.highlight,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                  ),
+                ),
+                child: const Text('BUSCAR'),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _showUserSearch() {
+    showDialog(
+      context: context,
+      builder: (context) => UserSearchDialog(
+        onSearch: (query) => widget.vm.searchUsers(query),
+        onSelect: (user) {
+          setState(() => _selectedOwner = user);
+        },
       ),
     );
   }

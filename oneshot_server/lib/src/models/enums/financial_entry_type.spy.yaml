@@ -1,0 +1,6 @@
+enum: FinancialEntryType
+serialized: byName
+values:
+  - payable
+  - receivable
+  

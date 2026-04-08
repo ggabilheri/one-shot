@@ -33,6 +33,7 @@ abstract class Invoice
     required this.finalAmount,
     required this.currency,
     this.notes,
+    bool? isRecurrent,
     this.asaasInstallmentId,
     this.asaasCustomerId,
     this.clubId,
@@ -43,7 +44,8 @@ abstract class Invoice
     this.user,
     this.draweeId,
     this.drawee,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _i1.Uuid().v4obj(),
+       isRecurrent = isRecurrent ?? false;
 
   factory Invoice({
     _i1.UuidValue? id,
@@ -57,6 +59,7 @@ abstract class Invoice
     required double finalAmount,
     required _i3.Currency currency,
     String? notes,
+    bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
     _i1.UuidValue? clubId,
@@ -90,6 +93,9 @@ abstract class Invoice
         (jsonSerialization['currency'] as String),
       ),
       notes: jsonSerialization['notes'] as String?,
+      isRecurrent: jsonSerialization['isRecurrent'] == null
+          ? null
+          : _i1.BoolJsonExtension.fromJson(jsonSerialization['isRecurrent']),
       asaasInstallmentId: jsonSerialization['asaasInstallmentId'] as String?,
       asaasCustomerId: jsonSerialization['asaasCustomerId'] as String?,
       clubId: jsonSerialization['clubId'] == null
@@ -154,6 +160,8 @@ abstract class Invoice
 
   String? notes;
 
+  bool isRecurrent;
+
   String? asaasInstallmentId;
 
   String? asaasCustomerId;
@@ -192,6 +200,7 @@ abstract class Invoice
     double? finalAmount,
     _i3.Currency? currency,
     String? notes,
+    bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
     _i1.UuidValue? clubId,
@@ -218,6 +227,7 @@ abstract class Invoice
       'finalAmount': finalAmount,
       'currency': currency.toJson(),
       if (notes != null) 'notes': notes,
+      'isRecurrent': isRecurrent,
       if (asaasInstallmentId != null) 'asaasInstallmentId': asaasInstallmentId,
       if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
       if (clubId != null) 'clubId': clubId?.toJson(),
@@ -246,6 +256,7 @@ abstract class Invoice
       'finalAmount': finalAmount,
       'currency': currency.toJson(),
       if (notes != null) 'notes': notes,
+      'isRecurrent': isRecurrent,
       if (asaasInstallmentId != null) 'asaasInstallmentId': asaasInstallmentId,
       if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
       if (clubId != null) 'clubId': clubId?.toJson(),
@@ -314,6 +325,7 @@ class _InvoiceImpl extends Invoice {
     required double finalAmount,
     required _i3.Currency currency,
     String? notes,
+    bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
     _i1.UuidValue? clubId,
@@ -336,6 +348,7 @@ class _InvoiceImpl extends Invoice {
          finalAmount: finalAmount,
          currency: currency,
          notes: notes,
+         isRecurrent: isRecurrent,
          asaasInstallmentId: asaasInstallmentId,
          asaasCustomerId: asaasCustomerId,
          clubId: clubId,
@@ -364,6 +377,7 @@ class _InvoiceImpl extends Invoice {
     double? finalAmount,
     _i3.Currency? currency,
     Object? notes = _Undefined,
+    bool? isRecurrent,
     Object? asaasInstallmentId = _Undefined,
     Object? asaasCustomerId = _Undefined,
     Object? clubId = _Undefined,
@@ -387,6 +401,7 @@ class _InvoiceImpl extends Invoice {
       finalAmount: finalAmount ?? this.finalAmount,
       currency: currency ?? this.currency,
       notes: notes is String? ? notes : this.notes,
+      isRecurrent: isRecurrent ?? this.isRecurrent,
       asaasInstallmentId: asaasInstallmentId is String?
           ? asaasInstallmentId
           : this.asaasInstallmentId,
@@ -462,6 +477,11 @@ class InvoiceUpdateTable extends _i1.UpdateTable<InvoiceTable> {
 
   _i1.ColumnValue<String, String> notes(String? value) => _i1.ColumnValue(
     table.notes,
+    value,
+  );
+
+  _i1.ColumnValue<bool, bool> isRecurrent(bool value) => _i1.ColumnValue(
+    table.isRecurrent,
     value,
   );
 
@@ -549,6 +569,11 @@ class InvoiceTable extends _i1.Table<_i1.UuidValue> {
       'notes',
       this,
     );
+    isRecurrent = _i1.ColumnBool(
+      'isRecurrent',
+      this,
+      hasDefault: true,
+    );
     asaasInstallmentId = _i1.ColumnString(
       'asaasInstallmentId',
       this,
@@ -596,6 +621,8 @@ class InvoiceTable extends _i1.Table<_i1.UuidValue> {
   late final _i1.ColumnEnum<_i3.Currency> currency;
 
   late final _i1.ColumnString notes;
+
+  late final _i1.ColumnBool isRecurrent;
 
   late final _i1.ColumnString asaasInstallmentId;
 
@@ -682,6 +709,7 @@ class InvoiceTable extends _i1.Table<_i1.UuidValue> {
     finalAmount,
     currency,
     notes,
+    isRecurrent,
     asaasInstallmentId,
     asaasCustomerId,
     clubId,

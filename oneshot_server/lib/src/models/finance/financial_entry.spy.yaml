@@ -1,0 +1,22 @@
+class: FinancialEntry
+table: financial_entries
+fields:
+  id: UuidValue, defaultModel=random
+  type: FinancialEntryType            # PAYABLE (A Pagar) ou RECEIVABLE (A Receber)
+  description: String     # Ex: Pagamento de Aluguel do Clube, Mensalidade CAC
+  amount: double          # Valor da conta
+  dueDate: DateTime       # Data de Vencimento
+  paymentDate: DateTime?  # Data efetiva do pagamento/recebimento
+  status: FinancialEntryStatus          # PENDING, PAID, OVERDUE, CANCELED
+  originModule: PlatformApp    # BACKOFFICE, CLUB, GUNSMITH
+  bankAccount: BankAccount?, relation # Conta bancária onde ocorreu a movimentação
+  invoice: Invoice?, relation         # Relacionamento opcional com o faturamento
+indexes:
+  financial_entry_type_idx:
+    fields: type
+  financial_entry_status_idx:
+    fields: status
+  financial_entry_due_date_idx:
+    fields: dueDate
+  financial_entry_origin_idx:
+    fields: originModule

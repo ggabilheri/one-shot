@@ -1,0 +1,9 @@
+enum: FinancialEntryStatus
+serialized: byName
+values:
+  - pending
+  - confirmed
+  - paid
+  - canceled
+  - overdue
+  

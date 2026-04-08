@@ -5,6 +5,7 @@ abstract class IViewmodel extends ChangeNotifier {
   String? get error;
   void setLoading(bool loading);
   void setError(String? error);
+  void clearError();
 }
 
 abstract class Viewmodel extends ChangeNotifier implements IViewmodel {
@@ -26,6 +27,12 @@ abstract class Viewmodel extends ChangeNotifier implements IViewmodel {
   @override
   void setError(String? error) {
     _error = error;
+    notifyListeners();
+  }
+
+  @override
+  void clearError() {
+    _error = null;
     notifyListeners();
   }
 }

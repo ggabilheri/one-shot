@@ -23,7 +23,7 @@ void setupViewModelInjections() {
   getIt.registerFactory<IDashboardViewModel>(() => DashboardViewModel());
   getIt.registerFactory<IRegisterViewModel>(() => RegisterViewModel(getIt<IAuthRepository>()));
   getIt.registerFactory<IDashboardSummaryViewModel>(() => DashboardSummaryViewModel());
-  getIt.registerFactory<IClubsViewmodel>(() => ClubsViewmodel(getIt<IClubRepository>()));
+  getIt.registerFactory<IClubsViewmodel>(() => ClubsViewmodel(getIt<IClubRepository>(), getIt<IUserRepository>()));
   getIt.registerFactory<IUsersViewmodel>(() => UsersViewmodel(getIt<IUserRepository>(), getIt<ISecurityRoleRepository>()));
   getIt.registerFactory<IRolesViewmodel>(() => RolesViewmodel(getIt<ISecurityRoleRepository>()));
   getIt.registerFactory<IProductsViewmodel>(() => ProductsViewmodel(getIt<IProductRepository>(), getIt<IProductGroupRepository>()));

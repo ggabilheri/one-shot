@@ -7,26 +7,26 @@ class GunsmithEndpoint extends Endpoint {
   // --- Gestão de Estabelecimento (Armaria) ---
 
   /// Registra uma nova armaria no sistema e cria uma subconta Asaas para ela.
-  /// A criação da subconta Asaas é não-bloqueante: em caso de falha, o armeiro
-  /// é cadastrado normalmente e [asaasAccountId] permanece nulo.
+  /// A criação é bloqueante: se a subconta Asaas falhar, a armaria não é criada.
   Future<Gunsmith> createGunsmith(Session session, Gunsmith gunsmith) async {
-    // 1. Obtém o perfil do proprietário (usuário autenticado)
-    final ownerProfile = await sl.getOrCreateProfileUseCase.execute(session);
-    gunsmith.ownerId = ownerProfile.id;
+    return await session.db.transaction((transaction) async {
+      // 1. Obtém o perfil do proprietário (usuário autenticado)
+      final ownerProfile = await sl.getOrCreateProfileUseCase.execute(session);
+      gunsmith.ownerId = ownerProfile.id;
 
-    // 2. Persiste o armeiro localmente
-    var createdGunsmith =
-        await sl.gunsmithRepository.createGunsmith(session, gunsmith);
+      // 2. Persiste o armeiro localmente (dentro da transação)
+      var createdGunsmith =
+          await sl.gunsmithRepository.createGunsmith(session, gunsmith);
 
-    // 3. Garante que o endereço seja carregado para o onboarding
-    if (createdGunsmith.addressId != null && createdGunsmith.address == null) {
-      final full = await sl.gunsmithRepository
-          .findGunsmithById(session, createdGunsmith.id);
-      createdGunsmith = full ?? createdGunsmith;
-    }
+      // 3. Garante que o endereço seja carregado para o onboarding
+      if (createdGunsmith.addressId != null && createdGunsmith.address == null) {
+        final full = await sl.gunsmithRepository
+            .findGunsmithById(session, createdGunsmith.id);
+        createdGunsmith = full ?? createdGunsmith;
+      }
 
-    // 4. Cria subconta no Asaas (não-bloqueante)
-    try {
+      // 4. Cria subconta no Asaas (BLOQUEANTE)
+      // Se lançar AppException, a transação sofrerá rollback automaticamente.
       final onboarding = AsaasOnboardingService();
       final asaasResponse = await onboarding.createSubaccountForGunsmith(
         session,
@@ -34,37 +34,16 @@ class GunsmithEndpoint extends Endpoint {
         ownerProfile,
       );
 
-      // 5. Persiste os IDs retornados ou o motivo da falha
-      if (asaasResponse != null) {
-        createdGunsmith = createdGunsmith.copyWith(
-          asaasAccountId: asaasResponse.id,
-          asaasWalletId: asaasResponse.walletId,
-          asaasApiKey: asaasResponse.apiKey,
-          asaasOnboardingFailureReason: null,
-        );
-      } else {
-        createdGunsmith = createdGunsmith.copyWith(
-          asaasOnboardingFailureReason:
-              'Dados insuficientes para criar subconta (email, endereço ou telefone ausente).',
-        );
-      }
-      createdGunsmith =
-          await sl.gunsmithRepository.updateGunsmith(session, createdGunsmith);
-    } catch (e) {
-      session.log(
-        'GunsmithEndpoint.createGunsmith: erro não tratado no onboarding Asaas: $e',
-        level: LogLevel.error,
+      // 5. Atualiza o armeiro com os IDs retornados
+      createdGunsmith = createdGunsmith.copyWith(
+        asaasAccountId: asaasResponse.id,
+        asaasWalletId: asaasResponse.walletId,
+        asaasApiKey: asaasResponse.apiKey,
+        asaasOnboardingFailureReason: null,
       );
-      try {
-        createdGunsmith = createdGunsmith.copyWith(
-          asaasOnboardingFailureReason: e.toString(),
-        );
-        createdGunsmith =
-            await sl.gunsmithRepository.updateGunsmith(session, createdGunsmith);
-      } catch (_) {}
-    }
-
-    return createdGunsmith;
+      
+      return await sl.gunsmithRepository.updateGunsmith(session, createdGunsmith);
+    });
   }
 
   /// Busca os detalhes de uma armaria pelo ID.

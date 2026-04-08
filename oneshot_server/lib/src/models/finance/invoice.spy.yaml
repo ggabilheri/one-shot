@@ -12,7 +12,8 @@ fields:
   finalAmount: double
   currency: Currency
   notes: String?
-
+  isRecurrent: bool, default=false
+  
   # Campos do gateway Asaas
   asaasInstallmentId: String?   # ID do parcelamento no Asaas
   asaasCustomerId: String?      # ID do cliente Asaas associado à fatura

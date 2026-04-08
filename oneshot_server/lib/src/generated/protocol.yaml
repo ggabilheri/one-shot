@@ -9,6 +9,11 @@ ammunition:
   - addAmmunition:
   - adjustQuantity:
   - deleteAmmunition:
+brasilApiGateway:
+  - getCompanyInfo:
+  - getAddressByCep:
+  - getBanks:
+  - getBank:
 club:
   - createClub:
   - listClubs:
@@ -107,6 +112,7 @@ user:
   - update:
   - delete:
   - list:
+  - search:
   - getRoles:
   - updateRoles:
 viaCepGateway:

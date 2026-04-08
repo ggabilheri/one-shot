@@ -88,22 +88,6 @@ class AdminSidebar extends StatelessWidget {
                   onTap: () => onPageChanged(DashboardPageType.productGroups),
                 ),
                 AdminSidebarItem(
-                  icon: Icons.assignment_outlined,
-                  activeIcon: Icons.assignment,
-                  label: 'ORDENS',
-                  isCollapsed: isCollapsed,
-                  isSelected: currentPage == DashboardPageType.serviceOrders,
-                  onTap: () => onPageChanged(DashboardPageType.serviceOrders),
-                ),
-                AdminSidebarItem(
-                  icon: Icons.card_membership_outlined,
-                  activeIcon: Icons.card_membership,
-                  label: 'PLANOS',
-                  isCollapsed: isCollapsed,
-                  isSelected: currentPage == DashboardPageType.plans,
-                  onTap: () => onPageChanged(DashboardPageType.plans),
-                ),
-                AdminSidebarItem(
                   icon: Icons.security_outlined,
                   activeIcon: Icons.security,
                   label: 'REGRAS',

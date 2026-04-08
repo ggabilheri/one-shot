@@ -118,13 +118,6 @@ class _RegisterPageState extends ViewmodelState<RegisterPage, IRegisterViewModel
                 isPasswordVisible: vm.isPasswordVisible,
                 onTogglePassword: vm.togglePasswordVisibility,
               ),
-              const SizedBox(height: 24),
-              if (vm.error != null)
-                Text(
-                  vm.error!,
-                  style: const TextStyle(color: Colors.red, fontSize: 13),
-                  textAlign: TextAlign.center,
-                ),
               const SizedBox(height: 16),
               loadable(
                 builder: (loading) => RegisterButton(

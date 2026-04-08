@@ -6,6 +6,7 @@ abstract class IUserRepository {
   Future<UserProfile> createUser(UserProfile user);
   Future<UserProfile> updateUser(UserProfile user);
   Future<bool> deleteUser(String userId);
+  Future<List<UserProfile>> searchUsers(String query);
   Future<Address?> fetchAddressByCep(String cep);
 
   // RBAC
@@ -55,6 +56,16 @@ class UserRepository implements IUserRepository {
       rethrow;
     } catch (e) {
       throw Exception('Falha ao remover o usuário.');
+    }
+  }
+
+  @override
+  Future<List<UserProfile>> searchUsers(String query) async {
+    try {
+      // @ts-ignore - Este método foi adicionado no endpoint e será gerado pelo serverpod
+      return await (client.user as dynamic).search(query);
+    } catch (e) {
+      throw Exception('Falha ao buscar usuários.');
     }
   }
 

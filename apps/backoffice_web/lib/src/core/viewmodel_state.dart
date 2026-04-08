@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:backoffice_web/src/ui/widgets/ds_snackbar.dart';
 import 'viewmodel.dart';
 
 abstract class ViewmodelState<T extends StatefulWidget, VM extends IViewmodel>
@@ -24,7 +25,17 @@ abstract class ViewmodelState<T extends StatefulWidget, VM extends IViewmodel>
   void onInit() {}
 
   void _listener() {
-    if (mounted) setState(() {});
+    if (!mounted) return;
+
+    if (vm.error != null) {
+      final errorMessage = vm.error!;
+      // Exibe o erro imediatamente
+      DSSnackbar.showError(context, errorMessage);
+      // Limpa no ViewModel para permitir que o mesmo erro seja disparado novamente no futuro
+      vm.clearError();
+    }
+
+    setState(() {});
   }
 
   /// Helper para exibir estado de carregamento.

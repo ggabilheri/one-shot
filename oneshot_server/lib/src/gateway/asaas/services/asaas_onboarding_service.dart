@@ -25,41 +25,34 @@ class AsaasOnboardingService {
   /// Cria subconta Asaas para um [Club] recém-criado.
   ///
   /// O email é sempre buscado do [UserProfile] do proprietário do clube.
-  /// Retorna [AsaasAccountResponse] em caso de sucesso, ou `null` em caso
-  /// de dado faltante ou falha na API.
-  Future<AsaasAccountResponse?> createSubaccountForClub(
+  /// Retorna [AsaasAccountResponse] em caso de sucesso. Lança [AppException] em falha.
+  Future<AsaasAccountResponse> createSubaccountForClub(
     Session session,
     Club club,
     UserProfile ownerProfile,
   ) async {
     final email = ownerProfile.email;
     if (email == null || email.isEmpty) {
-      session.log(
-        'AsaasOnboardingService: email do proprietário não encontrado para o clube '
-        '${club.name} (${club.id}). Subconta Asaas não criada.',
-        level: LogLevel.warning,
-      );
-      return null;
+      final msg = 'AsaasOnboardingService: email do proprietário não encontrado para o clube '
+          '${club.name} (${club.id}). Subconta Asaas não criada.';
+      session.log(msg, level: LogLevel.warning);
+      throw AppException(message: msg);
     }
 
     final address = club.address ?? ownerProfile.address;
     if (address == null) {
-      session.log(
-        'AsaasOnboardingService: endereço não encontrado para o clube '
-        '${club.name} (${club.id}). Subconta Asaas não criada.',
-        level: LogLevel.warning,
-      );
-      return null;
+      final msg = 'AsaasOnboardingService: endereço não encontrado para o clube '
+          '${club.name} (${club.id}). Subconta Asaas não criada.';
+      session.log(msg, level: LogLevel.warning);
+      throw AppException(message: msg);
     }
 
     final phone = club.phoneNumber ?? ownerProfile.phone ?? '';
     if (phone.isEmpty) {
-      session.log(
-        'AsaasOnboardingService: telefone não encontrado para o clube '
-        '${club.name} (${club.id}). Subconta Asaas não criada.',
-        level: LogLevel.warning,
-      );
-      return null;
+      final msg = 'AsaasOnboardingService: telefone não encontrado para o clube '
+          '${club.name} (${club.id}). Subconta Asaas não criada.';
+      session.log(msg, level: LogLevel.warning);
+      throw AppException(message: msg);
     }
 
     try {
@@ -68,7 +61,7 @@ class AsaasOnboardingService {
         email: email,
         cpfCnpj: club.cnpj,
         mobilePhone: phone,
-        incomeValue: club.incomeValue, // gerado pelo serverpod generate
+        incomeValue: club.incomeValue,
         address: address.street,
         addressNumber: address.number,
         province: address.neighborhood,
@@ -86,19 +79,15 @@ class AsaasOnboardingService {
       );
       return response;
     } on AsaasException catch (e) {
-      session.log(
-        'AsaasOnboardingService: falha ao criar subconta para clube '
-        '${club.name}: ${e.message}',
-        level: LogLevel.error,
-      );
-      return null;
+      final msg = 'AsaasOnboardingService: falha ao criar subconta para clube '
+          '${club.name} no Asaas: ${e.message}';
+      session.log(msg, level: LogLevel.error);
+      throw AppException(message: msg);
     } catch (e) {
-      session.log(
-        'AsaasOnboardingService: erro inesperado ao criar subconta para clube '
-        '${club.name}: $e',
-        level: LogLevel.error,
-      );
-      return null;
+      final msg = 'AsaasOnboardingService: erro inesperado ao criar subconta para clube '
+          '${club.name}: $e';
+      session.log(msg, level: LogLevel.error);
+      throw AppException(message: msg);
     }
   }
 
@@ -106,40 +95,34 @@ class AsaasOnboardingService {
   ///
   /// O email é sempre buscado do [UserProfile] do proprietário da armaria.
   /// O CPF/CNPJ vem de [Gunsmith.taxId].
-  /// Retorna [AsaasAccountResponse] em caso de sucesso, ou `null` em caso de falha.
-  Future<AsaasAccountResponse?> createSubaccountForGunsmith(
+  /// Retorna [AsaasAccountResponse] em caso de sucesso. Lança [AppException] em falha.
+  Future<AsaasAccountResponse> createSubaccountForGunsmith(
     Session session,
     Gunsmith gunsmith,
     UserProfile ownerProfile,
   ) async {
     final email = ownerProfile.email;
     if (email == null || email.isEmpty) {
-      session.log(
-        'AsaasOnboardingService: email do proprietário não encontrado para o armeiro '
-        '${gunsmith.name} (${gunsmith.id}). Subconta Asaas não criada.',
-        level: LogLevel.warning,
-      );
-      return null;
+      final msg = 'AsaasOnboardingService: email do proprietário não encontrado para o armeiro '
+          '${gunsmith.name} (${gunsmith.id}). Subconta Asaas não criada.';
+      session.log(msg, level: LogLevel.warning);
+      throw AppException(message: msg);
     }
 
     final address = gunsmith.address ?? ownerProfile.address;
     if (address == null) {
-      session.log(
-        'AsaasOnboardingService: endereço não encontrado para o armeiro '
-        '${gunsmith.name} (${gunsmith.id}). Subconta Asaas não criada.',
-        level: LogLevel.warning,
-      );
-      return null;
+      final msg = 'AsaasOnboardingService: endereço não encontrado para o armeiro '
+          '${gunsmith.name} (${gunsmith.id}). Subconta Asaas não criada.';
+      session.log(msg, level: LogLevel.warning);
+      throw AppException(message: msg);
     }
 
     final phone = ownerProfile.phone ?? '';
     if (phone.isEmpty) {
-      session.log(
-        'AsaasOnboardingService: telefone não encontrado para o armeiro '
-        '${gunsmith.name} (${gunsmith.id}). Subconta Asaas não criada.',
-        level: LogLevel.warning,
-      );
-      return null;
+      final msg = 'AsaasOnboardingService: telefone não encontrado para o armeiro '
+          '${gunsmith.name} (${gunsmith.id}). Subconta Asaas não criada.';
+      session.log(msg, level: LogLevel.warning);
+      throw AppException(message: msg);
     }
 
     // taxId pode ser CPF (11 dígitos) ou CNPJ (14 dígitos)
@@ -156,7 +139,7 @@ class AsaasOnboardingService {
         email: email,
         cpfCnpj: gunsmith.taxId,
         mobilePhone: phone,
-        incomeValue: gunsmith.incomeValue, // gerado pelo serverpod generate
+        incomeValue: gunsmith.incomeValue,
         address: address.street,
         addressNumber: address.number,
         province: address.neighborhood,
@@ -174,19 +157,15 @@ class AsaasOnboardingService {
       );
       return response;
     } on AsaasException catch (e) {
-      session.log(
-        'AsaasOnboardingService: falha ao criar subconta para armeiro '
-        '${gunsmith.name}: ${e.message}',
-        level: LogLevel.error,
-      );
-      return null;
+      final msg = 'AsaasOnboardingService: falha ao criar subconta para armeiro '
+          '${gunsmith.name} no Asaas: ${e.message}';
+      session.log(msg, level: LogLevel.error);
+      throw AppException(message: msg);
     } catch (e) {
-      session.log(
-        'AsaasOnboardingService: erro inesperado ao criar subconta para armeiro '
-        '${gunsmith.name}: $e',
-        level: LogLevel.error,
-      );
-      return null;
+      final msg = 'AsaasOnboardingService: erro inesperado ao criar subconta para armeiro '
+          '${gunsmith.name}: $e';
+      session.log(msg, level: LogLevel.error);
+      throw AppException(message: msg);
     }
   }
 

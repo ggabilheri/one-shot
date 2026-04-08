@@ -18,7 +18,8 @@ class UserEndpoint extends Endpoint {
   Future<UserProfile> create(Session session, UserProfile user) async {
     // Validar CPF único
     if (user.cpf != null && user.cpf!.isNotEmpty) {
-      final existing = await sl.userProfileRepository.findByCpf(session, user.cpf!);
+      final existing =
+          await sl.userProfileRepository.findByCpf(session, user.cpf!);
       if (existing != null) {
         throw AppException(
           message: 'Já existe um cadastro com este CPF.',
@@ -41,6 +42,10 @@ class UserEndpoint extends Endpoint {
       {int? limit, int? offset}) async {
     return await sl.userProfileRepository
         .list(session, limit: limit, offset: offset);
+  }
+
+  Future<List<UserProfile>> search(Session session, String query) async {
+    return await sl.userProfileRepository.search(session, query);
   }
 
   Future<List<SecurityRole>> getRoles(Session session, UuidValue userId) async {

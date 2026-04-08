@@ -1,0 +1,5 @@
+class: Bank
+fields:
+  name: String
+  code: int
+  fullName: String

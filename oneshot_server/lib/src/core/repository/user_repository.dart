@@ -10,20 +10,19 @@ abstract class IUserProfileRepository {
   Future<UserProfile> update(Session session, UserProfile user);
   Future<bool> delete(Session session, UuidValue id);
   Future<List<UserProfile>> list(Session session, {int? limit, int? offset});
-  
+  Future<List<UserProfile>> search(Session session, String query);
+
   // RBAC methods
   Future<List<SecurityRole>> getRolesForUser(Session session, UuidValue userId);
-  Future<void> updateUserRoles(Session session, UuidValue userId, List<UuidValue> roleIds);
+  Future<void> updateUserRoles(
+      Session session, UuidValue userId, List<UuidValue> roleIds);
 }
 
 class UserProfileRepository implements IUserProfileRepository {
   @override
   Future<UserProfile?> findById(Session session, UuidValue id) async {
-    return await UserProfile.db.findById(
-      session, 
-      id, 
-      include: UserProfile.include(address: Address.include())
-    );
+    return await UserProfile.db.findById(session, id,
+        include: UserProfile.include(address: Address.include()));
   }
 
   @override
@@ -81,7 +80,8 @@ class UserProfileRepository implements IUserProfileRepository {
   }
 
   @override
-  Future<List<UserProfile>> list(Session session, {int? limit, int? offset}) async {
+  Future<List<UserProfile>> list(Session session,
+      {int? limit, int? offset}) async {
     return await UserProfile.db.find(
       session,
       limit: limit,
@@ -92,7 +92,25 @@ class UserProfileRepository implements IUserProfileRepository {
   }
 
   @override
-  Future<List<SecurityRole>> getRolesForUser(Session session, UuidValue userId) async {
+  Future<List<UserProfile>> search(Session session, String query) async {
+    final cleanQuery = query.trim();
+    if (cleanQuery.isEmpty) return [];
+
+    return await UserProfile.db.find(
+      session,
+      where: (t) =>
+          t.name.ilike('%$cleanQuery%') |
+          t.cpf.ilike('%$cleanQuery%') |
+          t.email.ilike('%$cleanQuery%') |
+          t.phone.ilike('%$cleanQuery%'),
+      orderBy: (t) => t.name,
+      include: UserProfile.include(address: Address.include()),
+    );
+  }
+
+  @override
+  Future<List<SecurityRole>> getRolesForUser(
+      Session session, UuidValue userId) async {
     final userRoles = await UserRole.db.find(
       session,
       where: (t) => t.userProfileId.equals(userId),
@@ -106,10 +124,7 @@ class UserProfileRepository implements IUserProfileRepository {
 
   @override
   Future<void> updateUserRoles(
-    Session session, 
-    UuidValue userId, 
-    List<UuidValue> roleIds
-  ) async {
+      Session session, UuidValue userId, List<UuidValue> roleIds) async {
     // Transactional update of roles
     await session.db.transaction((transaction) async {
       // 1. Delete current associations

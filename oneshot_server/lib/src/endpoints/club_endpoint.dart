@@ -7,25 +7,25 @@ class ClubEndpoint extends Endpoint {
   // -- Clubes --
 
   /// Cria um novo clube de tiro no sistema e uma subconta Asaas correspondente.
-  /// A criação da subconta Asaas é não-bloqueante: em caso de falha, o clube
-  /// é criado normalmente e [asaasAccountId] permanece nulo.
+  /// A criação é bloqueante: se a subconta Asaas falhar, o clube não é criado.
   Future<Club> createClub(Session session, Club club) async {
-    // 1. Obtém/cria o perfil do proprietário
-    final ownerProfile = await sl.getOrCreateProfileUseCase.execute(session);
-    club.ownerId = ownerProfile.id;
+    return await session.db.transaction((transaction) async {
+      // 1. Obtém/cria o perfil do proprietário
+      final ownerProfile = await sl.getOrCreateProfileUseCase.execute(session);
+      club.ownerId = ownerProfile.id;
 
-    // 2. Persiste o clube localmente
-    var createdClub = await sl.clubRepository.create(session, club);
+      // 2. Persiste o clube localmente (dentro da transação)
+      var createdClub = await sl.clubRepository.create(session, club);
 
-    // 3. Garante que o endereço do clube seja carregado para o onboarding
-    if (createdClub.addressId != null && createdClub.address == null) {
-      final fullClub =
-          await sl.clubRepository.findById(session, createdClub.id);
-      createdClub = fullClub ?? createdClub;
-    }
+      // 3. Garante que o endereço do clube seja carregado para o onboarding
+      if (createdClub.addressId != null && createdClub.address == null) {
+        final fullClub =
+            await sl.clubRepository.findById(session, createdClub.id);
+        createdClub = fullClub ?? createdClub;
+      }
 
-    // 4. Cria subconta no Asaas (não-bloqueante)
-    try {
+      // 4. Cria subconta no Asaas (BLOQUEANTE)
+      // Se lançar AppException, a transação sofrerá rollback automaticamente.
       final onboarding = AsaasOnboardingService();
       final asaasResponse = await onboarding.createSubaccountForClub(
         session,
@@ -33,35 +33,16 @@ class ClubEndpoint extends Endpoint {
         ownerProfile,
       );
 
-      // 5. Persiste os IDs retornados ou o motivo da falha
-      if (asaasResponse != null) {
-        createdClub = createdClub.copyWith(
-          asaasAccountId: asaasResponse.id,
-          asaasWalletId: asaasResponse.walletId,
-          asaasApiKey: asaasResponse.apiKey,
-          asaasOnboardingFailureReason: null,
-        );
-      } else {
-        createdClub = createdClub.copyWith(
-          asaasOnboardingFailureReason:
-              'Dados insuficientes para criar subconta (email, endereço ou telefone ausente).',
-        );
-      }
-      createdClub = await sl.clubRepository.update(session, createdClub);
-    } catch (e) {
-      session.log(
-        'ClubEndpoint.createClub: erro não tratado no onboarding Asaas: $e',
-        level: LogLevel.error,
+      // 5. Atualiza o clube com os IDs retornados
+      createdClub = createdClub.copyWith(
+        asaasAccountId: asaasResponse.id,
+        asaasWalletId: asaasResponse.walletId,
+        asaasApiKey: asaasResponse.apiKey,
+        asaasOnboardingFailureReason: null,
       );
-      try {
-        createdClub = createdClub.copyWith(
-          asaasOnboardingFailureReason: e.toString(),
-        );
-        createdClub = await sl.clubRepository.update(session, createdClub);
-      } catch (_) {}
-    }
-
-    return createdClub;
+      
+      return await sl.clubRepository.update(session, createdClub);
+    });
   }
 
   /// Lista todos os clubes ativos.
