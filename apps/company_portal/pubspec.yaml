@@ -1,5 +1,5 @@
 name: company_portal
-description: "A new Flutter project."
+description: "Portal do Clube."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -34,6 +34,16 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  serverpod_flutter: 3.4.4
+  serverpod_auth_email_flutter: 3.4.4
+  get_it: ^9.2.1
+  qlevar_router: ^1.2.6
+  oneshot_client:
+    path: ../../oneshot_client
+  google_fonts: ^6.2.1
+  flutter_localization: any
+  serverpod_auth_shared_flutter: ^3.4.4
+  mask_text_input_formatter: ^2.9.0
 
 dev_dependencies:
   flutter_test:

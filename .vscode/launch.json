@@ -5,19 +5,25 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "oneshot_server",
+            "name": "server",
             "cwd": "oneshot_server",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "backoffice_web",
+            "name": "Backoffice",
             "cwd": "apps/backoffice_web",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "shooter_app",
+            "name": "Portal Admin",
+            "cwd": "apps/company_portal",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "Shooter app",
             "cwd": "apps/shooter_app",
             "request": "launch",
             "type": "dart"
