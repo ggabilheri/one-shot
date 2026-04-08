@@ -15,7 +15,7 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 enum PlatformApp implements _i1.SerializableModel {
   backoffice_web,
   shooter_mobile,
-  club_manager;
+  company_manager;
 
   static PlatformApp fromJson(String name) {
     switch (name) {
@@ -23,8 +23,8 @@ enum PlatformApp implements _i1.SerializableModel {
         return PlatformApp.backoffice_web;
       case 'shooter_mobile':
         return PlatformApp.shooter_mobile;
-      case 'club_manager':
-        return PlatformApp.club_manager;
+      case 'company_manager':
+        return PlatformApp.company_manager;
       default:
         throw ArgumentError(
           'Value "$name" cannot be converted to "PlatformApp"',

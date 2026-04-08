@@ -5,7 +5,7 @@ import 'package:oneshot_client/oneshot_client.dart';
 extension PlanTypeExt on PlanType {
   String get label {
     final n = name.toUpperCase();
-    if (n == 'CLUB') return 'Clube de Tiro';
+    if (n == 'COMPANY' || n == 'CLUB') return 'Empresa Parceira';
     if (n == 'GUNSMITH') return 'Armeiro';
     if (n == 'CAC') return 'CAC (Atirador/Colecionador/Caça)';
     return n;
@@ -38,7 +38,7 @@ extension PlatformAppExt on PlatformApp {
   String get label {
     final n = name.toUpperCase();
     if (n.contains('BACKOFFICE')) return 'Backoffice';
-    if (n.contains('CLUB')) return 'Gestão de Clube';
+    if (n.contains('COMPANY') || n.contains('CLUB')) return 'Gestão de Empresa';
     if (n.contains('SHOOTER')) return 'Atirador (App)';
     return n;
   }
@@ -48,7 +48,7 @@ extension UserTypeExt on UserType {
   String get label {
     final n = name.toUpperCase();
     if (n == 'GLOBAL_ADMIN' || n == 'GLOBALADMIN') return 'Admin Global';
-    if (n == 'CLUB_ADMIN' || n == 'CLUBADMIN') return 'Admin Clube';
+    if (n == 'COMPANY_ADMIN' || n == 'COMPANYADMIN' || n == 'CLUB_ADMIN' || n == 'CLUBADMIN') return 'Admin Empresa';
     if (n == 'GUNSMITH') return 'Armeiro';
     if (n == 'SHOOTER') return 'Atirador';
     return n;
@@ -71,7 +71,7 @@ extension AppModuleExt on AppModule {
     final n = name.toUpperCase();
     if (n == 'DASHBOARD') return 'Dashboard';
     if (n == 'USERS') return 'Usuários';
-    if (n == 'CLUBS') return 'Clubes';
+    if (n == 'COMPANIES' || n == 'CLUBS' || n == 'COMPANYMANAGEMENT' || n == 'CLUBMANAGEMENT') return 'Empresas';
     if (n == 'ROLES') return 'Perfis e Permissões';
     if (n == 'PRODUCTS') return 'Produtos';
     if (n == 'STOCK') return 'Estoque';

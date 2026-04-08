@@ -1,0 +1,26 @@
+class: Company
+table: companies
+fields:
+  id: UuidValue, defaultModel=random
+  name: String
+  cnpj: String
+  type: CompanyType
+  address: Address?, relation(optional)
+  owner: UserProfile?, relation(optional)
+  phoneNumber: String?
+  email: String?
+  active: bool, default=true
+  incomeValue: double, default=1000.00
+
+  # Campos do gateway Asaas (subconta)
+  asaasAccountId: String?              # ID da subconta no Asaas
+  asaasWalletId: String?               # Wallet ID para split de pagamentos
+  asaasApiKey: String?                 # API key da subconta
+  asaasOnboardingFailureReason: String? # Motivo da falha no cadastro Asaas
+
+indexes:
+  company_cnpj_idx:
+    fields: cnpj
+    unique: true
+  company_owner_id_idx:
+    fields: ownerId

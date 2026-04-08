@@ -3,7 +3,7 @@ import 'package:backoffice_web/src/domain/repositories/financial_entry_repositor
 import 'package:backoffice_web/src/domain/repositories/subscription_plan_repository.dart';
 import 'package:backoffice_web/src/domain/repositories/brasil_api_repository.dart';
 import 'package:get_it/get_it.dart';
-import 'package:backoffice_web/src/domain/repositories/club_repository.dart';
+import 'package:backoffice_web/src/domain/repositories/company_repository.dart';
 import 'package:backoffice_web/src/domain/repositories/auth_repository.dart';
 import 'package:backoffice_web/src/domain/repositories/user_repository.dart';
 import 'package:backoffice_web/src/domain/repositories/security_role_repository.dart';
@@ -13,7 +13,7 @@ import 'package:backoffice_web/src/domain/repositories/product_group_repository.
 void setupRepositoryInjections() {
   final sl = GetIt.instance;
   sl.registerLazySingleton<IAuthRepository>(() => AuthRepository());
-  sl.registerLazySingleton<IClubRepository>(() => ClubRepository());
+  sl.registerLazySingleton<ICompanyRepository>(() => CompanyRepository());
   sl.registerLazySingleton<IUserRepository>(() => UserRepository());
   sl.registerLazySingleton<ISecurityRoleRepository>(() => SecurityRoleRepository());
   sl.registerLazySingleton<IProductRepository>(() => ProductRepository());

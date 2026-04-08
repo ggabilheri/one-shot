@@ -4,10 +4,7 @@ import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 class ProductsOriginBadge extends StatelessWidget {
   final String origin;
 
-  const ProductsOriginBadge({
-    super.key,
-    required this.origin,
-  });
+  const ProductsOriginBadge({super.key, required this.origin});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +12,12 @@ class ProductsOriginBadge extends StatelessWidget {
     String label;
 
     switch (origin) {
-      case 'CLUB':
+      case 'COMPANY':
         bgColor = DSTokens.success;
-        label = 'CLUBE';
+        label = 'EMPRESA';
         break;
       case 'GUNSMITH':
-        bgColor = DSTokens.alert;
+        bgColor = DSTokens.error;
         label = 'ARMARIA';
         break;
       default:

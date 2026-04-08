@@ -15,7 +15,7 @@ import '../endpoints/accessory_endpoint.dart' as _i2;
 import '../endpoints/ammunition_endpoint.dart' as _i3;
 import '../endpoints/bank_account_endpoint.dart' as _i4;
 import '../endpoints/brasil_api_gateway_endpoint.dart' as _i5;
-import '../endpoints/club_endpoint.dart' as _i6;
+import '../endpoints/company_endpoint.dart' as _i6;
 import '../endpoints/document_endpoint.dart' as _i7;
 import '../endpoints/financial_entry_endpoint.dart' as _i8;
 import '../endpoints/firearm_endpoint.dart' as _i9;
@@ -45,7 +45,7 @@ import 'package:oneshot_server/src/generated/common/accessory.dart' as _i31;
 import 'package:oneshot_server/src/generated/shooter/ammunition_stock.dart'
     as _i32;
 import 'package:oneshot_server/src/generated/finance/bank_account.dart' as _i33;
-import 'package:oneshot_server/src/generated/club/club.dart' as _i34;
+import 'package:oneshot_server/src/generated/company/company.dart' as _i34;
 import 'package:oneshot_server/src/generated/common/document.dart' as _i35;
 import 'package:oneshot_server/src/generated/finance/financial_entry.dart'
     as _i36;
@@ -116,10 +116,10 @@ class Endpoints extends _i1.EndpointDispatch {
           'brasilApiGateway',
           null,
         ),
-      'club': _i6.ClubEndpoint()
+      'company': _i6.CompanyEndpoint()
         ..initialize(
           server,
-          'club',
+          'company',
           null,
         ),
       'document': _i7.DocumentEndpoint()
@@ -636,12 +636,18 @@ class Endpoints extends _i1.EndpointDispatch {
                           as _i5.BrasilApiGatewayEndpoint)
                       .getBanks(session),
         ),
-        'getBank': _i1.MethodConnector(
-          name: 'getBank',
+      },
+    );
+    connectors['company'] = _i1.EndpointConnector(
+      name: 'company',
+      endpoint: endpoints['company']!,
+      methodConnectors: {
+        'createCompany': _i1.MethodConnector(
+          name: 'createCompany',
           params: {
-            'code': _i1.ParameterDescription(
-              name: 'code',
-              type: _i1.getType<int>(),
+            'company': _i1.ParameterDescription(
+              name: 'company',
+              type: _i1.getType<_i34.Company>(),
               nullable: false,
             ),
           },
@@ -650,53 +656,27 @@ class Endpoints extends _i1.EndpointDispatch {
                 _i1.Session session,
                 Map<String, dynamic> params,
               ) async =>
-                  (endpoints['brasilApiGateway']
-                          as _i5.BrasilApiGatewayEndpoint)
-                      .getBank(
-                        session,
-                        params['code'],
-                      ),
+                  (endpoints['company'] as _i6.CompanyEndpoint).createCompany(
+                    session,
+                    params['company'],
+                  ),
         ),
-      },
-    );
-    connectors['club'] = _i1.EndpointConnector(
-      name: 'club',
-      endpoint: endpoints['club']!,
-      methodConnectors: {
-        'createClub': _i1.MethodConnector(
-          name: 'createClub',
-          params: {
-            'club': _i1.ParameterDescription(
-              name: 'club',
-              type: _i1.getType<_i34.Club>(),
-              nullable: false,
-            ),
-          },
-          call:
-              (
-                _i1.Session session,
-                Map<String, dynamic> params,
-              ) async => (endpoints['club'] as _i6.ClubEndpoint).createClub(
-                session,
-                params['club'],
-              ),
-        ),
-        'listClubs': _i1.MethodConnector(
-          name: 'listClubs',
+        'listCompanies': _i1.MethodConnector(
+          name: 'listCompanies',
           params: {},
           call:
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async =>
-                  (endpoints['club'] as _i6.ClubEndpoint).listClubs(session),
+              ) async => (endpoints['company'] as _i6.CompanyEndpoint)
+                  .listCompanies(session),
         ),
-        'updateClub': _i1.MethodConnector(
-          name: 'updateClub',
+        'updateCompany': _i1.MethodConnector(
+          name: 'updateCompany',
           params: {
-            'club': _i1.ParameterDescription(
-              name: 'club',
-              type: _i1.getType<_i34.Club>(),
+            'company': _i1.ParameterDescription(
+              name: 'company',
+              type: _i1.getType<_i34.Company>(),
               nullable: false,
             ),
           },
@@ -704,16 +684,17 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['club'] as _i6.ClubEndpoint).updateClub(
-                session,
-                params['club'],
-              ),
+              ) async =>
+                  (endpoints['company'] as _i6.CompanyEndpoint).updateCompany(
+                    session,
+                    params['company'],
+                  ),
         ),
-        'deleteClub': _i1.MethodConnector(
-          name: 'deleteClub',
+        'deleteCompany': _i1.MethodConnector(
+          name: 'deleteCompany',
           params: {
-            'clubId': _i1.ParameterDescription(
-              name: 'clubId',
+            'companyId': _i1.ParameterDescription(
+              name: 'companyId',
               type: _i1.getType<_i1.UuidValue>(),
               nullable: false,
             ),
@@ -722,16 +703,17 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['club'] as _i6.ClubEndpoint).deleteClub(
-                session,
-                params['clubId'],
-              ),
+              ) async =>
+                  (endpoints['company'] as _i6.CompanyEndpoint).deleteCompany(
+                    session,
+                    params['companyId'],
+                  ),
         ),
         'requestMembership': _i1.MethodConnector(
           name: 'requestMembership',
           params: {
-            'clubId': _i1.ParameterDescription(
-              name: 'clubId',
+            'companyId': _i1.ParameterDescription(
+              name: 'companyId',
               type: _i1.getType<_i1.UuidValue>(),
               nullable: false,
             ),
@@ -740,10 +722,10 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async =>
-                  (endpoints['club'] as _i6.ClubEndpoint).requestMembership(
+              ) async => (endpoints['company'] as _i6.CompanyEndpoint)
+                  .requestMembership(
                     session,
-                    params['clubId'],
+                    params['companyId'],
                   ),
         ),
         'getMyMemberships': _i1.MethodConnector(
@@ -753,14 +735,14 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['club'] as _i6.ClubEndpoint)
+              ) async => (endpoints['company'] as _i6.CompanyEndpoint)
                   .getMyMemberships(session),
         ),
         'checkIn': _i1.MethodConnector(
           name: 'checkIn',
           params: {
-            'clubId': _i1.ParameterDescription(
-              name: 'clubId',
+            'companyId': _i1.ParameterDescription(
+              name: 'companyId',
               type: _i1.getType<_i1.UuidValue>(),
               nullable: false,
             ),
@@ -774,9 +756,9 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['club'] as _i6.ClubEndpoint).checkIn(
+              ) async => (endpoints['company'] as _i6.CompanyEndpoint).checkIn(
                 session,
-                params['clubId'],
+                params['companyId'],
                 params['firearmId'],
               ),
         ),
@@ -798,7 +780,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['club'] as _i6.ClubEndpoint).checkOut(
+              ) async => (endpoints['company'] as _i6.CompanyEndpoint).checkOut(
                 session,
                 params['visitId'],
                 params['shotsFired'],
@@ -811,8 +793,8 @@ class Endpoints extends _i1.EndpointDispatch {
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async =>
-                  (endpoints['club'] as _i6.ClubEndpoint).getMyVisits(session),
+              ) async => (endpoints['company'] as _i6.CompanyEndpoint)
+                  .getMyVisits(session),
         ),
       },
     );
@@ -1556,8 +1538,8 @@ class Endpoints extends _i1.EndpointDispatch {
               type: _i1.getType<_i47.InvoiceStatus?>(),
               nullable: true,
             ),
-            'clubId': _i1.ParameterDescription(
-              name: 'clubId',
+            'companyId': _i1.ParameterDescription(
+              name: 'companyId',
               type: _i1.getType<_i1.UuidValue?>(),
               nullable: true,
             ),
@@ -1592,7 +1574,7 @@ class Endpoints extends _i1.EndpointDispatch {
                     originModule: params['originModule'],
                     direction: params['direction'],
                     status: params['status'],
-                    clubId: params['clubId'],
+                    companyId: params['companyId'],
                     gunsmithId: params['gunsmithId'],
                     userId: params['userId'],
                     limit: params['limit'],

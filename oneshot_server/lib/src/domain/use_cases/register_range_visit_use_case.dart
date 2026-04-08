@@ -1,4 +1,4 @@
-import 'package:oneshot_server/src/domain/repositories/i_club_repositories.dart';
+import 'package:oneshot_server/src/domain/repositories/i_company_repositories.dart';
 import 'package:oneshot_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 
@@ -20,12 +20,12 @@ class RegisterRangeVisitUseCase implements IRegisterRangeVisitUseCase {
     // 1. Validar se o usuário já tem uma visita ativa.
     final active = await _rangeVisitRepository.findActiveVisitByUser(session, visit.userId!);
     if (active != null) {
-      throw Exception('Você já possui um check-in ativo neste ou em outro clube.');
+      throw Exception('Você já possui um check-in ativo nesta ou em outra empresa.');
     }
 
     // 2. Opcional: Validar se é filiado (ou visitante permitido).
     // Aqui poderíamos logar se é um visitante ou sócio.
-    final membership = await _membershipRepository.findByUserAndClub(session, visit.userId!, visit.clubId!);
+    final membership = await _membershipRepository.findByUserAndCompany(session, visit.userId!, visit.companyId!);
     if (membership == null) {
        // Logar como visitante temporário? Por enquanto apenas permitimos.
     }

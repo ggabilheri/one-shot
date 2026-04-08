@@ -12,7 +12,7 @@ abstract class IInvoiceRepository {
     String? originModule,
     String? direction,
     InvoiceStatus? status,
-    UuidValue? clubId,
+    UuidValue? companyId,
     UuidValue? gunsmithId,
     UuidValue? userId,
     int? limit,
@@ -32,7 +32,7 @@ class InvoiceRepository implements IInvoiceRepository {
       session,
       id,
       include: Invoice.include(
-        club: Club.include(),
+        company: Company.include(),
         gunsmith: Gunsmith.include(),
         user: UserProfile.include(),
         drawee: UserProfile.include(),
@@ -59,7 +59,7 @@ class InvoiceRepository implements IInvoiceRepository {
     String? originModule,
     String? direction,
     InvoiceStatus? status,
-    UuidValue? clubId,
+    UuidValue? companyId,
     UuidValue? gunsmithId,
     UuidValue? userId,
     int? limit,
@@ -78,8 +78,8 @@ class InvoiceRepository implements IInvoiceRepository {
         if (status != null) {
           where = where & t.status.equals(status);
         }
-        if (clubId != null) {
-          where = where & t.clubId.equals(clubId);
+        if (companyId != null) {
+          where = where & t.companyId.equals(companyId);
         }
         if (gunsmithId != null) {
           where = where & t.gunsmithId.equals(gunsmithId);
@@ -94,7 +94,7 @@ class InvoiceRepository implements IInvoiceRepository {
       orderBy: (t) => t.dueDate,
       orderDescending: true,
       include: Invoice.include(
-        club: Club.include(),
+        company: Company.include(),
         gunsmith: Gunsmith.include(),
         user: UserProfile.include(),
         drawee: UserProfile.include(),

@@ -33,7 +33,7 @@ class FinancialEntryEndpoint extends Endpoint {
 
   /// Lista lançamentos financeiros com filtros dinâmicos.
   ///
-  /// - [originModule]: Filtro **obrigatório**. Isola os dados por módulo (BACKOFFICE, CLUB, GUNSMITH).
+  /// - [originModule]: Filtro **obrigatório**. Isola os dados por módulo (BACKOFFICE, COMPANY, GUNSMITH).
   /// - [type]: Filtro opcional por tipo (`payable` = A Pagar, `receivable` = A Receber).
   /// - [status]: Filtro opcional por status (`pending`, `paid`, `overdue`, etc.).
   /// - [dueDateFrom] e [dueDateTo]: Intervalo opcional de datas de vencimento.

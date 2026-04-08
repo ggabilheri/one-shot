@@ -14,7 +14,7 @@
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../enums/invoice_status.enum.dart' as _i2;
 import '../enums/currency.enum.dart' as _i3;
-import '../club/club.dart' as _i4;
+import '../company/company.dart' as _i4;
 import '../gunsmith/gunsmith.dart' as _i5;
 import '../common/user_profile.dart' as _i6;
 import 'package:oneshot_server/src/generated/protocol.dart' as _i7;
@@ -36,8 +36,8 @@ abstract class Invoice
     bool? isRecurrent,
     this.asaasInstallmentId,
     this.asaasCustomerId,
-    this.clubId,
-    this.club,
+    this.companyId,
+    this.company,
     this.gunsmithId,
     this.gunsmith,
     this.userId,
@@ -62,8 +62,8 @@ abstract class Invoice
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _i1.UuidValue? clubId,
-    _i4.Club? club,
+    _i1.UuidValue? companyId,
+    _i4.Company? company,
     _i1.UuidValue? gunsmithId,
     _i5.Gunsmith? gunsmith,
     _i1.UuidValue? userId,
@@ -98,12 +98,14 @@ abstract class Invoice
           : _i1.BoolJsonExtension.fromJson(jsonSerialization['isRecurrent']),
       asaasInstallmentId: jsonSerialization['asaasInstallmentId'] as String?,
       asaasCustomerId: jsonSerialization['asaasCustomerId'] as String?,
-      clubId: jsonSerialization['clubId'] == null
+      companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['clubId']),
-      club: jsonSerialization['club'] == null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+      company: jsonSerialization['company'] == null
           ? null
-          : _i7.Protocol().deserialize<_i4.Club>(jsonSerialization['club']),
+          : _i7.Protocol().deserialize<_i4.Company>(
+              jsonSerialization['company'],
+            ),
       gunsmithId: jsonSerialization['gunsmithId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(
@@ -166,9 +168,9 @@ abstract class Invoice
 
   String? asaasCustomerId;
 
-  _i1.UuidValue? clubId;
+  _i1.UuidValue? companyId;
 
-  _i4.Club? club;
+  _i4.Company? company;
 
   _i1.UuidValue? gunsmithId;
 
@@ -203,8 +205,8 @@ abstract class Invoice
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _i1.UuidValue? clubId,
-    _i4.Club? club,
+    _i1.UuidValue? companyId,
+    _i4.Company? company,
     _i1.UuidValue? gunsmithId,
     _i5.Gunsmith? gunsmith,
     _i1.UuidValue? userId,
@@ -230,8 +232,8 @@ abstract class Invoice
       'isRecurrent': isRecurrent,
       if (asaasInstallmentId != null) 'asaasInstallmentId': asaasInstallmentId,
       if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
-      if (clubId != null) 'clubId': clubId?.toJson(),
-      if (club != null) 'club': club?.toJson(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJson(),
       if (gunsmithId != null) 'gunsmithId': gunsmithId?.toJson(),
       if (gunsmith != null) 'gunsmith': gunsmith?.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
@@ -259,8 +261,8 @@ abstract class Invoice
       'isRecurrent': isRecurrent,
       if (asaasInstallmentId != null) 'asaasInstallmentId': asaasInstallmentId,
       if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
-      if (clubId != null) 'clubId': clubId?.toJson(),
-      if (club != null) 'club': club?.toJsonForProtocol(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJsonForProtocol(),
       if (gunsmithId != null) 'gunsmithId': gunsmithId?.toJson(),
       if (gunsmith != null) 'gunsmith': gunsmith?.toJsonForProtocol(),
       if (userId != null) 'userId': userId?.toJson(),
@@ -271,13 +273,13 @@ abstract class Invoice
   }
 
   static InvoiceInclude include({
-    _i4.ClubInclude? club,
+    _i4.CompanyInclude? company,
     _i5.GunsmithInclude? gunsmith,
     _i6.UserProfileInclude? user,
     _i6.UserProfileInclude? drawee,
   }) {
     return InvoiceInclude._(
-      club: club,
+      company: company,
       gunsmith: gunsmith,
       user: user,
       drawee: drawee,
@@ -328,8 +330,8 @@ class _InvoiceImpl extends Invoice {
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _i1.UuidValue? clubId,
-    _i4.Club? club,
+    _i1.UuidValue? companyId,
+    _i4.Company? company,
     _i1.UuidValue? gunsmithId,
     _i5.Gunsmith? gunsmith,
     _i1.UuidValue? userId,
@@ -351,8 +353,8 @@ class _InvoiceImpl extends Invoice {
          isRecurrent: isRecurrent,
          asaasInstallmentId: asaasInstallmentId,
          asaasCustomerId: asaasCustomerId,
-         clubId: clubId,
-         club: club,
+         companyId: companyId,
+         company: company,
          gunsmithId: gunsmithId,
          gunsmith: gunsmith,
          userId: userId,
@@ -380,8 +382,8 @@ class _InvoiceImpl extends Invoice {
     bool? isRecurrent,
     Object? asaasInstallmentId = _Undefined,
     Object? asaasCustomerId = _Undefined,
-    Object? clubId = _Undefined,
-    Object? club = _Undefined,
+    Object? companyId = _Undefined,
+    Object? company = _Undefined,
     Object? gunsmithId = _Undefined,
     Object? gunsmith = _Undefined,
     Object? userId = _Undefined,
@@ -408,8 +410,8 @@ class _InvoiceImpl extends Invoice {
       asaasCustomerId: asaasCustomerId is String?
           ? asaasCustomerId
           : this.asaasCustomerId,
-      clubId: clubId is _i1.UuidValue? ? clubId : this.clubId,
-      club: club is _i4.Club? ? club : this.club?.copyWith(),
+      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
+      company: company is _i4.Company? ? company : this.company?.copyWith(),
       gunsmithId: gunsmithId is _i1.UuidValue? ? gunsmithId : this.gunsmithId,
       gunsmith: gunsmith is _i5.Gunsmith?
           ? gunsmith
@@ -497,11 +499,12 @@ class InvoiceUpdateTable extends _i1.UpdateTable<InvoiceTable> {
         value,
       );
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> clubId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.clubId,
-        value,
-      );
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> companyId(
+    _i1.UuidValue? value,
+  ) => _i1.ColumnValue(
+    table.companyId,
+    value,
+  );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> gunsmithId(
     _i1.UuidValue? value,
@@ -582,8 +585,8 @@ class InvoiceTable extends _i1.Table<_i1.UuidValue> {
       'asaasCustomerId',
       this,
     );
-    clubId = _i1.ColumnUuid(
-      'clubId',
+    companyId = _i1.ColumnUuid(
+      'companyId',
       this,
     );
     gunsmithId = _i1.ColumnUuid(
@@ -628,9 +631,9 @@ class InvoiceTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnString asaasCustomerId;
 
-  late final _i1.ColumnUuid clubId;
+  late final _i1.ColumnUuid companyId;
 
-  _i4.ClubTable? _club;
+  _i4.CompanyTable? _company;
 
   late final _i1.ColumnUuid gunsmithId;
 
@@ -644,17 +647,17 @@ class InvoiceTable extends _i1.Table<_i1.UuidValue> {
 
   _i6.UserProfileTable? _drawee;
 
-  _i4.ClubTable get club {
-    if (_club != null) return _club!;
-    _club = _i1.createRelationTable(
-      relationFieldName: 'club',
-      field: Invoice.t.clubId,
-      foreignField: _i4.Club.t.id,
+  _i4.CompanyTable get company {
+    if (_company != null) return _company!;
+    _company = _i1.createRelationTable(
+      relationFieldName: 'company',
+      field: Invoice.t.companyId,
+      foreignField: _i4.Company.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i4.ClubTable(tableRelation: foreignTableRelation),
+          _i4.CompanyTable(tableRelation: foreignTableRelation),
     );
-    return _club!;
+    return _company!;
   }
 
   _i5.GunsmithTable get gunsmith {
@@ -712,7 +715,7 @@ class InvoiceTable extends _i1.Table<_i1.UuidValue> {
     isRecurrent,
     asaasInstallmentId,
     asaasCustomerId,
-    clubId,
+    companyId,
     gunsmithId,
     userId,
     draweeId,
@@ -720,8 +723,8 @@ class InvoiceTable extends _i1.Table<_i1.UuidValue> {
 
   @override
   _i1.Table? getRelationTable(String relationField) {
-    if (relationField == 'club') {
-      return club;
+    if (relationField == 'company') {
+      return company;
     }
     if (relationField == 'gunsmith') {
       return gunsmith;
@@ -738,18 +741,18 @@ class InvoiceTable extends _i1.Table<_i1.UuidValue> {
 
 class InvoiceInclude extends _i1.IncludeObject {
   InvoiceInclude._({
-    _i4.ClubInclude? club,
+    _i4.CompanyInclude? company,
     _i5.GunsmithInclude? gunsmith,
     _i6.UserProfileInclude? user,
     _i6.UserProfileInclude? drawee,
   }) {
-    _club = club;
+    _company = company;
     _gunsmith = gunsmith;
     _user = user;
     _drawee = drawee;
   }
 
-  _i4.ClubInclude? _club;
+  _i4.CompanyInclude? _company;
 
   _i5.GunsmithInclude? _gunsmith;
 
@@ -759,7 +762,7 @@ class InvoiceInclude extends _i1.IncludeObject {
 
   @override
   Map<String, _i1.Include?> get includes => {
-    'club': _club,
+    'company': _company,
     'gunsmith': _gunsmith,
     'user': _user,
     'drawee': _drawee,
@@ -1089,25 +1092,25 @@ class InvoiceRepository {
 class InvoiceAttachRowRepository {
   const InvoiceAttachRowRepository._();
 
-  /// Creates a relation between the given [Invoice] and [Club]
-  /// by setting the [Invoice]'s foreign key `clubId` to refer to the [Club].
-  Future<void> club(
+  /// Creates a relation between the given [Invoice] and [Company]
+  /// by setting the [Invoice]'s foreign key `companyId` to refer to the [Company].
+  Future<void> company(
     _i1.DatabaseSession session,
     Invoice invoice,
-    _i4.Club club, {
+    _i4.Company company, {
     _i1.Transaction? transaction,
   }) async {
     if (invoice.id == null) {
       throw ArgumentError.notNull('invoice.id');
     }
-    if (club.id == null) {
-      throw ArgumentError.notNull('club.id');
+    if (company.id == null) {
+      throw ArgumentError.notNull('company.id');
     }
 
-    var $invoice = invoice.copyWith(clubId: club.id);
+    var $invoice = invoice.copyWith(companyId: company.id);
     await session.db.updateRow<Invoice>(
       $invoice,
-      columns: [Invoice.t.clubId],
+      columns: [Invoice.t.companyId],
       transaction: transaction,
     );
   }
@@ -1185,12 +1188,12 @@ class InvoiceAttachRowRepository {
 class InvoiceDetachRowRepository {
   const InvoiceDetachRowRepository._();
 
-  /// Detaches the relation between this [Invoice] and the [Club] set in `club`
-  /// by setting the [Invoice]'s foreign key `clubId` to `null`.
+  /// Detaches the relation between this [Invoice] and the [Company] set in `company`
+  /// by setting the [Invoice]'s foreign key `companyId` to `null`.
   ///
   /// This removes the association between the two models without deleting
   /// the related record.
-  Future<void> club(
+  Future<void> company(
     _i1.DatabaseSession session,
     Invoice invoice, {
     _i1.Transaction? transaction,
@@ -1199,10 +1202,10 @@ class InvoiceDetachRowRepository {
       throw ArgumentError.notNull('invoice.id');
     }
 
-    var $invoice = invoice.copyWith(clubId: null);
+    var $invoice = invoice.copyWith(companyId: null);
     await session.db.updateRow<Invoice>(
       $invoice,
-      columns: [Invoice.t.clubId],
+      columns: [Invoice.t.companyId],
       transaction: transaction,
     );
   }

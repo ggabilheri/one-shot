@@ -1,0 +1,7 @@
+enum: CompanyType
+serialized: byName
+values:
+  - club
+  - gunsmith
+  - issuer
+  - client

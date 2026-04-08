@@ -4,7 +4,7 @@ import 'package:backoffice_web/src/ui/pages/finance/entries/receivable_page.dart
 import 'package:flutter/material.dart';
 import 'package:backoffice_web/src/domain/models/enums/dashboard_page_type.dart';
 import 'package:backoffice_web/src/ui/pages/dashboard/summary/dashboard_summary_page.dart';
-import 'package:backoffice_web/src/ui/pages/clubs/clubs_page.dart';
+import 'package:backoffice_web/src/ui/pages/companies/companies_page.dart';
 import 'package:backoffice_web/src/ui/pages/users/users_page.dart';
 import 'package:backoffice_web/src/ui/pages/roles/roles_page.dart';
 import 'package:backoffice_web/src/ui/pages/products/product_groups_page.dart';
@@ -25,8 +25,8 @@ class DashboardModuleSwitcher extends StatelessWidget {
     switch (currentPage) {
       case DashboardPageType.summary:
         return const DashboardSummaryPage();
-      case DashboardPageType.clubs:
-        return const ClubsPage();
+      case DashboardPageType.companies:
+        return const CompaniesPage();
       case DashboardPageType.users:
         return const UsersPage();
       case DashboardPageType.roles:

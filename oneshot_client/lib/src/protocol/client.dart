@@ -16,11 +16,11 @@ import 'package:oneshot_client/src/protocol/common/accessory.dart' as _i3;
 import 'package:oneshot_client/src/protocol/shooter/ammunition_stock.dart'
     as _i4;
 import 'package:oneshot_client/src/protocol/finance/bank_account.dart' as _i5;
-import 'package:oneshot_client/src/protocol/club/club.dart' as _i6;
+import 'package:oneshot_client/src/protocol/company/company.dart' as _i6;
 import 'package:oneshot_client/src/protocol/common/address.dart' as _i7;
 import 'package:oneshot_client/src/protocol/finance/bank.dart' as _i8;
-import 'package:oneshot_client/src/protocol/club/membership.dart' as _i9;
-import 'package:oneshot_client/src/protocol/club/range_visit.dart' as _i10;
+import 'package:oneshot_client/src/protocol/company/membership.dart' as _i9;
+import 'package:oneshot_client/src/protocol/company/range_visit.dart' as _i10;
 import 'package:oneshot_client/src/protocol/common/document.dart' as _i11;
 import 'package:oneshot_client/src/protocol/finance/financial_entry.dart'
     as _i12;
@@ -223,15 +223,15 @@ class EndpointBrasilApiGateway extends _i1.EndpointRef {
   @override
   String get name => 'brasilApiGateway';
 
-  _i2.Future<_i6.Club?> getCompanyInfo(String cnpj) =>
-      caller.callServerEndpoint<_i6.Club?>(
+  _i2.Future<_i6.Company?> getCompanyInfo(String cnpj) =>
+      caller.callServerEndpoint<_i6.Company?>(
         'brasilApiGateway',
         'getCompanyInfo',
         {'cnpj': cnpj},
       );
 
-  _i2.Future<_i7.Address>? getAddressByCep(String zipcode) =>
-      caller.callServerEndpoint<_i7.Address>(
+  _i2.Future<_i7.Address?> getAddressByCep(String zipcode) =>
+      caller.callServerEndpoint<_i7.Address?>(
         'brasilApiGateway',
         'getAddressByCep',
         {'zipcode': zipcode},
@@ -243,80 +243,73 @@ class EndpointBrasilApiGateway extends _i1.EndpointRef {
         'getBanks',
         {},
       );
-
-  _i2.Future<_i8.Bank?> getBank(int code) =>
-      caller.callServerEndpoint<_i8.Bank?>(
-        'brasilApiGateway',
-        'getBank',
-        {'code': code},
-      );
 }
 
 /// {@category Endpoint}
-class EndpointClub extends _i1.EndpointRef {
-  EndpointClub(_i1.EndpointCaller caller) : super(caller);
+class EndpointCompany extends _i1.EndpointRef {
+  EndpointCompany(_i1.EndpointCaller caller) : super(caller);
 
   @override
-  String get name => 'club';
+  String get name => 'company';
 
-  /// Cria um novo clube de tiro no sistema e uma subconta Asaas correspondente.
-  /// A criação é bloqueante: se a subconta Asaas falhar, o clube não é criado.
-  _i2.Future<_i6.Club> createClub(_i6.Club club) =>
-      caller.callServerEndpoint<_i6.Club>(
-        'club',
-        'createClub',
-        {'club': club},
+  /// Cria uma nova empresa no sistema e uma subconta Asaas correspondente.
+  /// A criação é bloqueante: se a subconta Asaas falhar, a empresa não é criada.
+  _i2.Future<_i6.Company> createCompany(_i6.Company company) =>
+      caller.callServerEndpoint<_i6.Company>(
+        'company',
+        'createCompany',
+        {'company': company},
       );
 
-  /// Lista todos os clubes ativos.
-  _i2.Future<List<_i6.Club>> listClubs() =>
-      caller.callServerEndpoint<List<_i6.Club>>(
-        'club',
-        'listClubs',
+  /// Lista todas as empresas ativas.
+  _i2.Future<List<_i6.Company>> listCompanies() =>
+      caller.callServerEndpoint<List<_i6.Company>>(
+        'company',
+        'listCompanies',
         {},
       );
 
-  /// Atualiza um clube existente.
-  _i2.Future<_i6.Club> updateClub(_i6.Club club) =>
-      caller.callServerEndpoint<_i6.Club>(
-        'club',
-        'updateClub',
-        {'club': club},
+  /// Atualiza uma empresa existente.
+  _i2.Future<_i6.Company> updateCompany(_i6.Company company) =>
+      caller.callServerEndpoint<_i6.Company>(
+        'company',
+        'updateCompany',
+        {'company': company},
       );
 
-  /// Exclui um clube (Soft Delete) definindo active = false.
-  _i2.Future<_i6.Club> deleteClub(_i1.UuidValue clubId) =>
-      caller.callServerEndpoint<_i6.Club>(
-        'club',
-        'deleteClub',
-        {'clubId': clubId},
+  /// Exclui uma empresa (Soft Delete) definindo active = false.
+  _i2.Future<_i6.Company> deleteCompany(_i1.UuidValue companyId) =>
+      caller.callServerEndpoint<_i6.Company>(
+        'company',
+        'deleteCompany',
+        {'companyId': companyId},
       );
 
-  /// Solicita filiação a um clube.
-  _i2.Future<_i9.Membership> requestMembership(_i1.UuidValue clubId) =>
+  /// Solicita filiação a uma empresa (Clube).
+  _i2.Future<_i9.Membership> requestMembership(_i1.UuidValue companyId) =>
       caller.callServerEndpoint<_i9.Membership>(
-        'club',
+        'company',
         'requestMembership',
-        {'clubId': clubId},
+        {'companyId': companyId},
       );
 
   /// Lista minhas filiações.
   _i2.Future<List<_i9.Membership>> getMyMemberships() =>
       caller.callServerEndpoint<List<_i9.Membership>>(
-        'club',
+        'company',
         'getMyMemberships',
         {},
       );
 
   /// Registra entrada no estande (Check-in).
   _i2.Future<_i10.RangeVisit> checkIn(
-    _i1.UuidValue clubId,
+    _i1.UuidValue companyId,
     _i1.UuidValue? firearmId,
   ) => caller.callServerEndpoint<_i10.RangeVisit>(
-    'club',
+    'company',
     'checkIn',
     {
-      'clubId': clubId,
+      'companyId': companyId,
       'firearmId': firearmId,
     },
   );
@@ -326,7 +319,7 @@ class EndpointClub extends _i1.EndpointRef {
     _i1.UuidValue visitId,
     int shotsFired,
   ) => caller.callServerEndpoint<_i10.RangeVisit>(
-    'club',
+    'company',
     'checkOut',
     {
       'visitId': visitId,
@@ -337,7 +330,7 @@ class EndpointClub extends _i1.EndpointRef {
   /// Lista minhas visitas.
   _i2.Future<List<_i10.RangeVisit>> getMyVisits() =>
       caller.callServerEndpoint<List<_i10.RangeVisit>>(
-        'club',
+        'company',
         'getMyVisits',
         {},
       );
@@ -464,7 +457,7 @@ class EndpointFinancialEntry extends _i1.EndpointRef {
 
   /// Lista lançamentos financeiros com filtros dinâmicos.
   ///
-  /// - [originModule]: Filtro **obrigatório**. Isola os dados por módulo (BACKOFFICE, CLUB, GUNSMITH).
+  /// - [originModule]: Filtro **obrigatório**. Isola os dados por módulo (BACKOFFICE, COMPANY, GUNSMITH).
   /// - [type]: Filtro opcional por tipo (`payable` = A Pagar, `receivable` = A Receber).
   /// - [status]: Filtro opcional por status (`pending`, `paid`, `overdue`, etc.).
   /// - [dueDateFrom] e [dueDateTo]: Intervalo opcional de datas de vencimento.
@@ -689,7 +682,7 @@ class EndpointInvoice extends _i1.EndpointRef {
     String? originModule,
     String? direction,
     _i23.InvoiceStatus? status,
-    _i1.UuidValue? clubId,
+    _i1.UuidValue? companyId,
     _i1.UuidValue? gunsmithId,
     _i1.UuidValue? userId,
     int? limit,
@@ -701,7 +694,7 @@ class EndpointInvoice extends _i1.EndpointRef {
       'originModule': originModule,
       'direction': direction,
       'status': status,
-      'clubId': clubId,
+      'companyId': companyId,
       'gunsmithId': gunsmithId,
       'userId': userId,
       'limit': limit,
@@ -819,7 +812,7 @@ class EndpointProduct extends _i1.EndpointRef {
         {'id': id},
       );
 
-  /// Lista produtos com filtro obrigatório por módulo de origem (ex: BACKOFFICE, CLUB, GUNSMITH).
+  /// Lista produtos com filtro obrigatório por módulo de origem (ex: BACKOFFICE, COMPANY, GUNSMITH).
   _i2.Future<List<_i25.Product>> listProducts({
     required String originModule,
     _i1.UuidValue? groupId,
@@ -1690,7 +1683,7 @@ class Client extends _i1.ServerpodClientShared {
     ammunition = EndpointAmmunition(this);
     bankAccount = EndpointBankAccount(this);
     brasilApiGateway = EndpointBrasilApiGateway(this);
-    club = EndpointClub(this);
+    company = EndpointCompany(this);
     document = EndpointDocument(this);
     financialEntry = EndpointFinancialEntry(this);
     firearm = EndpointFirearm(this);
@@ -1726,7 +1719,7 @@ class Client extends _i1.ServerpodClientShared {
 
   late final EndpointBrasilApiGateway brasilApiGateway;
 
-  late final EndpointClub club;
+  late final EndpointCompany company;
 
   late final EndpointDocument document;
 
@@ -1784,7 +1777,7 @@ class Client extends _i1.ServerpodClientShared {
     'ammunition': ammunition,
     'bankAccount': bankAccount,
     'brasilApiGateway': brasilApiGateway,
-    'club': club,
+    'company': company,
     'document': document,
     'financialEntry': financialEntry,
     'firearm': firearm,

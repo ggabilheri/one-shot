@@ -1,6 +1,6 @@
 enum DashboardPageType {
   summary,
-  clubs,
+  companies,
   users,
   inventory,
   stock,

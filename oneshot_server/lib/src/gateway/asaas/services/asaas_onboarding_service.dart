@@ -9,7 +9,7 @@ import 'package:serverpod/serverpod.dart';
 
 /// Serviço de onboarding do Asaas.
 ///
-/// Responsável por criar subcontas Asaas para Clubes e Armeiros no momento
+/// Responsável por criar subcontas Asaas para Empresas e Armeiros no momento
 /// do cadastro, buscando o email do proprietário e montando o request correto.
 ///
 /// A criação é **não-bloqueante**: em caso de falha na API Asaas, o erro é
@@ -22,70 +22,70 @@ class AsaasOnboardingService {
     return AsaasAccountService(repository);
   }
 
-  /// Cria subconta Asaas para um [Club] recém-criado.
+  /// Cria subconta Asaas para uma [Company] recém-criada.
   ///
-  /// O email é sempre buscado do [UserProfile] do proprietário do clube.
+  /// O email é sempre buscado do [UserProfile] do proprietário da empresa.
   /// Retorna [AsaasAccountResponse] em caso de sucesso. Lança [AppException] em falha.
-  Future<AsaasAccountResponse> createSubaccountForClub(
+  Future<AsaasAccountResponse> createSubaccountForCompany(
     Session session,
-    Club club,
+    Company company,
     UserProfile ownerProfile,
   ) async {
     final email = ownerProfile.email;
     if (email == null || email.isEmpty) {
-      final msg = 'AsaasOnboardingService: email do proprietário não encontrado para o clube '
-          '${club.name} (${club.id}). Subconta Asaas não criada.';
+      final msg = 'AsaasOnboardingService: email do proprietário não encontrado para a empresa '
+          '${company.name} (${company.id}). Subconta Asaas não criada.';
       session.log(msg, level: LogLevel.warning);
       throw AppException(message: msg);
     }
 
-    final address = club.address ?? ownerProfile.address;
+    final address = company.address ?? ownerProfile.address;
     if (address == null) {
-      final msg = 'AsaasOnboardingService: endereço não encontrado para o clube '
-          '${club.name} (${club.id}). Subconta Asaas não criada.';
+      final msg = 'AsaasOnboardingService: endereço não encontrado para a empresa '
+          '${company.name} (${company.id}). Subconta Asaas não criada.';
       session.log(msg, level: LogLevel.warning);
       throw AppException(message: msg);
     }
 
-    final phone = club.phoneNumber ?? ownerProfile.phone ?? '';
+    final phone = company.phoneNumber ?? ownerProfile.phone ?? '';
     if (phone.isEmpty) {
-      final msg = 'AsaasOnboardingService: telefone não encontrado para o clube '
-          '${club.name} (${club.id}). Subconta Asaas não criada.';
+      final msg = 'AsaasOnboardingService: telefone não encontrado para a empresa '
+          '${company.name} (${company.id}). Subconta Asaas não criada.';
       session.log(msg, level: LogLevel.warning);
       throw AppException(message: msg);
     }
 
     try {
       final request = AsaasAccountRequest(
-        name: club.name,
+        name: company.name,
         email: email,
-        cpfCnpj: club.cnpj,
+        cpfCnpj: company.cnpj,
         mobilePhone: phone,
-        incomeValue: club.incomeValue,
+        incomeValue: company.incomeValue,
         address: address.street,
         addressNumber: address.number,
         province: address.neighborhood,
         postalCode: address.zipCode,
         complement: address.complement,
-        // Clube sempre CNPJ → companyType obrigatório
+        // Empresa sempre CNPJ → companyType limitado por padrão
         companyType: 'LIMITED',
       );
 
       final response = await _buildService(session).createSubaccount(request);
       session.log(
-        'AsaasOnboardingService: subconta criada para clube ${club.name} '
+        'AsaasOnboardingService: subconta criada para empresa ${company.name} '
         '— asaasId: ${response.id}',
         level: LogLevel.info,
       );
       return response;
     } on AsaasException catch (e) {
-      final msg = 'AsaasOnboardingService: falha ao criar subconta para clube '
-          '${club.name} no Asaas: ${e.message}';
+      final msg = 'AsaasOnboardingService: falha ao criar subconta para empresa '
+          '${company.name} no Asaas: ${e.message}';
       session.log(msg, level: LogLevel.error);
       throw AppException(message: msg);
     } catch (e) {
-      final msg = 'AsaasOnboardingService: erro inesperado ao criar subconta para clube '
-          '${club.name}: $e';
+      final msg = 'AsaasOnboardingService: erro inesperado ao criar subconta para empresa '
+          '${company.name}: $e';
       session.log(msg, level: LogLevel.error);
       throw AppException(message: msg);
     }

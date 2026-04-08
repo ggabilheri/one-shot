@@ -87,7 +87,7 @@ class FinancialEntryRepositoryImpl implements IFinancialEntryRepository {
   }
 
   /// Lista lançamentos com filtros dinâmicos.
-  /// - [originModule] é obrigatório (isola os dados por módulo: BACKOFFICE, CLUB, GUNSMITH).
+  /// - [originModule] é obrigatório (isola os dados por módulo: BACKOFFICE, COMPANY, GUNSMITH).
   /// - [type] é opcional para filtrar PAYABLE (A Pagar) ou RECEIVABLE (A Receber).
   /// - [status] é opcional para filtrar por estado do lançamento.
   /// - [dueDateFrom] e [dueDateTo] permitem filtrar por intervalo de vencimento.

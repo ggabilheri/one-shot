@@ -13,7 +13,7 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import '../enums/invoice_status.enum.dart' as _i2;
 import '../enums/currency.enum.dart' as _i3;
-import '../club/club.dart' as _i4;
+import '../company/company.dart' as _i4;
 import '../gunsmith/gunsmith.dart' as _i5;
 import '../common/user_profile.dart' as _i6;
 import 'package:oneshot_client/src/protocol/protocol.dart' as _i7;
@@ -34,8 +34,8 @@ abstract class Invoice implements _i1.SerializableModel {
     bool? isRecurrent,
     this.asaasInstallmentId,
     this.asaasCustomerId,
-    this.clubId,
-    this.club,
+    this.companyId,
+    this.company,
     this.gunsmithId,
     this.gunsmith,
     this.userId,
@@ -60,8 +60,8 @@ abstract class Invoice implements _i1.SerializableModel {
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _i1.UuidValue? clubId,
-    _i4.Club? club,
+    _i1.UuidValue? companyId,
+    _i4.Company? company,
     _i1.UuidValue? gunsmithId,
     _i5.Gunsmith? gunsmith,
     _i1.UuidValue? userId,
@@ -96,12 +96,14 @@ abstract class Invoice implements _i1.SerializableModel {
           : _i1.BoolJsonExtension.fromJson(jsonSerialization['isRecurrent']),
       asaasInstallmentId: jsonSerialization['asaasInstallmentId'] as String?,
       asaasCustomerId: jsonSerialization['asaasCustomerId'] as String?,
-      clubId: jsonSerialization['clubId'] == null
+      companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['clubId']),
-      club: jsonSerialization['club'] == null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+      company: jsonSerialization['company'] == null
           ? null
-          : _i7.Protocol().deserialize<_i4.Club>(jsonSerialization['club']),
+          : _i7.Protocol().deserialize<_i4.Company>(
+              jsonSerialization['company'],
+            ),
       gunsmithId: jsonSerialization['gunsmithId'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(
@@ -160,9 +162,9 @@ abstract class Invoice implements _i1.SerializableModel {
 
   String? asaasCustomerId;
 
-  _i1.UuidValue? clubId;
+  _i1.UuidValue? companyId;
 
-  _i4.Club? club;
+  _i4.Company? company;
 
   _i1.UuidValue? gunsmithId;
 
@@ -194,8 +196,8 @@ abstract class Invoice implements _i1.SerializableModel {
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _i1.UuidValue? clubId,
-    _i4.Club? club,
+    _i1.UuidValue? companyId,
+    _i4.Company? company,
     _i1.UuidValue? gunsmithId,
     _i5.Gunsmith? gunsmith,
     _i1.UuidValue? userId,
@@ -221,8 +223,8 @@ abstract class Invoice implements _i1.SerializableModel {
       'isRecurrent': isRecurrent,
       if (asaasInstallmentId != null) 'asaasInstallmentId': asaasInstallmentId,
       if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
-      if (clubId != null) 'clubId': clubId?.toJson(),
-      if (club != null) 'club': club?.toJson(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJson(),
       if (gunsmithId != null) 'gunsmithId': gunsmithId?.toJson(),
       if (gunsmith != null) 'gunsmith': gunsmith?.toJson(),
       if (userId != null) 'userId': userId?.toJson(),
@@ -256,8 +258,8 @@ class _InvoiceImpl extends Invoice {
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _i1.UuidValue? clubId,
-    _i4.Club? club,
+    _i1.UuidValue? companyId,
+    _i4.Company? company,
     _i1.UuidValue? gunsmithId,
     _i5.Gunsmith? gunsmith,
     _i1.UuidValue? userId,
@@ -279,8 +281,8 @@ class _InvoiceImpl extends Invoice {
          isRecurrent: isRecurrent,
          asaasInstallmentId: asaasInstallmentId,
          asaasCustomerId: asaasCustomerId,
-         clubId: clubId,
-         club: club,
+         companyId: companyId,
+         company: company,
          gunsmithId: gunsmithId,
          gunsmith: gunsmith,
          userId: userId,
@@ -308,8 +310,8 @@ class _InvoiceImpl extends Invoice {
     bool? isRecurrent,
     Object? asaasInstallmentId = _Undefined,
     Object? asaasCustomerId = _Undefined,
-    Object? clubId = _Undefined,
-    Object? club = _Undefined,
+    Object? companyId = _Undefined,
+    Object? company = _Undefined,
     Object? gunsmithId = _Undefined,
     Object? gunsmith = _Undefined,
     Object? userId = _Undefined,
@@ -336,8 +338,8 @@ class _InvoiceImpl extends Invoice {
       asaasCustomerId: asaasCustomerId is String?
           ? asaasCustomerId
           : this.asaasCustomerId,
-      clubId: clubId is _i1.UuidValue? ? clubId : this.clubId,
-      club: club is _i4.Club? ? club : this.club?.copyWith(),
+      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
+      company: company is _i4.Company? ? company : this.company?.copyWith(),
       gunsmithId: gunsmithId is _i1.UuidValue? ? gunsmithId : this.gunsmithId,
       gunsmith: gunsmith is _i5.Gunsmith?
           ? gunsmith

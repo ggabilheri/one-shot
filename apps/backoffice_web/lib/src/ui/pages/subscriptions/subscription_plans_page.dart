@@ -229,7 +229,7 @@ class _SubscriptionPlansPageState
 
   Widget _buildTypeBadge(PlanType type) {
     Color color = DSTokens.outline;
-    if (type == PlanType.CLUB) color = DSTokens.primary;
+    if (type == PlanType.COMPANY) color = DSTokens.primary;
     if (type == PlanType.GUNSMITH) color = DSTokens.info;
     if (type == PlanType.CAC) color = DSTokens.warning;
 

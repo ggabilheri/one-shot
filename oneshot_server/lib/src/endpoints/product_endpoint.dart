@@ -28,7 +28,7 @@ class ProductEndpoint extends Endpoint {
     return await sl.productRepository.delete(session, id);
   }
 
-  /// Lista produtos com filtro obrigatório por módulo de origem (ex: BACKOFFICE, CLUB, GUNSMITH).
+  /// Lista produtos com filtro obrigatório por módulo de origem (ex: BACKOFFICE, COMPANY, GUNSMITH).
   Future<List<Product>> listProducts(
     Session session, {
     required String originModule,

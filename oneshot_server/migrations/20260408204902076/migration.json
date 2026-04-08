@@ -1,0 +1,498 @@
+{
+  "__className__": "serverpod.DatabaseMigration",
+  "actions": [
+    {
+      "__className__": "serverpod.DatabaseMigrationAction",
+      "type": "deleteTable",
+      "deleteTable": "clubs"
+    },
+    {
+      "__className__": "serverpod.DatabaseMigrationAction",
+      "type": "createTable",
+      "createTable": {
+        "__className__": "serverpod.TableDefinition",
+        "name": "companies",
+        "dartName": "Company",
+        "module": "oneshot",
+        "schema": "public",
+        "columns": [
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "id",
+            "columnType": 7,
+            "isNullable": false,
+            "columnDefault": "gen_random_uuid()",
+            "dartType": "UuidValue"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "name",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "cnpj",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "type",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "protocol:CompanyType"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "addressId",
+            "columnType": 7,
+            "isNullable": true,
+            "dartType": "UuidValue?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "ownerId",
+            "columnType": 7,
+            "isNullable": true,
+            "dartType": "UuidValue?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "phoneNumber",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "String?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "email",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "String?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "active",
+            "columnType": 1,
+            "isNullable": false,
+            "columnDefault": "true",
+            "dartType": "bool"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "incomeValue",
+            "columnType": 3,
+            "isNullable": false,
+            "columnDefault": "1000.00",
+            "dartType": "double"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "asaasAccountId",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "String?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "asaasWalletId",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "String?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "asaasApiKey",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "String?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "asaasOnboardingFailureReason",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "String?"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "__className__": "serverpod.ForeignKeyDefinition",
+            "constraintName": "companies_fk_0",
+            "columns": [
+              "addressId"
+            ],
+            "referenceTable": "addresses",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          },
+          {
+            "__className__": "serverpod.ForeignKeyDefinition",
+            "constraintName": "companies_fk_1",
+            "columns": [
+              "ownerId"
+            ],
+            "referenceTable": "user_profile",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "indexes": [
+          {
+            "__className__": "serverpod.IndexDefinition",
+            "indexName": "companies_pkey",
+            "elements": [
+              {
+                "__className__": "serverpod.IndexElementDefinition",
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          },
+          {
+            "__className__": "serverpod.IndexDefinition",
+            "indexName": "company_cnpj_idx",
+            "elements": [
+              {
+                "__className__": "serverpod.IndexElementDefinition",
+                "type": 0,
+                "definition": "cnpj"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          },
+          {
+            "__className__": "serverpod.IndexDefinition",
+            "indexName": "company_owner_id_idx",
+            "elements": [
+              {
+                "__className__": "serverpod.IndexElementDefinition",
+                "type": 0,
+                "definition": "ownerId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": false,
+            "isPrimary": false
+          }
+        ],
+        "managed": true
+      }
+    },
+    {
+      "__className__": "serverpod.DatabaseMigrationAction",
+      "type": "alterTable",
+      "alterTable": {
+        "__className__": "serverpod.TableMigration",
+        "name": "invoices",
+        "schema": "public",
+        "addColumns": [
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "companyId",
+            "columnType": 7,
+            "isNullable": true,
+            "dartType": "UuidValue?"
+          }
+        ],
+        "deleteColumns": [
+          "clubId"
+        ],
+        "modifyColumns": [],
+        "addIndexes": [
+          {
+            "__className__": "serverpod.IndexDefinition",
+            "indexName": "invoice_company_id_idx",
+            "elements": [
+              {
+                "__className__": "serverpod.IndexElementDefinition",
+                "type": 0,
+                "definition": "companyId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": false,
+            "isPrimary": false
+          }
+        ],
+        "deleteIndexes": [
+          "invoice_club_id_idx"
+        ],
+        "addForeignKeys": [
+          {
+            "__className__": "serverpod.ForeignKeyDefinition",
+            "constraintName": "invoices_fk_0",
+            "columns": [
+              "companyId"
+            ],
+            "referenceTable": "companies",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "deleteForeignKeys": [
+          "invoices_fk_0"
+        ],
+        "warnings": [
+          {
+            "__className__": "serverpod.DatabaseMigrationWarning",
+            "type": "columnDropped",
+            "message": "Column \"clubId\" of table \"invoices\" will be dropped.",
+            "table": "invoices",
+            "columns": [
+              "clubId"
+            ],
+            "destrucive": true
+          }
+        ]
+      }
+    },
+    {
+      "__className__": "serverpod.DatabaseMigrationAction",
+      "type": "alterTable",
+      "alterTable": {
+        "__className__": "serverpod.TableMigration",
+        "name": "memberships",
+        "schema": "public",
+        "addColumns": [
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "companyId",
+            "columnType": 7,
+            "isNullable": true,
+            "dartType": "UuidValue?"
+          }
+        ],
+        "deleteColumns": [
+          "clubId"
+        ],
+        "modifyColumns": [],
+        "addIndexes": [
+          {
+            "__className__": "serverpod.IndexDefinition",
+            "indexName": "membership_user_company_idx",
+            "elements": [
+              {
+                "__className__": "serverpod.IndexElementDefinition",
+                "type": 0,
+                "definition": "userId"
+              },
+              {
+                "__className__": "serverpod.IndexElementDefinition",
+                "type": 0,
+                "definition": "companyId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          },
+          {
+            "__className__": "serverpod.IndexDefinition",
+            "indexName": "membership_company_idx",
+            "elements": [
+              {
+                "__className__": "serverpod.IndexElementDefinition",
+                "type": 0,
+                "definition": "companyId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": false,
+            "isPrimary": false
+          }
+        ],
+        "deleteIndexes": [
+          "membership_user_club_idx",
+          "membership_club_idx"
+        ],
+        "addForeignKeys": [
+          {
+            "__className__": "serverpod.ForeignKeyDefinition",
+            "constraintName": "memberships_fk_1",
+            "columns": [
+              "companyId"
+            ],
+            "referenceTable": "companies",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "deleteForeignKeys": [
+          "memberships_fk_1"
+        ],
+        "warnings": [
+          {
+            "__className__": "serverpod.DatabaseMigrationWarning",
+            "type": "columnDropped",
+            "message": "Column \"clubId\" of table \"memberships\" will be dropped.",
+            "table": "memberships",
+            "columns": [
+              "clubId"
+            ],
+            "destrucive": true
+          },
+          {
+            "__className__": "serverpod.DatabaseMigrationWarning",
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"membership_user_company_idx\" is added to table \"memberships\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "memberships",
+            "columns": [
+              "userId",
+              "companyId"
+            ],
+            "destrucive": false
+          }
+        ]
+      }
+    },
+    {
+      "__className__": "serverpod.DatabaseMigrationAction",
+      "type": "alterTable",
+      "alterTable": {
+        "__className__": "serverpod.TableMigration",
+        "name": "range_visits",
+        "schema": "public",
+        "addColumns": [
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "companyId",
+            "columnType": 7,
+            "isNullable": true,
+            "dartType": "UuidValue?"
+          }
+        ],
+        "deleteColumns": [
+          "clubId"
+        ],
+        "modifyColumns": [],
+        "addIndexes": [
+          {
+            "__className__": "serverpod.IndexDefinition",
+            "indexName": "range_visit_company_idx",
+            "elements": [
+              {
+                "__className__": "serverpod.IndexElementDefinition",
+                "type": 0,
+                "definition": "companyId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": false,
+            "isPrimary": false
+          }
+        ],
+        "deleteIndexes": [
+          "range_visit_club_idx"
+        ],
+        "addForeignKeys": [
+          {
+            "__className__": "serverpod.ForeignKeyDefinition",
+            "constraintName": "range_visits_fk_1",
+            "columns": [
+              "companyId"
+            ],
+            "referenceTable": "companies",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "deleteForeignKeys": [
+          "range_visits_fk_1"
+        ],
+        "warnings": [
+          {
+            "__className__": "serverpod.DatabaseMigrationWarning",
+            "type": "columnDropped",
+            "message": "Column \"clubId\" of table \"range_visits\" will be dropped.",
+            "table": "range_visits",
+            "columns": [
+              "clubId"
+            ],
+            "destrucive": true
+          }
+        ]
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "__className__": "serverpod.DatabaseMigrationWarning",
+      "type": "tableDropped",
+      "message": "Table \"clubs\" will be dropped.",
+      "table": "clubs",
+      "columns": [],
+      "destrucive": true
+    },
+    {
+      "__className__": "serverpod.DatabaseMigrationWarning",
+      "type": "columnDropped",
+      "message": "Column \"clubId\" of table \"invoices\" will be dropped.",
+      "table": "invoices",
+      "columns": [
+        "clubId"
+      ],
+      "destrucive": true
+    },
+    {
+      "__className__": "serverpod.DatabaseMigrationWarning",
+      "type": "columnDropped",
+      "message": "Column \"clubId\" of table \"memberships\" will be dropped.",
+      "table": "memberships",
+      "columns": [
+        "clubId"
+      ],
+      "destrucive": true
+    },
+    {
+      "__className__": "serverpod.DatabaseMigrationWarning",
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"membership_user_company_idx\" is added to table \"memberships\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "memberships",
+      "columns": [
+        "userId",
+        "companyId"
+      ],
+      "destrucive": false
+    },
+    {
+      "__className__": "serverpod.DatabaseMigrationWarning",
+      "type": "columnDropped",
+      "message": "Column \"clubId\" of table \"range_visits\" will be dropped.",
+      "table": "range_visits",
+      "columns": [
+        "clubId"
+      ],
+      "destrucive": true
+    }
+  ],
+  "migrationApiVersion": 1
+}

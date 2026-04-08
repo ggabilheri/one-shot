@@ -2,7 +2,7 @@ enum: AppModule
 serialized: byName
 values:
   - userManagement
-  - clubManagement
+  - companyManagement
   - billing
   - store
   - security

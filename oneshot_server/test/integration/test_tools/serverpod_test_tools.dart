@@ -18,11 +18,11 @@ import 'package:oneshot_server/src/generated/common/accessory.dart' as _i4;
 import 'package:oneshot_server/src/generated/shooter/ammunition_stock.dart'
     as _i5;
 import 'package:oneshot_server/src/generated/finance/bank_account.dart' as _i6;
-import 'package:oneshot_server/src/generated/club/club.dart' as _i7;
+import 'package:oneshot_server/src/generated/company/company.dart' as _i7;
 import 'package:oneshot_server/src/generated/common/address.dart' as _i8;
 import 'package:oneshot_server/src/generated/finance/bank.dart' as _i9;
-import 'package:oneshot_server/src/generated/club/membership.dart' as _i10;
-import 'package:oneshot_server/src/generated/club/range_visit.dart' as _i11;
+import 'package:oneshot_server/src/generated/company/membership.dart' as _i10;
+import 'package:oneshot_server/src/generated/company/range_visit.dart' as _i11;
 import 'package:oneshot_server/src/generated/common/document.dart' as _i12;
 import 'package:oneshot_server/src/generated/finance/financial_entry.dart'
     as _i13;
@@ -179,7 +179,7 @@ class TestEndpoints {
 
   late final _BrasilApiGatewayEndpoint brasilApiGateway;
 
-  late final _ClubEndpoint club;
+  late final _CompanyEndpoint company;
 
   late final _DocumentEndpoint document;
 
@@ -253,7 +253,7 @@ class _InternalTestEndpoints extends TestEndpoints
       endpoints,
       serializationManager,
     );
-    club = _ClubEndpoint(
+    company = _CompanyEndpoint(
       endpoints,
       serializationManager,
     );
@@ -850,7 +850,7 @@ class _BrasilApiGatewayEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<_i7.Club?> getCompanyInfo(
+  _i3.Future<_i7.Company?> getCompanyInfo(
     _i1.TestSessionBuilder sessionBuilder,
     String cnpj,
   ) async {
@@ -873,7 +873,7 @@ class _BrasilApiGatewayEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i7.Club?>);
+                as _i3.Future<_i7.Company?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -881,7 +881,7 @@ class _BrasilApiGatewayEndpoint {
     });
   }
 
-  _i3.Future<_i8.Address>? getAddressByCep(
+  _i3.Future<_i8.Address?> getAddressByCep(
     _i1.TestSessionBuilder sessionBuilder,
     String zipcode,
   ) async {
@@ -904,7 +904,7 @@ class _BrasilApiGatewayEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i8.Address>?);
+                as _i3.Future<_i8.Address?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -941,41 +941,10 @@ class _BrasilApiGatewayEndpoint {
       }
     });
   }
-
-  _i3.Future<_i9.Bank?> getBank(
-    _i1.TestSessionBuilder sessionBuilder,
-    int code,
-  ) async {
-    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
-      var _localUniqueSession =
-          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'brasilApiGateway',
-            method: 'getBank',
-          );
-      try {
-        var _localCallContext = await _endpointDispatch.getMethodCallContext(
-          createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'brasilApiGateway',
-          methodName: 'getBank',
-          parameters: _i1.testObjectToJson({'code': code}),
-          serializationManager: _serializationManager,
-        );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _i3.Future<_i9.Bank?>);
-        return _localReturnValue;
-      } finally {
-        await _localUniqueSession.close();
-      }
-    });
-  }
 }
 
-class _ClubEndpoint {
-  _ClubEndpoint(
+class _CompanyEndpoint {
+  _CompanyEndpoint(
     this._endpointDispatch,
     this._serializationManager,
   );
@@ -984,22 +953,22 @@ class _ClubEndpoint {
 
   final _i2.SerializationManager _serializationManager;
 
-  _i3.Future<_i7.Club> createClub(
+  _i3.Future<_i7.Company> createCompany(
     _i1.TestSessionBuilder sessionBuilder,
-    _i7.Club club,
+    _i7.Company company,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'club',
-            method: 'createClub',
+            endpoint: 'company',
+            method: 'createCompany',
           );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'club',
-          methodName: 'createClub',
-          parameters: _i1.testObjectToJson({'club': club}),
+          endpointPath: 'company',
+          methodName: 'createCompany',
+          parameters: _i1.testObjectToJson({'company': company}),
           serializationManager: _serializationManager,
         );
         var _localReturnValue =
@@ -1007,7 +976,7 @@ class _ClubEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i7.Club>);
+                as _i3.Future<_i7.Company>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1015,20 +984,20 @@ class _ClubEndpoint {
     });
   }
 
-  _i3.Future<List<_i7.Club>> listClubs(
+  _i3.Future<List<_i7.Company>> listCompanies(
     _i1.TestSessionBuilder sessionBuilder,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'club',
-            method: 'listClubs',
+            endpoint: 'company',
+            method: 'listCompanies',
           );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'club',
-          methodName: 'listClubs',
+          endpointPath: 'company',
+          methodName: 'listCompanies',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
@@ -1037,7 +1006,7 @@ class _ClubEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<List<_i7.Club>>);
+                as _i3.Future<List<_i7.Company>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1045,22 +1014,22 @@ class _ClubEndpoint {
     });
   }
 
-  _i3.Future<_i7.Club> updateClub(
+  _i3.Future<_i7.Company> updateCompany(
     _i1.TestSessionBuilder sessionBuilder,
-    _i7.Club club,
+    _i7.Company company,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'club',
-            method: 'updateClub',
+            endpoint: 'company',
+            method: 'updateCompany',
           );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'club',
-          methodName: 'updateClub',
-          parameters: _i1.testObjectToJson({'club': club}),
+          endpointPath: 'company',
+          methodName: 'updateCompany',
+          parameters: _i1.testObjectToJson({'company': company}),
           serializationManager: _serializationManager,
         );
         var _localReturnValue =
@@ -1068,7 +1037,7 @@ class _ClubEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i7.Club>);
+                as _i3.Future<_i7.Company>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1076,22 +1045,22 @@ class _ClubEndpoint {
     });
   }
 
-  _i3.Future<_i7.Club> deleteClub(
+  _i3.Future<_i7.Company> deleteCompany(
     _i1.TestSessionBuilder sessionBuilder,
-    _i2.UuidValue clubId,
+    _i2.UuidValue companyId,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'club',
-            method: 'deleteClub',
+            endpoint: 'company',
+            method: 'deleteCompany',
           );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'club',
-          methodName: 'deleteClub',
-          parameters: _i1.testObjectToJson({'clubId': clubId}),
+          endpointPath: 'company',
+          methodName: 'deleteCompany',
+          parameters: _i1.testObjectToJson({'companyId': companyId}),
           serializationManager: _serializationManager,
         );
         var _localReturnValue =
@@ -1099,7 +1068,7 @@ class _ClubEndpoint {
                   _localUniqueSession,
                   _localCallContext.arguments,
                 )
-                as _i3.Future<_i7.Club>);
+                as _i3.Future<_i7.Company>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1109,20 +1078,20 @@ class _ClubEndpoint {
 
   _i3.Future<_i10.Membership> requestMembership(
     _i1.TestSessionBuilder sessionBuilder,
-    _i2.UuidValue clubId,
+    _i2.UuidValue companyId,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'club',
+            endpoint: 'company',
             method: 'requestMembership',
           );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'club',
+          endpointPath: 'company',
           methodName: 'requestMembership',
-          parameters: _i1.testObjectToJson({'clubId': clubId}),
+          parameters: _i1.testObjectToJson({'companyId': companyId}),
           serializationManager: _serializationManager,
         );
         var _localReturnValue =
@@ -1144,13 +1113,13 @@ class _ClubEndpoint {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'club',
+            endpoint: 'company',
             method: 'getMyMemberships',
           );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'club',
+          endpointPath: 'company',
           methodName: 'getMyMemberships',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
@@ -1170,22 +1139,22 @@ class _ClubEndpoint {
 
   _i3.Future<_i11.RangeVisit> checkIn(
     _i1.TestSessionBuilder sessionBuilder,
-    _i2.UuidValue clubId,
+    _i2.UuidValue companyId,
     _i2.UuidValue? firearmId,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'club',
+            endpoint: 'company',
             method: 'checkIn',
           );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'club',
+          endpointPath: 'company',
           methodName: 'checkIn',
           parameters: _i1.testObjectToJson({
-            'clubId': clubId,
+            'companyId': companyId,
             'firearmId': firearmId,
           }),
           serializationManager: _serializationManager,
@@ -1211,13 +1180,13 @@ class _ClubEndpoint {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'club',
+            endpoint: 'company',
             method: 'checkOut',
           );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'club',
+          endpointPath: 'company',
           methodName: 'checkOut',
           parameters: _i1.testObjectToJson({
             'visitId': visitId,
@@ -1244,13 +1213,13 @@ class _ClubEndpoint {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-            endpoint: 'club',
+            endpoint: 'company',
             method: 'getMyVisits',
           );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'club',
+          endpointPath: 'company',
           methodName: 'getMyVisits',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
@@ -2388,7 +2357,7 @@ class _InvoiceEndpoint {
     String? originModule,
     String? direction,
     _i24.InvoiceStatus? status,
-    _i2.UuidValue? clubId,
+    _i2.UuidValue? companyId,
     _i2.UuidValue? gunsmithId,
     _i2.UuidValue? userId,
     int? limit,
@@ -2409,7 +2378,7 @@ class _InvoiceEndpoint {
             'originModule': originModule,
             'direction': direction,
             'status': status,
-            'clubId': clubId,
+            'companyId': companyId,
             'gunsmithId': gunsmithId,
             'userId': userId,
             'limit': limit,

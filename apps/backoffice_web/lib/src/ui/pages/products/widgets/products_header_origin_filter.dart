@@ -26,7 +26,7 @@ class ProductsHeaderOriginFilter extends StatelessWidget {
           dropdownColor: DSTokens.surface,
           items: const [
             DropdownMenuItem(value: 'BACKOFFICE', child: Text('Backoffice')),
-            DropdownMenuItem(value: 'CLUB', child: Text('Clubes')),
+            DropdownMenuItem(value: 'COMPANY', child: Text('Empresas')),
             DropdownMenuItem(value: 'GUNSMITH', child: Text('Armarias')),
           ],
           onChanged: onChanged,

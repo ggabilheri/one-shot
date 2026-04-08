@@ -26,7 +26,7 @@ class ProductOriginModuleSelector extends StatelessWidget {
           dropdownColor: DSTokens.surface,
           items: const [
             DropdownMenuItem(value: 'BACKOFFICE', child: Text('BACKOFFICE')),
-            DropdownMenuItem(value: 'CLUB', child: Text('CLUBES')),
+            DropdownMenuItem(value: 'COMPANY', child: Text('EMPRESAS')),
             DropdownMenuItem(value: 'GUNSMITH', child: Text('ARMARIAS')),
           ],
           onChanged: (v) => v != null ? onChanged(v) : null,

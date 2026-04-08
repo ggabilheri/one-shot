@@ -78,10 +78,10 @@ class _AdminSidebarState extends State<AdminSidebar> {
                 AdminSidebarItem(
                   icon: Icons.business_outlined,
                   activeIcon: Icons.business,
-                  label: 'CLUBES',
+                  label: 'EMPRESAS',
                   isCollapsed: widget.isCollapsed,
-                  isSelected: widget.currentPage == DashboardPageType.clubs,
-                  onTap: () => widget.onPageChanged(DashboardPageType.clubs),
+                  isSelected: widget.currentPage == DashboardPageType.companies,
+                  onTap: () => widget.onPageChanged(DashboardPageType.companies),
                 ),
                 AdminSidebarItem(
                   icon: Icons.people_outline,

@@ -1,0 +1,19 @@
+class: RangeVisit
+table: range_visits
+fields:
+  id: UuidValue, defaultModel=random
+  user: UserProfile?, relation(optional)
+  company: Company?, relation(optional)
+  firearm: Firearm?, relation(optional)
+  checkIn: DateTime
+  checkOut: DateTime?
+  shotsFired: int, default=0
+  notes: String?
+  habitualityReportGenerated: bool, default=false
+indexes:
+  range_visit_user_idx:
+    fields: userId
+  range_visit_company_idx:
+    fields: companyId
+  range_visit_date_idx:
+    fields: checkIn

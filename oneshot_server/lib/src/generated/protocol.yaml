@@ -19,12 +19,11 @@ brasilApiGateway:
   - getCompanyInfo:
   - getAddressByCep:
   - getBanks:
-  - getBank:
-club:
-  - createClub:
-  - listClubs:
-  - updateClub:
-  - deleteClub:
+company:
+  - createCompany:
+  - listCompanies:
+  - updateCompany:
+  - deleteCompany:
   - requestMembership:
   - getMyMemberships:
   - checkIn:

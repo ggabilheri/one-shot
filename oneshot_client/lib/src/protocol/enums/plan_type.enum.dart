@@ -13,14 +13,14 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
 enum PlanType implements _i1.SerializableModel {
-  CLUB,
+  COMPANY,
   GUNSMITH,
   CAC;
 
   static PlanType fromJson(String name) {
     switch (name) {
-      case 'CLUB':
-        return PlanType.CLUB;
+      case 'COMPANY':
+        return PlanType.COMPANY;
       case 'GUNSMITH':
         return PlanType.GUNSMITH;
       case 'CAC':

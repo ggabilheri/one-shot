@@ -1,0 +1,17 @@
+class: Membership
+table: memberships
+fields:
+  id: UuidValue, defaultModel=random
+  user: UserProfile?, relation(optional)
+  company: Company?, relation(optional)
+  membershipNumber: String?
+  startDate: DateTime
+  validUntil: DateTime?
+  status: MembershipStatus, default=active
+  planName: String?
+indexes:
+  membership_user_company_idx:
+    fields: userId, companyId
+    unique: true
+  membership_company_idx:
+    fields: companyId

@@ -40,7 +40,7 @@ class SummaryCardsGrid extends StatelessWidget {
               isHighlight: true,
             ),
             SummaryMetricCard(
-              title: 'CLUBES',
+              title: 'EMPRESAS',
               value: vm.monthlyRevenue.toStringAsFixed(2),
               icon: Icons.business_sharp,
               width: cardWidth,

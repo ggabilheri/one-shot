@@ -1,6 +1,6 @@
 enum: PlanType
 values:
-  - CLUB
+  - COMPANY
   - GUNSMITH
   - CAC
 serialized: byName

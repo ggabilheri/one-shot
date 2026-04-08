@@ -14,7 +14,7 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
 enum AppModule implements _i1.SerializableModel {
   userManagement,
-  clubManagement,
+  companyManagement,
   billing,
   store,
   security;
@@ -23,8 +23,8 @@ enum AppModule implements _i1.SerializableModel {
     switch (name) {
       case 'userManagement':
         return AppModule.userManagement;
-      case 'clubManagement':
-        return AppModule.clubManagement;
+      case 'companyManagement':
+        return AppModule.companyManagement;
       case 'billing':
         return AppModule.billing;
       case 'store':
