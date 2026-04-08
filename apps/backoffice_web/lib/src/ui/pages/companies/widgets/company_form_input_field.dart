@@ -8,6 +8,7 @@ class CompanyFormInputField extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode? focusNode;
   final List<TextInputFormatter>? inputFormatters;
+  final String? errorText;
 
   const CompanyFormInputField({
     super.key,
@@ -16,21 +17,31 @@ class CompanyFormInputField extends StatelessWidget {
     required this.controller,
     this.focusNode,
     this.inputFormatters,
+    this.errorText,
   });
 
   @override
   Widget build(BuildContext context) {
+    final bool hasError = errorText != null && errorText!.isNotEmpty;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: DSTokens.label),
+        Text(
+          label,
+          style: DSTokens.label.copyWith(
+            color: hasError ? DSTokens.error : null,
+          ),
+        ),
         const SizedBox(height: 8),
         Container(
           height: 48,
           padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             color: DSTokens.background,
-            border: Border.all(color: DSTokens.surfaceContainerHigh),
+            border: Border.all(
+              color: hasError ? DSTokens.error : DSTokens.surfaceContainerHigh,
+            ),
           ),
           child: TextField(
             controller: controller,
@@ -44,6 +55,16 @@ class CompanyFormInputField extends StatelessWidget {
             ),
           ),
         ),
+        if (hasError) ...[
+          const SizedBox(height: 4),
+          Text(
+            errorText!,
+            style: DSTokens.body.copyWith(
+              color: DSTokens.error,
+              fontSize: 12,
+            ),
+          ),
+        ],
       ],
     );
   }

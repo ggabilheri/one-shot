@@ -7,6 +7,7 @@ abstract class ICompanyRepository {
   Future<Company> updateCompany(Company company);
   Future<Company> deleteCompany(String companyId);
   Future<Address?> fetchAddressByCep(String cep);
+  Future<Company?> fetchCompanyInfo(String cnpj);
 }
 
 class CompanyRepository implements ICompanyRepository {
@@ -18,6 +19,17 @@ class CompanyRepository implements ICompanyRepository {
       rethrow;
     } catch (e) {
       throw Exception('Falha ao buscar CEP.');
+    }
+  }
+
+  @override
+  Future<Company?> fetchCompanyInfo(String cnpj) async {
+    try {
+      return await client.brasilApiGateway.getCompanyInfo(cnpj);
+    } on AppException {
+      rethrow;
+    } catch (e) {
+      throw Exception('Falha ao buscar informações da empresa pelo CNPJ.');
     }
   }
 
@@ -57,7 +69,9 @@ class CompanyRepository implements ICompanyRepository {
   @override
   Future<Company> deleteCompany(String companyId) async {
     try {
-      return await client.company.deleteCompany(UuidValue.fromString(companyId));
+      return await client.company.deleteCompany(
+        UuidValue.fromString(companyId),
+      );
     } on AppException {
       rethrow;
     } catch (e) {

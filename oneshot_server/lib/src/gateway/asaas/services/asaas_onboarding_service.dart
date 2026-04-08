@@ -31,9 +31,10 @@ class AsaasOnboardingService {
     Company company,
     UserProfile ownerProfile,
   ) async {
-    final email = ownerProfile.email;
+    final email = company.email ?? ownerProfile.email;
     if (email == null || email.isEmpty) {
-      final msg = 'AsaasOnboardingService: email do proprietário não encontrado para a empresa '
+      final msg =
+          'AsaasOnboardingService: email do proprietário não encontrado para a empresa '
           '${company.name} (${company.id}). Subconta Asaas não criada.';
       session.log(msg, level: LogLevel.warning);
       throw AppException(message: msg);
@@ -41,7 +42,8 @@ class AsaasOnboardingService {
 
     final address = company.address ?? ownerProfile.address;
     if (address == null) {
-      final msg = 'AsaasOnboardingService: endereço não encontrado para a empresa '
+      final msg =
+          'AsaasOnboardingService: endereço não encontrado para a empresa '
           '${company.name} (${company.id}). Subconta Asaas não criada.';
       session.log(msg, level: LogLevel.warning);
       throw AppException(message: msg);
@@ -49,7 +51,8 @@ class AsaasOnboardingService {
 
     final phone = company.phoneNumber ?? ownerProfile.phone ?? '';
     if (phone.isEmpty) {
-      final msg = 'AsaasOnboardingService: telefone não encontrado para a empresa '
+      final msg =
+          'AsaasOnboardingService: telefone não encontrado para a empresa '
           '${company.name} (${company.id}). Subconta Asaas não criada.';
       session.log(msg, level: LogLevel.warning);
       throw AppException(message: msg);
@@ -79,12 +82,14 @@ class AsaasOnboardingService {
       );
       return response;
     } on AsaasException catch (e) {
-      final msg = 'AsaasOnboardingService: falha ao criar subconta para empresa '
+      final msg =
+          'AsaasOnboardingService: falha ao criar subconta para empresa '
           '${company.name} no Asaas: ${e.message}';
       session.log(msg, level: LogLevel.error);
       throw AppException(message: msg);
     } catch (e) {
-      final msg = 'AsaasOnboardingService: erro inesperado ao criar subconta para empresa '
+      final msg =
+          'AsaasOnboardingService: erro inesperado ao criar subconta para empresa '
           '${company.name}: $e';
       session.log(msg, level: LogLevel.error);
       throw AppException(message: msg);
@@ -103,7 +108,8 @@ class AsaasOnboardingService {
   ) async {
     final email = ownerProfile.email;
     if (email == null || email.isEmpty) {
-      final msg = 'AsaasOnboardingService: email do proprietário não encontrado para o armeiro '
+      final msg =
+          'AsaasOnboardingService: email do proprietário não encontrado para o armeiro '
           '${gunsmith.name} (${gunsmith.id}). Subconta Asaas não criada.';
       session.log(msg, level: LogLevel.warning);
       throw AppException(message: msg);
@@ -111,7 +117,8 @@ class AsaasOnboardingService {
 
     final address = gunsmith.address ?? ownerProfile.address;
     if (address == null) {
-      final msg = 'AsaasOnboardingService: endereço não encontrado para o armeiro '
+      final msg =
+          'AsaasOnboardingService: endereço não encontrado para o armeiro '
           '${gunsmith.name} (${gunsmith.id}). Subconta Asaas não criada.';
       session.log(msg, level: LogLevel.warning);
       throw AppException(message: msg);
@@ -119,7 +126,8 @@ class AsaasOnboardingService {
 
     final phone = ownerProfile.phone ?? '';
     if (phone.isEmpty) {
-      final msg = 'AsaasOnboardingService: telefone não encontrado para o armeiro '
+      final msg =
+          'AsaasOnboardingService: telefone não encontrado para o armeiro '
           '${gunsmith.name} (${gunsmith.id}). Subconta Asaas não criada.';
       session.log(msg, level: LogLevel.warning);
       throw AppException(message: msg);
@@ -129,9 +137,8 @@ class AsaasOnboardingService {
     final taxIdDigits = gunsmith.taxId.replaceAll(RegExp(r'\D'), '');
     final companyType = taxIdDigits.length == 14 ? 'LIMITED' : null;
     // Pessoa física → birthDate obrigatório — usar do perfil do proprietário
-    final birthDate = taxIdDigits.length == 11
-        ? _formatDate(ownerProfile.birthDate)
-        : null;
+    final birthDate =
+        taxIdDigits.length == 11 ? _formatDate(ownerProfile.birthDate) : null;
 
     try {
       final request = AsaasAccountRequest(
@@ -157,12 +164,14 @@ class AsaasOnboardingService {
       );
       return response;
     } on AsaasException catch (e) {
-      final msg = 'AsaasOnboardingService: falha ao criar subconta para armeiro '
+      final msg =
+          'AsaasOnboardingService: falha ao criar subconta para armeiro '
           '${gunsmith.name} no Asaas: ${e.message}';
       session.log(msg, level: LogLevel.error);
       throw AppException(message: msg);
     } catch (e) {
-      final msg = 'AsaasOnboardingService: erro inesperado ao criar subconta para armeiro '
+      final msg =
+          'AsaasOnboardingService: erro inesperado ao criar subconta para armeiro '
           '${gunsmith.name}: $e';
       session.log(msg, level: LogLevel.error);
       throw AppException(message: msg);

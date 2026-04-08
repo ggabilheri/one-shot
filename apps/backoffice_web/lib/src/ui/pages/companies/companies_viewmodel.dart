@@ -12,6 +12,7 @@ abstract class ICompaniesViewmodel extends IViewmodel {
   Future<List<UserProfile>> searchUsers(String query);
   Future<UserProfile?> getUserById(String id);
   Future<Address?> getAddressByCep(String cep);
+  Future<Company?> fetchCompanyInfo(String cnpj);
 }
 
 class CompaniesViewmodel extends Viewmodel implements ICompaniesViewmodel {
@@ -30,6 +31,19 @@ class CompaniesViewmodel extends Viewmodel implements ICompaniesViewmodel {
       return null;
     } catch (e) {
       setError('Falha ao buscar endereço pelo CEP.');
+      return null;
+    }
+  }
+
+  @override
+  Future<Company?> fetchCompanyInfo(String cnpj) async {
+    try {
+      return await _repository.fetchCompanyInfo(cnpj);
+    } on AppException catch (e) {
+      setError(e.message);
+      return null;
+    } catch (e) {
+      setError('Falha ao buscar informações da empresa pelo CNPJ.');
       return null;
     }
   }

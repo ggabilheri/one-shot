@@ -40,6 +40,11 @@ class _CompanyFormDialogState extends State<CompanyFormDialog> {
   CompanyType _selectedType = CompanyType.club;
 
   bool _isSaving = false;
+  String? _cnpjError;
+  String? _phoneError;
+  String? _nameError;
+  String? _emailError;
+  String? _zipCodeError;
 
   bool get isEditing => widget.company != null;
 
@@ -94,6 +99,7 @@ class _CompanyFormDialogState extends State<CompanyFormDialog> {
 
     _zipCodeFocusNode = FocusNode();
     _zipCodeFocusNode.addListener(_onZipCodeFocusChange);
+    _cnpjController.addListener(_onCnpjChange);
 
     if (isEditing && widget.company?.ownerId != null) {
       _loadOwner();
@@ -135,6 +141,40 @@ class _CompanyFormDialogState extends State<CompanyFormDialog> {
     }
   }
 
+  void _onCnpjChange() {
+    final cnpj = _cnpjController.text.replaceAll(RegExp(r'\D'), '');
+    if (cnpj.length == 14) {
+      _searchCnpj(cnpj);
+    }
+  }
+
+  Future<void> _searchCnpj(String cnpj) async {
+    try {
+      final company = await widget.vm.fetchCompanyInfo(cnpj);
+      if (company != null && mounted) {
+        setState(() {
+          _nameController.text = company.name;
+          if (company.address != null) {
+            _zipCodeController.text = _zipCodeMask.maskText(
+              company.address!.zipCode,
+            );
+            _cityController.text = company.address!.city;
+            _stateController.text = company.address!.state;
+            _streetController.text = company.address!.street;
+            _neighborhoodController.text = company.address!.neighborhood;
+            _complementController.text = company.address!.complement ?? '';
+            // Número geralmente precisa ser preenchido manualmente se não vier na API
+            if (company.address!.number.isNotEmpty) {
+              _numberController.text = company.address!.number;
+            }
+          }
+        });
+      }
+    } catch (e) {
+      debugPrint('Error fetch CNPJ: $e');
+    }
+  }
+
   @override
   void dispose() {
     _zipCodeFocusNode.dispose();
@@ -153,22 +193,58 @@ class _CompanyFormDialogState extends State<CompanyFormDialog> {
   }
 
   Future<void> _save() async {
+    setState(() {
+      _cnpjError = null;
+      _phoneError = null;
+      _nameError = null;
+      _emailError = null;
+      _zipCodeError = null;
+    });
+
+    final String clearCnpj = _cnpjController.text.replaceAll(
+      RegExp(r'\D'),
+      '',
+    );
+    final String clearPhone = _phoneController.text.replaceAll(
+      RegExp(r'\D'),
+      '',
+    );
+    final String clearZipCode = _zipCodeController.text.replaceAll(
+      RegExp(r'\D'),
+      '',
+    );
+
+    // Validações
+    bool hasErrors = false;
+    if (clearCnpj.length != 14) {
+      setState(() => _cnpjError = 'O CNPJ deve conter 14 dígitos.');
+      hasErrors = true;
+    }
+    if (clearPhone.isEmpty) {
+      setState(() => _phoneError = 'O telefone é obrigatório.');
+      hasErrors = true;
+    }
+    if (_nameController.text.trim().isEmpty) {
+      setState(() => _nameError = 'O nome da empresa é obrigatório.');
+      hasErrors = true;
+    }
+    if (_emailController.text.trim().isEmpty) {
+      setState(() => _emailError = 'O e-mail é obrigatório.');
+      hasErrors = true;
+    } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(_emailController.text.trim())) {
+      setState(() => _emailError = 'O e-mail informado é inválido.');
+      hasErrors = true;
+    }
+    if (clearZipCode.length != 8) {
+      setState(() => _zipCodeError = 'O CEP deve conter 8 dígitos.');
+      hasErrors = true;
+    }
+
+    if (hasErrors) return;
+
     setState(() => _isSaving = true);
 
     try {
-      final String clearCnpj = _cnpjController.text.replaceAll(
-        RegExp(r'\D'),
-        '',
-      );
-      final String clearPhone = _phoneController.text.replaceAll(
-        RegExp(r'\D'),
-        '',
-      );
-      final String clearZipCode = _zipCodeController.text.replaceAll(
-        RegExp(r'\D'),
-        '',
-      );
-
       final Address currentAddress =
           widget.company?.address ??
           Address(
@@ -277,10 +353,37 @@ class _CompanyFormDialogState extends State<CompanyFormDialog> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: CompanyFormInputField(
+                              label: 'CNPJ',
+                              hint: '00.000.000/0000-00',
+                              controller: _cnpjController,
+                              inputFormatters: [_cnpjMask],
+                              errorText: _cnpjError,
+                            ),
+                          ),
+                          const SizedBox(width: DSTokens.spacingMd),
+                          Expanded(
+                            flex: 2,
+                            child: CompanyFormInputField(
+                              label: 'TELEFONE',
+                              hint: '+55 ...',
+                              controller: _phoneController,
+                              inputFormatters: [_phoneMask],
+                              errorText: _phoneError,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: DSTokens.spacingMd),
                       CompanyFormInputField(
                         label: 'NOME DA EMPRESA',
                         hint: 'Ex: OneShot Solutions...',
                         controller: _nameController,
+                        errorText: _nameError,
                       ),
                       const SizedBox(height: DSTokens.spacingMd),
 
@@ -314,33 +417,11 @@ class _CompanyFormDialogState extends State<CompanyFormDialog> {
                         ),
                       ),
                       const SizedBox(height: DSTokens.spacingMd),
-
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CompanyFormInputField(
-                              label: 'CNPJ',
-                              hint: '00.000.000/0000-00',
-                              controller: _cnpjController,
-                              inputFormatters: [_cnpjMask],
-                            ),
-                          ),
-                          const SizedBox(width: DSTokens.spacingMd),
-                          Expanded(
-                            child: CompanyFormInputField(
-                              label: 'TELEFONE',
-                              hint: '+55 ...',
-                              controller: _phoneController,
-                              inputFormatters: [_phoneMask],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: DSTokens.spacingMd),
                       CompanyFormInputField(
                         label: 'EMAIL DE CONTATO',
                         hint: 'admin@empresa.com',
                         controller: _emailController,
+                        errorText: _emailError,
                       ),
                       const SizedBox(height: DSTokens.spacingMd),
                       CompanyOwnerSelector(
@@ -363,6 +444,7 @@ class _CompanyFormDialogState extends State<CompanyFormDialog> {
                               controller: _zipCodeController,
                               focusNode: _zipCodeFocusNode,
                               inputFormatters: [_zipCodeMask],
+                              errorText: _zipCodeError,
                             ),
                           ),
                           const SizedBox(width: DSTokens.spacingMd),
