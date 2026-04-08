@@ -4,10 +4,12 @@ import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 import 'package:backoffice_web/src/ui/pages/clubs/clubs_viewmodel.dart';
 import 'package:backoffice_web/src/ui/widgets/dialogs/user_search_dialog.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'club_form_input_field.dart';
+import 'club_owner_selector.dart';
 
 class ClubFormDialog extends StatefulWidget {
   final IClubsViewmodel vm;
-  final Club? club; // Será passado null no 'Novo', e a instancia no 'Edit'
+  final Club? club;
 
   const ClubFormDialog({super.key, required this.vm, this.club});
 
@@ -267,41 +269,44 @@ class _ClubFormDialogState extends State<ClubFormDialog> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildInputField(
-                      'NOME DA ENTIDADE',
-                      'Ex: Clube de Tiro ...',
-                      _nameController,
+                    ClubFormInputField(
+                      label: 'NOME DA ENTIDADE',
+                      hint: 'Ex: Clube de Tiro ...',
+                      controller: _nameController,
                     ),
                     const SizedBox(height: DSTokens.spacingMd),
                     Row(
                       children: [
                         Expanded(
-                          child: _buildInputField(
-                            'CNPJ',
-                            '00.000.000/0000-00',
-                            _cnpjController,
+                          child: ClubFormInputField(
+                            label: 'CNPJ',
+                            hint: '00.000.000/0000-00',
+                            controller: _cnpjController,
                             inputFormatters: [_cnpjMask],
                           ),
                         ),
                         const SizedBox(width: DSTokens.spacingMd),
                         Expanded(
-                          child: _buildInputField(
-                            'TELEFONE',
-                            '+55 ...',
-                            _phoneController,
+                          child: ClubFormInputField(
+                            label: 'TELEFONE',
+                            hint: '+55 ...',
+                            controller: _phoneController,
                             inputFormatters: [_phoneMask],
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: DSTokens.spacingMd),
-                    _buildInputField(
-                      'EMAIL DE CONTATO',
-                      'admin@clube.com',
-                      _emailController,
+                    ClubFormInputField(
+                      label: 'EMAIL DE CONTATO',
+                      hint: 'admin@clube.com',
+                      controller: _emailController,
                     ),
                     const SizedBox(height: DSTokens.spacingMd),
-                    _buildOwnerSelector(),
+                    ClubOwnerSelector(
+                      selectedOwner: _selectedOwner,
+                      onSearch: _showUserSearch,
+                    ),
                     const SizedBox(height: DSTokens.spacingLg),
                     Text(
                       'ENDEREÇO DA ENTIDADE',
@@ -312,10 +317,10 @@ class _ClubFormDialogState extends State<ClubFormDialog> {
                       children: [
                         Expanded(
                           flex: 3,
-                          child: _buildInputField(
-                            'CEP',
-                            '00000-000',
-                            _zipCodeController,
+                          child: ClubFormInputField(
+                            label: 'CEP',
+                            hint: '00000-000',
+                            controller: _zipCodeController,
                             focusNode: _zipCodeFocusNode,
                             inputFormatters: [_zipCodeMask],
                           ),
@@ -323,52 +328,56 @@ class _ClubFormDialogState extends State<ClubFormDialog> {
                         const SizedBox(width: DSTokens.spacingMd),
                         Expanded(
                           flex: 5,
-                          child: _buildInputField(
-                            'CIDADE',
-                            'Cidade',
-                            _cityController,
+                          child: ClubFormInputField(
+                            label: 'CIDADE',
+                            hint: 'Cidade',
+                            controller: _cityController,
                           ),
                         ),
                         const SizedBox(width: DSTokens.spacingMd),
                         Expanded(
                           flex: 2,
-                          child: _buildInputField('UF', 'UF', _stateController),
+                          child: ClubFormInputField(
+                            label: 'UF',
+                            hint: 'UF',
+                            controller: _stateController,
+                          ),
                         ),
                       ],
                     ),
                     const SizedBox(height: DSTokens.spacingMd),
-                    _buildInputField(
-                      'LOGRADOURO (RUA/AV)',
-                      'Rua...',
-                      _streetController,
+                    ClubFormInputField(
+                      label: 'LOGRADOURO (RUA/AV)',
+                      hint: 'Rua...',
+                      controller: _streetController,
                     ),
                     const SizedBox(height: DSTokens.spacingMd),
                     Row(
                       children: [
                         Expanded(
                           flex: 3,
-                          child: _buildInputField(
-                            'NÚMERO',
-                            'Nr',
-                            _numberController,
+                          child: ClubFormInputField(
+                            label: 'NÚMERO',
+                            hint: 'Nr',
+                            controller: _numberController,
                           ),
                         ),
                         const SizedBox(width: DSTokens.spacingMd),
                         Expanded(
                           flex: 3,
-                          child: _buildInputField(
-                            'COMPLEMENTO',
-                            'Compl.',
-                            _complementController,
+                          child: ClubFormInputField(
+                            label: 'COMPLEMENTO',
+                            hint: 'Compl.',
+                            controller: _complementController,
                           ),
                         ),
                         const SizedBox(width: DSTokens.spacingMd),
                         Expanded(
                           flex: 4,
-                          child: _buildInputField(
-                            'BAIRRO',
-                            'Bairro',
-                            _neighborhoodController,
+                          child: ClubFormInputField(
+                            label: 'BAIRRO',
+                            hint: 'Bairro',
+                            controller: _neighborhoodController,
                           ),
                         ),
                       ],
@@ -441,62 +450,6 @@ class _ClubFormDialogState extends State<ClubFormDialog> {
     );
   }
 
-  Widget _buildOwnerSelector() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('PROPRIETÁRIO / RESPONSÁVEL', style: DSTokens.label),
-        const SizedBox(height: 8),
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: DSTokens.background,
-            border: Border.all(color: DSTokens.surfaceContainerHigh),
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      _selectedOwner?.name ?? 'NENHUM PROPRIETÁRIO SELECIONADO',
-                      style: DSTokens.body.copyWith(
-                        color: _selectedOwner != null
-                            ? DSTokens.highlight
-                            : DSTokens.outline,
-                        fontWeight: _selectedOwner != null
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                      ),
-                    ),
-                    if (_selectedOwner != null)
-                      Text(
-                        'CPF: ${_selectedOwner?.cpf ?? "N/A"}',
-                        style: DSTokens.label.copyWith(color: DSTokens.outline),
-                      ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 16),
-              ElevatedButton(
-                onPressed: _showUserSearch,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: DSTokens.surfaceContainerHigh,
-                  foregroundColor: DSTokens.highlight,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                  ),
-                ),
-                child: const Text('BUSCAR'),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
   void _showUserSearch() {
     showDialog(
       context: context,
@@ -506,41 +459,6 @@ class _ClubFormDialogState extends State<ClubFormDialog> {
           setState(() => _selectedOwner = user);
         },
       ),
-    );
-  }
-
-  Widget _buildInputField(
-    String label,
-    String hint,
-    TextEditingController controller, {
-    FocusNode? focusNode,
-    List<MaskTextInputFormatter>? inputFormatters,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: DSTokens.label),
-        const SizedBox(height: 8),
-        Container(
-          height: 48,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          decoration: BoxDecoration(
-            color: DSTokens.background,
-            border: Border.all(color: DSTokens.surfaceContainerHigh),
-          ),
-          child: TextField(
-            controller: controller,
-            focusNode: focusNode,
-            inputFormatters: inputFormatters,
-            style: DSTokens.body.copyWith(color: DSTokens.highlight),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: hint,
-              hintStyle: DSTokens.body.copyWith(color: DSTokens.outline),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

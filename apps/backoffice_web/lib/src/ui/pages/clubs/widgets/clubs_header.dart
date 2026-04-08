@@ -1,7 +1,7 @@
+import 'package:backoffice_web/src/ui/pages/clubs/widgets/clubs_header_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:backoffice_web/src/ui/pages/clubs/clubs_viewmodel.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
-import 'club_form_dialog.dart';
 
 class ClubsHeader extends StatelessWidget {
   final IClubsViewmodel vm;
@@ -27,48 +27,8 @@ class ClubsHeader extends StatelessWidget {
             ),
           ],
         ),
-        _buildActionBtn(context),
+        ClubsHeaderActionButton(vm: vm),
       ],
-    );
-  }
-
-  Widget _buildActionBtn(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () {
-          showDialog(
-            context: context,
-            barrierColor: DSTokens.background.withOpacity(0.8),
-            builder: (context) => ClubFormDialog(vm: vm),
-          );
-        },
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: DSTokens.spacingLg,
-            vertical: DSTokens.spacingMd,
-          ),
-          decoration: BoxDecoration(
-            color: DSTokens.primary,
-            border: Border.all(color: DSTokens.primary),
-            // Geométrico, sem border radius ou com radius de 2px no maximo
-            borderRadius: BorderRadius.circular(2), 
-          ),
-          child: Row(
-            children: [
-              const Icon(Icons.add, color: DSTokens.onPrimary, size: 20),
-              const SizedBox(width: DSTokens.spacingSm),
-              Text(
-                'NOVO REGISTRO',
-                style: DSTokens.label.copyWith(
-                  color: DSTokens.onPrimary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
