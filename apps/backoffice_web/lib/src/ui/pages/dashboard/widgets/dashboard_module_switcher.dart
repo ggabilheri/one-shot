@@ -1,3 +1,6 @@
+import 'package:backoffice_web/src/ui/pages/finance/bank_accounts/bank_accounts_page.dart';
+import 'package:backoffice_web/src/ui/pages/finance/entries/payable_page.dart';
+import 'package:backoffice_web/src/ui/pages/finance/entries/receivable_page.dart';
 import 'package:flutter/material.dart';
 import 'package:backoffice_web/src/domain/models/enums/dashboard_page_type.dart';
 import 'package:backoffice_web/src/ui/pages/dashboard/summary/dashboard_summary_page.dart';
@@ -34,6 +37,12 @@ class DashboardModuleSwitcher extends StatelessWidget {
         return const ProductGroupsPage();
       case DashboardPageType.subscriptions:
         return const SubscriptionPlansPage();
+      case DashboardPageType.bankAccounts:
+        return const BankAccountsPage();
+      case DashboardPageType.payable:
+        return const PayablePage();
+      case DashboardPageType.receivable:
+        return const ReceivablePage();
       case DashboardPageType.stock:
         return Center(child: Text('MÓDULO DE ESTOQUE EM BREVE', style: DSTokens.body));
       case DashboardPageType.serviceOrders:

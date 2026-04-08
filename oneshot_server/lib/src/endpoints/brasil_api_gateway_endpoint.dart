@@ -80,9 +80,9 @@ class BrasilApiGatewayEndpoint extends Endpoint {
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
-        List<Map<String, dynamic>> data = jsonDecode(response.body);
-        for (final bank in data) {
-          banks.add(Bank.fromJson(bank));
+        final List data = jsonDecode(response.body);
+        for (final bank in data.where((b) => b['code'] != null)) {
+          banks.add(Bank.fromJson(bank as Map<String, dynamic>));
         }
       }
     } catch (e) {

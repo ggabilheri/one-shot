@@ -9,6 +9,12 @@ ammunition:
   - addAmmunition:
   - adjustQuantity:
   - deleteAmmunition:
+bankAccount:
+  - createAccount:
+  - readAccount:
+  - updateAccount:
+  - deleteAccount:
+  - listAccounts:
 brasilApiGateway:
   - getCompanyInfo:
   - getAddressByCep:
@@ -34,6 +40,12 @@ document:
   - listByAccessory:
   - getUploadDescription:
   - verifyUpload:
+financialEntry:
+  - createEntry:
+  - readEntry:
+  - updateEntry:
+  - deleteEntry:
+  - listEntries:
 firearm:
   - getById:
   - getBySerialNumber:

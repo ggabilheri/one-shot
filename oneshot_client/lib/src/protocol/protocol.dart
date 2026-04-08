@@ -71,37 +71,40 @@ import 'subscription/subscription_plan.dart' as _i58;
 import 'package:oneshot_client/src/protocol/common/accessory.dart' as _i59;
 import 'package:oneshot_client/src/protocol/shooter/ammunition_stock.dart'
     as _i60;
-import 'package:oneshot_client/src/protocol/finance/bank.dart' as _i61;
-import 'package:oneshot_client/src/protocol/club/club.dart' as _i62;
-import 'package:oneshot_client/src/protocol/club/membership.dart' as _i63;
-import 'package:oneshot_client/src/protocol/club/range_visit.dart' as _i64;
-import 'package:oneshot_client/src/protocol/common/document.dart' as _i65;
-import 'package:oneshot_client/src/protocol/shooter/firearm.dart' as _i66;
-import 'package:oneshot_client/src/protocol/gunsmith/gunsmith.dart' as _i67;
+import 'package:oneshot_client/src/protocol/finance/bank_account.dart' as _i61;
+import 'package:oneshot_client/src/protocol/finance/bank.dart' as _i62;
+import 'package:oneshot_client/src/protocol/club/club.dart' as _i63;
+import 'package:oneshot_client/src/protocol/club/membership.dart' as _i64;
+import 'package:oneshot_client/src/protocol/club/range_visit.dart' as _i65;
+import 'package:oneshot_client/src/protocol/common/document.dart' as _i66;
+import 'package:oneshot_client/src/protocol/finance/financial_entry.dart'
+    as _i67;
+import 'package:oneshot_client/src/protocol/shooter/firearm.dart' as _i68;
+import 'package:oneshot_client/src/protocol/gunsmith/gunsmith.dart' as _i69;
 import 'package:oneshot_client/src/protocol/gunsmith/gunsmith_client.dart'
-    as _i68;
-import 'package:oneshot_client/src/protocol/gunsmith/service_order_item.dart'
-    as _i69;
-import 'package:oneshot_client/src/protocol/gunsmith/service_order.dart'
     as _i70;
-import 'package:oneshot_client/src/protocol/finance/invoice_item.dart' as _i71;
-import 'package:oneshot_client/src/protocol/finance/invoice.dart' as _i72;
-import 'package:oneshot_client/src/protocol/finance/payment.dart' as _i73;
-import 'package:oneshot_client/src/protocol/product/product.dart' as _i74;
-import 'package:oneshot_client/src/protocol/product/product_group.dart' as _i75;
+import 'package:oneshot_client/src/protocol/gunsmith/service_order_item.dart'
+    as _i71;
+import 'package:oneshot_client/src/protocol/gunsmith/service_order.dart'
+    as _i72;
+import 'package:oneshot_client/src/protocol/finance/invoice_item.dart' as _i73;
+import 'package:oneshot_client/src/protocol/finance/invoice.dart' as _i74;
+import 'package:oneshot_client/src/protocol/finance/payment.dart' as _i75;
+import 'package:oneshot_client/src/protocol/product/product.dart' as _i76;
+import 'package:oneshot_client/src/protocol/product/product_group.dart' as _i77;
 import 'package:oneshot_client/src/protocol/shooter/reload_session.dart'
-    as _i76;
-import 'package:oneshot_client/src/protocol/shooter/reload_test.dart' as _i77;
-import 'package:oneshot_client/src/protocol/common/supply_stock.dart' as _i78;
+    as _i78;
+import 'package:oneshot_client/src/protocol/shooter/reload_test.dart' as _i79;
+import 'package:oneshot_client/src/protocol/common/supply_stock.dart' as _i80;
 import 'package:oneshot_client/src/protocol/access_control/role_permission.dart'
-    as _i79;
-import 'package:oneshot_client/src/protocol/access_control/security_role.dart'
-    as _i80;
-import 'package:oneshot_client/src/protocol/subscription/subscription_plan.dart'
     as _i81;
-import 'package:oneshot_client/src/protocol/shooter/training.dart' as _i82;
-import 'package:oneshot_client/src/protocol/common/user_profile.dart' as _i83;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i84;
+import 'package:oneshot_client/src/protocol/access_control/security_role.dart'
+    as _i82;
+import 'package:oneshot_client/src/protocol/subscription/subscription_plan.dart'
+    as _i83;
+import 'package:oneshot_client/src/protocol/shooter/training.dart' as _i84;
+import 'package:oneshot_client/src/protocol/common/user_profile.dart' as _i85;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i86;
 export 'access_control/role_permission.dart';
 export 'access_control/security_role.dart';
 export 'access_control/user_role.dart';
@@ -571,115 +574,127 @@ class Protocol extends _i1.SerializationManager {
               .toList()
           as T;
     }
-    if (t == List<_i61.Bank>) {
-      return (data as List).map((e) => deserialize<_i61.Bank>(e)).toList() as T;
-    }
-    if (t == List<_i62.Club>) {
-      return (data as List).map((e) => deserialize<_i62.Club>(e)).toList() as T;
-    }
-    if (t == List<_i63.Membership>) {
-      return (data as List).map((e) => deserialize<_i63.Membership>(e)).toList()
-          as T;
-    }
-    if (t == List<_i64.RangeVisit>) {
-      return (data as List).map((e) => deserialize<_i64.RangeVisit>(e)).toList()
-          as T;
-    }
-    if (t == List<_i65.Document>) {
-      return (data as List).map((e) => deserialize<_i65.Document>(e)).toList()
-          as T;
-    }
-    if (t == List<_i66.Firearm>) {
-      return (data as List).map((e) => deserialize<_i66.Firearm>(e)).toList()
-          as T;
-    }
-    if (t == List<_i67.Gunsmith>) {
-      return (data as List).map((e) => deserialize<_i67.Gunsmith>(e)).toList()
-          as T;
-    }
-    if (t == List<_i68.GunsmithClient>) {
+    if (t == List<_i61.BankAccount>) {
       return (data as List)
-              .map((e) => deserialize<_i68.GunsmithClient>(e))
+              .map((e) => deserialize<_i61.BankAccount>(e))
               .toList()
           as T;
     }
-    if (t == List<_i69.ServiceOrderItem>) {
+    if (t == List<_i62.Bank>) {
+      return (data as List).map((e) => deserialize<_i62.Bank>(e)).toList() as T;
+    }
+    if (t == List<_i63.Club>) {
+      return (data as List).map((e) => deserialize<_i63.Club>(e)).toList() as T;
+    }
+    if (t == List<_i64.Membership>) {
+      return (data as List).map((e) => deserialize<_i64.Membership>(e)).toList()
+          as T;
+    }
+    if (t == List<_i65.RangeVisit>) {
+      return (data as List).map((e) => deserialize<_i65.RangeVisit>(e)).toList()
+          as T;
+    }
+    if (t == List<_i66.Document>) {
+      return (data as List).map((e) => deserialize<_i66.Document>(e)).toList()
+          as T;
+    }
+    if (t == List<_i67.FinancialEntry>) {
       return (data as List)
-              .map((e) => deserialize<_i69.ServiceOrderItem>(e))
+              .map((e) => deserialize<_i67.FinancialEntry>(e))
               .toList()
           as T;
     }
-    if (t == List<_i70.ServiceOrder>) {
+    if (t == List<_i68.Firearm>) {
+      return (data as List).map((e) => deserialize<_i68.Firearm>(e)).toList()
+          as T;
+    }
+    if (t == List<_i69.Gunsmith>) {
+      return (data as List).map((e) => deserialize<_i69.Gunsmith>(e)).toList()
+          as T;
+    }
+    if (t == List<_i70.GunsmithClient>) {
       return (data as List)
-              .map((e) => deserialize<_i70.ServiceOrder>(e))
+              .map((e) => deserialize<_i70.GunsmithClient>(e))
               .toList()
           as T;
     }
-    if (t == List<_i71.InvoiceItem>) {
+    if (t == List<_i71.ServiceOrderItem>) {
       return (data as List)
-              .map((e) => deserialize<_i71.InvoiceItem>(e))
+              .map((e) => deserialize<_i71.ServiceOrderItem>(e))
               .toList()
           as T;
     }
-    if (t == List<_i72.Invoice>) {
-      return (data as List).map((e) => deserialize<_i72.Invoice>(e)).toList()
-          as T;
-    }
-    if (t == List<_i73.Payment>) {
-      return (data as List).map((e) => deserialize<_i73.Payment>(e)).toList()
-          as T;
-    }
-    if (t == List<_i74.Product>) {
-      return (data as List).map((e) => deserialize<_i74.Product>(e)).toList()
-          as T;
-    }
-    if (t == List<_i75.ProductGroup>) {
+    if (t == List<_i72.ServiceOrder>) {
       return (data as List)
-              .map((e) => deserialize<_i75.ProductGroup>(e))
+              .map((e) => deserialize<_i72.ServiceOrder>(e))
               .toList()
           as T;
     }
-    if (t == List<_i76.ReloadSession>) {
+    if (t == List<_i73.InvoiceItem>) {
       return (data as List)
-              .map((e) => deserialize<_i76.ReloadSession>(e))
+              .map((e) => deserialize<_i73.InvoiceItem>(e))
               .toList()
           as T;
     }
-    if (t == List<_i77.ReloadTest>) {
-      return (data as List).map((e) => deserialize<_i77.ReloadTest>(e)).toList()
+    if (t == List<_i74.Invoice>) {
+      return (data as List).map((e) => deserialize<_i74.Invoice>(e)).toList()
           as T;
     }
-    if (t == List<_i78.SupplyStock>) {
+    if (t == List<_i75.Payment>) {
+      return (data as List).map((e) => deserialize<_i75.Payment>(e)).toList()
+          as T;
+    }
+    if (t == List<_i76.Product>) {
+      return (data as List).map((e) => deserialize<_i76.Product>(e)).toList()
+          as T;
+    }
+    if (t == List<_i77.ProductGroup>) {
       return (data as List)
-              .map((e) => deserialize<_i78.SupplyStock>(e))
+              .map((e) => deserialize<_i77.ProductGroup>(e))
               .toList()
           as T;
     }
-    if (t == List<_i79.RolePermission>) {
+    if (t == List<_i78.ReloadSession>) {
       return (data as List)
-              .map((e) => deserialize<_i79.RolePermission>(e))
+              .map((e) => deserialize<_i78.ReloadSession>(e))
               .toList()
           as T;
     }
-    if (t == List<_i80.SecurityRole>) {
+    if (t == List<_i79.ReloadTest>) {
+      return (data as List).map((e) => deserialize<_i79.ReloadTest>(e)).toList()
+          as T;
+    }
+    if (t == List<_i80.SupplyStock>) {
       return (data as List)
-              .map((e) => deserialize<_i80.SecurityRole>(e))
+              .map((e) => deserialize<_i80.SupplyStock>(e))
               .toList()
           as T;
     }
-    if (t == List<_i81.SubscriptionPlan>) {
+    if (t == List<_i81.RolePermission>) {
       return (data as List)
-              .map((e) => deserialize<_i81.SubscriptionPlan>(e))
+              .map((e) => deserialize<_i81.RolePermission>(e))
               .toList()
           as T;
     }
-    if (t == List<_i82.Training>) {
-      return (data as List).map((e) => deserialize<_i82.Training>(e)).toList()
+    if (t == List<_i82.SecurityRole>) {
+      return (data as List)
+              .map((e) => deserialize<_i82.SecurityRole>(e))
+              .toList()
           as T;
     }
-    if (t == List<_i83.UserProfile>) {
+    if (t == List<_i83.SubscriptionPlan>) {
       return (data as List)
-              .map((e) => deserialize<_i83.UserProfile>(e))
+              .map((e) => deserialize<_i83.SubscriptionPlan>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i84.Training>) {
+      return (data as List).map((e) => deserialize<_i84.Training>(e)).toList()
+          as T;
+    }
+    if (t == List<_i85.UserProfile>) {
+      return (data as List)
+              .map((e) => deserialize<_i85.UserProfile>(e))
               .toList()
           as T;
     }
@@ -700,7 +715,7 @@ class Protocol extends _i1.SerializationManager {
           as T;
     }
     try {
-      return _i84.Protocol().deserialize<T>(data, t);
+      return _i86.Protocol().deserialize<T>(data, t);
     } on _i1.DeserializationTypeNotFoundException catch (_) {}
     return super.deserialize<T>(data, t);
   }
@@ -893,7 +908,7 @@ class Protocol extends _i1.SerializationManager {
       case _i58.SubscriptionPlan():
         return 'SubscriptionPlan';
     }
-    className = _i84.Protocol().getClassNameForObject(data);
+    className = _i86.Protocol().getClassNameForObject(data);
     if (className != null) {
       return 'serverpod_auth.$className';
     }
@@ -1079,7 +1094,7 @@ class Protocol extends _i1.SerializationManager {
     }
     if (dataClassName.startsWith('serverpod_auth.')) {
       data['className'] = dataClassName.substring(15);
-      return _i84.Protocol().deserializeByClassName(data);
+      return _i86.Protocol().deserializeByClassName(data);
     }
     return super.deserializeByClassName(data);
   }
@@ -1094,7 +1109,7 @@ class Protocol extends _i1.SerializationManager {
       return null;
     }
     try {
-      return _i84.Protocol().mapRecordToJson(record);
+      return _i86.Protocol().mapRecordToJson(record);
     } catch (_) {}
     throw Exception('Unsupported record type ${record.runtimeType}');
   }

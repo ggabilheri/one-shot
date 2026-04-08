@@ -13,4 +13,7 @@ enum DashboardPageType {
   roles,
   products,
   productGroups,
+  bankAccounts,
+  payable,
+  receivable,
 }

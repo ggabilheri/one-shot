@@ -9,6 +9,8 @@ import 'package:oneshot_server/src/core/repository/product_group_repository.dart
 import 'package:oneshot_server/src/core/repository/product_repository.dart';
 import 'package:oneshot_server/src/core/repository/subscription_plan_repository.dart';
 import 'package:oneshot_server/src/core/repository/user_repository.dart';
+import 'package:oneshot_server/src/core/repository/bank_account_repository.dart';
+import 'package:oneshot_server/src/core/repository/financial_entry_repository.dart';
 import 'package:oneshot_server/src/data/repositories_impl/ammunition_repository.dart';
 import 'package:oneshot_server/src/data/repositories_impl/club_repositories.dart';
 import 'package:oneshot_server/src/data/repositories_impl/reload_repository.dart';
@@ -51,6 +53,8 @@ class Injections {
   late final IInvoiceRepository invoiceRepository;
   late final IInvoiceItemRepository invoiceItemRepository;
   late final IPaymentRepository paymentRepository;
+  late final IBankAccountRepository bankAccountRepository;
+  late final IFinancialEntryRepository financialEntryRepository;
 
   // Gateway Asaas
   // Os repositórios e serviços do Asaas são instanciados por request nos endpoints
@@ -84,6 +88,8 @@ class Injections {
     invoiceRepository = InvoiceRepository();
     invoiceItemRepository = InvoiceItemRepository();
     paymentRepository = PaymentRepository();
+    bankAccountRepository = BankAccountRepositoryImpl();
+    financialEntryRepository = FinancialEntryRepositoryImpl();
 
     // 2. Use Cases
     registerTrainingUseCase = RegisterTrainingUseCase(trainingRepository);

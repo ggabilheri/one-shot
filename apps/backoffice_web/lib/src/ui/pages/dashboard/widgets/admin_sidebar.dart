@@ -5,8 +5,9 @@ import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 import 'admin_sidebar_header.dart';
 import 'admin_sidebar_footer.dart';
 import 'admin_sidebar_item.dart';
+import 'admin_sidebar_expansion_item.dart';
 
-class AdminSidebar extends StatelessWidget {
+class AdminSidebar extends StatefulWidget {
   final bool isCollapsed;
   final VoidCallback onToggle;
   final DashboardPageType currentPage;
@@ -21,10 +22,37 @@ class AdminSidebar extends StatelessWidget {
   });
 
   @override
+  State<AdminSidebar> createState() => _AdminSidebarState();
+}
+
+class _AdminSidebarState extends State<AdminSidebar> {
+  bool _isFinanceExpanded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkExpansion();
+  }
+
+  @override
+  void didUpdateWidget(AdminSidebar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _checkExpansion();
+  }
+
+  void _checkExpansion() {
+    if (widget.currentPage == DashboardPageType.bankAccounts ||
+        widget.currentPage == DashboardPageType.payable ||
+        widget.currentPage == DashboardPageType.receivable) {
+      _isFinanceExpanded = true;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
-      width: isCollapsed ? 80 : 260,
+      width: widget.isCollapsed ? 80 : 260,
       decoration: const BoxDecoration(
         color: DSTokens.surface,
         border: Border(
@@ -33,7 +61,7 @@ class AdminSidebar extends StatelessWidget {
       ),
       child: Column(
         children: [
-          AdminSidebarHeader(isCollapsed: isCollapsed, onToggle: onToggle),
+          AdminSidebarHeader(isCollapsed: widget.isCollapsed, onToggle: widget.onToggle),
           const Divider(height: 1, color: DSTokens.surfaceContainerHigh),
           Expanded(
             child: ListView(
@@ -43,63 +71,79 @@ class AdminSidebar extends StatelessWidget {
                   icon: Icons.dashboard_outlined,
                   activeIcon: Icons.dashboard,
                   label: 'RESUMO',
-                  isCollapsed: isCollapsed,
-                  isSelected: currentPage == DashboardPageType.summary,
-                  onTap: () => onPageChanged(DashboardPageType.summary),
+                  isCollapsed: widget.isCollapsed,
+                  isSelected: widget.currentPage == DashboardPageType.summary,
+                  onTap: () => widget.onPageChanged(DashboardPageType.summary),
                 ),
                 AdminSidebarItem(
                   icon: Icons.business_outlined,
                   activeIcon: Icons.business,
                   label: 'CLUBES',
-                  isCollapsed: isCollapsed,
-                  isSelected: currentPage == DashboardPageType.clubs,
-                  onTap: () => onPageChanged(DashboardPageType.clubs),
+                  isCollapsed: widget.isCollapsed,
+                  isSelected: widget.currentPage == DashboardPageType.clubs,
+                  onTap: () => widget.onPageChanged(DashboardPageType.clubs),
                 ),
                 AdminSidebarItem(
                   icon: Icons.people_outline,
                   activeIcon: Icons.people,
                   label: 'USUÁRIOS',
-                  isCollapsed: isCollapsed,
-                  isSelected: currentPage == DashboardPageType.users,
-                  onTap: () => onPageChanged(DashboardPageType.users),
+                  isCollapsed: widget.isCollapsed,
+                  isSelected: widget.currentPage == DashboardPageType.users,
+                  onTap: () => widget.onPageChanged(DashboardPageType.users),
                 ),
                 AdminSidebarItem(
                   icon: Icons.card_membership_outlined,
                   activeIcon: Icons.card_membership,
                   label: 'ASSINATURAS',
-                  isCollapsed: isCollapsed,
-                  isSelected: currentPage == DashboardPageType.subscriptions,
-                  onTap: () => onPageChanged(DashboardPageType.subscriptions),
+                  isCollapsed: widget.isCollapsed,
+                  isSelected: widget.currentPage == DashboardPageType.subscriptions,
+                  onTap: () => widget.onPageChanged(DashboardPageType.subscriptions),
                 ),
-                // AdminSidebarItem(
-                //   icon: Icons.inventory_2_outlined,
-                //   activeIcon: Icons.inventory_2,
-                //   label: 'ESTOQUE',
-                //   isCollapsed: isCollapsed,
-                //   isSelected: currentPage == DashboardPageType.products || currentPage == DashboardPageType.productGroups,
-                //   onTap: () => onPageChanged(DashboardPageType.products),
-                // ),
+                AdminSidebarExpansionItem(
+                  icon: Icons.account_balance_wallet_outlined,
+                  label: 'FINANCEIRO',
+                  isCollapsed: widget.isCollapsed,
+                  isExpanded: _isFinanceExpanded,
+                  onExpandToggle: () => setState(() => _isFinanceExpanded = !_isFinanceExpanded),
+                  children: [
+                    AdminSidebarSubItem(
+                      label: 'CONTAS BANCÁRIAS',
+                      isSelected: widget.currentPage == DashboardPageType.bankAccounts,
+                      onTap: () => widget.onPageChanged(DashboardPageType.bankAccounts),
+                    ),
+                    AdminSidebarSubItem(
+                      label: 'A PAGAR',
+                      isSelected: widget.currentPage == DashboardPageType.payable,
+                      onTap: () => widget.onPageChanged(DashboardPageType.payable),
+                    ),
+                    AdminSidebarSubItem(
+                      label: 'A RECEBER',
+                      isSelected: widget.currentPage == DashboardPageType.receivable,
+                      onTap: () => widget.onPageChanged(DashboardPageType.receivable),
+                    ),
+                  ],
+                ),
                 AdminSidebarItem(
                   icon: Icons.category_outlined,
                   activeIcon: Icons.category,
                   label: 'CATEGORIAS',
-                  isCollapsed: isCollapsed,
-                  isSelected: currentPage == DashboardPageType.productGroups,
-                  onTap: () => onPageChanged(DashboardPageType.productGroups),
+                  isCollapsed: widget.isCollapsed,
+                  isSelected: widget.currentPage == DashboardPageType.productGroups,
+                  onTap: () => widget.onPageChanged(DashboardPageType.productGroups),
                 ),
                 AdminSidebarItem(
                   icon: Icons.security_outlined,
                   activeIcon: Icons.security,
                   label: 'REGRAS',
-                  isCollapsed: isCollapsed,
-                  isSelected: currentPage == DashboardPageType.roles,
-                  onTap: () => onPageChanged(DashboardPageType.roles),
+                  isCollapsed: widget.isCollapsed,
+                  isSelected: widget.currentPage == DashboardPageType.roles,
+                  onTap: () => widget.onPageChanged(DashboardPageType.roles),
                 ),
               ],
             ),
           ),
           const Divider(height: 1, color: DSTokens.surfaceContainerHigh),
-          AdminSidebarFooter(isCollapsed: isCollapsed, onTap: () {}),
+          AdminSidebarFooter(isCollapsed: widget.isCollapsed, onTap: () {}),
         ],
       ),
     );
