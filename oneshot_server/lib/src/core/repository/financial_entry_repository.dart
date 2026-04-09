@@ -14,6 +14,7 @@ abstract class IFinancialEntryRepository {
     FinancialEntryStatus? status,
     DateTime? dueDateFrom,
     DateTime? dueDateTo,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   });
@@ -99,6 +100,7 @@ class FinancialEntryRepositoryImpl implements IFinancialEntryRepository {
     FinancialEntryStatus? status,
     DateTime? dueDateFrom,
     DateTime? dueDateTo,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   }) async {
@@ -119,6 +121,11 @@ class FinancialEntryRepositoryImpl implements IFinancialEntryRepository {
           }
           if (dueDateTo != null) {
             where = where & (t.dueDate <= dueDateTo);
+          }
+          if (companyId != null) {
+            where = where & t.companyId.equals(companyId);
+          } else {
+            where = where & t.companyId.equals(null);
           }
 
           return where;

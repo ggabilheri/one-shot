@@ -28,7 +28,9 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
   late final TextEditingController _accountNumberController;
   late final TextEditingController _accountDigitController;
   late final TextEditingController _balanceController;
+  late final TextEditingController _pixKeyController;
   late String _status;
+  PixKeyType? _pixKeyType;
 
   bool get _isEditing => widget.account != null;
 
@@ -50,7 +52,9 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
     _balanceController = TextEditingController(
       text: widget.account?.balance.toString() ?? '0.0',
     );
+    _pixKeyController = TextEditingController(text: widget.account?.pixKey);
     _status = widget.account?.status ?? 'ACTIVE';
+    _pixKeyType = widget.account?.pixKeyType;
   }
 
   @override
@@ -62,6 +66,7 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
     _accountNumberController.dispose();
     _accountDigitController.dispose();
     _balanceController.dispose();
+    _pixKeyController.dispose();
     super.dispose();
   }
 
@@ -77,6 +82,8 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
             accountDigit: _accountDigitController.text,
             balance: double.tryParse(_balanceController.text) ?? 0.0,
             status: _status,
+            pixKey: _pixKeyController.text.isEmpty ? null : _pixKeyController.text,
+            pixKeyType: _pixKeyType,
           ) ??
           BankAccount(
             name: _nameController.text,
@@ -88,6 +95,8 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
             balance: double.tryParse(_balanceController.text) ?? 0.0,
             status: _status,
             originModule: 'BACKOFFICE',
+            pixKey: _pixKeyController.text.isEmpty ? null : _pixKeyController.text,
+            pixKeyType: _pixKeyType,
           );
       widget.onSave(account);
       Navigator.pop(context);
@@ -209,6 +218,30 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
                     label: 'SALDO ATUAL',
                     controller: _balanceController,
                     keyboardType: TextInputType.number,
+                  ),
+                  const SizedBox(height: DSTokens.spacingMd),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: _buildTextField(
+                          label: 'TIPO CHAVE PIX',
+                          isDropdown: true,
+                          dropdownValue: _pixKeyType?.name,
+                          items: PixKeyType.values.map((e) => e.name).toList(),
+                          onChanged: (v) => setState(() => _pixKeyType = PixKeyType.values.byName(v!)),
+                        ),
+                      ),
+                      const SizedBox(width: DSTokens.spacingMd),
+                      Expanded(
+                        flex: 3,
+                        child: _buildTextField(
+                          label: 'CHAVE PIX',
+                          controller: _pixKeyController,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: DSTokens.spacingLg),
                   Row(

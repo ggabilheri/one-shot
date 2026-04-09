@@ -11,6 +11,7 @@ abstract class IBankAccountRepository {
     Session session, {
     required String originModule,
     String? status,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   });
@@ -81,6 +82,7 @@ class BankAccountRepositoryImpl implements IBankAccountRepository {
     Session session, {
     required String originModule,
     String? status,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   }) async {
@@ -91,6 +93,11 @@ class BankAccountRepositoryImpl implements IBankAccountRepository {
           Expression where = t.originModule.equals(originModule);
           if (status != null) {
             where = where & t.status.equals(status);
+          }
+          if (companyId != null) {
+            where = where & t.companyId.equals(companyId);
+          } else {
+            where = where & t.companyId.equals(null);
           }
           return where;
         },

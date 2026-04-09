@@ -552,6 +552,11 @@ class Endpoints extends _i1.EndpointDispatch {
               type: _i1.getType<String?>(),
               nullable: true,
             ),
+            'companyId': _i1.ParameterDescription(
+              name: 'companyId',
+              type: _i1.getType<_i1.UuidValue?>(),
+              nullable: true,
+            ),
             'limit': _i1.ParameterDescription(
               name: 'limit',
               type: _i1.getType<int?>(),
@@ -572,6 +577,7 @@ class Endpoints extends _i1.EndpointDispatch {
                     session,
                     originModule: params['originModule'],
                     status: params['status'],
+                    companyId: params['companyId'],
                     limit: params['limit'],
                     offset: params['offset'],
                   ),
@@ -795,6 +801,16 @@ class Endpoints extends _i1.EndpointDispatch {
                 Map<String, dynamic> params,
               ) async => (endpoints['company'] as _i6.CompanyEndpoint)
                   .getMyVisits(session),
+        ),
+        'getManagedCompany': _i1.MethodConnector(
+          name: 'getManagedCompany',
+          params: {},
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['company'] as _i6.CompanyEndpoint)
+                  .getManagedCompany(session),
         ),
       },
     );
@@ -1076,6 +1092,26 @@ class Endpoints extends _i1.EndpointDispatch {
               type: _i1.getType<_i37.PlatformApp>(),
               nullable: false,
             ),
+            'dueDateTo': _i1.ParameterDescription(
+              name: 'dueDateTo',
+              type: _i1.getType<DateTime?>(),
+              nullable: true,
+            ),
+            'companyId': _i1.ParameterDescription(
+              name: 'companyId',
+              type: _i1.getType<_i1.UuidValue?>(),
+              nullable: true,
+            ),
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _i1.ParameterDescription(
+              name: 'offset',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            ),
             'type': _i1.ParameterDescription(
               name: 'type',
               type: _i1.getType<_i38.FinancialEntryType?>(),
@@ -1091,21 +1127,6 @@ class Endpoints extends _i1.EndpointDispatch {
               type: _i1.getType<DateTime?>(),
               nullable: true,
             ),
-            'dueDateTo': _i1.ParameterDescription(
-              name: 'dueDateTo',
-              type: _i1.getType<DateTime?>(),
-              nullable: true,
-            ),
-            'limit': _i1.ParameterDescription(
-              name: 'limit',
-              type: _i1.getType<int?>(),
-              nullable: true,
-            ),
-            'offset': _i1.ParameterDescription(
-              name: 'offset',
-              type: _i1.getType<int?>(),
-              nullable: true,
-            ),
           },
           call:
               (
@@ -1116,12 +1137,13 @@ class Endpoints extends _i1.EndpointDispatch {
                       .listEntries(
                         session,
                         originModule: params['originModule'],
+                        dueDateTo: params['dueDateTo'],
+                        companyId: params['companyId'],
+                        limit: params['limit'],
+                        offset: params['offset'],
                         type: params['type'],
                         status: params['status'],
                         dueDateFrom: params['dueDateFrom'],
-                        dueDateTo: params['dueDateTo'],
-                        limit: params['limit'],
-                        offset: params['offset'],
                       ),
         ),
       },
@@ -2355,6 +2377,11 @@ class Endpoints extends _i1.EndpointDispatch {
               type: _i1.getType<_i59.PlanStatus?>(),
               nullable: true,
             ),
+            'companyId': _i1.ParameterDescription(
+              name: 'companyId',
+              type: _i1.getType<_i1.UuidValue?>(),
+              nullable: true,
+            ),
             'limit': _i1.ParameterDescription(
               name: 'limit',
               type: _i1.getType<int?>(),
@@ -2377,6 +2404,7 @@ class Endpoints extends _i1.EndpointDispatch {
                         session,
                         planType: params['planType'],
                         status: params['status'],
+                        companyId: params['companyId'],
                         limit: params['limit'],
                         offset: params['offset'],
                       ),
@@ -2614,6 +2642,16 @@ class Endpoints extends _i1.EndpointDispatch {
                 params['userId'],
                 params['roleIds'],
               ),
+        ),
+        'getMyCompanies': _i1.MethodConnector(
+          name: 'getMyCompanies',
+          params: {},
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['user'] as _i20.UserEndpoint)
+                  .getMyCompanies(session),
         ),
       },
     );

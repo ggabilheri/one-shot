@@ -4,7 +4,8 @@ import 'package:serverpod/serverpod.dart';
 
 class FinancialEntryEndpoint extends Endpoint {
   /// Cria um novo lançamento financeiro (A Pagar ou A Receber).
-  Future<FinancialEntry> createEntry(Session session, FinancialEntry entry) async {
+  Future<FinancialEntry> createEntry(
+      Session session, FinancialEntry entry) async {
     return await sl.financialEntryRepository.create(session, entry);
   }
 
@@ -22,7 +23,8 @@ class FinancialEntryEndpoint extends Endpoint {
   }
 
   /// Atualiza um lançamento financeiro existente.
-  Future<FinancialEntry> updateEntry(Session session, FinancialEntry entry) async {
+  Future<FinancialEntry> updateEntry(
+      Session session, FinancialEntry entry) async {
     return await sl.financialEntryRepository.update(session, entry);
   }
 
@@ -40,12 +42,13 @@ class FinancialEntryEndpoint extends Endpoint {
   Future<List<FinancialEntry>> listEntries(
     Session session, {
     required PlatformApp originModule,
+    DateTime? dueDateTo,
+    UuidValue? companyId,
+    int? limit,
+    int? offset,
     FinancialEntryType? type,
     FinancialEntryStatus? status,
     DateTime? dueDateFrom,
-    DateTime? dueDateTo,
-    int? limit,
-    int? offset,
   }) async {
     return await sl.financialEntryRepository.list(
       session,
@@ -54,6 +57,7 @@ class FinancialEntryEndpoint extends Endpoint {
       status: status,
       dueDateFrom: dueDateFrom,
       dueDateTo: dueDateTo,
+      companyId: companyId,
       limit: limit,
       offset: offset,
     );

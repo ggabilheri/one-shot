@@ -1,0 +1,8 @@
+enum: PixKeyType
+serialized: byName
+values:
+  - cnpj
+  - cpf
+  - telefone
+  - email
+  - aleatoria

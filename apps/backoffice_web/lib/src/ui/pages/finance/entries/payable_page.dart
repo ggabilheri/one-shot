@@ -54,7 +54,7 @@ class _PayablePageState extends ViewmodelState<PayablePage, IFinancialEntriesVie
                       entries: vm.entries,
                       currencyFormat: _currencyFormat,
                       dateFormat: _dateFormat,
-                      isLoading: vm.isLoading,
+                      isLoading: loading,
                       onEdit: (entry) => _openForm(entry: entry),
                       onDelete: (entry) => _confirmDelete(entry),
                       onMarkAsPaid: (entry) =>

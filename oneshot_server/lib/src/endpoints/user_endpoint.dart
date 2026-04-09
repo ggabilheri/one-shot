@@ -56,4 +56,55 @@ class UserEndpoint extends Endpoint {
       Session session, UuidValue userId, List<UuidValue> roleIds) async {
     await sl.userProfileRepository.updateUserRoles(session, userId, roleIds);
   }
+
+  /// Retorna as empresas as quais o usuário logado tem acesso.
+  /// Implementa lógica de auto-admin para proprietários.
+  Future<List<Company>> getMyCompanies(Session session) async {
+    final profile = await sl.getOrCreateProfileUseCase.execute(session);
+    if (profile.id == null) return [];
+
+    // 1. Garantir que o papel "Administrador" existe
+    var adminRole = await SecurityRole.db.findFirstRow(
+      session,
+      where: (t) => t.name.equals('Administrador'),
+    );
+
+    adminRole ??= await sl.securityRoleRepository.create(
+      session,
+      SecurityRole(
+        name: 'Administrador',
+        description: 'Acesso total ao clube',
+        active: true,
+      ),
+      [],
+    );
+
+    // 2. Buscar empresas da qual é dono
+    final ownedCompanies =
+        await sl.companyRepository.findByOwner(session, profile.id!);
+
+    // 3. Garantir UserRole para cada empresa como Admin
+    for (final company in ownedCompanies) {
+      final existingRole = await UserRole.db.findFirstRow(
+        session,
+        where: (t) =>
+            t.userProfileId.equals(profile.id) & t.companyId.equals(company.id),
+      );
+
+      if (existingRole == null) {
+        await UserRole.db.insertRow(
+          session,
+          UserRole(
+            userProfileId: profile.id,
+            securityRoleId: adminRole.id,
+            companyId: company.id,
+          ),
+        );
+      }
+    }
+
+    // 4. Retornar lista de empresas vinculadas (via UserRole)
+    return await sl.userProfileRepository
+        .listUserCompanies(session, profile.id!);
+  }
 }

@@ -14,6 +14,8 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import '../enums/plan_type.enum.dart' as _i2;
 import '../enums/plan_periodicity.enum.dart' as _i3;
 import '../enums/plan_status.enum.dart' as _i4;
+import '../company/company.dart' as _i5;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _i6;
 
 abstract class SubscriptionPlan implements _i1.SerializableModel {
   SubscriptionPlan._({
@@ -25,6 +27,8 @@ abstract class SubscriptionPlan implements _i1.SerializableModel {
     required this.totalValue,
     required this.periodicity,
     required this.status,
+    this.companyId,
+    this.company,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory SubscriptionPlan({
@@ -36,6 +40,8 @@ abstract class SubscriptionPlan implements _i1.SerializableModel {
     required double totalValue,
     required _i3.PlanPeriodicity periodicity,
     required _i4.PlanStatus status,
+    _i1.UuidValue? companyId,
+    _i5.Company? company,
   }) = _SubscriptionPlanImpl;
 
   factory SubscriptionPlan.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -54,6 +60,14 @@ abstract class SubscriptionPlan implements _i1.SerializableModel {
         (jsonSerialization['periodicity'] as String),
       ),
       status: _i4.PlanStatus.fromJson((jsonSerialization['status'] as String)),
+      companyId: jsonSerialization['companyId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+      company: jsonSerialization['company'] == null
+          ? null
+          : _i6.Protocol().deserialize<_i5.Company>(
+              jsonSerialization['company'],
+            ),
     );
   }
 
@@ -74,6 +88,10 @@ abstract class SubscriptionPlan implements _i1.SerializableModel {
 
   _i4.PlanStatus status;
 
+  _i1.UuidValue? companyId;
+
+  _i5.Company? company;
+
   /// Returns a shallow copy of this [SubscriptionPlan]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
@@ -86,6 +104,8 @@ abstract class SubscriptionPlan implements _i1.SerializableModel {
     double? totalValue,
     _i3.PlanPeriodicity? periodicity,
     _i4.PlanStatus? status,
+    _i1.UuidValue? companyId,
+    _i5.Company? company,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -99,6 +119,8 @@ abstract class SubscriptionPlan implements _i1.SerializableModel {
       'totalValue': totalValue,
       'periodicity': periodicity.toJson(),
       'status': status.toJson(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJson(),
     };
   }
 
@@ -107,6 +129,8 @@ abstract class SubscriptionPlan implements _i1.SerializableModel {
     return _i1.SerializationManager.encode(this);
   }
 }
+
+class _Undefined {}
 
 class _SubscriptionPlanImpl extends SubscriptionPlan {
   _SubscriptionPlanImpl({
@@ -118,6 +142,8 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
     required double totalValue,
     required _i3.PlanPeriodicity periodicity,
     required _i4.PlanStatus status,
+    _i1.UuidValue? companyId,
+    _i5.Company? company,
   }) : super._(
          id: id,
          name: name,
@@ -127,6 +153,8 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
          totalValue: totalValue,
          periodicity: periodicity,
          status: status,
+         companyId: companyId,
+         company: company,
        );
 
   /// Returns a shallow copy of this [SubscriptionPlan]
@@ -142,6 +170,8 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
     double? totalValue,
     _i3.PlanPeriodicity? periodicity,
     _i4.PlanStatus? status,
+    Object? companyId = _Undefined,
+    Object? company = _Undefined,
   }) {
     return SubscriptionPlan(
       id: id ?? this.id,
@@ -152,6 +182,8 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
       totalValue: totalValue ?? this.totalValue,
       periodicity: periodicity ?? this.periodicity,
       status: status ?? this.status,
+      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
+      company: company is _i5.Company? ? company : this.company?.copyWith(),
     );
   }
 }

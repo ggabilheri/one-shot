@@ -8,12 +8,15 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
+// ignore_for_file: unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../enums/plan_type.enum.dart' as _i2;
 import '../enums/plan_periodicity.enum.dart' as _i3;
 import '../enums/plan_status.enum.dart' as _i4;
+import '../company/company.dart' as _i5;
+import 'package:oneshot_server/src/generated/protocol.dart' as _i6;
 
 abstract class SubscriptionPlan
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
@@ -26,6 +29,8 @@ abstract class SubscriptionPlan
     required this.totalValue,
     required this.periodicity,
     required this.status,
+    this.companyId,
+    this.company,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory SubscriptionPlan({
@@ -37,6 +42,8 @@ abstract class SubscriptionPlan
     required double totalValue,
     required _i3.PlanPeriodicity periodicity,
     required _i4.PlanStatus status,
+    _i1.UuidValue? companyId,
+    _i5.Company? company,
   }) = _SubscriptionPlanImpl;
 
   factory SubscriptionPlan.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -55,6 +62,14 @@ abstract class SubscriptionPlan
         (jsonSerialization['periodicity'] as String),
       ),
       status: _i4.PlanStatus.fromJson((jsonSerialization['status'] as String)),
+      companyId: jsonSerialization['companyId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+      company: jsonSerialization['company'] == null
+          ? null
+          : _i6.Protocol().deserialize<_i5.Company>(
+              jsonSerialization['company'],
+            ),
     );
   }
 
@@ -79,6 +94,10 @@ abstract class SubscriptionPlan
 
   _i4.PlanStatus status;
 
+  _i1.UuidValue? companyId;
+
+  _i5.Company? company;
+
   @override
   _i1.Table<_i1.UuidValue> get table => t;
 
@@ -94,6 +113,8 @@ abstract class SubscriptionPlan
     double? totalValue,
     _i3.PlanPeriodicity? periodicity,
     _i4.PlanStatus? status,
+    _i1.UuidValue? companyId,
+    _i5.Company? company,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -107,6 +128,8 @@ abstract class SubscriptionPlan
       'totalValue': totalValue,
       'periodicity': periodicity.toJson(),
       'status': status.toJson(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJson(),
     };
   }
 
@@ -122,11 +145,13 @@ abstract class SubscriptionPlan
       'totalValue': totalValue,
       'periodicity': periodicity.toJson(),
       'status': status.toJson(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJsonForProtocol(),
     };
   }
 
-  static SubscriptionPlanInclude include() {
-    return SubscriptionPlanInclude._();
+  static SubscriptionPlanInclude include({_i5.CompanyInclude? company}) {
+    return SubscriptionPlanInclude._(company: company);
   }
 
   static SubscriptionPlanIncludeList includeList({
@@ -155,6 +180,8 @@ abstract class SubscriptionPlan
   }
 }
 
+class _Undefined {}
+
 class _SubscriptionPlanImpl extends SubscriptionPlan {
   _SubscriptionPlanImpl({
     _i1.UuidValue? id,
@@ -165,6 +192,8 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
     required double totalValue,
     required _i3.PlanPeriodicity periodicity,
     required _i4.PlanStatus status,
+    _i1.UuidValue? companyId,
+    _i5.Company? company,
   }) : super._(
          id: id,
          name: name,
@@ -174,6 +203,8 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
          totalValue: totalValue,
          periodicity: periodicity,
          status: status,
+         companyId: companyId,
+         company: company,
        );
 
   /// Returns a shallow copy of this [SubscriptionPlan]
@@ -189,6 +220,8 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
     double? totalValue,
     _i3.PlanPeriodicity? periodicity,
     _i4.PlanStatus? status,
+    Object? companyId = _Undefined,
+    Object? company = _Undefined,
   }) {
     return SubscriptionPlan(
       id: id ?? this.id,
@@ -199,6 +232,8 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
       totalValue: totalValue ?? this.totalValue,
       periodicity: periodicity ?? this.periodicity,
       status: status ?? this.status,
+      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
+      company: company is _i5.Company? ? company : this.company?.copyWith(),
     );
   }
 }
@@ -246,6 +281,13 @@ class SubscriptionPlanUpdateTable
     table.status,
     value,
   );
+
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> companyId(
+    _i1.UuidValue? value,
+  ) => _i1.ColumnValue(
+    table.companyId,
+    value,
+  );
 }
 
 class SubscriptionPlanTable extends _i1.Table<_i1.UuidValue> {
@@ -283,6 +325,10 @@ class SubscriptionPlanTable extends _i1.Table<_i1.UuidValue> {
       this,
       _i1.EnumSerialization.byName,
     );
+    companyId = _i1.ColumnUuid(
+      'companyId',
+      this,
+    );
   }
 
   late final SubscriptionPlanUpdateTable updateTable;
@@ -301,6 +347,23 @@ class SubscriptionPlanTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnEnum<_i4.PlanStatus> status;
 
+  late final _i1.ColumnUuid companyId;
+
+  _i5.CompanyTable? _company;
+
+  _i5.CompanyTable get company {
+    if (_company != null) return _company!;
+    _company = _i1.createRelationTable(
+      relationFieldName: 'company',
+      field: SubscriptionPlan.t.companyId,
+      foreignField: _i5.Company.t.id,
+      tableRelation: tableRelation,
+      createTable: (foreignTableRelation) =>
+          _i5.CompanyTable(tableRelation: foreignTableRelation),
+    );
+    return _company!;
+  }
+
   @override
   List<_i1.Column> get columns => [
     id,
@@ -311,14 +374,27 @@ class SubscriptionPlanTable extends _i1.Table<_i1.UuidValue> {
     totalValue,
     periodicity,
     status,
+    companyId,
   ];
+
+  @override
+  _i1.Table? getRelationTable(String relationField) {
+    if (relationField == 'company') {
+      return company;
+    }
+    return null;
+  }
 }
 
 class SubscriptionPlanInclude extends _i1.IncludeObject {
-  SubscriptionPlanInclude._();
+  SubscriptionPlanInclude._({_i5.CompanyInclude? company}) {
+    _company = company;
+  }
+
+  _i5.CompanyInclude? _company;
 
   @override
-  Map<String, _i1.Include?> get includes => {};
+  Map<String, _i1.Include?> get includes => {'company': _company};
 
   @override
   _i1.Table<_i1.UuidValue> get table => SubscriptionPlan.t;
@@ -346,6 +422,10 @@ class SubscriptionPlanIncludeList extends _i1.IncludeList {
 
 class SubscriptionPlanRepository {
   const SubscriptionPlanRepository._();
+
+  final attachRow = const SubscriptionPlanAttachRowRepository._();
+
+  final detachRow = const SubscriptionPlanDetachRowRepository._();
 
   /// Returns a list of [SubscriptionPlan]s matching the given query parameters.
   ///
@@ -378,6 +458,7 @@ class SubscriptionPlanRepository {
     bool orderDescending = false,
     _i1.OrderByListBuilder<SubscriptionPlanTable>? orderByList,
     _i1.Transaction? transaction,
+    SubscriptionPlanInclude? include,
     _i1.LockMode? lockMode,
     _i1.LockBehavior? lockBehavior,
   }) async {
@@ -389,6 +470,7 @@ class SubscriptionPlanRepository {
       limit: limit,
       offset: offset,
       transaction: transaction,
+      include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
     );
@@ -419,6 +501,7 @@ class SubscriptionPlanRepository {
     bool orderDescending = false,
     _i1.OrderByListBuilder<SubscriptionPlanTable>? orderByList,
     _i1.Transaction? transaction,
+    SubscriptionPlanInclude? include,
     _i1.LockMode? lockMode,
     _i1.LockBehavior? lockBehavior,
   }) async {
@@ -429,6 +512,7 @@ class SubscriptionPlanRepository {
       orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
+      include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
     );
@@ -439,12 +523,14 @@ class SubscriptionPlanRepository {
     _i1.DatabaseSession session,
     _i1.UuidValue id, {
     _i1.Transaction? transaction,
+    SubscriptionPlanInclude? include,
     _i1.LockMode? lockMode,
     _i1.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<SubscriptionPlan>(
       id,
       transaction: transaction,
+      include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
     );
@@ -628,6 +714,59 @@ class SubscriptionPlanRepository {
       where: where(SubscriptionPlan.t),
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+      transaction: transaction,
+    );
+  }
+}
+
+class SubscriptionPlanAttachRowRepository {
+  const SubscriptionPlanAttachRowRepository._();
+
+  /// Creates a relation between the given [SubscriptionPlan] and [Company]
+  /// by setting the [SubscriptionPlan]'s foreign key `companyId` to refer to the [Company].
+  Future<void> company(
+    _i1.DatabaseSession session,
+    SubscriptionPlan subscriptionPlan,
+    _i5.Company company, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (subscriptionPlan.id == null) {
+      throw ArgumentError.notNull('subscriptionPlan.id');
+    }
+    if (company.id == null) {
+      throw ArgumentError.notNull('company.id');
+    }
+
+    var $subscriptionPlan = subscriptionPlan.copyWith(companyId: company.id);
+    await session.db.updateRow<SubscriptionPlan>(
+      $subscriptionPlan,
+      columns: [SubscriptionPlan.t.companyId],
+      transaction: transaction,
+    );
+  }
+}
+
+class SubscriptionPlanDetachRowRepository {
+  const SubscriptionPlanDetachRowRepository._();
+
+  /// Detaches the relation between this [SubscriptionPlan] and the [Company] set in `company`
+  /// by setting the [SubscriptionPlan]'s foreign key `companyId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> company(
+    _i1.DatabaseSession session,
+    SubscriptionPlan subscriptionPlan, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (subscriptionPlan.id == null) {
+      throw ArgumentError.notNull('subscriptionPlan.id');
+    }
+
+    var $subscriptionPlan = subscriptionPlan.copyWith(companyId: null);
+    await session.db.updateRow<SubscriptionPlan>(
+      $subscriptionPlan,
+      columns: [SubscriptionPlan.t.companyId],
       transaction: transaction,
     );
   }

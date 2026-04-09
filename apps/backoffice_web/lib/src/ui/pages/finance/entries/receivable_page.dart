@@ -57,7 +57,7 @@ class _ReceivablePageState extends ViewmodelState<ReceivablePage, IFinancialEntr
                       entries: vm.entries,
                       currencyFormat: _currencyFormat,
                       dateFormat: _dateFormat,
-                      isLoading: vm.isLoading,
+                      isLoading: loading,
                       onEdit: (entry) => _openForm(entry: entry),
                       onDelete: (entry) => _confirmDelete(entry),
                       onMarkAsPaid: (entry) =>

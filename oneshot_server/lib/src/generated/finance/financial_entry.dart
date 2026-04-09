@@ -17,7 +17,8 @@ import '../enums/financial_entry_status.dart' as _i3;
 import '../enums/platform_app.enum.dart' as _i4;
 import '../finance/bank_account.dart' as _i5;
 import '../finance/invoice.dart' as _i6;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i7;
+import '../company/company.dart' as _i7;
+import 'package:oneshot_server/src/generated/protocol.dart' as _i8;
 
 abstract class FinancialEntry
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
@@ -30,10 +31,12 @@ abstract class FinancialEntry
     this.paymentDate,
     required this.status,
     required this.originModule,
-    required this.bankAccountId,
+    this.bankAccountId,
     this.bankAccount,
-    required this.invoiceId,
+    this.invoiceId,
     this.invoice,
+    this.companyId,
+    this.company,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory FinancialEntry({
@@ -45,10 +48,12 @@ abstract class FinancialEntry
     DateTime? paymentDate,
     required _i3.FinancialEntryStatus status,
     required _i4.PlatformApp originModule,
-    required _i1.UuidValue bankAccountId,
+    _i1.UuidValue? bankAccountId,
     _i5.BankAccount? bankAccount,
-    required _i1.UuidValue invoiceId,
+    _i1.UuidValue? invoiceId,
     _i6.Invoice? invoice,
+    _i1.UuidValue? companyId,
+    _i7.Company? company,
   }) = _FinancialEntryImpl;
 
   factory FinancialEntry.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -73,21 +78,31 @@ abstract class FinancialEntry
       originModule: _i4.PlatformApp.fromJson(
         (jsonSerialization['originModule'] as String),
       ),
-      bankAccountId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['bankAccountId'],
-      ),
+      bankAccountId: jsonSerialization['bankAccountId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(
+              jsonSerialization['bankAccountId'],
+            ),
       bankAccount: jsonSerialization['bankAccount'] == null
           ? null
-          : _i7.Protocol().deserialize<_i5.BankAccount>(
+          : _i8.Protocol().deserialize<_i5.BankAccount>(
               jsonSerialization['bankAccount'],
             ),
-      invoiceId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['invoiceId'],
-      ),
+      invoiceId: jsonSerialization['invoiceId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['invoiceId']),
       invoice: jsonSerialization['invoice'] == null
           ? null
-          : _i7.Protocol().deserialize<_i6.Invoice>(
+          : _i8.Protocol().deserialize<_i6.Invoice>(
               jsonSerialization['invoice'],
+            ),
+      companyId: jsonSerialization['companyId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+      company: jsonSerialization['company'] == null
+          ? null
+          : _i8.Protocol().deserialize<_i7.Company>(
+              jsonSerialization['company'],
             ),
     );
   }
@@ -113,13 +128,17 @@ abstract class FinancialEntry
 
   _i4.PlatformApp originModule;
 
-  _i1.UuidValue bankAccountId;
+  _i1.UuidValue? bankAccountId;
 
   _i5.BankAccount? bankAccount;
 
-  _i1.UuidValue invoiceId;
+  _i1.UuidValue? invoiceId;
 
   _i6.Invoice? invoice;
+
+  _i1.UuidValue? companyId;
+
+  _i7.Company? company;
 
   @override
   _i1.Table<_i1.UuidValue> get table => t;
@@ -140,6 +159,8 @@ abstract class FinancialEntry
     _i5.BankAccount? bankAccount,
     _i1.UuidValue? invoiceId,
     _i6.Invoice? invoice,
+    _i1.UuidValue? companyId,
+    _i7.Company? company,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -153,10 +174,12 @@ abstract class FinancialEntry
       if (paymentDate != null) 'paymentDate': paymentDate?.toJson(),
       'status': status.toJson(),
       'originModule': originModule.toJson(),
-      'bankAccountId': bankAccountId.toJson(),
+      if (bankAccountId != null) 'bankAccountId': bankAccountId?.toJson(),
       if (bankAccount != null) 'bankAccount': bankAccount?.toJson(),
-      'invoiceId': invoiceId.toJson(),
+      if (invoiceId != null) 'invoiceId': invoiceId?.toJson(),
       if (invoice != null) 'invoice': invoice?.toJson(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJson(),
     };
   }
 
@@ -172,20 +195,24 @@ abstract class FinancialEntry
       if (paymentDate != null) 'paymentDate': paymentDate?.toJson(),
       'status': status.toJson(),
       'originModule': originModule.toJson(),
-      'bankAccountId': bankAccountId.toJson(),
+      if (bankAccountId != null) 'bankAccountId': bankAccountId?.toJson(),
       if (bankAccount != null) 'bankAccount': bankAccount?.toJsonForProtocol(),
-      'invoiceId': invoiceId.toJson(),
+      if (invoiceId != null) 'invoiceId': invoiceId?.toJson(),
       if (invoice != null) 'invoice': invoice?.toJsonForProtocol(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJsonForProtocol(),
     };
   }
 
   static FinancialEntryInclude include({
     _i5.BankAccountInclude? bankAccount,
     _i6.InvoiceInclude? invoice,
+    _i7.CompanyInclude? company,
   }) {
     return FinancialEntryInclude._(
       bankAccount: bankAccount,
       invoice: invoice,
+      company: company,
     );
   }
 
@@ -227,10 +254,12 @@ class _FinancialEntryImpl extends FinancialEntry {
     DateTime? paymentDate,
     required _i3.FinancialEntryStatus status,
     required _i4.PlatformApp originModule,
-    required _i1.UuidValue bankAccountId,
+    _i1.UuidValue? bankAccountId,
     _i5.BankAccount? bankAccount,
-    required _i1.UuidValue invoiceId,
+    _i1.UuidValue? invoiceId,
     _i6.Invoice? invoice,
+    _i1.UuidValue? companyId,
+    _i7.Company? company,
   }) : super._(
          id: id,
          type: type,
@@ -244,6 +273,8 @@ class _FinancialEntryImpl extends FinancialEntry {
          bankAccount: bankAccount,
          invoiceId: invoiceId,
          invoice: invoice,
+         companyId: companyId,
+         company: company,
        );
 
   /// Returns a shallow copy of this [FinancialEntry]
@@ -259,10 +290,12 @@ class _FinancialEntryImpl extends FinancialEntry {
     Object? paymentDate = _Undefined,
     _i3.FinancialEntryStatus? status,
     _i4.PlatformApp? originModule,
-    _i1.UuidValue? bankAccountId,
+    Object? bankAccountId = _Undefined,
     Object? bankAccount = _Undefined,
-    _i1.UuidValue? invoiceId,
+    Object? invoiceId = _Undefined,
     Object? invoice = _Undefined,
+    Object? companyId = _Undefined,
+    Object? company = _Undefined,
   }) {
     return FinancialEntry(
       id: id ?? this.id,
@@ -273,12 +306,16 @@ class _FinancialEntryImpl extends FinancialEntry {
       paymentDate: paymentDate is DateTime? ? paymentDate : this.paymentDate,
       status: status ?? this.status,
       originModule: originModule ?? this.originModule,
-      bankAccountId: bankAccountId ?? this.bankAccountId,
+      bankAccountId: bankAccountId is _i1.UuidValue?
+          ? bankAccountId
+          : this.bankAccountId,
       bankAccount: bankAccount is _i5.BankAccount?
           ? bankAccount
           : this.bankAccount?.copyWith(),
-      invoiceId: invoiceId ?? this.invoiceId,
+      invoiceId: invoiceId is _i1.UuidValue? ? invoiceId : this.invoiceId,
       invoice: invoice is _i6.Invoice? ? invoice : this.invoice?.copyWith(),
+      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
+      company: company is _i7.Company? ? company : this.company?.copyWith(),
     );
   }
 }
@@ -330,16 +367,23 @@ class FinancialEntryUpdateTable extends _i1.UpdateTable<FinancialEntryTable> {
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> bankAccountId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.bankAccountId,
     value,
   );
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> invoiceId(
-    _i1.UuidValue value,
+    _i1.UuidValue? value,
   ) => _i1.ColumnValue(
     table.invoiceId,
+    value,
+  );
+
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> companyId(
+    _i1.UuidValue? value,
+  ) => _i1.ColumnValue(
+    table.companyId,
     value,
   );
 }
@@ -387,6 +431,10 @@ class FinancialEntryTable extends _i1.Table<_i1.UuidValue> {
       'invoiceId',
       this,
     );
+    companyId = _i1.ColumnUuid(
+      'companyId',
+      this,
+    );
   }
 
   late final FinancialEntryUpdateTable updateTable;
@@ -412,6 +460,10 @@ class FinancialEntryTable extends _i1.Table<_i1.UuidValue> {
   late final _i1.ColumnUuid invoiceId;
 
   _i6.InvoiceTable? _invoice;
+
+  late final _i1.ColumnUuid companyId;
+
+  _i7.CompanyTable? _company;
 
   _i5.BankAccountTable get bankAccount {
     if (_bankAccount != null) return _bankAccount!;
@@ -439,6 +491,19 @@ class FinancialEntryTable extends _i1.Table<_i1.UuidValue> {
     return _invoice!;
   }
 
+  _i7.CompanyTable get company {
+    if (_company != null) return _company!;
+    _company = _i1.createRelationTable(
+      relationFieldName: 'company',
+      field: FinancialEntry.t.companyId,
+      foreignField: _i7.Company.t.id,
+      tableRelation: tableRelation,
+      createTable: (foreignTableRelation) =>
+          _i7.CompanyTable(tableRelation: foreignTableRelation),
+    );
+    return _company!;
+  }
+
   @override
   List<_i1.Column> get columns => [
     id,
@@ -451,6 +516,7 @@ class FinancialEntryTable extends _i1.Table<_i1.UuidValue> {
     originModule,
     bankAccountId,
     invoiceId,
+    companyId,
   ];
 
   @override
@@ -461,6 +527,9 @@ class FinancialEntryTable extends _i1.Table<_i1.UuidValue> {
     if (relationField == 'invoice') {
       return invoice;
     }
+    if (relationField == 'company') {
+      return company;
+    }
     return null;
   }
 }
@@ -469,19 +538,24 @@ class FinancialEntryInclude extends _i1.IncludeObject {
   FinancialEntryInclude._({
     _i5.BankAccountInclude? bankAccount,
     _i6.InvoiceInclude? invoice,
+    _i7.CompanyInclude? company,
   }) {
     _bankAccount = bankAccount;
     _invoice = invoice;
+    _company = company;
   }
 
   _i5.BankAccountInclude? _bankAccount;
 
   _i6.InvoiceInclude? _invoice;
 
+  _i7.CompanyInclude? _company;
+
   @override
   Map<String, _i1.Include?> get includes => {
     'bankAccount': _bankAccount,
     'invoice': _invoice,
+    'company': _company,
   };
 
   @override
@@ -512,6 +586,8 @@ class FinancialEntryRepository {
   const FinancialEntryRepository._();
 
   final attachRow = const FinancialEntryAttachRowRepository._();
+
+  final detachRow = const FinancialEntryDetachRowRepository._();
 
   /// Returns a list of [FinancialEntry]s matching the given query parameters.
   ///
@@ -850,6 +926,99 @@ class FinancialEntryAttachRowRepository {
     await session.db.updateRow<FinancialEntry>(
       $financialEntry,
       columns: [FinancialEntry.t.invoiceId],
+      transaction: transaction,
+    );
+  }
+
+  /// Creates a relation between the given [FinancialEntry] and [Company]
+  /// by setting the [FinancialEntry]'s foreign key `companyId` to refer to the [Company].
+  Future<void> company(
+    _i1.DatabaseSession session,
+    FinancialEntry financialEntry,
+    _i7.Company company, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (financialEntry.id == null) {
+      throw ArgumentError.notNull('financialEntry.id');
+    }
+    if (company.id == null) {
+      throw ArgumentError.notNull('company.id');
+    }
+
+    var $financialEntry = financialEntry.copyWith(companyId: company.id);
+    await session.db.updateRow<FinancialEntry>(
+      $financialEntry,
+      columns: [FinancialEntry.t.companyId],
+      transaction: transaction,
+    );
+  }
+}
+
+class FinancialEntryDetachRowRepository {
+  const FinancialEntryDetachRowRepository._();
+
+  /// Detaches the relation between this [FinancialEntry] and the [BankAccount] set in `bankAccount`
+  /// by setting the [FinancialEntry]'s foreign key `bankAccountId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> bankAccount(
+    _i1.DatabaseSession session,
+    FinancialEntry financialEntry, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (financialEntry.id == null) {
+      throw ArgumentError.notNull('financialEntry.id');
+    }
+
+    var $financialEntry = financialEntry.copyWith(bankAccountId: null);
+    await session.db.updateRow<FinancialEntry>(
+      $financialEntry,
+      columns: [FinancialEntry.t.bankAccountId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [FinancialEntry] and the [Invoice] set in `invoice`
+  /// by setting the [FinancialEntry]'s foreign key `invoiceId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> invoice(
+    _i1.DatabaseSession session,
+    FinancialEntry financialEntry, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (financialEntry.id == null) {
+      throw ArgumentError.notNull('financialEntry.id');
+    }
+
+    var $financialEntry = financialEntry.copyWith(invoiceId: null);
+    await session.db.updateRow<FinancialEntry>(
+      $financialEntry,
+      columns: [FinancialEntry.t.invoiceId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [FinancialEntry] and the [Company] set in `company`
+  /// by setting the [FinancialEntry]'s foreign key `companyId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> company(
+    _i1.DatabaseSession session,
+    FinancialEntry financialEntry, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (financialEntry.id == null) {
+      throw ArgumentError.notNull('financialEntry.id');
+    }
+
+    var $financialEntry = financialEntry.copyWith(companyId: null);
+    await session.db.updateRow<FinancialEntry>(
+      $financialEntry,
+      columns: [FinancialEntry.t.companyId],
       transaction: transaction,
     );
   }

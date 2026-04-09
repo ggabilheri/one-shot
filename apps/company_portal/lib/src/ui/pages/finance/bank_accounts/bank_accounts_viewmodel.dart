@@ -2,6 +2,7 @@ import 'package:company_portal/src/core/viewmodel.dart';
 import 'package:company_portal/src/domain/repositories/bank_account_repository.dart';
 import 'package:company_portal/src/domain/repositories/brasil_api_repository.dart';
 import 'package:oneshot_client/oneshot_client.dart';
+import 'package:company_portal/src/domain/services/company_session.dart';
 
 abstract class IBankAccountsViewmodel extends IViewmodel {
   List<BankAccount> get accounts;
@@ -15,8 +16,13 @@ class BankAccountsViewmodel extends Viewmodel
     implements IBankAccountsViewmodel {
   final IBankAccountRepository _repository;
   final IBrasilApiRepository _brasilApiRepository;
+  final ICompanySession _session;
 
-  BankAccountsViewmodel(this._repository, this._brasilApiRepository);
+  BankAccountsViewmodel(
+    this._repository,
+    this._brasilApiRepository,
+    this._session,
+  );
 
   List<BankAccount> _accounts = [];
   List<Bank> _banks = [];
@@ -31,7 +37,9 @@ class BankAccountsViewmodel extends Viewmodel
     _banks.clear();
     try {
       _banks.addAll(await _brasilApiRepository.getBanks());
-      _accounts = await _repository.listAccounts();
+      _accounts = await _repository.listAccounts(
+        companyId: _session.currentCompany?.id,
+      );
       setError(null);
     } catch (e) {
       setError(e.toString());
@@ -47,6 +55,7 @@ class BankAccountsViewmodel extends Viewmodel
       if (isUpdate) {
         await _repository.update(account);
       } else {
+        account.companyId = _session.currentCompany?.id;
         await _repository.create(account);
       }
       await loadAccounts();

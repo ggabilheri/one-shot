@@ -11,6 +11,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
+import '../company/company.dart' as _i2;
+import '../enums/pix_key_type.dart' as _i3;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _i4;
 
 abstract class BankAccount implements _i1.SerializableModel {
   BankAccount._({
@@ -24,6 +27,10 @@ abstract class BankAccount implements _i1.SerializableModel {
     required this.balance,
     required this.status,
     required this.originModule,
+    this.companyId,
+    this.company,
+    this.pixKey,
+    this.pixKeyType,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory BankAccount({
@@ -37,6 +44,10 @@ abstract class BankAccount implements _i1.SerializableModel {
     required double balance,
     required String status,
     required String originModule,
+    _i1.UuidValue? companyId,
+    _i2.Company? company,
+    String? pixKey,
+    _i3.PixKeyType? pixKeyType,
   }) = _BankAccountImpl;
 
   factory BankAccount.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -53,6 +64,20 @@ abstract class BankAccount implements _i1.SerializableModel {
       balance: (jsonSerialization['balance'] as num).toDouble(),
       status: jsonSerialization['status'] as String,
       originModule: jsonSerialization['originModule'] as String,
+      companyId: jsonSerialization['companyId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+      company: jsonSerialization['company'] == null
+          ? null
+          : _i4.Protocol().deserialize<_i2.Company>(
+              jsonSerialization['company'],
+            ),
+      pixKey: jsonSerialization['pixKey'] as String?,
+      pixKeyType: jsonSerialization['pixKeyType'] == null
+          ? null
+          : _i3.PixKeyType.fromJson(
+              (jsonSerialization['pixKeyType'] as String),
+            ),
     );
   }
 
@@ -77,6 +102,14 @@ abstract class BankAccount implements _i1.SerializableModel {
 
   String originModule;
 
+  _i1.UuidValue? companyId;
+
+  _i2.Company? company;
+
+  String? pixKey;
+
+  _i3.PixKeyType? pixKeyType;
+
   /// Returns a shallow copy of this [BankAccount]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
@@ -91,6 +124,10 @@ abstract class BankAccount implements _i1.SerializableModel {
     double? balance,
     String? status,
     String? originModule,
+    _i1.UuidValue? companyId,
+    _i2.Company? company,
+    String? pixKey,
+    _i3.PixKeyType? pixKeyType,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -106,6 +143,10 @@ abstract class BankAccount implements _i1.SerializableModel {
       'balance': balance,
       'status': status,
       'originModule': originModule,
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJson(),
+      if (pixKey != null) 'pixKey': pixKey,
+      if (pixKeyType != null) 'pixKeyType': pixKeyType?.toJson(),
     };
   }
 
@@ -129,6 +170,10 @@ class _BankAccountImpl extends BankAccount {
     required double balance,
     required String status,
     required String originModule,
+    _i1.UuidValue? companyId,
+    _i2.Company? company,
+    String? pixKey,
+    _i3.PixKeyType? pixKeyType,
   }) : super._(
          id: id,
          name: name,
@@ -140,6 +185,10 @@ class _BankAccountImpl extends BankAccount {
          balance: balance,
          status: status,
          originModule: originModule,
+         companyId: companyId,
+         company: company,
+         pixKey: pixKey,
+         pixKeyType: pixKeyType,
        );
 
   /// Returns a shallow copy of this [BankAccount]
@@ -157,6 +206,10 @@ class _BankAccountImpl extends BankAccount {
     double? balance,
     String? status,
     String? originModule,
+    Object? companyId = _Undefined,
+    Object? company = _Undefined,
+    Object? pixKey = _Undefined,
+    Object? pixKeyType = _Undefined,
   }) {
     return BankAccount(
       id: id ?? this.id,
@@ -171,6 +224,10 @@ class _BankAccountImpl extends BankAccount {
       balance: balance ?? this.balance,
       status: status ?? this.status,
       originModule: originModule ?? this.originModule,
+      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
+      company: company is _i2.Company? ? company : this.company?.copyWith(),
+      pixKey: pixKey is String? ? pixKey : this.pixKey,
+      pixKeyType: pixKeyType is _i3.PixKeyType? ? pixKeyType : this.pixKeyType,
     );
   }
 }

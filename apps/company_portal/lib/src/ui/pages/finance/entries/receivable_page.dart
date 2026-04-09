@@ -16,7 +16,8 @@ class ReceivablePage extends StatefulWidget {
   State<ReceivablePage> createState() => _ReceivablePageState();
 }
 
-class _ReceivablePageState extends ViewmodelState<ReceivablePage, IFinancialEntriesViewmodel> {
+class _ReceivablePageState
+    extends ViewmodelState<ReceivablePage, IFinancialEntriesViewmodel> {
   late final NumberFormat _currencyFormat;
   late final DateFormat _dateFormat;
 
@@ -57,7 +58,7 @@ class _ReceivablePageState extends ViewmodelState<ReceivablePage, IFinancialEntr
                       entries: vm.entries,
                       currencyFormat: _currencyFormat,
                       dateFormat: _dateFormat,
-                      isLoading: vm.isLoading,
+                      isLoading: loading,
                       onEdit: (entry) => _openForm(entry: entry),
                       onDelete: (entry) => _confirmDelete(entry),
                       onMarkAsPaid: (entry) =>

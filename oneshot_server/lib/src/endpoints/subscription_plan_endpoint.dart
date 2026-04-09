@@ -36,6 +36,7 @@ class SubscriptionPlanEndpoint extends Endpoint {
     Session session, {
     PlanType? planType,
     PlanStatus? status,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   }) async {
@@ -43,6 +44,7 @@ class SubscriptionPlanEndpoint extends Endpoint {
       session,
       planType: planType,
       status: status,
+      companyId: companyId,
       limit: limit,
       offset: offset,
     );

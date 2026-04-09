@@ -19,7 +19,8 @@ class FinancialEntryFormDialog extends StatefulWidget {
   });
 
   @override
-  State<FinancialEntryFormDialog> createState() => _FinancialEntryFormDialogState();
+  State<FinancialEntryFormDialog> createState() =>
+      _FinancialEntryFormDialogState();
 }
 
 class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
@@ -37,12 +38,18 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
   @override
   void initState() {
     super.initState();
-    _descriptionController = TextEditingController(text: widget.entry?.description);
-    _amountController = TextEditingController(text: widget.entry?.amount.toString() ?? '0.0');
+    _descriptionController = TextEditingController(
+      text: widget.entry?.description,
+    );
+    _amountController = TextEditingController(
+      text: widget.entry?.amount.toString() ?? '0.0',
+    );
     _dueDate = widget.entry?.dueDate ?? DateTime.now();
     _type = widget.entry?.type ?? widget.initialType;
     _status = widget.entry?.status ?? FinancialEntryStatus.pending;
-    _bankAccountId = widget.entry?.bankAccountId ?? (widget.accounts.isNotEmpty ? widget.accounts.first.id : null);
+    _bankAccountId =
+        widget.entry?.bankAccountId ??
+        (widget.accounts.isNotEmpty ? widget.accounts.first.id : null);
   }
 
   @override
@@ -66,7 +73,8 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
 
   void _submit() {
     if (_formKey.currentState!.validate() && _bankAccountId != null) {
-      final entry = widget.entry?.copyWith(
+      final entry =
+          widget.entry?.copyWith(
             description: _descriptionController.text,
             amount: double.tryParse(_amountController.text) ?? 0.0,
             dueDate: _dueDate,
@@ -82,7 +90,7 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
             status: _status,
             originModule: PlatformApp.backoffice_web,
             bankAccountId: _bankAccountId!,
-            invoiceId: const Uuid().v4obj(), // Default/Placeholder ID for invoice if not mandatory
+            // invoiceId: const Uuid().v4obj(), // Default/Placeholder ID for invoice if not mandatory
           );
       widget.onSave(entry);
       Navigator.pop(context);
@@ -96,7 +104,9 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
       child: BrutalistCard(
         padding: const EdgeInsets.all(DSTokens.spacingLg),
         backgroundColor: DSTokens.surface,
-        borderColor: _type == FinancialEntryType.payable ? Colors.orange : Colors.blue,
+        borderColor: _type == FinancialEntryType.payable
+            ? Colors.orange
+            : Colors.blue,
         child: Container(
           width: 500,
           child: Form(
@@ -135,16 +145,30 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
                           InkWell(
                             onTap: _selectDate,
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 15,
+                              ),
                               decoration: BoxDecoration(
-                                border: Border.all(color: DSTokens.outlineVariant, width: 2),
+                                border: Border.all(
+                                  color: DSTokens.outlineVariant,
+                                  width: 2,
+                                ),
                                 color: Colors.black.withOpacity(0.1),
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(_dateFormat.format(_dueDate), style: DSTokens.body),
-                                  const Icon(Icons.calendar_today, size: 16, color: DSTokens.primary),
+                                  Text(
+                                    _dateFormat.format(_dueDate),
+                                    style: DSTokens.body,
+                                  ),
+                                  const Icon(
+                                    Icons.calendar_today,
+                                    size: 16,
+                                    color: DSTokens.primary,
+                                  ),
                                 ],
                               ),
                             ),
@@ -158,7 +182,12 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
                 _buildDropdownField<UuidValue>(
                   label: 'CONTA BANCÁRIA',
                   value: _bankAccountId,
-                  items: widget.accounts.map((e) => DropdownMenuItem(value: e.id, child: Text(e.name))).toList(),
+                  items: widget.accounts
+                      .map(
+                        (e) =>
+                            DropdownMenuItem(value: e.id, child: Text(e.name)),
+                      )
+                      .toList(),
                   onChanged: (v) => setState(() => _bankAccountId = v),
                 ),
                 const SizedBox(height: DSTokens.spacingMd),
@@ -169,7 +198,12 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
                         label: 'STATUS',
                         value: _status,
                         items: FinancialEntryStatus.values
-                            .map((e) => DropdownMenuItem(value: e, child: Text(e.name.toUpperCase())))
+                            .map(
+                              (e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e.name.toUpperCase()),
+                              ),
+                            )
                             .toList(),
                         onChanged: (v) => setState(() => _status = v!),
                       ),
@@ -180,7 +214,12 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
                         label: 'TIPO',
                         value: _type,
                         items: FinancialEntryType.values
-                            .map((e) => DropdownMenuItem(value: e, child: Text(e.name.toUpperCase())))
+                            .map(
+                              (e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e.name.toUpperCase()),
+                              ),
+                            )
                             .toList(),
                         onChanged: (v) => setState(() => _type = v!),
                       ),
@@ -227,7 +266,10 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
             filled: true,
             fillColor: Colors.black.withOpacity(0.1),
             enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: DSTokens.outlineVariant, width: 2),
+              borderSide: const BorderSide(
+                color: DSTokens.outlineVariant,
+                width: 2,
+              ),
               borderRadius: BorderRadius.zero,
             ),
             focusedBorder: const OutlineInputBorder(

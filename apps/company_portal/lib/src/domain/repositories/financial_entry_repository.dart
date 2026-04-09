@@ -7,6 +7,7 @@ abstract class IFinancialEntryRepository {
     FinancialEntryStatus? status,
     DateTime? dueDateFrom,
     DateTime? dueDateTo,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   });
@@ -16,7 +17,7 @@ abstract class IFinancialEntryRepository {
 }
 
 class FinancialEntryRepository implements IFinancialEntryRepository {
-  final PlatformApp _originModule = PlatformApp.backoffice_web;
+  final PlatformApp _originModule = PlatformApp.company_manager;
 
   @override
   Future<List<FinancialEntry>> listEntries({
@@ -24,6 +25,7 @@ class FinancialEntryRepository implements IFinancialEntryRepository {
     FinancialEntryStatus? status,
     DateTime? dueDateFrom,
     DateTime? dueDateTo,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   }) async {
@@ -34,6 +36,7 @@ class FinancialEntryRepository implements IFinancialEntryRepository {
         status: status,
         dueDateFrom: dueDateFrom,
         dueDateTo: dueDateTo,
+        companyId: companyId,
         limit: limit,
         offset: offset,
       );

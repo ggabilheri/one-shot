@@ -13,7 +13,8 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import '../common/user_profile.dart' as _i2;
 import '../access_control/security_role.dart' as _i3;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i4;
+import '../company/company.dart' as _i4;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _i5;
 
 abstract class UserRole implements _i1.SerializableModel {
   UserRole._({
@@ -22,6 +23,8 @@ abstract class UserRole implements _i1.SerializableModel {
     this.userProfile,
     this.securityRoleId,
     this.securityRole,
+    this.companyId,
+    this.company,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory UserRole({
@@ -30,6 +33,8 @@ abstract class UserRole implements _i1.SerializableModel {
     _i2.UserProfile? userProfile,
     _i1.UuidValue? securityRoleId,
     _i3.SecurityRole? securityRole,
+    _i1.UuidValue? companyId,
+    _i4.Company? company,
   }) = _UserRoleImpl;
 
   factory UserRole.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -44,7 +49,7 @@ abstract class UserRole implements _i1.SerializableModel {
             ),
       userProfile: jsonSerialization['userProfile'] == null
           ? null
-          : _i4.Protocol().deserialize<_i2.UserProfile>(
+          : _i5.Protocol().deserialize<_i2.UserProfile>(
               jsonSerialization['userProfile'],
             ),
       securityRoleId: jsonSerialization['securityRoleId'] == null
@@ -54,8 +59,16 @@ abstract class UserRole implements _i1.SerializableModel {
             ),
       securityRole: jsonSerialization['securityRole'] == null
           ? null
-          : _i4.Protocol().deserialize<_i3.SecurityRole>(
+          : _i5.Protocol().deserialize<_i3.SecurityRole>(
               jsonSerialization['securityRole'],
+            ),
+      companyId: jsonSerialization['companyId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+      company: jsonSerialization['company'] == null
+          ? null
+          : _i5.Protocol().deserialize<_i4.Company>(
+              jsonSerialization['company'],
             ),
     );
   }
@@ -71,6 +84,10 @@ abstract class UserRole implements _i1.SerializableModel {
 
   _i3.SecurityRole? securityRole;
 
+  _i1.UuidValue? companyId;
+
+  _i4.Company? company;
+
   /// Returns a shallow copy of this [UserRole]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
@@ -80,6 +97,8 @@ abstract class UserRole implements _i1.SerializableModel {
     _i2.UserProfile? userProfile,
     _i1.UuidValue? securityRoleId,
     _i3.SecurityRole? securityRole,
+    _i1.UuidValue? companyId,
+    _i4.Company? company,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -90,6 +109,8 @@ abstract class UserRole implements _i1.SerializableModel {
       if (userProfile != null) 'userProfile': userProfile?.toJson(),
       if (securityRoleId != null) 'securityRoleId': securityRoleId?.toJson(),
       if (securityRole != null) 'securityRole': securityRole?.toJson(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJson(),
     };
   }
 
@@ -108,12 +129,16 @@ class _UserRoleImpl extends UserRole {
     _i2.UserProfile? userProfile,
     _i1.UuidValue? securityRoleId,
     _i3.SecurityRole? securityRole,
+    _i1.UuidValue? companyId,
+    _i4.Company? company,
   }) : super._(
          id: id,
          userProfileId: userProfileId,
          userProfile: userProfile,
          securityRoleId: securityRoleId,
          securityRole: securityRole,
+         companyId: companyId,
+         company: company,
        );
 
   /// Returns a shallow copy of this [UserRole]
@@ -126,6 +151,8 @@ class _UserRoleImpl extends UserRole {
     Object? userProfile = _Undefined,
     Object? securityRoleId = _Undefined,
     Object? securityRole = _Undefined,
+    Object? companyId = _Undefined,
+    Object? company = _Undefined,
   }) {
     return UserRole(
       id: id ?? this.id,
@@ -141,6 +168,8 @@ class _UserRoleImpl extends UserRole {
       securityRole: securityRole is _i3.SecurityRole?
           ? securityRole
           : this.securityRole?.copyWith(),
+      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
+      company: company is _i4.Company? ? company : this.company?.copyWith(),
     );
   }
 }

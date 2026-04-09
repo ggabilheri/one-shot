@@ -9,6 +9,7 @@ fields:
   totalValue: double
   periodicity: PlanPeriodicity
   status: PlanStatus
+  company: Company?, relation(optional)
 indexes:
   plan_type_idx:
     fields: planType

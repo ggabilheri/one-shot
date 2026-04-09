@@ -14,7 +14,14 @@ class DashboardPage extends StatefulWidget {
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
-class _DashboardPageState extends ViewmodelState<DashboardPage, IDashboardViewModel> {
+class _DashboardPageState
+    extends ViewmodelState<DashboardPage, IDashboardViewModel> {
+  @override
+  void onInit() {
+    super.onInit();
+    vm.loadUserCompanies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +38,7 @@ class _DashboardPageState extends ViewmodelState<DashboardPage, IDashboardViewMo
           Expanded(
             child: Column(
               children: [
-                const DashboardAppBar(),
+                DashboardAppBar(vm: vm),
                 Expanded(
                   child: DashboardModuleSwitcher(currentPage: vm.currentPage),
                 ),

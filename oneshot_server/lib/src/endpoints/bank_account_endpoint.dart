@@ -36,6 +36,7 @@ class BankAccountEndpoint extends Endpoint {
     Session session, {
     required String originModule,
     String? status,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   }) async {
@@ -43,6 +44,7 @@ class BankAccountEndpoint extends Endpoint {
       session,
       originModule: originModule,
       status: status,
+      companyId: companyId,
       limit: limit,
       offset: offset,
     );

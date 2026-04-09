@@ -7,7 +7,7 @@ extension PlanTypeExt on PlanType {
     final n = name.toUpperCase();
     if (n == 'COMPANY' || n == 'CLUB') return 'Empresa Parceira';
     if (n == 'GUNSMITH') return 'Armeiro';
-    if (n == 'CAC') return 'CAC (Atirador/Colecionador/Caça)';
+    if (n == 'CAC') return 'CAC (Atirador/Colecionador/Caçador)';
     return n;
   }
 }
@@ -48,7 +48,11 @@ extension UserTypeExt on UserType {
   String get label {
     final n = name.toUpperCase();
     if (n == 'GLOBAL_ADMIN' || n == 'GLOBALADMIN') return 'Admin Global';
-    if (n == 'COMPANY_ADMIN' || n == 'COMPANYADMIN' || n == 'CLUB_ADMIN' || n == 'CLUBADMIN') return 'Admin Empresa';
+    if (n == 'COMPANY_ADMIN' ||
+        n == 'COMPANYADMIN' ||
+        n == 'CLUB_ADMIN' ||
+        n == 'CLUBADMIN')
+      return 'Admin Empresa';
     if (n == 'GUNSMITH') return 'Armeiro';
     if (n == 'SHOOTER') return 'Atirador';
     return n;
@@ -71,7 +75,11 @@ extension AppModuleExt on AppModule {
     final n = name.toUpperCase();
     if (n == 'DASHBOARD') return 'Dashboard';
     if (n == 'USERS') return 'Usuários';
-    if (n == 'COMPANIES' || n == 'CLUBS' || n == 'COMPANYMANAGEMENT' || n == 'CLUBMANAGEMENT') return 'Empresas';
+    if (n == 'COMPANIES' ||
+        n == 'CLUBS' ||
+        n == 'COMPANYMANAGEMENT' ||
+        n == 'CLUBMANAGEMENT')
+      return 'Empresas';
     if (n == 'ROLES') return 'Perfis e Permissões';
     if (n == 'PRODUCTS') return 'Produtos';
     if (n == 'STOCK') return 'Estoque';

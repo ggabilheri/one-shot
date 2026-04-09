@@ -4,3 +4,4 @@ fields:
   id: UuidValue, defaultModel=random
   userProfile: UserProfile?, relation(optional)
   securityRole: SecurityRole?, relation(optional)
+  company: Company?, relation(optional)

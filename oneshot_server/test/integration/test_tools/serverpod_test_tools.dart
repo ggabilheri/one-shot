@@ -804,6 +804,7 @@ class _BankAccountEndpoint {
     _i1.TestSessionBuilder sessionBuilder, {
     required String originModule,
     String? status,
+    _i2.UuidValue? companyId,
     int? limit,
     int? offset,
   }) async {
@@ -821,6 +822,7 @@ class _BankAccountEndpoint {
           parameters: _i1.testObjectToJson({
             'originModule': originModule,
             'status': status,
+            'companyId': companyId,
             'limit': limit,
             'offset': offset,
           }),
@@ -1230,6 +1232,36 @@ class _CompanyEndpoint {
                   _localCallContext.arguments,
                 )
                 as _i3.Future<List<_i11.RangeVisit>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<_i7.Company> getManagedCompany(
+    _i1.TestSessionBuilder sessionBuilder,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'company',
+            method: 'getManagedCompany',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'company',
+          methodName: 'getManagedCompany',
+          parameters: _i1.testObjectToJson({}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<_i7.Company>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1671,12 +1703,13 @@ class _FinancialEntryEndpoint {
   _i3.Future<List<_i13.FinancialEntry>> listEntries(
     _i1.TestSessionBuilder sessionBuilder, {
     required _i14.PlatformApp originModule,
+    DateTime? dueDateTo,
+    _i2.UuidValue? companyId,
+    int? limit,
+    int? offset,
     _i15.FinancialEntryType? type,
     _i16.FinancialEntryStatus? status,
     DateTime? dueDateFrom,
-    DateTime? dueDateTo,
-    int? limit,
-    int? offset,
   }) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
@@ -1691,12 +1724,13 @@ class _FinancialEntryEndpoint {
           methodName: 'listEntries',
           parameters: _i1.testObjectToJson({
             'originModule': originModule,
+            'dueDateTo': dueDateTo,
+            'companyId': companyId,
+            'limit': limit,
+            'offset': offset,
             'type': type,
             'status': status,
             'dueDateFrom': dueDateFrom,
-            'dueDateTo': dueDateTo,
-            'limit': limit,
-            'offset': offset,
           }),
           serializationManager: _serializationManager,
         );
@@ -3620,6 +3654,7 @@ class _SubscriptionPlanEndpoint {
     _i1.TestSessionBuilder sessionBuilder, {
     _i35.PlanType? planType,
     _i36.PlanStatus? status,
+    _i2.UuidValue? companyId,
     int? limit,
     int? offset,
   }) async {
@@ -3637,6 +3672,7 @@ class _SubscriptionPlanEndpoint {
           parameters: _i1.testObjectToJson({
             'planType': planType,
             'status': status,
+            'companyId': companyId,
             'limit': limit,
             'offset': offset,
           }),
@@ -4049,6 +4085,36 @@ class _UserEndpoint {
                   _localCallContext.arguments,
                 )
                 as _i3.Future<void>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<List<_i7.Company>> getMyCompanies(
+    _i1.TestSessionBuilder sessionBuilder,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'user',
+            method: 'getMyCompanies',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'user',
+          methodName: 'getMyCompanies',
+          parameters: _i1.testObjectToJson({}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<List<_i7.Company>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

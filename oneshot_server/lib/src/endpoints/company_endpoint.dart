@@ -123,4 +123,17 @@ class CompanyEndpoint extends Endpoint {
     final profile = await sl.getOrCreateProfileUseCase.execute(session);
     return await sl.rangeVisitRepository.listByUser(session, profile.id);
   }
+
+  /// Obtém a empresa gerenciada pelo usuário logado (Dono do Clube).
+  Future<Company> getManagedCompany(Session session) async {
+    final profile = await sl.getOrCreateProfileUseCase.execute(session);
+    if (profile.id == null) throw Exception('Perfil incompleto.');
+    
+    final companies = await sl.companyRepository.findByOwner(session, profile.id!);
+    if (companies.isEmpty) {
+      throw Exception('Você não possui um clube cadastrado.');
+    }
+
+    return companies.first;
+  }
 }

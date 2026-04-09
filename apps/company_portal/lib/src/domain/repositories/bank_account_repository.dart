@@ -4,6 +4,7 @@ import 'package:company_portal/main.dart';
 abstract class IBankAccountRepository {
   Future<List<BankAccount>> listAccounts({
     String? status,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   });
@@ -13,11 +14,12 @@ abstract class IBankAccountRepository {
 }
 
 class BankAccountRepository implements IBankAccountRepository {
-  final String _originModule = 'BACKOFFICE';
+  final String _originModule = 'CLUB';
 
   @override
   Future<List<BankAccount>> listAccounts({
     String? status,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   }) async {
@@ -25,6 +27,7 @@ class BankAccountRepository implements IBankAccountRepository {
       final result = await client.bankAccount.listAccounts(
         originModule: _originModule,
         status: status,
+        companyId: companyId,
         limit: limit,
         offset: offset,
       );

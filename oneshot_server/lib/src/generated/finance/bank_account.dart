@@ -8,9 +8,13 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
+// ignore_for_file: unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
+import '../company/company.dart' as _i2;
+import '../enums/pix_key_type.dart' as _i3;
+import 'package:oneshot_server/src/generated/protocol.dart' as _i4;
 
 abstract class BankAccount
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
@@ -25,6 +29,10 @@ abstract class BankAccount
     required this.balance,
     required this.status,
     required this.originModule,
+    this.companyId,
+    this.company,
+    this.pixKey,
+    this.pixKeyType,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory BankAccount({
@@ -38,6 +46,10 @@ abstract class BankAccount
     required double balance,
     required String status,
     required String originModule,
+    _i1.UuidValue? companyId,
+    _i2.Company? company,
+    String? pixKey,
+    _i3.PixKeyType? pixKeyType,
   }) = _BankAccountImpl;
 
   factory BankAccount.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -54,6 +66,20 @@ abstract class BankAccount
       balance: (jsonSerialization['balance'] as num).toDouble(),
       status: jsonSerialization['status'] as String,
       originModule: jsonSerialization['originModule'] as String,
+      companyId: jsonSerialization['companyId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+      company: jsonSerialization['company'] == null
+          ? null
+          : _i4.Protocol().deserialize<_i2.Company>(
+              jsonSerialization['company'],
+            ),
+      pixKey: jsonSerialization['pixKey'] as String?,
+      pixKeyType: jsonSerialization['pixKeyType'] == null
+          ? null
+          : _i3.PixKeyType.fromJson(
+              (jsonSerialization['pixKeyType'] as String),
+            ),
     );
   }
 
@@ -82,6 +108,14 @@ abstract class BankAccount
 
   String originModule;
 
+  _i1.UuidValue? companyId;
+
+  _i2.Company? company;
+
+  String? pixKey;
+
+  _i3.PixKeyType? pixKeyType;
+
   @override
   _i1.Table<_i1.UuidValue> get table => t;
 
@@ -99,6 +133,10 @@ abstract class BankAccount
     double? balance,
     String? status,
     String? originModule,
+    _i1.UuidValue? companyId,
+    _i2.Company? company,
+    String? pixKey,
+    _i3.PixKeyType? pixKeyType,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -114,6 +152,10 @@ abstract class BankAccount
       'balance': balance,
       'status': status,
       'originModule': originModule,
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJson(),
+      if (pixKey != null) 'pixKey': pixKey,
+      if (pixKeyType != null) 'pixKeyType': pixKeyType?.toJson(),
     };
   }
 
@@ -131,11 +173,15 @@ abstract class BankAccount
       'balance': balance,
       'status': status,
       'originModule': originModule,
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJsonForProtocol(),
+      if (pixKey != null) 'pixKey': pixKey,
+      if (pixKeyType != null) 'pixKeyType': pixKeyType?.toJson(),
     };
   }
 
-  static BankAccountInclude include() {
-    return BankAccountInclude._();
+  static BankAccountInclude include({_i2.CompanyInclude? company}) {
+    return BankAccountInclude._(company: company);
   }
 
   static BankAccountIncludeList includeList({
@@ -178,6 +224,10 @@ class _BankAccountImpl extends BankAccount {
     required double balance,
     required String status,
     required String originModule,
+    _i1.UuidValue? companyId,
+    _i2.Company? company,
+    String? pixKey,
+    _i3.PixKeyType? pixKeyType,
   }) : super._(
          id: id,
          name: name,
@@ -189,6 +239,10 @@ class _BankAccountImpl extends BankAccount {
          balance: balance,
          status: status,
          originModule: originModule,
+         companyId: companyId,
+         company: company,
+         pixKey: pixKey,
+         pixKeyType: pixKeyType,
        );
 
   /// Returns a shallow copy of this [BankAccount]
@@ -206,6 +260,10 @@ class _BankAccountImpl extends BankAccount {
     double? balance,
     String? status,
     String? originModule,
+    Object? companyId = _Undefined,
+    Object? company = _Undefined,
+    Object? pixKey = _Undefined,
+    Object? pixKeyType = _Undefined,
   }) {
     return BankAccount(
       id: id ?? this.id,
@@ -220,6 +278,10 @@ class _BankAccountImpl extends BankAccount {
       balance: balance ?? this.balance,
       status: status ?? this.status,
       originModule: originModule ?? this.originModule,
+      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
+      company: company is _i2.Company? ? company : this.company?.copyWith(),
+      pixKey: pixKey is String? ? pixKey : this.pixKey,
+      pixKeyType: pixKeyType is _i3.PixKeyType? ? pixKeyType : this.pixKeyType,
     );
   }
 }
@@ -273,6 +335,25 @@ class BankAccountUpdateTable extends _i1.UpdateTable<BankAccountTable> {
     table.originModule,
     value,
   );
+
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> companyId(
+    _i1.UuidValue? value,
+  ) => _i1.ColumnValue(
+    table.companyId,
+    value,
+  );
+
+  _i1.ColumnValue<String, String> pixKey(String? value) => _i1.ColumnValue(
+    table.pixKey,
+    value,
+  );
+
+  _i1.ColumnValue<_i3.PixKeyType, _i3.PixKeyType> pixKeyType(
+    _i3.PixKeyType? value,
+  ) => _i1.ColumnValue(
+    table.pixKeyType,
+    value,
+  );
 }
 
 class BankAccountTable extends _i1.Table<_i1.UuidValue> {
@@ -314,6 +395,19 @@ class BankAccountTable extends _i1.Table<_i1.UuidValue> {
       'originModule',
       this,
     );
+    companyId = _i1.ColumnUuid(
+      'companyId',
+      this,
+    );
+    pixKey = _i1.ColumnString(
+      'pixKey',
+      this,
+    );
+    pixKeyType = _i1.ColumnEnum(
+      'pixKeyType',
+      this,
+      _i1.EnumSerialization.byName,
+    );
   }
 
   late final BankAccountUpdateTable updateTable;
@@ -336,6 +430,27 @@ class BankAccountTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnString originModule;
 
+  late final _i1.ColumnUuid companyId;
+
+  _i2.CompanyTable? _company;
+
+  late final _i1.ColumnString pixKey;
+
+  late final _i1.ColumnEnum<_i3.PixKeyType> pixKeyType;
+
+  _i2.CompanyTable get company {
+    if (_company != null) return _company!;
+    _company = _i1.createRelationTable(
+      relationFieldName: 'company',
+      field: BankAccount.t.companyId,
+      foreignField: _i2.Company.t.id,
+      tableRelation: tableRelation,
+      createTable: (foreignTableRelation) =>
+          _i2.CompanyTable(tableRelation: foreignTableRelation),
+    );
+    return _company!;
+  }
+
   @override
   List<_i1.Column> get columns => [
     id,
@@ -348,14 +463,29 @@ class BankAccountTable extends _i1.Table<_i1.UuidValue> {
     balance,
     status,
     originModule,
+    companyId,
+    pixKey,
+    pixKeyType,
   ];
+
+  @override
+  _i1.Table? getRelationTable(String relationField) {
+    if (relationField == 'company') {
+      return company;
+    }
+    return null;
+  }
 }
 
 class BankAccountInclude extends _i1.IncludeObject {
-  BankAccountInclude._();
+  BankAccountInclude._({_i2.CompanyInclude? company}) {
+    _company = company;
+  }
+
+  _i2.CompanyInclude? _company;
 
   @override
-  Map<String, _i1.Include?> get includes => {};
+  Map<String, _i1.Include?> get includes => {'company': _company};
 
   @override
   _i1.Table<_i1.UuidValue> get table => BankAccount.t;
@@ -383,6 +513,10 @@ class BankAccountIncludeList extends _i1.IncludeList {
 
 class BankAccountRepository {
   const BankAccountRepository._();
+
+  final attachRow = const BankAccountAttachRowRepository._();
+
+  final detachRow = const BankAccountDetachRowRepository._();
 
   /// Returns a list of [BankAccount]s matching the given query parameters.
   ///
@@ -415,6 +549,7 @@ class BankAccountRepository {
     bool orderDescending = false,
     _i1.OrderByListBuilder<BankAccountTable>? orderByList,
     _i1.Transaction? transaction,
+    BankAccountInclude? include,
     _i1.LockMode? lockMode,
     _i1.LockBehavior? lockBehavior,
   }) async {
@@ -426,6 +561,7 @@ class BankAccountRepository {
       limit: limit,
       offset: offset,
       transaction: transaction,
+      include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
     );
@@ -456,6 +592,7 @@ class BankAccountRepository {
     bool orderDescending = false,
     _i1.OrderByListBuilder<BankAccountTable>? orderByList,
     _i1.Transaction? transaction,
+    BankAccountInclude? include,
     _i1.LockMode? lockMode,
     _i1.LockBehavior? lockBehavior,
   }) async {
@@ -466,6 +603,7 @@ class BankAccountRepository {
       orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
+      include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
     );
@@ -476,12 +614,14 @@ class BankAccountRepository {
     _i1.DatabaseSession session,
     _i1.UuidValue id, {
     _i1.Transaction? transaction,
+    BankAccountInclude? include,
     _i1.LockMode? lockMode,
     _i1.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<BankAccount>(
       id,
       transaction: transaction,
+      include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
     );
@@ -663,6 +803,59 @@ class BankAccountRepository {
       where: where(BankAccount.t),
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+      transaction: transaction,
+    );
+  }
+}
+
+class BankAccountAttachRowRepository {
+  const BankAccountAttachRowRepository._();
+
+  /// Creates a relation between the given [BankAccount] and [Company]
+  /// by setting the [BankAccount]'s foreign key `companyId` to refer to the [Company].
+  Future<void> company(
+    _i1.DatabaseSession session,
+    BankAccount bankAccount,
+    _i2.Company company, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (bankAccount.id == null) {
+      throw ArgumentError.notNull('bankAccount.id');
+    }
+    if (company.id == null) {
+      throw ArgumentError.notNull('company.id');
+    }
+
+    var $bankAccount = bankAccount.copyWith(companyId: company.id);
+    await session.db.updateRow<BankAccount>(
+      $bankAccount,
+      columns: [BankAccount.t.companyId],
+      transaction: transaction,
+    );
+  }
+}
+
+class BankAccountDetachRowRepository {
+  const BankAccountDetachRowRepository._();
+
+  /// Detaches the relation between this [BankAccount] and the [Company] set in `company`
+  /// by setting the [BankAccount]'s foreign key `companyId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> company(
+    _i1.DatabaseSession session,
+    BankAccount bankAccount, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (bankAccount.id == null) {
+      throw ArgumentError.notNull('bankAccount.id');
+    }
+
+    var $bankAccount = bankAccount.copyWith(companyId: null);
+    await session.db.updateRow<BankAccount>(
+      $bankAccount,
+      columns: [BankAccount.t.companyId],
       transaction: transaction,
     );
   }

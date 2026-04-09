@@ -13,7 +13,8 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends ViewmodelState<LoginPage, ILoginViewModel> implements ILoginPresenter {
+class _LoginPageState extends ViewmodelState<LoginPage, ILoginViewModel>
+    implements ILoginPresenter {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -33,6 +34,8 @@ class _LoginPageState extends ViewmodelState<LoginPage, ILoginViewModel> impleme
     final password = _passwordController.text.trim();
     if (email.isEmpty || password.isEmpty) return;
     await vm.login(email, password);
+    _emailController.clear();
+    _passwordController.clear();
   }
 
   @override

@@ -10,6 +10,7 @@ abstract class ISubscriptionPlanRepository {
     Session session, {
     PlanType? planType,
     PlanStatus? status,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   });
@@ -44,6 +45,7 @@ class SubscriptionPlanRepository implements ISubscriptionPlanRepository {
     Session session, {
     PlanType? planType,
     PlanStatus? status,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   }) async {
@@ -56,6 +58,11 @@ class SubscriptionPlanRepository implements ISubscriptionPlanRepository {
         }
         if (status != null) {
           filter &= t.status.equals(status);
+        }
+        if (companyId != null) {
+          filter &= t.companyId.equals(companyId);
+        } else {
+          filter &= t.companyId.equals(null);
         }
         return filter;
       },

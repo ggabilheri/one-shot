@@ -14,7 +14,8 @@
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../common/user_profile.dart' as _i2;
 import '../access_control/security_role.dart' as _i3;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i4;
+import '../company/company.dart' as _i4;
+import 'package:oneshot_server/src/generated/protocol.dart' as _i5;
 
 abstract class UserRole
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
@@ -24,6 +25,8 @@ abstract class UserRole
     this.userProfile,
     this.securityRoleId,
     this.securityRole,
+    this.companyId,
+    this.company,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory UserRole({
@@ -32,6 +35,8 @@ abstract class UserRole
     _i2.UserProfile? userProfile,
     _i1.UuidValue? securityRoleId,
     _i3.SecurityRole? securityRole,
+    _i1.UuidValue? companyId,
+    _i4.Company? company,
   }) = _UserRoleImpl;
 
   factory UserRole.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -46,7 +51,7 @@ abstract class UserRole
             ),
       userProfile: jsonSerialization['userProfile'] == null
           ? null
-          : _i4.Protocol().deserialize<_i2.UserProfile>(
+          : _i5.Protocol().deserialize<_i2.UserProfile>(
               jsonSerialization['userProfile'],
             ),
       securityRoleId: jsonSerialization['securityRoleId'] == null
@@ -56,8 +61,16 @@ abstract class UserRole
             ),
       securityRole: jsonSerialization['securityRole'] == null
           ? null
-          : _i4.Protocol().deserialize<_i3.SecurityRole>(
+          : _i5.Protocol().deserialize<_i3.SecurityRole>(
               jsonSerialization['securityRole'],
+            ),
+      companyId: jsonSerialization['companyId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+      company: jsonSerialization['company'] == null
+          ? null
+          : _i5.Protocol().deserialize<_i4.Company>(
+              jsonSerialization['company'],
             ),
     );
   }
@@ -77,6 +90,10 @@ abstract class UserRole
 
   _i3.SecurityRole? securityRole;
 
+  _i1.UuidValue? companyId;
+
+  _i4.Company? company;
+
   @override
   _i1.Table<_i1.UuidValue> get table => t;
 
@@ -89,6 +106,8 @@ abstract class UserRole
     _i2.UserProfile? userProfile,
     _i1.UuidValue? securityRoleId,
     _i3.SecurityRole? securityRole,
+    _i1.UuidValue? companyId,
+    _i4.Company? company,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -99,6 +118,8 @@ abstract class UserRole
       if (userProfile != null) 'userProfile': userProfile?.toJson(),
       if (securityRoleId != null) 'securityRoleId': securityRoleId?.toJson(),
       if (securityRole != null) 'securityRole': securityRole?.toJson(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJson(),
     };
   }
 
@@ -112,16 +133,20 @@ abstract class UserRole
       if (securityRoleId != null) 'securityRoleId': securityRoleId?.toJson(),
       if (securityRole != null)
         'securityRole': securityRole?.toJsonForProtocol(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJsonForProtocol(),
     };
   }
 
   static UserRoleInclude include({
     _i2.UserProfileInclude? userProfile,
     _i3.SecurityRoleInclude? securityRole,
+    _i4.CompanyInclude? company,
   }) {
     return UserRoleInclude._(
       userProfile: userProfile,
       securityRole: securityRole,
+      company: company,
     );
   }
 
@@ -160,12 +185,16 @@ class _UserRoleImpl extends UserRole {
     _i2.UserProfile? userProfile,
     _i1.UuidValue? securityRoleId,
     _i3.SecurityRole? securityRole,
+    _i1.UuidValue? companyId,
+    _i4.Company? company,
   }) : super._(
          id: id,
          userProfileId: userProfileId,
          userProfile: userProfile,
          securityRoleId: securityRoleId,
          securityRole: securityRole,
+         companyId: companyId,
+         company: company,
        );
 
   /// Returns a shallow copy of this [UserRole]
@@ -178,6 +207,8 @@ class _UserRoleImpl extends UserRole {
     Object? userProfile = _Undefined,
     Object? securityRoleId = _Undefined,
     Object? securityRole = _Undefined,
+    Object? companyId = _Undefined,
+    Object? company = _Undefined,
   }) {
     return UserRole(
       id: id ?? this.id,
@@ -193,6 +224,8 @@ class _UserRoleImpl extends UserRole {
       securityRole: securityRole is _i3.SecurityRole?
           ? securityRole
           : this.securityRole?.copyWith(),
+      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
+      company: company is _i4.Company? ? company : this.company?.copyWith(),
     );
   }
 }
@@ -213,6 +246,13 @@ class UserRoleUpdateTable extends _i1.UpdateTable<UserRoleTable> {
     table.securityRoleId,
     value,
   );
+
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> companyId(
+    _i1.UuidValue? value,
+  ) => _i1.ColumnValue(
+    table.companyId,
+    value,
+  );
 }
 
 class UserRoleTable extends _i1.Table<_i1.UuidValue> {
@@ -226,6 +266,10 @@ class UserRoleTable extends _i1.Table<_i1.UuidValue> {
       'securityRoleId',
       this,
     );
+    companyId = _i1.ColumnUuid(
+      'companyId',
+      this,
+    );
   }
 
   late final UserRoleUpdateTable updateTable;
@@ -237,6 +281,10 @@ class UserRoleTable extends _i1.Table<_i1.UuidValue> {
   late final _i1.ColumnUuid securityRoleId;
 
   _i3.SecurityRoleTable? _securityRole;
+
+  late final _i1.ColumnUuid companyId;
+
+  _i4.CompanyTable? _company;
 
   _i2.UserProfileTable get userProfile {
     if (_userProfile != null) return _userProfile!;
@@ -264,11 +312,25 @@ class UserRoleTable extends _i1.Table<_i1.UuidValue> {
     return _securityRole!;
   }
 
+  _i4.CompanyTable get company {
+    if (_company != null) return _company!;
+    _company = _i1.createRelationTable(
+      relationFieldName: 'company',
+      field: UserRole.t.companyId,
+      foreignField: _i4.Company.t.id,
+      tableRelation: tableRelation,
+      createTable: (foreignTableRelation) =>
+          _i4.CompanyTable(tableRelation: foreignTableRelation),
+    );
+    return _company!;
+  }
+
   @override
   List<_i1.Column> get columns => [
     id,
     userProfileId,
     securityRoleId,
+    companyId,
   ];
 
   @override
@@ -279,6 +341,9 @@ class UserRoleTable extends _i1.Table<_i1.UuidValue> {
     if (relationField == 'securityRole') {
       return securityRole;
     }
+    if (relationField == 'company') {
+      return company;
+    }
     return null;
   }
 }
@@ -287,19 +352,24 @@ class UserRoleInclude extends _i1.IncludeObject {
   UserRoleInclude._({
     _i2.UserProfileInclude? userProfile,
     _i3.SecurityRoleInclude? securityRole,
+    _i4.CompanyInclude? company,
   }) {
     _userProfile = userProfile;
     _securityRole = securityRole;
+    _company = company;
   }
 
   _i2.UserProfileInclude? _userProfile;
 
   _i3.SecurityRoleInclude? _securityRole;
 
+  _i4.CompanyInclude? _company;
+
   @override
   Map<String, _i1.Include?> get includes => {
     'userProfile': _userProfile,
     'securityRole': _securityRole,
+    'company': _company,
   };
 
   @override
@@ -671,6 +741,29 @@ class UserRoleAttachRowRepository {
       transaction: transaction,
     );
   }
+
+  /// Creates a relation between the given [UserRole] and [Company]
+  /// by setting the [UserRole]'s foreign key `companyId` to refer to the [Company].
+  Future<void> company(
+    _i1.DatabaseSession session,
+    UserRole userRole,
+    _i4.Company company, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (userRole.id == null) {
+      throw ArgumentError.notNull('userRole.id');
+    }
+    if (company.id == null) {
+      throw ArgumentError.notNull('company.id');
+    }
+
+    var $userRole = userRole.copyWith(companyId: company.id);
+    await session.db.updateRow<UserRole>(
+      $userRole,
+      columns: [UserRole.t.companyId],
+      transaction: transaction,
+    );
+  }
 }
 
 class UserRoleDetachRowRepository {
@@ -716,6 +809,28 @@ class UserRoleDetachRowRepository {
     await session.db.updateRow<UserRole>(
       $userRole,
       columns: [UserRole.t.securityRoleId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [UserRole] and the [Company] set in `company`
+  /// by setting the [UserRole]'s foreign key `companyId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> company(
+    _i1.DatabaseSession session,
+    UserRole userRole, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (userRole.id == null) {
+      throw ArgumentError.notNull('userRole.id');
+    }
+
+    var $userRole = userRole.copyWith(companyId: null);
+    await session.db.updateRow<UserRole>(
+      $userRole,
+      columns: [UserRole.t.companyId],
       transaction: transaction,
     );
   }

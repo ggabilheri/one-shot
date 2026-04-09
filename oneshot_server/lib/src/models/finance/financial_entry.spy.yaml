@@ -9,8 +9,9 @@ fields:
   paymentDate: DateTime?  # Data efetiva do pagamento/recebimento
   status: FinancialEntryStatus          # PENDING, PAID, OVERDUE, CANCELED
   originModule: PlatformApp    # BACKOFFICE, CLUB, GUNSMITH
-  bankAccount: BankAccount?, relation # Conta bancária onde ocorreu a movimentação
-  invoice: Invoice?, relation         # Relacionamento opcional com o faturamento
+  bankAccount: BankAccount?, relation(optional) # Conta bancária onde ocorreu a movimentação
+  invoice: Invoice?, relation(optional)         # Relacionamento opcional com o faturamento
+  company: Company?, relation(optional)
 indexes:
   financial_entry_type_idx:
     fields: type

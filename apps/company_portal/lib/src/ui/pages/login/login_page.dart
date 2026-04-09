@@ -34,6 +34,8 @@ class _LoginPageState extends ViewmodelState<LoginPage, ILoginViewModel>
     final password = _passwordController.text.trim();
     if (email.isEmpty || password.isEmpty) return;
     await vm.login(email, password);
+    _emailController.clear();
+    _passwordController.clear();
   }
 
   @override

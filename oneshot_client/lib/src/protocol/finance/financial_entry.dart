@@ -16,7 +16,8 @@ import '../enums/financial_entry_status.dart' as _i3;
 import '../enums/platform_app.enum.dart' as _i4;
 import '../finance/bank_account.dart' as _i5;
 import '../finance/invoice.dart' as _i6;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i7;
+import '../company/company.dart' as _i7;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _i8;
 
 abstract class FinancialEntry implements _i1.SerializableModel {
   FinancialEntry._({
@@ -28,10 +29,12 @@ abstract class FinancialEntry implements _i1.SerializableModel {
     this.paymentDate,
     required this.status,
     required this.originModule,
-    required this.bankAccountId,
+    this.bankAccountId,
     this.bankAccount,
-    required this.invoiceId,
+    this.invoiceId,
     this.invoice,
+    this.companyId,
+    this.company,
   }) : id = id ?? const _i1.Uuid().v4obj();
 
   factory FinancialEntry({
@@ -43,10 +46,12 @@ abstract class FinancialEntry implements _i1.SerializableModel {
     DateTime? paymentDate,
     required _i3.FinancialEntryStatus status,
     required _i4.PlatformApp originModule,
-    required _i1.UuidValue bankAccountId,
+    _i1.UuidValue? bankAccountId,
     _i5.BankAccount? bankAccount,
-    required _i1.UuidValue invoiceId,
+    _i1.UuidValue? invoiceId,
     _i6.Invoice? invoice,
+    _i1.UuidValue? companyId,
+    _i7.Company? company,
   }) = _FinancialEntryImpl;
 
   factory FinancialEntry.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -71,21 +76,31 @@ abstract class FinancialEntry implements _i1.SerializableModel {
       originModule: _i4.PlatformApp.fromJson(
         (jsonSerialization['originModule'] as String),
       ),
-      bankAccountId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['bankAccountId'],
-      ),
+      bankAccountId: jsonSerialization['bankAccountId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(
+              jsonSerialization['bankAccountId'],
+            ),
       bankAccount: jsonSerialization['bankAccount'] == null
           ? null
-          : _i7.Protocol().deserialize<_i5.BankAccount>(
+          : _i8.Protocol().deserialize<_i5.BankAccount>(
               jsonSerialization['bankAccount'],
             ),
-      invoiceId: _i1.UuidValueJsonExtension.fromJson(
-        jsonSerialization['invoiceId'],
-      ),
+      invoiceId: jsonSerialization['invoiceId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['invoiceId']),
       invoice: jsonSerialization['invoice'] == null
           ? null
-          : _i7.Protocol().deserialize<_i6.Invoice>(
+          : _i8.Protocol().deserialize<_i6.Invoice>(
               jsonSerialization['invoice'],
+            ),
+      companyId: jsonSerialization['companyId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+      company: jsonSerialization['company'] == null
+          ? null
+          : _i8.Protocol().deserialize<_i7.Company>(
+              jsonSerialization['company'],
             ),
     );
   }
@@ -107,13 +122,17 @@ abstract class FinancialEntry implements _i1.SerializableModel {
 
   _i4.PlatformApp originModule;
 
-  _i1.UuidValue bankAccountId;
+  _i1.UuidValue? bankAccountId;
 
   _i5.BankAccount? bankAccount;
 
-  _i1.UuidValue invoiceId;
+  _i1.UuidValue? invoiceId;
 
   _i6.Invoice? invoice;
+
+  _i1.UuidValue? companyId;
+
+  _i7.Company? company;
 
   /// Returns a shallow copy of this [FinancialEntry]
   /// with some or all fields replaced by the given arguments.
@@ -131,6 +150,8 @@ abstract class FinancialEntry implements _i1.SerializableModel {
     _i5.BankAccount? bankAccount,
     _i1.UuidValue? invoiceId,
     _i6.Invoice? invoice,
+    _i1.UuidValue? companyId,
+    _i7.Company? company,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -144,10 +165,12 @@ abstract class FinancialEntry implements _i1.SerializableModel {
       if (paymentDate != null) 'paymentDate': paymentDate?.toJson(),
       'status': status.toJson(),
       'originModule': originModule.toJson(),
-      'bankAccountId': bankAccountId.toJson(),
+      if (bankAccountId != null) 'bankAccountId': bankAccountId?.toJson(),
       if (bankAccount != null) 'bankAccount': bankAccount?.toJson(),
-      'invoiceId': invoiceId.toJson(),
+      if (invoiceId != null) 'invoiceId': invoiceId?.toJson(),
       if (invoice != null) 'invoice': invoice?.toJson(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJson(),
     };
   }
 
@@ -169,10 +192,12 @@ class _FinancialEntryImpl extends FinancialEntry {
     DateTime? paymentDate,
     required _i3.FinancialEntryStatus status,
     required _i4.PlatformApp originModule,
-    required _i1.UuidValue bankAccountId,
+    _i1.UuidValue? bankAccountId,
     _i5.BankAccount? bankAccount,
-    required _i1.UuidValue invoiceId,
+    _i1.UuidValue? invoiceId,
     _i6.Invoice? invoice,
+    _i1.UuidValue? companyId,
+    _i7.Company? company,
   }) : super._(
          id: id,
          type: type,
@@ -186,6 +211,8 @@ class _FinancialEntryImpl extends FinancialEntry {
          bankAccount: bankAccount,
          invoiceId: invoiceId,
          invoice: invoice,
+         companyId: companyId,
+         company: company,
        );
 
   /// Returns a shallow copy of this [FinancialEntry]
@@ -201,10 +228,12 @@ class _FinancialEntryImpl extends FinancialEntry {
     Object? paymentDate = _Undefined,
     _i3.FinancialEntryStatus? status,
     _i4.PlatformApp? originModule,
-    _i1.UuidValue? bankAccountId,
+    Object? bankAccountId = _Undefined,
     Object? bankAccount = _Undefined,
-    _i1.UuidValue? invoiceId,
+    Object? invoiceId = _Undefined,
     Object? invoice = _Undefined,
+    Object? companyId = _Undefined,
+    Object? company = _Undefined,
   }) {
     return FinancialEntry(
       id: id ?? this.id,
@@ -215,12 +244,16 @@ class _FinancialEntryImpl extends FinancialEntry {
       paymentDate: paymentDate is DateTime? ? paymentDate : this.paymentDate,
       status: status ?? this.status,
       originModule: originModule ?? this.originModule,
-      bankAccountId: bankAccountId ?? this.bankAccountId,
+      bankAccountId: bankAccountId is _i1.UuidValue?
+          ? bankAccountId
+          : this.bankAccountId,
       bankAccount: bankAccount is _i5.BankAccount?
           ? bankAccount
           : this.bankAccount?.copyWith(),
-      invoiceId: invoiceId ?? this.invoiceId,
+      invoiceId: invoiceId is _i1.UuidValue? ? invoiceId : this.invoiceId,
       invoice: invoice is _i6.Invoice? ? invoice : this.invoice?.copyWith(),
+      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
+      company: company is _i7.Company? ? company : this.company?.copyWith(),
     );
   }
 }

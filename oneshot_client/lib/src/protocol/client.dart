@@ -202,6 +202,7 @@ class EndpointBankAccount extends _i1.EndpointRef {
   _i2.Future<List<_i5.BankAccount>> listAccounts({
     required String originModule,
     String? status,
+    _i1.UuidValue? companyId,
     int? limit,
     int? offset,
   }) => caller.callServerEndpoint<List<_i5.BankAccount>>(
@@ -210,6 +211,7 @@ class EndpointBankAccount extends _i1.EndpointRef {
     {
       'originModule': originModule,
       'status': status,
+      'companyId': companyId,
       'limit': limit,
       'offset': offset,
     },
@@ -332,6 +334,14 @@ class EndpointCompany extends _i1.EndpointRef {
       caller.callServerEndpoint<List<_i10.RangeVisit>>(
         'company',
         'getMyVisits',
+        {},
+      );
+
+  /// Obtém a empresa gerenciada pelo usuário logado (Dono do Clube).
+  _i2.Future<_i6.Company> getManagedCompany() =>
+      caller.callServerEndpoint<_i6.Company>(
+        'company',
+        'getManagedCompany',
         {},
       );
 }
@@ -463,23 +473,25 @@ class EndpointFinancialEntry extends _i1.EndpointRef {
   /// - [dueDateFrom] e [dueDateTo]: Intervalo opcional de datas de vencimento.
   _i2.Future<List<_i12.FinancialEntry>> listEntries({
     required _i13.PlatformApp originModule,
+    DateTime? dueDateTo,
+    _i1.UuidValue? companyId,
+    int? limit,
+    int? offset,
     _i14.FinancialEntryType? type,
     _i15.FinancialEntryStatus? status,
     DateTime? dueDateFrom,
-    DateTime? dueDateTo,
-    int? limit,
-    int? offset,
   }) => caller.callServerEndpoint<List<_i12.FinancialEntry>>(
     'financialEntry',
     'listEntries',
     {
       'originModule': originModule,
+      'dueDateTo': dueDateTo,
+      'companyId': companyId,
+      'limit': limit,
+      'offset': offset,
       'type': type,
       'status': status,
       'dueDateFrom': dueDateFrom,
-      'dueDateTo': dueDateTo,
-      'limit': limit,
-      'offset': offset,
     },
   );
 }
@@ -1077,6 +1089,7 @@ class EndpointSubscriptionPlan extends _i1.EndpointRef {
   _i2.Future<List<_i33.SubscriptionPlan>> listPlans({
     _i34.PlanType? planType,
     _i35.PlanStatus? status,
+    _i1.UuidValue? companyId,
     int? limit,
     int? offset,
   }) => caller.callServerEndpoint<List<_i33.SubscriptionPlan>>(
@@ -1085,6 +1098,7 @@ class EndpointSubscriptionPlan extends _i1.EndpointRef {
     {
       'planType': planType,
       'status': status,
+      'companyId': companyId,
       'limit': limit,
       'offset': offset,
     },
@@ -1202,6 +1216,15 @@ class EndpointUser extends _i1.EndpointRef {
       'roleIds': roleIds,
     },
   );
+
+  /// Retorna as empresas as quais o usuário logado tem acesso.
+  /// Implementa lógica de auto-admin para proprietários.
+  _i2.Future<List<_i6.Company>> getMyCompanies() =>
+      caller.callServerEndpoint<List<_i6.Company>>(
+        'user',
+        'getMyCompanies',
+        {},
+      );
 }
 
 /// {@category Endpoint}

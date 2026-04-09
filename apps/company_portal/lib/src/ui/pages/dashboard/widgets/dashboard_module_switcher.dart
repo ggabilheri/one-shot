@@ -4,6 +4,7 @@ import 'package:company_portal/src/ui/pages/finance/entries/receivable_page.dart
 import 'package:flutter/material.dart';
 import 'package:company_portal/src/domain/models/enums/dashboard_page_type.dart';
 import 'package:company_portal/src/ui/pages/dashboard/summary/dashboard_summary_page.dart';
+import 'package:company_portal/src/ui/pages/subscriptions/subscription_plans_page.dart';
 import 'package:company_portal/src/ui/widgets/ds_tokens.dart';
 
 class DashboardModuleSwitcher extends StatelessWidget {
@@ -19,6 +20,8 @@ class DashboardModuleSwitcher extends StatelessWidget {
     switch (currentPage) {
       case DashboardPageType.summary:
         return const DashboardSummaryPage();
+      case DashboardPageType.subscriptions:
+        return const SubscriptionPlansPage();
       case DashboardPageType.bankAccounts:
         return const BankAccountsPage();
       case DashboardPageType.payable:

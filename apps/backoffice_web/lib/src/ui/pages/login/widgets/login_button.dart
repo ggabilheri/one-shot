@@ -1,3 +1,4 @@
+import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 import 'package:flutter/material.dart';
 
 class LoginButton extends StatelessWidget {
@@ -17,7 +18,7 @@ class LoginButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 50),
         backgroundColor: Theme.of(context).primaryColor,
-        foregroundColor: Colors.black,
+        foregroundColor: DSTokens.background,
       ),
       child: isLoading
           ? const SizedBox(

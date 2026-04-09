@@ -9,6 +9,7 @@ abstract class ISubscriptionPlanRepository {
   Future<List<SubscriptionPlan>> listPlans({
     PlanType? planType,
     PlanStatus? status,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   });
@@ -63,6 +64,7 @@ class SubscriptionPlanRepository implements ISubscriptionPlanRepository {
   Future<List<SubscriptionPlan>> listPlans({
     PlanType? planType,
     PlanStatus? status,
+    UuidValue? companyId,
     int? limit,
     int? offset,
   }) async {
@@ -70,6 +72,7 @@ class SubscriptionPlanRepository implements ISubscriptionPlanRepository {
       return await client.subscriptionPlan.listPlans(
         planType: planType,
         status: status,
+        companyId: companyId,
         limit: limit,
         offset: offset,
       );

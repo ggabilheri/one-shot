@@ -29,6 +29,7 @@ company:
   - checkIn:
   - checkOut:
   - getMyVisits:
+  - getManagedCompany:
 document:
   - getById:
   - create:
@@ -126,6 +127,7 @@ user:
   - search:
   - getRoles:
   - updateRoles:
+  - getMyCompanies:
 viaCepGateway:
   - getAddressByCep:
 asaasAccount:

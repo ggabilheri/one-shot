@@ -11,6 +11,9 @@ fields:
   balance: double         # Saldo atual da conta
   status: String          # ACTIVE, INACTIVE
   originModule: String    # BACKOFFICE, CLUB, GUNSMITH
+  company: Company?, relation(optional)
+  pixKey: String?
+  pixKeyType: PixKeyType?
 indexes:
   bank_account_origin_idx:
     fields: originModule

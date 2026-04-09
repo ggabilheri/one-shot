@@ -19,7 +19,7 @@ class AdminSidebarFooter extends StatelessWidget {
       child: AdminSidebarItem(
         icon: Icons.logout,
         activeIcon: Icons.logout,
-        label: 'SAIR',
+        label: 'Sair',
         isCollapsed: isCollapsed,
         isSelected: false,
         onTap: onTap,
