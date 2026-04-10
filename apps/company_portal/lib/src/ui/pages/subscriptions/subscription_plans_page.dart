@@ -82,24 +82,25 @@ class _SubscriptionPlansPageState
       ),
       child: Row(
         children: [
+          // Expanded(
+          //   child: DropdownButtonFormField<PlanType?>(
+          //     value: vm.filterType,
+          //     decoration: const InputDecoration(labelText: 'FILTRAR POR TIPO'),
+          //     items: [
+          //       const DropdownMenuItem(
+          //         value: null,
+          //         child: Text('TODOS OS TIPOS'),
+          //       ),
+          //       ...PlanType.values.map(
+          //         (t) => DropdownMenuItem(value: t, child: Text(t.label)),
+          //       ),
+          //     ],
+          //     onChanged: vm.setFilterType,
+          //   ),
+          // ),
+          // const SizedBox(width: DSTokens.spacingMd),
           Expanded(
-            child: DropdownButtonFormField<PlanType?>(
-              value: vm.filterType,
-              decoration: const InputDecoration(labelText: 'FILTRAR POR TIPO'),
-              items: [
-                const DropdownMenuItem(
-                  value: null,
-                  child: Text('TODOS OS TIPOS'),
-                ),
-                ...PlanType.values.map(
-                  (t) => DropdownMenuItem(value: t, child: Text(t.label)),
-                ),
-              ],
-              onChanged: vm.setFilterType,
-            ),
-          ),
-          const SizedBox(width: DSTokens.spacingMd),
-          Expanded(
+            flex: 2,
             child: DropdownButtonFormField<PlanStatus?>(
               value: vm.filterStatus,
               decoration: const InputDecoration(
@@ -117,6 +118,7 @@ class _SubscriptionPlansPageState
               onChanged: vm.setFilterStatus,
             ),
           ),
+          Expanded(flex: 9, child: SizedBox()),
         ],
       ),
     );

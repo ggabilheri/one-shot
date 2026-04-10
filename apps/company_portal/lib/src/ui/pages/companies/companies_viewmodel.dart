@@ -1,15 +1,13 @@
-import 'package:backoffice_web/src/core/viewmodel.dart';
+import 'package:company_portal/src/core/viewmodel.dart';
+import 'package:company_portal/src/domain/services/company_session.dart';
 import 'package:oneshot_client/oneshot_client.dart';
-import 'package:backoffice_web/src/domain/repositories/company_repository.dart';
-import 'package:backoffice_web/src/domain/repositories/user_repository.dart';
+import 'package:company_portal/src/domain/repositories/company_repository.dart';
+import 'package:company_portal/src/domain/repositories/user_repository.dart';
 
 abstract class ICompaniesViewmodel extends IViewmodel {
   List<Company> get companies;
-  List<Company> get platformCompanies;
-  UuidValue? get selectedParentCompanyId;
   bool get isLoading;
   Future<void> loadCompanies();
-  void setParentCompanyFilter(UuidValue? id);
   Future<void> saveCompany(Company company, {bool isEditing = false});
   Future<void> deleteCompany(String id);
   Future<List<UserProfile>> searchUsers(String query);
@@ -21,11 +19,36 @@ abstract class ICompaniesViewmodel extends IViewmodel {
 class CompaniesViewmodel extends Viewmodel implements ICompaniesViewmodel {
   final ICompanyRepository _repository;
   final IUserRepository _userRepository;
+  final ICompanySession _session;
 
   bool _isLoading = false;
   List<Company> _companies = [];
-  List<Company> _platformCompanies = [];
-  UuidValue? _selectedParentCompanyId;
+
+  @override
+  Future<Address?> getAddressByCep(String cep) async {
+    try {
+      return await _repository.fetchAddressByCep(cep);
+    } on AppException catch (e) {
+      setError(e.message);
+      return null;
+    } catch (e) {
+      setError('Falha ao buscar endereço pelo CEP.');
+      return null;
+    }
+  }
+
+  @override
+  Future<Company?> fetchCompanyInfo(String cnpj) async {
+    try {
+      return await _repository.fetchCompanyInfo(cnpj);
+    } on AppException catch (e) {
+      setError(e.message);
+      return null;
+    } catch (e) {
+      setError('Falha ao buscar informações da empresa pelo CNPJ.');
+      return null;
+    }
+  }
 
   @override
   bool get isLoading => _isLoading;
@@ -33,30 +56,7 @@ class CompaniesViewmodel extends Viewmodel implements ICompaniesViewmodel {
   @override
   List<Company> get companies => _companies;
 
-  @override
-  List<Company> get platformCompanies => _platformCompanies;
-
-  @override
-  UuidValue? get selectedParentCompanyId => _selectedParentCompanyId;
-
-  CompaniesViewmodel(this._repository, this._userRepository) {
-    _init();
-  }
-
-  Future<void> _init() async {
-    await loadCompanies();
-    // Carrega as empresas da plataforma para o filtro
-    try {
-      _platformCompanies = await _repository.listCompanies(
-        parentCompanyId: null,
-      );
-    } catch (_) {}
-    notifyListeners();
-  }
-
-  @override
-  void setParentCompanyFilter(UuidValue? id) {
-    _selectedParentCompanyId = id;
+  CompaniesViewmodel(this._repository, this._userRepository, this._session) {
     loadCompanies();
   }
 
@@ -68,7 +68,7 @@ class CompaniesViewmodel extends Viewmodel implements ICompaniesViewmodel {
 
     try {
       _companies = await _repository.listCompanies(
-        parentCompanyId: _selectedParentCompanyId,
+        parentCompanyId: _session.currentCompany!.id,
       );
       setError(null);
     } on AppException catch (e) {
@@ -86,6 +86,7 @@ class CompaniesViewmodel extends Viewmodel implements ICompaniesViewmodel {
   Future<void> saveCompany(Company company, {bool isEditing = false}) async {
     setLoading(true);
     setError(null);
+    company.parentCompanyId = _session.currentCompany!.id;
     try {
       if (!isEditing) {
         await _repository.createCompany(company);
@@ -134,32 +135,6 @@ class CompaniesViewmodel extends Viewmodel implements ICompaniesViewmodel {
       final users = await _userRepository.listUsers();
       return users.firstWhere((u) => u.id.toString() == id);
     } catch (e) {
-      return null;
-    }
-  }
-
-  @override
-  Future<Address?> getAddressByCep(String cep) async {
-    try {
-      return await _repository.fetchAddressByCep(cep);
-    } on AppException catch (e) {
-      setError(e.message);
-      return null;
-    } catch (e) {
-      setError('Falha ao buscar endereço pelo CEP.');
-      return null;
-    }
-  }
-
-  @override
-  Future<Company?> fetchCompanyInfo(String cnpj) async {
-    try {
-      return await _repository.fetchCompanyInfo(cnpj);
-    } on AppException catch (e) {
-      setError(e.message);
-      return null;
-    } catch (e) {
-      setError('Falha ao buscar informações da empresa pelo CNPJ.');
       return null;
     }
   }

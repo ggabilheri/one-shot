@@ -12,6 +12,9 @@ fields:
   active: bool, default=true
   incomeValue: double, default=1000.00
 
+  # Relacionamento com empresa "pai" (quem realizou o cadastro)
+  parentCompany: Company?, relation(optional)
+
   # Campos do gateway Asaas (subconta)
   asaasAccountId: String?              # ID da subconta no Asaas
   asaasWalletId: String?               # Wallet ID para split de pagamentos
@@ -24,3 +27,5 @@ indexes:
     unique: true
   company_owner_id_idx:
     fields: ownerId
+  company_parent_id_idx:
+    fields: parentCompanyId

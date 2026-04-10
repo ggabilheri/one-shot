@@ -19,50 +19,51 @@ import 'package:oneshot_client/src/protocol/finance/bank_account.dart' as _i5;
 import 'package:oneshot_client/src/protocol/company/company.dart' as _i6;
 import 'package:oneshot_client/src/protocol/common/address.dart' as _i7;
 import 'package:oneshot_client/src/protocol/finance/bank.dart' as _i8;
-import 'package:oneshot_client/src/protocol/company/membership.dart' as _i9;
-import 'package:oneshot_client/src/protocol/company/range_visit.dart' as _i10;
-import 'package:oneshot_client/src/protocol/common/document.dart' as _i11;
+import 'package:oneshot_client/src/protocol/company/company_type.dart' as _i9;
+import 'package:oneshot_client/src/protocol/company/membership.dart' as _i10;
+import 'package:oneshot_client/src/protocol/company/range_visit.dart' as _i11;
+import 'package:oneshot_client/src/protocol/common/document.dart' as _i12;
 import 'package:oneshot_client/src/protocol/finance/financial_entry.dart'
-    as _i12;
-import 'package:oneshot_client/src/protocol/enums/platform_app.enum.dart'
     as _i13;
-import 'package:oneshot_client/src/protocol/enums/financial_entry_type.dart'
+import 'package:oneshot_client/src/protocol/enums/platform_app.enum.dart'
     as _i14;
-import 'package:oneshot_client/src/protocol/enums/financial_entry_status.dart'
+import 'package:oneshot_client/src/protocol/enums/financial_entry_type.dart'
     as _i15;
-import 'package:oneshot_client/src/protocol/shooter/firearm.dart' as _i16;
-import 'package:oneshot_client/src/protocol/gunsmith/gunsmith.dart' as _i17;
+import 'package:oneshot_client/src/protocol/enums/financial_entry_status.dart'
+    as _i16;
+import 'package:oneshot_client/src/protocol/shooter/firearm.dart' as _i17;
+import 'package:oneshot_client/src/protocol/gunsmith/gunsmith.dart' as _i18;
 import 'package:oneshot_client/src/protocol/gunsmith/gunsmith_client.dart'
-    as _i18;
-import 'package:oneshot_client/src/protocol/gunsmith/service_order.dart'
     as _i19;
-import 'package:oneshot_client/src/protocol/gunsmith/service_order_item.dart'
+import 'package:oneshot_client/src/protocol/gunsmith/service_order.dart'
     as _i20;
-import 'package:oneshot_client/src/protocol/finance/invoice.dart' as _i21;
-import 'package:oneshot_client/src/protocol/finance/invoice_item.dart' as _i22;
+import 'package:oneshot_client/src/protocol/gunsmith/service_order_item.dart'
+    as _i21;
+import 'package:oneshot_client/src/protocol/finance/invoice.dart' as _i22;
+import 'package:oneshot_client/src/protocol/finance/invoice_item.dart' as _i23;
 import 'package:oneshot_client/src/protocol/enums/invoice_status.enum.dart'
-    as _i23;
-import 'package:oneshot_client/src/protocol/finance/payment.dart' as _i24;
-import 'package:oneshot_client/src/protocol/product/product.dart' as _i25;
-import 'package:oneshot_client/src/protocol/product/product_group.dart' as _i26;
-import 'package:oneshot_client/src/protocol/common/user_profile.dart' as _i27;
+    as _i24;
+import 'package:oneshot_client/src/protocol/finance/payment.dart' as _i25;
+import 'package:oneshot_client/src/protocol/product/product.dart' as _i26;
+import 'package:oneshot_client/src/protocol/product/product_group.dart' as _i27;
+import 'package:oneshot_client/src/protocol/common/user_profile.dart' as _i28;
 import 'package:oneshot_client/src/protocol/shooter/reload_session.dart'
-    as _i28;
-import 'package:oneshot_client/src/protocol/shooter/reload_test.dart' as _i29;
-import 'package:oneshot_client/src/protocol/common/supply_stock.dart' as _i30;
+    as _i29;
+import 'package:oneshot_client/src/protocol/shooter/reload_test.dart' as _i30;
+import 'package:oneshot_client/src/protocol/common/supply_stock.dart' as _i31;
 import 'package:oneshot_client/src/protocol/access_control/security_role.dart'
-    as _i31;
-import 'package:oneshot_client/src/protocol/access_control/role_permission.dart'
     as _i32;
-import 'package:oneshot_client/src/protocol/subscription/subscription_plan.dart'
+import 'package:oneshot_client/src/protocol/access_control/role_permission.dart'
     as _i33;
-import 'package:oneshot_client/src/protocol/enums/plan_type.enum.dart' as _i34;
+import 'package:oneshot_client/src/protocol/subscription/subscription_plan.dart'
+    as _i34;
+import 'package:oneshot_client/src/protocol/enums/plan_type.enum.dart' as _i35;
 import 'package:oneshot_client/src/protocol/enums/plan_status.enum.dart'
-    as _i35;
-import 'package:oneshot_client/src/protocol/shooter/training.dart' as _i36;
-import 'package:oneshot_client/src/protocol/greeting.dart' as _i37;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i38;
-import 'protocol.dart' as _i39;
+    as _i36;
+import 'package:oneshot_client/src/protocol/shooter/training.dart' as _i37;
+import 'package:oneshot_client/src/protocol/greeting.dart' as _i38;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i39;
+import 'protocol.dart' as _i40;
 
 /// {@category Endpoint}
 class EndpointAccessory extends _i1.EndpointRef {
@@ -263,13 +264,18 @@ class EndpointCompany extends _i1.EndpointRef {
         {'company': company},
       );
 
-  /// Lista todas as empresas ativas.
-  _i2.Future<List<_i6.Company>> listCompanies() =>
-      caller.callServerEndpoint<List<_i6.Company>>(
-        'company',
-        'listCompanies',
-        {},
-      );
+  /// Lista empresas com filtro opcional por empresa proprietária.
+  _i2.Future<List<_i6.Company>> listCompanies({
+    _i1.UuidValue? parentCompanyId,
+    _i9.CompanyType? type,
+  }) => caller.callServerEndpoint<List<_i6.Company>>(
+    'company',
+    'listCompanies',
+    {
+      'parentCompanyId': parentCompanyId,
+      'type': type,
+    },
+  );
 
   /// Atualiza uma empresa existente.
   _i2.Future<_i6.Company> updateCompany(_i6.Company company) =>
@@ -288,26 +294,26 @@ class EndpointCompany extends _i1.EndpointRef {
       );
 
   /// Solicita filiação a uma empresa (Clube).
-  _i2.Future<_i9.Membership> requestMembership(_i1.UuidValue companyId) =>
-      caller.callServerEndpoint<_i9.Membership>(
+  _i2.Future<_i10.Membership> requestMembership(_i1.UuidValue companyId) =>
+      caller.callServerEndpoint<_i10.Membership>(
         'company',
         'requestMembership',
         {'companyId': companyId},
       );
 
   /// Lista minhas filiações.
-  _i2.Future<List<_i9.Membership>> getMyMemberships() =>
-      caller.callServerEndpoint<List<_i9.Membership>>(
+  _i2.Future<List<_i10.Membership>> getMyMemberships() =>
+      caller.callServerEndpoint<List<_i10.Membership>>(
         'company',
         'getMyMemberships',
         {},
       );
 
   /// Registra entrada no estande (Check-in).
-  _i2.Future<_i10.RangeVisit> checkIn(
+  _i2.Future<_i11.RangeVisit> checkIn(
     _i1.UuidValue companyId,
     _i1.UuidValue? firearmId,
-  ) => caller.callServerEndpoint<_i10.RangeVisit>(
+  ) => caller.callServerEndpoint<_i11.RangeVisit>(
     'company',
     'checkIn',
     {
@@ -317,10 +323,10 @@ class EndpointCompany extends _i1.EndpointRef {
   );
 
   /// Registra saída do estande (Check-out).
-  _i2.Future<_i10.RangeVisit> checkOut(
+  _i2.Future<_i11.RangeVisit> checkOut(
     _i1.UuidValue visitId,
     int shotsFired,
-  ) => caller.callServerEndpoint<_i10.RangeVisit>(
+  ) => caller.callServerEndpoint<_i11.RangeVisit>(
     'company',
     'checkOut',
     {
@@ -330,8 +336,8 @@ class EndpointCompany extends _i1.EndpointRef {
   );
 
   /// Lista minhas visitas.
-  _i2.Future<List<_i10.RangeVisit>> getMyVisits() =>
-      caller.callServerEndpoint<List<_i10.RangeVisit>>(
+  _i2.Future<List<_i11.RangeVisit>> getMyVisits() =>
+      caller.callServerEndpoint<List<_i11.RangeVisit>>(
         'company',
         'getMyVisits',
         {},
@@ -353,22 +359,22 @@ class EndpointDocument extends _i1.EndpointRef {
   @override
   String get name => 'document';
 
-  _i2.Future<_i11.Document?> getById(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i11.Document?>(
+  _i2.Future<_i12.Document?> getById(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i12.Document?>(
         'document',
         'getById',
         {'id': id},
       );
 
-  _i2.Future<_i11.Document> create(_i11.Document document) =>
-      caller.callServerEndpoint<_i11.Document>(
+  _i2.Future<_i12.Document> create(_i12.Document document) =>
+      caller.callServerEndpoint<_i12.Document>(
         'document',
         'create',
         {'document': document},
       );
 
-  _i2.Future<_i11.Document> update(_i11.Document document) =>
-      caller.callServerEndpoint<_i11.Document>(
+  _i2.Future<_i12.Document> update(_i12.Document document) =>
+      caller.callServerEndpoint<_i12.Document>(
         'document',
         'update',
         {'document': document},
@@ -380,11 +386,11 @@ class EndpointDocument extends _i1.EndpointRef {
     {'id': id},
   );
 
-  _i2.Future<List<_i11.Document>> listByUser(
+  _i2.Future<List<_i12.Document>> listByUser(
     _i1.UuidValue userId, {
     int? limit,
     int? offset,
-  }) => caller.callServerEndpoint<List<_i11.Document>>(
+  }) => caller.callServerEndpoint<List<_i12.Document>>(
     'document',
     'listByUser',
     {
@@ -394,15 +400,15 @@ class EndpointDocument extends _i1.EndpointRef {
     },
   );
 
-  _i2.Future<List<_i11.Document>> listByFirearm(_i1.UuidValue firearmId) =>
-      caller.callServerEndpoint<List<_i11.Document>>(
+  _i2.Future<List<_i12.Document>> listByFirearm(_i1.UuidValue firearmId) =>
+      caller.callServerEndpoint<List<_i12.Document>>(
         'document',
         'listByFirearm',
         {'firearmId': firearmId},
       );
 
-  _i2.Future<List<_i11.Document>> listByAccessory(_i1.UuidValue accessoryId) =>
-      caller.callServerEndpoint<List<_i11.Document>>(
+  _i2.Future<List<_i12.Document>> listByAccessory(_i1.UuidValue accessoryId) =>
+      caller.callServerEndpoint<List<_i12.Document>>(
         'document',
         'listByAccessory',
         {'accessoryId': accessoryId},
@@ -433,8 +439,8 @@ class EndpointFinancialEntry extends _i1.EndpointRef {
   String get name => 'financialEntry';
 
   /// Cria um novo lançamento financeiro (A Pagar ou A Receber).
-  _i2.Future<_i12.FinancialEntry> createEntry(_i12.FinancialEntry entry) =>
-      caller.callServerEndpoint<_i12.FinancialEntry>(
+  _i2.Future<_i13.FinancialEntry> createEntry(_i13.FinancialEntry entry) =>
+      caller.callServerEndpoint<_i13.FinancialEntry>(
         'financialEntry',
         'createEntry',
         {'entry': entry},
@@ -442,16 +448,16 @@ class EndpointFinancialEntry extends _i1.EndpointRef {
 
   /// Busca um lançamento financeiro pelo ID.
   /// Retorna o lançamento com a [BankAccount] e [Invoice] vinculados (via include).
-  _i2.Future<_i12.FinancialEntry?> readEntry(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i12.FinancialEntry?>(
+  _i2.Future<_i13.FinancialEntry?> readEntry(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i13.FinancialEntry?>(
         'financialEntry',
         'readEntry',
         {'id': id},
       );
 
   /// Atualiza um lançamento financeiro existente.
-  _i2.Future<_i12.FinancialEntry> updateEntry(_i12.FinancialEntry entry) =>
-      caller.callServerEndpoint<_i12.FinancialEntry>(
+  _i2.Future<_i13.FinancialEntry> updateEntry(_i13.FinancialEntry entry) =>
+      caller.callServerEndpoint<_i13.FinancialEntry>(
         'financialEntry',
         'updateEntry',
         {'entry': entry},
@@ -471,16 +477,16 @@ class EndpointFinancialEntry extends _i1.EndpointRef {
   /// - [type]: Filtro opcional por tipo (`payable` = A Pagar, `receivable` = A Receber).
   /// - [status]: Filtro opcional por status (`pending`, `paid`, `overdue`, etc.).
   /// - [dueDateFrom] e [dueDateTo]: Intervalo opcional de datas de vencimento.
-  _i2.Future<List<_i12.FinancialEntry>> listEntries({
-    required _i13.PlatformApp originModule,
+  _i2.Future<List<_i13.FinancialEntry>> listEntries({
+    required _i14.PlatformApp originModule,
     DateTime? dueDateTo,
     _i1.UuidValue? companyId,
     int? limit,
     int? offset,
-    _i14.FinancialEntryType? type,
-    _i15.FinancialEntryStatus? status,
+    _i15.FinancialEntryType? type,
+    _i16.FinancialEntryStatus? status,
     DateTime? dueDateFrom,
-  }) => caller.callServerEndpoint<List<_i12.FinancialEntry>>(
+  }) => caller.callServerEndpoint<List<_i13.FinancialEntry>>(
     'financialEntry',
     'listEntries',
     {
@@ -503,29 +509,29 @@ class EndpointFirearm extends _i1.EndpointRef {
   @override
   String get name => 'firearm';
 
-  _i2.Future<_i16.Firearm?> getById(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i16.Firearm?>(
+  _i2.Future<_i17.Firearm?> getById(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i17.Firearm?>(
         'firearm',
         'getById',
         {'id': id},
       );
 
-  _i2.Future<_i16.Firearm?> getBySerialNumber(String serialNumber) =>
-      caller.callServerEndpoint<_i16.Firearm?>(
+  _i2.Future<_i17.Firearm?> getBySerialNumber(String serialNumber) =>
+      caller.callServerEndpoint<_i17.Firearm?>(
         'firearm',
         'getBySerialNumber',
         {'serialNumber': serialNumber},
       );
 
-  _i2.Future<_i16.Firearm> create(_i16.Firearm firearm) =>
-      caller.callServerEndpoint<_i16.Firearm>(
+  _i2.Future<_i17.Firearm> create(_i17.Firearm firearm) =>
+      caller.callServerEndpoint<_i17.Firearm>(
         'firearm',
         'create',
         {'firearm': firearm},
       );
 
-  _i2.Future<_i16.Firearm> update(_i16.Firearm firearm) =>
-      caller.callServerEndpoint<_i16.Firearm>(
+  _i2.Future<_i17.Firearm> update(_i17.Firearm firearm) =>
+      caller.callServerEndpoint<_i17.Firearm>(
         'firearm',
         'update',
         {'firearm': firearm},
@@ -537,11 +543,11 @@ class EndpointFirearm extends _i1.EndpointRef {
     {'id': id},
   );
 
-  _i2.Future<List<_i16.Firearm>> listByUser(
+  _i2.Future<List<_i17.Firearm>> listByUser(
     _i1.UuidValue userId, {
     int? limit,
     int? offset,
-  }) => caller.callServerEndpoint<List<_i16.Firearm>>(
+  }) => caller.callServerEndpoint<List<_i17.Firearm>>(
     'firearm',
     'listByUser',
     {
@@ -561,34 +567,34 @@ class EndpointGunsmith extends _i1.EndpointRef {
 
   /// Registra uma nova armaria no sistema e cria uma subconta Asaas para ela.
   /// A criação é bloqueante: se a subconta Asaas falhar, a armaria não é criada.
-  _i2.Future<_i17.Gunsmith> createGunsmith(_i17.Gunsmith gunsmith) =>
-      caller.callServerEndpoint<_i17.Gunsmith>(
+  _i2.Future<_i18.Gunsmith> createGunsmith(_i18.Gunsmith gunsmith) =>
+      caller.callServerEndpoint<_i18.Gunsmith>(
         'gunsmith',
         'createGunsmith',
         {'gunsmith': gunsmith},
       );
 
   /// Busca os detalhes de uma armaria pelo ID.
-  _i2.Future<_i17.Gunsmith?> getGunsmith(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i17.Gunsmith?>(
+  _i2.Future<_i18.Gunsmith?> getGunsmith(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i18.Gunsmith?>(
         'gunsmith',
         'getGunsmith',
         {'id': id},
       );
 
   /// Busca a armaria de um proprietário específico.
-  _i2.Future<_i17.Gunsmith?> findGunsmithByOwner(_i1.UuidValue ownerId) =>
-      caller.callServerEndpoint<_i17.Gunsmith?>(
+  _i2.Future<_i18.Gunsmith?> findGunsmithByOwner(_i1.UuidValue ownerId) =>
+      caller.callServerEndpoint<_i18.Gunsmith?>(
         'gunsmith',
         'findGunsmithByOwner',
         {'ownerId': ownerId},
       );
 
   /// Lista todas as armarias cadastradas.
-  _i2.Future<List<_i17.Gunsmith>> listGunsmiths({
+  _i2.Future<List<_i18.Gunsmith>> listGunsmiths({
     int? limit,
     int? offset,
-  }) => caller.callServerEndpoint<List<_i17.Gunsmith>>(
+  }) => caller.callServerEndpoint<List<_i18.Gunsmith>>(
     'gunsmith',
     'listGunsmiths',
     {
@@ -598,42 +604,42 @@ class EndpointGunsmith extends _i1.EndpointRef {
   );
 
   /// Atualiza os dados de uma armaria.
-  _i2.Future<_i17.Gunsmith> updateGunsmith(_i17.Gunsmith gunsmith) =>
-      caller.callServerEndpoint<_i17.Gunsmith>(
+  _i2.Future<_i18.Gunsmith> updateGunsmith(_i18.Gunsmith gunsmith) =>
+      caller.callServerEndpoint<_i18.Gunsmith>(
         'gunsmith',
         'updateGunsmith',
         {'gunsmith': gunsmith},
       );
 
   /// Cria um novo cliente para o armeiro logado.
-  _i2.Future<_i18.GunsmithClient> createClient(_i18.GunsmithClient client) =>
-      caller.callServerEndpoint<_i18.GunsmithClient>(
+  _i2.Future<_i19.GunsmithClient> createClient(_i19.GunsmithClient client) =>
+      caller.callServerEndpoint<_i19.GunsmithClient>(
         'gunsmith',
         'createClient',
         {'client': client},
       );
 
   /// Busca um cliente pelo CPF.
-  _i2.Future<_i18.GunsmithClient?> findClientByCpf(String cpf) =>
-      caller.callServerEndpoint<_i18.GunsmithClient?>(
+  _i2.Future<_i19.GunsmithClient?> findClientByCpf(String cpf) =>
+      caller.callServerEndpoint<_i19.GunsmithClient?>(
         'gunsmith',
         'findClientByCpf',
         {'cpf': cpf},
       );
 
   /// Lista todos os clientes de um armeiro específico.
-  _i2.Future<List<_i18.GunsmithClient>> getMyClients() =>
-      caller.callServerEndpoint<List<_i18.GunsmithClient>>(
+  _i2.Future<List<_i19.GunsmithClient>> getMyClients() =>
+      caller.callServerEndpoint<List<_i19.GunsmithClient>>(
         'gunsmith',
         'getMyClients',
         {},
       );
 
   /// Registra uma nova Ordem de Serviço com seus itens.
-  _i2.Future<_i19.ServiceOrder> registerServiceOrder(
-    _i19.ServiceOrder order,
-    List<_i20.ServiceOrderItem> items,
-  ) => caller.callServerEndpoint<_i19.ServiceOrder>(
+  _i2.Future<_i20.ServiceOrder> registerServiceOrder(
+    _i20.ServiceOrder order,
+    List<_i21.ServiceOrderItem> items,
+  ) => caller.callServerEndpoint<_i20.ServiceOrder>(
     'gunsmith',
     'registerServiceOrder',
     {
@@ -643,18 +649,18 @@ class EndpointGunsmith extends _i1.EndpointRef {
   );
 
   /// Lista as ordens de serviço de um cliente.
-  _i2.Future<List<_i19.ServiceOrder>> getOrdersByClient(
+  _i2.Future<List<_i20.ServiceOrder>> getOrdersByClient(
     _i1.UuidValue clientId,
-  ) => caller.callServerEndpoint<List<_i19.ServiceOrder>>(
+  ) => caller.callServerEndpoint<List<_i20.ServiceOrder>>(
     'gunsmith',
     'getOrdersByClient',
     {'clientId': clientId},
   );
 
   /// Busca os itens de uma ordem específica.
-  _i2.Future<List<_i20.ServiceOrderItem>> getOrderItems(
+  _i2.Future<List<_i21.ServiceOrderItem>> getOrderItems(
     _i1.UuidValue serviceOrderId,
-  ) => caller.callServerEndpoint<List<_i20.ServiceOrderItem>>(
+  ) => caller.callServerEndpoint<List<_i21.ServiceOrderItem>>(
     'gunsmith',
     'getOrderItems',
     {'serviceOrderId': serviceOrderId},
@@ -669,10 +675,10 @@ class EndpointInvoice extends _i1.EndpointRef {
   String get name => 'invoice';
 
   /// Cria uma nova fatura com seus itens.
-  _i2.Future<_i21.Invoice> createInvoice(
-    _i21.Invoice invoice,
-    List<_i22.InvoiceItem> items,
-  ) => caller.callServerEndpoint<_i21.Invoice>(
+  _i2.Future<_i22.Invoice> createInvoice(
+    _i22.Invoice invoice,
+    List<_i23.InvoiceItem> items,
+  ) => caller.callServerEndpoint<_i22.Invoice>(
     'invoice',
     'createInvoice',
     {
@@ -682,24 +688,24 @@ class EndpointInvoice extends _i1.EndpointRef {
   );
 
   /// Busca uma fatura detalhada pelo ID.
-  _i2.Future<_i21.Invoice?> getInvoice(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i21.Invoice?>(
+  _i2.Future<_i22.Invoice?> getInvoice(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i22.Invoice?>(
         'invoice',
         'getInvoice',
         {'id': id},
       );
 
   /// Lista faturas com filtros dinâmicos.
-  _i2.Future<List<_i21.Invoice>> listInvoices({
+  _i2.Future<List<_i22.Invoice>> listInvoices({
     String? originModule,
     String? direction,
-    _i23.InvoiceStatus? status,
+    _i24.InvoiceStatus? status,
     _i1.UuidValue? companyId,
     _i1.UuidValue? gunsmithId,
     _i1.UuidValue? userId,
     int? limit,
     int? offset,
-  }) => caller.callServerEndpoint<List<_i21.Invoice>>(
+  }) => caller.callServerEndpoint<List<_i22.Invoice>>(
     'invoice',
     'listInvoices',
     {
@@ -715,8 +721,8 @@ class EndpointInvoice extends _i1.EndpointRef {
   );
 
   /// Atualiza uma fatura.
-  _i2.Future<_i21.Invoice> updateInvoice(_i21.Invoice invoice) =>
-      caller.callServerEndpoint<_i21.Invoice>(
+  _i2.Future<_i22.Invoice> updateInvoice(_i22.Invoice invoice) =>
+      caller.callServerEndpoint<_i22.Invoice>(
         'invoice',
         'updateInvoice',
         {'invoice': invoice},
@@ -731,8 +737,8 @@ class EndpointInvoice extends _i1.EndpointRef {
       );
 
   /// Busca itens de uma fatura.
-  _i2.Future<List<_i22.InvoiceItem>> getInvoiceItems(_i1.UuidValue invoiceId) =>
-      caller.callServerEndpoint<List<_i22.InvoiceItem>>(
+  _i2.Future<List<_i23.InvoiceItem>> getInvoiceItems(_i1.UuidValue invoiceId) =>
+      caller.callServerEndpoint<List<_i23.InvoiceItem>>(
         'invoice',
         'getInvoiceItems',
         {'invoiceId': invoiceId},
@@ -747,27 +753,27 @@ class EndpointPayment extends _i1.EndpointRef {
   String get name => 'payment';
 
   /// Registra um novo pagamento vinculado a uma fatura.
-  _i2.Future<_i24.Payment> registerPayment(_i24.Payment payment) =>
-      caller.callServerEndpoint<_i24.Payment>(
+  _i2.Future<_i25.Payment> registerPayment(_i25.Payment payment) =>
+      caller.callServerEndpoint<_i25.Payment>(
         'payment',
         'registerPayment',
         {'payment': payment},
       );
 
   /// Lista pagamentos de uma fatura específica.
-  _i2.Future<List<_i24.Payment>> getPaymentsByInvoice(
+  _i2.Future<List<_i25.Payment>> getPaymentsByInvoice(
     _i1.UuidValue invoiceId,
-  ) => caller.callServerEndpoint<List<_i24.Payment>>(
+  ) => caller.callServerEndpoint<List<_i25.Payment>>(
     'payment',
     'getPaymentsByInvoice',
     {'invoiceId': invoiceId},
   );
 
   /// Lista todos os pagamentos (Geral ou por período).
-  _i2.Future<List<_i24.Payment>> listPayments({
+  _i2.Future<List<_i25.Payment>> listPayments({
     int? limit,
     int? offset,
-  }) => caller.callServerEndpoint<List<_i24.Payment>>(
+  }) => caller.callServerEndpoint<List<_i25.Payment>>(
     'payment',
     'listPayments',
     {
@@ -785,32 +791,32 @@ class EndpointProduct extends _i1.EndpointRef {
   String get name => 'product';
 
   /// Cria um novo produto no sistema.
-  _i2.Future<_i25.Product> createProduct(_i25.Product product) =>
-      caller.callServerEndpoint<_i25.Product>(
+  _i2.Future<_i26.Product> createProduct(_i26.Product product) =>
+      caller.callServerEndpoint<_i26.Product>(
         'product',
         'createProduct',
         {'product': product},
       );
 
   /// Busca o detalhe de um produto por ID.
-  _i2.Future<_i25.Product?> readProduct(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i25.Product?>(
+  _i2.Future<_i26.Product?> readProduct(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i26.Product?>(
         'product',
         'readProduct',
         {'id': id},
       );
 
   /// Busca o detalhe de um produto por Código SKU.
-  _i2.Future<_i25.Product?> findByCode(String code) =>
-      caller.callServerEndpoint<_i25.Product?>(
+  _i2.Future<_i26.Product?> findByCode(String code) =>
+      caller.callServerEndpoint<_i26.Product?>(
         'product',
         'findByCode',
         {'code': code},
       );
 
   /// Atualiza os dados de um produto existente.
-  _i2.Future<_i25.Product> updateProduct(_i25.Product product) =>
-      caller.callServerEndpoint<_i25.Product>(
+  _i2.Future<_i26.Product> updateProduct(_i26.Product product) =>
+      caller.callServerEndpoint<_i26.Product>(
         'product',
         'updateProduct',
         {'product': product},
@@ -825,12 +831,12 @@ class EndpointProduct extends _i1.EndpointRef {
       );
 
   /// Lista produtos com filtro obrigatório por módulo de origem (ex: BACKOFFICE, COMPANY, GUNSMITH).
-  _i2.Future<List<_i25.Product>> listProducts({
+  _i2.Future<List<_i26.Product>> listProducts({
     required String originModule,
     _i1.UuidValue? groupId,
     int? limit,
     int? offset,
-  }) => caller.callServerEndpoint<List<_i25.Product>>(
+  }) => caller.callServerEndpoint<List<_i26.Product>>(
     'product',
     'listProducts',
     {
@@ -849,12 +855,12 @@ class EndpointProductGroup extends _i1.EndpointRef {
   @override
   String get name => 'productGroup';
 
-  _i2.Future<List<_i26.ProductGroup>> listGroups({
+  _i2.Future<List<_i27.ProductGroup>> listGroups({
     required String originModule,
     _i1.UuidValue? ownerId,
     int? limit,
     int? offset,
-  }) => caller.callServerEndpoint<List<_i26.ProductGroup>>(
+  }) => caller.callServerEndpoint<List<_i27.ProductGroup>>(
     'productGroup',
     'listGroups',
     {
@@ -865,15 +871,15 @@ class EndpointProductGroup extends _i1.EndpointRef {
     },
   );
 
-  _i2.Future<_i26.ProductGroup> createProductGroup(_i26.ProductGroup group) =>
-      caller.callServerEndpoint<_i26.ProductGroup>(
+  _i2.Future<_i27.ProductGroup> createProductGroup(_i27.ProductGroup group) =>
+      caller.callServerEndpoint<_i27.ProductGroup>(
         'productGroup',
         'createProductGroup',
         {'group': group},
       );
 
-  _i2.Future<_i26.ProductGroup> updateProductGroup(_i26.ProductGroup group) =>
-      caller.callServerEndpoint<_i26.ProductGroup>(
+  _i2.Future<_i27.ProductGroup> updateProductGroup(_i27.ProductGroup group) =>
+      caller.callServerEndpoint<_i27.ProductGroup>(
         'productGroup',
         'updateProductGroup',
         {'group': group},
@@ -886,8 +892,8 @@ class EndpointProductGroup extends _i1.EndpointRef {
         {'id': id},
       );
 
-  _i2.Future<_i26.ProductGroup?> findById(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i26.ProductGroup?>(
+  _i2.Future<_i27.ProductGroup?> findById(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i27.ProductGroup?>(
         'productGroup',
         'findById',
         {'id': id},
@@ -902,24 +908,24 @@ class EndpointProfile extends _i1.EndpointRef {
   String get name => 'profile';
 
   /// Garante que o perfil do usuário logado exista no domínio OneShot.
-  _i2.Future<_i27.UserProfile> getOrCreateMyProfile() =>
-      caller.callServerEndpoint<_i27.UserProfile>(
+  _i2.Future<_i28.UserProfile> getOrCreateMyProfile() =>
+      caller.callServerEndpoint<_i28.UserProfile>(
         'profile',
         'getOrCreateMyProfile',
         {},
       );
 
   /// Atualiza os dados do perfil (CPF, CR, etc).
-  _i2.Future<_i27.UserProfile> updateMyProfile(_i27.UserProfile profile) =>
-      caller.callServerEndpoint<_i27.UserProfile>(
+  _i2.Future<_i28.UserProfile> updateMyProfile(_i28.UserProfile profile) =>
+      caller.callServerEndpoint<_i28.UserProfile>(
         'profile',
         'updateMyProfile',
         {'profile': profile},
       );
 
   /// Busca o perfil pelo ID (para visualização de outros administradores ou clubes).
-  _i2.Future<_i27.UserProfile?> getProfileById(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i27.UserProfile?>(
+  _i2.Future<_i28.UserProfile?> getProfileById(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i28.UserProfile?>(
         'profile',
         'getProfileById',
         {'id': id},
@@ -934,58 +940,58 @@ class EndpointReload extends _i1.EndpointRef {
   String get name => 'reload';
 
   /// Executa uma nova sessão de recarga completa com débito de insumos e entrada no estoque.
-  _i2.Future<_i28.ReloadSession> executeReloadSession(
-    _i28.ReloadSession reloadSession,
-  ) => caller.callServerEndpoint<_i28.ReloadSession>(
+  _i2.Future<_i29.ReloadSession> executeReloadSession(
+    _i29.ReloadSession reloadSession,
+  ) => caller.callServerEndpoint<_i29.ReloadSession>(
     'reload',
     'executeReloadSession',
     {'reloadSession': reloadSession},
   );
 
   /// Lista sessões de recarga do usuário logado.
-  _i2.Future<List<_i28.ReloadSession>> getMyReloadSessions() =>
-      caller.callServerEndpoint<List<_i28.ReloadSession>>(
+  _i2.Future<List<_i29.ReloadSession>> getMyReloadSessions() =>
+      caller.callServerEndpoint<List<_i29.ReloadSession>>(
         'reload',
         'getMyReloadSessions',
         {},
       );
 
   /// Registra resultados de um teste de cronógrafo vinculado a uma sessão.
-  _i2.Future<_i29.ReloadTest> registerTest(_i29.ReloadTest test) =>
-      caller.callServerEndpoint<_i29.ReloadTest>(
+  _i2.Future<_i30.ReloadTest> registerTest(_i30.ReloadTest test) =>
+      caller.callServerEndpoint<_i30.ReloadTest>(
         'reload',
         'registerTest',
         {'test': test},
       );
 
   /// Lista testes de uma sessão específica.
-  _i2.Future<List<_i29.ReloadTest>> getTestsBySession(
+  _i2.Future<List<_i30.ReloadTest>> getTestsBySession(
     _i1.UuidValue sessionId,
-  ) => caller.callServerEndpoint<List<_i29.ReloadTest>>(
+  ) => caller.callServerEndpoint<List<_i30.ReloadTest>>(
     'reload',
     'getTestsBySession',
     {'sessionId': sessionId},
   );
 
   /// Lista todo o estoque de insumos (Pólvora, Espoleta, Projetis etc) do usuário.
-  _i2.Future<List<_i30.SupplyStock>> getMySupplies() =>
-      caller.callServerEndpoint<List<_i30.SupplyStock>>(
+  _i2.Future<List<_i31.SupplyStock>> getMySupplies() =>
+      caller.callServerEndpoint<List<_i31.SupplyStock>>(
         'reload',
         'getMySupplies',
         {},
       );
 
   /// Cadastra um novo insumo ao estoque.
-  _i2.Future<_i30.SupplyStock> addSupply(_i30.SupplyStock supply) =>
-      caller.callServerEndpoint<_i30.SupplyStock>(
+  _i2.Future<_i31.SupplyStock> addSupply(_i31.SupplyStock supply) =>
+      caller.callServerEndpoint<_i31.SupplyStock>(
         'reload',
         'addSupply',
         {'supply': supply},
       );
 
   /// Atualiza dados de um insumo.
-  _i2.Future<_i30.SupplyStock> updateSupply(_i30.SupplyStock supply) =>
-      caller.callServerEndpoint<_i30.SupplyStock>(
+  _i2.Future<_i31.SupplyStock> updateSupply(_i31.SupplyStock supply) =>
+      caller.callServerEndpoint<_i31.SupplyStock>(
         'reload',
         'updateSupply',
         {'supply': supply},
@@ -999,10 +1005,10 @@ class EndpointSecurityRole extends _i1.EndpointRef {
   @override
   String get name => 'securityRole';
 
-  _i2.Future<_i31.SecurityRole> createRole(
-    _i31.SecurityRole role,
-    List<_i32.RolePermission> permissions,
-  ) => caller.callServerEndpoint<_i31.SecurityRole>(
+  _i2.Future<_i32.SecurityRole> createRole(
+    _i32.SecurityRole role,
+    List<_i33.RolePermission> permissions,
+  ) => caller.callServerEndpoint<_i32.SecurityRole>(
     'securityRole',
     'createRole',
     {
@@ -1011,10 +1017,10 @@ class EndpointSecurityRole extends _i1.EndpointRef {
     },
   );
 
-  _i2.Future<_i31.SecurityRole> updateRole(
-    _i31.SecurityRole role,
-    List<_i32.RolePermission> permissions,
-  ) => caller.callServerEndpoint<_i31.SecurityRole>(
+  _i2.Future<_i32.SecurityRole> updateRole(
+    _i32.SecurityRole role,
+    List<_i33.RolePermission> permissions,
+  ) => caller.callServerEndpoint<_i32.SecurityRole>(
     'securityRole',
     'updateRole',
     {
@@ -1023,23 +1029,23 @@ class EndpointSecurityRole extends _i1.EndpointRef {
     },
   );
 
-  _i2.Future<bool> deleteRole(_i31.SecurityRole role) =>
+  _i2.Future<bool> deleteRole(_i32.SecurityRole role) =>
       caller.callServerEndpoint<bool>(
         'securityRole',
         'deleteRole',
         {'role': role},
       );
 
-  _i2.Future<List<_i31.SecurityRole>> listRoles() =>
-      caller.callServerEndpoint<List<_i31.SecurityRole>>(
+  _i2.Future<List<_i32.SecurityRole>> listRoles() =>
+      caller.callServerEndpoint<List<_i32.SecurityRole>>(
         'securityRole',
         'listRoles',
         {},
       );
 
-  _i2.Future<List<_i32.RolePermission>> listRolePermissions(
-    _i31.SecurityRole role,
-  ) => caller.callServerEndpoint<List<_i32.RolePermission>>(
+  _i2.Future<List<_i33.RolePermission>> listRolePermissions(
+    _i32.SecurityRole role,
+  ) => caller.callServerEndpoint<List<_i33.RolePermission>>(
     'securityRole',
     'listRolePermissions',
     {'role': role},
@@ -1054,24 +1060,24 @@ class EndpointSubscriptionPlan extends _i1.EndpointRef {
   String get name => 'subscriptionPlan';
 
   /// Cria um novo plano de assinatura.
-  _i2.Future<_i33.SubscriptionPlan> createPlan(_i33.SubscriptionPlan plan) =>
-      caller.callServerEndpoint<_i33.SubscriptionPlan>(
+  _i2.Future<_i34.SubscriptionPlan> createPlan(_i34.SubscriptionPlan plan) =>
+      caller.callServerEndpoint<_i34.SubscriptionPlan>(
         'subscriptionPlan',
         'createPlan',
         {'plan': plan},
       );
 
   /// Busca um plano de assinatura por ID.
-  _i2.Future<_i33.SubscriptionPlan?> readPlan(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i33.SubscriptionPlan?>(
+  _i2.Future<_i34.SubscriptionPlan?> readPlan(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i34.SubscriptionPlan?>(
         'subscriptionPlan',
         'readPlan',
         {'id': id},
       );
 
   /// Atualiza um plano de assinatura existente.
-  _i2.Future<_i33.SubscriptionPlan> updatePlan(_i33.SubscriptionPlan plan) =>
-      caller.callServerEndpoint<_i33.SubscriptionPlan>(
+  _i2.Future<_i34.SubscriptionPlan> updatePlan(_i34.SubscriptionPlan plan) =>
+      caller.callServerEndpoint<_i34.SubscriptionPlan>(
         'subscriptionPlan',
         'updatePlan',
         {'plan': plan},
@@ -1086,13 +1092,13 @@ class EndpointSubscriptionPlan extends _i1.EndpointRef {
       );
 
   /// Lista planos de assinatura com filtros opcionais.
-  _i2.Future<List<_i33.SubscriptionPlan>> listPlans({
-    _i34.PlanType? planType,
-    _i35.PlanStatus? status,
+  _i2.Future<List<_i34.SubscriptionPlan>> listPlans({
+    _i35.PlanType? planType,
+    _i36.PlanStatus? status,
     _i1.UuidValue? companyId,
     int? limit,
     int? offset,
-  }) => caller.callServerEndpoint<List<_i33.SubscriptionPlan>>(
+  }) => caller.callServerEndpoint<List<_i34.SubscriptionPlan>>(
     'subscriptionPlan',
     'listPlans',
     {
@@ -1114,24 +1120,24 @@ class EndpointTraining extends _i1.EndpointRef {
 
   /// Registro de um novo treino.
   /// O userId será validado dentro do caso de uso.
-  _i2.Future<_i36.Training> register(_i36.Training training) =>
-      caller.callServerEndpoint<_i36.Training>(
+  _i2.Future<_i37.Training> register(_i37.Training training) =>
+      caller.callServerEndpoint<_i37.Training>(
         'training',
         'register',
         {'training': training},
       );
 
   /// Lista todos os treinos do usuário logado.
-  _i2.Future<List<_i36.Training>> getMyTrainings() =>
-      caller.callServerEndpoint<List<_i36.Training>>(
+  _i2.Future<List<_i37.Training>> getMyTrainings() =>
+      caller.callServerEndpoint<List<_i37.Training>>(
         'training',
         'getMyTrainings',
         {},
       );
 
   /// Busca um treino específico.
-  _i2.Future<_i36.Training?> getTraining(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i36.Training?>(
+  _i2.Future<_i37.Training?> getTraining(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i37.Training?>(
         'training',
         'getTraining',
         {'id': id},
@@ -1145,29 +1151,29 @@ class EndpointUser extends _i1.EndpointRef {
   @override
   String get name => 'user';
 
-  _i2.Future<_i27.UserProfile?> getById(_i1.UuidValue id) =>
-      caller.callServerEndpoint<_i27.UserProfile?>(
+  _i2.Future<_i28.UserProfile?> getById(_i1.UuidValue id) =>
+      caller.callServerEndpoint<_i28.UserProfile?>(
         'user',
         'getById',
         {'id': id},
       );
 
-  _i2.Future<_i27.UserProfile?> getByCpf(String cpf) =>
-      caller.callServerEndpoint<_i27.UserProfile?>(
+  _i2.Future<_i28.UserProfile?> getByCpf(String cpf) =>
+      caller.callServerEndpoint<_i28.UserProfile?>(
         'user',
         'getByCpf',
         {'cpf': cpf},
       );
 
-  _i2.Future<_i27.UserProfile> create(_i27.UserProfile user) =>
-      caller.callServerEndpoint<_i27.UserProfile>(
+  _i2.Future<_i28.UserProfile> create(_i28.UserProfile user) =>
+      caller.callServerEndpoint<_i28.UserProfile>(
         'user',
         'create',
         {'user': user},
       );
 
-  _i2.Future<_i27.UserProfile> update(_i27.UserProfile user) =>
-      caller.callServerEndpoint<_i27.UserProfile>(
+  _i2.Future<_i28.UserProfile> update(_i28.UserProfile user) =>
+      caller.callServerEndpoint<_i28.UserProfile>(
         'user',
         'update',
         {'user': user},
@@ -1179,10 +1185,10 @@ class EndpointUser extends _i1.EndpointRef {
     {'id': id},
   );
 
-  _i2.Future<List<_i27.UserProfile>> list({
+  _i2.Future<List<_i28.UserProfile>> list({
     int? limit,
     int? offset,
-  }) => caller.callServerEndpoint<List<_i27.UserProfile>>(
+  }) => caller.callServerEndpoint<List<_i28.UserProfile>>(
     'user',
     'list',
     {
@@ -1191,15 +1197,15 @@ class EndpointUser extends _i1.EndpointRef {
     },
   );
 
-  _i2.Future<List<_i27.UserProfile>> search(String query) =>
-      caller.callServerEndpoint<List<_i27.UserProfile>>(
+  _i2.Future<List<_i28.UserProfile>> search(String query) =>
+      caller.callServerEndpoint<List<_i28.UserProfile>>(
         'user',
         'search',
         {'query': query},
       );
 
-  _i2.Future<List<_i31.SecurityRole>> getRoles(_i1.UuidValue userId) =>
-      caller.callServerEndpoint<List<_i31.SecurityRole>>(
+  _i2.Future<List<_i32.SecurityRole>> getRoles(_i1.UuidValue userId) =>
+      caller.callServerEndpoint<List<_i32.SecurityRole>>(
         'user',
         'getRoles',
         {'userId': userId},
@@ -1657,8 +1663,8 @@ class EndpointGreeting extends _i1.EndpointRef {
   String get name => 'greeting';
 
   /// Returns a personalized greeting message: "Hello {name}".
-  _i2.Future<_i37.Greeting> hello(String name) =>
-      caller.callServerEndpoint<_i37.Greeting>(
+  _i2.Future<_i38.Greeting> hello(String name) =>
+      caller.callServerEndpoint<_i38.Greeting>(
         'greeting',
         'hello',
         {'name': name},
@@ -1667,10 +1673,10 @@ class EndpointGreeting extends _i1.EndpointRef {
 
 class Modules {
   Modules(Client client) {
-    auth = _i38.Caller(client);
+    auth = _i39.Caller(client);
   }
 
-  late final _i38.Caller auth;
+  late final _i39.Caller auth;
 }
 
 class Client extends _i1.ServerpodClientShared {
@@ -1693,7 +1699,7 @@ class Client extends _i1.ServerpodClientShared {
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
          host,
-         _i39.Protocol(),
+         _i40.Protocol(),
          securityContext: securityContext,
          streamingConnectionTimeout: streamingConnectionTimeout,
          connectionTimeout: connectionTimeout,

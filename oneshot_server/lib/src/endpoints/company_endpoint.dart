@@ -12,42 +12,76 @@ class CompanyEndpoint extends Endpoint {
     return await session.db.transaction((transaction) async {
       // 1. Obtém/cria o perfil do proprietário
       final ownerProfile = await sl.getOrCreateProfileUseCase.execute(session);
-      company.ownerId = ownerProfile.id;
 
-      // 2. Persiste a empresa localmente (dentro da transação)
+      // Se não for fornecido um ownerId específico, associa ao perfil logado
+      company.ownerId ??= ownerProfile.id;
+
+      // 2. Tenta associar à empresa que o usuário logado gerencia (se houver)
+      // Isso identifica que o cadastro foi feito por um clube e não pelo backoffice
+      try {
+        final managedCompanies = await sl.companyRepository
+            .findByOwner(session, ownerProfile.id, null);
+        if (managedCompanies.isNotEmpty) {
+          company.parentCompanyId = managedCompanies.first.id;
+        }
+      } catch (_) {
+        // Se não gerencia nada, supõe-se cadastro via backoffice (parentCompanyId permanece nulo ou o que vier)
+      }
+
+      // 3. Persiste a empresa localmente (dentro da transação)
       var createdCompany = await sl.companyRepository.create(session, company);
 
-      // 3. Garante que o endereço da empresa seja carregado para o onboarding
+      // 4. Garante que o endereço da empresa seja carregado para o onboarding
       if (createdCompany.addressId != null && createdCompany.address == null) {
         final fullCompany =
             await sl.companyRepository.findById(session, createdCompany.id);
         createdCompany = fullCompany ?? createdCompany;
       }
 
-      // 4. Cria subconta no Asaas (BLOQUEANTE)
+      // 5. Cria subconta no Asaas apenas pelo backoffice (BLOQUEANTE)
       // Se lançar AppException, a transação sofrerá rollback automaticamente.
-      final onboarding = AsaasOnboardingService();
-      final asaasResponse = await onboarding.createSubaccountForCompany(
-        session,
-        createdCompany,
-        ownerProfile,
-      );
+      session.log(createdCompany.toString());
+      if (createdCompany.parentCompanyId == null) {
+        final onboarding = AsaasOnboardingService();
+        final asaasResponse = await onboarding.createSubaccountForCompany(
+          session,
+          createdCompany,
+          ownerProfile,
+        );
 
-      // 5. Atualiza a empresa com os IDs retornados
-      createdCompany = createdCompany.copyWith(
-        asaasAccountId: asaasResponse.id,
-        asaasWalletId: asaasResponse.walletId,
-        asaasApiKey: asaasResponse.apiKey,
-        asaasOnboardingFailureReason: null,
-      );
-      
+        // 6. Atualiza a empresa com os IDs retornados
+        createdCompany = createdCompany.copyWith(
+          asaasAccountId: asaasResponse.id,
+          asaasWalletId: asaasResponse.walletId,
+          asaasApiKey: asaasResponse.apiKey,
+          asaasOnboardingFailureReason: null,
+        );
+      }
       return await sl.companyRepository.update(session, createdCompany);
     });
   }
 
-  /// Lista todas as empresas ativas.
-  Future<List<Company>> listCompanies(Session session) async {
-    return await sl.companyRepository.listAll(session);
+  /// Lista empresas com filtro opcional por empresa proprietária.
+  Future<List<Company>> listCompanies(Session session,
+      {UuidValue? parentCompanyId, CompanyType? type}) async {
+    // Se o usuário logado for um gestor de clube (e não o SuperAdmin),
+    // forçamos o filtro para a empresa dele, exceto se for via backoffice.
+    // Para simplificar, se parentCompanyId for passado, filtramos por ele.
+    // Se não for passado e o usuário logado for de clube, filtramos pela dele.
+
+    var filterId = parentCompanyId;
+
+    if (filterId == null) {
+      final profile = await sl.getOrCreateProfileUseCase.execute(session);
+      final managed =
+          await sl.companyRepository.findByOwner(session, profile.id, type);
+      // if (managed.isNotEmpty) {
+      //   filterId = managed.first.id;
+      // }
+    }
+
+    return await sl.companyRepository
+        .listAll(session, parentCompanyId: filterId);
   }
 
   /// Atualiza uma empresa existente.
@@ -128,8 +162,9 @@ class CompanyEndpoint extends Endpoint {
   Future<Company> getManagedCompany(Session session) async {
     final profile = await sl.getOrCreateProfileUseCase.execute(session);
     if (profile.id == null) throw Exception('Perfil incompleto.');
-    
-    final companies = await sl.companyRepository.findByOwner(session, profile.id!);
+
+    final companies = await sl.companyRepository
+        .findByOwner(session, profile.id, CompanyType.club);
     if (companies.isEmpty) {
       throw Exception('Você não possui um clube cadastrado.');
     }

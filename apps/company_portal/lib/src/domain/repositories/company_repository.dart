@@ -2,7 +2,10 @@ import 'package:oneshot_client/oneshot_client.dart';
 import 'package:company_portal/main.dart'; // import client
 
 abstract class ICompanyRepository {
-  Future<List<Company>> listCompanies();
+  Future<List<Company>> listCompanies({
+    UuidValue? parentCompanyId,
+    CompanyType? companyType,
+  });
   Future<Company> createCompany(Company company);
   Future<Company> updateCompany(Company company);
   Future<Company> deleteCompany(String companyId);
@@ -34,9 +37,14 @@ class CompanyRepository implements ICompanyRepository {
   }
 
   @override
-  Future<List<Company>> listCompanies() async {
+  Future<List<Company>> listCompanies({
+    UuidValue? parentCompanyId,
+    CompanyType? companyType,
+  }) async {
     try {
-      return await client.company.listCompanies();
+      return await client.company.listCompanies(
+        parentCompanyId: parentCompanyId,
+      );
     } on AppException {
       rethrow;
     } catch (e) {

@@ -1,3 +1,4 @@
+import 'package:company_portal/src/ui/pages/companies/companies_page.dart';
 import 'package:company_portal/src/ui/pages/finance/bank_accounts/bank_accounts_page.dart';
 import 'package:company_portal/src/ui/pages/finance/entries/payable_page.dart';
 import 'package:company_portal/src/ui/pages/finance/entries/receivable_page.dart';
@@ -20,6 +21,8 @@ class DashboardModuleSwitcher extends StatelessWidget {
     switch (currentPage) {
       case DashboardPageType.summary:
         return const DashboardSummaryPage();
+      case DashboardPageType.companies:
+        return const CompaniesPage();
       case DashboardPageType.subscriptions:
         return const SubscriptionPlansPage();
       case DashboardPageType.bankAccounts:

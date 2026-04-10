@@ -14,7 +14,8 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import '../company/company_type.dart' as _i2;
 import '../common/address.dart' as _i3;
 import '../common/user_profile.dart' as _i4;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i5;
+import '../company/company.dart' as _i5;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _i6;
 
 abstract class Company implements _i1.SerializableModel {
   Company._({
@@ -30,6 +31,8 @@ abstract class Company implements _i1.SerializableModel {
     this.email,
     bool? active,
     double? incomeValue,
+    this.parentCompanyId,
+    this.parentCompany,
     this.asaasAccountId,
     this.asaasWalletId,
     this.asaasApiKey,
@@ -51,6 +54,8 @@ abstract class Company implements _i1.SerializableModel {
     String? email,
     bool? active,
     double? incomeValue,
+    _i1.UuidValue? parentCompanyId,
+    _i5.Company? parentCompany,
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
@@ -70,7 +75,7 @@ abstract class Company implements _i1.SerializableModel {
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
       address: jsonSerialization['address'] == null
           ? null
-          : _i5.Protocol().deserialize<_i3.Address>(
+          : _i6.Protocol().deserialize<_i3.Address>(
               jsonSerialization['address'],
             ),
       ownerId: jsonSerialization['ownerId'] == null
@@ -78,7 +83,7 @@ abstract class Company implements _i1.SerializableModel {
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['ownerId']),
       owner: jsonSerialization['owner'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.UserProfile>(
+          : _i6.Protocol().deserialize<_i4.UserProfile>(
               jsonSerialization['owner'],
             ),
       phoneNumber: jsonSerialization['phoneNumber'] as String?,
@@ -87,6 +92,16 @@ abstract class Company implements _i1.SerializableModel {
           ? null
           : _i1.BoolJsonExtension.fromJson(jsonSerialization['active']),
       incomeValue: (jsonSerialization['incomeValue'] as num?)?.toDouble(),
+      parentCompanyId: jsonSerialization['parentCompanyId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(
+              jsonSerialization['parentCompanyId'],
+            ),
+      parentCompany: jsonSerialization['parentCompany'] == null
+          ? null
+          : _i6.Protocol().deserialize<_i5.Company>(
+              jsonSerialization['parentCompany'],
+            ),
       asaasAccountId: jsonSerialization['asaasAccountId'] as String?,
       asaasWalletId: jsonSerialization['asaasWalletId'] as String?,
       asaasApiKey: jsonSerialization['asaasApiKey'] as String?,
@@ -120,6 +135,10 @@ abstract class Company implements _i1.SerializableModel {
 
   double incomeValue;
 
+  _i1.UuidValue? parentCompanyId;
+
+  _i5.Company? parentCompany;
+
   String? asaasAccountId;
 
   String? asaasWalletId;
@@ -144,6 +163,8 @@ abstract class Company implements _i1.SerializableModel {
     String? email,
     bool? active,
     double? incomeValue,
+    _i1.UuidValue? parentCompanyId,
+    _i5.Company? parentCompany,
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
@@ -165,6 +186,8 @@ abstract class Company implements _i1.SerializableModel {
       if (email != null) 'email': email,
       'active': active,
       'incomeValue': incomeValue,
+      if (parentCompanyId != null) 'parentCompanyId': parentCompanyId?.toJson(),
+      if (parentCompany != null) 'parentCompany': parentCompany?.toJson(),
       if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
       if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
       if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
@@ -195,6 +218,8 @@ class _CompanyImpl extends Company {
     String? email,
     bool? active,
     double? incomeValue,
+    _i1.UuidValue? parentCompanyId,
+    _i5.Company? parentCompany,
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
@@ -212,6 +237,8 @@ class _CompanyImpl extends Company {
          email: email,
          active: active,
          incomeValue: incomeValue,
+         parentCompanyId: parentCompanyId,
+         parentCompany: parentCompany,
          asaasAccountId: asaasAccountId,
          asaasWalletId: asaasWalletId,
          asaasApiKey: asaasApiKey,
@@ -235,6 +262,8 @@ class _CompanyImpl extends Company {
     Object? email = _Undefined,
     bool? active,
     double? incomeValue,
+    Object? parentCompanyId = _Undefined,
+    Object? parentCompany = _Undefined,
     Object? asaasAccountId = _Undefined,
     Object? asaasWalletId = _Undefined,
     Object? asaasApiKey = _Undefined,
@@ -253,6 +282,12 @@ class _CompanyImpl extends Company {
       email: email is String? ? email : this.email,
       active: active ?? this.active,
       incomeValue: incomeValue ?? this.incomeValue,
+      parentCompanyId: parentCompanyId is _i1.UuidValue?
+          ? parentCompanyId
+          : this.parentCompanyId,
+      parentCompany: parentCompany is _i5.Company?
+          ? parentCompany
+          : this.parentCompany?.copyWith(),
       asaasAccountId: asaasAccountId is String?
           ? asaasAccountId
           : this.asaasAccountId,

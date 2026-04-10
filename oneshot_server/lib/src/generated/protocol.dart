@@ -985,6 +985,12 @@ class Protocol extends _i1.SerializationManagerServer {
           columnDefault: '1000.00',
         ),
         _i2.ColumnDefinition(
+          name: 'parentCompanyId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: true,
+          dartType: 'UuidValue?',
+        ),
+        _i2.ColumnDefinition(
           name: 'asaasAccountId',
           columnType: _i2.ColumnType.text,
           isNullable: true,
@@ -1030,6 +1036,16 @@ class Protocol extends _i1.SerializationManagerServer {
           onDelete: _i2.ForeignKeyAction.noAction,
           matchType: null,
         ),
+        _i2.ForeignKeyDefinition(
+          constraintName: 'companies_fk_2',
+          columns: ['parentCompanyId'],
+          referenceTable: 'companies',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _i2.ForeignKeyAction.noAction,
+          onDelete: _i2.ForeignKeyAction.noAction,
+          matchType: null,
+        ),
       ],
       indexes: [
         _i2.IndexDefinition(
@@ -1065,6 +1081,19 @@ class Protocol extends _i1.SerializationManagerServer {
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
               definition: 'ownerId',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
+          isPrimary: false,
+        ),
+        _i2.IndexDefinition(
+          indexName: 'company_parent_id_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'parentCompanyId',
             ),
           ],
           type: 'btree',

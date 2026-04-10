@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class DSTokens {
   // Paleta de Cores (The Ballistic Monolith)
-  static const Color primary = Color(0xFFD3C6A3); // Antic Gold
+  static const Color primary = Color.fromARGB(255, 66, 35, 167); // Antic Gold
   static const Color onPrimary = Color(0xFF383017);
 
   static const Color background = Color(0xFF121416); // Fundo estrito

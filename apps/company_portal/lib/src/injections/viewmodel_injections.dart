@@ -6,6 +6,9 @@ import 'package:company_portal/src/ui/pages/finance/entries/financial_entries_vi
 import 'package:company_portal/src/ui/pages/login/login_viewmodel.dart';
 import 'package:company_portal/src/ui/pages/register/register_viewmodel.dart';
 import 'package:company_portal/src/ui/pages/subscriptions/subscription_plans_viewmodel.dart';
+import 'package:company_portal/src/domain/repositories/user_repository.dart';
+import 'package:company_portal/src/ui/pages/companies/companies_viewmodel.dart';
+import 'package:company_portal/src/domain/repositories/company_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:company_portal/src/domain/repositories/auth_repository.dart';
 import 'package:company_portal/src/domain/repositories/bank_account_repository.dart';
@@ -44,6 +47,13 @@ void setupViewModelInjections() {
   getIt.registerFactory<ISubscriptionPlansViewModel>(
     () => SubscriptionPlansViewModel(
       getIt<ISubscriptionPlanRepository>(),
+      getIt<ICompanySession>(),
+    ),
+  );
+  getIt.registerFactory<ICompaniesViewmodel>(
+    () => CompaniesViewmodel(
+      getIt<ICompanyRepository>(),
+      getIt<IUserRepository>(),
       getIt<ICompanySession>(),
     ),
   );

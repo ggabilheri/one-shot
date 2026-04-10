@@ -15,7 +15,8 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import '../company/company_type.dart' as _i2;
 import '../common/address.dart' as _i3;
 import '../common/user_profile.dart' as _i4;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i5;
+import '../company/company.dart' as _i5;
+import 'package:oneshot_server/src/generated/protocol.dart' as _i6;
 
 abstract class Company
     implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
@@ -32,6 +33,8 @@ abstract class Company
     this.email,
     bool? active,
     double? incomeValue,
+    this.parentCompanyId,
+    this.parentCompany,
     this.asaasAccountId,
     this.asaasWalletId,
     this.asaasApiKey,
@@ -53,6 +56,8 @@ abstract class Company
     String? email,
     bool? active,
     double? incomeValue,
+    _i1.UuidValue? parentCompanyId,
+    _i5.Company? parentCompany,
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
@@ -72,7 +77,7 @@ abstract class Company
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
       address: jsonSerialization['address'] == null
           ? null
-          : _i5.Protocol().deserialize<_i3.Address>(
+          : _i6.Protocol().deserialize<_i3.Address>(
               jsonSerialization['address'],
             ),
       ownerId: jsonSerialization['ownerId'] == null
@@ -80,7 +85,7 @@ abstract class Company
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['ownerId']),
       owner: jsonSerialization['owner'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.UserProfile>(
+          : _i6.Protocol().deserialize<_i4.UserProfile>(
               jsonSerialization['owner'],
             ),
       phoneNumber: jsonSerialization['phoneNumber'] as String?,
@@ -89,6 +94,16 @@ abstract class Company
           ? null
           : _i1.BoolJsonExtension.fromJson(jsonSerialization['active']),
       incomeValue: (jsonSerialization['incomeValue'] as num?)?.toDouble(),
+      parentCompanyId: jsonSerialization['parentCompanyId'] == null
+          ? null
+          : _i1.UuidValueJsonExtension.fromJson(
+              jsonSerialization['parentCompanyId'],
+            ),
+      parentCompany: jsonSerialization['parentCompany'] == null
+          ? null
+          : _i6.Protocol().deserialize<_i5.Company>(
+              jsonSerialization['parentCompany'],
+            ),
       asaasAccountId: jsonSerialization['asaasAccountId'] as String?,
       asaasWalletId: jsonSerialization['asaasWalletId'] as String?,
       asaasApiKey: jsonSerialization['asaasApiKey'] as String?,
@@ -126,6 +141,10 @@ abstract class Company
 
   double incomeValue;
 
+  _i1.UuidValue? parentCompanyId;
+
+  _i5.Company? parentCompany;
+
   String? asaasAccountId;
 
   String? asaasWalletId;
@@ -153,6 +172,8 @@ abstract class Company
     String? email,
     bool? active,
     double? incomeValue,
+    _i1.UuidValue? parentCompanyId,
+    _i5.Company? parentCompany,
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
@@ -174,6 +195,8 @@ abstract class Company
       if (email != null) 'email': email,
       'active': active,
       'incomeValue': incomeValue,
+      if (parentCompanyId != null) 'parentCompanyId': parentCompanyId?.toJson(),
+      if (parentCompany != null) 'parentCompany': parentCompany?.toJson(),
       if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
       if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
       if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
@@ -198,6 +221,9 @@ abstract class Company
       if (email != null) 'email': email,
       'active': active,
       'incomeValue': incomeValue,
+      if (parentCompanyId != null) 'parentCompanyId': parentCompanyId?.toJson(),
+      if (parentCompany != null)
+        'parentCompany': parentCompany?.toJsonForProtocol(),
       if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
       if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
       if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
@@ -209,10 +235,12 @@ abstract class Company
   static CompanyInclude include({
     _i3.AddressInclude? address,
     _i4.UserProfileInclude? owner,
+    _i5.CompanyInclude? parentCompany,
   }) {
     return CompanyInclude._(
       address: address,
       owner: owner,
+      parentCompany: parentCompany,
     );
   }
 
@@ -258,6 +286,8 @@ class _CompanyImpl extends Company {
     String? email,
     bool? active,
     double? incomeValue,
+    _i1.UuidValue? parentCompanyId,
+    _i5.Company? parentCompany,
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
@@ -275,6 +305,8 @@ class _CompanyImpl extends Company {
          email: email,
          active: active,
          incomeValue: incomeValue,
+         parentCompanyId: parentCompanyId,
+         parentCompany: parentCompany,
          asaasAccountId: asaasAccountId,
          asaasWalletId: asaasWalletId,
          asaasApiKey: asaasApiKey,
@@ -298,6 +330,8 @@ class _CompanyImpl extends Company {
     Object? email = _Undefined,
     bool? active,
     double? incomeValue,
+    Object? parentCompanyId = _Undefined,
+    Object? parentCompany = _Undefined,
     Object? asaasAccountId = _Undefined,
     Object? asaasWalletId = _Undefined,
     Object? asaasApiKey = _Undefined,
@@ -316,6 +350,12 @@ class _CompanyImpl extends Company {
       email: email is String? ? email : this.email,
       active: active ?? this.active,
       incomeValue: incomeValue ?? this.incomeValue,
+      parentCompanyId: parentCompanyId is _i1.UuidValue?
+          ? parentCompanyId
+          : this.parentCompanyId,
+      parentCompany: parentCompany is _i5.Company?
+          ? parentCompany
+          : this.parentCompany?.copyWith(),
       asaasAccountId: asaasAccountId is String?
           ? asaasAccountId
           : this.asaasAccountId,
@@ -380,6 +420,13 @@ class CompanyUpdateTable extends _i1.UpdateTable<CompanyTable> {
 
   _i1.ColumnValue<double, double> incomeValue(double value) => _i1.ColumnValue(
     table.incomeValue,
+    value,
+  );
+
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> parentCompanyId(
+    _i1.UuidValue? value,
+  ) => _i1.ColumnValue(
+    table.parentCompanyId,
     value,
   );
 
@@ -449,6 +496,10 @@ class CompanyTable extends _i1.Table<_i1.UuidValue> {
       this,
       hasDefault: true,
     );
+    parentCompanyId = _i1.ColumnUuid(
+      'parentCompanyId',
+      this,
+    );
     asaasAccountId = _i1.ColumnString(
       'asaasAccountId',
       this,
@@ -491,6 +542,10 @@ class CompanyTable extends _i1.Table<_i1.UuidValue> {
 
   late final _i1.ColumnDouble incomeValue;
 
+  late final _i1.ColumnUuid parentCompanyId;
+
+  _i5.CompanyTable? _parentCompany;
+
   late final _i1.ColumnString asaasAccountId;
 
   late final _i1.ColumnString asaasWalletId;
@@ -525,6 +580,19 @@ class CompanyTable extends _i1.Table<_i1.UuidValue> {
     return _owner!;
   }
 
+  _i5.CompanyTable get parentCompany {
+    if (_parentCompany != null) return _parentCompany!;
+    _parentCompany = _i1.createRelationTable(
+      relationFieldName: 'parentCompany',
+      field: Company.t.parentCompanyId,
+      foreignField: _i5.Company.t.id,
+      tableRelation: tableRelation,
+      createTable: (foreignTableRelation) =>
+          _i5.CompanyTable(tableRelation: foreignTableRelation),
+    );
+    return _parentCompany!;
+  }
+
   @override
   List<_i1.Column> get columns => [
     id,
@@ -537,6 +605,7 @@ class CompanyTable extends _i1.Table<_i1.UuidValue> {
     email,
     active,
     incomeValue,
+    parentCompanyId,
     asaasAccountId,
     asaasWalletId,
     asaasApiKey,
@@ -551,6 +620,9 @@ class CompanyTable extends _i1.Table<_i1.UuidValue> {
     if (relationField == 'owner') {
       return owner;
     }
+    if (relationField == 'parentCompany') {
+      return parentCompany;
+    }
     return null;
   }
 }
@@ -559,19 +631,24 @@ class CompanyInclude extends _i1.IncludeObject {
   CompanyInclude._({
     _i3.AddressInclude? address,
     _i4.UserProfileInclude? owner,
+    _i5.CompanyInclude? parentCompany,
   }) {
     _address = address;
     _owner = owner;
+    _parentCompany = parentCompany;
   }
 
   _i3.AddressInclude? _address;
 
   _i4.UserProfileInclude? _owner;
 
+  _i5.CompanyInclude? _parentCompany;
+
   @override
   Map<String, _i1.Include?> get includes => {
     'address': _address,
     'owner': _owner,
+    'parentCompany': _parentCompany,
   };
 
   @override
@@ -943,6 +1020,29 @@ class CompanyAttachRowRepository {
       transaction: transaction,
     );
   }
+
+  /// Creates a relation between the given [Company] and [Company]
+  /// by setting the [Company]'s foreign key `parentCompanyId` to refer to the [Company].
+  Future<void> parentCompany(
+    _i1.DatabaseSession session,
+    Company company,
+    _i5.Company parentCompany, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (company.id == null) {
+      throw ArgumentError.notNull('company.id');
+    }
+    if (parentCompany.id == null) {
+      throw ArgumentError.notNull('parentCompany.id');
+    }
+
+    var $company = company.copyWith(parentCompanyId: parentCompany.id);
+    await session.db.updateRow<Company>(
+      $company,
+      columns: [Company.t.parentCompanyId],
+      transaction: transaction,
+    );
+  }
 }
 
 class CompanyDetachRowRepository {
@@ -988,6 +1088,28 @@ class CompanyDetachRowRepository {
     await session.db.updateRow<Company>(
       $company,
       columns: [Company.t.ownerId],
+      transaction: transaction,
+    );
+  }
+
+  /// Detaches the relation between this [Company] and the [Company] set in `parentCompany`
+  /// by setting the [Company]'s foreign key `parentCompanyId` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> parentCompany(
+    _i1.DatabaseSession session,
+    Company company, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (company.id == null) {
+      throw ArgumentError.notNull('company.id');
+    }
+
+    var $company = company.copyWith(parentCompanyId: null);
+    await session.db.updateRow<Company>(
+      $company,
+      columns: [Company.t.parentCompanyId],
       transaction: transaction,
     );
   }

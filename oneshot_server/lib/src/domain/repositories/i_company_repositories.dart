@@ -5,8 +5,9 @@ import 'package:serverpod/serverpod.dart';
 abstract class ICompanyRepository {
   Future<Company> create(Session session, Company company);
   Future<Company?> findById(Session session, UuidValue id);
-  Future<List<Company>> findByOwner(Session session, UuidValue ownerId);
-  Future<List<Company>> listAll(Session session);
+  Future<List<Company>> findByOwner(
+      Session session, UuidValue ownerId, CompanyType? type);
+  Future<List<Company>> listAll(Session session, {UuidValue? parentCompanyId});
   Future<Company> update(Session session, Company company);
   Future<Company?> delete(Session session, UuidValue id);
 }
@@ -14,7 +15,8 @@ abstract class ICompanyRepository {
 /// Interface para acesso a dados de Filiação (Membership).
 abstract class IMembershipRepository {
   Future<Membership> create(Session session, Membership membership);
-  Future<Membership?> findByUserAndCompany(Session session, UuidValue userId, UuidValue companyId);
+  Future<Membership?> findByUserAndCompany(
+      Session session, UuidValue userId, UuidValue companyId);
   Future<List<Membership>> listByCompany(Session session, UuidValue companyId);
   Future<List<Membership>> listByUser(Session session, UuidValue userId);
   Future<Membership> update(Session session, Membership membership);

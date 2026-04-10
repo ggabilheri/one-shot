@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:oneshot_client/oneshot_client.dart';
-import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
-import 'package:backoffice_web/src/ui/pages/companies/companies_viewmodel.dart';
-import 'package:backoffice_web/src/ui/widgets/dialogs/user_search_dialog.dart';
+import 'package:company_portal/src/ui/widgets/ds_tokens.dart';
+import 'package:company_portal/src/ui/pages/companies/companies_viewmodel.dart';
+import 'package:company_portal/src/ui/widgets/dialogs/user_search_dialog.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:uuid/uuid.dart';
 import 'company_form_input_field.dart';

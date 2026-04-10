@@ -81,14 +81,14 @@ class _AdminSidebarState extends State<AdminSidebar> {
                   isSelected: widget.currentPage == DashboardPageType.summary,
                   onTap: () => widget.onPageChanged(DashboardPageType.summary),
                 ),
-                // AdminSidebarItem(
-                //   icon: Icons.business_outlined,
-                //   activeIcon: Icons.business,
-                //   label: 'EMPRESAS',
-                //   isCollapsed: widget.isCollapsed,
-                //   isSelected: widget.currentPage == DashboardPageType.companies,
-                //   onTap: () => widget.onPageChanged(DashboardPageType.companies),
-                // ),
+                AdminSidebarItem(
+                  icon: Icons.business_outlined,
+                  activeIcon: Icons.business,
+                  label: 'EMPRESAS',
+                  isCollapsed: widget.isCollapsed,
+                  isSelected: widget.currentPage == DashboardPageType.companies,
+                  onTap: () => widget.onPageChanged(DashboardPageType.companies),
+                ),
                 // AdminSidebarItem(
                 //   icon: Icons.people_outline,
                 //   activeIcon: Icons.people,

@@ -28,20 +28,29 @@ class CompanyRepository implements ICompanyRepository {
   }
 
   @override
-  Future<List<Company>> findByOwner(Session session, UuidValue ownerId) async {
+  Future<List<Company>> findByOwner(
+      Session session, UuidValue ownerId, CompanyType? type) async {
     return await Company.db.find(
       session,
-      where: (t) => t.ownerId.equals(ownerId),
+      where: (t) => t.ownerId.equals(ownerId) & t.type.equals(type),
       include: Company.include(address: Address.include()),
     );
   }
 
   @override
-  Future<List<Company>> listAll(Session session) async {
+  Future<List<Company>> listAll(Session session,
+      {UuidValue? parentCompanyId}) async {
     return await Company.db.find(
       session,
-      where: (t) => t.active.equals(true),
-      include: Company.include(address: Address.include()),
+      where: (t) {
+        var where = t.active.equals(true);
+        if (parentCompanyId != null) {
+          where = where & t.parentCompanyId.equals(parentCompanyId);
+        }
+        return where;
+      },
+      include: Company.include(
+          address: Address.include(), parentCompany: Company.include()),
     );
   }
 
@@ -86,7 +95,8 @@ class MembershipRepository implements IMembershipRepository {
   }
 
   @override
-  Future<List<Membership>> listByCompany(Session session, UuidValue companyId) async {
+  Future<List<Membership>> listByCompany(
+      Session session, UuidValue companyId) async {
     return await Membership.db.find(
       session,
       where: (t) => t.companyId.equals(companyId),
@@ -124,7 +134,8 @@ class RangeVisitRepository implements IRangeVisitRepository {
   }
 
   @override
-  Future<List<RangeVisit>> listByCompany(Session session, UuidValue companyId) async {
+  Future<List<RangeVisit>> listByCompany(
+      Session session, UuidValue companyId) async {
     return await RangeVisit.db.find(
       session,
       where: (t) => t.companyId.equals(companyId),

@@ -80,8 +80,8 @@ class UserEndpoint extends Endpoint {
     );
 
     // 2. Buscar empresas da qual é dono
-    final ownedCompanies =
-        await sl.companyRepository.findByOwner(session, profile.id!);
+    final ownedCompanies = await sl.companyRepository
+        .findByOwner(session, profile.id, CompanyType.club);
 
     // 3. Garantir UserRole para cada empresa como Admin
     for (final company in ownedCompanies) {
@@ -105,6 +105,6 @@ class UserEndpoint extends Endpoint {
 
     // 4. Retornar lista de empresas vinculadas (via UserRole)
     return await sl.userProfileRepository
-        .listUserCompanies(session, profile.id!);
+        .listUserCompanies(session, profile.id, CompanyType.club);
   }
 }

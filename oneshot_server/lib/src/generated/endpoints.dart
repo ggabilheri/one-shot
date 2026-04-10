@@ -46,47 +46,48 @@ import 'package:oneshot_server/src/generated/shooter/ammunition_stock.dart'
     as _i32;
 import 'package:oneshot_server/src/generated/finance/bank_account.dart' as _i33;
 import 'package:oneshot_server/src/generated/company/company.dart' as _i34;
-import 'package:oneshot_server/src/generated/common/document.dart' as _i35;
+import 'package:oneshot_server/src/generated/company/company_type.dart' as _i35;
+import 'package:oneshot_server/src/generated/common/document.dart' as _i36;
 import 'package:oneshot_server/src/generated/finance/financial_entry.dart'
-    as _i36;
-import 'package:oneshot_server/src/generated/enums/platform_app.enum.dart'
     as _i37;
-import 'package:oneshot_server/src/generated/enums/financial_entry_type.dart'
+import 'package:oneshot_server/src/generated/enums/platform_app.enum.dart'
     as _i38;
-import 'package:oneshot_server/src/generated/enums/financial_entry_status.dart'
+import 'package:oneshot_server/src/generated/enums/financial_entry_type.dart'
     as _i39;
-import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _i40;
-import 'package:oneshot_server/src/generated/gunsmith/gunsmith.dart' as _i41;
+import 'package:oneshot_server/src/generated/enums/financial_entry_status.dart'
+    as _i40;
+import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _i41;
+import 'package:oneshot_server/src/generated/gunsmith/gunsmith.dart' as _i42;
 import 'package:oneshot_server/src/generated/gunsmith/gunsmith_client.dart'
-    as _i42;
-import 'package:oneshot_server/src/generated/gunsmith/service_order.dart'
     as _i43;
-import 'package:oneshot_server/src/generated/gunsmith/service_order_item.dart'
+import 'package:oneshot_server/src/generated/gunsmith/service_order.dart'
     as _i44;
-import 'package:oneshot_server/src/generated/finance/invoice.dart' as _i45;
-import 'package:oneshot_server/src/generated/finance/invoice_item.dart' as _i46;
+import 'package:oneshot_server/src/generated/gunsmith/service_order_item.dart'
+    as _i45;
+import 'package:oneshot_server/src/generated/finance/invoice.dart' as _i46;
+import 'package:oneshot_server/src/generated/finance/invoice_item.dart' as _i47;
 import 'package:oneshot_server/src/generated/enums/invoice_status.enum.dart'
-    as _i47;
-import 'package:oneshot_server/src/generated/finance/payment.dart' as _i48;
-import 'package:oneshot_server/src/generated/product/product.dart' as _i49;
+    as _i48;
+import 'package:oneshot_server/src/generated/finance/payment.dart' as _i49;
+import 'package:oneshot_server/src/generated/product/product.dart' as _i50;
 import 'package:oneshot_server/src/generated/product/product_group.dart'
-    as _i50;
-import 'package:oneshot_server/src/generated/common/user_profile.dart' as _i51;
+    as _i51;
+import 'package:oneshot_server/src/generated/common/user_profile.dart' as _i52;
 import 'package:oneshot_server/src/generated/shooter/reload_session.dart'
-    as _i52;
-import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i53;
-import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i54;
+    as _i53;
+import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i54;
+import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i55;
 import 'package:oneshot_server/src/generated/access_control/security_role.dart'
-    as _i55;
-import 'package:oneshot_server/src/generated/access_control/role_permission.dart'
     as _i56;
-import 'package:oneshot_server/src/generated/subscription/subscription_plan.dart'
+import 'package:oneshot_server/src/generated/access_control/role_permission.dart'
     as _i57;
-import 'package:oneshot_server/src/generated/enums/plan_type.enum.dart' as _i58;
+import 'package:oneshot_server/src/generated/subscription/subscription_plan.dart'
+    as _i58;
+import 'package:oneshot_server/src/generated/enums/plan_type.enum.dart' as _i59;
 import 'package:oneshot_server/src/generated/enums/plan_status.enum.dart'
-    as _i59;
-import 'package:oneshot_server/src/generated/shooter/training.dart' as _i60;
-import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i61;
+    as _i60;
+import 'package:oneshot_server/src/generated/shooter/training.dart' as _i61;
+import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i62;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -669,13 +670,28 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
         'listCompanies': _i1.MethodConnector(
           name: 'listCompanies',
-          params: {},
+          params: {
+            'parentCompanyId': _i1.ParameterDescription(
+              name: 'parentCompanyId',
+              type: _i1.getType<_i1.UuidValue?>(),
+              nullable: true,
+            ),
+            'type': _i1.ParameterDescription(
+              name: 'type',
+              type: _i1.getType<_i35.CompanyType?>(),
+              nullable: true,
+            ),
+          },
           call:
               (
                 _i1.Session session,
                 Map<String, dynamic> params,
-              ) async => (endpoints['company'] as _i6.CompanyEndpoint)
-                  .listCompanies(session),
+              ) async =>
+                  (endpoints['company'] as _i6.CompanyEndpoint).listCompanies(
+                    session,
+                    parentCompanyId: params['parentCompanyId'],
+                    type: params['type'],
+                  ),
         ),
         'updateCompany': _i1.MethodConnector(
           name: 'updateCompany',
@@ -842,7 +858,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'document': _i1.ParameterDescription(
               name: 'document',
-              type: _i1.getType<_i35.Document>(),
+              type: _i1.getType<_i36.Document>(),
               nullable: false,
             ),
           },
@@ -860,7 +876,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'document': _i1.ParameterDescription(
               name: 'document',
-              type: _i1.getType<_i35.Document>(),
+              type: _i1.getType<_i36.Document>(),
               nullable: false,
             ),
           },
@@ -1009,7 +1025,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'entry': _i1.ParameterDescription(
               name: 'entry',
-              type: _i1.getType<_i36.FinancialEntry>(),
+              type: _i1.getType<_i37.FinancialEntry>(),
               nullable: false,
             ),
           },
@@ -1049,7 +1065,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'entry': _i1.ParameterDescription(
               name: 'entry',
-              type: _i1.getType<_i36.FinancialEntry>(),
+              type: _i1.getType<_i37.FinancialEntry>(),
               nullable: false,
             ),
           },
@@ -1089,7 +1105,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'originModule': _i1.ParameterDescription(
               name: 'originModule',
-              type: _i1.getType<_i37.PlatformApp>(),
+              type: _i1.getType<_i38.PlatformApp>(),
               nullable: false,
             ),
             'dueDateTo': _i1.ParameterDescription(
@@ -1114,12 +1130,12 @@ class Endpoints extends _i1.EndpointDispatch {
             ),
             'type': _i1.ParameterDescription(
               name: 'type',
-              type: _i1.getType<_i38.FinancialEntryType?>(),
+              type: _i1.getType<_i39.FinancialEntryType?>(),
               nullable: true,
             ),
             'status': _i1.ParameterDescription(
               name: 'status',
-              type: _i1.getType<_i39.FinancialEntryStatus?>(),
+              type: _i1.getType<_i40.FinancialEntryStatus?>(),
               nullable: true,
             ),
             'dueDateFrom': _i1.ParameterDescription(
@@ -1194,7 +1210,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'firearm': _i1.ParameterDescription(
               name: 'firearm',
-              type: _i1.getType<_i40.Firearm>(),
+              type: _i1.getType<_i41.Firearm>(),
               nullable: false,
             ),
           },
@@ -1212,7 +1228,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'firearm': _i1.ParameterDescription(
               name: 'firearm',
-              type: _i1.getType<_i40.Firearm>(),
+              type: _i1.getType<_i41.Firearm>(),
               nullable: false,
             ),
           },
@@ -1285,7 +1301,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'gunsmith': _i1.ParameterDescription(
               name: 'gunsmith',
-              type: _i1.getType<_i41.Gunsmith>(),
+              type: _i1.getType<_i42.Gunsmith>(),
               nullable: false,
             ),
           },
@@ -1367,7 +1383,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'gunsmith': _i1.ParameterDescription(
               name: 'gunsmith',
-              type: _i1.getType<_i41.Gunsmith>(),
+              type: _i1.getType<_i42.Gunsmith>(),
               nullable: false,
             ),
           },
@@ -1386,7 +1402,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'client': _i1.ParameterDescription(
               name: 'client',
-              type: _i1.getType<_i42.GunsmithClient>(),
+              type: _i1.getType<_i43.GunsmithClient>(),
               nullable: false,
             ),
           },
@@ -1434,12 +1450,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'order': _i1.ParameterDescription(
               name: 'order',
-              type: _i1.getType<_i43.ServiceOrder>(),
+              type: _i1.getType<_i44.ServiceOrder>(),
               nullable: false,
             ),
             'items': _i1.ParameterDescription(
               name: 'items',
-              type: _i1.getType<List<_i44.ServiceOrderItem>>(),
+              type: _i1.getType<List<_i45.ServiceOrderItem>>(),
               nullable: false,
             ),
           },
@@ -1503,12 +1519,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'invoice': _i1.ParameterDescription(
               name: 'invoice',
-              type: _i1.getType<_i45.Invoice>(),
+              type: _i1.getType<_i46.Invoice>(),
               nullable: false,
             ),
             'items': _i1.ParameterDescription(
               name: 'items',
-              type: _i1.getType<List<_i46.InvoiceItem>>(),
+              type: _i1.getType<List<_i47.InvoiceItem>>(),
               nullable: false,
             ),
           },
@@ -1557,7 +1573,7 @@ class Endpoints extends _i1.EndpointDispatch {
             ),
             'status': _i1.ParameterDescription(
               name: 'status',
-              type: _i1.getType<_i47.InvoiceStatus?>(),
+              type: _i1.getType<_i48.InvoiceStatus?>(),
               nullable: true,
             ),
             'companyId': _i1.ParameterDescription(
@@ -1608,7 +1624,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'invoice': _i1.ParameterDescription(
               name: 'invoice',
-              type: _i1.getType<_i45.Invoice>(),
+              type: _i1.getType<_i46.Invoice>(),
               nullable: false,
             ),
           },
@@ -1671,7 +1687,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'payment': _i1.ParameterDescription(
               name: 'payment',
-              type: _i1.getType<_i48.Payment>(),
+              type: _i1.getType<_i49.Payment>(),
               nullable: false,
             ),
           },
@@ -1740,7 +1756,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'product': _i1.ParameterDescription(
               name: 'product',
-              type: _i1.getType<_i49.Product>(),
+              type: _i1.getType<_i50.Product>(),
               nullable: false,
             ),
           },
@@ -1797,7 +1813,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'product': _i1.ParameterDescription(
               name: 'product',
-              type: _i1.getType<_i49.Product>(),
+              type: _i1.getType<_i50.Product>(),
               nullable: false,
             ),
           },
@@ -1916,7 +1932,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'group': _i1.ParameterDescription(
               name: 'group',
-              type: _i1.getType<_i50.ProductGroup>(),
+              type: _i1.getType<_i51.ProductGroup>(),
               nullable: false,
             ),
           },
@@ -1936,7 +1952,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'group': _i1.ParameterDescription(
               name: 'group',
-              type: _i1.getType<_i50.ProductGroup>(),
+              type: _i1.getType<_i51.ProductGroup>(),
               nullable: false,
             ),
           },
@@ -2012,7 +2028,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'profile': _i1.ParameterDescription(
               name: 'profile',
-              type: _i1.getType<_i51.UserProfile>(),
+              type: _i1.getType<_i52.UserProfile>(),
               nullable: false,
             ),
           },
@@ -2056,7 +2072,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'reloadSession': _i1.ParameterDescription(
               name: 'reloadSession',
-              type: _i1.getType<_i52.ReloadSession>(),
+              type: _i1.getType<_i53.ReloadSession>(),
               nullable: false,
             ),
           },
@@ -2085,7 +2101,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'test': _i1.ParameterDescription(
               name: 'test',
-              type: _i1.getType<_i53.ReloadTest>(),
+              type: _i1.getType<_i54.ReloadTest>(),
               nullable: false,
             ),
           },
@@ -2133,7 +2149,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'supply': _i1.ParameterDescription(
               name: 'supply',
-              type: _i1.getType<_i54.SupplyStock>(),
+              type: _i1.getType<_i55.SupplyStock>(),
               nullable: false,
             ),
           },
@@ -2151,7 +2167,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'supply': _i1.ParameterDescription(
               name: 'supply',
-              type: _i1.getType<_i54.SupplyStock>(),
+              type: _i1.getType<_i55.SupplyStock>(),
               nullable: false,
             ),
           },
@@ -2176,12 +2192,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i55.SecurityRole>(),
+              type: _i1.getType<_i56.SecurityRole>(),
               nullable: false,
             ),
             'permissions': _i1.ParameterDescription(
               name: 'permissions',
-              type: _i1.getType<List<_i56.RolePermission>>(),
+              type: _i1.getType<List<_i57.RolePermission>>(),
               nullable: false,
             ),
           },
@@ -2202,12 +2218,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i55.SecurityRole>(),
+              type: _i1.getType<_i56.SecurityRole>(),
               nullable: false,
             ),
             'permissions': _i1.ParameterDescription(
               name: 'permissions',
-              type: _i1.getType<List<_i56.RolePermission>>(),
+              type: _i1.getType<List<_i57.RolePermission>>(),
               nullable: false,
             ),
           },
@@ -2228,7 +2244,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i55.SecurityRole>(),
+              type: _i1.getType<_i56.SecurityRole>(),
               nullable: false,
             ),
           },
@@ -2259,7 +2275,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'role': _i1.ParameterDescription(
               name: 'role',
-              type: _i1.getType<_i55.SecurityRole>(),
+              type: _i1.getType<_i56.SecurityRole>(),
               nullable: false,
             ),
           },
@@ -2285,7 +2301,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'plan': _i1.ParameterDescription(
               name: 'plan',
-              type: _i1.getType<_i57.SubscriptionPlan>(),
+              type: _i1.getType<_i58.SubscriptionPlan>(),
               nullable: false,
             ),
           },
@@ -2327,7 +2343,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'plan': _i1.ParameterDescription(
               name: 'plan',
-              type: _i1.getType<_i57.SubscriptionPlan>(),
+              type: _i1.getType<_i58.SubscriptionPlan>(),
               nullable: false,
             ),
           },
@@ -2369,12 +2385,12 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'planType': _i1.ParameterDescription(
               name: 'planType',
-              type: _i1.getType<_i58.PlanType?>(),
+              type: _i1.getType<_i59.PlanType?>(),
               nullable: true,
             ),
             'status': _i1.ParameterDescription(
               name: 'status',
-              type: _i1.getType<_i59.PlanStatus?>(),
+              type: _i1.getType<_i60.PlanStatus?>(),
               nullable: true,
             ),
             'companyId': _i1.ParameterDescription(
@@ -2420,7 +2436,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'training': _i1.ParameterDescription(
               name: 'training',
-              type: _i1.getType<_i60.Training>(),
+              type: _i1.getType<_i61.Training>(),
               nullable: false,
             ),
           },
@@ -2510,7 +2526,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'user': _i1.ParameterDescription(
               name: 'user',
-              type: _i1.getType<_i51.UserProfile>(),
+              type: _i1.getType<_i52.UserProfile>(),
               nullable: false,
             ),
           },
@@ -2528,7 +2544,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'user': _i1.ParameterDescription(
               name: 'user',
-              type: _i1.getType<_i51.UserProfile>(),
+              type: _i1.getType<_i52.UserProfile>(),
               nullable: false,
             ),
           },
@@ -3581,6 +3597,6 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
-    modules['serverpod_auth'] = _i61.Endpoints()..initializeEndpoints(server);
+    modules['serverpod_auth'] = _i62.Endpoints()..initializeEndpoints(server);
   }
 }

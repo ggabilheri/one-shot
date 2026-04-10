@@ -16,7 +16,8 @@ abstract class IUserProfileRepository {
   Future<List<SecurityRole>> getRolesForUser(Session session, UuidValue userId);
   Future<void> updateUserRoles(
       Session session, UuidValue userId, List<UuidValue> roleIds);
-  Future<List<Company>> listUserCompanies(Session session, UuidValue userId);
+  Future<List<Company>> listUserCompanies(
+      Session session, UuidValue userId, CompanyType? type);
 }
 
 class UserProfileRepository implements IUserProfileRepository {
@@ -151,11 +152,15 @@ class UserProfileRepository implements IUserProfileRepository {
 
   @override
   Future<List<Company>> listUserCompanies(
-      Session session, UuidValue userId) async {
+      Session session, UuidValue userId, CompanyType? type) async {
     final userRoles = await UserRole.db.find(
       session,
-      where: (t) => t.userProfileId.equals(userId) & t.companyId.notEquals(null),
-      include: UserRole.include(company: Company.include(address: Address.include())),
+      where: (t) =>
+          t.userProfileId.equals(userId) &
+          t.companyId.notEquals(null) &
+          t.company.type.equals(type),
+      include: UserRole.include(
+          company: Company.include(address: Address.include())),
     );
 
     return userRoles
