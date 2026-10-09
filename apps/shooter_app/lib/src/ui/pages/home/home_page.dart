@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:qlevar_router/qlevar_router.dart';
-import 'package:oneshot_flutter/src/core/viewmodel_state.dart';
-import 'package:oneshot_flutter/src/core/utils/i18n.dart';
-import 'package:oneshot_flutter/src/ui/widgets/ds_button.dart';
-import 'package:oneshot_flutter/src/ui/widgets/ds_tokens.dart';
+import 'package:shooter_app/src/core/viewmodel_state.dart';
+import 'package:shooter_app/src/core/utils/i18n.dart';
+import 'package:shooter_app/src/ui/widgets/ds_button.dart';
+import 'package:shooter_app/src/ui/widgets/ds_tokens.dart';
 import 'home_viewmodel.dart';
 
 class HomePage extends StatefulWidget {
@@ -119,7 +119,7 @@ class _ActionCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: DSTokens.surface,
           borderRadius: BorderRadius.circular(DSTokens.borderRadius),
-          border: Border.all(color: DSTokens.outline.withOpacity(0.05)),
+          border: Border.all(color: DSTokens.outline.withValues(alpha: 0.05)),
         ),
         child: Row(
           children: [
@@ -148,7 +148,7 @@ class _ActionCard extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(Icons.arrow_forward_ios, color: DSTokens.primary.withOpacity(0.3), size: 16),
+            Icon(Icons.arrow_forward_ios, color: DSTokens.primary.withValues(alpha: 0.3), size: 16),
           ],
         ),
       ),

@@ -10,12 +10,12 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
+import 'package:serverpod/serverpod.dart' as _is;
 
 abstract class AsaasWebhookEvent
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   AsaasWebhookEvent._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required this.eventId,
     required this.event,
     required this.payload,
@@ -23,12 +23,12 @@ abstract class AsaasWebhookEvent
     this.processedAt,
     this.error,
     DateTime? receivedAt,
-  }) : id = id ?? const _i1.Uuid().v4obj(),
+  }) : id = id ?? const _is.Uuid().v4obj(),
        processed = processed ?? false,
        receivedAt = receivedAt ?? DateTime.now();
 
   factory AsaasWebhookEvent({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required String eventId,
     required String event,
     required String payload,
@@ -42,22 +42,22 @@ abstract class AsaasWebhookEvent
     return AsaasWebhookEvent(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       eventId: jsonSerialization['eventId'] as String,
       event: jsonSerialization['event'] as String,
       payload: jsonSerialization['payload'] as String,
       processed: jsonSerialization['processed'] == null
           ? null
-          : _i1.BoolJsonExtension.fromJson(jsonSerialization['processed']),
+          : _is.BoolJsonExtension.fromJson(jsonSerialization['processed']),
       processedAt: jsonSerialization['processedAt'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _is.DateTimeJsonExtension.fromJson(
               jsonSerialization['processedAt'],
             ),
       error: jsonSerialization['error'] as String?,
       receivedAt: jsonSerialization['receivedAt'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(jsonSerialization['receivedAt']),
+          : _is.DateTimeJsonExtension.fromJson(jsonSerialization['receivedAt']),
     );
   }
 
@@ -66,7 +66,7 @@ abstract class AsaasWebhookEvent
   static const db = AsaasWebhookEventRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
   String eventId;
 
@@ -83,13 +83,13 @@ abstract class AsaasWebhookEvent
   DateTime receivedAt;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [AsaasWebhookEvent]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   AsaasWebhookEvent copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     String? eventId,
     String? event,
     String? payload,
@@ -133,12 +133,11 @@ abstract class AsaasWebhookEvent
   }
 
   static AsaasWebhookEventIncludeList includeList({
-    _i1.WhereExpressionBuilder<AsaasWebhookEventTable>? where,
+    _is.WhereExpressionBuilder<AsaasWebhookEventTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<AsaasWebhookEventTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<AsaasWebhookEventTable>? orderByList,
+    _is.OrderByBuilder<AsaasWebhookEventTable>? orderBy,
+    _is.OrderByListBuilder<AsaasWebhookEventTable>? orderByList,
     AsaasWebhookEventInclude? include,
   }) {
     return AsaasWebhookEventIncludeList._(
@@ -146,7 +145,6 @@ abstract class AsaasWebhookEvent
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(AsaasWebhookEvent.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(AsaasWebhookEvent.t),
       include: include,
     );
@@ -154,7 +152,7 @@ abstract class AsaasWebhookEvent
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -162,7 +160,7 @@ class _Undefined {}
 
 class _AsaasWebhookEventImpl extends AsaasWebhookEvent {
   _AsaasWebhookEventImpl({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required String eventId,
     required String event,
     required String payload,
@@ -183,10 +181,10 @@ class _AsaasWebhookEventImpl extends AsaasWebhookEvent {
 
   /// Returns a shallow copy of this [AsaasWebhookEvent]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   AsaasWebhookEvent copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     String? eventId,
     String? event,
     String? payload,
@@ -209,101 +207,62 @@ class _AsaasWebhookEventImpl extends AsaasWebhookEvent {
 }
 
 class AsaasWebhookEventUpdateTable
-    extends _i1.UpdateTable<AsaasWebhookEventTable> {
+    extends _is.UpdateTable<AsaasWebhookEventTable> {
   AsaasWebhookEventUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> eventId(String value) => _i1.ColumnValue(
-    table.eventId,
-    value,
-  );
+  _is.ColumnValue<String, String> eventId(String value) =>
+      _is.ColumnValue(table.eventId, value);
 
-  _i1.ColumnValue<String, String> event(String value) => _i1.ColumnValue(
-    table.event,
-    value,
-  );
+  _is.ColumnValue<String, String> event(String value) =>
+      _is.ColumnValue(table.event, value);
 
-  _i1.ColumnValue<String, String> payload(String value) => _i1.ColumnValue(
-    table.payload,
-    value,
-  );
+  _is.ColumnValue<String, String> payload(String value) =>
+      _is.ColumnValue(table.payload, value);
 
-  _i1.ColumnValue<bool, bool> processed(bool value) => _i1.ColumnValue(
-    table.processed,
-    value,
-  );
+  _is.ColumnValue<bool, bool> processed(bool value) =>
+      _is.ColumnValue(table.processed, value);
 
-  _i1.ColumnValue<DateTime, DateTime> processedAt(DateTime? value) =>
-      _i1.ColumnValue(
-        table.processedAt,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> processedAt(DateTime? value) =>
+      _is.ColumnValue(table.processedAt, value);
 
-  _i1.ColumnValue<String, String> error(String? value) => _i1.ColumnValue(
-    table.error,
-    value,
-  );
+  _is.ColumnValue<String, String> error(String? value) =>
+      _is.ColumnValue(table.error, value);
 
-  _i1.ColumnValue<DateTime, DateTime> receivedAt(DateTime value) =>
-      _i1.ColumnValue(
-        table.receivedAt,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> receivedAt(DateTime value) =>
+      _is.ColumnValue(table.receivedAt, value);
 }
 
-class AsaasWebhookEventTable extends _i1.Table<_i1.UuidValue> {
+class AsaasWebhookEventTable extends _is.Table<_is.UuidValue> {
   AsaasWebhookEventTable({super.tableRelation})
     : super(tableName: 'asaas_webhook_events') {
     updateTable = AsaasWebhookEventUpdateTable(this);
-    eventId = _i1.ColumnString(
-      'eventId',
-      this,
-    );
-    event = _i1.ColumnString(
-      'event',
-      this,
-    );
-    payload = _i1.ColumnString(
-      'payload',
-      this,
-    );
-    processed = _i1.ColumnBool(
-      'processed',
-      this,
-      hasDefault: true,
-    );
-    processedAt = _i1.ColumnDateTime(
-      'processedAt',
-      this,
-    );
-    error = _i1.ColumnString(
-      'error',
-      this,
-    );
-    receivedAt = _i1.ColumnDateTime(
-      'receivedAt',
-      this,
-      hasDefault: true,
-    );
+    eventId = _is.ColumnString('eventId', this);
+    event = _is.ColumnString('event', this);
+    payload = _is.ColumnString('payload', this);
+    processed = _is.ColumnBool('processed', this, hasDefault: true);
+    processedAt = _is.ColumnDateTime('processedAt', this);
+    error = _is.ColumnString('error', this);
+    receivedAt = _is.ColumnDateTime('receivedAt', this, hasDefault: true);
   }
 
   late final AsaasWebhookEventUpdateTable updateTable;
 
-  late final _i1.ColumnString eventId;
+  late final _is.ColumnString eventId;
 
-  late final _i1.ColumnString event;
+  late final _is.ColumnString event;
 
-  late final _i1.ColumnString payload;
+  late final _is.ColumnString payload;
 
-  late final _i1.ColumnBool processed;
+  late final _is.ColumnBool processed;
 
-  late final _i1.ColumnDateTime processedAt;
+  late final _is.ColumnDateTime processedAt;
 
-  late final _i1.ColumnString error;
+  late final _is.ColumnString error;
 
-  late final _i1.ColumnDateTime receivedAt;
+  late final _is.ColumnDateTime receivedAt;
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     eventId,
     event,
@@ -315,23 +274,22 @@ class AsaasWebhookEventTable extends _i1.Table<_i1.UuidValue> {
   ];
 }
 
-class AsaasWebhookEventInclude extends _i1.IncludeObject {
+class AsaasWebhookEventInclude extends _is.IncludeObject {
   AsaasWebhookEventInclude._();
 
   @override
-  Map<String, _i1.Include?> get includes => {};
+  Map<String, _is.Include?> get includes => {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => AsaasWebhookEvent.t;
+  _is.Table<_is.UuidValue> get table => AsaasWebhookEvent.t;
 }
 
-class AsaasWebhookEventIncludeList extends _i1.IncludeList {
+class AsaasWebhookEventIncludeList extends _is.IncludeList {
   AsaasWebhookEventIncludeList._({
-    _i1.WhereExpressionBuilder<AsaasWebhookEventTable>? where,
+    _is.WhereExpressionBuilder<AsaasWebhookEventTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -339,10 +297,10 @@ class AsaasWebhookEventIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => AsaasWebhookEvent.t;
+  _is.Table<_is.UuidValue> get table => AsaasWebhookEvent.t;
 }
 
 class AsaasWebhookEventRepository {
@@ -371,22 +329,20 @@ class AsaasWebhookEventRepository {
   /// );
   /// ```
   Future<List<AsaasWebhookEvent>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<AsaasWebhookEventTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<AsaasWebhookEventTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<AsaasWebhookEventTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<AsaasWebhookEventTable>? orderByList,
-    _i1.Transaction? transaction,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.OrderByBuilder<AsaasWebhookEventTable>? orderBy,
+    _is.OrderByListBuilder<AsaasWebhookEventTable>? orderByList,
+    _is.Transaction? transaction,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<AsaasWebhookEvent>(
       where: where?.call(AsaasWebhookEvent.t),
       orderBy: orderBy?.call(AsaasWebhookEvent.t),
       orderByList: orderByList?.call(AsaasWebhookEvent.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -413,21 +369,19 @@ class AsaasWebhookEventRepository {
   /// );
   /// ```
   Future<AsaasWebhookEvent?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<AsaasWebhookEventTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<AsaasWebhookEventTable>? where,
     int? offset,
-    _i1.OrderByBuilder<AsaasWebhookEventTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<AsaasWebhookEventTable>? orderByList,
-    _i1.Transaction? transaction,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.OrderByBuilder<AsaasWebhookEventTable>? orderBy,
+    _is.OrderByListBuilder<AsaasWebhookEventTable>? orderByList,
+    _is.Transaction? transaction,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<AsaasWebhookEvent>(
       where: where?.call(AsaasWebhookEvent.t),
       orderBy: orderBy?.call(AsaasWebhookEvent.t),
       orderByList: orderByList?.call(AsaasWebhookEvent.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       lockMode: lockMode,
@@ -437,11 +391,11 @@ class AsaasWebhookEventRepository {
 
   /// Finds a single [AsaasWebhookEvent] by its [id] or null if no such row exists.
   Future<AsaasWebhookEvent?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<AsaasWebhookEvent>(
       id,
@@ -461,16 +415,22 @@ class AsaasWebhookEventRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<AsaasWebhookEvent>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<AsaasWebhookEvent> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<AsaasWebhookEvent>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -478,12 +438,81 @@ class AsaasWebhookEventRepository {
   ///
   /// The returned [AsaasWebhookEvent] will have its `id` field set.
   Future<AsaasWebhookEvent> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     AsaasWebhookEvent row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.insertRow<AsaasWebhookEvent>(
       row,
+      transaction: transaction,
+    );
+  }
+
+  /// Upserts all [AsaasWebhookEvent]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [AsaasWebhookEvent]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<AsaasWebhookEvent>> upsert(
+    _is.DatabaseSession session,
+    List<AsaasWebhookEvent> rows, {
+    required _is.ColumnSelections<AsaasWebhookEventTable> conflictColumns,
+    _is.ColumnSelections<AsaasWebhookEventTable>? updateColumns,
+    _is.WhereExpressionBuilder<AsaasWebhookEventTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<AsaasWebhookEvent>(
+      rows,
+      conflictColumns: conflictColumns(AsaasWebhookEvent.t),
+      updateColumns: updateColumns?.call(AsaasWebhookEvent.t),
+      updateWhere: updateWhere?.call(AsaasWebhookEvent.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [AsaasWebhookEvent] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [AsaasWebhookEvent] will have its `id` field set.
+  Future<AsaasWebhookEvent?> upsertRow(
+    _is.DatabaseSession session,
+    AsaasWebhookEvent row, {
+    required _is.ColumnSelections<AsaasWebhookEventTable> conflictColumns,
+    _is.ColumnSelections<AsaasWebhookEventTable>? updateColumns,
+    _is.WhereExpressionBuilder<AsaasWebhookEventTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<AsaasWebhookEvent>(
+      row,
+      conflictColumns: conflictColumns(AsaasWebhookEvent.t),
+      updateColumns: updateColumns?.call(AsaasWebhookEvent.t),
+      updateWhere: updateWhere?.call(AsaasWebhookEvent.t),
       transaction: transaction,
     );
   }
@@ -493,16 +522,22 @@ class AsaasWebhookEventRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<AsaasWebhookEvent>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<AsaasWebhookEvent> rows, {
-    _i1.ColumnSelections<AsaasWebhookEventTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<AsaasWebhookEventTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<AsaasWebhookEvent>(
       rows,
       columns: columns?.call(AsaasWebhookEvent.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -510,10 +545,10 @@ class AsaasWebhookEventRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<AsaasWebhookEvent> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     AsaasWebhookEvent row, {
-    _i1.ColumnSelections<AsaasWebhookEventTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<AsaasWebhookEventTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<AsaasWebhookEvent>(
       row,
@@ -525,11 +560,11 @@ class AsaasWebhookEventRepository {
   /// Updates a single [AsaasWebhookEvent] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<AsaasWebhookEvent?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<AsaasWebhookEventUpdateTable>
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<AsaasWebhookEventUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<AsaasWebhookEvent>(
       id,
@@ -540,17 +575,21 @@ class AsaasWebhookEventRepository {
 
   /// Updates all [AsaasWebhookEvent]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<AsaasWebhookEvent>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<AsaasWebhookEventUpdateTable>
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<AsaasWebhookEventUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<AsaasWebhookEventTable> where,
+    required _is.WhereExpressionBuilder<AsaasWebhookEventTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<AsaasWebhookEventTable>? orderBy,
-    _i1.OrderByListBuilder<AsaasWebhookEventTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<AsaasWebhookEventTable>? orderBy,
+    _is.OrderByListBuilder<AsaasWebhookEventTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<AsaasWebhookEvent>(
       columnValues: columnValues(AsaasWebhookEvent.t.updateTable),
@@ -559,30 +598,44 @@ class AsaasWebhookEventRepository {
       offset: offset,
       orderBy: orderBy?.call(AsaasWebhookEvent.t),
       orderByList: orderByList?.call(AsaasWebhookEvent.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [AsaasWebhookEvent]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<AsaasWebhookEvent>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<AsaasWebhookEvent> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<AsaasWebhookEventTable>? orderBy,
+    _is.OrderByListBuilder<AsaasWebhookEventTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<AsaasWebhookEvent>(
       rows,
+      orderBy: orderBy?.call(AsaasWebhookEvent.t),
+      orderByList: orderByList?.call(AsaasWebhookEvent.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [AsaasWebhookEvent].
   Future<AsaasWebhookEvent> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     AsaasWebhookEvent row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.deleteRow<AsaasWebhookEvent>(
       row,
@@ -591,24 +644,37 @@ class AsaasWebhookEventRepository {
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<AsaasWebhookEvent>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<AsaasWebhookEventTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<AsaasWebhookEventTable> where,
+    _is.OrderByBuilder<AsaasWebhookEventTable>? orderBy,
+    _is.OrderByListBuilder<AsaasWebhookEventTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<AsaasWebhookEvent>(
       where: where(AsaasWebhookEvent.t),
+      orderBy: orderBy?.call(AsaasWebhookEvent.t),
+      orderByList: orderByList?.call(AsaasWebhookEvent.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<AsaasWebhookEventTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<AsaasWebhookEventTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<AsaasWebhookEvent>(
       where: where?.call(AsaasWebhookEvent.t),
@@ -619,11 +685,11 @@ class AsaasWebhookEventRepository {
 
   /// Acquires row-level locks on [AsaasWebhookEvent] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<AsaasWebhookEventTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<AsaasWebhookEventTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<AsaasWebhookEvent>(
       where: where(AsaasWebhookEvent.t),

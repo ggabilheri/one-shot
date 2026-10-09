@@ -23,7 +23,7 @@ class ViaCepGatewayEndpoint extends Endpoint {
         );
       }
     } catch (e) {
-      print('erro ao buscar o cep: $e');
+      session.log('erro ao buscar o cep: $e', level: LogLevel.error);
       return null;
     }
     return null;

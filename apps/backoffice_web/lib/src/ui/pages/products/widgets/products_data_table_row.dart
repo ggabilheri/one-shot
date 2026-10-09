@@ -52,7 +52,7 @@ class ProductsDataTableRow extends DataRow {
                     onPressed: () {
                       showDialog(
                         context: context,
-                        barrierColor: DSTokens.background.withOpacity(0.8),
+                        barrierColor: DSTokens.background.withValues(alpha: 0.8),
                         builder: (context) =>
                             ProductFormDialog(vm: vm, product: product),
                       );

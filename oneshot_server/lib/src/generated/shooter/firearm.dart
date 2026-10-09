@@ -8,22 +8,22 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import '../common/user_profile.dart' as _i2;
-import '../enums/firearm_purpose.enum.dart' as _i3;
-import '../enums/firearm_type.enum.dart' as _i4;
-import '../enums/firearm_action.enum.dart' as _i5;
-import '../enums/usage_type.enum.dart' as _i6;
-import '../enums/conservation_state.enum.dart' as _i7;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i8;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import '../common/user_profile.dart' as _izifjpv2;
+import '../enums/conservation_state.enum.dart' as _im6njl07;
+import '../enums/firearm_action.enum.dart' as _id0m3mr4;
+import '../enums/firearm_purpose.enum.dart' as _ie635x89;
+import '../enums/firearm_type.enum.dart' as _i5vdw3jb;
+import '../enums/usage_type.enum.dart' as _ivorkc39;
 
 abstract class Firearm
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   Firearm._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     this.userId,
     this.user,
     required this.purpose,
@@ -59,16 +59,16 @@ abstract class Firearm
     this.cleaningHistory,
     this.maintenanceHistory,
     this.totalShots,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _is.Uuid().v4obj();
 
   factory Firearm({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    required _i3.FirearmPurpose purpose,
-    required _i4.FirearmType type,
-    required _i5.FirearmAction action,
-    required _i6.UsageType usageType,
+    _is.UuidValue? id,
+    _is.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    required _ie635x89.FirearmPurpose purpose,
+    required _i5vdw3jb.FirearmType type,
+    required _id0m3mr4.FirearmAction action,
+    required _ivorkc39.UsageType usageType,
     required String serialNumber,
     required String manufactureCountry,
     required String manufacturer,
@@ -76,7 +76,7 @@ abstract class Firearm
     String? bolt,
     String? frame,
     String? grip,
-    required _i7.ConservationState conservationState,
+    required _im6njl07.ConservationState conservationState,
     required String caliber,
     int? barrelsCount,
     String? barrelLength,
@@ -104,23 +104,25 @@ abstract class Firearm
     return Firearm(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userId: jsonSerialization['userId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       user: jsonSerialization['user'] == null
           ? null
-          : _i8.Protocol().deserialize<_i2.UserProfile>(
+          : _iwflrbqm.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['user'],
             ),
-      purpose: _i3.FirearmPurpose.fromJson(
+      purpose: _ie635x89.FirearmPurpose.fromJson(
         (jsonSerialization['purpose'] as String),
       ),
-      type: _i4.FirearmType.fromJson((jsonSerialization['type'] as String)),
-      action: _i5.FirearmAction.fromJson(
+      type: _i5vdw3jb.FirearmType.fromJson(
+        (jsonSerialization['type'] as String),
+      ),
+      action: _id0m3mr4.FirearmAction.fromJson(
         (jsonSerialization['action'] as String),
       ),
-      usageType: _i6.UsageType.fromJson(
+      usageType: _ivorkc39.UsageType.fromJson(
         (jsonSerialization['usageType'] as String),
       ),
       serialNumber: jsonSerialization['serialNumber'] as String,
@@ -130,7 +132,7 @@ abstract class Firearm
       bolt: jsonSerialization['bolt'] as String?,
       frame: jsonSerialization['frame'] as String?,
       grip: jsonSerialization['grip'] as String?,
-      conservationState: _i7.ConservationState.fromJson(
+      conservationState: _im6njl07.ConservationState.fromJson(
         (jsonSerialization['conservationState'] as String),
       ),
       caliber: jsonSerialization['caliber'] as String,
@@ -146,19 +148,19 @@ abstract class Firearm
       weight: (jsonSerialization['weight'] as num?)?.toDouble(),
       acquisitionDate: jsonSerialization['acquisitionDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _is.DateTimeJsonExtension.fromJson(
               jsonSerialization['acquisitionDate'],
             ),
       purchasePrice: (jsonSerialization['purchasePrice'] as num?)?.toDouble(),
       saleDate: jsonSerialization['saleDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(jsonSerialization['saleDate']),
+          : _is.DateTimeJsonExtension.fromJson(jsonSerialization['saleDate']),
       salePrice: (jsonSerialization['salePrice'] as num?)?.toDouble(),
       buyerData: jsonSerialization['buyerData'] as String?,
       customizations: jsonSerialization['customizations'] as String?,
       images: jsonSerialization['images'] == null
           ? null
-          : _i8.Protocol().deserialize<List<String>>(
+          : _iwflrbqm.Protocol().deserialize<List<String>>(
               jsonSerialization['images'],
             ),
       cleaningHistory: jsonSerialization['cleaningHistory'] as String?,
@@ -172,19 +174,19 @@ abstract class Firearm
   static const db = FirearmRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
-  _i1.UuidValue? userId;
+  _is.UuidValue? userId;
 
-  _i2.UserProfile? user;
+  _izifjpv2.UserProfile? user;
 
-  _i3.FirearmPurpose purpose;
+  _ie635x89.FirearmPurpose purpose;
 
-  _i4.FirearmType type;
+  _i5vdw3jb.FirearmType type;
 
-  _i5.FirearmAction action;
+  _id0m3mr4.FirearmAction action;
 
-  _i6.UsageType usageType;
+  _ivorkc39.UsageType usageType;
 
   String serialNumber;
 
@@ -200,7 +202,7 @@ abstract class Firearm
 
   String? grip;
 
-  _i7.ConservationState conservationState;
+  _im6njl07.ConservationState conservationState;
 
   String caliber;
 
@@ -245,19 +247,19 @@ abstract class Firearm
   int? totalShots;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Firearm]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   Firearm copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    _i3.FirearmPurpose? purpose,
-    _i4.FirearmType? type,
-    _i5.FirearmAction? action,
-    _i6.UsageType? usageType,
+    _is.UuidValue? id,
+    _is.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _ie635x89.FirearmPurpose? purpose,
+    _i5vdw3jb.FirearmType? type,
+    _id0m3mr4.FirearmAction? action,
+    _ivorkc39.UsageType? usageType,
     String? serialNumber,
     String? manufactureCountry,
     String? manufacturer,
@@ -265,7 +267,7 @@ abstract class Firearm
     String? bolt,
     String? frame,
     String? grip,
-    _i7.ConservationState? conservationState,
+    _im6njl07.ConservationState? conservationState,
     String? caliber,
     int? barrelsCount,
     String? barrelLength,
@@ -374,17 +376,16 @@ abstract class Firearm
     };
   }
 
-  static FirearmInclude include({_i2.UserProfileInclude? user}) {
+  static FirearmInclude include({_izifjpv2.UserProfileInclude? user}) {
     return FirearmInclude._(user: user);
   }
 
   static FirearmIncludeList includeList({
-    _i1.WhereExpressionBuilder<FirearmTable>? where,
+    _is.WhereExpressionBuilder<FirearmTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<FirearmTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<FirearmTable>? orderByList,
+    _is.OrderByBuilder<FirearmTable>? orderBy,
+    _is.OrderByListBuilder<FirearmTable>? orderByList,
     FirearmInclude? include,
   }) {
     return FirearmIncludeList._(
@@ -392,7 +393,6 @@ abstract class Firearm
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(Firearm.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(Firearm.t),
       include: include,
     );
@@ -400,7 +400,7 @@ abstract class Firearm
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -408,13 +408,13 @@ class _Undefined {}
 
 class _FirearmImpl extends Firearm {
   _FirearmImpl({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    required _i3.FirearmPurpose purpose,
-    required _i4.FirearmType type,
-    required _i5.FirearmAction action,
-    required _i6.UsageType usageType,
+    _is.UuidValue? id,
+    _is.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    required _ie635x89.FirearmPurpose purpose,
+    required _i5vdw3jb.FirearmType type,
+    required _id0m3mr4.FirearmAction action,
+    required _ivorkc39.UsageType usageType,
     required String serialNumber,
     required String manufactureCountry,
     required String manufacturer,
@@ -422,7 +422,7 @@ class _FirearmImpl extends Firearm {
     String? bolt,
     String? frame,
     String? grip,
-    required _i7.ConservationState conservationState,
+    required _im6njl07.ConservationState conservationState,
     required String caliber,
     int? barrelsCount,
     String? barrelLength,
@@ -485,16 +485,16 @@ class _FirearmImpl extends Firearm {
 
   /// Returns a shallow copy of this [Firearm]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   Firearm copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     Object? userId = _Undefined,
     Object? user = _Undefined,
-    _i3.FirearmPurpose? purpose,
-    _i4.FirearmType? type,
-    _i5.FirearmAction? action,
-    _i6.UsageType? usageType,
+    _ie635x89.FirearmPurpose? purpose,
+    _i5vdw3jb.FirearmType? type,
+    _id0m3mr4.FirearmAction? action,
+    _ivorkc39.UsageType? usageType,
     String? serialNumber,
     String? manufactureCountry,
     String? manufacturer,
@@ -502,7 +502,7 @@ class _FirearmImpl extends Firearm {
     Object? bolt = _Undefined,
     Object? frame = _Undefined,
     Object? grip = _Undefined,
-    _i7.ConservationState? conservationState,
+    _im6njl07.ConservationState? conservationState,
     String? caliber,
     Object? barrelsCount = _Undefined,
     Object? barrelLength = _Undefined,
@@ -527,8 +527,8 @@ class _FirearmImpl extends Firearm {
   }) {
     return Firearm(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
-      user: user is _i2.UserProfile? ? user : this.user?.copyWith(),
+      userId: userId is _is.UuidValue? ? userId : this.userId,
+      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
       purpose: purpose ?? this.purpose,
       type: type ?? this.type,
       action: action ?? this.action,
@@ -580,433 +580,247 @@ class _FirearmImpl extends Firearm {
   }
 }
 
-class FirearmUpdateTable extends _i1.UpdateTable<FirearmTable> {
+class FirearmUpdateTable extends _is.UpdateTable<FirearmTable> {
   FirearmUpdateTable(super.table);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.userId,
-        value,
-      );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> userId(_is.UuidValue? value) =>
+      _is.ColumnValue(table.userId, value);
 
-  _i1.ColumnValue<_i3.FirearmPurpose, _i3.FirearmPurpose> purpose(
-    _i3.FirearmPurpose value,
-  ) => _i1.ColumnValue(
-    table.purpose,
-    value,
-  );
+  _is.ColumnValue<_ie635x89.FirearmPurpose, _ie635x89.FirearmPurpose> purpose(
+    _ie635x89.FirearmPurpose value,
+  ) => _is.ColumnValue(table.purpose, value);
 
-  _i1.ColumnValue<_i4.FirearmType, _i4.FirearmType> type(
-    _i4.FirearmType value,
-  ) => _i1.ColumnValue(
-    table.type,
-    value,
-  );
+  _is.ColumnValue<_i5vdw3jb.FirearmType, _i5vdw3jb.FirearmType> type(
+    _i5vdw3jb.FirearmType value,
+  ) => _is.ColumnValue(table.type, value);
 
-  _i1.ColumnValue<_i5.FirearmAction, _i5.FirearmAction> action(
-    _i5.FirearmAction value,
-  ) => _i1.ColumnValue(
-    table.action,
-    value,
-  );
+  _is.ColumnValue<_id0m3mr4.FirearmAction, _id0m3mr4.FirearmAction> action(
+    _id0m3mr4.FirearmAction value,
+  ) => _is.ColumnValue(table.action, value);
 
-  _i1.ColumnValue<_i6.UsageType, _i6.UsageType> usageType(
-    _i6.UsageType value,
-  ) => _i1.ColumnValue(
-    table.usageType,
-    value,
-  );
+  _is.ColumnValue<_ivorkc39.UsageType, _ivorkc39.UsageType> usageType(
+    _ivorkc39.UsageType value,
+  ) => _is.ColumnValue(table.usageType, value);
 
-  _i1.ColumnValue<String, String> serialNumber(String value) => _i1.ColumnValue(
-    table.serialNumber,
-    value,
-  );
+  _is.ColumnValue<String, String> serialNumber(String value) =>
+      _is.ColumnValue(table.serialNumber, value);
 
-  _i1.ColumnValue<String, String> manufactureCountry(String value) =>
-      _i1.ColumnValue(
-        table.manufactureCountry,
-        value,
-      );
+  _is.ColumnValue<String, String> manufactureCountry(String value) =>
+      _is.ColumnValue(table.manufactureCountry, value);
 
-  _i1.ColumnValue<String, String> manufacturer(String value) => _i1.ColumnValue(
-    table.manufacturer,
-    value,
-  );
+  _is.ColumnValue<String, String> manufacturer(String value) =>
+      _is.ColumnValue(table.manufacturer, value);
 
-  _i1.ColumnValue<String, String> model(String value) => _i1.ColumnValue(
-    table.model,
-    value,
-  );
+  _is.ColumnValue<String, String> model(String value) =>
+      _is.ColumnValue(table.model, value);
 
-  _i1.ColumnValue<String, String> bolt(String? value) => _i1.ColumnValue(
-    table.bolt,
-    value,
-  );
+  _is.ColumnValue<String, String> bolt(String? value) =>
+      _is.ColumnValue(table.bolt, value);
 
-  _i1.ColumnValue<String, String> frame(String? value) => _i1.ColumnValue(
-    table.frame,
-    value,
-  );
+  _is.ColumnValue<String, String> frame(String? value) =>
+      _is.ColumnValue(table.frame, value);
 
-  _i1.ColumnValue<String, String> grip(String? value) => _i1.ColumnValue(
-    table.grip,
-    value,
-  );
+  _is.ColumnValue<String, String> grip(String? value) =>
+      _is.ColumnValue(table.grip, value);
 
-  _i1.ColumnValue<_i7.ConservationState, _i7.ConservationState>
-  conservationState(_i7.ConservationState value) => _i1.ColumnValue(
-    table.conservationState,
-    value,
-  );
+  _is.ColumnValue<_im6njl07.ConservationState, _im6njl07.ConservationState>
+  conservationState(_im6njl07.ConservationState value) =>
+      _is.ColumnValue(table.conservationState, value);
 
-  _i1.ColumnValue<String, String> caliber(String value) => _i1.ColumnValue(
-    table.caliber,
-    value,
-  );
+  _is.ColumnValue<String, String> caliber(String value) =>
+      _is.ColumnValue(table.caliber, value);
 
-  _i1.ColumnValue<int, int> barrelsCount(int? value) => _i1.ColumnValue(
-    table.barrelsCount,
-    value,
-  );
+  _is.ColumnValue<int, int> barrelsCount(int? value) =>
+      _is.ColumnValue(table.barrelsCount, value);
 
-  _i1.ColumnValue<String, String> barrelLength(String? value) =>
-      _i1.ColumnValue(
-        table.barrelLength,
-        value,
-      );
+  _is.ColumnValue<String, String> barrelLength(String? value) =>
+      _is.ColumnValue(table.barrelLength, value);
 
-  _i1.ColumnValue<String, String> soulType(String? value) => _i1.ColumnValue(
-    table.soulType,
-    value,
-  );
+  _is.ColumnValue<String, String> soulType(String? value) =>
+      _is.ColumnValue(table.soulType, value);
 
-  _i1.ColumnValue<String, String> sightType(String? value) => _i1.ColumnValue(
-    table.sightType,
-    value,
-  );
+  _is.ColumnValue<String, String> sightType(String? value) =>
+      _is.ColumnValue(table.sightType, value);
 
-  _i1.ColumnValue<int, int> riflingCount(int? value) => _i1.ColumnValue(
-    table.riflingCount,
-    value,
-  );
+  _is.ColumnValue<int, int> riflingCount(int? value) =>
+      _is.ColumnValue(table.riflingCount, value);
 
-  _i1.ColumnValue<String, String> riflingDirection(String? value) =>
-      _i1.ColumnValue(
-        table.riflingDirection,
-        value,
-      );
+  _is.ColumnValue<String, String> riflingDirection(String? value) =>
+      _is.ColumnValue(table.riflingDirection, value);
 
-  _i1.ColumnValue<int, int> magazineCapacity(int value) => _i1.ColumnValue(
-    table.magazineCapacity,
-    value,
-  );
+  _is.ColumnValue<int, int> magazineCapacity(int value) =>
+      _is.ColumnValue(table.magazineCapacity, value);
 
-  _i1.ColumnValue<int, int> magazineCount(int? value) => _i1.ColumnValue(
-    table.magazineCount,
-    value,
-  );
+  _is.ColumnValue<int, int> magazineCount(int? value) =>
+      _is.ColumnValue(table.magazineCount, value);
 
-  _i1.ColumnValue<String, String> dimensions(String? value) => _i1.ColumnValue(
-    table.dimensions,
-    value,
-  );
+  _is.ColumnValue<String, String> dimensions(String? value) =>
+      _is.ColumnValue(table.dimensions, value);
 
-  _i1.ColumnValue<double, double> weight(double? value) => _i1.ColumnValue(
-    table.weight,
-    value,
-  );
+  _is.ColumnValue<double, double> weight(double? value) =>
+      _is.ColumnValue(table.weight, value);
 
-  _i1.ColumnValue<DateTime, DateTime> acquisitionDate(DateTime? value) =>
-      _i1.ColumnValue(
-        table.acquisitionDate,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> acquisitionDate(DateTime? value) =>
+      _is.ColumnValue(table.acquisitionDate, value);
 
-  _i1.ColumnValue<double, double> purchasePrice(double? value) =>
-      _i1.ColumnValue(
-        table.purchasePrice,
-        value,
-      );
+  _is.ColumnValue<double, double> purchasePrice(double? value) =>
+      _is.ColumnValue(table.purchasePrice, value);
 
-  _i1.ColumnValue<DateTime, DateTime> saleDate(DateTime? value) =>
-      _i1.ColumnValue(
-        table.saleDate,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> saleDate(DateTime? value) =>
+      _is.ColumnValue(table.saleDate, value);
 
-  _i1.ColumnValue<double, double> salePrice(double? value) => _i1.ColumnValue(
-    table.salePrice,
-    value,
-  );
+  _is.ColumnValue<double, double> salePrice(double? value) =>
+      _is.ColumnValue(table.salePrice, value);
 
-  _i1.ColumnValue<String, String> buyerData(String? value) => _i1.ColumnValue(
-    table.buyerData,
-    value,
-  );
+  _is.ColumnValue<String, String> buyerData(String? value) =>
+      _is.ColumnValue(table.buyerData, value);
 
-  _i1.ColumnValue<String, String> customizations(String? value) =>
-      _i1.ColumnValue(
-        table.customizations,
-        value,
-      );
+  _is.ColumnValue<String, String> customizations(String? value) =>
+      _is.ColumnValue(table.customizations, value);
 
-  _i1.ColumnValue<List<String>, List<String>> images(List<String>? value) =>
-      _i1.ColumnValue(
-        table.images,
-        value,
-      );
+  _is.ColumnValue<List<String>, List<String>> images(List<String>? value) =>
+      _is.ColumnValue(table.images, value);
 
-  _i1.ColumnValue<String, String> cleaningHistory(String? value) =>
-      _i1.ColumnValue(
-        table.cleaningHistory,
-        value,
-      );
+  _is.ColumnValue<String, String> cleaningHistory(String? value) =>
+      _is.ColumnValue(table.cleaningHistory, value);
 
-  _i1.ColumnValue<String, String> maintenanceHistory(String? value) =>
-      _i1.ColumnValue(
-        table.maintenanceHistory,
-        value,
-      );
+  _is.ColumnValue<String, String> maintenanceHistory(String? value) =>
+      _is.ColumnValue(table.maintenanceHistory, value);
 
-  _i1.ColumnValue<int, int> totalShots(int? value) => _i1.ColumnValue(
-    table.totalShots,
-    value,
-  );
+  _is.ColumnValue<int, int> totalShots(int? value) =>
+      _is.ColumnValue(table.totalShots, value);
 }
 
-class FirearmTable extends _i1.Table<_i1.UuidValue> {
+class FirearmTable extends _is.Table<_is.UuidValue> {
   FirearmTable({super.tableRelation}) : super(tableName: 'firearms') {
     updateTable = FirearmUpdateTable(this);
-    userId = _i1.ColumnUuid(
-      'userId',
-      this,
-    );
-    purpose = _i1.ColumnEnum(
-      'purpose',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    type = _i1.ColumnEnum(
-      'type',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    action = _i1.ColumnEnum(
-      'action',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    usageType = _i1.ColumnEnum(
-      'usageType',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    serialNumber = _i1.ColumnString(
-      'serialNumber',
-      this,
-    );
-    manufactureCountry = _i1.ColumnString(
-      'manufactureCountry',
-      this,
-    );
-    manufacturer = _i1.ColumnString(
-      'manufacturer',
-      this,
-    );
-    model = _i1.ColumnString(
-      'model',
-      this,
-    );
-    bolt = _i1.ColumnString(
-      'bolt',
-      this,
-    );
-    frame = _i1.ColumnString(
-      'frame',
-      this,
-    );
-    grip = _i1.ColumnString(
-      'grip',
-      this,
-    );
-    conservationState = _i1.ColumnEnum(
+    userId = _is.ColumnUuid('userId', this);
+    purpose = _is.ColumnEnum('purpose', this, _is.EnumSerialization.byName);
+    type = _is.ColumnEnum('type', this, _is.EnumSerialization.byName);
+    action = _is.ColumnEnum('action', this, _is.EnumSerialization.byName);
+    usageType = _is.ColumnEnum('usageType', this, _is.EnumSerialization.byName);
+    serialNumber = _is.ColumnString('serialNumber', this);
+    manufactureCountry = _is.ColumnString('manufactureCountry', this);
+    manufacturer = _is.ColumnString('manufacturer', this);
+    model = _is.ColumnString('model', this);
+    bolt = _is.ColumnString('bolt', this);
+    frame = _is.ColumnString('frame', this);
+    grip = _is.ColumnString('grip', this);
+    conservationState = _is.ColumnEnum(
       'conservationState',
       this,
-      _i1.EnumSerialization.byName,
+      _is.EnumSerialization.byName,
     );
-    caliber = _i1.ColumnString(
-      'caliber',
-      this,
-    );
-    barrelsCount = _i1.ColumnInt(
-      'barrelsCount',
-      this,
-    );
-    barrelLength = _i1.ColumnString(
-      'barrelLength',
-      this,
-    );
-    soulType = _i1.ColumnString(
-      'soulType',
-      this,
-    );
-    sightType = _i1.ColumnString(
-      'sightType',
-      this,
-    );
-    riflingCount = _i1.ColumnInt(
-      'riflingCount',
-      this,
-    );
-    riflingDirection = _i1.ColumnString(
-      'riflingDirection',
-      this,
-    );
-    magazineCapacity = _i1.ColumnInt(
-      'magazineCapacity',
-      this,
-    );
-    magazineCount = _i1.ColumnInt(
-      'magazineCount',
-      this,
-    );
-    dimensions = _i1.ColumnString(
-      'dimensions',
-      this,
-    );
-    weight = _i1.ColumnDouble(
-      'weight',
-      this,
-    );
-    acquisitionDate = _i1.ColumnDateTime(
-      'acquisitionDate',
-      this,
-    );
-    purchasePrice = _i1.ColumnDouble(
-      'purchasePrice',
-      this,
-    );
-    saleDate = _i1.ColumnDateTime(
-      'saleDate',
-      this,
-    );
-    salePrice = _i1.ColumnDouble(
-      'salePrice',
-      this,
-    );
-    buyerData = _i1.ColumnString(
-      'buyerData',
-      this,
-    );
-    customizations = _i1.ColumnString(
-      'customizations',
-      this,
-    );
-    images = _i1.ColumnSerializable<List<String>>(
-      'images',
-      this,
-    );
-    cleaningHistory = _i1.ColumnString(
-      'cleaningHistory',
-      this,
-    );
-    maintenanceHistory = _i1.ColumnString(
-      'maintenanceHistory',
-      this,
-    );
-    totalShots = _i1.ColumnInt(
-      'totalShots',
-      this,
-    );
+    caliber = _is.ColumnString('caliber', this);
+    barrelsCount = _is.ColumnInt('barrelsCount', this);
+    barrelLength = _is.ColumnString('barrelLength', this);
+    soulType = _is.ColumnString('soulType', this);
+    sightType = _is.ColumnString('sightType', this);
+    riflingCount = _is.ColumnInt('riflingCount', this);
+    riflingDirection = _is.ColumnString('riflingDirection', this);
+    magazineCapacity = _is.ColumnInt('magazineCapacity', this);
+    magazineCount = _is.ColumnInt('magazineCount', this);
+    dimensions = _is.ColumnString('dimensions', this);
+    weight = _is.ColumnDouble('weight', this);
+    acquisitionDate = _is.ColumnDateTime('acquisitionDate', this);
+    purchasePrice = _is.ColumnDouble('purchasePrice', this);
+    saleDate = _is.ColumnDateTime('saleDate', this);
+    salePrice = _is.ColumnDouble('salePrice', this);
+    buyerData = _is.ColumnString('buyerData', this);
+    customizations = _is.ColumnString('customizations', this);
+    images = _is.ColumnSerializable<List<String>>('images', this);
+    cleaningHistory = _is.ColumnString('cleaningHistory', this);
+    maintenanceHistory = _is.ColumnString('maintenanceHistory', this);
+    totalShots = _is.ColumnInt('totalShots', this);
   }
 
   late final FirearmUpdateTable updateTable;
 
-  late final _i1.ColumnUuid userId;
+  late final _is.ColumnUuid userId;
 
-  _i2.UserProfileTable? _user;
+  _izifjpv2.UserProfileTable? _user;
 
-  late final _i1.ColumnEnum<_i3.FirearmPurpose> purpose;
+  late final _is.ColumnEnum<_ie635x89.FirearmPurpose> purpose;
 
-  late final _i1.ColumnEnum<_i4.FirearmType> type;
+  late final _is.ColumnEnum<_i5vdw3jb.FirearmType> type;
 
-  late final _i1.ColumnEnum<_i5.FirearmAction> action;
+  late final _is.ColumnEnum<_id0m3mr4.FirearmAction> action;
 
-  late final _i1.ColumnEnum<_i6.UsageType> usageType;
+  late final _is.ColumnEnum<_ivorkc39.UsageType> usageType;
 
-  late final _i1.ColumnString serialNumber;
+  late final _is.ColumnString serialNumber;
 
-  late final _i1.ColumnString manufactureCountry;
+  late final _is.ColumnString manufactureCountry;
 
-  late final _i1.ColumnString manufacturer;
+  late final _is.ColumnString manufacturer;
 
-  late final _i1.ColumnString model;
+  late final _is.ColumnString model;
 
-  late final _i1.ColumnString bolt;
+  late final _is.ColumnString bolt;
 
-  late final _i1.ColumnString frame;
+  late final _is.ColumnString frame;
 
-  late final _i1.ColumnString grip;
+  late final _is.ColumnString grip;
 
-  late final _i1.ColumnEnum<_i7.ConservationState> conservationState;
+  late final _is.ColumnEnum<_im6njl07.ConservationState> conservationState;
 
-  late final _i1.ColumnString caliber;
+  late final _is.ColumnString caliber;
 
-  late final _i1.ColumnInt barrelsCount;
+  late final _is.ColumnInt barrelsCount;
 
-  late final _i1.ColumnString barrelLength;
+  late final _is.ColumnString barrelLength;
 
-  late final _i1.ColumnString soulType;
+  late final _is.ColumnString soulType;
 
-  late final _i1.ColumnString sightType;
+  late final _is.ColumnString sightType;
 
-  late final _i1.ColumnInt riflingCount;
+  late final _is.ColumnInt riflingCount;
 
-  late final _i1.ColumnString riflingDirection;
+  late final _is.ColumnString riflingDirection;
 
-  late final _i1.ColumnInt magazineCapacity;
+  late final _is.ColumnInt magazineCapacity;
 
-  late final _i1.ColumnInt magazineCount;
+  late final _is.ColumnInt magazineCount;
 
-  late final _i1.ColumnString dimensions;
+  late final _is.ColumnString dimensions;
 
-  late final _i1.ColumnDouble weight;
+  late final _is.ColumnDouble weight;
 
-  late final _i1.ColumnDateTime acquisitionDate;
+  late final _is.ColumnDateTime acquisitionDate;
 
-  late final _i1.ColumnDouble purchasePrice;
+  late final _is.ColumnDouble purchasePrice;
 
-  late final _i1.ColumnDateTime saleDate;
+  late final _is.ColumnDateTime saleDate;
 
-  late final _i1.ColumnDouble salePrice;
+  late final _is.ColumnDouble salePrice;
 
-  late final _i1.ColumnString buyerData;
+  late final _is.ColumnString buyerData;
 
-  late final _i1.ColumnString customizations;
+  late final _is.ColumnString customizations;
 
-  late final _i1.ColumnSerializable<List<String>> images;
+  late final _is.ColumnSerializable<List<String>> images;
 
-  late final _i1.ColumnString cleaningHistory;
+  late final _is.ColumnString cleaningHistory;
 
-  late final _i1.ColumnString maintenanceHistory;
+  late final _is.ColumnString maintenanceHistory;
 
-  late final _i1.ColumnInt totalShots;
+  late final _is.ColumnInt totalShots;
 
-  _i2.UserProfileTable get user {
+  _izifjpv2.UserProfileTable get user {
     if (_user != null) return _user!;
-    _user = _i1.createRelationTable(
+    _user = _is.createRelationTable(
       relationFieldName: 'user',
       field: Firearm.t.userId,
-      foreignField: _i2.UserProfile.t.id,
+      foreignField: _izifjpv2.UserProfile.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.UserProfileTable(tableRelation: foreignTableRelation),
+          _izifjpv2.UserProfileTable(tableRelation: foreignTableRelation),
     );
     return _user!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     userId,
     purpose,
@@ -1045,7 +859,7 @@ class FirearmTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'user') {
       return user;
     }
@@ -1053,27 +867,26 @@ class FirearmTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class FirearmInclude extends _i1.IncludeObject {
-  FirearmInclude._({_i2.UserProfileInclude? user}) {
+class FirearmInclude extends _is.IncludeObject {
+  FirearmInclude._({_izifjpv2.UserProfileInclude? user}) {
     _user = user;
   }
 
-  _i2.UserProfileInclude? _user;
+  _izifjpv2.UserProfileInclude? _user;
 
   @override
-  Map<String, _i1.Include?> get includes => {'user': _user};
+  Map<String, _is.Include?> get includes => {'user': _user};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => Firearm.t;
+  _is.Table<_is.UuidValue> get table => Firearm.t;
 }
 
-class FirearmIncludeList extends _i1.IncludeList {
+class FirearmIncludeList extends _is.IncludeList {
   FirearmIncludeList._({
-    _i1.WhereExpressionBuilder<FirearmTable>? where,
+    _is.WhereExpressionBuilder<FirearmTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -1081,10 +894,10 @@ class FirearmIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => Firearm.t;
+  _is.Table<_is.UuidValue> get table => Firearm.t;
 }
 
 class FirearmRepository {
@@ -1117,23 +930,21 @@ class FirearmRepository {
   /// );
   /// ```
   Future<List<Firearm>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<FirearmTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<FirearmTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<FirearmTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<FirearmTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<FirearmTable>? orderBy,
+    _is.OrderByListBuilder<FirearmTable>? orderByList,
+    _is.Transaction? transaction,
     FirearmInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<Firearm>(
       where: where?.call(Firearm.t),
       orderBy: orderBy?.call(Firearm.t),
       orderByList: orderByList?.call(Firearm.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -1161,22 +972,20 @@ class FirearmRepository {
   /// );
   /// ```
   Future<Firearm?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<FirearmTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<FirearmTable>? where,
     int? offset,
-    _i1.OrderByBuilder<FirearmTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<FirearmTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<FirearmTable>? orderBy,
+    _is.OrderByListBuilder<FirearmTable>? orderByList,
+    _is.Transaction? transaction,
     FirearmInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<Firearm>(
       where: where?.call(Firearm.t),
       orderBy: orderBy?.call(Firearm.t),
       orderByList: orderByList?.call(Firearm.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -1187,12 +996,12 @@ class FirearmRepository {
 
   /// Finds a single [Firearm] by its [id] or null if no such row exists.
   Future<Firearm?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     FirearmInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<Firearm>(
       id,
@@ -1213,16 +1022,22 @@ class FirearmRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Firearm>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Firearm> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<Firearm>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -1230,12 +1045,78 @@ class FirearmRepository {
   ///
   /// The returned [Firearm] will have its `id` field set.
   Future<Firearm> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Firearm row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.insertRow<Firearm>(
+    return session.db.insertRow<Firearm>(row, transaction: transaction);
+  }
+
+  /// Upserts all [Firearm]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [Firearm]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<Firearm>> upsert(
+    _is.DatabaseSession session,
+    List<Firearm> rows, {
+    required _is.ColumnSelections<FirearmTable> conflictColumns,
+    _is.ColumnSelections<FirearmTable>? updateColumns,
+    _is.WhereExpressionBuilder<FirearmTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<Firearm>(
+      rows,
+      conflictColumns: conflictColumns(Firearm.t),
+      updateColumns: updateColumns?.call(Firearm.t),
+      updateWhere: updateWhere?.call(Firearm.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [Firearm] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [Firearm] will have its `id` field set.
+  Future<Firearm?> upsertRow(
+    _is.DatabaseSession session,
+    Firearm row, {
+    required _is.ColumnSelections<FirearmTable> conflictColumns,
+    _is.ColumnSelections<FirearmTable>? updateColumns,
+    _is.WhereExpressionBuilder<FirearmTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<Firearm>(
       row,
+      conflictColumns: conflictColumns(Firearm.t),
+      updateColumns: updateColumns?.call(Firearm.t),
+      updateWhere: updateWhere?.call(Firearm.t),
       transaction: transaction,
     );
   }
@@ -1245,16 +1126,22 @@ class FirearmRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Firearm>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Firearm> rows, {
-    _i1.ColumnSelections<FirearmTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<FirearmTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<Firearm>(
       rows,
       columns: columns?.call(Firearm.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -1262,10 +1149,10 @@ class FirearmRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Firearm> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Firearm row, {
-    _i1.ColumnSelections<FirearmTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<FirearmTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<Firearm>(
       row,
@@ -1277,10 +1164,10 @@ class FirearmRepository {
   /// Updates a single [Firearm] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Firearm?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<FirearmUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<FirearmUpdateTable> columnValues,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<Firearm>(
       id,
@@ -1291,16 +1178,20 @@ class FirearmRepository {
 
   /// Updates all [Firearm]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Firearm>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<FirearmUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<FirearmTable> where,
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<FirearmUpdateTable> columnValues,
+    required _is.WhereExpressionBuilder<FirearmTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<FirearmTable>? orderBy,
-    _i1.OrderByListBuilder<FirearmTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<FirearmTable>? orderBy,
+    _is.OrderByListBuilder<FirearmTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<Firearm>(
       columnValues: columnValues(Firearm.t.updateTable),
@@ -1309,56 +1200,80 @@ class FirearmRepository {
       offset: offset,
       orderBy: orderBy?.call(Firearm.t),
       orderByList: orderByList?.call(Firearm.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [Firearm]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Firearm>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Firearm> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<FirearmTable>? orderBy,
+    _is.OrderByListBuilder<FirearmTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<Firearm>(
       rows,
+      orderBy: orderBy?.call(Firearm.t),
+      orderByList: orderByList?.call(Firearm.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [Firearm].
   Future<Firearm> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Firearm row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<Firearm>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<Firearm>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Firearm>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<FirearmTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<FirearmTable> where,
+    _is.OrderByBuilder<FirearmTable>? orderBy,
+    _is.OrderByListBuilder<FirearmTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<Firearm>(
       where: where(Firearm.t),
+      orderBy: orderBy?.call(Firearm.t),
+      orderByList: orderByList?.call(Firearm.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<FirearmTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<FirearmTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<Firearm>(
       where: where?.call(Firearm.t),
@@ -1369,11 +1284,11 @@ class FirearmRepository {
 
   /// Acquires row-level locks on [Firearm] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<FirearmTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<FirearmTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<Firearm>(
       where: where(Firearm.t),
@@ -1390,10 +1305,10 @@ class FirearmAttachRowRepository {
   /// Creates a relation between the given [Firearm] and [UserProfile]
   /// by setting the [Firearm]'s foreign key `userId` to refer to the [UserProfile].
   Future<void> user(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Firearm firearm,
-    _i2.UserProfile user, {
-    _i1.Transaction? transaction,
+    _izifjpv2.UserProfile user, {
+    _is.Transaction? transaction,
   }) async {
     if (firearm.id == null) {
       throw ArgumentError.notNull('firearm.id');
@@ -1420,9 +1335,9 @@ class FirearmDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> user(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Firearm firearm, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (firearm.id == null) {
       throw ArgumentError.notNull('firearm.id');

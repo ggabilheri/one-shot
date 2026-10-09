@@ -10,16 +10,17 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../enums/plan_type.enum.dart' as _i2;
-import '../enums/plan_periodicity.enum.dart' as _i3;
-import '../enums/plan_status.enum.dart' as _i4;
-import '../company/company.dart' as _i5;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i6;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../company/company.dart' as _iocy1ifk;
+import '../enums/plan_periodicity.enum.dart' as _i183hlh8;
+import '../enums/plan_status.enum.dart' as _i2ytazif;
+import '../enums/plan_type.enum.dart' as _izm4hmla;
 
-abstract class SubscriptionPlan implements _i1.SerializableModel {
+abstract class SubscriptionPlan
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   SubscriptionPlan._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.name,
     required this.planType,
     required this.unitValue,
@@ -29,54 +30,58 @@ abstract class SubscriptionPlan implements _i1.SerializableModel {
     required this.status,
     this.companyId,
     this.company,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory SubscriptionPlan({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String name,
-    required _i2.PlanType planType,
+    required _izm4hmla.PlanType planType,
     required double unitValue,
     required int quantity,
     required double totalValue,
-    required _i3.PlanPeriodicity periodicity,
-    required _i4.PlanStatus status,
-    _i1.UuidValue? companyId,
-    _i5.Company? company,
+    required _i183hlh8.PlanPeriodicity periodicity,
+    required _i2ytazif.PlanStatus status,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   }) = _SubscriptionPlanImpl;
 
   factory SubscriptionPlan.fromJson(Map<String, dynamic> jsonSerialization) {
     return SubscriptionPlan(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       name: jsonSerialization['name'] as String,
-      planType: _i2.PlanType.fromJson(
+      planType: _izm4hmla.PlanType.fromJson(
         (jsonSerialization['planType'] as String),
       ),
       unitValue: (jsonSerialization['unitValue'] as num).toDouble(),
       quantity: jsonSerialization['quantity'] as int,
       totalValue: (jsonSerialization['totalValue'] as num).toDouble(),
-      periodicity: _i3.PlanPeriodicity.fromJson(
+      periodicity: _i183hlh8.PlanPeriodicity.fromJson(
         (jsonSerialization['periodicity'] as String),
       ),
-      status: _i4.PlanStatus.fromJson((jsonSerialization['status'] as String)),
+      status: _i2ytazif.PlanStatus.fromJson(
+        (jsonSerialization['status'] as String),
+      ),
       companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['companyId'],
+            ),
       company: jsonSerialization['company'] == null
           ? null
-          : _i6.Protocol().deserialize<_i5.Company>(
+          : _itys55mc.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['company'],
             ),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   String name;
 
-  _i2.PlanType planType;
+  _izm4hmla.PlanType planType;
 
   double unitValue;
 
@@ -84,28 +89,28 @@ abstract class SubscriptionPlan implements _i1.SerializableModel {
 
   double totalValue;
 
-  _i3.PlanPeriodicity periodicity;
+  _i183hlh8.PlanPeriodicity periodicity;
 
-  _i4.PlanStatus status;
+  _i2ytazif.PlanStatus status;
 
-  _i1.UuidValue? companyId;
+  _isc.UuidValue? companyId;
 
-  _i5.Company? company;
+  _iocy1ifk.Company? company;
 
   /// Returns a shallow copy of this [SubscriptionPlan]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   SubscriptionPlan copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? name,
-    _i2.PlanType? planType,
+    _izm4hmla.PlanType? planType,
     double? unitValue,
     int? quantity,
     double? totalValue,
-    _i3.PlanPeriodicity? periodicity,
-    _i4.PlanStatus? status,
-    _i1.UuidValue? companyId,
-    _i5.Company? company,
+    _i183hlh8.PlanPeriodicity? periodicity,
+    _i2ytazif.PlanStatus? status,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -125,8 +130,25 @@ abstract class SubscriptionPlan implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'SubscriptionPlan',
+      'id': id.toJson(),
+      'name': name,
+      'planType': planType.toJson(),
+      'unitValue': unitValue,
+      'quantity': quantity,
+      'totalValue': totalValue,
+      'periodicity': periodicity.toJson(),
+      'status': status.toJson(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJsonForProtocol(),
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -134,16 +156,16 @@ class _Undefined {}
 
 class _SubscriptionPlanImpl extends SubscriptionPlan {
   _SubscriptionPlanImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String name,
-    required _i2.PlanType planType,
+    required _izm4hmla.PlanType planType,
     required double unitValue,
     required int quantity,
     required double totalValue,
-    required _i3.PlanPeriodicity periodicity,
-    required _i4.PlanStatus status,
-    _i1.UuidValue? companyId,
-    _i5.Company? company,
+    required _i183hlh8.PlanPeriodicity periodicity,
+    required _i2ytazif.PlanStatus status,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   }) : super._(
          id: id,
          name: name,
@@ -159,17 +181,17 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
 
   /// Returns a shallow copy of this [SubscriptionPlan]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   SubscriptionPlan copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? name,
-    _i2.PlanType? planType,
+    _izm4hmla.PlanType? planType,
     double? unitValue,
     int? quantity,
     double? totalValue,
-    _i3.PlanPeriodicity? periodicity,
-    _i4.PlanStatus? status,
+    _i183hlh8.PlanPeriodicity? periodicity,
+    _i2ytazif.PlanStatus? status,
     Object? companyId = _Undefined,
     Object? company = _Undefined,
   }) {
@@ -182,8 +204,10 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
       totalValue: totalValue ?? this.totalValue,
       periodicity: periodicity ?? this.periodicity,
       status: status ?? this.status,
-      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
-      company: company is _i5.Company? ? company : this.company?.copyWith(),
+      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
+      company: company is _iocy1ifk.Company?
+          ? company
+          : this.company?.copyWith(),
     );
   }
 }

@@ -107,7 +107,7 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
         borderColor: _type == FinancialEntryType.payable
             ? Colors.orange
             : Colors.blue,
-        child: Container(
+        child: SizedBox(
           width: 500,
           child: Form(
             key: _formKey,
@@ -154,7 +154,7 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
                                   color: DSTokens.outlineVariant,
                                   width: 2,
                                 ),
-                                color: Colors.black.withOpacity(0.1),
+                                color: Colors.black.withValues(alpha: 0.1),
                               ),
                               child: Row(
                                 mainAxisAlignment:
@@ -264,7 +264,7 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
           style: DSTokens.body,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.black.withOpacity(0.1),
+            fillColor: Colors.black.withValues(alpha: 0.1),
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(
                 color: DSTokens.outlineVariant,
@@ -297,7 +297,7 @@ class _FinancialEntryFormDialogState extends State<FinancialEntryFormDialog> {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             border: Border.all(color: DSTokens.outlineVariant, width: 2),
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
           ),
           child: DropdownButtonHideUnderline(
             child: DropdownButton<T>(

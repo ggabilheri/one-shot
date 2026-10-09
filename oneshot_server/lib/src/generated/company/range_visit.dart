@@ -8,19 +8,19 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import '../common/user_profile.dart' as _i2;
-import '../company/company.dart' as _i3;
-import '../shooter/firearm.dart' as _i4;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i5;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import '../common/user_profile.dart' as _izifjpv2;
+import '../company/company.dart' as _iocy1ifk;
+import '../shooter/firearm.dart' as _i25s0fp9;
 
 abstract class RangeVisit
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   RangeVisit._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     this.userId,
     this.user,
     this.companyId,
@@ -32,18 +32,18 @@ abstract class RangeVisit
     int? shotsFired,
     this.notes,
     bool? habitualityReportGenerated,
-  }) : id = id ?? const _i1.Uuid().v4obj(),
+  }) : id = id ?? const _is.Uuid().v4obj(),
        shotsFired = shotsFired ?? 0,
        habitualityReportGenerated = habitualityReportGenerated ?? false;
 
   factory RangeVisit({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    _i1.UuidValue? companyId,
-    _i3.Company? company,
-    _i1.UuidValue? firearmId,
-    _i4.Firearm? firearm,
+    _is.UuidValue? id,
+    _is.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
+    _is.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
     required DateTime checkIn,
     DateTime? checkOut,
     int? shotsFired,
@@ -55,41 +55,41 @@ abstract class RangeVisit
     return RangeVisit(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userId: jsonSerialization['userId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       user: jsonSerialization['user'] == null
           ? null
-          : _i5.Protocol().deserialize<_i2.UserProfile>(
+          : _iwflrbqm.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['user'],
             ),
       companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
       company: jsonSerialization['company'] == null
           ? null
-          : _i5.Protocol().deserialize<_i3.Company>(
+          : _iwflrbqm.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['company'],
             ),
       firearmId: jsonSerialization['firearmId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.Firearm>(
+          : _iwflrbqm.Protocol().deserialize<_i25s0fp9.Firearm>(
               jsonSerialization['firearm'],
             ),
-      checkIn: _i1.DateTimeJsonExtension.fromJson(jsonSerialization['checkIn']),
+      checkIn: _is.DateTimeJsonExtension.fromJson(jsonSerialization['checkIn']),
       checkOut: jsonSerialization['checkOut'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(jsonSerialization['checkOut']),
+          : _is.DateTimeJsonExtension.fromJson(jsonSerialization['checkOut']),
       shotsFired: jsonSerialization['shotsFired'] as int?,
       notes: jsonSerialization['notes'] as String?,
       habitualityReportGenerated:
           jsonSerialization['habitualityReportGenerated'] == null
           ? null
-          : _i1.BoolJsonExtension.fromJson(
+          : _is.BoolJsonExtension.fromJson(
               jsonSerialization['habitualityReportGenerated'],
             ),
     );
@@ -100,19 +100,19 @@ abstract class RangeVisit
   static const db = RangeVisitRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
-  _i1.UuidValue? userId;
+  _is.UuidValue? userId;
 
-  _i2.UserProfile? user;
+  _izifjpv2.UserProfile? user;
 
-  _i1.UuidValue? companyId;
+  _is.UuidValue? companyId;
 
-  _i3.Company? company;
+  _iocy1ifk.Company? company;
 
-  _i1.UuidValue? firearmId;
+  _is.UuidValue? firearmId;
 
-  _i4.Firearm? firearm;
+  _i25s0fp9.Firearm? firearm;
 
   DateTime checkIn;
 
@@ -125,19 +125,19 @@ abstract class RangeVisit
   bool habitualityReportGenerated;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [RangeVisit]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   RangeVisit copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    _i1.UuidValue? companyId,
-    _i3.Company? company,
-    _i1.UuidValue? firearmId,
-    _i4.Firearm? firearm,
+    _is.UuidValue? id,
+    _is.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
+    _is.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
     DateTime? checkIn,
     DateTime? checkOut,
     int? shotsFired,
@@ -183,24 +183,19 @@ abstract class RangeVisit
   }
 
   static RangeVisitInclude include({
-    _i2.UserProfileInclude? user,
-    _i3.CompanyInclude? company,
-    _i4.FirearmInclude? firearm,
+    _izifjpv2.UserProfileInclude? user,
+    _iocy1ifk.CompanyInclude? company,
+    _i25s0fp9.FirearmInclude? firearm,
   }) {
-    return RangeVisitInclude._(
-      user: user,
-      company: company,
-      firearm: firearm,
-    );
+    return RangeVisitInclude._(user: user, company: company, firearm: firearm);
   }
 
   static RangeVisitIncludeList includeList({
-    _i1.WhereExpressionBuilder<RangeVisitTable>? where,
+    _is.WhereExpressionBuilder<RangeVisitTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<RangeVisitTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<RangeVisitTable>? orderByList,
+    _is.OrderByBuilder<RangeVisitTable>? orderBy,
+    _is.OrderByListBuilder<RangeVisitTable>? orderByList,
     RangeVisitInclude? include,
   }) {
     return RangeVisitIncludeList._(
@@ -208,7 +203,6 @@ abstract class RangeVisit
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(RangeVisit.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(RangeVisit.t),
       include: include,
     );
@@ -216,7 +210,7 @@ abstract class RangeVisit
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -224,13 +218,13 @@ class _Undefined {}
 
 class _RangeVisitImpl extends RangeVisit {
   _RangeVisitImpl({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    _i1.UuidValue? companyId,
-    _i3.Company? company,
-    _i1.UuidValue? firearmId,
-    _i4.Firearm? firearm,
+    _is.UuidValue? id,
+    _is.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
+    _is.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
     required DateTime checkIn,
     DateTime? checkOut,
     int? shotsFired,
@@ -253,10 +247,10 @@ class _RangeVisitImpl extends RangeVisit {
 
   /// Returns a shallow copy of this [RangeVisit]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   RangeVisit copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     Object? userId = _Undefined,
     Object? user = _Undefined,
     Object? companyId = _Undefined,
@@ -271,12 +265,16 @@ class _RangeVisitImpl extends RangeVisit {
   }) {
     return RangeVisit(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
-      user: user is _i2.UserProfile? ? user : this.user?.copyWith(),
-      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
-      company: company is _i3.Company? ? company : this.company?.copyWith(),
-      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i4.Firearm? ? firearm : this.firearm?.copyWith(),
+      userId: userId is _is.UuidValue? ? userId : this.userId,
+      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
+      companyId: companyId is _is.UuidValue? ? companyId : this.companyId,
+      company: company is _iocy1ifk.Company?
+          ? company
+          : this.company?.copyWith(),
+      firearmId: firearmId is _is.UuidValue? ? firearmId : this.firearmId,
+      firearm: firearm is _i25s0fp9.Firearm?
+          ? firearm
+          : this.firearm?.copyWith(),
       checkIn: checkIn ?? this.checkIn,
       checkOut: checkOut is DateTime? ? checkOut : this.checkOut,
       shotsFired: shotsFired ?? this.shotsFired,
@@ -287,91 +285,47 @@ class _RangeVisitImpl extends RangeVisit {
   }
 }
 
-class RangeVisitUpdateTable extends _i1.UpdateTable<RangeVisitTable> {
+class RangeVisitUpdateTable extends _is.UpdateTable<RangeVisitTable> {
   RangeVisitUpdateTable(super.table);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.userId,
-        value,
-      );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> userId(_is.UuidValue? value) =>
+      _is.ColumnValue(table.userId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> companyId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.companyId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> companyId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.companyId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.firearmId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> firearmId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.firearmId, value);
 
-  _i1.ColumnValue<DateTime, DateTime> checkIn(DateTime value) =>
-      _i1.ColumnValue(
-        table.checkIn,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> checkIn(DateTime value) =>
+      _is.ColumnValue(table.checkIn, value);
 
-  _i1.ColumnValue<DateTime, DateTime> checkOut(DateTime? value) =>
-      _i1.ColumnValue(
-        table.checkOut,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> checkOut(DateTime? value) =>
+      _is.ColumnValue(table.checkOut, value);
 
-  _i1.ColumnValue<int, int> shotsFired(int value) => _i1.ColumnValue(
-    table.shotsFired,
-    value,
-  );
+  _is.ColumnValue<int, int> shotsFired(int value) =>
+      _is.ColumnValue(table.shotsFired, value);
 
-  _i1.ColumnValue<String, String> notes(String? value) => _i1.ColumnValue(
-    table.notes,
-    value,
-  );
+  _is.ColumnValue<String, String> notes(String? value) =>
+      _is.ColumnValue(table.notes, value);
 
-  _i1.ColumnValue<bool, bool> habitualityReportGenerated(bool value) =>
-      _i1.ColumnValue(
-        table.habitualityReportGenerated,
-        value,
-      );
+  _is.ColumnValue<bool, bool> habitualityReportGenerated(bool value) =>
+      _is.ColumnValue(table.habitualityReportGenerated, value);
 }
 
-class RangeVisitTable extends _i1.Table<_i1.UuidValue> {
+class RangeVisitTable extends _is.Table<_is.UuidValue> {
   RangeVisitTable({super.tableRelation}) : super(tableName: 'range_visits') {
     updateTable = RangeVisitUpdateTable(this);
-    userId = _i1.ColumnUuid(
-      'userId',
-      this,
-    );
-    companyId = _i1.ColumnUuid(
-      'companyId',
-      this,
-    );
-    firearmId = _i1.ColumnUuid(
-      'firearmId',
-      this,
-    );
-    checkIn = _i1.ColumnDateTime(
-      'checkIn',
-      this,
-    );
-    checkOut = _i1.ColumnDateTime(
-      'checkOut',
-      this,
-    );
-    shotsFired = _i1.ColumnInt(
-      'shotsFired',
-      this,
-      hasDefault: true,
-    );
-    notes = _i1.ColumnString(
-      'notes',
-      this,
-    );
-    habitualityReportGenerated = _i1.ColumnBool(
+    userId = _is.ColumnUuid('userId', this);
+    companyId = _is.ColumnUuid('companyId', this);
+    firearmId = _is.ColumnUuid('firearmId', this);
+    checkIn = _is.ColumnDateTime('checkIn', this);
+    checkOut = _is.ColumnDateTime('checkOut', this);
+    shotsFired = _is.ColumnInt('shotsFired', this, hasDefault: true);
+    notes = _is.ColumnString('notes', this);
+    habitualityReportGenerated = _is.ColumnBool(
       'habitualityReportGenerated',
       this,
       hasDefault: true,
@@ -380,69 +334,69 @@ class RangeVisitTable extends _i1.Table<_i1.UuidValue> {
 
   late final RangeVisitUpdateTable updateTable;
 
-  late final _i1.ColumnUuid userId;
+  late final _is.ColumnUuid userId;
 
-  _i2.UserProfileTable? _user;
+  _izifjpv2.UserProfileTable? _user;
 
-  late final _i1.ColumnUuid companyId;
+  late final _is.ColumnUuid companyId;
 
-  _i3.CompanyTable? _company;
+  _iocy1ifk.CompanyTable? _company;
 
-  late final _i1.ColumnUuid firearmId;
+  late final _is.ColumnUuid firearmId;
 
-  _i4.FirearmTable? _firearm;
+  _i25s0fp9.FirearmTable? _firearm;
 
-  late final _i1.ColumnDateTime checkIn;
+  late final _is.ColumnDateTime checkIn;
 
-  late final _i1.ColumnDateTime checkOut;
+  late final _is.ColumnDateTime checkOut;
 
-  late final _i1.ColumnInt shotsFired;
+  late final _is.ColumnInt shotsFired;
 
-  late final _i1.ColumnString notes;
+  late final _is.ColumnString notes;
 
-  late final _i1.ColumnBool habitualityReportGenerated;
+  late final _is.ColumnBool habitualityReportGenerated;
 
-  _i2.UserProfileTable get user {
+  _izifjpv2.UserProfileTable get user {
     if (_user != null) return _user!;
-    _user = _i1.createRelationTable(
+    _user = _is.createRelationTable(
       relationFieldName: 'user',
       field: RangeVisit.t.userId,
-      foreignField: _i2.UserProfile.t.id,
+      foreignField: _izifjpv2.UserProfile.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.UserProfileTable(tableRelation: foreignTableRelation),
+          _izifjpv2.UserProfileTable(tableRelation: foreignTableRelation),
     );
     return _user!;
   }
 
-  _i3.CompanyTable get company {
+  _iocy1ifk.CompanyTable get company {
     if (_company != null) return _company!;
-    _company = _i1.createRelationTable(
+    _company = _is.createRelationTable(
       relationFieldName: 'company',
       field: RangeVisit.t.companyId,
-      foreignField: _i3.Company.t.id,
+      foreignField: _iocy1ifk.Company.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i3.CompanyTable(tableRelation: foreignTableRelation),
+          _iocy1ifk.CompanyTable(tableRelation: foreignTableRelation),
     );
     return _company!;
   }
 
-  _i4.FirearmTable get firearm {
+  _i25s0fp9.FirearmTable get firearm {
     if (_firearm != null) return _firearm!;
-    _firearm = _i1.createRelationTable(
+    _firearm = _is.createRelationTable(
       relationFieldName: 'firearm',
       field: RangeVisit.t.firearmId,
-      foreignField: _i4.Firearm.t.id,
+      foreignField: _i25s0fp9.Firearm.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i4.FirearmTable(tableRelation: foreignTableRelation),
+          _i25s0fp9.FirearmTable(tableRelation: foreignTableRelation),
     );
     return _firearm!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     userId,
     companyId,
@@ -455,7 +409,7 @@ class RangeVisitTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'user') {
       return user;
     }
@@ -469,41 +423,40 @@ class RangeVisitTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class RangeVisitInclude extends _i1.IncludeObject {
+class RangeVisitInclude extends _is.IncludeObject {
   RangeVisitInclude._({
-    _i2.UserProfileInclude? user,
-    _i3.CompanyInclude? company,
-    _i4.FirearmInclude? firearm,
+    _izifjpv2.UserProfileInclude? user,
+    _iocy1ifk.CompanyInclude? company,
+    _i25s0fp9.FirearmInclude? firearm,
   }) {
     _user = user;
     _company = company;
     _firearm = firearm;
   }
 
-  _i2.UserProfileInclude? _user;
+  _izifjpv2.UserProfileInclude? _user;
 
-  _i3.CompanyInclude? _company;
+  _iocy1ifk.CompanyInclude? _company;
 
-  _i4.FirearmInclude? _firearm;
+  _i25s0fp9.FirearmInclude? _firearm;
 
   @override
-  Map<String, _i1.Include?> get includes => {
+  Map<String, _is.Include?> get includes => {
     'user': _user,
     'company': _company,
     'firearm': _firearm,
   };
 
   @override
-  _i1.Table<_i1.UuidValue> get table => RangeVisit.t;
+  _is.Table<_is.UuidValue> get table => RangeVisit.t;
 }
 
-class RangeVisitIncludeList extends _i1.IncludeList {
+class RangeVisitIncludeList extends _is.IncludeList {
   RangeVisitIncludeList._({
-    _i1.WhereExpressionBuilder<RangeVisitTable>? where,
+    _is.WhereExpressionBuilder<RangeVisitTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -511,10 +464,10 @@ class RangeVisitIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => RangeVisit.t;
+  _is.Table<_is.UuidValue> get table => RangeVisit.t;
 }
 
 class RangeVisitRepository {
@@ -547,23 +500,21 @@ class RangeVisitRepository {
   /// );
   /// ```
   Future<List<RangeVisit>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<RangeVisitTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<RangeVisitTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<RangeVisitTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<RangeVisitTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<RangeVisitTable>? orderBy,
+    _is.OrderByListBuilder<RangeVisitTable>? orderByList,
+    _is.Transaction? transaction,
     RangeVisitInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<RangeVisit>(
       where: where?.call(RangeVisit.t),
       orderBy: orderBy?.call(RangeVisit.t),
       orderByList: orderByList?.call(RangeVisit.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -591,22 +542,20 @@ class RangeVisitRepository {
   /// );
   /// ```
   Future<RangeVisit?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<RangeVisitTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<RangeVisitTable>? where,
     int? offset,
-    _i1.OrderByBuilder<RangeVisitTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<RangeVisitTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<RangeVisitTable>? orderBy,
+    _is.OrderByListBuilder<RangeVisitTable>? orderByList,
+    _is.Transaction? transaction,
     RangeVisitInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<RangeVisit>(
       where: where?.call(RangeVisit.t),
       orderBy: orderBy?.call(RangeVisit.t),
       orderByList: orderByList?.call(RangeVisit.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -617,12 +566,12 @@ class RangeVisitRepository {
 
   /// Finds a single [RangeVisit] by its [id] or null if no such row exists.
   Future<RangeVisit?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     RangeVisitInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<RangeVisit>(
       id,
@@ -643,16 +592,22 @@ class RangeVisitRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<RangeVisit>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<RangeVisit> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<RangeVisit>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -660,12 +615,78 @@ class RangeVisitRepository {
   ///
   /// The returned [RangeVisit] will have its `id` field set.
   Future<RangeVisit> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     RangeVisit row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.insertRow<RangeVisit>(
+    return session.db.insertRow<RangeVisit>(row, transaction: transaction);
+  }
+
+  /// Upserts all [RangeVisit]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [RangeVisit]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<RangeVisit>> upsert(
+    _is.DatabaseSession session,
+    List<RangeVisit> rows, {
+    required _is.ColumnSelections<RangeVisitTable> conflictColumns,
+    _is.ColumnSelections<RangeVisitTable>? updateColumns,
+    _is.WhereExpressionBuilder<RangeVisitTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<RangeVisit>(
+      rows,
+      conflictColumns: conflictColumns(RangeVisit.t),
+      updateColumns: updateColumns?.call(RangeVisit.t),
+      updateWhere: updateWhere?.call(RangeVisit.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [RangeVisit] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [RangeVisit] will have its `id` field set.
+  Future<RangeVisit?> upsertRow(
+    _is.DatabaseSession session,
+    RangeVisit row, {
+    required _is.ColumnSelections<RangeVisitTable> conflictColumns,
+    _is.ColumnSelections<RangeVisitTable>? updateColumns,
+    _is.WhereExpressionBuilder<RangeVisitTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<RangeVisit>(
       row,
+      conflictColumns: conflictColumns(RangeVisit.t),
+      updateColumns: updateColumns?.call(RangeVisit.t),
+      updateWhere: updateWhere?.call(RangeVisit.t),
       transaction: transaction,
     );
   }
@@ -675,16 +696,22 @@ class RangeVisitRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<RangeVisit>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<RangeVisit> rows, {
-    _i1.ColumnSelections<RangeVisitTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<RangeVisitTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<RangeVisit>(
       rows,
       columns: columns?.call(RangeVisit.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -692,10 +719,10 @@ class RangeVisitRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<RangeVisit> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     RangeVisit row, {
-    _i1.ColumnSelections<RangeVisitTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<RangeVisitTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<RangeVisit>(
       row,
@@ -707,10 +734,10 @@ class RangeVisitRepository {
   /// Updates a single [RangeVisit] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<RangeVisit?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<RangeVisitUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<RangeVisitUpdateTable> columnValues,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<RangeVisit>(
       id,
@@ -721,16 +748,20 @@ class RangeVisitRepository {
 
   /// Updates all [RangeVisit]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<RangeVisit>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<RangeVisitUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<RangeVisitTable> where,
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<RangeVisitUpdateTable> columnValues,
+    required _is.WhereExpressionBuilder<RangeVisitTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<RangeVisitTable>? orderBy,
-    _i1.OrderByListBuilder<RangeVisitTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<RangeVisitTable>? orderBy,
+    _is.OrderByListBuilder<RangeVisitTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<RangeVisit>(
       columnValues: columnValues(RangeVisit.t.updateTable),
@@ -739,56 +770,80 @@ class RangeVisitRepository {
       offset: offset,
       orderBy: orderBy?.call(RangeVisit.t),
       orderByList: orderByList?.call(RangeVisit.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [RangeVisit]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<RangeVisit>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<RangeVisit> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<RangeVisitTable>? orderBy,
+    _is.OrderByListBuilder<RangeVisitTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<RangeVisit>(
       rows,
+      orderBy: orderBy?.call(RangeVisit.t),
+      orderByList: orderByList?.call(RangeVisit.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [RangeVisit].
   Future<RangeVisit> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     RangeVisit row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<RangeVisit>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<RangeVisit>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<RangeVisit>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<RangeVisitTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<RangeVisitTable> where,
+    _is.OrderByBuilder<RangeVisitTable>? orderBy,
+    _is.OrderByListBuilder<RangeVisitTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<RangeVisit>(
       where: where(RangeVisit.t),
+      orderBy: orderBy?.call(RangeVisit.t),
+      orderByList: orderByList?.call(RangeVisit.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<RangeVisitTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<RangeVisitTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<RangeVisit>(
       where: where?.call(RangeVisit.t),
@@ -799,11 +854,11 @@ class RangeVisitRepository {
 
   /// Acquires row-level locks on [RangeVisit] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<RangeVisitTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<RangeVisitTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<RangeVisit>(
       where: where(RangeVisit.t),
@@ -820,10 +875,10 @@ class RangeVisitAttachRowRepository {
   /// Creates a relation between the given [RangeVisit] and [UserProfile]
   /// by setting the [RangeVisit]'s foreign key `userId` to refer to the [UserProfile].
   Future<void> user(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     RangeVisit rangeVisit,
-    _i2.UserProfile user, {
-    _i1.Transaction? transaction,
+    _izifjpv2.UserProfile user, {
+    _is.Transaction? transaction,
   }) async {
     if (rangeVisit.id == null) {
       throw ArgumentError.notNull('rangeVisit.id');
@@ -843,10 +898,10 @@ class RangeVisitAttachRowRepository {
   /// Creates a relation between the given [RangeVisit] and [Company]
   /// by setting the [RangeVisit]'s foreign key `companyId` to refer to the [Company].
   Future<void> company(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     RangeVisit rangeVisit,
-    _i3.Company company, {
-    _i1.Transaction? transaction,
+    _iocy1ifk.Company company, {
+    _is.Transaction? transaction,
   }) async {
     if (rangeVisit.id == null) {
       throw ArgumentError.notNull('rangeVisit.id');
@@ -866,10 +921,10 @@ class RangeVisitAttachRowRepository {
   /// Creates a relation between the given [RangeVisit] and [Firearm]
   /// by setting the [RangeVisit]'s foreign key `firearmId` to refer to the [Firearm].
   Future<void> firearm(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     RangeVisit rangeVisit,
-    _i4.Firearm firearm, {
-    _i1.Transaction? transaction,
+    _i25s0fp9.Firearm firearm, {
+    _is.Transaction? transaction,
   }) async {
     if (rangeVisit.id == null) {
       throw ArgumentError.notNull('rangeVisit.id');
@@ -896,9 +951,9 @@ class RangeVisitDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> user(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     RangeVisit rangeVisit, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (rangeVisit.id == null) {
       throw ArgumentError.notNull('rangeVisit.id');
@@ -918,9 +973,9 @@ class RangeVisitDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> company(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     RangeVisit rangeVisit, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (rangeVisit.id == null) {
       throw ArgumentError.notNull('rangeVisit.id');
@@ -940,9 +995,9 @@ class RangeVisitDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> firearm(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     RangeVisit rangeVisit, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (rangeVisit.id == null) {
       throw ArgumentError.notNull('rangeVisit.id');

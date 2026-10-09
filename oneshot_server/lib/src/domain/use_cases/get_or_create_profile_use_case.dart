@@ -22,7 +22,7 @@ class GetOrCreateProfileUseCase implements IGetOrCreateProfileUseCase {
 
   @override
   Future<UserProfile> execute(Session session) async {
-    final authInfo = await session.authenticated;
+    final authInfo = session.authenticated;
     if (authInfo == null) throw Exception('Não autorizado.');
     final userId = authInfo.userId;
 

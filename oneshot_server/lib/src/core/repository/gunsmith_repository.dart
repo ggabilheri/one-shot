@@ -136,8 +136,7 @@ class GunsmithRepository implements IGunsmithRepository {
     return await ServiceOrder.db.find(
       session,
       where: (t) => t.clientId.equals(clientId),
-      orderBy: (t) => t.entryDate,
-      orderDescending: true,
+      orderByList: (t) => [t.entryDate.desc()],
     );
   }
 

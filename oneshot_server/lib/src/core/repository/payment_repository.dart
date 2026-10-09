@@ -71,8 +71,7 @@ class PaymentRepository implements IPaymentRepository {
       session,
       limit: limit,
       offset: offset,
-      orderBy: (t) => t.paymentDate,
-      orderDescending: true,
+      orderByList: (t) => [t.paymentDate.desc()],
       include: Payment.include(invoice: Invoice.include()),
     );
   }

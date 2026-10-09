@@ -12,7 +12,14 @@ class AppConfig {
   /// URL base do Asaas (sandbox ou produção, conforme o ambiente).
   final String asaasBaseUrl;
 
-  AppConfig._({required this.asaasBaseUrl});
+  /// Configuração de SMTP para envio de e-mails.
+  ///
+  /// Nula quando a seção `email` não está presente no YAML do ambiente
+  /// (ex.: desenvolvimento sem servidor SMTP configurado). Nesse caso o
+  /// [EmailService] registra os códigos no log em vez de enviar e-mails.
+  final EmailSettings? email;
+
+  AppConfig._({required this.asaasBaseUrl, this.email});
 
   static AppConfig get instance {
     if (_instance == null) {
@@ -48,7 +55,39 @@ class AppConfig {
       );
     }
 
-    _instance = AppConfig._(asaasBaseUrl: baseUrl);
+    _instance = AppConfig._(
+      asaasBaseUrl: baseUrl,
+      email: _parseEmailSettings(yaml, mode),
+    );
+  }
+
+  /// Lê a seção opcional `email` do YAML do ambiente.
+  ///
+  /// Retorna null quando a seção não existe (SMTP não configurado).
+  static EmailSettings? _parseEmailSettings(YamlMap yaml, String mode) {
+    final emailMap = yaml['email'] as YamlMap?;
+    if (emailMap == null) return null;
+
+    final host = emailMap['host'] as String?;
+    final port = emailMap['port'] as int?;
+    final senderEmail = emailMap['senderEmail'] as String?;
+
+    if (host == null || port == null || senderEmail == null) {
+      throw StateError(
+        'AppConfig: seção "email" incompleta em config/$mode.yaml. '
+        'Informe "host", "port" e "senderEmail" (e opcionalmente "username", '
+        '"senderName" e "ssl").',
+      );
+    }
+
+    return EmailSettings(
+      host: host,
+      port: port,
+      username: emailMap['username'] as String?,
+      senderEmail: senderEmail,
+      senderName: emailMap['senderName'] as String?,
+      ssl: emailMap['ssl'] as bool? ?? false,
+    );
   }
 
   static String _resolveMode(List<String> args) {
@@ -60,4 +99,28 @@ class AppConfig {
     }
     return 'development';
   }
+}
+
+/// Configuração de SMTP para envio de e-mails (seção `email` do YAML do
+/// ambiente). A senha NÃO fica no YAML: deve ser configurada em
+/// config/passwords.yaml (chave `email`).
+class EmailSettings {
+  final String host;
+  final int port;
+  final String? username;
+  final String senderEmail;
+  final String? senderName;
+
+  /// true para TLS implícito (normalmente porta 465);
+  /// false para STARTTLS (normalmente porta 587).
+  final bool ssl;
+
+  EmailSettings({
+    required this.host,
+    required this.port,
+    this.username,
+    required this.senderEmail,
+    this.senderName,
+    this.ssl = false,
+  });
 }

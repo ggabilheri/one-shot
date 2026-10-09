@@ -7,8 +7,9 @@ class AsaasException extends OneShotException {
 
 /// HTTP 401 — chave de API inválida ou expirada.
 class AsaasUnauthorizedException extends AsaasException {
-  AsaasUnauthorizedException([String message = 'Chave de API do Asaas inválida ou não autorizada.'])
-      : super(message, code: 'ASAAS_UNAUTHORIZED');
+  AsaasUnauthorizedException(
+      [super.message = 'Chave de API do Asaas inválida ou não autorizada.'])
+      : super(code: 'ASAAS_UNAUTHORIZED');
 }
 
 /// HTTP 400 — dados de requisição inválidos. Contém a lista de erros retornada pelo Asaas.
@@ -24,14 +25,15 @@ class AsaasValidationException extends AsaasException {
 
 /// HTTP 404 — recurso não encontrado no Asaas.
 class AsaasNotFoundException extends AsaasException {
-  AsaasNotFoundException([String message = 'Recurso não encontrado no Asaas.'])
-      : super(message, code: 'ASAAS_NOT_FOUND');
+  AsaasNotFoundException([super.message = 'Recurso não encontrado no Asaas.'])
+      : super(code: 'ASAAS_NOT_FOUND');
 }
 
 /// HTTP 5xx ou erro inesperado na comunicação com o Asaas.
 class AsaasGatewayException extends AsaasException {
-  AsaasGatewayException([String message = 'Erro inesperado no gateway Asaas.'])
-      : super(message, code: 'ASAAS_GATEWAY_ERROR');
+  AsaasGatewayException(
+      [super.message = 'Erro inesperado no gateway Asaas.'])
+      : super(code: 'ASAAS_GATEWAY_ERROR');
 }
 
 /// Representa um erro individual retornado pela API Asaas.

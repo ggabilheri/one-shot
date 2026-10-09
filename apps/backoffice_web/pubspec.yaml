@@ -19,7 +19,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.13.0
+  flutter: '>=3.44.4'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -34,17 +35,18 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  serverpod_flutter: 3.4.4
-  serverpod_auth_email_flutter: 3.4.4
+  serverpod_flutter: 4.0.4
+  serverpod_auth_email_flutter: 4.0.4
   get_it: ^9.2.1
   qlevar_router: ^1.2.6
   oneshot_client:
     path: ../../oneshot_client
   google_fonts: ^6.2.1
   flutter_localization: any
-  serverpod_auth_shared_flutter: ^3.4.4
+  serverpod_auth_shared_flutter: ^4.0.4
   mask_text_input_formatter: ^2.9.0
   intl: ^0.20.2
+  serverpod_auth_client: 4.0.4
 
 dev_dependencies:
   flutter_test:

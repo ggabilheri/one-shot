@@ -1,5 +1,5 @@
-import 'package:oneshot_server/src/birthday_reminder.dart';
 import 'package:oneshot_server/src/core/config/app_config.dart';
+import 'package:oneshot_server/src/core/email/email_service.dart';
 import 'package:serverpod/serverpod.dart';
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as auth;
 
@@ -29,16 +29,32 @@ void run(List<String> args) async {
     authenticationHandler: auth.authenticationHandler,
   );
 
+  // Serviço de e-mail para os códigos de validação de cadastro e recuperação
+  // de senha. A senha do SMTP é lida de config/passwords.yaml (chave `email`).
+  final emailService = EmailService(
+    settings: AppConfig.instance.email,
+    password: pod.getPassword('email'),
+  );
+
   auth.AuthConfig.set(auth.AuthConfig(
     sendValidationEmail: (session, email, validationCode) async {
-      // TODO: Implement email sending
-      print('Validation code for @$email: $validationCode');
-      return true;
+      return emailService.sendValidationEmail(session, email, validationCode);
     },
     sendPasswordResetEmail: (session, userInfo, validationCode) async {
-      // TODO: Implement email sending
-      print('Password reset code for @${userInfo.email}: $validationCode');
-      return true;
+      final email = userInfo.email;
+      if (email == null) {
+        session.log(
+          'Não é possível enviar e-mail de recuperação de senha: '
+          'usuário ${userInfo.id} não possui e-mail cadastrado.',
+          level: LogLevel.warning,
+        );
+        return false;
+      }
+      return emailService.sendPasswordResetEmail(
+        session,
+        email,
+        validationCode,
+      );
     },
   ));
 
@@ -54,35 +70,17 @@ void run(List<String> args) async {
   // Start the server.
   await pod.start();
 
-  // After starting the server, you can register future calls. Future calls are
-  // tasks that need to happen in the future, or independently of the request/
-  // response cycle. For example, you can use future calls to send emails, or to
-  // schedule tasks to be executed at a later time. Future calls are executed in
-  // the background. Their schedule is persisted to the database, so you will
-  // not lose them if the server is restarted.
-
-  pod.registerFutureCall(
-    BirthdayReminder(),
-    FutureCallNames.birthdayReminder.name,
-  );
-
-  // You can schedule future calls for a later time during startup. But you can
-  // also schedule them in any endpoint or webroute through the session object.
-  // there is also [futureCallAtTime] if you want to schedule a future call at a
-  // specific time.
-  await pod.futureCallWithDelay(
-    FutureCallNames.birthdayReminder.name,
-    Greeting(
-      message: 'Hello!',
-      author: 'Serverpod Server',
-      timestamp: DateTime.now(),
-    ),
-    Duration(seconds: 5),
-  );
+  // No Serverpod 4 os future calls são registrados automaticamente pelo código
+  // gerado (lib/src/generated/future_calls.dart) durante o start. Para agendar
+  // um future call, use a API tipada `pod.futureCalls` — também disponível
+  // dentro de endpoints/webroutes via `session`.
+  // Exemplo: agenda o BirthdayReminder de demonstração 5s após o start.
+  await pod.futureCalls
+      .callWithDelay(const Duration(seconds: 5))
+      .birthdayReminder
+      .invoke(Greeting(
+        message: 'Hello!',
+        author: 'Serverpod Server',
+        timestamp: DateTime.now(),
+      ));
 }
-
-/// Names of all future calls in the server.
-///
-/// This is better than using a string literal, as it will reduce the risk of
-/// typos and make it easier to refactor the code.
-enum FutureCallNames { birthdayReminder }

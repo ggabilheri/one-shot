@@ -37,7 +37,7 @@ database:
   host: postgres
   port: 5432
   name: oneshot
-  user: postgres
+  user: oneshot_user
   requireSsl: false
   #isUnixSocket: true # defaults to false
 
@@ -68,3 +68,16 @@ sessionLogs:
 # Configuração do gateway de pagamento Asaas
 asaas:
   baseUrl: 'https://api-sandbox.asaas.com'
+
+# Configuração de envio de e-mails (SMTP) para os códigos de validação de
+# cadastro e recuperação de senha. Sem esta seção, os códigos são apenas
+# registrados no log do servidor.
+# A senha do SMTP não fica aqui: configure em config/passwords.yaml (chave
+# `email` no bloco `staging`).
+#email:
+#  host: smtp.seuprovedor.com
+#  port: 587
+#  ssl: false # false para STARTTLS (porta 587); true para TLS implícito (porta 465)
+#  username: usuario@seuprovedor.com
+#  senderEmail: no-reply@oneshot.com.br
+#  senderName: One-Shot

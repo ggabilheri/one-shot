@@ -8,17 +8,17 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import '../product/product_group.dart' as _i2;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i3;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import '../product/product_group.dart' as _i1dl6bm0;
 
 abstract class Product
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   Product._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required this.code,
     required this.description,
     required this.unit,
@@ -26,35 +26,35 @@ abstract class Product
     required this.originModule,
     required this.groupId,
     this.group,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _is.Uuid().v4obj();
 
   factory Product({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required String code,
     required String description,
     required String unit,
     required double unitPrice,
     required String originModule,
-    required _i1.UuidValue groupId,
-    _i2.ProductGroup? group,
+    required _is.UuidValue groupId,
+    _i1dl6bm0.ProductGroup? group,
   }) = _ProductImpl;
 
   factory Product.fromJson(Map<String, dynamic> jsonSerialization) {
     return Product(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       code: jsonSerialization['code'] as String,
       description: jsonSerialization['description'] as String,
       unit: jsonSerialization['unit'] as String,
       unitPrice: (jsonSerialization['unitPrice'] as num).toDouble(),
       originModule: jsonSerialization['originModule'] as String,
-      groupId: _i1.UuidValueJsonExtension.fromJson(
+      groupId: _is.UuidValueJsonExtension.fromJson(
         jsonSerialization['groupId'],
       ),
       group: jsonSerialization['group'] == null
           ? null
-          : _i3.Protocol().deserialize<_i2.ProductGroup>(
+          : _iwflrbqm.Protocol().deserialize<_i1dl6bm0.ProductGroup>(
               jsonSerialization['group'],
             ),
     );
@@ -65,7 +65,7 @@ abstract class Product
   static const db = ProductRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
   String code;
 
@@ -77,25 +77,25 @@ abstract class Product
 
   String originModule;
 
-  _i1.UuidValue groupId;
+  _is.UuidValue groupId;
 
-  _i2.ProductGroup? group;
+  _i1dl6bm0.ProductGroup? group;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Product]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   Product copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     String? code,
     String? description,
     String? unit,
     double? unitPrice,
     String? originModule,
-    _i1.UuidValue? groupId,
-    _i2.ProductGroup? group,
+    _is.UuidValue? groupId,
+    _i1dl6bm0.ProductGroup? group,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -127,17 +127,16 @@ abstract class Product
     };
   }
 
-  static ProductInclude include({_i2.ProductGroupInclude? group}) {
+  static ProductInclude include({_i1dl6bm0.ProductGroupInclude? group}) {
     return ProductInclude._(group: group);
   }
 
   static ProductIncludeList includeList({
-    _i1.WhereExpressionBuilder<ProductTable>? where,
+    _is.WhereExpressionBuilder<ProductTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<ProductTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ProductTable>? orderByList,
+    _is.OrderByBuilder<ProductTable>? orderBy,
+    _is.OrderByListBuilder<ProductTable>? orderByList,
     ProductInclude? include,
   }) {
     return ProductIncludeList._(
@@ -145,7 +144,6 @@ abstract class Product
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(Product.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(Product.t),
       include: include,
     );
@@ -153,7 +151,7 @@ abstract class Product
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -161,14 +159,14 @@ class _Undefined {}
 
 class _ProductImpl extends Product {
   _ProductImpl({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required String code,
     required String description,
     required String unit,
     required double unitPrice,
     required String originModule,
-    required _i1.UuidValue groupId,
-    _i2.ProductGroup? group,
+    required _is.UuidValue groupId,
+    _i1dl6bm0.ProductGroup? group,
   }) : super._(
          id: id,
          code: code,
@@ -182,16 +180,16 @@ class _ProductImpl extends Product {
 
   /// Returns a shallow copy of this [Product]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   Product copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     String? code,
     String? description,
     String? unit,
     double? unitPrice,
     String? originModule,
-    _i1.UuidValue? groupId,
+    _is.UuidValue? groupId,
     Object? group = _Undefined,
   }) {
     return Product(
@@ -202,106 +200,75 @@ class _ProductImpl extends Product {
       unitPrice: unitPrice ?? this.unitPrice,
       originModule: originModule ?? this.originModule,
       groupId: groupId ?? this.groupId,
-      group: group is _i2.ProductGroup? ? group : this.group?.copyWith(),
+      group: group is _i1dl6bm0.ProductGroup? ? group : this.group?.copyWith(),
     );
   }
 }
 
-class ProductUpdateTable extends _i1.UpdateTable<ProductTable> {
+class ProductUpdateTable extends _is.UpdateTable<ProductTable> {
   ProductUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> code(String value) => _i1.ColumnValue(
-    table.code,
-    value,
-  );
+  _is.ColumnValue<String, String> code(String value) =>
+      _is.ColumnValue(table.code, value);
 
-  _i1.ColumnValue<String, String> description(String value) => _i1.ColumnValue(
-    table.description,
-    value,
-  );
+  _is.ColumnValue<String, String> description(String value) =>
+      _is.ColumnValue(table.description, value);
 
-  _i1.ColumnValue<String, String> unit(String value) => _i1.ColumnValue(
-    table.unit,
-    value,
-  );
+  _is.ColumnValue<String, String> unit(String value) =>
+      _is.ColumnValue(table.unit, value);
 
-  _i1.ColumnValue<double, double> unitPrice(double value) => _i1.ColumnValue(
-    table.unitPrice,
-    value,
-  );
+  _is.ColumnValue<double, double> unitPrice(double value) =>
+      _is.ColumnValue(table.unitPrice, value);
 
-  _i1.ColumnValue<String, String> originModule(String value) => _i1.ColumnValue(
-    table.originModule,
-    value,
-  );
+  _is.ColumnValue<String, String> originModule(String value) =>
+      _is.ColumnValue(table.originModule, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> groupId(_i1.UuidValue value) =>
-      _i1.ColumnValue(
-        table.groupId,
-        value,
-      );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> groupId(_is.UuidValue value) =>
+      _is.ColumnValue(table.groupId, value);
 }
 
-class ProductTable extends _i1.Table<_i1.UuidValue> {
+class ProductTable extends _is.Table<_is.UuidValue> {
   ProductTable({super.tableRelation}) : super(tableName: 'products') {
     updateTable = ProductUpdateTable(this);
-    code = _i1.ColumnString(
-      'code',
-      this,
-    );
-    description = _i1.ColumnString(
-      'description',
-      this,
-    );
-    unit = _i1.ColumnString(
-      'unit',
-      this,
-    );
-    unitPrice = _i1.ColumnDouble(
-      'unitPrice',
-      this,
-    );
-    originModule = _i1.ColumnString(
-      'originModule',
-      this,
-    );
-    groupId = _i1.ColumnUuid(
-      'groupId',
-      this,
-    );
+    code = _is.ColumnString('code', this);
+    description = _is.ColumnString('description', this);
+    unit = _is.ColumnString('unit', this);
+    unitPrice = _is.ColumnDouble('unitPrice', this);
+    originModule = _is.ColumnString('originModule', this);
+    groupId = _is.ColumnUuid('groupId', this);
   }
 
   late final ProductUpdateTable updateTable;
 
-  late final _i1.ColumnString code;
+  late final _is.ColumnString code;
 
-  late final _i1.ColumnString description;
+  late final _is.ColumnString description;
 
-  late final _i1.ColumnString unit;
+  late final _is.ColumnString unit;
 
-  late final _i1.ColumnDouble unitPrice;
+  late final _is.ColumnDouble unitPrice;
 
-  late final _i1.ColumnString originModule;
+  late final _is.ColumnString originModule;
 
-  late final _i1.ColumnUuid groupId;
+  late final _is.ColumnUuid groupId;
 
-  _i2.ProductGroupTable? _group;
+  _i1dl6bm0.ProductGroupTable? _group;
 
-  _i2.ProductGroupTable get group {
+  _i1dl6bm0.ProductGroupTable get group {
     if (_group != null) return _group!;
-    _group = _i1.createRelationTable(
+    _group = _is.createRelationTable(
       relationFieldName: 'group',
       field: Product.t.groupId,
-      foreignField: _i2.ProductGroup.t.id,
+      foreignField: _i1dl6bm0.ProductGroup.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.ProductGroupTable(tableRelation: foreignTableRelation),
+          _i1dl6bm0.ProductGroupTable(tableRelation: foreignTableRelation),
     );
     return _group!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     code,
     description,
@@ -312,7 +279,7 @@ class ProductTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'group') {
       return group;
     }
@@ -320,27 +287,26 @@ class ProductTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class ProductInclude extends _i1.IncludeObject {
-  ProductInclude._({_i2.ProductGroupInclude? group}) {
+class ProductInclude extends _is.IncludeObject {
+  ProductInclude._({_i1dl6bm0.ProductGroupInclude? group}) {
     _group = group;
   }
 
-  _i2.ProductGroupInclude? _group;
+  _i1dl6bm0.ProductGroupInclude? _group;
 
   @override
-  Map<String, _i1.Include?> get includes => {'group': _group};
+  Map<String, _is.Include?> get includes => {'group': _group};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => Product.t;
+  _is.Table<_is.UuidValue> get table => Product.t;
 }
 
-class ProductIncludeList extends _i1.IncludeList {
+class ProductIncludeList extends _is.IncludeList {
   ProductIncludeList._({
-    _i1.WhereExpressionBuilder<ProductTable>? where,
+    _is.WhereExpressionBuilder<ProductTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -348,10 +314,10 @@ class ProductIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => Product.t;
+  _is.Table<_is.UuidValue> get table => Product.t;
 }
 
 class ProductRepository {
@@ -382,23 +348,21 @@ class ProductRepository {
   /// );
   /// ```
   Future<List<Product>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<ProductTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<ProductTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<ProductTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ProductTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<ProductTable>? orderBy,
+    _is.OrderByListBuilder<ProductTable>? orderByList,
+    _is.Transaction? transaction,
     ProductInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<Product>(
       where: where?.call(Product.t),
       orderBy: orderBy?.call(Product.t),
       orderByList: orderByList?.call(Product.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -426,22 +390,20 @@ class ProductRepository {
   /// );
   /// ```
   Future<Product?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<ProductTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<ProductTable>? where,
     int? offset,
-    _i1.OrderByBuilder<ProductTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ProductTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<ProductTable>? orderBy,
+    _is.OrderByListBuilder<ProductTable>? orderByList,
+    _is.Transaction? transaction,
     ProductInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<Product>(
       where: where?.call(Product.t),
       orderBy: orderBy?.call(Product.t),
       orderByList: orderByList?.call(Product.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -452,12 +414,12 @@ class ProductRepository {
 
   /// Finds a single [Product] by its [id] or null if no such row exists.
   Future<Product?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     ProductInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<Product>(
       id,
@@ -478,16 +440,22 @@ class ProductRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Product>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Product> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<Product>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -495,12 +463,78 @@ class ProductRepository {
   ///
   /// The returned [Product] will have its `id` field set.
   Future<Product> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Product row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.insertRow<Product>(
+    return session.db.insertRow<Product>(row, transaction: transaction);
+  }
+
+  /// Upserts all [Product]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [Product]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<Product>> upsert(
+    _is.DatabaseSession session,
+    List<Product> rows, {
+    required _is.ColumnSelections<ProductTable> conflictColumns,
+    _is.ColumnSelections<ProductTable>? updateColumns,
+    _is.WhereExpressionBuilder<ProductTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<Product>(
+      rows,
+      conflictColumns: conflictColumns(Product.t),
+      updateColumns: updateColumns?.call(Product.t),
+      updateWhere: updateWhere?.call(Product.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [Product] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [Product] will have its `id` field set.
+  Future<Product?> upsertRow(
+    _is.DatabaseSession session,
+    Product row, {
+    required _is.ColumnSelections<ProductTable> conflictColumns,
+    _is.ColumnSelections<ProductTable>? updateColumns,
+    _is.WhereExpressionBuilder<ProductTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<Product>(
       row,
+      conflictColumns: conflictColumns(Product.t),
+      updateColumns: updateColumns?.call(Product.t),
+      updateWhere: updateWhere?.call(Product.t),
       transaction: transaction,
     );
   }
@@ -510,16 +544,22 @@ class ProductRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Product>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Product> rows, {
-    _i1.ColumnSelections<ProductTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<ProductTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<Product>(
       rows,
       columns: columns?.call(Product.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -527,10 +567,10 @@ class ProductRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Product> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Product row, {
-    _i1.ColumnSelections<ProductTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<ProductTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<Product>(
       row,
@@ -542,10 +582,10 @@ class ProductRepository {
   /// Updates a single [Product] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Product?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<ProductUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<ProductUpdateTable> columnValues,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<Product>(
       id,
@@ -556,16 +596,20 @@ class ProductRepository {
 
   /// Updates all [Product]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Product>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<ProductUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<ProductTable> where,
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<ProductUpdateTable> columnValues,
+    required _is.WhereExpressionBuilder<ProductTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<ProductTable>? orderBy,
-    _i1.OrderByListBuilder<ProductTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<ProductTable>? orderBy,
+    _is.OrderByListBuilder<ProductTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<Product>(
       columnValues: columnValues(Product.t.updateTable),
@@ -574,56 +618,80 @@ class ProductRepository {
       offset: offset,
       orderBy: orderBy?.call(Product.t),
       orderByList: orderByList?.call(Product.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [Product]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Product>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Product> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<ProductTable>? orderBy,
+    _is.OrderByListBuilder<ProductTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<Product>(
       rows,
+      orderBy: orderBy?.call(Product.t),
+      orderByList: orderByList?.call(Product.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [Product].
   Future<Product> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Product row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<Product>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<Product>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Product>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<ProductTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<ProductTable> where,
+    _is.OrderByBuilder<ProductTable>? orderBy,
+    _is.OrderByListBuilder<ProductTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<Product>(
       where: where(Product.t),
+      orderBy: orderBy?.call(Product.t),
+      orderByList: orderByList?.call(Product.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<ProductTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<ProductTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<Product>(
       where: where?.call(Product.t),
@@ -634,11 +702,11 @@ class ProductRepository {
 
   /// Acquires row-level locks on [Product] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<ProductTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<ProductTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<Product>(
       where: where(Product.t),
@@ -655,10 +723,10 @@ class ProductAttachRowRepository {
   /// Creates a relation between the given [Product] and [ProductGroup]
   /// by setting the [Product]'s foreign key `groupId` to refer to the [ProductGroup].
   Future<void> group(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Product product,
-    _i2.ProductGroup group, {
-    _i1.Transaction? transaction,
+    _i1dl6bm0.ProductGroup group, {
+    _is.Transaction? transaction,
   }) async {
     if (product.id == null) {
       throw ArgumentError.notNull('product.id');

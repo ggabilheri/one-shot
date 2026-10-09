@@ -131,7 +131,6 @@ class FinancialEntryRepositoryImpl implements IFinancialEntryRepository {
           return where;
         },
         orderBy: (t) => t.dueDate,
-        orderDescending: false,
         limit: limit,
         offset: offset,
         include: FinancialEntry.include(

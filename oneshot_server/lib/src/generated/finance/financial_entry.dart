@@ -8,22 +8,22 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import '../enums/financial_entry_type.dart' as _i2;
-import '../enums/financial_entry_status.dart' as _i3;
-import '../enums/platform_app.enum.dart' as _i4;
-import '../finance/bank_account.dart' as _i5;
-import '../finance/invoice.dart' as _i6;
-import '../company/company.dart' as _i7;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i8;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import '../company/company.dart' as _iocy1ifk;
+import '../enums/financial_entry_status.dart' as _ig5968cj;
+import '../enums/financial_entry_type.dart' as _i3i99b7x;
+import '../enums/platform_app.enum.dart' as _ie17db6d;
+import '../finance/bank_account.dart' as _iqlw3pat;
+import '../finance/invoice.dart' as _i3d856q3;
 
 abstract class FinancialEntry
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   FinancialEntry._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required this.type,
     required this.description,
     required this.amount,
@@ -37,71 +37,71 @@ abstract class FinancialEntry
     this.invoice,
     this.companyId,
     this.company,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _is.Uuid().v4obj();
 
   factory FinancialEntry({
-    _i1.UuidValue? id,
-    required _i2.FinancialEntryType type,
+    _is.UuidValue? id,
+    required _i3i99b7x.FinancialEntryType type,
     required String description,
     required double amount,
     required DateTime dueDate,
     DateTime? paymentDate,
-    required _i3.FinancialEntryStatus status,
-    required _i4.PlatformApp originModule,
-    _i1.UuidValue? bankAccountId,
-    _i5.BankAccount? bankAccount,
-    _i1.UuidValue? invoiceId,
-    _i6.Invoice? invoice,
-    _i1.UuidValue? companyId,
-    _i7.Company? company,
+    required _ig5968cj.FinancialEntryStatus status,
+    required _ie17db6d.PlatformApp originModule,
+    _is.UuidValue? bankAccountId,
+    _iqlw3pat.BankAccount? bankAccount,
+    _is.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   }) = _FinancialEntryImpl;
 
   factory FinancialEntry.fromJson(Map<String, dynamic> jsonSerialization) {
     return FinancialEntry(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      type: _i2.FinancialEntryType.fromJson(
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+      type: _i3i99b7x.FinancialEntryType.fromJson(
         (jsonSerialization['type'] as String),
       ),
       description: jsonSerialization['description'] as String,
       amount: (jsonSerialization['amount'] as num).toDouble(),
-      dueDate: _i1.DateTimeJsonExtension.fromJson(jsonSerialization['dueDate']),
+      dueDate: _is.DateTimeJsonExtension.fromJson(jsonSerialization['dueDate']),
       paymentDate: jsonSerialization['paymentDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _is.DateTimeJsonExtension.fromJson(
               jsonSerialization['paymentDate'],
             ),
-      status: _i3.FinancialEntryStatus.fromJson(
+      status: _ig5968cj.FinancialEntryStatus.fromJson(
         (jsonSerialization['status'] as String),
       ),
-      originModule: _i4.PlatformApp.fromJson(
+      originModule: _ie17db6d.PlatformApp.fromJson(
         (jsonSerialization['originModule'] as String),
       ),
       bankAccountId: jsonSerialization['bankAccountId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _is.UuidValueJsonExtension.fromJson(
               jsonSerialization['bankAccountId'],
             ),
       bankAccount: jsonSerialization['bankAccount'] == null
           ? null
-          : _i8.Protocol().deserialize<_i5.BankAccount>(
+          : _iwflrbqm.Protocol().deserialize<_iqlw3pat.BankAccount>(
               jsonSerialization['bankAccount'],
             ),
       invoiceId: jsonSerialization['invoiceId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['invoiceId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['invoiceId']),
       invoice: jsonSerialization['invoice'] == null
           ? null
-          : _i8.Protocol().deserialize<_i6.Invoice>(
+          : _iwflrbqm.Protocol().deserialize<_i3d856q3.Invoice>(
               jsonSerialization['invoice'],
             ),
       companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
       company: jsonSerialization['company'] == null
           ? null
-          : _i8.Protocol().deserialize<_i7.Company>(
+          : _iwflrbqm.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['company'],
             ),
     );
@@ -112,9 +112,9 @@ abstract class FinancialEntry
   static const db = FinancialEntryRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
-  _i2.FinancialEntryType type;
+  _i3i99b7x.FinancialEntryType type;
 
   String description;
 
@@ -124,43 +124,43 @@ abstract class FinancialEntry
 
   DateTime? paymentDate;
 
-  _i3.FinancialEntryStatus status;
+  _ig5968cj.FinancialEntryStatus status;
 
-  _i4.PlatformApp originModule;
+  _ie17db6d.PlatformApp originModule;
 
-  _i1.UuidValue? bankAccountId;
+  _is.UuidValue? bankAccountId;
 
-  _i5.BankAccount? bankAccount;
+  _iqlw3pat.BankAccount? bankAccount;
 
-  _i1.UuidValue? invoiceId;
+  _is.UuidValue? invoiceId;
 
-  _i6.Invoice? invoice;
+  _i3d856q3.Invoice? invoice;
 
-  _i1.UuidValue? companyId;
+  _is.UuidValue? companyId;
 
-  _i7.Company? company;
+  _iocy1ifk.Company? company;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [FinancialEntry]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   FinancialEntry copyWith({
-    _i1.UuidValue? id,
-    _i2.FinancialEntryType? type,
+    _is.UuidValue? id,
+    _i3i99b7x.FinancialEntryType? type,
     String? description,
     double? amount,
     DateTime? dueDate,
     DateTime? paymentDate,
-    _i3.FinancialEntryStatus? status,
-    _i4.PlatformApp? originModule,
-    _i1.UuidValue? bankAccountId,
-    _i5.BankAccount? bankAccount,
-    _i1.UuidValue? invoiceId,
-    _i6.Invoice? invoice,
-    _i1.UuidValue? companyId,
-    _i7.Company? company,
+    _ig5968cj.FinancialEntryStatus? status,
+    _ie17db6d.PlatformApp? originModule,
+    _is.UuidValue? bankAccountId,
+    _iqlw3pat.BankAccount? bankAccount,
+    _is.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -205,9 +205,9 @@ abstract class FinancialEntry
   }
 
   static FinancialEntryInclude include({
-    _i5.BankAccountInclude? bankAccount,
-    _i6.InvoiceInclude? invoice,
-    _i7.CompanyInclude? company,
+    _iqlw3pat.BankAccountInclude? bankAccount,
+    _i3d856q3.InvoiceInclude? invoice,
+    _iocy1ifk.CompanyInclude? company,
   }) {
     return FinancialEntryInclude._(
       bankAccount: bankAccount,
@@ -217,12 +217,11 @@ abstract class FinancialEntry
   }
 
   static FinancialEntryIncludeList includeList({
-    _i1.WhereExpressionBuilder<FinancialEntryTable>? where,
+    _is.WhereExpressionBuilder<FinancialEntryTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<FinancialEntryTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<FinancialEntryTable>? orderByList,
+    _is.OrderByBuilder<FinancialEntryTable>? orderBy,
+    _is.OrderByListBuilder<FinancialEntryTable>? orderByList,
     FinancialEntryInclude? include,
   }) {
     return FinancialEntryIncludeList._(
@@ -230,7 +229,6 @@ abstract class FinancialEntry
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(FinancialEntry.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(FinancialEntry.t),
       include: include,
     );
@@ -238,7 +236,7 @@ abstract class FinancialEntry
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -246,20 +244,20 @@ class _Undefined {}
 
 class _FinancialEntryImpl extends FinancialEntry {
   _FinancialEntryImpl({
-    _i1.UuidValue? id,
-    required _i2.FinancialEntryType type,
+    _is.UuidValue? id,
+    required _i3i99b7x.FinancialEntryType type,
     required String description,
     required double amount,
     required DateTime dueDate,
     DateTime? paymentDate,
-    required _i3.FinancialEntryStatus status,
-    required _i4.PlatformApp originModule,
-    _i1.UuidValue? bankAccountId,
-    _i5.BankAccount? bankAccount,
-    _i1.UuidValue? invoiceId,
-    _i6.Invoice? invoice,
-    _i1.UuidValue? companyId,
-    _i7.Company? company,
+    required _ig5968cj.FinancialEntryStatus status,
+    required _ie17db6d.PlatformApp originModule,
+    _is.UuidValue? bankAccountId,
+    _iqlw3pat.BankAccount? bankAccount,
+    _is.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   }) : super._(
          id: id,
          type: type,
@@ -279,17 +277,17 @@ class _FinancialEntryImpl extends FinancialEntry {
 
   /// Returns a shallow copy of this [FinancialEntry]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   FinancialEntry copyWith({
-    _i1.UuidValue? id,
-    _i2.FinancialEntryType? type,
+    _is.UuidValue? id,
+    _i3i99b7x.FinancialEntryType? type,
     String? description,
     double? amount,
     DateTime? dueDate,
     Object? paymentDate = _Undefined,
-    _i3.FinancialEntryStatus? status,
-    _i4.PlatformApp? originModule,
+    _ig5968cj.FinancialEntryStatus? status,
+    _ie17db6d.PlatformApp? originModule,
     Object? bankAccountId = _Undefined,
     Object? bankAccount = _Undefined,
     Object? invoiceId = _Undefined,
@@ -306,206 +304,156 @@ class _FinancialEntryImpl extends FinancialEntry {
       paymentDate: paymentDate is DateTime? ? paymentDate : this.paymentDate,
       status: status ?? this.status,
       originModule: originModule ?? this.originModule,
-      bankAccountId: bankAccountId is _i1.UuidValue?
+      bankAccountId: bankAccountId is _is.UuidValue?
           ? bankAccountId
           : this.bankAccountId,
-      bankAccount: bankAccount is _i5.BankAccount?
+      bankAccount: bankAccount is _iqlw3pat.BankAccount?
           ? bankAccount
           : this.bankAccount?.copyWith(),
-      invoiceId: invoiceId is _i1.UuidValue? ? invoiceId : this.invoiceId,
-      invoice: invoice is _i6.Invoice? ? invoice : this.invoice?.copyWith(),
-      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
-      company: company is _i7.Company? ? company : this.company?.copyWith(),
+      invoiceId: invoiceId is _is.UuidValue? ? invoiceId : this.invoiceId,
+      invoice: invoice is _i3d856q3.Invoice?
+          ? invoice
+          : this.invoice?.copyWith(),
+      companyId: companyId is _is.UuidValue? ? companyId : this.companyId,
+      company: company is _iocy1ifk.Company?
+          ? company
+          : this.company?.copyWith(),
     );
   }
 }
 
-class FinancialEntryUpdateTable extends _i1.UpdateTable<FinancialEntryTable> {
+class FinancialEntryUpdateTable extends _is.UpdateTable<FinancialEntryTable> {
   FinancialEntryUpdateTable(super.table);
 
-  _i1.ColumnValue<_i2.FinancialEntryType, _i2.FinancialEntryType> type(
-    _i2.FinancialEntryType value,
-  ) => _i1.ColumnValue(
-    table.type,
-    value,
-  );
+  _is.ColumnValue<_i3i99b7x.FinancialEntryType, _i3i99b7x.FinancialEntryType>
+  type(_i3i99b7x.FinancialEntryType value) =>
+      _is.ColumnValue(table.type, value);
 
-  _i1.ColumnValue<String, String> description(String value) => _i1.ColumnValue(
-    table.description,
-    value,
-  );
+  _is.ColumnValue<String, String> description(String value) =>
+      _is.ColumnValue(table.description, value);
 
-  _i1.ColumnValue<double, double> amount(double value) => _i1.ColumnValue(
-    table.amount,
-    value,
-  );
+  _is.ColumnValue<double, double> amount(double value) =>
+      _is.ColumnValue(table.amount, value);
 
-  _i1.ColumnValue<DateTime, DateTime> dueDate(DateTime value) =>
-      _i1.ColumnValue(
-        table.dueDate,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> dueDate(DateTime value) =>
+      _is.ColumnValue(table.dueDate, value);
 
-  _i1.ColumnValue<DateTime, DateTime> paymentDate(DateTime? value) =>
-      _i1.ColumnValue(
-        table.paymentDate,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> paymentDate(DateTime? value) =>
+      _is.ColumnValue(table.paymentDate, value);
 
-  _i1.ColumnValue<_i3.FinancialEntryStatus, _i3.FinancialEntryStatus> status(
-    _i3.FinancialEntryStatus value,
-  ) => _i1.ColumnValue(
-    table.status,
-    value,
-  );
+  _is.ColumnValue<
+    _ig5968cj.FinancialEntryStatus,
+    _ig5968cj.FinancialEntryStatus
+  >
+  status(_ig5968cj.FinancialEntryStatus value) =>
+      _is.ColumnValue(table.status, value);
 
-  _i1.ColumnValue<_i4.PlatformApp, _i4.PlatformApp> originModule(
-    _i4.PlatformApp value,
-  ) => _i1.ColumnValue(
-    table.originModule,
-    value,
-  );
+  _is.ColumnValue<_ie17db6d.PlatformApp, _ie17db6d.PlatformApp> originModule(
+    _ie17db6d.PlatformApp value,
+  ) => _is.ColumnValue(table.originModule, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> bankAccountId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.bankAccountId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> bankAccountId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.bankAccountId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> invoiceId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.invoiceId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> invoiceId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.invoiceId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> companyId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.companyId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> companyId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.companyId, value);
 }
 
-class FinancialEntryTable extends _i1.Table<_i1.UuidValue> {
+class FinancialEntryTable extends _is.Table<_is.UuidValue> {
   FinancialEntryTable({super.tableRelation})
     : super(tableName: 'financial_entries') {
     updateTable = FinancialEntryUpdateTable(this);
-    type = _i1.ColumnEnum(
-      'type',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    description = _i1.ColumnString(
-      'description',
-      this,
-    );
-    amount = _i1.ColumnDouble(
-      'amount',
-      this,
-    );
-    dueDate = _i1.ColumnDateTime(
-      'dueDate',
-      this,
-    );
-    paymentDate = _i1.ColumnDateTime(
-      'paymentDate',
-      this,
-    );
-    status = _i1.ColumnEnum(
-      'status',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    originModule = _i1.ColumnEnum(
+    type = _is.ColumnEnum('type', this, _is.EnumSerialization.byName);
+    description = _is.ColumnString('description', this);
+    amount = _is.ColumnDouble('amount', this);
+    dueDate = _is.ColumnDateTime('dueDate', this);
+    paymentDate = _is.ColumnDateTime('paymentDate', this);
+    status = _is.ColumnEnum('status', this, _is.EnumSerialization.byName);
+    originModule = _is.ColumnEnum(
       'originModule',
       this,
-      _i1.EnumSerialization.byName,
+      _is.EnumSerialization.byName,
     );
-    bankAccountId = _i1.ColumnUuid(
-      'bankAccountId',
-      this,
-    );
-    invoiceId = _i1.ColumnUuid(
-      'invoiceId',
-      this,
-    );
-    companyId = _i1.ColumnUuid(
-      'companyId',
-      this,
-    );
+    bankAccountId = _is.ColumnUuid('bankAccountId', this);
+    invoiceId = _is.ColumnUuid('invoiceId', this);
+    companyId = _is.ColumnUuid('companyId', this);
   }
 
   late final FinancialEntryUpdateTable updateTable;
 
-  late final _i1.ColumnEnum<_i2.FinancialEntryType> type;
+  late final _is.ColumnEnum<_i3i99b7x.FinancialEntryType> type;
 
-  late final _i1.ColumnString description;
+  late final _is.ColumnString description;
 
-  late final _i1.ColumnDouble amount;
+  late final _is.ColumnDouble amount;
 
-  late final _i1.ColumnDateTime dueDate;
+  late final _is.ColumnDateTime dueDate;
 
-  late final _i1.ColumnDateTime paymentDate;
+  late final _is.ColumnDateTime paymentDate;
 
-  late final _i1.ColumnEnum<_i3.FinancialEntryStatus> status;
+  late final _is.ColumnEnum<_ig5968cj.FinancialEntryStatus> status;
 
-  late final _i1.ColumnEnum<_i4.PlatformApp> originModule;
+  late final _is.ColumnEnum<_ie17db6d.PlatformApp> originModule;
 
-  late final _i1.ColumnUuid bankAccountId;
+  late final _is.ColumnUuid bankAccountId;
 
-  _i5.BankAccountTable? _bankAccount;
+  _iqlw3pat.BankAccountTable? _bankAccount;
 
-  late final _i1.ColumnUuid invoiceId;
+  late final _is.ColumnUuid invoiceId;
 
-  _i6.InvoiceTable? _invoice;
+  _i3d856q3.InvoiceTable? _invoice;
 
-  late final _i1.ColumnUuid companyId;
+  late final _is.ColumnUuid companyId;
 
-  _i7.CompanyTable? _company;
+  _iocy1ifk.CompanyTable? _company;
 
-  _i5.BankAccountTable get bankAccount {
+  _iqlw3pat.BankAccountTable get bankAccount {
     if (_bankAccount != null) return _bankAccount!;
-    _bankAccount = _i1.createRelationTable(
+    _bankAccount = _is.createRelationTable(
       relationFieldName: 'bankAccount',
       field: FinancialEntry.t.bankAccountId,
-      foreignField: _i5.BankAccount.t.id,
+      foreignField: _iqlw3pat.BankAccount.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i5.BankAccountTable(tableRelation: foreignTableRelation),
+          _iqlw3pat.BankAccountTable(tableRelation: foreignTableRelation),
     );
     return _bankAccount!;
   }
 
-  _i6.InvoiceTable get invoice {
+  _i3d856q3.InvoiceTable get invoice {
     if (_invoice != null) return _invoice!;
-    _invoice = _i1.createRelationTable(
+    _invoice = _is.createRelationTable(
       relationFieldName: 'invoice',
       field: FinancialEntry.t.invoiceId,
-      foreignField: _i6.Invoice.t.id,
+      foreignField: _i3d856q3.Invoice.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i6.InvoiceTable(tableRelation: foreignTableRelation),
+          _i3d856q3.InvoiceTable(tableRelation: foreignTableRelation),
     );
     return _invoice!;
   }
 
-  _i7.CompanyTable get company {
+  _iocy1ifk.CompanyTable get company {
     if (_company != null) return _company!;
-    _company = _i1.createRelationTable(
+    _company = _is.createRelationTable(
       relationFieldName: 'company',
       field: FinancialEntry.t.companyId,
-      foreignField: _i7.Company.t.id,
+      foreignField: _iocy1ifk.Company.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i7.CompanyTable(tableRelation: foreignTableRelation),
+          _iocy1ifk.CompanyTable(tableRelation: foreignTableRelation),
     );
     return _company!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     type,
     description,
@@ -520,7 +468,7 @@ class FinancialEntryTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'bankAccount') {
       return bankAccount;
     }
@@ -534,41 +482,40 @@ class FinancialEntryTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class FinancialEntryInclude extends _i1.IncludeObject {
+class FinancialEntryInclude extends _is.IncludeObject {
   FinancialEntryInclude._({
-    _i5.BankAccountInclude? bankAccount,
-    _i6.InvoiceInclude? invoice,
-    _i7.CompanyInclude? company,
+    _iqlw3pat.BankAccountInclude? bankAccount,
+    _i3d856q3.InvoiceInclude? invoice,
+    _iocy1ifk.CompanyInclude? company,
   }) {
     _bankAccount = bankAccount;
     _invoice = invoice;
     _company = company;
   }
 
-  _i5.BankAccountInclude? _bankAccount;
+  _iqlw3pat.BankAccountInclude? _bankAccount;
 
-  _i6.InvoiceInclude? _invoice;
+  _i3d856q3.InvoiceInclude? _invoice;
 
-  _i7.CompanyInclude? _company;
+  _iocy1ifk.CompanyInclude? _company;
 
   @override
-  Map<String, _i1.Include?> get includes => {
+  Map<String, _is.Include?> get includes => {
     'bankAccount': _bankAccount,
     'invoice': _invoice,
     'company': _company,
   };
 
   @override
-  _i1.Table<_i1.UuidValue> get table => FinancialEntry.t;
+  _is.Table<_is.UuidValue> get table => FinancialEntry.t;
 }
 
-class FinancialEntryIncludeList extends _i1.IncludeList {
+class FinancialEntryIncludeList extends _is.IncludeList {
   FinancialEntryIncludeList._({
-    _i1.WhereExpressionBuilder<FinancialEntryTable>? where,
+    _is.WhereExpressionBuilder<FinancialEntryTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -576,10 +523,10 @@ class FinancialEntryIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => FinancialEntry.t;
+  _is.Table<_is.UuidValue> get table => FinancialEntry.t;
 }
 
 class FinancialEntryRepository {
@@ -612,23 +559,21 @@ class FinancialEntryRepository {
   /// );
   /// ```
   Future<List<FinancialEntry>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<FinancialEntryTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<FinancialEntryTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<FinancialEntryTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<FinancialEntryTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<FinancialEntryTable>? orderBy,
+    _is.OrderByListBuilder<FinancialEntryTable>? orderByList,
+    _is.Transaction? transaction,
     FinancialEntryInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<FinancialEntry>(
       where: where?.call(FinancialEntry.t),
       orderBy: orderBy?.call(FinancialEntry.t),
       orderByList: orderByList?.call(FinancialEntry.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -656,22 +601,20 @@ class FinancialEntryRepository {
   /// );
   /// ```
   Future<FinancialEntry?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<FinancialEntryTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<FinancialEntryTable>? where,
     int? offset,
-    _i1.OrderByBuilder<FinancialEntryTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<FinancialEntryTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<FinancialEntryTable>? orderBy,
+    _is.OrderByListBuilder<FinancialEntryTable>? orderByList,
+    _is.Transaction? transaction,
     FinancialEntryInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<FinancialEntry>(
       where: where?.call(FinancialEntry.t),
       orderBy: orderBy?.call(FinancialEntry.t),
       orderByList: orderByList?.call(FinancialEntry.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -682,12 +625,12 @@ class FinancialEntryRepository {
 
   /// Finds a single [FinancialEntry] by its [id] or null if no such row exists.
   Future<FinancialEntry?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     FinancialEntryInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<FinancialEntry>(
       id,
@@ -708,16 +651,22 @@ class FinancialEntryRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<FinancialEntry>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<FinancialEntry> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<FinancialEntry>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -725,12 +674,78 @@ class FinancialEntryRepository {
   ///
   /// The returned [FinancialEntry] will have its `id` field set.
   Future<FinancialEntry> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     FinancialEntry row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.insertRow<FinancialEntry>(
+    return session.db.insertRow<FinancialEntry>(row, transaction: transaction);
+  }
+
+  /// Upserts all [FinancialEntry]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [FinancialEntry]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<FinancialEntry>> upsert(
+    _is.DatabaseSession session,
+    List<FinancialEntry> rows, {
+    required _is.ColumnSelections<FinancialEntryTable> conflictColumns,
+    _is.ColumnSelections<FinancialEntryTable>? updateColumns,
+    _is.WhereExpressionBuilder<FinancialEntryTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<FinancialEntry>(
+      rows,
+      conflictColumns: conflictColumns(FinancialEntry.t),
+      updateColumns: updateColumns?.call(FinancialEntry.t),
+      updateWhere: updateWhere?.call(FinancialEntry.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [FinancialEntry] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [FinancialEntry] will have its `id` field set.
+  Future<FinancialEntry?> upsertRow(
+    _is.DatabaseSession session,
+    FinancialEntry row, {
+    required _is.ColumnSelections<FinancialEntryTable> conflictColumns,
+    _is.ColumnSelections<FinancialEntryTable>? updateColumns,
+    _is.WhereExpressionBuilder<FinancialEntryTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<FinancialEntry>(
       row,
+      conflictColumns: conflictColumns(FinancialEntry.t),
+      updateColumns: updateColumns?.call(FinancialEntry.t),
+      updateWhere: updateWhere?.call(FinancialEntry.t),
       transaction: transaction,
     );
   }
@@ -740,16 +755,22 @@ class FinancialEntryRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<FinancialEntry>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<FinancialEntry> rows, {
-    _i1.ColumnSelections<FinancialEntryTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<FinancialEntryTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<FinancialEntry>(
       rows,
       columns: columns?.call(FinancialEntry.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -757,10 +778,10 @@ class FinancialEntryRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<FinancialEntry> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     FinancialEntry row, {
-    _i1.ColumnSelections<FinancialEntryTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<FinancialEntryTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<FinancialEntry>(
       row,
@@ -772,10 +793,10 @@ class FinancialEntryRepository {
   /// Updates a single [FinancialEntry] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<FinancialEntry?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<FinancialEntryUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<FinancialEntryUpdateTable> columnValues,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<FinancialEntry>(
       id,
@@ -786,16 +807,20 @@ class FinancialEntryRepository {
 
   /// Updates all [FinancialEntry]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<FinancialEntry>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<FinancialEntryUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<FinancialEntryTable> where,
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<FinancialEntryUpdateTable> columnValues,
+    required _is.WhereExpressionBuilder<FinancialEntryTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<FinancialEntryTable>? orderBy,
-    _i1.OrderByListBuilder<FinancialEntryTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<FinancialEntryTable>? orderBy,
+    _is.OrderByListBuilder<FinancialEntryTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<FinancialEntry>(
       columnValues: columnValues(FinancialEntry.t.updateTable),
@@ -804,56 +829,80 @@ class FinancialEntryRepository {
       offset: offset,
       orderBy: orderBy?.call(FinancialEntry.t),
       orderByList: orderByList?.call(FinancialEntry.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [FinancialEntry]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<FinancialEntry>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<FinancialEntry> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<FinancialEntryTable>? orderBy,
+    _is.OrderByListBuilder<FinancialEntryTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<FinancialEntry>(
       rows,
+      orderBy: orderBy?.call(FinancialEntry.t),
+      orderByList: orderByList?.call(FinancialEntry.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [FinancialEntry].
   Future<FinancialEntry> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     FinancialEntry row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<FinancialEntry>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<FinancialEntry>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<FinancialEntry>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<FinancialEntryTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<FinancialEntryTable> where,
+    _is.OrderByBuilder<FinancialEntryTable>? orderBy,
+    _is.OrderByListBuilder<FinancialEntryTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<FinancialEntry>(
       where: where(FinancialEntry.t),
+      orderBy: orderBy?.call(FinancialEntry.t),
+      orderByList: orderByList?.call(FinancialEntry.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<FinancialEntryTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<FinancialEntryTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<FinancialEntry>(
       where: where?.call(FinancialEntry.t),
@@ -864,11 +913,11 @@ class FinancialEntryRepository {
 
   /// Acquires row-level locks on [FinancialEntry] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<FinancialEntryTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<FinancialEntryTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<FinancialEntry>(
       where: where(FinancialEntry.t),
@@ -885,10 +934,10 @@ class FinancialEntryAttachRowRepository {
   /// Creates a relation between the given [FinancialEntry] and [BankAccount]
   /// by setting the [FinancialEntry]'s foreign key `bankAccountId` to refer to the [BankAccount].
   Future<void> bankAccount(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     FinancialEntry financialEntry,
-    _i5.BankAccount bankAccount, {
-    _i1.Transaction? transaction,
+    _iqlw3pat.BankAccount bankAccount, {
+    _is.Transaction? transaction,
   }) async {
     if (financialEntry.id == null) {
       throw ArgumentError.notNull('financialEntry.id');
@@ -910,10 +959,10 @@ class FinancialEntryAttachRowRepository {
   /// Creates a relation between the given [FinancialEntry] and [Invoice]
   /// by setting the [FinancialEntry]'s foreign key `invoiceId` to refer to the [Invoice].
   Future<void> invoice(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     FinancialEntry financialEntry,
-    _i6.Invoice invoice, {
-    _i1.Transaction? transaction,
+    _i3d856q3.Invoice invoice, {
+    _is.Transaction? transaction,
   }) async {
     if (financialEntry.id == null) {
       throw ArgumentError.notNull('financialEntry.id');
@@ -933,10 +982,10 @@ class FinancialEntryAttachRowRepository {
   /// Creates a relation between the given [FinancialEntry] and [Company]
   /// by setting the [FinancialEntry]'s foreign key `companyId` to refer to the [Company].
   Future<void> company(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     FinancialEntry financialEntry,
-    _i7.Company company, {
-    _i1.Transaction? transaction,
+    _iocy1ifk.Company company, {
+    _is.Transaction? transaction,
   }) async {
     if (financialEntry.id == null) {
       throw ArgumentError.notNull('financialEntry.id');
@@ -963,9 +1012,9 @@ class FinancialEntryDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> bankAccount(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     FinancialEntry financialEntry, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (financialEntry.id == null) {
       throw ArgumentError.notNull('financialEntry.id');
@@ -985,9 +1034,9 @@ class FinancialEntryDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> invoice(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     FinancialEntry financialEntry, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (financialEntry.id == null) {
       throw ArgumentError.notNull('financialEntry.id');
@@ -1007,9 +1056,9 @@ class FinancialEntryDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> company(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     FinancialEntry financialEntry, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (financialEntry.id == null) {
       throw ArgumentError.notNull('financialEntry.id');

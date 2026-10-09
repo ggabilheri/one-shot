@@ -10,17 +10,18 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i2;
-import '../enums/gender.enum.dart' as _i3;
-import '../common/address.dart' as _i4;
-import '../enums/user_type.enum.dart' as _i5;
-import '../enums/user_status.enum.dart' as _i6;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i7;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i312scxx;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/address.dart' as _iy1vkl2d;
+import '../enums/gender.enum.dart' as _ix60f0mc;
+import '../enums/user_status.enum.dart' as _ijq1b3b6;
+import '../enums/user_type.enum.dart' as _i828q2d1;
 
-abstract class UserProfile implements _i1.SerializableModel {
+abstract class UserProfile
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   UserProfile._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     this.userInfoId,
     this.userInfo,
     required this.name,
@@ -36,23 +37,23 @@ abstract class UserProfile implements _i1.SerializableModel {
     required this.status,
     this.asaasCustomerId,
     this.asaasOnboardingFailureReason,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory UserProfile({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
     required String name,
-    _i3.Gender? gender,
+    _ix60f0mc.Gender? gender,
     DateTime? birthDate,
     String? rg,
     String? cpf,
     String? phone,
     String? email,
-    _i1.UuidValue? addressId,
-    _i4.Address? address,
-    List<_i5.UserType>? types,
-    required _i6.UserStatus status,
+    _isc.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    List<_i828q2d1.UserType>? types,
+    required _ijq1b3b6.UserStatus status,
     String? asaasCustomerId,
     String? asaasOnboardingFailureReason,
   }) = _UserProfileImpl;
@@ -61,38 +62,42 @@ abstract class UserProfile implements _i1.SerializableModel {
     return UserProfile(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
-          : _i7.Protocol().deserialize<_i2.UserInfo>(
+          : _itys55mc.Protocol().deserialize<_i312scxx.UserInfo>(
               jsonSerialization['userInfo'],
             ),
       name: jsonSerialization['name'] as String,
       gender: jsonSerialization['gender'] == null
           ? null
-          : _i3.Gender.fromJson((jsonSerialization['gender'] as String)),
+          : _ix60f0mc.Gender.fromJson((jsonSerialization['gender'] as String)),
       birthDate: jsonSerialization['birthDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(jsonSerialization['birthDate']),
+          : _isc.DateTimeJsonExtension.fromJson(jsonSerialization['birthDate']),
       rg: jsonSerialization['rg'] as String?,
       cpf: jsonSerialization['cpf'] as String?,
       phone: jsonSerialization['phone'] as String?,
       email: jsonSerialization['email'] as String?,
       addressId: jsonSerialization['addressId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['addressId'],
+            ),
       address: jsonSerialization['address'] == null
           ? null
-          : _i7.Protocol().deserialize<_i4.Address>(
+          : _itys55mc.Protocol().deserialize<_iy1vkl2d.Address>(
               jsonSerialization['address'],
             ),
       types: jsonSerialization['types'] == null
           ? null
-          : _i7.Protocol().deserialize<List<_i5.UserType>>(
+          : _itys55mc.Protocol().deserialize<List<_i828q2d1.UserType>>(
               jsonSerialization['types'],
             ),
-      status: _i6.UserStatus.fromJson((jsonSerialization['status'] as String)),
+      status: _ijq1b3b6.UserStatus.fromJson(
+        (jsonSerialization['status'] as String),
+      ),
       asaasCustomerId: jsonSerialization['asaasCustomerId'] as String?,
       asaasOnboardingFailureReason:
           jsonSerialization['asaasOnboardingFailureReason'] as String?,
@@ -100,15 +105,15 @@ abstract class UserProfile implements _i1.SerializableModel {
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   int? userInfoId;
 
-  _i2.UserInfo? userInfo;
+  _i312scxx.UserInfo? userInfo;
 
   String name;
 
-  _i3.Gender? gender;
+  _ix60f0mc.Gender? gender;
 
   DateTime? birthDate;
 
@@ -120,13 +125,13 @@ abstract class UserProfile implements _i1.SerializableModel {
 
   String? email;
 
-  _i1.UuidValue? addressId;
+  _isc.UuidValue? addressId;
 
-  _i4.Address? address;
+  _iy1vkl2d.Address? address;
 
-  List<_i5.UserType>? types;
+  List<_i828q2d1.UserType>? types;
 
-  _i6.UserStatus status;
+  _ijq1b3b6.UserStatus status;
 
   String? asaasCustomerId;
 
@@ -134,22 +139,22 @@ abstract class UserProfile implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [UserProfile]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   UserProfile copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
     String? name,
-    _i3.Gender? gender,
+    _ix60f0mc.Gender? gender,
     DateTime? birthDate,
     String? rg,
     String? cpf,
     String? phone,
     String? email,
-    _i1.UuidValue? addressId,
-    _i4.Address? address,
-    List<_i5.UserType>? types,
-    _i6.UserStatus? status,
+    _isc.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    List<_i828q2d1.UserType>? types,
+    _ijq1b3b6.UserStatus? status,
     String? asaasCustomerId,
     String? asaasOnboardingFailureReason,
   });
@@ -178,8 +183,32 @@ abstract class UserProfile implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'UserProfile',
+      'id': id.toJson(),
+      if (userInfoId != null) 'userInfoId': userInfoId,
+      if (userInfo != null) 'userInfo': userInfo?.toJson(),
+      'name': name,
+      if (gender != null) 'gender': gender?.toJson(),
+      if (birthDate != null) 'birthDate': birthDate?.toJson(),
+      if (rg != null) 'rg': rg,
+      if (cpf != null) 'cpf': cpf,
+      if (phone != null) 'phone': phone,
+      if (email != null) 'email': email,
+      if (addressId != null) 'addressId': addressId?.toJson(),
+      if (address != null) 'address': address?.toJsonForProtocol(),
+      if (types != null) 'types': types?.toJson(valueToJson: (v) => v.toJson()),
+      'status': status.toJson(),
+      if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
+      if (asaasOnboardingFailureReason != null)
+        'asaasOnboardingFailureReason': asaasOnboardingFailureReason,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -187,20 +216,20 @@ class _Undefined {}
 
 class _UserProfileImpl extends UserProfile {
   _UserProfileImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
     required String name,
-    _i3.Gender? gender,
+    _ix60f0mc.Gender? gender,
     DateTime? birthDate,
     String? rg,
     String? cpf,
     String? phone,
     String? email,
-    _i1.UuidValue? addressId,
-    _i4.Address? address,
-    List<_i5.UserType>? types,
-    required _i6.UserStatus status,
+    _isc.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    List<_i828q2d1.UserType>? types,
+    required _ijq1b3b6.UserStatus status,
     String? asaasCustomerId,
     String? asaasOnboardingFailureReason,
   }) : super._(
@@ -224,10 +253,10 @@ class _UserProfileImpl extends UserProfile {
 
   /// Returns a shallow copy of this [UserProfile]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   UserProfile copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     String? name,
@@ -240,26 +269,28 @@ class _UserProfileImpl extends UserProfile {
     Object? addressId = _Undefined,
     Object? address = _Undefined,
     Object? types = _Undefined,
-    _i6.UserStatus? status,
+    _ijq1b3b6.UserStatus? status,
     Object? asaasCustomerId = _Undefined,
     Object? asaasOnboardingFailureReason = _Undefined,
   }) {
     return UserProfile(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i2.UserInfo?
+      userInfo: userInfo is _i312scxx.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
       name: name ?? this.name,
-      gender: gender is _i3.Gender? ? gender : this.gender,
+      gender: gender is _ix60f0mc.Gender? ? gender : this.gender,
       birthDate: birthDate is DateTime? ? birthDate : this.birthDate,
       rg: rg is String? ? rg : this.rg,
       cpf: cpf is String? ? cpf : this.cpf,
       phone: phone is String? ? phone : this.phone,
       email: email is String? ? email : this.email,
-      addressId: addressId is _i1.UuidValue? ? addressId : this.addressId,
-      address: address is _i4.Address? ? address : this.address?.copyWith(),
-      types: types is List<_i5.UserType>?
+      addressId: addressId is _isc.UuidValue? ? addressId : this.addressId,
+      address: address is _iy1vkl2d.Address?
+          ? address
+          : this.address?.copyWith(),
+      types: types is List<_i828q2d1.UserType>?
           ? types
           : this.types?.map((e0) => e0).toList(),
       status: status ?? this.status,

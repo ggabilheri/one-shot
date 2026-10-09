@@ -1,9 +1,9 @@
 name: oneshot_client
-description: Starting point for a Serverpod client.
+description: Client One-Shot (Serverpod).
 
 environment:
-  sdk: '>=3.5.0 <4.0.0'
+  sdk: '>=3.13.0 <4.0.0'
 
 dependencies:
-  serverpod_client: 3.4.4
-  serverpod_auth_client: 3.4.4
+  serverpod_client: 4.0.4
+  serverpod_auth_client: 4.0.4

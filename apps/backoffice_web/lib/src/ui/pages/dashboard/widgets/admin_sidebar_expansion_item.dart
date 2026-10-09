@@ -55,9 +55,9 @@ class _AdminSidebarExpansionItemState extends State<AdminSidebarExpansionItem> {
                 horizontal: DSTokens.spacingLg,
               ),
               color: widget.isExpanded
-                  ? DSTokens.primary.withOpacity(0.04)
+                  ? DSTokens.primary.withValues(alpha: 0.04)
                   : _isHovering
-                      ? Colors.white.withOpacity(0.02)
+                      ? Colors.white.withValues(alpha: 0.02)
                       : Colors.transparent,
               child: Row(
                 children: [
@@ -114,7 +114,7 @@ class AdminSidebarSubItem extends StatelessWidget {
           bottom: 10,
           right: DSTokens.spacingLg,
         ),
-        color: isSelected ? DSTokens.primary.withOpacity(0.08) : Colors.transparent,
+        color: isSelected ? DSTokens.primary.withValues(alpha: 0.08) : Colors.transparent,
         child: Row(
           children: [
             if (isSelected)

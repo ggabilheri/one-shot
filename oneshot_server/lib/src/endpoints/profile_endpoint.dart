@@ -12,7 +12,7 @@ class ProfileEndpoint extends Endpoint {
   /// Atualiza os dados do perfil (CPF, CR, etc).
   Future<UserProfile> updateMyProfile(
       Session session, UserProfile profile) async {
-    final userId = (await session.authenticated)?.userId;
+    final userId = session.authenticated?.userId;
     if (userId == null) throw Exception('Não autorizado.');
 
     // Segurança: Garantir que o perfil pertence ao usuário logado.

@@ -61,7 +61,6 @@ class UserEndpoint extends Endpoint {
   /// Implementa lógica de auto-admin para proprietários.
   Future<List<Company>> getMyCompanies(Session session) async {
     final profile = await sl.getOrCreateProfileUseCase.execute(session);
-    if (profile.id == null) return [];
 
     // 1. Garantir que o papel "Administrador" existe
     var adminRole = await SecurityRole.db.findFirstRow(

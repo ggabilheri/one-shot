@@ -33,6 +33,8 @@ class Injections {
   factory Injections() => _instance;
   Injections._internal();
 
+  bool _initialized = false;
+
   late final ITrainingRepository trainingRepository;
   late final IGunsmithRepository gunsmithRepository;
   late final IUserProfileRepository userProfileRepository;
@@ -67,7 +69,15 @@ class Injections {
   late final IExecuteReloadSessionUseCase executeReloadSessionUseCase;
   late final IRegisterRangeVisitUseCase registerRangeVisitUseCase;
 
+  /// Inicializa os repositórios e use cases.
+  ///
+  /// É idempotente: pode ser chamado mais de uma vez (ex.: hot reload do
+  /// Serverpod e testes de integração, que não executam o run() do server.dart)
+  /// sem recriar as instâncias.
   void init() {
+    if (_initialized) return;
+    _initialized = true;
+
     trainingRepository = TrainingRepository();
     gunsmithRepository = GunsmithRepository();
     userProfileRepository = UserProfileRepository();

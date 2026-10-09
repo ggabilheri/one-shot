@@ -8,18 +8,18 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import '../common/address.dart' as _i2;
-import '../common/user_profile.dart' as _i3;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i4;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import '../common/address.dart' as _iy1vkl2d;
+import '../common/user_profile.dart' as _izifjpv2;
 
 abstract class Gunsmith
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   Gunsmith._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required this.name,
     required this.taxId,
     this.addressId,
@@ -32,18 +32,18 @@ abstract class Gunsmith
     this.asaasWalletId,
     this.asaasApiKey,
     this.asaasOnboardingFailureReason,
-  }) : id = id ?? const _i1.Uuid().v4obj(),
+  }) : id = id ?? const _is.Uuid().v4obj(),
        active = active ?? true,
        incomeValue = incomeValue ?? 1000.0;
 
   factory Gunsmith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required String name,
     required String taxId,
-    _i1.UuidValue? addressId,
-    _i2.Address? address,
-    _i1.UuidValue? ownerId,
-    _i3.UserProfile? owner,
+    _is.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    _is.UuidValue? ownerId,
+    _izifjpv2.UserProfile? owner,
     bool? active,
     double? incomeValue,
     String? asaasAccountId,
@@ -56,28 +56,28 @@ abstract class Gunsmith
     return Gunsmith(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       name: jsonSerialization['name'] as String,
       taxId: jsonSerialization['taxId'] as String,
       addressId: jsonSerialization['addressId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
       address: jsonSerialization['address'] == null
           ? null
-          : _i4.Protocol().deserialize<_i2.Address>(
+          : _iwflrbqm.Protocol().deserialize<_iy1vkl2d.Address>(
               jsonSerialization['address'],
             ),
       ownerId: jsonSerialization['ownerId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['ownerId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['ownerId']),
       owner: jsonSerialization['owner'] == null
           ? null
-          : _i4.Protocol().deserialize<_i3.UserProfile>(
+          : _iwflrbqm.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['owner'],
             ),
       active: jsonSerialization['active'] == null
           ? null
-          : _i1.BoolJsonExtension.fromJson(jsonSerialization['active']),
+          : _is.BoolJsonExtension.fromJson(jsonSerialization['active']),
       incomeValue: (jsonSerialization['incomeValue'] as num?)?.toDouble(),
       asaasAccountId: jsonSerialization['asaasAccountId'] as String?,
       asaasWalletId: jsonSerialization['asaasWalletId'] as String?,
@@ -92,19 +92,19 @@ abstract class Gunsmith
   static const db = GunsmithRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
   String name;
 
   String taxId;
 
-  _i1.UuidValue? addressId;
+  _is.UuidValue? addressId;
 
-  _i2.Address? address;
+  _iy1vkl2d.Address? address;
 
-  _i1.UuidValue? ownerId;
+  _is.UuidValue? ownerId;
 
-  _i3.UserProfile? owner;
+  _izifjpv2.UserProfile? owner;
 
   bool active;
 
@@ -119,19 +119,19 @@ abstract class Gunsmith
   String? asaasOnboardingFailureReason;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Gunsmith]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   Gunsmith copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     String? name,
     String? taxId,
-    _i1.UuidValue? addressId,
-    _i2.Address? address,
-    _i1.UuidValue? ownerId,
-    _i3.UserProfile? owner,
+    _is.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    _is.UuidValue? ownerId,
+    _izifjpv2.UserProfile? owner,
     bool? active,
     double? incomeValue,
     String? asaasAccountId,
@@ -182,22 +182,18 @@ abstract class Gunsmith
   }
 
   static GunsmithInclude include({
-    _i2.AddressInclude? address,
-    _i3.UserProfileInclude? owner,
+    _iy1vkl2d.AddressInclude? address,
+    _izifjpv2.UserProfileInclude? owner,
   }) {
-    return GunsmithInclude._(
-      address: address,
-      owner: owner,
-    );
+    return GunsmithInclude._(address: address, owner: owner);
   }
 
   static GunsmithIncludeList includeList({
-    _i1.WhereExpressionBuilder<GunsmithTable>? where,
+    _is.WhereExpressionBuilder<GunsmithTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<GunsmithTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<GunsmithTable>? orderByList,
+    _is.OrderByBuilder<GunsmithTable>? orderBy,
+    _is.OrderByListBuilder<GunsmithTable>? orderByList,
     GunsmithInclude? include,
   }) {
     return GunsmithIncludeList._(
@@ -205,7 +201,6 @@ abstract class Gunsmith
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(Gunsmith.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(Gunsmith.t),
       include: include,
     );
@@ -213,7 +208,7 @@ abstract class Gunsmith
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -221,13 +216,13 @@ class _Undefined {}
 
 class _GunsmithImpl extends Gunsmith {
   _GunsmithImpl({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required String name,
     required String taxId,
-    _i1.UuidValue? addressId,
-    _i2.Address? address,
-    _i1.UuidValue? ownerId,
-    _i3.UserProfile? owner,
+    _is.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    _is.UuidValue? ownerId,
+    _izifjpv2.UserProfile? owner,
     bool? active,
     double? incomeValue,
     String? asaasAccountId,
@@ -252,10 +247,10 @@ class _GunsmithImpl extends Gunsmith {
 
   /// Returns a shallow copy of this [Gunsmith]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   Gunsmith copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     String? name,
     String? taxId,
     Object? addressId = _Undefined,
@@ -273,10 +268,12 @@ class _GunsmithImpl extends Gunsmith {
       id: id ?? this.id,
       name: name ?? this.name,
       taxId: taxId ?? this.taxId,
-      addressId: addressId is _i1.UuidValue? ? addressId : this.addressId,
-      address: address is _i2.Address? ? address : this.address?.copyWith(),
-      ownerId: ownerId is _i1.UuidValue? ? ownerId : this.ownerId,
-      owner: owner is _i3.UserProfile? ? owner : this.owner?.copyWith(),
+      addressId: addressId is _is.UuidValue? ? addressId : this.addressId,
+      address: address is _iy1vkl2d.Address?
+          ? address
+          : this.address?.copyWith(),
+      ownerId: ownerId is _is.UuidValue? ? ownerId : this.ownerId,
+      owner: owner is _izifjpv2.UserProfile? ? owner : this.owner?.copyWith(),
       active: active ?? this.active,
       incomeValue: incomeValue ?? this.incomeValue,
       asaasAccountId: asaasAccountId is String?
@@ -293,108 +290,54 @@ class _GunsmithImpl extends Gunsmith {
   }
 }
 
-class GunsmithUpdateTable extends _i1.UpdateTable<GunsmithTable> {
+class GunsmithUpdateTable extends _is.UpdateTable<GunsmithTable> {
   GunsmithUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
-    table.name,
-    value,
-  );
+  _is.ColumnValue<String, String> name(String value) =>
+      _is.ColumnValue(table.name, value);
 
-  _i1.ColumnValue<String, String> taxId(String value) => _i1.ColumnValue(
-    table.taxId,
-    value,
-  );
+  _is.ColumnValue<String, String> taxId(String value) =>
+      _is.ColumnValue(table.taxId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> addressId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.addressId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> addressId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.addressId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> ownerId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.ownerId,
-        value,
-      );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> ownerId(_is.UuidValue? value) =>
+      _is.ColumnValue(table.ownerId, value);
 
-  _i1.ColumnValue<bool, bool> active(bool value) => _i1.ColumnValue(
-    table.active,
-    value,
-  );
+  _is.ColumnValue<bool, bool> active(bool value) =>
+      _is.ColumnValue(table.active, value);
 
-  _i1.ColumnValue<double, double> incomeValue(double value) => _i1.ColumnValue(
-    table.incomeValue,
-    value,
-  );
+  _is.ColumnValue<double, double> incomeValue(double value) =>
+      _is.ColumnValue(table.incomeValue, value);
 
-  _i1.ColumnValue<String, String> asaasAccountId(String? value) =>
-      _i1.ColumnValue(
-        table.asaasAccountId,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasAccountId(String? value) =>
+      _is.ColumnValue(table.asaasAccountId, value);
 
-  _i1.ColumnValue<String, String> asaasWalletId(String? value) =>
-      _i1.ColumnValue(
-        table.asaasWalletId,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasWalletId(String? value) =>
+      _is.ColumnValue(table.asaasWalletId, value);
 
-  _i1.ColumnValue<String, String> asaasApiKey(String? value) => _i1.ColumnValue(
-    table.asaasApiKey,
-    value,
-  );
+  _is.ColumnValue<String, String> asaasApiKey(String? value) =>
+      _is.ColumnValue(table.asaasApiKey, value);
 
-  _i1.ColumnValue<String, String> asaasOnboardingFailureReason(String? value) =>
-      _i1.ColumnValue(
-        table.asaasOnboardingFailureReason,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasOnboardingFailureReason(String? value) =>
+      _is.ColumnValue(table.asaasOnboardingFailureReason, value);
 }
 
-class GunsmithTable extends _i1.Table<_i1.UuidValue> {
+class GunsmithTable extends _is.Table<_is.UuidValue> {
   GunsmithTable({super.tableRelation}) : super(tableName: 'gunsmiths') {
     updateTable = GunsmithUpdateTable(this);
-    name = _i1.ColumnString(
-      'name',
-      this,
-    );
-    taxId = _i1.ColumnString(
-      'taxId',
-      this,
-    );
-    addressId = _i1.ColumnUuid(
-      'addressId',
-      this,
-    );
-    ownerId = _i1.ColumnUuid(
-      'ownerId',
-      this,
-    );
-    active = _i1.ColumnBool(
-      'active',
-      this,
-      hasDefault: true,
-    );
-    incomeValue = _i1.ColumnDouble(
-      'incomeValue',
-      this,
-      hasDefault: true,
-    );
-    asaasAccountId = _i1.ColumnString(
-      'asaasAccountId',
-      this,
-    );
-    asaasWalletId = _i1.ColumnString(
-      'asaasWalletId',
-      this,
-    );
-    asaasApiKey = _i1.ColumnString(
-      'asaasApiKey',
-      this,
-    );
-    asaasOnboardingFailureReason = _i1.ColumnString(
+    name = _is.ColumnString('name', this);
+    taxId = _is.ColumnString('taxId', this);
+    addressId = _is.ColumnUuid('addressId', this);
+    ownerId = _is.ColumnUuid('ownerId', this);
+    active = _is.ColumnBool('active', this, hasDefault: true);
+    incomeValue = _is.ColumnDouble('incomeValue', this, hasDefault: true);
+    asaasAccountId = _is.ColumnString('asaasAccountId', this);
+    asaasWalletId = _is.ColumnString('asaasWalletId', this);
+    asaasApiKey = _is.ColumnString('asaasApiKey', this);
+    asaasOnboardingFailureReason = _is.ColumnString(
       'asaasOnboardingFailureReason',
       this,
     );
@@ -402,58 +345,58 @@ class GunsmithTable extends _i1.Table<_i1.UuidValue> {
 
   late final GunsmithUpdateTable updateTable;
 
-  late final _i1.ColumnString name;
+  late final _is.ColumnString name;
 
-  late final _i1.ColumnString taxId;
+  late final _is.ColumnString taxId;
 
-  late final _i1.ColumnUuid addressId;
+  late final _is.ColumnUuid addressId;
 
-  _i2.AddressTable? _address;
+  _iy1vkl2d.AddressTable? _address;
 
-  late final _i1.ColumnUuid ownerId;
+  late final _is.ColumnUuid ownerId;
 
-  _i3.UserProfileTable? _owner;
+  _izifjpv2.UserProfileTable? _owner;
 
-  late final _i1.ColumnBool active;
+  late final _is.ColumnBool active;
 
-  late final _i1.ColumnDouble incomeValue;
+  late final _is.ColumnDouble incomeValue;
 
-  late final _i1.ColumnString asaasAccountId;
+  late final _is.ColumnString asaasAccountId;
 
-  late final _i1.ColumnString asaasWalletId;
+  late final _is.ColumnString asaasWalletId;
 
-  late final _i1.ColumnString asaasApiKey;
+  late final _is.ColumnString asaasApiKey;
 
-  late final _i1.ColumnString asaasOnboardingFailureReason;
+  late final _is.ColumnString asaasOnboardingFailureReason;
 
-  _i2.AddressTable get address {
+  _iy1vkl2d.AddressTable get address {
     if (_address != null) return _address!;
-    _address = _i1.createRelationTable(
+    _address = _is.createRelationTable(
       relationFieldName: 'address',
       field: Gunsmith.t.addressId,
-      foreignField: _i2.Address.t.id,
+      foreignField: _iy1vkl2d.Address.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.AddressTable(tableRelation: foreignTableRelation),
+          _iy1vkl2d.AddressTable(tableRelation: foreignTableRelation),
     );
     return _address!;
   }
 
-  _i3.UserProfileTable get owner {
+  _izifjpv2.UserProfileTable get owner {
     if (_owner != null) return _owner!;
-    _owner = _i1.createRelationTable(
+    _owner = _is.createRelationTable(
       relationFieldName: 'owner',
       field: Gunsmith.t.ownerId,
-      foreignField: _i3.UserProfile.t.id,
+      foreignField: _izifjpv2.UserProfile.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i3.UserProfileTable(tableRelation: foreignTableRelation),
+          _izifjpv2.UserProfileTable(tableRelation: foreignTableRelation),
     );
     return _owner!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     name,
     taxId,
@@ -468,7 +411,7 @@ class GunsmithTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'address') {
       return address;
     }
@@ -479,36 +422,35 @@ class GunsmithTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class GunsmithInclude extends _i1.IncludeObject {
+class GunsmithInclude extends _is.IncludeObject {
   GunsmithInclude._({
-    _i2.AddressInclude? address,
-    _i3.UserProfileInclude? owner,
+    _iy1vkl2d.AddressInclude? address,
+    _izifjpv2.UserProfileInclude? owner,
   }) {
     _address = address;
     _owner = owner;
   }
 
-  _i2.AddressInclude? _address;
+  _iy1vkl2d.AddressInclude? _address;
 
-  _i3.UserProfileInclude? _owner;
+  _izifjpv2.UserProfileInclude? _owner;
 
   @override
-  Map<String, _i1.Include?> get includes => {
+  Map<String, _is.Include?> get includes => {
     'address': _address,
     'owner': _owner,
   };
 
   @override
-  _i1.Table<_i1.UuidValue> get table => Gunsmith.t;
+  _is.Table<_is.UuidValue> get table => Gunsmith.t;
 }
 
-class GunsmithIncludeList extends _i1.IncludeList {
+class GunsmithIncludeList extends _is.IncludeList {
   GunsmithIncludeList._({
-    _i1.WhereExpressionBuilder<GunsmithTable>? where,
+    _is.WhereExpressionBuilder<GunsmithTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -516,10 +458,10 @@ class GunsmithIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => Gunsmith.t;
+  _is.Table<_is.UuidValue> get table => Gunsmith.t;
 }
 
 class GunsmithRepository {
@@ -552,23 +494,21 @@ class GunsmithRepository {
   /// );
   /// ```
   Future<List<Gunsmith>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<GunsmithTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<GunsmithTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<GunsmithTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<GunsmithTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<GunsmithTable>? orderBy,
+    _is.OrderByListBuilder<GunsmithTable>? orderByList,
+    _is.Transaction? transaction,
     GunsmithInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<Gunsmith>(
       where: where?.call(Gunsmith.t),
       orderBy: orderBy?.call(Gunsmith.t),
       orderByList: orderByList?.call(Gunsmith.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -596,22 +536,20 @@ class GunsmithRepository {
   /// );
   /// ```
   Future<Gunsmith?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<GunsmithTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<GunsmithTable>? where,
     int? offset,
-    _i1.OrderByBuilder<GunsmithTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<GunsmithTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<GunsmithTable>? orderBy,
+    _is.OrderByListBuilder<GunsmithTable>? orderByList,
+    _is.Transaction? transaction,
     GunsmithInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<Gunsmith>(
       where: where?.call(Gunsmith.t),
       orderBy: orderBy?.call(Gunsmith.t),
       orderByList: orderByList?.call(Gunsmith.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -622,12 +560,12 @@ class GunsmithRepository {
 
   /// Finds a single [Gunsmith] by its [id] or null if no such row exists.
   Future<Gunsmith?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     GunsmithInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<Gunsmith>(
       id,
@@ -648,16 +586,22 @@ class GunsmithRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Gunsmith>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Gunsmith> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<Gunsmith>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -665,12 +609,78 @@ class GunsmithRepository {
   ///
   /// The returned [Gunsmith] will have its `id` field set.
   Future<Gunsmith> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Gunsmith row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.insertRow<Gunsmith>(
+    return session.db.insertRow<Gunsmith>(row, transaction: transaction);
+  }
+
+  /// Upserts all [Gunsmith]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [Gunsmith]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<Gunsmith>> upsert(
+    _is.DatabaseSession session,
+    List<Gunsmith> rows, {
+    required _is.ColumnSelections<GunsmithTable> conflictColumns,
+    _is.ColumnSelections<GunsmithTable>? updateColumns,
+    _is.WhereExpressionBuilder<GunsmithTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<Gunsmith>(
+      rows,
+      conflictColumns: conflictColumns(Gunsmith.t),
+      updateColumns: updateColumns?.call(Gunsmith.t),
+      updateWhere: updateWhere?.call(Gunsmith.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [Gunsmith] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [Gunsmith] will have its `id` field set.
+  Future<Gunsmith?> upsertRow(
+    _is.DatabaseSession session,
+    Gunsmith row, {
+    required _is.ColumnSelections<GunsmithTable> conflictColumns,
+    _is.ColumnSelections<GunsmithTable>? updateColumns,
+    _is.WhereExpressionBuilder<GunsmithTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<Gunsmith>(
       row,
+      conflictColumns: conflictColumns(Gunsmith.t),
+      updateColumns: updateColumns?.call(Gunsmith.t),
+      updateWhere: updateWhere?.call(Gunsmith.t),
       transaction: transaction,
     );
   }
@@ -680,16 +690,22 @@ class GunsmithRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Gunsmith>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Gunsmith> rows, {
-    _i1.ColumnSelections<GunsmithTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<GunsmithTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<Gunsmith>(
       rows,
       columns: columns?.call(Gunsmith.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -697,10 +713,10 @@ class GunsmithRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Gunsmith> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Gunsmith row, {
-    _i1.ColumnSelections<GunsmithTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<GunsmithTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<Gunsmith>(
       row,
@@ -712,10 +728,10 @@ class GunsmithRepository {
   /// Updates a single [Gunsmith] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Gunsmith?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<GunsmithUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<GunsmithUpdateTable> columnValues,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<Gunsmith>(
       id,
@@ -726,16 +742,20 @@ class GunsmithRepository {
 
   /// Updates all [Gunsmith]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Gunsmith>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<GunsmithUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<GunsmithTable> where,
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<GunsmithUpdateTable> columnValues,
+    required _is.WhereExpressionBuilder<GunsmithTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<GunsmithTable>? orderBy,
-    _i1.OrderByListBuilder<GunsmithTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<GunsmithTable>? orderBy,
+    _is.OrderByListBuilder<GunsmithTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<Gunsmith>(
       columnValues: columnValues(Gunsmith.t.updateTable),
@@ -744,56 +764,80 @@ class GunsmithRepository {
       offset: offset,
       orderBy: orderBy?.call(Gunsmith.t),
       orderByList: orderByList?.call(Gunsmith.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [Gunsmith]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Gunsmith>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Gunsmith> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<GunsmithTable>? orderBy,
+    _is.OrderByListBuilder<GunsmithTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<Gunsmith>(
       rows,
+      orderBy: orderBy?.call(Gunsmith.t),
+      orderByList: orderByList?.call(Gunsmith.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [Gunsmith].
   Future<Gunsmith> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Gunsmith row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<Gunsmith>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<Gunsmith>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Gunsmith>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<GunsmithTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<GunsmithTable> where,
+    _is.OrderByBuilder<GunsmithTable>? orderBy,
+    _is.OrderByListBuilder<GunsmithTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<Gunsmith>(
       where: where(Gunsmith.t),
+      orderBy: orderBy?.call(Gunsmith.t),
+      orderByList: orderByList?.call(Gunsmith.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<GunsmithTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<GunsmithTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<Gunsmith>(
       where: where?.call(Gunsmith.t),
@@ -804,11 +848,11 @@ class GunsmithRepository {
 
   /// Acquires row-level locks on [Gunsmith] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<GunsmithTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<GunsmithTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<Gunsmith>(
       where: where(Gunsmith.t),
@@ -825,10 +869,10 @@ class GunsmithAttachRowRepository {
   /// Creates a relation between the given [Gunsmith] and [Address]
   /// by setting the [Gunsmith]'s foreign key `addressId` to refer to the [Address].
   Future<void> address(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Gunsmith gunsmith,
-    _i2.Address address, {
-    _i1.Transaction? transaction,
+    _iy1vkl2d.Address address, {
+    _is.Transaction? transaction,
   }) async {
     if (gunsmith.id == null) {
       throw ArgumentError.notNull('gunsmith.id');
@@ -848,10 +892,10 @@ class GunsmithAttachRowRepository {
   /// Creates a relation between the given [Gunsmith] and [UserProfile]
   /// by setting the [Gunsmith]'s foreign key `ownerId` to refer to the [UserProfile].
   Future<void> owner(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Gunsmith gunsmith,
-    _i3.UserProfile owner, {
-    _i1.Transaction? transaction,
+    _izifjpv2.UserProfile owner, {
+    _is.Transaction? transaction,
   }) async {
     if (gunsmith.id == null) {
       throw ArgumentError.notNull('gunsmith.id');
@@ -878,9 +922,9 @@ class GunsmithDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> address(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Gunsmith gunsmith, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (gunsmith.id == null) {
       throw ArgumentError.notNull('gunsmith.id');
@@ -900,9 +944,9 @@ class GunsmithDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> owner(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Gunsmith gunsmith, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (gunsmith.id == null) {
       throw ArgumentError.notNull('gunsmith.id');

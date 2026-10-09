@@ -18,8 +18,7 @@ class TrainingRepository implements ITrainingRepository {
     return await Training.db.find(
       session,
       where: (t) => t.userInfoId.equals(userId),
-      orderBy: (t) => t.date,
-      orderDescending: true,
+      orderByList: (t) => [t.date.desc()],
     );
   }
 

@@ -51,8 +51,9 @@ extension UserTypeExt on UserType {
     if (n == 'COMPANY_ADMIN' ||
         n == 'COMPANYADMIN' ||
         n == 'CLUB_ADMIN' ||
-        n == 'CLUBADMIN')
+        n == 'CLUBADMIN') {
       return 'Admin Empresa';
+    }
     if (n == 'GUNSMITH') return 'Armeiro';
     if (n == 'SHOOTER') return 'Atirador';
     return n;
@@ -78,8 +79,9 @@ extension AppModuleExt on AppModule {
     if (n == 'COMPANIES' ||
         n == 'CLUBS' ||
         n == 'COMPANYMANAGEMENT' ||
-        n == 'CLUBMANAGEMENT')
+        n == 'CLUBMANAGEMENT') {
       return 'Empresas';
+    }
     if (n == 'ROLES') return 'Perfis e Permissões';
     if (n == 'PRODUCTS') return 'Produtos';
     if (n == 'STOCK') return 'Estoque';

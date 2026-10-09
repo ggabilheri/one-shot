@@ -10,11 +10,12 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
 
-abstract class AsaasWebhookEvent implements _i1.SerializableModel {
+abstract class AsaasWebhookEvent
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   AsaasWebhookEvent._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.eventId,
     required this.event,
     required this.payload,
@@ -22,12 +23,12 @@ abstract class AsaasWebhookEvent implements _i1.SerializableModel {
     this.processedAt,
     this.error,
     DateTime? receivedAt,
-  }) : id = id ?? const _i1.Uuid().v4obj(),
+  }) : id = id ?? const _isc.Uuid().v4obj(),
        processed = processed ?? false,
        receivedAt = receivedAt ?? DateTime.now();
 
   factory AsaasWebhookEvent({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String eventId,
     required String event,
     required String payload,
@@ -41,27 +42,29 @@ abstract class AsaasWebhookEvent implements _i1.SerializableModel {
     return AsaasWebhookEvent(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       eventId: jsonSerialization['eventId'] as String,
       event: jsonSerialization['event'] as String,
       payload: jsonSerialization['payload'] as String,
       processed: jsonSerialization['processed'] == null
           ? null
-          : _i1.BoolJsonExtension.fromJson(jsonSerialization['processed']),
+          : _isc.BoolJsonExtension.fromJson(jsonSerialization['processed']),
       processedAt: jsonSerialization['processedAt'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _isc.DateTimeJsonExtension.fromJson(
               jsonSerialization['processedAt'],
             ),
       error: jsonSerialization['error'] as String?,
       receivedAt: jsonSerialization['receivedAt'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(jsonSerialization['receivedAt']),
+          : _isc.DateTimeJsonExtension.fromJson(
+              jsonSerialization['receivedAt'],
+            ),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   String eventId;
 
@@ -79,9 +82,9 @@ abstract class AsaasWebhookEvent implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [AsaasWebhookEvent]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   AsaasWebhookEvent copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? eventId,
     String? event,
     String? payload,
@@ -106,8 +109,23 @@ abstract class AsaasWebhookEvent implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'AsaasWebhookEvent',
+      'id': id.toJson(),
+      'eventId': eventId,
+      'event': event,
+      'payload': payload,
+      'processed': processed,
+      if (processedAt != null) 'processedAt': processedAt?.toJson(),
+      if (error != null) 'error': error,
+      'receivedAt': receivedAt.toJson(),
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -115,7 +133,7 @@ class _Undefined {}
 
 class _AsaasWebhookEventImpl extends AsaasWebhookEvent {
   _AsaasWebhookEventImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String eventId,
     required String event,
     required String payload,
@@ -136,10 +154,10 @@ class _AsaasWebhookEventImpl extends AsaasWebhookEvent {
 
   /// Returns a shallow copy of this [AsaasWebhookEvent]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   AsaasWebhookEvent copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? eventId,
     String? event,
     String? payload,

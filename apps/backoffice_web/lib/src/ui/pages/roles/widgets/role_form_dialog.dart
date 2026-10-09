@@ -195,7 +195,7 @@ class _RoleFormDialogState extends State<RoleFormDialog> {
               Switch(
                 value: _isActive,
                 onChanged: (val) => setState(() => _isActive = val),
-                activeColor: DSTokens.primary,
+                activeThumbColor: DSTokens.primary,
               ),
             ],
           ),

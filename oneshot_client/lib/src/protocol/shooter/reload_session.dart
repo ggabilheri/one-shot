@@ -10,15 +10,16 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i2;
-import '../common/accessory.dart' as _i3;
-import '../common/supply_stock.dart' as _i4;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i5;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i312scxx;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/accessory.dart' as _ixwksfmb;
+import '../common/supply_stock.dart' as _icdicocn;
 
-abstract class ReloadSession implements _i1.SerializableModel {
+abstract class ReloadSession
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   ReloadSession._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     this.userInfoId,
     this.userInfo,
     required this.reloadDate,
@@ -37,25 +38,25 @@ abstract class ReloadSession implements _i1.SerializableModel {
     required this.oal,
     required this.totalCost,
     required this.unitCost,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory ReloadSession({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
     required DateTime reloadDate,
-    _i1.UuidValue? pressId,
-    _i3.Accessory? press,
+    _isc.UuidValue? pressId,
+    _ixwksfmb.Accessory? press,
     required String caliber,
     required String casingBatch,
     required int reloadsCompleted,
-    _i1.UuidValue? powderId,
-    _i4.SupplyStock? powder,
+    _isc.UuidValue? powderId,
+    _icdicocn.SupplyStock? powder,
     required double powderGrains,
-    _i1.UuidValue? primerId,
-    _i4.SupplyStock? primer,
-    _i1.UuidValue? projectileId,
-    _i4.SupplyStock? projectile,
+    _isc.UuidValue? primerId,
+    _icdicocn.SupplyStock? primer,
+    _isc.UuidValue? projectileId,
+    _icdicocn.SupplyStock? projectile,
     required double oal,
     required double totalCost,
     required double unitCost,
@@ -65,22 +66,22 @@ abstract class ReloadSession implements _i1.SerializableModel {
     return ReloadSession(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
-          : _i5.Protocol().deserialize<_i2.UserInfo>(
+          : _itys55mc.Protocol().deserialize<_i312scxx.UserInfo>(
               jsonSerialization['userInfo'],
             ),
-      reloadDate: _i1.DateTimeJsonExtension.fromJson(
+      reloadDate: _isc.DateTimeJsonExtension.fromJson(
         jsonSerialization['reloadDate'],
       ),
       pressId: jsonSerialization['pressId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['pressId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['pressId']),
       press: jsonSerialization['press'] == null
           ? null
-          : _i5.Protocol().deserialize<_i3.Accessory>(
+          : _itys55mc.Protocol().deserialize<_ixwksfmb.Accessory>(
               jsonSerialization['press'],
             ),
       caliber: jsonSerialization['caliber'] as String,
@@ -88,29 +89,29 @@ abstract class ReloadSession implements _i1.SerializableModel {
       reloadsCompleted: jsonSerialization['reloadsCompleted'] as int,
       powderId: jsonSerialization['powderId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['powderId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['powderId']),
       powder: jsonSerialization['powder'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.SupplyStock>(
+          : _itys55mc.Protocol().deserialize<_icdicocn.SupplyStock>(
               jsonSerialization['powder'],
             ),
       powderGrains: (jsonSerialization['powderGrains'] as num).toDouble(),
       primerId: jsonSerialization['primerId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['primerId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['primerId']),
       primer: jsonSerialization['primer'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.SupplyStock>(
+          : _itys55mc.Protocol().deserialize<_icdicocn.SupplyStock>(
               jsonSerialization['primer'],
             ),
       projectileId: jsonSerialization['projectileId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(
               jsonSerialization['projectileId'],
             ),
       projectile: jsonSerialization['projectile'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.SupplyStock>(
+          : _itys55mc.Protocol().deserialize<_icdicocn.SupplyStock>(
               jsonSerialization['projectile'],
             ),
       oal: (jsonSerialization['oal'] as num).toDouble(),
@@ -120,17 +121,17 @@ abstract class ReloadSession implements _i1.SerializableModel {
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   int? userInfoId;
 
-  _i2.UserInfo? userInfo;
+  _i312scxx.UserInfo? userInfo;
 
   DateTime reloadDate;
 
-  _i1.UuidValue? pressId;
+  _isc.UuidValue? pressId;
 
-  _i3.Accessory? press;
+  _ixwksfmb.Accessory? press;
 
   String caliber;
 
@@ -138,19 +139,19 @@ abstract class ReloadSession implements _i1.SerializableModel {
 
   int reloadsCompleted;
 
-  _i1.UuidValue? powderId;
+  _isc.UuidValue? powderId;
 
-  _i4.SupplyStock? powder;
+  _icdicocn.SupplyStock? powder;
 
   double powderGrains;
 
-  _i1.UuidValue? primerId;
+  _isc.UuidValue? primerId;
 
-  _i4.SupplyStock? primer;
+  _icdicocn.SupplyStock? primer;
 
-  _i1.UuidValue? projectileId;
+  _isc.UuidValue? projectileId;
 
-  _i4.SupplyStock? projectile;
+  _icdicocn.SupplyStock? projectile;
 
   double oal;
 
@@ -160,24 +161,24 @@ abstract class ReloadSession implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [ReloadSession]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   ReloadSession copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
     DateTime? reloadDate,
-    _i1.UuidValue? pressId,
-    _i3.Accessory? press,
+    _isc.UuidValue? pressId,
+    _ixwksfmb.Accessory? press,
     String? caliber,
     String? casingBatch,
     int? reloadsCompleted,
-    _i1.UuidValue? powderId,
-    _i4.SupplyStock? powder,
+    _isc.UuidValue? powderId,
+    _icdicocn.SupplyStock? powder,
     double? powderGrains,
-    _i1.UuidValue? primerId,
-    _i4.SupplyStock? primer,
-    _i1.UuidValue? projectileId,
-    _i4.SupplyStock? projectile,
+    _isc.UuidValue? primerId,
+    _icdicocn.SupplyStock? primer,
+    _isc.UuidValue? projectileId,
+    _icdicocn.SupplyStock? projectile,
     double? oal,
     double? totalCost,
     double? unitCost,
@@ -209,8 +210,34 @@ abstract class ReloadSession implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'ReloadSession',
+      'id': id.toJson(),
+      if (userInfoId != null) 'userInfoId': userInfoId,
+      if (userInfo != null) 'userInfo': userInfo?.toJson(),
+      'reloadDate': reloadDate.toJson(),
+      if (pressId != null) 'pressId': pressId?.toJson(),
+      if (press != null) 'press': press?.toJsonForProtocol(),
+      'caliber': caliber,
+      'casingBatch': casingBatch,
+      'reloadsCompleted': reloadsCompleted,
+      if (powderId != null) 'powderId': powderId?.toJson(),
+      if (powder != null) 'powder': powder?.toJsonForProtocol(),
+      'powderGrains': powderGrains,
+      if (primerId != null) 'primerId': primerId?.toJson(),
+      if (primer != null) 'primer': primer?.toJsonForProtocol(),
+      if (projectileId != null) 'projectileId': projectileId?.toJson(),
+      if (projectile != null) 'projectile': projectile?.toJsonForProtocol(),
+      'oal': oal,
+      'totalCost': totalCost,
+      'unitCost': unitCost,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -218,22 +245,22 @@ class _Undefined {}
 
 class _ReloadSessionImpl extends ReloadSession {
   _ReloadSessionImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
     required DateTime reloadDate,
-    _i1.UuidValue? pressId,
-    _i3.Accessory? press,
+    _isc.UuidValue? pressId,
+    _ixwksfmb.Accessory? press,
     required String caliber,
     required String casingBatch,
     required int reloadsCompleted,
-    _i1.UuidValue? powderId,
-    _i4.SupplyStock? powder,
+    _isc.UuidValue? powderId,
+    _icdicocn.SupplyStock? powder,
     required double powderGrains,
-    _i1.UuidValue? primerId,
-    _i4.SupplyStock? primer,
-    _i1.UuidValue? projectileId,
-    _i4.SupplyStock? projectile,
+    _isc.UuidValue? primerId,
+    _icdicocn.SupplyStock? primer,
+    _isc.UuidValue? projectileId,
+    _icdicocn.SupplyStock? projectile,
     required double oal,
     required double totalCost,
     required double unitCost,
@@ -261,10 +288,10 @@ class _ReloadSessionImpl extends ReloadSession {
 
   /// Returns a shallow copy of this [ReloadSession]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   ReloadSession copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     DateTime? reloadDate,
@@ -287,24 +314,28 @@ class _ReloadSessionImpl extends ReloadSession {
     return ReloadSession(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i2.UserInfo?
+      userInfo: userInfo is _i312scxx.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
       reloadDate: reloadDate ?? this.reloadDate,
-      pressId: pressId is _i1.UuidValue? ? pressId : this.pressId,
-      press: press is _i3.Accessory? ? press : this.press?.copyWith(),
+      pressId: pressId is _isc.UuidValue? ? pressId : this.pressId,
+      press: press is _ixwksfmb.Accessory? ? press : this.press?.copyWith(),
       caliber: caliber ?? this.caliber,
       casingBatch: casingBatch ?? this.casingBatch,
       reloadsCompleted: reloadsCompleted ?? this.reloadsCompleted,
-      powderId: powderId is _i1.UuidValue? ? powderId : this.powderId,
-      powder: powder is _i4.SupplyStock? ? powder : this.powder?.copyWith(),
+      powderId: powderId is _isc.UuidValue? ? powderId : this.powderId,
+      powder: powder is _icdicocn.SupplyStock?
+          ? powder
+          : this.powder?.copyWith(),
       powderGrains: powderGrains ?? this.powderGrains,
-      primerId: primerId is _i1.UuidValue? ? primerId : this.primerId,
-      primer: primer is _i4.SupplyStock? ? primer : this.primer?.copyWith(),
-      projectileId: projectileId is _i1.UuidValue?
+      primerId: primerId is _isc.UuidValue? ? primerId : this.primerId,
+      primer: primer is _icdicocn.SupplyStock?
+          ? primer
+          : this.primer?.copyWith(),
+      projectileId: projectileId is _isc.UuidValue?
           ? projectileId
           : this.projectileId,
-      projectile: projectile is _i4.SupplyStock?
+      projectile: projectile is _icdicocn.SupplyStock?
           ? projectile
           : this.projectile?.copyWith(),
       oal: oal ?? this.oal,

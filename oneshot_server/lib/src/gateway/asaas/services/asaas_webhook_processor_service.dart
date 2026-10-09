@@ -15,14 +15,11 @@ class AsaasWebhookProcessorService implements IAsaasWebhookProcessorService {
   final AccountEventHandler _accountHandler;
 
   AsaasWebhookProcessorService({
-    required IAsaasWebhookEventRepository eventRepository,
-    required PaymentEventHandler paymentHandler,
-    required TransferEventHandler transferHandler,
-    required AccountEventHandler accountHandler,
-  })  : _eventRepository = eventRepository,
-        _paymentHandler = paymentHandler,
-        _transferHandler = transferHandler,
-        _accountHandler = accountHandler;
+    required this._eventRepository,
+    required this._paymentHandler,
+    required this._transferHandler,
+    required this._accountHandler,
+  });
 
   @override
   Future<void> receive(Session session, Map<String, dynamic> payload) async {

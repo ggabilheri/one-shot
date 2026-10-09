@@ -10,19 +10,20 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
 
-abstract class SecurityRole implements _i1.SerializableModel {
+abstract class SecurityRole
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   SecurityRole._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.name,
     this.description,
     bool? active,
-  }) : id = id ?? const _i1.Uuid().v4obj(),
+  }) : id = id ?? const _isc.Uuid().v4obj(),
        active = active ?? true;
 
   factory SecurityRole({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String name,
     String? description,
     bool? active,
@@ -32,17 +33,17 @@ abstract class SecurityRole implements _i1.SerializableModel {
     return SecurityRole(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       name: jsonSerialization['name'] as String,
       description: jsonSerialization['description'] as String?,
       active: jsonSerialization['active'] == null
           ? null
-          : _i1.BoolJsonExtension.fromJson(jsonSerialization['active']),
+          : _isc.BoolJsonExtension.fromJson(jsonSerialization['active']),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   String name;
 
@@ -52,9 +53,9 @@ abstract class SecurityRole implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [SecurityRole]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   SecurityRole copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? name,
     String? description,
     bool? active,
@@ -71,8 +72,19 @@ abstract class SecurityRole implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'SecurityRole',
+      'id': id.toJson(),
+      'name': name,
+      if (description != null) 'description': description,
+      'active': active,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -80,23 +92,18 @@ class _Undefined {}
 
 class _SecurityRoleImpl extends SecurityRole {
   _SecurityRoleImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String name,
     String? description,
     bool? active,
-  }) : super._(
-         id: id,
-         name: name,
-         description: description,
-         active: active,
-       );
+  }) : super._(id: id, name: name, description: description, active: active);
 
   /// Returns a shallow copy of this [SecurityRole]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   SecurityRole copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? name,
     Object? description = _Undefined,
     bool? active,

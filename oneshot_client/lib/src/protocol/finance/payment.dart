@@ -10,16 +10,17 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../enums/payment_method.enum.dart' as _i2;
-import '../enums/payment_status.enum.dart' as _i3;
-import '../enums/currency.enum.dart' as _i4;
-import '../finance/invoice.dart' as _i5;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i6;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../enums/currency.enum.dart' as _isdw5wvy;
+import '../enums/payment_method.enum.dart' as _iqyvznnz;
+import '../enums/payment_status.enum.dart' as _iulumb5a;
+import '../finance/invoice.dart' as _i3d856q3;
 
-abstract class Payment implements _i1.SerializableModel {
+abstract class Payment
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   Payment._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.paymentDate,
     required this.amountPaid,
     required this.paymentMethod,
@@ -37,15 +38,15 @@ abstract class Payment implements _i1.SerializableModel {
     this.asaasRefundedAt,
     this.invoiceId,
     this.invoice,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory Payment({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required DateTime paymentDate,
     required double amountPaid,
-    required _i2.PaymentMethod paymentMethod,
-    required _i3.PaymentStatus status,
-    required _i4.Currency currency,
+    required _iqyvznnz.PaymentMethod paymentMethod,
+    required _iulumb5a.PaymentStatus status,
+    required _isdw5wvy.Currency currency,
     String? asaasPaymentId,
     String? asaasCustomerId,
     String? asaasBillingType,
@@ -56,26 +57,26 @@ abstract class Payment implements _i1.SerializableModel {
     String? asaasPixQrCodePayload,
     String? asaasPixQrCodeImage,
     DateTime? asaasRefundedAt,
-    _i1.UuidValue? invoiceId,
-    _i5.Invoice? invoice,
+    _isc.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
   }) = _PaymentImpl;
 
   factory Payment.fromJson(Map<String, dynamic> jsonSerialization) {
     return Payment(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      paymentDate: _i1.DateTimeJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+      paymentDate: _isc.DateTimeJsonExtension.fromJson(
         jsonSerialization['paymentDate'],
       ),
       amountPaid: (jsonSerialization['amountPaid'] as num).toDouble(),
-      paymentMethod: _i2.PaymentMethod.fromJson(
+      paymentMethod: _iqyvznnz.PaymentMethod.fromJson(
         (jsonSerialization['paymentMethod'] as String),
       ),
-      status: _i3.PaymentStatus.fromJson(
+      status: _iulumb5a.PaymentStatus.fromJson(
         (jsonSerialization['status'] as String),
       ),
-      currency: _i4.Currency.fromJson(
+      currency: _isdw5wvy.Currency.fromJson(
         (jsonSerialization['currency'] as String),
       ),
       asaasPaymentId: jsonSerialization['asaasPaymentId'] as String?,
@@ -83,7 +84,7 @@ abstract class Payment implements _i1.SerializableModel {
       asaasBillingType: jsonSerialization['asaasBillingType'] as String?,
       asaasDueDate: jsonSerialization['asaasDueDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _isc.DateTimeJsonExtension.fromJson(
               jsonSerialization['asaasDueDate'],
             ),
       asaasNetValue: (jsonSerialization['asaasNetValue'] as num?)?.toDouble(),
@@ -94,32 +95,34 @@ abstract class Payment implements _i1.SerializableModel {
       asaasPixQrCodeImage: jsonSerialization['asaasPixQrCodeImage'] as String?,
       asaasRefundedAt: jsonSerialization['asaasRefundedAt'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _isc.DateTimeJsonExtension.fromJson(
               jsonSerialization['asaasRefundedAt'],
             ),
       invoiceId: jsonSerialization['invoiceId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['invoiceId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['invoiceId'],
+            ),
       invoice: jsonSerialization['invoice'] == null
           ? null
-          : _i6.Protocol().deserialize<_i5.Invoice>(
+          : _itys55mc.Protocol().deserialize<_i3d856q3.Invoice>(
               jsonSerialization['invoice'],
             ),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   DateTime paymentDate;
 
   double amountPaid;
 
-  _i2.PaymentMethod paymentMethod;
+  _iqyvznnz.PaymentMethod paymentMethod;
 
-  _i3.PaymentStatus status;
+  _iulumb5a.PaymentStatus status;
 
-  _i4.Currency currency;
+  _isdw5wvy.Currency currency;
 
   String? asaasPaymentId;
 
@@ -141,20 +144,20 @@ abstract class Payment implements _i1.SerializableModel {
 
   DateTime? asaasRefundedAt;
 
-  _i1.UuidValue? invoiceId;
+  _isc.UuidValue? invoiceId;
 
-  _i5.Invoice? invoice;
+  _i3d856q3.Invoice? invoice;
 
   /// Returns a shallow copy of this [Payment]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   Payment copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     DateTime? paymentDate,
     double? amountPaid,
-    _i2.PaymentMethod? paymentMethod,
-    _i3.PaymentStatus? status,
-    _i4.Currency? currency,
+    _iqyvznnz.PaymentMethod? paymentMethod,
+    _iulumb5a.PaymentStatus? status,
+    _isdw5wvy.Currency? currency,
     String? asaasPaymentId,
     String? asaasCustomerId,
     String? asaasBillingType,
@@ -165,8 +168,8 @@ abstract class Payment implements _i1.SerializableModel {
     String? asaasPixQrCodePayload,
     String? asaasPixQrCodeImage,
     DateTime? asaasRefundedAt,
-    _i1.UuidValue? invoiceId,
-    _i5.Invoice? invoice,
+    _isc.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -196,8 +199,35 @@ abstract class Payment implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'Payment',
+      'id': id.toJson(),
+      'paymentDate': paymentDate.toJson(),
+      'amountPaid': amountPaid,
+      'paymentMethod': paymentMethod.toJson(),
+      'status': status.toJson(),
+      'currency': currency.toJson(),
+      if (asaasPaymentId != null) 'asaasPaymentId': asaasPaymentId,
+      if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
+      if (asaasBillingType != null) 'asaasBillingType': asaasBillingType,
+      if (asaasDueDate != null) 'asaasDueDate': asaasDueDate?.toJson(),
+      if (asaasNetValue != null) 'asaasNetValue': asaasNetValue,
+      if (asaasInvoiceUrl != null) 'asaasInvoiceUrl': asaasInvoiceUrl,
+      if (asaasBankSlipUrl != null) 'asaasBankSlipUrl': asaasBankSlipUrl,
+      if (asaasPixQrCodePayload != null)
+        'asaasPixQrCodePayload': asaasPixQrCodePayload,
+      if (asaasPixQrCodeImage != null)
+        'asaasPixQrCodeImage': asaasPixQrCodeImage,
+      if (asaasRefundedAt != null) 'asaasRefundedAt': asaasRefundedAt?.toJson(),
+      if (invoiceId != null) 'invoiceId': invoiceId?.toJson(),
+      if (invoice != null) 'invoice': invoice?.toJsonForProtocol(),
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -205,12 +235,12 @@ class _Undefined {}
 
 class _PaymentImpl extends Payment {
   _PaymentImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required DateTime paymentDate,
     required double amountPaid,
-    required _i2.PaymentMethod paymentMethod,
-    required _i3.PaymentStatus status,
-    required _i4.Currency currency,
+    required _iqyvznnz.PaymentMethod paymentMethod,
+    required _iulumb5a.PaymentStatus status,
+    required _isdw5wvy.Currency currency,
     String? asaasPaymentId,
     String? asaasCustomerId,
     String? asaasBillingType,
@@ -221,8 +251,8 @@ class _PaymentImpl extends Payment {
     String? asaasPixQrCodePayload,
     String? asaasPixQrCodeImage,
     DateTime? asaasRefundedAt,
-    _i1.UuidValue? invoiceId,
-    _i5.Invoice? invoice,
+    _isc.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
   }) : super._(
          id: id,
          paymentDate: paymentDate,
@@ -246,15 +276,15 @@ class _PaymentImpl extends Payment {
 
   /// Returns a shallow copy of this [Payment]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   Payment copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     DateTime? paymentDate,
     double? amountPaid,
-    _i2.PaymentMethod? paymentMethod,
-    _i3.PaymentStatus? status,
-    _i4.Currency? currency,
+    _iqyvznnz.PaymentMethod? paymentMethod,
+    _iulumb5a.PaymentStatus? status,
+    _isdw5wvy.Currency? currency,
     Object? asaasPaymentId = _Undefined,
     Object? asaasCustomerId = _Undefined,
     Object? asaasBillingType = _Undefined,
@@ -305,8 +335,10 @@ class _PaymentImpl extends Payment {
       asaasRefundedAt: asaasRefundedAt is DateTime?
           ? asaasRefundedAt
           : this.asaasRefundedAt,
-      invoiceId: invoiceId is _i1.UuidValue? ? invoiceId : this.invoiceId,
-      invoice: invoice is _i5.Invoice? ? invoice : this.invoice?.copyWith(),
+      invoiceId: invoiceId is _isc.UuidValue? ? invoiceId : this.invoiceId,
+      invoice: invoice is _i3d856q3.Invoice?
+          ? invoice
+          : this.invoice?.copyWith(),
     );
   }
 }

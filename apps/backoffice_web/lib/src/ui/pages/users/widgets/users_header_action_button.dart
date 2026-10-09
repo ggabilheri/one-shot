@@ -19,7 +19,7 @@ class UsersHeaderActionButton extends StatelessWidget {
         onTap: () {
           showDialog(
             context: context,
-            barrierColor: DSTokens.background.withOpacity(0.8),
+            barrierColor: DSTokens.background.withValues(alpha: 0.8),
             builder: (context) => UserFormDialog(vm: vm),
           );
         },

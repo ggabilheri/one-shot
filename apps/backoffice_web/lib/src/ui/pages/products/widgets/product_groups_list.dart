@@ -56,7 +56,7 @@ class ProductGroupsList extends StatelessWidget {
 
                 return ListTile(
                   selected: isSelected,
-                  selectedTileColor: DSTokens.primary.withOpacity(0.1),
+                  selectedTileColor: DSTokens.primary.withValues(alpha: 0.1),
                   leading: Icon(
                     Icons.folder_open,
                     color: isSelected ? DSTokens.primary : DSTokens.outline,

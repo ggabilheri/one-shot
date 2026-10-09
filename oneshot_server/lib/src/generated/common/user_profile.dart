@@ -8,21 +8,21 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i2;
-import '../enums/gender.enum.dart' as _i3;
-import '../common/address.dart' as _i4;
-import '../enums/user_type.enum.dart' as _i5;
-import '../enums/user_status.enum.dart' as _i6;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i7;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i1n3uhu0;
+import '../common/address.dart' as _iy1vkl2d;
+import '../enums/gender.enum.dart' as _ix60f0mc;
+import '../enums/user_status.enum.dart' as _ijq1b3b6;
+import '../enums/user_type.enum.dart' as _i828q2d1;
 
 abstract class UserProfile
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   UserProfile._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     this.userInfoId,
     this.userInfo,
     required this.name,
@@ -38,23 +38,23 @@ abstract class UserProfile
     required this.status,
     this.asaasCustomerId,
     this.asaasOnboardingFailureReason,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _is.Uuid().v4obj();
 
   factory UserProfile({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i1n3uhu0.UserInfo? userInfo,
     required String name,
-    _i3.Gender? gender,
+    _ix60f0mc.Gender? gender,
     DateTime? birthDate,
     String? rg,
     String? cpf,
     String? phone,
     String? email,
-    _i1.UuidValue? addressId,
-    _i4.Address? address,
-    List<_i5.UserType>? types,
-    required _i6.UserStatus status,
+    _is.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    List<_i828q2d1.UserType>? types,
+    required _ijq1b3b6.UserStatus status,
     String? asaasCustomerId,
     String? asaasOnboardingFailureReason,
   }) = _UserProfileImpl;
@@ -63,38 +63,40 @@ abstract class UserProfile
     return UserProfile(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
-          : _i7.Protocol().deserialize<_i2.UserInfo>(
+          : _iwflrbqm.Protocol().deserialize<_i1n3uhu0.UserInfo>(
               jsonSerialization['userInfo'],
             ),
       name: jsonSerialization['name'] as String,
       gender: jsonSerialization['gender'] == null
           ? null
-          : _i3.Gender.fromJson((jsonSerialization['gender'] as String)),
+          : _ix60f0mc.Gender.fromJson((jsonSerialization['gender'] as String)),
       birthDate: jsonSerialization['birthDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(jsonSerialization['birthDate']),
+          : _is.DateTimeJsonExtension.fromJson(jsonSerialization['birthDate']),
       rg: jsonSerialization['rg'] as String?,
       cpf: jsonSerialization['cpf'] as String?,
       phone: jsonSerialization['phone'] as String?,
       email: jsonSerialization['email'] as String?,
       addressId: jsonSerialization['addressId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
       address: jsonSerialization['address'] == null
           ? null
-          : _i7.Protocol().deserialize<_i4.Address>(
+          : _iwflrbqm.Protocol().deserialize<_iy1vkl2d.Address>(
               jsonSerialization['address'],
             ),
       types: jsonSerialization['types'] == null
           ? null
-          : _i7.Protocol().deserialize<List<_i5.UserType>>(
+          : _iwflrbqm.Protocol().deserialize<List<_i828q2d1.UserType>>(
               jsonSerialization['types'],
             ),
-      status: _i6.UserStatus.fromJson((jsonSerialization['status'] as String)),
+      status: _ijq1b3b6.UserStatus.fromJson(
+        (jsonSerialization['status'] as String),
+      ),
       asaasCustomerId: jsonSerialization['asaasCustomerId'] as String?,
       asaasOnboardingFailureReason:
           jsonSerialization['asaasOnboardingFailureReason'] as String?,
@@ -106,15 +108,15 @@ abstract class UserProfile
   static const db = UserProfileRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
   int? userInfoId;
 
-  _i2.UserInfo? userInfo;
+  _i1n3uhu0.UserInfo? userInfo;
 
   String name;
 
-  _i3.Gender? gender;
+  _ix60f0mc.Gender? gender;
 
   DateTime? birthDate;
 
@@ -126,39 +128,39 @@ abstract class UserProfile
 
   String? email;
 
-  _i1.UuidValue? addressId;
+  _is.UuidValue? addressId;
 
-  _i4.Address? address;
+  _iy1vkl2d.Address? address;
 
-  List<_i5.UserType>? types;
+  List<_i828q2d1.UserType>? types;
 
-  _i6.UserStatus status;
+  _ijq1b3b6.UserStatus status;
 
   String? asaasCustomerId;
 
   String? asaasOnboardingFailureReason;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [UserProfile]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   UserProfile copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i1n3uhu0.UserInfo? userInfo,
     String? name,
-    _i3.Gender? gender,
+    _ix60f0mc.Gender? gender,
     DateTime? birthDate,
     String? rg,
     String? cpf,
     String? phone,
     String? email,
-    _i1.UuidValue? addressId,
-    _i4.Address? address,
-    List<_i5.UserType>? types,
-    _i6.UserStatus? status,
+    _is.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    List<_i828q2d1.UserType>? types,
+    _ijq1b3b6.UserStatus? status,
     String? asaasCustomerId,
     String? asaasOnboardingFailureReason,
   });
@@ -192,7 +194,7 @@ abstract class UserProfile
       '__className__': 'UserProfile',
       'id': id.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
-      if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
+      if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'name': name,
       if (gender != null) 'gender': gender?.toJson(),
       if (birthDate != null) 'birthDate': birthDate?.toJson(),
@@ -211,22 +213,18 @@ abstract class UserProfile
   }
 
   static UserProfileInclude include({
-    _i2.UserInfoInclude? userInfo,
-    _i4.AddressInclude? address,
+    _i1n3uhu0.UserInfoInclude? userInfo,
+    _iy1vkl2d.AddressInclude? address,
   }) {
-    return UserProfileInclude._(
-      userInfo: userInfo,
-      address: address,
-    );
+    return UserProfileInclude._(userInfo: userInfo, address: address);
   }
 
   static UserProfileIncludeList includeList({
-    _i1.WhereExpressionBuilder<UserProfileTable>? where,
+    _is.WhereExpressionBuilder<UserProfileTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<UserProfileTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UserProfileTable>? orderByList,
+    _is.OrderByBuilder<UserProfileTable>? orderBy,
+    _is.OrderByListBuilder<UserProfileTable>? orderByList,
     UserProfileInclude? include,
   }) {
     return UserProfileIncludeList._(
@@ -234,7 +232,6 @@ abstract class UserProfile
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(UserProfile.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(UserProfile.t),
       include: include,
     );
@@ -242,7 +239,7 @@ abstract class UserProfile
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -250,20 +247,20 @@ class _Undefined {}
 
 class _UserProfileImpl extends UserProfile {
   _UserProfileImpl({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i1n3uhu0.UserInfo? userInfo,
     required String name,
-    _i3.Gender? gender,
+    _ix60f0mc.Gender? gender,
     DateTime? birthDate,
     String? rg,
     String? cpf,
     String? phone,
     String? email,
-    _i1.UuidValue? addressId,
-    _i4.Address? address,
-    List<_i5.UserType>? types,
-    required _i6.UserStatus status,
+    _is.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    List<_i828q2d1.UserType>? types,
+    required _ijq1b3b6.UserStatus status,
     String? asaasCustomerId,
     String? asaasOnboardingFailureReason,
   }) : super._(
@@ -287,10 +284,10 @@ class _UserProfileImpl extends UserProfile {
 
   /// Returns a shallow copy of this [UserProfile]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   UserProfile copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     String? name,
@@ -303,26 +300,28 @@ class _UserProfileImpl extends UserProfile {
     Object? addressId = _Undefined,
     Object? address = _Undefined,
     Object? types = _Undefined,
-    _i6.UserStatus? status,
+    _ijq1b3b6.UserStatus? status,
     Object? asaasCustomerId = _Undefined,
     Object? asaasOnboardingFailureReason = _Undefined,
   }) {
     return UserProfile(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i2.UserInfo?
+      userInfo: userInfo is _i1n3uhu0.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
       name: name ?? this.name,
-      gender: gender is _i3.Gender? ? gender : this.gender,
+      gender: gender is _ix60f0mc.Gender? ? gender : this.gender,
       birthDate: birthDate is DateTime? ? birthDate : this.birthDate,
       rg: rg is String? ? rg : this.rg,
       cpf: cpf is String? ? cpf : this.cpf,
       phone: phone is String? ? phone : this.phone,
       email: email is String? ? email : this.email,
-      addressId: addressId is _i1.UuidValue? ? addressId : this.addressId,
-      address: address is _i4.Address? ? address : this.address?.copyWith(),
-      types: types is List<_i5.UserType>?
+      addressId: addressId is _is.UuidValue? ? addressId : this.addressId,
+      address: address is _iy1vkl2d.Address?
+          ? address
+          : this.address?.copyWith(),
+      types: types is List<_i828q2d1.UserType>?
           ? types
           : this.types?.map((e0) => e0).toList(),
       status: status ?? this.status,
@@ -336,139 +335,69 @@ class _UserProfileImpl extends UserProfile {
   }
 }
 
-class UserProfileUpdateTable extends _i1.UpdateTable<UserProfileTable> {
+class UserProfileUpdateTable extends _is.UpdateTable<UserProfileTable> {
   UserProfileUpdateTable(super.table);
 
-  _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
-    table.userInfoId,
-    value,
-  );
+  _is.ColumnValue<int, int> userInfoId(int? value) =>
+      _is.ColumnValue(table.userInfoId, value);
 
-  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
-    table.name,
-    value,
-  );
+  _is.ColumnValue<String, String> name(String value) =>
+      _is.ColumnValue(table.name, value);
 
-  _i1.ColumnValue<_i3.Gender, _i3.Gender> gender(_i3.Gender? value) =>
-      _i1.ColumnValue(
-        table.gender,
-        value,
-      );
+  _is.ColumnValue<_ix60f0mc.Gender, _ix60f0mc.Gender> gender(
+    _ix60f0mc.Gender? value,
+  ) => _is.ColumnValue(table.gender, value);
 
-  _i1.ColumnValue<DateTime, DateTime> birthDate(DateTime? value) =>
-      _i1.ColumnValue(
-        table.birthDate,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> birthDate(DateTime? value) =>
+      _is.ColumnValue(table.birthDate, value);
 
-  _i1.ColumnValue<String, String> rg(String? value) => _i1.ColumnValue(
-    table.rg,
-    value,
-  );
+  _is.ColumnValue<String, String> rg(String? value) =>
+      _is.ColumnValue(table.rg, value);
 
-  _i1.ColumnValue<String, String> cpf(String? value) => _i1.ColumnValue(
-    table.cpf,
-    value,
-  );
+  _is.ColumnValue<String, String> cpf(String? value) =>
+      _is.ColumnValue(table.cpf, value);
 
-  _i1.ColumnValue<String, String> phone(String? value) => _i1.ColumnValue(
-    table.phone,
-    value,
-  );
+  _is.ColumnValue<String, String> phone(String? value) =>
+      _is.ColumnValue(table.phone, value);
 
-  _i1.ColumnValue<String, String> email(String? value) => _i1.ColumnValue(
-    table.email,
-    value,
-  );
+  _is.ColumnValue<String, String> email(String? value) =>
+      _is.ColumnValue(table.email, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> addressId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.addressId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> addressId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.addressId, value);
 
-  _i1.ColumnValue<List<_i5.UserType>, List<_i5.UserType>> types(
-    List<_i5.UserType>? value,
-  ) => _i1.ColumnValue(
-    table.types,
-    value,
-  );
+  _is.ColumnValue<List<_i828q2d1.UserType>, List<_i828q2d1.UserType>> types(
+    List<_i828q2d1.UserType>? value,
+  ) => _is.ColumnValue(table.types, value);
 
-  _i1.ColumnValue<_i6.UserStatus, _i6.UserStatus> status(
-    _i6.UserStatus value,
-  ) => _i1.ColumnValue(
-    table.status,
-    value,
-  );
+  _is.ColumnValue<_ijq1b3b6.UserStatus, _ijq1b3b6.UserStatus> status(
+    _ijq1b3b6.UserStatus value,
+  ) => _is.ColumnValue(table.status, value);
 
-  _i1.ColumnValue<String, String> asaasCustomerId(String? value) =>
-      _i1.ColumnValue(
-        table.asaasCustomerId,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasCustomerId(String? value) =>
+      _is.ColumnValue(table.asaasCustomerId, value);
 
-  _i1.ColumnValue<String, String> asaasOnboardingFailureReason(String? value) =>
-      _i1.ColumnValue(
-        table.asaasOnboardingFailureReason,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasOnboardingFailureReason(String? value) =>
+      _is.ColumnValue(table.asaasOnboardingFailureReason, value);
 }
 
-class UserProfileTable extends _i1.Table<_i1.UuidValue> {
+class UserProfileTable extends _is.Table<_is.UuidValue> {
   UserProfileTable({super.tableRelation}) : super(tableName: 'user_profile') {
     updateTable = UserProfileUpdateTable(this);
-    userInfoId = _i1.ColumnInt(
-      'userInfoId',
-      this,
-    );
-    name = _i1.ColumnString(
-      'name',
-      this,
-    );
-    gender = _i1.ColumnEnum(
-      'gender',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    birthDate = _i1.ColumnDateTime(
-      'birthDate',
-      this,
-    );
-    rg = _i1.ColumnString(
-      'rg',
-      this,
-    );
-    cpf = _i1.ColumnString(
-      'cpf',
-      this,
-    );
-    phone = _i1.ColumnString(
-      'phone',
-      this,
-    );
-    email = _i1.ColumnString(
-      'email',
-      this,
-    );
-    addressId = _i1.ColumnUuid(
-      'addressId',
-      this,
-    );
-    types = _i1.ColumnSerializable<List<_i5.UserType>>(
-      'types',
-      this,
-    );
-    status = _i1.ColumnEnum(
-      'status',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    asaasCustomerId = _i1.ColumnString(
-      'asaasCustomerId',
-      this,
-    );
-    asaasOnboardingFailureReason = _i1.ColumnString(
+    userInfoId = _is.ColumnInt('userInfoId', this);
+    name = _is.ColumnString('name', this);
+    gender = _is.ColumnEnum('gender', this, _is.EnumSerialization.byName);
+    birthDate = _is.ColumnDateTime('birthDate', this);
+    rg = _is.ColumnString('rg', this);
+    cpf = _is.ColumnString('cpf', this);
+    phone = _is.ColumnString('phone', this);
+    email = _is.ColumnString('email', this);
+    addressId = _is.ColumnUuid('addressId', this);
+    types = _is.ColumnSerializable<List<_i828q2d1.UserType>>('types', this);
+    status = _is.ColumnEnum('status', this, _is.EnumSerialization.byName);
+    asaasCustomerId = _is.ColumnString('asaasCustomerId', this);
+    asaasOnboardingFailureReason = _is.ColumnString(
       'asaasOnboardingFailureReason',
       this,
     );
@@ -476,64 +405,64 @@ class UserProfileTable extends _i1.Table<_i1.UuidValue> {
 
   late final UserProfileUpdateTable updateTable;
 
-  late final _i1.ColumnInt userInfoId;
+  late final _is.ColumnInt userInfoId;
 
-  _i2.UserInfoTable? _userInfo;
+  _i1n3uhu0.UserInfoTable? _userInfo;
 
-  late final _i1.ColumnString name;
+  late final _is.ColumnString name;
 
-  late final _i1.ColumnEnum<_i3.Gender> gender;
+  late final _is.ColumnEnum<_ix60f0mc.Gender> gender;
 
-  late final _i1.ColumnDateTime birthDate;
+  late final _is.ColumnDateTime birthDate;
 
-  late final _i1.ColumnString rg;
+  late final _is.ColumnString rg;
 
-  late final _i1.ColumnString cpf;
+  late final _is.ColumnString cpf;
 
-  late final _i1.ColumnString phone;
+  late final _is.ColumnString phone;
 
-  late final _i1.ColumnString email;
+  late final _is.ColumnString email;
 
-  late final _i1.ColumnUuid addressId;
+  late final _is.ColumnUuid addressId;
 
-  _i4.AddressTable? _address;
+  _iy1vkl2d.AddressTable? _address;
 
-  late final _i1.ColumnSerializable<List<_i5.UserType>> types;
+  late final _is.ColumnSerializable<List<_i828q2d1.UserType>> types;
 
-  late final _i1.ColumnEnum<_i6.UserStatus> status;
+  late final _is.ColumnEnum<_ijq1b3b6.UserStatus> status;
 
-  late final _i1.ColumnString asaasCustomerId;
+  late final _is.ColumnString asaasCustomerId;
 
-  late final _i1.ColumnString asaasOnboardingFailureReason;
+  late final _is.ColumnString asaasOnboardingFailureReason;
 
-  _i2.UserInfoTable get userInfo {
+  _i1n3uhu0.UserInfoTable get userInfo {
     if (_userInfo != null) return _userInfo!;
-    _userInfo = _i1.createRelationTable(
+    _userInfo = _is.createRelationTable(
       relationFieldName: 'userInfo',
       field: UserProfile.t.userInfoId,
-      foreignField: _i2.UserInfo.t.id,
+      foreignField: _i1n3uhu0.UserInfo.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.UserInfoTable(tableRelation: foreignTableRelation),
+          _i1n3uhu0.UserInfoTable(tableRelation: foreignTableRelation),
     );
     return _userInfo!;
   }
 
-  _i4.AddressTable get address {
+  _iy1vkl2d.AddressTable get address {
     if (_address != null) return _address!;
-    _address = _i1.createRelationTable(
+    _address = _is.createRelationTable(
       relationFieldName: 'address',
       field: UserProfile.t.addressId,
-      foreignField: _i4.Address.t.id,
+      foreignField: _iy1vkl2d.Address.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i4.AddressTable(tableRelation: foreignTableRelation),
+          _iy1vkl2d.AddressTable(tableRelation: foreignTableRelation),
     );
     return _address!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     userInfoId,
     name,
@@ -551,7 +480,7 @@ class UserProfileTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'userInfo') {
       return userInfo;
     }
@@ -562,36 +491,35 @@ class UserProfileTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class UserProfileInclude extends _i1.IncludeObject {
+class UserProfileInclude extends _is.IncludeObject {
   UserProfileInclude._({
-    _i2.UserInfoInclude? userInfo,
-    _i4.AddressInclude? address,
+    _i1n3uhu0.UserInfoInclude? userInfo,
+    _iy1vkl2d.AddressInclude? address,
   }) {
     _userInfo = userInfo;
     _address = address;
   }
 
-  _i2.UserInfoInclude? _userInfo;
+  _i1n3uhu0.UserInfoInclude? _userInfo;
 
-  _i4.AddressInclude? _address;
+  _iy1vkl2d.AddressInclude? _address;
 
   @override
-  Map<String, _i1.Include?> get includes => {
+  Map<String, _is.Include?> get includes => {
     'userInfo': _userInfo,
     'address': _address,
   };
 
   @override
-  _i1.Table<_i1.UuidValue> get table => UserProfile.t;
+  _is.Table<_is.UuidValue> get table => UserProfile.t;
 }
 
-class UserProfileIncludeList extends _i1.IncludeList {
+class UserProfileIncludeList extends _is.IncludeList {
   UserProfileIncludeList._({
-    _i1.WhereExpressionBuilder<UserProfileTable>? where,
+    _is.WhereExpressionBuilder<UserProfileTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -599,10 +527,10 @@ class UserProfileIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => UserProfile.t;
+  _is.Table<_is.UuidValue> get table => UserProfile.t;
 }
 
 class UserProfileRepository {
@@ -635,23 +563,21 @@ class UserProfileRepository {
   /// );
   /// ```
   Future<List<UserProfile>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<UserProfileTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<UserProfileTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<UserProfileTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UserProfileTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<UserProfileTable>? orderBy,
+    _is.OrderByListBuilder<UserProfileTable>? orderByList,
+    _is.Transaction? transaction,
     UserProfileInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<UserProfile>(
       where: where?.call(UserProfile.t),
       orderBy: orderBy?.call(UserProfile.t),
       orderByList: orderByList?.call(UserProfile.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -679,22 +605,20 @@ class UserProfileRepository {
   /// );
   /// ```
   Future<UserProfile?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<UserProfileTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<UserProfileTable>? where,
     int? offset,
-    _i1.OrderByBuilder<UserProfileTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UserProfileTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<UserProfileTable>? orderBy,
+    _is.OrderByListBuilder<UserProfileTable>? orderByList,
+    _is.Transaction? transaction,
     UserProfileInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<UserProfile>(
       where: where?.call(UserProfile.t),
       orderBy: orderBy?.call(UserProfile.t),
       orderByList: orderByList?.call(UserProfile.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -705,12 +629,12 @@ class UserProfileRepository {
 
   /// Finds a single [UserProfile] by its [id] or null if no such row exists.
   Future<UserProfile?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     UserProfileInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<UserProfile>(
       id,
@@ -731,16 +655,22 @@ class UserProfileRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<UserProfile>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<UserProfile> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<UserProfile>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -748,12 +678,78 @@ class UserProfileRepository {
   ///
   /// The returned [UserProfile] will have its `id` field set.
   Future<UserProfile> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserProfile row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.insertRow<UserProfile>(
+    return session.db.insertRow<UserProfile>(row, transaction: transaction);
+  }
+
+  /// Upserts all [UserProfile]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [UserProfile]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<UserProfile>> upsert(
+    _is.DatabaseSession session,
+    List<UserProfile> rows, {
+    required _is.ColumnSelections<UserProfileTable> conflictColumns,
+    _is.ColumnSelections<UserProfileTable>? updateColumns,
+    _is.WhereExpressionBuilder<UserProfileTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<UserProfile>(
+      rows,
+      conflictColumns: conflictColumns(UserProfile.t),
+      updateColumns: updateColumns?.call(UserProfile.t),
+      updateWhere: updateWhere?.call(UserProfile.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [UserProfile] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [UserProfile] will have its `id` field set.
+  Future<UserProfile?> upsertRow(
+    _is.DatabaseSession session,
+    UserProfile row, {
+    required _is.ColumnSelections<UserProfileTable> conflictColumns,
+    _is.ColumnSelections<UserProfileTable>? updateColumns,
+    _is.WhereExpressionBuilder<UserProfileTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<UserProfile>(
       row,
+      conflictColumns: conflictColumns(UserProfile.t),
+      updateColumns: updateColumns?.call(UserProfile.t),
+      updateWhere: updateWhere?.call(UserProfile.t),
       transaction: transaction,
     );
   }
@@ -763,16 +759,22 @@ class UserProfileRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<UserProfile>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<UserProfile> rows, {
-    _i1.ColumnSelections<UserProfileTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<UserProfileTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<UserProfile>(
       rows,
       columns: columns?.call(UserProfile.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -780,10 +782,10 @@ class UserProfileRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<UserProfile> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserProfile row, {
-    _i1.ColumnSelections<UserProfileTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<UserProfileTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<UserProfile>(
       row,
@@ -795,10 +797,10 @@ class UserProfileRepository {
   /// Updates a single [UserProfile] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<UserProfile?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<UserProfileUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<UserProfileUpdateTable> columnValues,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<UserProfile>(
       id,
@@ -809,16 +811,20 @@ class UserProfileRepository {
 
   /// Updates all [UserProfile]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<UserProfile>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<UserProfileUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<UserProfileTable> where,
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<UserProfileUpdateTable> columnValues,
+    required _is.WhereExpressionBuilder<UserProfileTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<UserProfileTable>? orderBy,
-    _i1.OrderByListBuilder<UserProfileTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<UserProfileTable>? orderBy,
+    _is.OrderByListBuilder<UserProfileTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<UserProfile>(
       columnValues: columnValues(UserProfile.t.updateTable),
@@ -827,56 +833,80 @@ class UserProfileRepository {
       offset: offset,
       orderBy: orderBy?.call(UserProfile.t),
       orderByList: orderByList?.call(UserProfile.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [UserProfile]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<UserProfile>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<UserProfile> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<UserProfileTable>? orderBy,
+    _is.OrderByListBuilder<UserProfileTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<UserProfile>(
       rows,
+      orderBy: orderBy?.call(UserProfile.t),
+      orderByList: orderByList?.call(UserProfile.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [UserProfile].
   Future<UserProfile> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserProfile row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<UserProfile>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<UserProfile>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<UserProfile>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<UserProfileTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<UserProfileTable> where,
+    _is.OrderByBuilder<UserProfileTable>? orderBy,
+    _is.OrderByListBuilder<UserProfileTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<UserProfile>(
       where: where(UserProfile.t),
+      orderBy: orderBy?.call(UserProfile.t),
+      orderByList: orderByList?.call(UserProfile.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<UserProfileTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<UserProfileTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<UserProfile>(
       where: where?.call(UserProfile.t),
@@ -887,11 +917,11 @@ class UserProfileRepository {
 
   /// Acquires row-level locks on [UserProfile] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<UserProfileTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<UserProfileTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<UserProfile>(
       where: where(UserProfile.t),
@@ -908,10 +938,10 @@ class UserProfileAttachRowRepository {
   /// Creates a relation between the given [UserProfile] and [UserInfo]
   /// by setting the [UserProfile]'s foreign key `userInfoId` to refer to the [UserInfo].
   Future<void> userInfo(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserProfile userProfile,
-    _i2.UserInfo userInfo, {
-    _i1.Transaction? transaction,
+    _i1n3uhu0.UserInfo userInfo, {
+    _is.Transaction? transaction,
   }) async {
     if (userProfile.id == null) {
       throw ArgumentError.notNull('userProfile.id');
@@ -931,10 +961,10 @@ class UserProfileAttachRowRepository {
   /// Creates a relation between the given [UserProfile] and [Address]
   /// by setting the [UserProfile]'s foreign key `addressId` to refer to the [Address].
   Future<void> address(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserProfile userProfile,
-    _i4.Address address, {
-    _i1.Transaction? transaction,
+    _iy1vkl2d.Address address, {
+    _is.Transaction? transaction,
   }) async {
     if (userProfile.id == null) {
       throw ArgumentError.notNull('userProfile.id');
@@ -961,9 +991,9 @@ class UserProfileDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> userInfo(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserProfile userProfile, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (userProfile.id == null) {
       throw ArgumentError.notNull('userProfile.id');
@@ -983,9 +1013,9 @@ class UserProfileDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> address(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserProfile userProfile, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (userProfile.id == null) {
       throw ArgumentError.notNull('userProfile.id');

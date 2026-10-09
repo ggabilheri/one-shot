@@ -310,7 +310,7 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
             style: DSTokens.body,
             decoration: InputDecoration(
               filled: true,
-              fillColor: Colors.black.withOpacity(0.1),
+              fillColor: Colors.black.withValues(alpha: 0.1),
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
                   color: DSTokens.outlineVariant,

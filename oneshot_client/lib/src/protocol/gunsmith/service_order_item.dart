@@ -10,14 +10,15 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../gunsmith/service_order.dart' as _i2;
-import '../common/supply_stock.dart' as _i3;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i4;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/supply_stock.dart' as _icdicocn;
+import '../gunsmith/service_order.dart' as _inn42g74;
 
-abstract class ServiceOrderItem implements _i1.SerializableModel {
+abstract class ServiceOrderItem
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   ServiceOrderItem._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     this.serviceOrderId,
     this.serviceOrder,
     required this.description,
@@ -25,16 +26,16 @@ abstract class ServiceOrderItem implements _i1.SerializableModel {
     this.supplyPartId,
     this.supplyPart,
     required this.servicePrice,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory ServiceOrderItem({
-    _i1.UuidValue? id,
-    _i1.UuidValue? serviceOrderId,
-    _i2.ServiceOrder? serviceOrder,
+    _isc.UuidValue? id,
+    _isc.UuidValue? serviceOrderId,
+    _inn42g74.ServiceOrder? serviceOrder,
     required String description,
     required bool isStockPart,
-    _i1.UuidValue? supplyPartId,
-    _i3.SupplyStock? supplyPart,
+    _isc.UuidValue? supplyPartId,
+    _icdicocn.SupplyStock? supplyPart,
     required double servicePrice,
   }) = _ServiceOrderItemImpl;
 
@@ -42,29 +43,29 @@ abstract class ServiceOrderItem implements _i1.SerializableModel {
     return ServiceOrderItem(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       serviceOrderId: jsonSerialization['serviceOrderId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(
               jsonSerialization['serviceOrderId'],
             ),
       serviceOrder: jsonSerialization['serviceOrder'] == null
           ? null
-          : _i4.Protocol().deserialize<_i2.ServiceOrder>(
+          : _itys55mc.Protocol().deserialize<_inn42g74.ServiceOrder>(
               jsonSerialization['serviceOrder'],
             ),
       description: jsonSerialization['description'] as String,
-      isStockPart: _i1.BoolJsonExtension.fromJson(
+      isStockPart: _isc.BoolJsonExtension.fromJson(
         jsonSerialization['isStockPart'],
       ),
       supplyPartId: jsonSerialization['supplyPartId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(
               jsonSerialization['supplyPartId'],
             ),
       supplyPart: jsonSerialization['supplyPart'] == null
           ? null
-          : _i4.Protocol().deserialize<_i3.SupplyStock>(
+          : _itys55mc.Protocol().deserialize<_icdicocn.SupplyStock>(
               jsonSerialization['supplyPart'],
             ),
       servicePrice: (jsonSerialization['servicePrice'] as num).toDouble(),
@@ -72,33 +73,33 @@ abstract class ServiceOrderItem implements _i1.SerializableModel {
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
-  _i1.UuidValue? serviceOrderId;
+  _isc.UuidValue? serviceOrderId;
 
-  _i2.ServiceOrder? serviceOrder;
+  _inn42g74.ServiceOrder? serviceOrder;
 
   String description;
 
   bool isStockPart;
 
-  _i1.UuidValue? supplyPartId;
+  _isc.UuidValue? supplyPartId;
 
-  _i3.SupplyStock? supplyPart;
+  _icdicocn.SupplyStock? supplyPart;
 
   double servicePrice;
 
   /// Returns a shallow copy of this [ServiceOrderItem]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   ServiceOrderItem copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? serviceOrderId,
-    _i2.ServiceOrder? serviceOrder,
+    _isc.UuidValue? id,
+    _isc.UuidValue? serviceOrderId,
+    _inn42g74.ServiceOrder? serviceOrder,
     String? description,
     bool? isStockPart,
-    _i1.UuidValue? supplyPartId,
-    _i3.SupplyStock? supplyPart,
+    _isc.UuidValue? supplyPartId,
+    _icdicocn.SupplyStock? supplyPart,
     double? servicePrice,
   });
   @override
@@ -117,8 +118,24 @@ abstract class ServiceOrderItem implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'ServiceOrderItem',
+      'id': id.toJson(),
+      if (serviceOrderId != null) 'serviceOrderId': serviceOrderId?.toJson(),
+      if (serviceOrder != null)
+        'serviceOrder': serviceOrder?.toJsonForProtocol(),
+      'description': description,
+      'isStockPart': isStockPart,
+      if (supplyPartId != null) 'supplyPartId': supplyPartId?.toJson(),
+      if (supplyPart != null) 'supplyPart': supplyPart?.toJsonForProtocol(),
+      'servicePrice': servicePrice,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -126,13 +143,13 @@ class _Undefined {}
 
 class _ServiceOrderItemImpl extends ServiceOrderItem {
   _ServiceOrderItemImpl({
-    _i1.UuidValue? id,
-    _i1.UuidValue? serviceOrderId,
-    _i2.ServiceOrder? serviceOrder,
+    _isc.UuidValue? id,
+    _isc.UuidValue? serviceOrderId,
+    _inn42g74.ServiceOrder? serviceOrder,
     required String description,
     required bool isStockPart,
-    _i1.UuidValue? supplyPartId,
-    _i3.SupplyStock? supplyPart,
+    _isc.UuidValue? supplyPartId,
+    _icdicocn.SupplyStock? supplyPart,
     required double servicePrice,
   }) : super._(
          id: id,
@@ -147,10 +164,10 @@ class _ServiceOrderItemImpl extends ServiceOrderItem {
 
   /// Returns a shallow copy of this [ServiceOrderItem]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   ServiceOrderItem copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     Object? serviceOrderId = _Undefined,
     Object? serviceOrder = _Undefined,
     String? description,
@@ -161,18 +178,18 @@ class _ServiceOrderItemImpl extends ServiceOrderItem {
   }) {
     return ServiceOrderItem(
       id: id ?? this.id,
-      serviceOrderId: serviceOrderId is _i1.UuidValue?
+      serviceOrderId: serviceOrderId is _isc.UuidValue?
           ? serviceOrderId
           : this.serviceOrderId,
-      serviceOrder: serviceOrder is _i2.ServiceOrder?
+      serviceOrder: serviceOrder is _inn42g74.ServiceOrder?
           ? serviceOrder
           : this.serviceOrder?.copyWith(),
       description: description ?? this.description,
       isStockPart: isStockPart ?? this.isStockPart,
-      supplyPartId: supplyPartId is _i1.UuidValue?
+      supplyPartId: supplyPartId is _isc.UuidValue?
           ? supplyPartId
           : this.supplyPartId,
-      supplyPart: supplyPart is _i3.SupplyStock?
+      supplyPart: supplyPart is _icdicocn.SupplyStock?
           ? supplyPart
           : this.supplyPart?.copyWith(),
       servicePrice: servicePrice ?? this.servicePrice,

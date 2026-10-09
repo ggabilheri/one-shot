@@ -33,7 +33,7 @@ database:
   host: localhost
   port: 9090
   name: oneshot_test
-  user: postgres
+  user: oneshot_user
 
 # This is the setup for your Redis test instance.
 redis:

@@ -1,6 +1,6 @@
 # company_portal
 
-A new Flutter project.
+Portal do Clube (One-Shot).
 
 ## Getting Started
 

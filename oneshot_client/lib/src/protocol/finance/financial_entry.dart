@@ -10,18 +10,19 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../enums/financial_entry_type.dart' as _i2;
-import '../enums/financial_entry_status.dart' as _i3;
-import '../enums/platform_app.enum.dart' as _i4;
-import '../finance/bank_account.dart' as _i5;
-import '../finance/invoice.dart' as _i6;
-import '../company/company.dart' as _i7;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i8;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../company/company.dart' as _iocy1ifk;
+import '../enums/financial_entry_status.dart' as _ig5968cj;
+import '../enums/financial_entry_type.dart' as _i3i99b7x;
+import '../enums/platform_app.enum.dart' as _ie17db6d;
+import '../finance/bank_account.dart' as _iqlw3pat;
+import '../finance/invoice.dart' as _i3d856q3;
 
-abstract class FinancialEntry implements _i1.SerializableModel {
+abstract class FinancialEntry
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   FinancialEntry._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.type,
     required this.description,
     required this.amount,
@@ -35,80 +36,86 @@ abstract class FinancialEntry implements _i1.SerializableModel {
     this.invoice,
     this.companyId,
     this.company,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory FinancialEntry({
-    _i1.UuidValue? id,
-    required _i2.FinancialEntryType type,
+    _isc.UuidValue? id,
+    required _i3i99b7x.FinancialEntryType type,
     required String description,
     required double amount,
     required DateTime dueDate,
     DateTime? paymentDate,
-    required _i3.FinancialEntryStatus status,
-    required _i4.PlatformApp originModule,
-    _i1.UuidValue? bankAccountId,
-    _i5.BankAccount? bankAccount,
-    _i1.UuidValue? invoiceId,
-    _i6.Invoice? invoice,
-    _i1.UuidValue? companyId,
-    _i7.Company? company,
+    required _ig5968cj.FinancialEntryStatus status,
+    required _ie17db6d.PlatformApp originModule,
+    _isc.UuidValue? bankAccountId,
+    _iqlw3pat.BankAccount? bankAccount,
+    _isc.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   }) = _FinancialEntryImpl;
 
   factory FinancialEntry.fromJson(Map<String, dynamic> jsonSerialization) {
     return FinancialEntry(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      type: _i2.FinancialEntryType.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+      type: _i3i99b7x.FinancialEntryType.fromJson(
         (jsonSerialization['type'] as String),
       ),
       description: jsonSerialization['description'] as String,
       amount: (jsonSerialization['amount'] as num).toDouble(),
-      dueDate: _i1.DateTimeJsonExtension.fromJson(jsonSerialization['dueDate']),
+      dueDate: _isc.DateTimeJsonExtension.fromJson(
+        jsonSerialization['dueDate'],
+      ),
       paymentDate: jsonSerialization['paymentDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _isc.DateTimeJsonExtension.fromJson(
               jsonSerialization['paymentDate'],
             ),
-      status: _i3.FinancialEntryStatus.fromJson(
+      status: _ig5968cj.FinancialEntryStatus.fromJson(
         (jsonSerialization['status'] as String),
       ),
-      originModule: _i4.PlatformApp.fromJson(
+      originModule: _ie17db6d.PlatformApp.fromJson(
         (jsonSerialization['originModule'] as String),
       ),
       bankAccountId: jsonSerialization['bankAccountId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(
               jsonSerialization['bankAccountId'],
             ),
       bankAccount: jsonSerialization['bankAccount'] == null
           ? null
-          : _i8.Protocol().deserialize<_i5.BankAccount>(
+          : _itys55mc.Protocol().deserialize<_iqlw3pat.BankAccount>(
               jsonSerialization['bankAccount'],
             ),
       invoiceId: jsonSerialization['invoiceId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['invoiceId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['invoiceId'],
+            ),
       invoice: jsonSerialization['invoice'] == null
           ? null
-          : _i8.Protocol().deserialize<_i6.Invoice>(
+          : _itys55mc.Protocol().deserialize<_i3d856q3.Invoice>(
               jsonSerialization['invoice'],
             ),
       companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['companyId'],
+            ),
       company: jsonSerialization['company'] == null
           ? null
-          : _i8.Protocol().deserialize<_i7.Company>(
+          : _itys55mc.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['company'],
             ),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
-  _i2.FinancialEntryType type;
+  _i3i99b7x.FinancialEntryType type;
 
   String description;
 
@@ -118,40 +125,40 @@ abstract class FinancialEntry implements _i1.SerializableModel {
 
   DateTime? paymentDate;
 
-  _i3.FinancialEntryStatus status;
+  _ig5968cj.FinancialEntryStatus status;
 
-  _i4.PlatformApp originModule;
+  _ie17db6d.PlatformApp originModule;
 
-  _i1.UuidValue? bankAccountId;
+  _isc.UuidValue? bankAccountId;
 
-  _i5.BankAccount? bankAccount;
+  _iqlw3pat.BankAccount? bankAccount;
 
-  _i1.UuidValue? invoiceId;
+  _isc.UuidValue? invoiceId;
 
-  _i6.Invoice? invoice;
+  _i3d856q3.Invoice? invoice;
 
-  _i1.UuidValue? companyId;
+  _isc.UuidValue? companyId;
 
-  _i7.Company? company;
+  _iocy1ifk.Company? company;
 
   /// Returns a shallow copy of this [FinancialEntry]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   FinancialEntry copyWith({
-    _i1.UuidValue? id,
-    _i2.FinancialEntryType? type,
+    _isc.UuidValue? id,
+    _i3i99b7x.FinancialEntryType? type,
     String? description,
     double? amount,
     DateTime? dueDate,
     DateTime? paymentDate,
-    _i3.FinancialEntryStatus? status,
-    _i4.PlatformApp? originModule,
-    _i1.UuidValue? bankAccountId,
-    _i5.BankAccount? bankAccount,
-    _i1.UuidValue? invoiceId,
-    _i6.Invoice? invoice,
-    _i1.UuidValue? companyId,
-    _i7.Company? company,
+    _ig5968cj.FinancialEntryStatus? status,
+    _ie17db6d.PlatformApp? originModule,
+    _isc.UuidValue? bankAccountId,
+    _iqlw3pat.BankAccount? bankAccount,
+    _isc.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -175,8 +182,29 @@ abstract class FinancialEntry implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'FinancialEntry',
+      'id': id.toJson(),
+      'type': type.toJson(),
+      'description': description,
+      'amount': amount,
+      'dueDate': dueDate.toJson(),
+      if (paymentDate != null) 'paymentDate': paymentDate?.toJson(),
+      'status': status.toJson(),
+      'originModule': originModule.toJson(),
+      if (bankAccountId != null) 'bankAccountId': bankAccountId?.toJson(),
+      if (bankAccount != null) 'bankAccount': bankAccount?.toJsonForProtocol(),
+      if (invoiceId != null) 'invoiceId': invoiceId?.toJson(),
+      if (invoice != null) 'invoice': invoice?.toJsonForProtocol(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJsonForProtocol(),
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -184,20 +212,20 @@ class _Undefined {}
 
 class _FinancialEntryImpl extends FinancialEntry {
   _FinancialEntryImpl({
-    _i1.UuidValue? id,
-    required _i2.FinancialEntryType type,
+    _isc.UuidValue? id,
+    required _i3i99b7x.FinancialEntryType type,
     required String description,
     required double amount,
     required DateTime dueDate,
     DateTime? paymentDate,
-    required _i3.FinancialEntryStatus status,
-    required _i4.PlatformApp originModule,
-    _i1.UuidValue? bankAccountId,
-    _i5.BankAccount? bankAccount,
-    _i1.UuidValue? invoiceId,
-    _i6.Invoice? invoice,
-    _i1.UuidValue? companyId,
-    _i7.Company? company,
+    required _ig5968cj.FinancialEntryStatus status,
+    required _ie17db6d.PlatformApp originModule,
+    _isc.UuidValue? bankAccountId,
+    _iqlw3pat.BankAccount? bankAccount,
+    _isc.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   }) : super._(
          id: id,
          type: type,
@@ -217,17 +245,17 @@ class _FinancialEntryImpl extends FinancialEntry {
 
   /// Returns a shallow copy of this [FinancialEntry]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   FinancialEntry copyWith({
-    _i1.UuidValue? id,
-    _i2.FinancialEntryType? type,
+    _isc.UuidValue? id,
+    _i3i99b7x.FinancialEntryType? type,
     String? description,
     double? amount,
     DateTime? dueDate,
     Object? paymentDate = _Undefined,
-    _i3.FinancialEntryStatus? status,
-    _i4.PlatformApp? originModule,
+    _ig5968cj.FinancialEntryStatus? status,
+    _ie17db6d.PlatformApp? originModule,
     Object? bankAccountId = _Undefined,
     Object? bankAccount = _Undefined,
     Object? invoiceId = _Undefined,
@@ -244,16 +272,20 @@ class _FinancialEntryImpl extends FinancialEntry {
       paymentDate: paymentDate is DateTime? ? paymentDate : this.paymentDate,
       status: status ?? this.status,
       originModule: originModule ?? this.originModule,
-      bankAccountId: bankAccountId is _i1.UuidValue?
+      bankAccountId: bankAccountId is _isc.UuidValue?
           ? bankAccountId
           : this.bankAccountId,
-      bankAccount: bankAccount is _i5.BankAccount?
+      bankAccount: bankAccount is _iqlw3pat.BankAccount?
           ? bankAccount
           : this.bankAccount?.copyWith(),
-      invoiceId: invoiceId is _i1.UuidValue? ? invoiceId : this.invoiceId,
-      invoice: invoice is _i6.Invoice? ? invoice : this.invoice?.copyWith(),
-      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
-      company: company is _i7.Company? ? company : this.company?.copyWith(),
+      invoiceId: invoiceId is _isc.UuidValue? ? invoiceId : this.invoiceId,
+      invoice: invoice is _i3d856q3.Invoice?
+          ? invoice
+          : this.invoice?.copyWith(),
+      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
+      company: company is _iocy1ifk.Company?
+          ? company
+          : this.company?.copyWith(),
     );
   }
 }

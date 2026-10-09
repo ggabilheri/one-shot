@@ -10,15 +10,16 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../enums/membership_status.dart' as _i2;
-import '../common/user_profile.dart' as _i3;
-import '../company/company.dart' as _i4;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i5;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/user_profile.dart' as _izifjpv2;
+import '../company/company.dart' as _iocy1ifk;
+import '../enums/membership_status.dart' as _ikbz440x;
 
-abstract class Membership implements _i1.SerializableModel {
+abstract class Membership
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   Membership._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     this.userId,
     this.user,
     this.companyId,
@@ -26,21 +27,21 @@ abstract class Membership implements _i1.SerializableModel {
     this.membershipNumber,
     required this.startDate,
     this.validUntil,
-    _i2.MembershipStatus? status,
+    _ikbz440x.MembershipStatus? status,
     this.planName,
-  }) : id = id ?? const _i1.Uuid().v4obj(),
-       status = status ?? _i2.MembershipStatus.active;
+  }) : id = id ?? const _isc.Uuid().v4obj(),
+       status = status ?? _ikbz440x.MembershipStatus.active;
 
   factory Membership({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i3.UserProfile? user,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
     String? membershipNumber,
     required DateTime startDate,
     DateTime? validUntil,
-    _i2.MembershipStatus? status,
+    _ikbz440x.MembershipStatus? status,
     String? planName,
   }) = _MembershipImpl;
 
@@ -48,33 +49,37 @@ abstract class Membership implements _i1.SerializableModel {
     return Membership(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userId: jsonSerialization['userId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       user: jsonSerialization['user'] == null
           ? null
-          : _i5.Protocol().deserialize<_i3.UserProfile>(
+          : _itys55mc.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['user'],
             ),
       companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['companyId'],
+            ),
       company: jsonSerialization['company'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.Company>(
+          : _itys55mc.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['company'],
             ),
       membershipNumber: jsonSerialization['membershipNumber'] as String?,
-      startDate: _i1.DateTimeJsonExtension.fromJson(
+      startDate: _isc.DateTimeJsonExtension.fromJson(
         jsonSerialization['startDate'],
       ),
       validUntil: jsonSerialization['validUntil'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(jsonSerialization['validUntil']),
+          : _isc.DateTimeJsonExtension.fromJson(
+              jsonSerialization['validUntil'],
+            ),
       status: jsonSerialization['status'] == null
           ? null
-          : _i2.MembershipStatus.fromJson(
+          : _ikbz440x.MembershipStatus.fromJson(
               (jsonSerialization['status'] as String),
             ),
       planName: jsonSerialization['planName'] as String?,
@@ -82,15 +87,15 @@ abstract class Membership implements _i1.SerializableModel {
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
-  _i1.UuidValue? userId;
+  _isc.UuidValue? userId;
 
-  _i3.UserProfile? user;
+  _izifjpv2.UserProfile? user;
 
-  _i1.UuidValue? companyId;
+  _isc.UuidValue? companyId;
 
-  _i4.Company? company;
+  _iocy1ifk.Company? company;
 
   String? membershipNumber;
 
@@ -98,23 +103,23 @@ abstract class Membership implements _i1.SerializableModel {
 
   DateTime? validUntil;
 
-  _i2.MembershipStatus status;
+  _ikbz440x.MembershipStatus status;
 
   String? planName;
 
   /// Returns a shallow copy of this [Membership]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   Membership copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i3.UserProfile? user,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
     String? membershipNumber,
     DateTime? startDate,
     DateTime? validUntil,
-    _i2.MembershipStatus? status,
+    _ikbz440x.MembershipStatus? status,
     String? planName,
   });
   @override
@@ -135,8 +140,25 @@ abstract class Membership implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'Membership',
+      'id': id.toJson(),
+      if (userId != null) 'userId': userId?.toJson(),
+      if (user != null) 'user': user?.toJsonForProtocol(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJsonForProtocol(),
+      if (membershipNumber != null) 'membershipNumber': membershipNumber,
+      'startDate': startDate.toJson(),
+      if (validUntil != null) 'validUntil': validUntil?.toJson(),
+      'status': status.toJson(),
+      if (planName != null) 'planName': planName,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -144,15 +166,15 @@ class _Undefined {}
 
 class _MembershipImpl extends Membership {
   _MembershipImpl({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i3.UserProfile? user,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
     String? membershipNumber,
     required DateTime startDate,
     DateTime? validUntil,
-    _i2.MembershipStatus? status,
+    _ikbz440x.MembershipStatus? status,
     String? planName,
   }) : super._(
          id: id,
@@ -169,10 +191,10 @@ class _MembershipImpl extends Membership {
 
   /// Returns a shallow copy of this [Membership]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   Membership copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     Object? userId = _Undefined,
     Object? user = _Undefined,
     Object? companyId = _Undefined,
@@ -180,15 +202,17 @@ class _MembershipImpl extends Membership {
     Object? membershipNumber = _Undefined,
     DateTime? startDate,
     Object? validUntil = _Undefined,
-    _i2.MembershipStatus? status,
+    _ikbz440x.MembershipStatus? status,
     Object? planName = _Undefined,
   }) {
     return Membership(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
-      user: user is _i3.UserProfile? ? user : this.user?.copyWith(),
-      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
-      company: company is _i4.Company? ? company : this.company?.copyWith(),
+      userId: userId is _isc.UuidValue? ? userId : this.userId,
+      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
+      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
+      company: company is _iocy1ifk.Company?
+          ? company
+          : this.company?.copyWith(),
       membershipNumber: membershipNumber is String?
           ? membershipNumber
           : this.membershipNumber,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oneshot_flutter/src/ui/widgets/ds_tokens.dart';
+import 'package:shooter_app/src/ui/widgets/ds_tokens.dart';
 
 class DSTextField extends StatelessWidget {
   final String label;
@@ -40,7 +40,7 @@ class DSTextField extends StatelessWidget {
               letterSpacing: 1.1,
               fontSize: 11,
               fontWeight: FontWeight.bold,
-              color: DSTokens.primary.withOpacity(0.8),
+              color: DSTokens.primary.withValues(alpha: 0.8),
             ),
           ),
         ),
@@ -54,7 +54,7 @@ class DSTextField extends StatelessWidget {
           cursorColor: DSTokens.primary,
           decoration: InputDecoration(
             hintText: placeholder,
-            hintStyle: DSTokens.label.copyWith(color: DSTokens.outline.withOpacity(0.3)),
+            hintStyle: DSTokens.label.copyWith(color: DSTokens.outline.withValues(alpha: 0.3)),
             filled: true,
             fillColor: const Color(0xFF0C0E10), // surface-container-lowest (Backoffice 1)
             prefixIcon: prefixIcon != null
@@ -72,11 +72,11 @@ class DSTextField extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(DSTokens.borderRadius),
-              borderSide: BorderSide(color: DSTokens.outline.withOpacity(0.1)),
+              borderSide: BorderSide(color: DSTokens.outline.withValues(alpha: 0.1)),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(DSTokens.borderRadius),
-              borderSide: BorderSide(color: DSTokens.outline.withOpacity(0.1)),
+              borderSide: BorderSide(color: DSTokens.outline.withValues(alpha: 0.1)),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(DSTokens.borderRadius),

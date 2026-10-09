@@ -10,18 +10,19 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../common/user_profile.dart' as _i2;
-import '../enums/firearm_purpose.enum.dart' as _i3;
-import '../enums/firearm_type.enum.dart' as _i4;
-import '../enums/firearm_action.enum.dart' as _i5;
-import '../enums/usage_type.enum.dart' as _i6;
-import '../enums/conservation_state.enum.dart' as _i7;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i8;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/user_profile.dart' as _izifjpv2;
+import '../enums/conservation_state.enum.dart' as _im6njl07;
+import '../enums/firearm_action.enum.dart' as _id0m3mr4;
+import '../enums/firearm_purpose.enum.dart' as _ie635x89;
+import '../enums/firearm_type.enum.dart' as _i5vdw3jb;
+import '../enums/usage_type.enum.dart' as _ivorkc39;
 
-abstract class Firearm implements _i1.SerializableModel {
+abstract class Firearm
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   Firearm._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     this.userId,
     this.user,
     required this.purpose,
@@ -57,16 +58,16 @@ abstract class Firearm implements _i1.SerializableModel {
     this.cleaningHistory,
     this.maintenanceHistory,
     this.totalShots,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory Firearm({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    required _i3.FirearmPurpose purpose,
-    required _i4.FirearmType type,
-    required _i5.FirearmAction action,
-    required _i6.UsageType usageType,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    required _ie635x89.FirearmPurpose purpose,
+    required _i5vdw3jb.FirearmType type,
+    required _id0m3mr4.FirearmAction action,
+    required _ivorkc39.UsageType usageType,
     required String serialNumber,
     required String manufactureCountry,
     required String manufacturer,
@@ -74,7 +75,7 @@ abstract class Firearm implements _i1.SerializableModel {
     String? bolt,
     String? frame,
     String? grip,
-    required _i7.ConservationState conservationState,
+    required _im6njl07.ConservationState conservationState,
     required String caliber,
     int? barrelsCount,
     String? barrelLength,
@@ -102,23 +103,25 @@ abstract class Firearm implements _i1.SerializableModel {
     return Firearm(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userId: jsonSerialization['userId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       user: jsonSerialization['user'] == null
           ? null
-          : _i8.Protocol().deserialize<_i2.UserProfile>(
+          : _itys55mc.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['user'],
             ),
-      purpose: _i3.FirearmPurpose.fromJson(
+      purpose: _ie635x89.FirearmPurpose.fromJson(
         (jsonSerialization['purpose'] as String),
       ),
-      type: _i4.FirearmType.fromJson((jsonSerialization['type'] as String)),
-      action: _i5.FirearmAction.fromJson(
+      type: _i5vdw3jb.FirearmType.fromJson(
+        (jsonSerialization['type'] as String),
+      ),
+      action: _id0m3mr4.FirearmAction.fromJson(
         (jsonSerialization['action'] as String),
       ),
-      usageType: _i6.UsageType.fromJson(
+      usageType: _ivorkc39.UsageType.fromJson(
         (jsonSerialization['usageType'] as String),
       ),
       serialNumber: jsonSerialization['serialNumber'] as String,
@@ -128,7 +131,7 @@ abstract class Firearm implements _i1.SerializableModel {
       bolt: jsonSerialization['bolt'] as String?,
       frame: jsonSerialization['frame'] as String?,
       grip: jsonSerialization['grip'] as String?,
-      conservationState: _i7.ConservationState.fromJson(
+      conservationState: _im6njl07.ConservationState.fromJson(
         (jsonSerialization['conservationState'] as String),
       ),
       caliber: jsonSerialization['caliber'] as String,
@@ -144,19 +147,19 @@ abstract class Firearm implements _i1.SerializableModel {
       weight: (jsonSerialization['weight'] as num?)?.toDouble(),
       acquisitionDate: jsonSerialization['acquisitionDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _isc.DateTimeJsonExtension.fromJson(
               jsonSerialization['acquisitionDate'],
             ),
       purchasePrice: (jsonSerialization['purchasePrice'] as num?)?.toDouble(),
       saleDate: jsonSerialization['saleDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(jsonSerialization['saleDate']),
+          : _isc.DateTimeJsonExtension.fromJson(jsonSerialization['saleDate']),
       salePrice: (jsonSerialization['salePrice'] as num?)?.toDouble(),
       buyerData: jsonSerialization['buyerData'] as String?,
       customizations: jsonSerialization['customizations'] as String?,
       images: jsonSerialization['images'] == null
           ? null
-          : _i8.Protocol().deserialize<List<String>>(
+          : _itys55mc.Protocol().deserialize<List<String>>(
               jsonSerialization['images'],
             ),
       cleaningHistory: jsonSerialization['cleaningHistory'] as String?,
@@ -166,19 +169,19 @@ abstract class Firearm implements _i1.SerializableModel {
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
-  _i1.UuidValue? userId;
+  _isc.UuidValue? userId;
 
-  _i2.UserProfile? user;
+  _izifjpv2.UserProfile? user;
 
-  _i3.FirearmPurpose purpose;
+  _ie635x89.FirearmPurpose purpose;
 
-  _i4.FirearmType type;
+  _i5vdw3jb.FirearmType type;
 
-  _i5.FirearmAction action;
+  _id0m3mr4.FirearmAction action;
 
-  _i6.UsageType usageType;
+  _ivorkc39.UsageType usageType;
 
   String serialNumber;
 
@@ -194,7 +197,7 @@ abstract class Firearm implements _i1.SerializableModel {
 
   String? grip;
 
-  _i7.ConservationState conservationState;
+  _im6njl07.ConservationState conservationState;
 
   String caliber;
 
@@ -240,15 +243,15 @@ abstract class Firearm implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [Firearm]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   Firearm copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    _i3.FirearmPurpose? purpose,
-    _i4.FirearmType? type,
-    _i5.FirearmAction? action,
-    _i6.UsageType? usageType,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _ie635x89.FirearmPurpose? purpose,
+    _i5vdw3jb.FirearmType? type,
+    _id0m3mr4.FirearmAction? action,
+    _ivorkc39.UsageType? usageType,
     String? serialNumber,
     String? manufactureCountry,
     String? manufacturer,
@@ -256,7 +259,7 @@ abstract class Firearm implements _i1.SerializableModel {
     String? bolt,
     String? frame,
     String? grip,
-    _i7.ConservationState? conservationState,
+    _im6njl07.ConservationState? conservationState,
     String? caliber,
     int? barrelsCount,
     String? barrelLength,
@@ -323,8 +326,51 @@ abstract class Firearm implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'Firearm',
+      'id': id.toJson(),
+      if (userId != null) 'userId': userId?.toJson(),
+      if (user != null) 'user': user?.toJsonForProtocol(),
+      'purpose': purpose.toJson(),
+      'type': type.toJson(),
+      'action': action.toJson(),
+      'usageType': usageType.toJson(),
+      'serialNumber': serialNumber,
+      'manufactureCountry': manufactureCountry,
+      'manufacturer': manufacturer,
+      'model': model,
+      if (bolt != null) 'bolt': bolt,
+      if (frame != null) 'frame': frame,
+      if (grip != null) 'grip': grip,
+      'conservationState': conservationState.toJson(),
+      'caliber': caliber,
+      if (barrelsCount != null) 'barrelsCount': barrelsCount,
+      if (barrelLength != null) 'barrelLength': barrelLength,
+      if (soulType != null) 'soulType': soulType,
+      if (sightType != null) 'sightType': sightType,
+      if (riflingCount != null) 'riflingCount': riflingCount,
+      if (riflingDirection != null) 'riflingDirection': riflingDirection,
+      'magazineCapacity': magazineCapacity,
+      if (magazineCount != null) 'magazineCount': magazineCount,
+      if (dimensions != null) 'dimensions': dimensions,
+      if (weight != null) 'weight': weight,
+      if (acquisitionDate != null) 'acquisitionDate': acquisitionDate?.toJson(),
+      if (purchasePrice != null) 'purchasePrice': purchasePrice,
+      if (saleDate != null) 'saleDate': saleDate?.toJson(),
+      if (salePrice != null) 'salePrice': salePrice,
+      if (buyerData != null) 'buyerData': buyerData,
+      if (customizations != null) 'customizations': customizations,
+      if (images != null) 'images': images?.toJson(),
+      if (cleaningHistory != null) 'cleaningHistory': cleaningHistory,
+      if (maintenanceHistory != null) 'maintenanceHistory': maintenanceHistory,
+      if (totalShots != null) 'totalShots': totalShots,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -332,13 +378,13 @@ class _Undefined {}
 
 class _FirearmImpl extends Firearm {
   _FirearmImpl({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    required _i3.FirearmPurpose purpose,
-    required _i4.FirearmType type,
-    required _i5.FirearmAction action,
-    required _i6.UsageType usageType,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    required _ie635x89.FirearmPurpose purpose,
+    required _i5vdw3jb.FirearmType type,
+    required _id0m3mr4.FirearmAction action,
+    required _ivorkc39.UsageType usageType,
     required String serialNumber,
     required String manufactureCountry,
     required String manufacturer,
@@ -346,7 +392,7 @@ class _FirearmImpl extends Firearm {
     String? bolt,
     String? frame,
     String? grip,
-    required _i7.ConservationState conservationState,
+    required _im6njl07.ConservationState conservationState,
     required String caliber,
     int? barrelsCount,
     String? barrelLength,
@@ -409,16 +455,16 @@ class _FirearmImpl extends Firearm {
 
   /// Returns a shallow copy of this [Firearm]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   Firearm copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     Object? userId = _Undefined,
     Object? user = _Undefined,
-    _i3.FirearmPurpose? purpose,
-    _i4.FirearmType? type,
-    _i5.FirearmAction? action,
-    _i6.UsageType? usageType,
+    _ie635x89.FirearmPurpose? purpose,
+    _i5vdw3jb.FirearmType? type,
+    _id0m3mr4.FirearmAction? action,
+    _ivorkc39.UsageType? usageType,
     String? serialNumber,
     String? manufactureCountry,
     String? manufacturer,
@@ -426,7 +472,7 @@ class _FirearmImpl extends Firearm {
     Object? bolt = _Undefined,
     Object? frame = _Undefined,
     Object? grip = _Undefined,
-    _i7.ConservationState? conservationState,
+    _im6njl07.ConservationState? conservationState,
     String? caliber,
     Object? barrelsCount = _Undefined,
     Object? barrelLength = _Undefined,
@@ -451,8 +497,8 @@ class _FirearmImpl extends Firearm {
   }) {
     return Firearm(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
-      user: user is _i2.UserProfile? ? user : this.user?.copyWith(),
+      userId: userId is _isc.UuidValue? ? userId : this.userId,
+      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
       purpose: purpose ?? this.purpose,
       type: type ?? this.type,
       action: action ?? this.action,

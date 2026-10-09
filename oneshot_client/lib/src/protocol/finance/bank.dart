@@ -10,14 +10,11 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
 
-abstract class Bank implements _i1.SerializableModel {
-  Bank._({
-    required this.name,
-    required this.code,
-    required this.fullName,
-  });
+abstract class Bank
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
+  Bank._({required this.name, required this.code, required this.fullName});
 
   factory Bank({
     required String name,
@@ -41,12 +38,8 @@ abstract class Bank implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [Bank]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
-  Bank copyWith({
-    String? name,
-    int? code,
-    String? fullName,
-  });
+  @_isc.useResult
+  Bank copyWith({String? name, int? code, String? fullName});
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -58,31 +51,30 @@ abstract class Bank implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'Bank',
+      'name': name,
+      'code': code,
+      'fullName': fullName,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
 class _BankImpl extends Bank {
-  _BankImpl({
-    required String name,
-    required int code,
-    required String fullName,
-  }) : super._(
-         name: name,
-         code: code,
-         fullName: fullName,
-       );
+  _BankImpl({required String name, required int code, required String fullName})
+    : super._(name: name, code: code, fullName: fullName);
 
   /// Returns a shallow copy of this [Bank]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
-  Bank copyWith({
-    String? name,
-    int? code,
-    String? fullName,
-  }) {
+  Bank copyWith({String? name, int? code, String? fullName}) {
     return Bank(
       name: name ?? this.name,
       code: code ?? this.code,

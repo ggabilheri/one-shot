@@ -1,5 +1,5 @@
 import 'package:oneshot_client/oneshot_client.dart';
-import 'package:oneshot_flutter/main.dart';
+import 'package:shooter_app/main.dart';
 
 abstract class IUserRepository {
   Future<UserProfile> getOrCreateProfile();

@@ -1,6 +1,6 @@
 import 'package:oneshot_client/oneshot_client.dart';
-import 'package:oneshot_flutter/src/core/repository/firearm_repository.dart';
-import 'package:oneshot_flutter/src/core/viewmodel.dart';
+import 'package:shooter_app/src/core/repository/firearm_repository.dart';
+import 'package:shooter_app/src/core/viewmodel.dart';
 
 abstract class IFirearmViewmodel extends IViewmodel {
   List<Firearm> get firearms;

@@ -1,15 +1,11 @@
 import 'package:backoffice_web/src/core/viewmodel_state.dart';
 import 'package:backoffice_web/src/ui/pages/products/product_groups_viewmodel.dart';
 import 'package:backoffice_web/src/ui/pages/products/products_page.dart';
-import 'package:backoffice_web/src/ui/pages/products/widgets/product_group_form_dialog.dart';
-import 'package:backoffice_web/src/ui/pages/products/widgets/product_form_dialog.dart';
-import 'package:backoffice_web/src/ui/pages/products/products_viewmodel.dart';
 import 'package:backoffice_web/src/ui/pages/products/widgets/product_groups_header.dart';
 import 'package:backoffice_web/src/ui/pages/products/widgets/product_groups_list.dart';
 import 'package:backoffice_web/src/ui/pages/products/widgets/product_origin_module_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
-import 'package:get_it/get_it.dart';
 
 class ProductGroupsPage extends StatefulWidget {
   const ProductGroupsPage({super.key});

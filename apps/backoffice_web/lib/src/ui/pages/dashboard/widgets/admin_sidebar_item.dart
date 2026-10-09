@@ -59,9 +59,9 @@ class _AdminSidebarItemState extends State<AdminSidebarItem> {
                 ),
                 decoration: BoxDecoration(
                   color: widget.isSelected
-                      ? DSTokens.primary.withOpacity(0.08)
+                      ? DSTokens.primary.withValues(alpha: 0.08)
                       : _isHovering
-                          ? Colors.white.withOpacity(0.03)
+                          ? Colors.white.withValues(alpha: 0.03)
                           : Colors.transparent,
                 ),
                 child: Row(

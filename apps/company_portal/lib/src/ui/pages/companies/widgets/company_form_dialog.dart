@@ -4,7 +4,6 @@ import 'package:company_portal/src/ui/widgets/ds_tokens.dart';
 import 'package:company_portal/src/ui/pages/companies/companies_viewmodel.dart';
 import 'package:company_portal/src/ui/widgets/dialogs/user_search_dialog.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:uuid/uuid.dart';
 import 'company_form_input_field.dart';
 import 'company_owner_selector.dart';
 
@@ -320,7 +319,7 @@ class _CompanyFormDialogState extends State<CompanyFormDialog> {
             border: Border.all(color: DSTokens.surfaceContainerHigh),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withValues(alpha: 0.5),
                 blurRadius: 20,
                 offset: const Offset(0, 10),
               ),
@@ -424,8 +423,9 @@ class _CompanyFormDialogState extends State<CompanyFormDialog> {
                               );
                             }).toList(),
                             onChanged: (val) {
-                              if (val != null)
+                              if (val != null) {
                                 setState(() => _selectedType = val);
+                              }
                             },
                           ),
                         ),

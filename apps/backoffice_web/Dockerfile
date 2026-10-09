@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM ghcr.io/cirruslabs/flutter:3.41.6 AS build
+FROM ghcr.io/cirruslabs/flutter:3.47.5 AS build
 WORKDIR /app
 
 # O contexto do build será a RAIZ do projeto no docker-compose

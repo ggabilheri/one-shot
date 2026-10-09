@@ -10,15 +10,16 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i2;
-import '../shooter/firearm.dart' as _i3;
-import '../shooter/ammunition_stock.dart' as _i4;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i5;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i312scxx;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../shooter/ammunition_stock.dart' as _idy3jb5r;
+import '../shooter/firearm.dart' as _i25s0fp9;
 
-abstract class Training implements _i1.SerializableModel {
+abstract class Training
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   Training._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     this.userInfoId,
     this.userInfo,
     required this.date,
@@ -32,19 +33,19 @@ abstract class Training implements _i1.SerializableModel {
     required this.distanceMeters,
     this.score,
     this.targetImagesUrl,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory Training({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
     required DateTime date,
     required String location,
     required String environmentType,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
-    _i1.UuidValue? ammunitionId,
-    _i4.AmmunitionStock? ammunition,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
+    _isc.UuidValue? ammunitionId,
+    _idy3jb5r.AmmunitionStock? ammunition,
     required int shotsFired,
     required double distanceMeters,
     int? score,
@@ -55,32 +56,34 @@ abstract class Training implements _i1.SerializableModel {
     return Training(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
-          : _i5.Protocol().deserialize<_i2.UserInfo>(
+          : _itys55mc.Protocol().deserialize<_i312scxx.UserInfo>(
               jsonSerialization['userInfo'],
             ),
-      date: _i1.DateTimeJsonExtension.fromJson(jsonSerialization['date']),
+      date: _isc.DateTimeJsonExtension.fromJson(jsonSerialization['date']),
       location: jsonSerialization['location'] as String,
       environmentType: jsonSerialization['environmentType'] as String,
       firearmId: jsonSerialization['firearmId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['firearmId'],
+            ),
       firearm: jsonSerialization['firearm'] == null
           ? null
-          : _i5.Protocol().deserialize<_i3.Firearm>(
+          : _itys55mc.Protocol().deserialize<_i25s0fp9.Firearm>(
               jsonSerialization['firearm'],
             ),
       ammunitionId: jsonSerialization['ammunitionId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(
               jsonSerialization['ammunitionId'],
             ),
       ammunition: jsonSerialization['ammunition'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.AmmunitionStock>(
+          : _itys55mc.Protocol().deserialize<_idy3jb5r.AmmunitionStock>(
               jsonSerialization['ammunition'],
             ),
       shotsFired: jsonSerialization['shotsFired'] as int,
@@ -91,11 +94,11 @@ abstract class Training implements _i1.SerializableModel {
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   int? userInfoId;
 
-  _i2.UserInfo? userInfo;
+  _i312scxx.UserInfo? userInfo;
 
   DateTime date;
 
@@ -103,13 +106,13 @@ abstract class Training implements _i1.SerializableModel {
 
   String environmentType;
 
-  _i1.UuidValue? firearmId;
+  _isc.UuidValue? firearmId;
 
-  _i3.Firearm? firearm;
+  _i25s0fp9.Firearm? firearm;
 
-  _i1.UuidValue? ammunitionId;
+  _isc.UuidValue? ammunitionId;
 
-  _i4.AmmunitionStock? ammunition;
+  _idy3jb5r.AmmunitionStock? ammunition;
 
   int shotsFired;
 
@@ -121,18 +124,18 @@ abstract class Training implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [Training]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   Training copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
     DateTime? date,
     String? location,
     String? environmentType,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
-    _i1.UuidValue? ammunitionId,
-    _i4.AmmunitionStock? ammunition,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
+    _isc.UuidValue? ammunitionId,
+    _idy3jb5r.AmmunitionStock? ammunition,
     int? shotsFired,
     double? distanceMeters,
     int? score,
@@ -160,8 +163,29 @@ abstract class Training implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'Training',
+      'id': id.toJson(),
+      if (userInfoId != null) 'userInfoId': userInfoId,
+      if (userInfo != null) 'userInfo': userInfo?.toJson(),
+      'date': date.toJson(),
+      'location': location,
+      'environmentType': environmentType,
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
+      if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
+      if (ammunitionId != null) 'ammunitionId': ammunitionId?.toJson(),
+      if (ammunition != null) 'ammunition': ammunition?.toJsonForProtocol(),
+      'shotsFired': shotsFired,
+      'distanceMeters': distanceMeters,
+      if (score != null) 'score': score,
+      if (targetImagesUrl != null) 'targetImagesUrl': targetImagesUrl,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -169,16 +193,16 @@ class _Undefined {}
 
 class _TrainingImpl extends Training {
   _TrainingImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
     required DateTime date,
     required String location,
     required String environmentType,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
-    _i1.UuidValue? ammunitionId,
-    _i4.AmmunitionStock? ammunition,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
+    _isc.UuidValue? ammunitionId,
+    _idy3jb5r.AmmunitionStock? ammunition,
     required int shotsFired,
     required double distanceMeters,
     int? score,
@@ -202,10 +226,10 @@ class _TrainingImpl extends Training {
 
   /// Returns a shallow copy of this [Training]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   Training copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     DateTime? date,
@@ -223,18 +247,20 @@ class _TrainingImpl extends Training {
     return Training(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i2.UserInfo?
+      userInfo: userInfo is _i312scxx.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
       date: date ?? this.date,
       location: location ?? this.location,
       environmentType: environmentType ?? this.environmentType,
-      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
-      ammunitionId: ammunitionId is _i1.UuidValue?
+      firearmId: firearmId is _isc.UuidValue? ? firearmId : this.firearmId,
+      firearm: firearm is _i25s0fp9.Firearm?
+          ? firearm
+          : this.firearm?.copyWith(),
+      ammunitionId: ammunitionId is _isc.UuidValue?
           ? ammunitionId
           : this.ammunitionId,
-      ammunition: ammunition is _i4.AmmunitionStock?
+      ammunition: ammunition is _idy3jb5r.AmmunitionStock?
           ? ammunition
           : this.ammunition?.copyWith(),
       shotsFired: shotsFired ?? this.shotsFired,

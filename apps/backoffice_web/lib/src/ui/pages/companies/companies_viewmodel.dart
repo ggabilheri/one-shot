@@ -7,6 +7,7 @@ abstract class ICompaniesViewmodel extends IViewmodel {
   List<Company> get companies;
   List<Company> get platformCompanies;
   UuidValue? get selectedParentCompanyId;
+  @override
   bool get isLoading;
   Future<void> loadCompanies();
   void setParentCompanyFilter(UuidValue? id);

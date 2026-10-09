@@ -1,4 +1,4 @@
-import 'package:oneshot_flutter/src/core/viewmodel.dart';
+import 'package:shooter_app/src/core/viewmodel.dart';
 
 abstract class IHomeViewmodel extends IViewmodel {}
 

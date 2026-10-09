@@ -22,7 +22,7 @@ class RolesDataTable extends StatelessWidget {
         border: Border.all(color: DSTokens.outlineVariant),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -37,7 +37,7 @@ class RolesDataTable extends StatelessWidget {
             dataRowColor: WidgetStateProperty.resolveWith(
               (states) {
                 if (states.contains(WidgetState.hovered)) {
-                  return DSTokens.surfaceContainer.withOpacity(0.5);
+                  return DSTokens.surfaceContainer.withValues(alpha: 0.5);
                 }
                 return Colors.transparent;
               },

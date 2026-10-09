@@ -10,50 +10,51 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../common/user_profile.dart' as _i2;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i3;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/user_profile.dart' as _izifjpv2;
 
-abstract class ProductGroup implements _i1.SerializableModel {
+abstract class ProductGroup
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   ProductGroup._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.name,
     this.description,
     required this.originModule,
     this.ownerId,
     this.owner,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory ProductGroup({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String name,
     String? description,
     required String originModule,
-    _i1.UuidValue? ownerId,
-    _i2.UserProfile? owner,
+    _isc.UuidValue? ownerId,
+    _izifjpv2.UserProfile? owner,
   }) = _ProductGroupImpl;
 
   factory ProductGroup.fromJson(Map<String, dynamic> jsonSerialization) {
     return ProductGroup(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       name: jsonSerialization['name'] as String,
       description: jsonSerialization['description'] as String?,
       originModule: jsonSerialization['originModule'] as String,
       ownerId: jsonSerialization['ownerId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['ownerId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['ownerId']),
       owner: jsonSerialization['owner'] == null
           ? null
-          : _i3.Protocol().deserialize<_i2.UserProfile>(
+          : _itys55mc.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['owner'],
             ),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   String name;
 
@@ -61,20 +62,20 @@ abstract class ProductGroup implements _i1.SerializableModel {
 
   String originModule;
 
-  _i1.UuidValue? ownerId;
+  _isc.UuidValue? ownerId;
 
-  _i2.UserProfile? owner;
+  _izifjpv2.UserProfile? owner;
 
   /// Returns a shallow copy of this [ProductGroup]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   ProductGroup copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? name,
     String? description,
     String? originModule,
-    _i1.UuidValue? ownerId,
-    _i2.UserProfile? owner,
+    _isc.UuidValue? ownerId,
+    _izifjpv2.UserProfile? owner,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -90,8 +91,21 @@ abstract class ProductGroup implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'ProductGroup',
+      'id': id.toJson(),
+      'name': name,
+      if (description != null) 'description': description,
+      'originModule': originModule,
+      if (ownerId != null) 'ownerId': ownerId?.toJson(),
+      if (owner != null) 'owner': owner?.toJsonForProtocol(),
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -99,12 +113,12 @@ class _Undefined {}
 
 class _ProductGroupImpl extends ProductGroup {
   _ProductGroupImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String name,
     String? description,
     required String originModule,
-    _i1.UuidValue? ownerId,
-    _i2.UserProfile? owner,
+    _isc.UuidValue? ownerId,
+    _izifjpv2.UserProfile? owner,
   }) : super._(
          id: id,
          name: name,
@@ -116,10 +130,10 @@ class _ProductGroupImpl extends ProductGroup {
 
   /// Returns a shallow copy of this [ProductGroup]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   ProductGroup copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? name,
     Object? description = _Undefined,
     String? originModule,
@@ -131,8 +145,8 @@ class _ProductGroupImpl extends ProductGroup {
       name: name ?? this.name,
       description: description is String? ? description : this.description,
       originModule: originModule ?? this.originModule,
-      ownerId: ownerId is _i1.UuidValue? ? ownerId : this.ownerId,
-      owner: owner is _i2.UserProfile? ? owner : this.owner?.copyWith(),
+      ownerId: ownerId is _isc.UuidValue? ? ownerId : this.ownerId,
+      owner: owner is _izifjpv2.UserProfile? ? owner : this.owner?.copyWith(),
     );
   }
 }

@@ -8,68 +8,68 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import '../common/user_profile.dart' as _i2;
-import '../access_control/security_role.dart' as _i3;
-import '../company/company.dart' as _i4;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i5;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import '../access_control/security_role.dart' as _ivjb8sui;
+import '../common/user_profile.dart' as _izifjpv2;
+import '../company/company.dart' as _iocy1ifk;
 
 abstract class UserRole
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   UserRole._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     this.userProfileId,
     this.userProfile,
     this.securityRoleId,
     this.securityRole,
     this.companyId,
     this.company,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _is.Uuid().v4obj();
 
   factory UserRole({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userProfileId,
-    _i2.UserProfile? userProfile,
-    _i1.UuidValue? securityRoleId,
-    _i3.SecurityRole? securityRole,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
+    _is.UuidValue? id,
+    _is.UuidValue? userProfileId,
+    _izifjpv2.UserProfile? userProfile,
+    _is.UuidValue? securityRoleId,
+    _ivjb8sui.SecurityRole? securityRole,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   }) = _UserRoleImpl;
 
   factory UserRole.fromJson(Map<String, dynamic> jsonSerialization) {
     return UserRole(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userProfileId: jsonSerialization['userProfileId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _is.UuidValueJsonExtension.fromJson(
               jsonSerialization['userProfileId'],
             ),
       userProfile: jsonSerialization['userProfile'] == null
           ? null
-          : _i5.Protocol().deserialize<_i2.UserProfile>(
+          : _iwflrbqm.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['userProfile'],
             ),
       securityRoleId: jsonSerialization['securityRoleId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _is.UuidValueJsonExtension.fromJson(
               jsonSerialization['securityRoleId'],
             ),
       securityRole: jsonSerialization['securityRole'] == null
           ? null
-          : _i5.Protocol().deserialize<_i3.SecurityRole>(
+          : _iwflrbqm.Protocol().deserialize<_ivjb8sui.SecurityRole>(
               jsonSerialization['securityRole'],
             ),
       companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
       company: jsonSerialization['company'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.Company>(
+          : _iwflrbqm.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['company'],
             ),
     );
@@ -80,34 +80,34 @@ abstract class UserRole
   static const db = UserRoleRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
-  _i1.UuidValue? userProfileId;
+  _is.UuidValue? userProfileId;
 
-  _i2.UserProfile? userProfile;
+  _izifjpv2.UserProfile? userProfile;
 
-  _i1.UuidValue? securityRoleId;
+  _is.UuidValue? securityRoleId;
 
-  _i3.SecurityRole? securityRole;
+  _ivjb8sui.SecurityRole? securityRole;
 
-  _i1.UuidValue? companyId;
+  _is.UuidValue? companyId;
 
-  _i4.Company? company;
+  _iocy1ifk.Company? company;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [UserRole]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   UserRole copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userProfileId,
-    _i2.UserProfile? userProfile,
-    _i1.UuidValue? securityRoleId,
-    _i3.SecurityRole? securityRole,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
+    _is.UuidValue? id,
+    _is.UuidValue? userProfileId,
+    _izifjpv2.UserProfile? userProfile,
+    _is.UuidValue? securityRoleId,
+    _ivjb8sui.SecurityRole? securityRole,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -139,9 +139,9 @@ abstract class UserRole
   }
 
   static UserRoleInclude include({
-    _i2.UserProfileInclude? userProfile,
-    _i3.SecurityRoleInclude? securityRole,
-    _i4.CompanyInclude? company,
+    _izifjpv2.UserProfileInclude? userProfile,
+    _ivjb8sui.SecurityRoleInclude? securityRole,
+    _iocy1ifk.CompanyInclude? company,
   }) {
     return UserRoleInclude._(
       userProfile: userProfile,
@@ -151,12 +151,11 @@ abstract class UserRole
   }
 
   static UserRoleIncludeList includeList({
-    _i1.WhereExpressionBuilder<UserRoleTable>? where,
+    _is.WhereExpressionBuilder<UserRoleTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<UserRoleTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UserRoleTable>? orderByList,
+    _is.OrderByBuilder<UserRoleTable>? orderBy,
+    _is.OrderByListBuilder<UserRoleTable>? orderByList,
     UserRoleInclude? include,
   }) {
     return UserRoleIncludeList._(
@@ -164,7 +163,6 @@ abstract class UserRole
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(UserRole.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(UserRole.t),
       include: include,
     );
@@ -172,7 +170,7 @@ abstract class UserRole
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -180,13 +178,13 @@ class _Undefined {}
 
 class _UserRoleImpl extends UserRole {
   _UserRoleImpl({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userProfileId,
-    _i2.UserProfile? userProfile,
-    _i1.UuidValue? securityRoleId,
-    _i3.SecurityRole? securityRole,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
+    _is.UuidValue? id,
+    _is.UuidValue? userProfileId,
+    _izifjpv2.UserProfile? userProfile,
+    _is.UuidValue? securityRoleId,
+    _ivjb8sui.SecurityRole? securityRole,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   }) : super._(
          id: id,
          userProfileId: userProfileId,
@@ -199,10 +197,10 @@ class _UserRoleImpl extends UserRole {
 
   /// Returns a shallow copy of this [UserRole]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   UserRole copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     Object? userProfileId = _Undefined,
     Object? userProfile = _Undefined,
     Object? securityRoleId = _Undefined,
@@ -212,121 +210,105 @@ class _UserRoleImpl extends UserRole {
   }) {
     return UserRole(
       id: id ?? this.id,
-      userProfileId: userProfileId is _i1.UuidValue?
+      userProfileId: userProfileId is _is.UuidValue?
           ? userProfileId
           : this.userProfileId,
-      userProfile: userProfile is _i2.UserProfile?
+      userProfile: userProfile is _izifjpv2.UserProfile?
           ? userProfile
           : this.userProfile?.copyWith(),
-      securityRoleId: securityRoleId is _i1.UuidValue?
+      securityRoleId: securityRoleId is _is.UuidValue?
           ? securityRoleId
           : this.securityRoleId,
-      securityRole: securityRole is _i3.SecurityRole?
+      securityRole: securityRole is _ivjb8sui.SecurityRole?
           ? securityRole
           : this.securityRole?.copyWith(),
-      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
-      company: company is _i4.Company? ? company : this.company?.copyWith(),
+      companyId: companyId is _is.UuidValue? ? companyId : this.companyId,
+      company: company is _iocy1ifk.Company?
+          ? company
+          : this.company?.copyWith(),
     );
   }
 }
 
-class UserRoleUpdateTable extends _i1.UpdateTable<UserRoleTable> {
+class UserRoleUpdateTable extends _is.UpdateTable<UserRoleTable> {
   UserRoleUpdateTable(super.table);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userProfileId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.userProfileId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> userProfileId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.userProfileId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> securityRoleId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.securityRoleId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> securityRoleId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.securityRoleId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> companyId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.companyId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> companyId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.companyId, value);
 }
 
-class UserRoleTable extends _i1.Table<_i1.UuidValue> {
+class UserRoleTable extends _is.Table<_is.UuidValue> {
   UserRoleTable({super.tableRelation}) : super(tableName: 'user_roles') {
     updateTable = UserRoleUpdateTable(this);
-    userProfileId = _i1.ColumnUuid(
-      'userProfileId',
-      this,
-    );
-    securityRoleId = _i1.ColumnUuid(
-      'securityRoleId',
-      this,
-    );
-    companyId = _i1.ColumnUuid(
-      'companyId',
-      this,
-    );
+    userProfileId = _is.ColumnUuid('userProfileId', this);
+    securityRoleId = _is.ColumnUuid('securityRoleId', this);
+    companyId = _is.ColumnUuid('companyId', this);
   }
 
   late final UserRoleUpdateTable updateTable;
 
-  late final _i1.ColumnUuid userProfileId;
+  late final _is.ColumnUuid userProfileId;
 
-  _i2.UserProfileTable? _userProfile;
+  _izifjpv2.UserProfileTable? _userProfile;
 
-  late final _i1.ColumnUuid securityRoleId;
+  late final _is.ColumnUuid securityRoleId;
 
-  _i3.SecurityRoleTable? _securityRole;
+  _ivjb8sui.SecurityRoleTable? _securityRole;
 
-  late final _i1.ColumnUuid companyId;
+  late final _is.ColumnUuid companyId;
 
-  _i4.CompanyTable? _company;
+  _iocy1ifk.CompanyTable? _company;
 
-  _i2.UserProfileTable get userProfile {
+  _izifjpv2.UserProfileTable get userProfile {
     if (_userProfile != null) return _userProfile!;
-    _userProfile = _i1.createRelationTable(
+    _userProfile = _is.createRelationTable(
       relationFieldName: 'userProfile',
       field: UserRole.t.userProfileId,
-      foreignField: _i2.UserProfile.t.id,
+      foreignField: _izifjpv2.UserProfile.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.UserProfileTable(tableRelation: foreignTableRelation),
+          _izifjpv2.UserProfileTable(tableRelation: foreignTableRelation),
     );
     return _userProfile!;
   }
 
-  _i3.SecurityRoleTable get securityRole {
+  _ivjb8sui.SecurityRoleTable get securityRole {
     if (_securityRole != null) return _securityRole!;
-    _securityRole = _i1.createRelationTable(
+    _securityRole = _is.createRelationTable(
       relationFieldName: 'securityRole',
       field: UserRole.t.securityRoleId,
-      foreignField: _i3.SecurityRole.t.id,
+      foreignField: _ivjb8sui.SecurityRole.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i3.SecurityRoleTable(tableRelation: foreignTableRelation),
+          _ivjb8sui.SecurityRoleTable(tableRelation: foreignTableRelation),
     );
     return _securityRole!;
   }
 
-  _i4.CompanyTable get company {
+  _iocy1ifk.CompanyTable get company {
     if (_company != null) return _company!;
-    _company = _i1.createRelationTable(
+    _company = _is.createRelationTable(
       relationFieldName: 'company',
       field: UserRole.t.companyId,
-      foreignField: _i4.Company.t.id,
+      foreignField: _iocy1ifk.Company.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i4.CompanyTable(tableRelation: foreignTableRelation),
+          _iocy1ifk.CompanyTable(tableRelation: foreignTableRelation),
     );
     return _company!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     userProfileId,
     securityRoleId,
@@ -334,7 +316,7 @@ class UserRoleTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'userProfile') {
       return userProfile;
     }
@@ -348,41 +330,40 @@ class UserRoleTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class UserRoleInclude extends _i1.IncludeObject {
+class UserRoleInclude extends _is.IncludeObject {
   UserRoleInclude._({
-    _i2.UserProfileInclude? userProfile,
-    _i3.SecurityRoleInclude? securityRole,
-    _i4.CompanyInclude? company,
+    _izifjpv2.UserProfileInclude? userProfile,
+    _ivjb8sui.SecurityRoleInclude? securityRole,
+    _iocy1ifk.CompanyInclude? company,
   }) {
     _userProfile = userProfile;
     _securityRole = securityRole;
     _company = company;
   }
 
-  _i2.UserProfileInclude? _userProfile;
+  _izifjpv2.UserProfileInclude? _userProfile;
 
-  _i3.SecurityRoleInclude? _securityRole;
+  _ivjb8sui.SecurityRoleInclude? _securityRole;
 
-  _i4.CompanyInclude? _company;
+  _iocy1ifk.CompanyInclude? _company;
 
   @override
-  Map<String, _i1.Include?> get includes => {
+  Map<String, _is.Include?> get includes => {
     'userProfile': _userProfile,
     'securityRole': _securityRole,
     'company': _company,
   };
 
   @override
-  _i1.Table<_i1.UuidValue> get table => UserRole.t;
+  _is.Table<_is.UuidValue> get table => UserRole.t;
 }
 
-class UserRoleIncludeList extends _i1.IncludeList {
+class UserRoleIncludeList extends _is.IncludeList {
   UserRoleIncludeList._({
-    _i1.WhereExpressionBuilder<UserRoleTable>? where,
+    _is.WhereExpressionBuilder<UserRoleTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -390,10 +371,10 @@ class UserRoleIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => UserRole.t;
+  _is.Table<_is.UuidValue> get table => UserRole.t;
 }
 
 class UserRoleRepository {
@@ -426,23 +407,21 @@ class UserRoleRepository {
   /// );
   /// ```
   Future<List<UserRole>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<UserRoleTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<UserRoleTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<UserRoleTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UserRoleTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<UserRoleTable>? orderBy,
+    _is.OrderByListBuilder<UserRoleTable>? orderByList,
+    _is.Transaction? transaction,
     UserRoleInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<UserRole>(
       where: where?.call(UserRole.t),
       orderBy: orderBy?.call(UserRole.t),
       orderByList: orderByList?.call(UserRole.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -470,22 +449,20 @@ class UserRoleRepository {
   /// );
   /// ```
   Future<UserRole?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<UserRoleTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<UserRoleTable>? where,
     int? offset,
-    _i1.OrderByBuilder<UserRoleTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<UserRoleTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<UserRoleTable>? orderBy,
+    _is.OrderByListBuilder<UserRoleTable>? orderByList,
+    _is.Transaction? transaction,
     UserRoleInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<UserRole>(
       where: where?.call(UserRole.t),
       orderBy: orderBy?.call(UserRole.t),
       orderByList: orderByList?.call(UserRole.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -496,12 +473,12 @@ class UserRoleRepository {
 
   /// Finds a single [UserRole] by its [id] or null if no such row exists.
   Future<UserRole?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     UserRoleInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<UserRole>(
       id,
@@ -522,16 +499,22 @@ class UserRoleRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<UserRole>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<UserRole> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<UserRole>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -539,12 +522,78 @@ class UserRoleRepository {
   ///
   /// The returned [UserRole] will have its `id` field set.
   Future<UserRole> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserRole row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.insertRow<UserRole>(
+    return session.db.insertRow<UserRole>(row, transaction: transaction);
+  }
+
+  /// Upserts all [UserRole]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [UserRole]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<UserRole>> upsert(
+    _is.DatabaseSession session,
+    List<UserRole> rows, {
+    required _is.ColumnSelections<UserRoleTable> conflictColumns,
+    _is.ColumnSelections<UserRoleTable>? updateColumns,
+    _is.WhereExpressionBuilder<UserRoleTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<UserRole>(
+      rows,
+      conflictColumns: conflictColumns(UserRole.t),
+      updateColumns: updateColumns?.call(UserRole.t),
+      updateWhere: updateWhere?.call(UserRole.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [UserRole] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [UserRole] will have its `id` field set.
+  Future<UserRole?> upsertRow(
+    _is.DatabaseSession session,
+    UserRole row, {
+    required _is.ColumnSelections<UserRoleTable> conflictColumns,
+    _is.ColumnSelections<UserRoleTable>? updateColumns,
+    _is.WhereExpressionBuilder<UserRoleTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<UserRole>(
       row,
+      conflictColumns: conflictColumns(UserRole.t),
+      updateColumns: updateColumns?.call(UserRole.t),
+      updateWhere: updateWhere?.call(UserRole.t),
       transaction: transaction,
     );
   }
@@ -554,16 +603,22 @@ class UserRoleRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<UserRole>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<UserRole> rows, {
-    _i1.ColumnSelections<UserRoleTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<UserRoleTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<UserRole>(
       rows,
       columns: columns?.call(UserRole.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -571,10 +626,10 @@ class UserRoleRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<UserRole> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserRole row, {
-    _i1.ColumnSelections<UserRoleTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<UserRoleTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<UserRole>(
       row,
@@ -586,10 +641,10 @@ class UserRoleRepository {
   /// Updates a single [UserRole] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<UserRole?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<UserRoleUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<UserRoleUpdateTable> columnValues,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<UserRole>(
       id,
@@ -600,16 +655,20 @@ class UserRoleRepository {
 
   /// Updates all [UserRole]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<UserRole>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<UserRoleUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<UserRoleTable> where,
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<UserRoleUpdateTable> columnValues,
+    required _is.WhereExpressionBuilder<UserRoleTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<UserRoleTable>? orderBy,
-    _i1.OrderByListBuilder<UserRoleTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<UserRoleTable>? orderBy,
+    _is.OrderByListBuilder<UserRoleTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<UserRole>(
       columnValues: columnValues(UserRole.t.updateTable),
@@ -618,56 +677,80 @@ class UserRoleRepository {
       offset: offset,
       orderBy: orderBy?.call(UserRole.t),
       orderByList: orderByList?.call(UserRole.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [UserRole]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<UserRole>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<UserRole> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<UserRoleTable>? orderBy,
+    _is.OrderByListBuilder<UserRoleTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<UserRole>(
       rows,
+      orderBy: orderBy?.call(UserRole.t),
+      orderByList: orderByList?.call(UserRole.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [UserRole].
   Future<UserRole> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserRole row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<UserRole>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<UserRole>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<UserRole>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<UserRoleTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<UserRoleTable> where,
+    _is.OrderByBuilder<UserRoleTable>? orderBy,
+    _is.OrderByListBuilder<UserRoleTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<UserRole>(
       where: where(UserRole.t),
+      orderBy: orderBy?.call(UserRole.t),
+      orderByList: orderByList?.call(UserRole.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<UserRoleTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<UserRoleTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<UserRole>(
       where: where?.call(UserRole.t),
@@ -678,11 +761,11 @@ class UserRoleRepository {
 
   /// Acquires row-level locks on [UserRole] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<UserRoleTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<UserRoleTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<UserRole>(
       where: where(UserRole.t),
@@ -699,10 +782,10 @@ class UserRoleAttachRowRepository {
   /// Creates a relation between the given [UserRole] and [UserProfile]
   /// by setting the [UserRole]'s foreign key `userProfileId` to refer to the [UserProfile].
   Future<void> userProfile(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserRole userRole,
-    _i2.UserProfile userProfile, {
-    _i1.Transaction? transaction,
+    _izifjpv2.UserProfile userProfile, {
+    _is.Transaction? transaction,
   }) async {
     if (userRole.id == null) {
       throw ArgumentError.notNull('userRole.id');
@@ -722,10 +805,10 @@ class UserRoleAttachRowRepository {
   /// Creates a relation between the given [UserRole] and [SecurityRole]
   /// by setting the [UserRole]'s foreign key `securityRoleId` to refer to the [SecurityRole].
   Future<void> securityRole(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserRole userRole,
-    _i3.SecurityRole securityRole, {
-    _i1.Transaction? transaction,
+    _ivjb8sui.SecurityRole securityRole, {
+    _is.Transaction? transaction,
   }) async {
     if (userRole.id == null) {
       throw ArgumentError.notNull('userRole.id');
@@ -745,10 +828,10 @@ class UserRoleAttachRowRepository {
   /// Creates a relation between the given [UserRole] and [Company]
   /// by setting the [UserRole]'s foreign key `companyId` to refer to the [Company].
   Future<void> company(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserRole userRole,
-    _i4.Company company, {
-    _i1.Transaction? transaction,
+    _iocy1ifk.Company company, {
+    _is.Transaction? transaction,
   }) async {
     if (userRole.id == null) {
       throw ArgumentError.notNull('userRole.id');
@@ -775,9 +858,9 @@ class UserRoleDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> userProfile(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserRole userRole, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (userRole.id == null) {
       throw ArgumentError.notNull('userRole.id');
@@ -797,9 +880,9 @@ class UserRoleDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> securityRole(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserRole userRole, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (userRole.id == null) {
       throw ArgumentError.notNull('userRole.id');
@@ -819,9 +902,9 @@ class UserRoleDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> company(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     UserRole userRole, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (userRole.id == null) {
       throw ArgumentError.notNull('userRole.id');

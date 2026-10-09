@@ -4,6 +4,7 @@ import 'package:oneshot_client/oneshot_client.dart';
 
 abstract class ISubscriptionPlansViewModel extends IViewmodel {
   List<SubscriptionPlan> get plans;
+  @override
   bool get isLoading;
   PlanType? get filterType;
   PlanStatus? get filterStatus;

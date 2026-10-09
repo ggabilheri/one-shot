@@ -8,20 +8,20 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import '../enums/plan_type.enum.dart' as _i2;
-import '../enums/plan_periodicity.enum.dart' as _i3;
-import '../enums/plan_status.enum.dart' as _i4;
-import '../company/company.dart' as _i5;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i6;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import '../company/company.dart' as _iocy1ifk;
+import '../enums/plan_periodicity.enum.dart' as _i183hlh8;
+import '../enums/plan_status.enum.dart' as _i2ytazif;
+import '../enums/plan_type.enum.dart' as _izm4hmla;
 
 abstract class SubscriptionPlan
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   SubscriptionPlan._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required this.name,
     required this.planType,
     required this.unitValue,
@@ -31,43 +31,45 @@ abstract class SubscriptionPlan
     required this.status,
     this.companyId,
     this.company,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _is.Uuid().v4obj();
 
   factory SubscriptionPlan({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required String name,
-    required _i2.PlanType planType,
+    required _izm4hmla.PlanType planType,
     required double unitValue,
     required int quantity,
     required double totalValue,
-    required _i3.PlanPeriodicity periodicity,
-    required _i4.PlanStatus status,
-    _i1.UuidValue? companyId,
-    _i5.Company? company,
+    required _i183hlh8.PlanPeriodicity periodicity,
+    required _i2ytazif.PlanStatus status,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   }) = _SubscriptionPlanImpl;
 
   factory SubscriptionPlan.fromJson(Map<String, dynamic> jsonSerialization) {
     return SubscriptionPlan(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       name: jsonSerialization['name'] as String,
-      planType: _i2.PlanType.fromJson(
+      planType: _izm4hmla.PlanType.fromJson(
         (jsonSerialization['planType'] as String),
       ),
       unitValue: (jsonSerialization['unitValue'] as num).toDouble(),
       quantity: jsonSerialization['quantity'] as int,
       totalValue: (jsonSerialization['totalValue'] as num).toDouble(),
-      periodicity: _i3.PlanPeriodicity.fromJson(
+      periodicity: _i183hlh8.PlanPeriodicity.fromJson(
         (jsonSerialization['periodicity'] as String),
       ),
-      status: _i4.PlanStatus.fromJson((jsonSerialization['status'] as String)),
+      status: _i2ytazif.PlanStatus.fromJson(
+        (jsonSerialization['status'] as String),
+      ),
       companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
       company: jsonSerialization['company'] == null
           ? null
-          : _i6.Protocol().deserialize<_i5.Company>(
+          : _iwflrbqm.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['company'],
             ),
     );
@@ -78,11 +80,11 @@ abstract class SubscriptionPlan
   static const db = SubscriptionPlanRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
   String name;
 
-  _i2.PlanType planType;
+  _izm4hmla.PlanType planType;
 
   double unitValue;
 
@@ -90,31 +92,31 @@ abstract class SubscriptionPlan
 
   double totalValue;
 
-  _i3.PlanPeriodicity periodicity;
+  _i183hlh8.PlanPeriodicity periodicity;
 
-  _i4.PlanStatus status;
+  _i2ytazif.PlanStatus status;
 
-  _i1.UuidValue? companyId;
+  _is.UuidValue? companyId;
 
-  _i5.Company? company;
+  _iocy1ifk.Company? company;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [SubscriptionPlan]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   SubscriptionPlan copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     String? name,
-    _i2.PlanType? planType,
+    _izm4hmla.PlanType? planType,
     double? unitValue,
     int? quantity,
     double? totalValue,
-    _i3.PlanPeriodicity? periodicity,
-    _i4.PlanStatus? status,
-    _i1.UuidValue? companyId,
-    _i5.Company? company,
+    _i183hlh8.PlanPeriodicity? periodicity,
+    _i2ytazif.PlanStatus? status,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -150,17 +152,16 @@ abstract class SubscriptionPlan
     };
   }
 
-  static SubscriptionPlanInclude include({_i5.CompanyInclude? company}) {
+  static SubscriptionPlanInclude include({_iocy1ifk.CompanyInclude? company}) {
     return SubscriptionPlanInclude._(company: company);
   }
 
   static SubscriptionPlanIncludeList includeList({
-    _i1.WhereExpressionBuilder<SubscriptionPlanTable>? where,
+    _is.WhereExpressionBuilder<SubscriptionPlanTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<SubscriptionPlanTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<SubscriptionPlanTable>? orderByList,
+    _is.OrderByBuilder<SubscriptionPlanTable>? orderBy,
+    _is.OrderByListBuilder<SubscriptionPlanTable>? orderByList,
     SubscriptionPlanInclude? include,
   }) {
     return SubscriptionPlanIncludeList._(
@@ -168,7 +169,6 @@ abstract class SubscriptionPlan
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(SubscriptionPlan.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(SubscriptionPlan.t),
       include: include,
     );
@@ -176,7 +176,7 @@ abstract class SubscriptionPlan
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -184,16 +184,16 @@ class _Undefined {}
 
 class _SubscriptionPlanImpl extends SubscriptionPlan {
   _SubscriptionPlanImpl({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required String name,
-    required _i2.PlanType planType,
+    required _izm4hmla.PlanType planType,
     required double unitValue,
     required int quantity,
     required double totalValue,
-    required _i3.PlanPeriodicity periodicity,
-    required _i4.PlanStatus status,
-    _i1.UuidValue? companyId,
-    _i5.Company? company,
+    required _i183hlh8.PlanPeriodicity periodicity,
+    required _i2ytazif.PlanStatus status,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   }) : super._(
          id: id,
          name: name,
@@ -209,17 +209,17 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
 
   /// Returns a shallow copy of this [SubscriptionPlan]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   SubscriptionPlan copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     String? name,
-    _i2.PlanType? planType,
+    _izm4hmla.PlanType? planType,
     double? unitValue,
     int? quantity,
     double? totalValue,
-    _i3.PlanPeriodicity? periodicity,
-    _i4.PlanStatus? status,
+    _i183hlh8.PlanPeriodicity? periodicity,
+    _i2ytazif.PlanStatus? status,
     Object? companyId = _Undefined,
     Object? company = _Undefined,
   }) {
@@ -232,140 +232,100 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
       totalValue: totalValue ?? this.totalValue,
       periodicity: periodicity ?? this.periodicity,
       status: status ?? this.status,
-      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
-      company: company is _i5.Company? ? company : this.company?.copyWith(),
+      companyId: companyId is _is.UuidValue? ? companyId : this.companyId,
+      company: company is _iocy1ifk.Company?
+          ? company
+          : this.company?.copyWith(),
     );
   }
 }
 
 class SubscriptionPlanUpdateTable
-    extends _i1.UpdateTable<SubscriptionPlanTable> {
+    extends _is.UpdateTable<SubscriptionPlanTable> {
   SubscriptionPlanUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
-    table.name,
-    value,
-  );
+  _is.ColumnValue<String, String> name(String value) =>
+      _is.ColumnValue(table.name, value);
 
-  _i1.ColumnValue<_i2.PlanType, _i2.PlanType> planType(_i2.PlanType value) =>
-      _i1.ColumnValue(
-        table.planType,
-        value,
-      );
+  _is.ColumnValue<_izm4hmla.PlanType, _izm4hmla.PlanType> planType(
+    _izm4hmla.PlanType value,
+  ) => _is.ColumnValue(table.planType, value);
 
-  _i1.ColumnValue<double, double> unitValue(double value) => _i1.ColumnValue(
-    table.unitValue,
-    value,
-  );
+  _is.ColumnValue<double, double> unitValue(double value) =>
+      _is.ColumnValue(table.unitValue, value);
 
-  _i1.ColumnValue<int, int> quantity(int value) => _i1.ColumnValue(
-    table.quantity,
-    value,
-  );
+  _is.ColumnValue<int, int> quantity(int value) =>
+      _is.ColumnValue(table.quantity, value);
 
-  _i1.ColumnValue<double, double> totalValue(double value) => _i1.ColumnValue(
-    table.totalValue,
-    value,
-  );
+  _is.ColumnValue<double, double> totalValue(double value) =>
+      _is.ColumnValue(table.totalValue, value);
 
-  _i1.ColumnValue<_i3.PlanPeriodicity, _i3.PlanPeriodicity> periodicity(
-    _i3.PlanPeriodicity value,
-  ) => _i1.ColumnValue(
-    table.periodicity,
-    value,
-  );
+  _is.ColumnValue<_i183hlh8.PlanPeriodicity, _i183hlh8.PlanPeriodicity>
+  periodicity(_i183hlh8.PlanPeriodicity value) =>
+      _is.ColumnValue(table.periodicity, value);
 
-  _i1.ColumnValue<_i4.PlanStatus, _i4.PlanStatus> status(
-    _i4.PlanStatus value,
-  ) => _i1.ColumnValue(
-    table.status,
-    value,
-  );
+  _is.ColumnValue<_i2ytazif.PlanStatus, _i2ytazif.PlanStatus> status(
+    _i2ytazif.PlanStatus value,
+  ) => _is.ColumnValue(table.status, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> companyId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.companyId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> companyId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.companyId, value);
 }
 
-class SubscriptionPlanTable extends _i1.Table<_i1.UuidValue> {
+class SubscriptionPlanTable extends _is.Table<_is.UuidValue> {
   SubscriptionPlanTable({super.tableRelation})
     : super(tableName: 'subscription_plans') {
     updateTable = SubscriptionPlanUpdateTable(this);
-    name = _i1.ColumnString(
-      'name',
-      this,
-    );
-    planType = _i1.ColumnEnum(
-      'planType',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    unitValue = _i1.ColumnDouble(
-      'unitValue',
-      this,
-    );
-    quantity = _i1.ColumnInt(
-      'quantity',
-      this,
-    );
-    totalValue = _i1.ColumnDouble(
-      'totalValue',
-      this,
-    );
-    periodicity = _i1.ColumnEnum(
+    name = _is.ColumnString('name', this);
+    planType = _is.ColumnEnum('planType', this, _is.EnumSerialization.byName);
+    unitValue = _is.ColumnDouble('unitValue', this);
+    quantity = _is.ColumnInt('quantity', this);
+    totalValue = _is.ColumnDouble('totalValue', this);
+    periodicity = _is.ColumnEnum(
       'periodicity',
       this,
-      _i1.EnumSerialization.byName,
+      _is.EnumSerialization.byName,
     );
-    status = _i1.ColumnEnum(
-      'status',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    companyId = _i1.ColumnUuid(
-      'companyId',
-      this,
-    );
+    status = _is.ColumnEnum('status', this, _is.EnumSerialization.byName);
+    companyId = _is.ColumnUuid('companyId', this);
   }
 
   late final SubscriptionPlanUpdateTable updateTable;
 
-  late final _i1.ColumnString name;
+  late final _is.ColumnString name;
 
-  late final _i1.ColumnEnum<_i2.PlanType> planType;
+  late final _is.ColumnEnum<_izm4hmla.PlanType> planType;
 
-  late final _i1.ColumnDouble unitValue;
+  late final _is.ColumnDouble unitValue;
 
-  late final _i1.ColumnInt quantity;
+  late final _is.ColumnInt quantity;
 
-  late final _i1.ColumnDouble totalValue;
+  late final _is.ColumnDouble totalValue;
 
-  late final _i1.ColumnEnum<_i3.PlanPeriodicity> periodicity;
+  late final _is.ColumnEnum<_i183hlh8.PlanPeriodicity> periodicity;
 
-  late final _i1.ColumnEnum<_i4.PlanStatus> status;
+  late final _is.ColumnEnum<_i2ytazif.PlanStatus> status;
 
-  late final _i1.ColumnUuid companyId;
+  late final _is.ColumnUuid companyId;
 
-  _i5.CompanyTable? _company;
+  _iocy1ifk.CompanyTable? _company;
 
-  _i5.CompanyTable get company {
+  _iocy1ifk.CompanyTable get company {
     if (_company != null) return _company!;
-    _company = _i1.createRelationTable(
+    _company = _is.createRelationTable(
       relationFieldName: 'company',
       field: SubscriptionPlan.t.companyId,
-      foreignField: _i5.Company.t.id,
+      foreignField: _iocy1ifk.Company.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i5.CompanyTable(tableRelation: foreignTableRelation),
+          _iocy1ifk.CompanyTable(tableRelation: foreignTableRelation),
     );
     return _company!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     name,
     planType,
@@ -378,7 +338,7 @@ class SubscriptionPlanTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'company') {
       return company;
     }
@@ -386,27 +346,26 @@ class SubscriptionPlanTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class SubscriptionPlanInclude extends _i1.IncludeObject {
-  SubscriptionPlanInclude._({_i5.CompanyInclude? company}) {
+class SubscriptionPlanInclude extends _is.IncludeObject {
+  SubscriptionPlanInclude._({_iocy1ifk.CompanyInclude? company}) {
     _company = company;
   }
 
-  _i5.CompanyInclude? _company;
+  _iocy1ifk.CompanyInclude? _company;
 
   @override
-  Map<String, _i1.Include?> get includes => {'company': _company};
+  Map<String, _is.Include?> get includes => {'company': _company};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => SubscriptionPlan.t;
+  _is.Table<_is.UuidValue> get table => SubscriptionPlan.t;
 }
 
-class SubscriptionPlanIncludeList extends _i1.IncludeList {
+class SubscriptionPlanIncludeList extends _is.IncludeList {
   SubscriptionPlanIncludeList._({
-    _i1.WhereExpressionBuilder<SubscriptionPlanTable>? where,
+    _is.WhereExpressionBuilder<SubscriptionPlanTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -414,10 +373,10 @@ class SubscriptionPlanIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => SubscriptionPlan.t;
+  _is.Table<_is.UuidValue> get table => SubscriptionPlan.t;
 }
 
 class SubscriptionPlanRepository {
@@ -450,23 +409,21 @@ class SubscriptionPlanRepository {
   /// );
   /// ```
   Future<List<SubscriptionPlan>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<SubscriptionPlanTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<SubscriptionPlanTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<SubscriptionPlanTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<SubscriptionPlanTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<SubscriptionPlanTable>? orderBy,
+    _is.OrderByListBuilder<SubscriptionPlanTable>? orderByList,
+    _is.Transaction? transaction,
     SubscriptionPlanInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<SubscriptionPlan>(
       where: where?.call(SubscriptionPlan.t),
       orderBy: orderBy?.call(SubscriptionPlan.t),
       orderByList: orderByList?.call(SubscriptionPlan.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -494,22 +451,20 @@ class SubscriptionPlanRepository {
   /// );
   /// ```
   Future<SubscriptionPlan?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<SubscriptionPlanTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<SubscriptionPlanTable>? where,
     int? offset,
-    _i1.OrderByBuilder<SubscriptionPlanTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<SubscriptionPlanTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<SubscriptionPlanTable>? orderBy,
+    _is.OrderByListBuilder<SubscriptionPlanTable>? orderByList,
+    _is.Transaction? transaction,
     SubscriptionPlanInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<SubscriptionPlan>(
       where: where?.call(SubscriptionPlan.t),
       orderBy: orderBy?.call(SubscriptionPlan.t),
       orderByList: orderByList?.call(SubscriptionPlan.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -520,12 +475,12 @@ class SubscriptionPlanRepository {
 
   /// Finds a single [SubscriptionPlan] by its [id] or null if no such row exists.
   Future<SubscriptionPlan?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     SubscriptionPlanInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<SubscriptionPlan>(
       id,
@@ -546,16 +501,22 @@ class SubscriptionPlanRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<SubscriptionPlan>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<SubscriptionPlan> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<SubscriptionPlan>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -563,12 +524,81 @@ class SubscriptionPlanRepository {
   ///
   /// The returned [SubscriptionPlan] will have its `id` field set.
   Future<SubscriptionPlan> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     SubscriptionPlan row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.insertRow<SubscriptionPlan>(
       row,
+      transaction: transaction,
+    );
+  }
+
+  /// Upserts all [SubscriptionPlan]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [SubscriptionPlan]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<SubscriptionPlan>> upsert(
+    _is.DatabaseSession session,
+    List<SubscriptionPlan> rows, {
+    required _is.ColumnSelections<SubscriptionPlanTable> conflictColumns,
+    _is.ColumnSelections<SubscriptionPlanTable>? updateColumns,
+    _is.WhereExpressionBuilder<SubscriptionPlanTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<SubscriptionPlan>(
+      rows,
+      conflictColumns: conflictColumns(SubscriptionPlan.t),
+      updateColumns: updateColumns?.call(SubscriptionPlan.t),
+      updateWhere: updateWhere?.call(SubscriptionPlan.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [SubscriptionPlan] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [SubscriptionPlan] will have its `id` field set.
+  Future<SubscriptionPlan?> upsertRow(
+    _is.DatabaseSession session,
+    SubscriptionPlan row, {
+    required _is.ColumnSelections<SubscriptionPlanTable> conflictColumns,
+    _is.ColumnSelections<SubscriptionPlanTable>? updateColumns,
+    _is.WhereExpressionBuilder<SubscriptionPlanTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<SubscriptionPlan>(
+      row,
+      conflictColumns: conflictColumns(SubscriptionPlan.t),
+      updateColumns: updateColumns?.call(SubscriptionPlan.t),
+      updateWhere: updateWhere?.call(SubscriptionPlan.t),
       transaction: transaction,
     );
   }
@@ -578,16 +608,22 @@ class SubscriptionPlanRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<SubscriptionPlan>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<SubscriptionPlan> rows, {
-    _i1.ColumnSelections<SubscriptionPlanTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<SubscriptionPlanTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<SubscriptionPlan>(
       rows,
       columns: columns?.call(SubscriptionPlan.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -595,10 +631,10 @@ class SubscriptionPlanRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<SubscriptionPlan> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     SubscriptionPlan row, {
-    _i1.ColumnSelections<SubscriptionPlanTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<SubscriptionPlanTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<SubscriptionPlan>(
       row,
@@ -610,11 +646,11 @@ class SubscriptionPlanRepository {
   /// Updates a single [SubscriptionPlan] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<SubscriptionPlan?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<SubscriptionPlanUpdateTable>
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<SubscriptionPlanUpdateTable>
     columnValues,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<SubscriptionPlan>(
       id,
@@ -625,17 +661,21 @@ class SubscriptionPlanRepository {
 
   /// Updates all [SubscriptionPlan]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<SubscriptionPlan>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<SubscriptionPlanUpdateTable>
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<SubscriptionPlanUpdateTable>
     columnValues,
-    required _i1.WhereExpressionBuilder<SubscriptionPlanTable> where,
+    required _is.WhereExpressionBuilder<SubscriptionPlanTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<SubscriptionPlanTable>? orderBy,
-    _i1.OrderByListBuilder<SubscriptionPlanTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<SubscriptionPlanTable>? orderBy,
+    _is.OrderByListBuilder<SubscriptionPlanTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<SubscriptionPlan>(
       columnValues: columnValues(SubscriptionPlan.t.updateTable),
@@ -644,30 +684,44 @@ class SubscriptionPlanRepository {
       offset: offset,
       orderBy: orderBy?.call(SubscriptionPlan.t),
       orderByList: orderByList?.call(SubscriptionPlan.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [SubscriptionPlan]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<SubscriptionPlan>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<SubscriptionPlan> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<SubscriptionPlanTable>? orderBy,
+    _is.OrderByListBuilder<SubscriptionPlanTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<SubscriptionPlan>(
       rows,
+      orderBy: orderBy?.call(SubscriptionPlan.t),
+      orderByList: orderByList?.call(SubscriptionPlan.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [SubscriptionPlan].
   Future<SubscriptionPlan> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     SubscriptionPlan row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.deleteRow<SubscriptionPlan>(
       row,
@@ -676,24 +730,37 @@ class SubscriptionPlanRepository {
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<SubscriptionPlan>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<SubscriptionPlanTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<SubscriptionPlanTable> where,
+    _is.OrderByBuilder<SubscriptionPlanTable>? orderBy,
+    _is.OrderByListBuilder<SubscriptionPlanTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<SubscriptionPlan>(
       where: where(SubscriptionPlan.t),
+      orderBy: orderBy?.call(SubscriptionPlan.t),
+      orderByList: orderByList?.call(SubscriptionPlan.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<SubscriptionPlanTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<SubscriptionPlanTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<SubscriptionPlan>(
       where: where?.call(SubscriptionPlan.t),
@@ -704,11 +771,11 @@ class SubscriptionPlanRepository {
 
   /// Acquires row-level locks on [SubscriptionPlan] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<SubscriptionPlanTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<SubscriptionPlanTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<SubscriptionPlan>(
       where: where(SubscriptionPlan.t),
@@ -725,10 +792,10 @@ class SubscriptionPlanAttachRowRepository {
   /// Creates a relation between the given [SubscriptionPlan] and [Company]
   /// by setting the [SubscriptionPlan]'s foreign key `companyId` to refer to the [Company].
   Future<void> company(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     SubscriptionPlan subscriptionPlan,
-    _i5.Company company, {
-    _i1.Transaction? transaction,
+    _iocy1ifk.Company company, {
+    _is.Transaction? transaction,
   }) async {
     if (subscriptionPlan.id == null) {
       throw ArgumentError.notNull('subscriptionPlan.id');
@@ -755,9 +822,9 @@ class SubscriptionPlanDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> company(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     SubscriptionPlan subscriptionPlan, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (subscriptionPlan.id == null) {
       throw ArgumentError.notNull('subscriptionPlan.id');

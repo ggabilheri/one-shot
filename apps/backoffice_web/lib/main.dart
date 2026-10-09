@@ -22,10 +22,9 @@ void main() async {
       ? 'http://localhost:8080/'
       : serverUrlFromEnv;
 
-  client = Client(
-    serverUrl,
-    authenticationKeyManager: FlutterAuthenticationKeyManager(),
-  )..connectivityMonitor = FlutterConnectivityMonitor();
+  client = Client(serverUrl)
+    ..connectivityMonitor = FlutterConnectivityMonitor()
+    ..authKeyProvider = FlutterAuthenticationKeyManager();
 
   sessionManager = SessionManager(caller: client.modules.auth);
   await sessionManager.initialize();

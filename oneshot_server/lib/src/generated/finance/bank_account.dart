@@ -8,18 +8,18 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import '../company/company.dart' as _i2;
-import '../enums/pix_key_type.dart' as _i3;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i4;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import '../company/company.dart' as _iocy1ifk;
+import '../enums/pix_key_type.dart' as _imwhqumt;
 
 abstract class BankAccount
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   BankAccount._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required this.name,
     this.bankName,
     this.agency,
@@ -33,10 +33,10 @@ abstract class BankAccount
     this.company,
     this.pixKey,
     this.pixKeyType,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _is.Uuid().v4obj();
 
   factory BankAccount({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required String name,
     String? bankName,
     String? agency,
@@ -46,17 +46,17 @@ abstract class BankAccount
     required double balance,
     required String status,
     required String originModule,
-    _i1.UuidValue? companyId,
-    _i2.Company? company,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
     String? pixKey,
-    _i3.PixKeyType? pixKeyType,
+    _imwhqumt.PixKeyType? pixKeyType,
   }) = _BankAccountImpl;
 
   factory BankAccount.fromJson(Map<String, dynamic> jsonSerialization) {
     return BankAccount(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       name: jsonSerialization['name'] as String,
       bankName: jsonSerialization['bankName'] as String?,
       agency: jsonSerialization['agency'] as String?,
@@ -68,16 +68,16 @@ abstract class BankAccount
       originModule: jsonSerialization['originModule'] as String,
       companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
       company: jsonSerialization['company'] == null
           ? null
-          : _i4.Protocol().deserialize<_i2.Company>(
+          : _iwflrbqm.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['company'],
             ),
       pixKey: jsonSerialization['pixKey'] as String?,
       pixKeyType: jsonSerialization['pixKeyType'] == null
           ? null
-          : _i3.PixKeyType.fromJson(
+          : _imwhqumt.PixKeyType.fromJson(
               (jsonSerialization['pixKeyType'] as String),
             ),
     );
@@ -88,7 +88,7 @@ abstract class BankAccount
   static const db = BankAccountRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
   String name;
 
@@ -108,22 +108,22 @@ abstract class BankAccount
 
   String originModule;
 
-  _i1.UuidValue? companyId;
+  _is.UuidValue? companyId;
 
-  _i2.Company? company;
+  _iocy1ifk.Company? company;
 
   String? pixKey;
 
-  _i3.PixKeyType? pixKeyType;
+  _imwhqumt.PixKeyType? pixKeyType;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [BankAccount]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   BankAccount copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     String? name,
     String? bankName,
     String? agency,
@@ -133,10 +133,10 @@ abstract class BankAccount
     double? balance,
     String? status,
     String? originModule,
-    _i1.UuidValue? companyId,
-    _i2.Company? company,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
     String? pixKey,
-    _i3.PixKeyType? pixKeyType,
+    _imwhqumt.PixKeyType? pixKeyType,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -180,17 +180,16 @@ abstract class BankAccount
     };
   }
 
-  static BankAccountInclude include({_i2.CompanyInclude? company}) {
+  static BankAccountInclude include({_iocy1ifk.CompanyInclude? company}) {
     return BankAccountInclude._(company: company);
   }
 
   static BankAccountIncludeList includeList({
-    _i1.WhereExpressionBuilder<BankAccountTable>? where,
+    _is.WhereExpressionBuilder<BankAccountTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<BankAccountTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<BankAccountTable>? orderByList,
+    _is.OrderByBuilder<BankAccountTable>? orderBy,
+    _is.OrderByListBuilder<BankAccountTable>? orderByList,
     BankAccountInclude? include,
   }) {
     return BankAccountIncludeList._(
@@ -198,7 +197,6 @@ abstract class BankAccount
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(BankAccount.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(BankAccount.t),
       include: include,
     );
@@ -206,7 +204,7 @@ abstract class BankAccount
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -214,7 +212,7 @@ class _Undefined {}
 
 class _BankAccountImpl extends BankAccount {
   _BankAccountImpl({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required String name,
     String? bankName,
     String? agency,
@@ -224,10 +222,10 @@ class _BankAccountImpl extends BankAccount {
     required double balance,
     required String status,
     required String originModule,
-    _i1.UuidValue? companyId,
-    _i2.Company? company,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
     String? pixKey,
-    _i3.PixKeyType? pixKeyType,
+    _imwhqumt.PixKeyType? pixKeyType,
   }) : super._(
          id: id,
          name: name,
@@ -247,10 +245,10 @@ class _BankAccountImpl extends BankAccount {
 
   /// Returns a shallow copy of this [BankAccount]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   BankAccount copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     String? name,
     Object? bankName = _Undefined,
     Object? agency = _Undefined,
@@ -278,181 +276,124 @@ class _BankAccountImpl extends BankAccount {
       balance: balance ?? this.balance,
       status: status ?? this.status,
       originModule: originModule ?? this.originModule,
-      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
-      company: company is _i2.Company? ? company : this.company?.copyWith(),
+      companyId: companyId is _is.UuidValue? ? companyId : this.companyId,
+      company: company is _iocy1ifk.Company?
+          ? company
+          : this.company?.copyWith(),
       pixKey: pixKey is String? ? pixKey : this.pixKey,
-      pixKeyType: pixKeyType is _i3.PixKeyType? ? pixKeyType : this.pixKeyType,
+      pixKeyType: pixKeyType is _imwhqumt.PixKeyType?
+          ? pixKeyType
+          : this.pixKeyType,
     );
   }
 }
 
-class BankAccountUpdateTable extends _i1.UpdateTable<BankAccountTable> {
+class BankAccountUpdateTable extends _is.UpdateTable<BankAccountTable> {
   BankAccountUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> name(String value) => _i1.ColumnValue(
-    table.name,
-    value,
-  );
+  _is.ColumnValue<String, String> name(String value) =>
+      _is.ColumnValue(table.name, value);
 
-  _i1.ColumnValue<String, String> bankName(String? value) => _i1.ColumnValue(
-    table.bankName,
-    value,
-  );
+  _is.ColumnValue<String, String> bankName(String? value) =>
+      _is.ColumnValue(table.bankName, value);
 
-  _i1.ColumnValue<String, String> agency(String? value) => _i1.ColumnValue(
-    table.agency,
-    value,
-  );
+  _is.ColumnValue<String, String> agency(String? value) =>
+      _is.ColumnValue(table.agency, value);
 
-  _i1.ColumnValue<String, String> agencyDigit(String? value) => _i1.ColumnValue(
-    table.agencyDigit,
-    value,
-  );
+  _is.ColumnValue<String, String> agencyDigit(String? value) =>
+      _is.ColumnValue(table.agencyDigit, value);
 
-  _i1.ColumnValue<String, String> accountNumber(String? value) =>
-      _i1.ColumnValue(
-        table.accountNumber,
-        value,
-      );
+  _is.ColumnValue<String, String> accountNumber(String? value) =>
+      _is.ColumnValue(table.accountNumber, value);
 
-  _i1.ColumnValue<String, String> accountDigit(String? value) =>
-      _i1.ColumnValue(
-        table.accountDigit,
-        value,
-      );
+  _is.ColumnValue<String, String> accountDigit(String? value) =>
+      _is.ColumnValue(table.accountDigit, value);
 
-  _i1.ColumnValue<double, double> balance(double value) => _i1.ColumnValue(
-    table.balance,
-    value,
-  );
+  _is.ColumnValue<double, double> balance(double value) =>
+      _is.ColumnValue(table.balance, value);
 
-  _i1.ColumnValue<String, String> status(String value) => _i1.ColumnValue(
-    table.status,
-    value,
-  );
+  _is.ColumnValue<String, String> status(String value) =>
+      _is.ColumnValue(table.status, value);
 
-  _i1.ColumnValue<String, String> originModule(String value) => _i1.ColumnValue(
-    table.originModule,
-    value,
-  );
+  _is.ColumnValue<String, String> originModule(String value) =>
+      _is.ColumnValue(table.originModule, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> companyId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.companyId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> companyId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.companyId, value);
 
-  _i1.ColumnValue<String, String> pixKey(String? value) => _i1.ColumnValue(
-    table.pixKey,
-    value,
-  );
+  _is.ColumnValue<String, String> pixKey(String? value) =>
+      _is.ColumnValue(table.pixKey, value);
 
-  _i1.ColumnValue<_i3.PixKeyType, _i3.PixKeyType> pixKeyType(
-    _i3.PixKeyType? value,
-  ) => _i1.ColumnValue(
-    table.pixKeyType,
-    value,
-  );
+  _is.ColumnValue<_imwhqumt.PixKeyType, _imwhqumt.PixKeyType> pixKeyType(
+    _imwhqumt.PixKeyType? value,
+  ) => _is.ColumnValue(table.pixKeyType, value);
 }
 
-class BankAccountTable extends _i1.Table<_i1.UuidValue> {
+class BankAccountTable extends _is.Table<_is.UuidValue> {
   BankAccountTable({super.tableRelation}) : super(tableName: 'bank_accounts') {
     updateTable = BankAccountUpdateTable(this);
-    name = _i1.ColumnString(
-      'name',
-      this,
-    );
-    bankName = _i1.ColumnString(
-      'bankName',
-      this,
-    );
-    agency = _i1.ColumnString(
-      'agency',
-      this,
-    );
-    agencyDigit = _i1.ColumnString(
-      'agencyDigit',
-      this,
-    );
-    accountNumber = _i1.ColumnString(
-      'accountNumber',
-      this,
-    );
-    accountDigit = _i1.ColumnString(
-      'accountDigit',
-      this,
-    );
-    balance = _i1.ColumnDouble(
-      'balance',
-      this,
-    );
-    status = _i1.ColumnString(
-      'status',
-      this,
-    );
-    originModule = _i1.ColumnString(
-      'originModule',
-      this,
-    );
-    companyId = _i1.ColumnUuid(
-      'companyId',
-      this,
-    );
-    pixKey = _i1.ColumnString(
-      'pixKey',
-      this,
-    );
-    pixKeyType = _i1.ColumnEnum(
+    name = _is.ColumnString('name', this);
+    bankName = _is.ColumnString('bankName', this);
+    agency = _is.ColumnString('agency', this);
+    agencyDigit = _is.ColumnString('agencyDigit', this);
+    accountNumber = _is.ColumnString('accountNumber', this);
+    accountDigit = _is.ColumnString('accountDigit', this);
+    balance = _is.ColumnDouble('balance', this);
+    status = _is.ColumnString('status', this);
+    originModule = _is.ColumnString('originModule', this);
+    companyId = _is.ColumnUuid('companyId', this);
+    pixKey = _is.ColumnString('pixKey', this);
+    pixKeyType = _is.ColumnEnum(
       'pixKeyType',
       this,
-      _i1.EnumSerialization.byName,
+      _is.EnumSerialization.byName,
     );
   }
 
   late final BankAccountUpdateTable updateTable;
 
-  late final _i1.ColumnString name;
+  late final _is.ColumnString name;
 
-  late final _i1.ColumnString bankName;
+  late final _is.ColumnString bankName;
 
-  late final _i1.ColumnString agency;
+  late final _is.ColumnString agency;
 
-  late final _i1.ColumnString agencyDigit;
+  late final _is.ColumnString agencyDigit;
 
-  late final _i1.ColumnString accountNumber;
+  late final _is.ColumnString accountNumber;
 
-  late final _i1.ColumnString accountDigit;
+  late final _is.ColumnString accountDigit;
 
-  late final _i1.ColumnDouble balance;
+  late final _is.ColumnDouble balance;
 
-  late final _i1.ColumnString status;
+  late final _is.ColumnString status;
 
-  late final _i1.ColumnString originModule;
+  late final _is.ColumnString originModule;
 
-  late final _i1.ColumnUuid companyId;
+  late final _is.ColumnUuid companyId;
 
-  _i2.CompanyTable? _company;
+  _iocy1ifk.CompanyTable? _company;
 
-  late final _i1.ColumnString pixKey;
+  late final _is.ColumnString pixKey;
 
-  late final _i1.ColumnEnum<_i3.PixKeyType> pixKeyType;
+  late final _is.ColumnEnum<_imwhqumt.PixKeyType> pixKeyType;
 
-  _i2.CompanyTable get company {
+  _iocy1ifk.CompanyTable get company {
     if (_company != null) return _company!;
-    _company = _i1.createRelationTable(
+    _company = _is.createRelationTable(
       relationFieldName: 'company',
       field: BankAccount.t.companyId,
-      foreignField: _i2.Company.t.id,
+      foreignField: _iocy1ifk.Company.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.CompanyTable(tableRelation: foreignTableRelation),
+          _iocy1ifk.CompanyTable(tableRelation: foreignTableRelation),
     );
     return _company!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     name,
     bankName,
@@ -469,7 +410,7 @@ class BankAccountTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'company') {
       return company;
     }
@@ -477,27 +418,26 @@ class BankAccountTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class BankAccountInclude extends _i1.IncludeObject {
-  BankAccountInclude._({_i2.CompanyInclude? company}) {
+class BankAccountInclude extends _is.IncludeObject {
+  BankAccountInclude._({_iocy1ifk.CompanyInclude? company}) {
     _company = company;
   }
 
-  _i2.CompanyInclude? _company;
+  _iocy1ifk.CompanyInclude? _company;
 
   @override
-  Map<String, _i1.Include?> get includes => {'company': _company};
+  Map<String, _is.Include?> get includes => {'company': _company};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => BankAccount.t;
+  _is.Table<_is.UuidValue> get table => BankAccount.t;
 }
 
-class BankAccountIncludeList extends _i1.IncludeList {
+class BankAccountIncludeList extends _is.IncludeList {
   BankAccountIncludeList._({
-    _i1.WhereExpressionBuilder<BankAccountTable>? where,
+    _is.WhereExpressionBuilder<BankAccountTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -505,10 +445,10 @@ class BankAccountIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => BankAccount.t;
+  _is.Table<_is.UuidValue> get table => BankAccount.t;
 }
 
 class BankAccountRepository {
@@ -541,23 +481,21 @@ class BankAccountRepository {
   /// );
   /// ```
   Future<List<BankAccount>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<BankAccountTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<BankAccountTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<BankAccountTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<BankAccountTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<BankAccountTable>? orderBy,
+    _is.OrderByListBuilder<BankAccountTable>? orderByList,
+    _is.Transaction? transaction,
     BankAccountInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<BankAccount>(
       where: where?.call(BankAccount.t),
       orderBy: orderBy?.call(BankAccount.t),
       orderByList: orderByList?.call(BankAccount.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -585,22 +523,20 @@ class BankAccountRepository {
   /// );
   /// ```
   Future<BankAccount?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<BankAccountTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<BankAccountTable>? where,
     int? offset,
-    _i1.OrderByBuilder<BankAccountTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<BankAccountTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<BankAccountTable>? orderBy,
+    _is.OrderByListBuilder<BankAccountTable>? orderByList,
+    _is.Transaction? transaction,
     BankAccountInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<BankAccount>(
       where: where?.call(BankAccount.t),
       orderBy: orderBy?.call(BankAccount.t),
       orderByList: orderByList?.call(BankAccount.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -611,12 +547,12 @@ class BankAccountRepository {
 
   /// Finds a single [BankAccount] by its [id] or null if no such row exists.
   Future<BankAccount?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     BankAccountInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<BankAccount>(
       id,
@@ -637,16 +573,22 @@ class BankAccountRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<BankAccount>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<BankAccount> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<BankAccount>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -654,12 +596,78 @@ class BankAccountRepository {
   ///
   /// The returned [BankAccount] will have its `id` field set.
   Future<BankAccount> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     BankAccount row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.insertRow<BankAccount>(
+    return session.db.insertRow<BankAccount>(row, transaction: transaction);
+  }
+
+  /// Upserts all [BankAccount]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [BankAccount]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<BankAccount>> upsert(
+    _is.DatabaseSession session,
+    List<BankAccount> rows, {
+    required _is.ColumnSelections<BankAccountTable> conflictColumns,
+    _is.ColumnSelections<BankAccountTable>? updateColumns,
+    _is.WhereExpressionBuilder<BankAccountTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<BankAccount>(
+      rows,
+      conflictColumns: conflictColumns(BankAccount.t),
+      updateColumns: updateColumns?.call(BankAccount.t),
+      updateWhere: updateWhere?.call(BankAccount.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [BankAccount] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [BankAccount] will have its `id` field set.
+  Future<BankAccount?> upsertRow(
+    _is.DatabaseSession session,
+    BankAccount row, {
+    required _is.ColumnSelections<BankAccountTable> conflictColumns,
+    _is.ColumnSelections<BankAccountTable>? updateColumns,
+    _is.WhereExpressionBuilder<BankAccountTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<BankAccount>(
       row,
+      conflictColumns: conflictColumns(BankAccount.t),
+      updateColumns: updateColumns?.call(BankAccount.t),
+      updateWhere: updateWhere?.call(BankAccount.t),
       transaction: transaction,
     );
   }
@@ -669,16 +677,22 @@ class BankAccountRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<BankAccount>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<BankAccount> rows, {
-    _i1.ColumnSelections<BankAccountTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<BankAccountTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<BankAccount>(
       rows,
       columns: columns?.call(BankAccount.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -686,10 +700,10 @@ class BankAccountRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<BankAccount> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     BankAccount row, {
-    _i1.ColumnSelections<BankAccountTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<BankAccountTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<BankAccount>(
       row,
@@ -701,10 +715,10 @@ class BankAccountRepository {
   /// Updates a single [BankAccount] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<BankAccount?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<BankAccountUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<BankAccountUpdateTable> columnValues,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<BankAccount>(
       id,
@@ -715,16 +729,20 @@ class BankAccountRepository {
 
   /// Updates all [BankAccount]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<BankAccount>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<BankAccountUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<BankAccountTable> where,
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<BankAccountUpdateTable> columnValues,
+    required _is.WhereExpressionBuilder<BankAccountTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<BankAccountTable>? orderBy,
-    _i1.OrderByListBuilder<BankAccountTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<BankAccountTable>? orderBy,
+    _is.OrderByListBuilder<BankAccountTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<BankAccount>(
       columnValues: columnValues(BankAccount.t.updateTable),
@@ -733,56 +751,80 @@ class BankAccountRepository {
       offset: offset,
       orderBy: orderBy?.call(BankAccount.t),
       orderByList: orderByList?.call(BankAccount.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [BankAccount]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<BankAccount>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<BankAccount> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<BankAccountTable>? orderBy,
+    _is.OrderByListBuilder<BankAccountTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<BankAccount>(
       rows,
+      orderBy: orderBy?.call(BankAccount.t),
+      orderByList: orderByList?.call(BankAccount.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [BankAccount].
   Future<BankAccount> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     BankAccount row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<BankAccount>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<BankAccount>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<BankAccount>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<BankAccountTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<BankAccountTable> where,
+    _is.OrderByBuilder<BankAccountTable>? orderBy,
+    _is.OrderByListBuilder<BankAccountTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<BankAccount>(
       where: where(BankAccount.t),
+      orderBy: orderBy?.call(BankAccount.t),
+      orderByList: orderByList?.call(BankAccount.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<BankAccountTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<BankAccountTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<BankAccount>(
       where: where?.call(BankAccount.t),
@@ -793,11 +835,11 @@ class BankAccountRepository {
 
   /// Acquires row-level locks on [BankAccount] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<BankAccountTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<BankAccountTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<BankAccount>(
       where: where(BankAccount.t),
@@ -814,10 +856,10 @@ class BankAccountAttachRowRepository {
   /// Creates a relation between the given [BankAccount] and [Company]
   /// by setting the [BankAccount]'s foreign key `companyId` to refer to the [Company].
   Future<void> company(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     BankAccount bankAccount,
-    _i2.Company company, {
-    _i1.Transaction? transaction,
+    _iocy1ifk.Company company, {
+    _is.Transaction? transaction,
   }) async {
     if (bankAccount.id == null) {
       throw ArgumentError.notNull('bankAccount.id');
@@ -844,9 +886,9 @@ class BankAccountDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> company(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     BankAccount bankAccount, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (bankAccount.id == null) {
       throw ArgumentError.notNull('bankAccount.id');

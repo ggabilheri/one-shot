@@ -1,6 +1,6 @@
-# oneshot_flutter
+# Shooter App
 
-A new Flutter project with Serverpod.
+App One-Shot para atiradores (CAC).
 
 ## Getting Started
 

@@ -1,15 +1,15 @@
 # oneshot_server
 
-This is the starting point for your Serverpod server.
+Backend do One-Shot (Serverpod 4).
 
-To run your server, you first need to start Postgres and Redis. It's easiest to do with Docker.
+Para rodar localmente, primeiro suba o Postgres e o Redis (docker-compose na raiz do repositório):
 
-    docker compose up --build --detach
+    docker compose up --build --detach postgres redis
 
-Then you can start the Serverpod server.
+Depois inicie o servidor:
 
     dart bin/main.dart
 
-When you are finished, you can shut down Serverpod with `Ctrl-C`, then stop Postgres and Redis.
+Quando terminar, pare os serviços:
 
     docker compose stop

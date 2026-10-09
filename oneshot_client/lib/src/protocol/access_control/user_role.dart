@@ -10,95 +10,98 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../common/user_profile.dart' as _i2;
-import '../access_control/security_role.dart' as _i3;
-import '../company/company.dart' as _i4;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i5;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../access_control/security_role.dart' as _ivjb8sui;
+import '../common/user_profile.dart' as _izifjpv2;
+import '../company/company.dart' as _iocy1ifk;
 
-abstract class UserRole implements _i1.SerializableModel {
+abstract class UserRole
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   UserRole._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     this.userProfileId,
     this.userProfile,
     this.securityRoleId,
     this.securityRole,
     this.companyId,
     this.company,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory UserRole({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userProfileId,
-    _i2.UserProfile? userProfile,
-    _i1.UuidValue? securityRoleId,
-    _i3.SecurityRole? securityRole,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userProfileId,
+    _izifjpv2.UserProfile? userProfile,
+    _isc.UuidValue? securityRoleId,
+    _ivjb8sui.SecurityRole? securityRole,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   }) = _UserRoleImpl;
 
   factory UserRole.fromJson(Map<String, dynamic> jsonSerialization) {
     return UserRole(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userProfileId: jsonSerialization['userProfileId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(
               jsonSerialization['userProfileId'],
             ),
       userProfile: jsonSerialization['userProfile'] == null
           ? null
-          : _i5.Protocol().deserialize<_i2.UserProfile>(
+          : _itys55mc.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['userProfile'],
             ),
       securityRoleId: jsonSerialization['securityRoleId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(
               jsonSerialization['securityRoleId'],
             ),
       securityRole: jsonSerialization['securityRole'] == null
           ? null
-          : _i5.Protocol().deserialize<_i3.SecurityRole>(
+          : _itys55mc.Protocol().deserialize<_ivjb8sui.SecurityRole>(
               jsonSerialization['securityRole'],
             ),
       companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['companyId'],
+            ),
       company: jsonSerialization['company'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.Company>(
+          : _itys55mc.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['company'],
             ),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
-  _i1.UuidValue? userProfileId;
+  _isc.UuidValue? userProfileId;
 
-  _i2.UserProfile? userProfile;
+  _izifjpv2.UserProfile? userProfile;
 
-  _i1.UuidValue? securityRoleId;
+  _isc.UuidValue? securityRoleId;
 
-  _i3.SecurityRole? securityRole;
+  _ivjb8sui.SecurityRole? securityRole;
 
-  _i1.UuidValue? companyId;
+  _isc.UuidValue? companyId;
 
-  _i4.Company? company;
+  _iocy1ifk.Company? company;
 
   /// Returns a shallow copy of this [UserRole]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   UserRole copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userProfileId,
-    _i2.UserProfile? userProfile,
-    _i1.UuidValue? securityRoleId,
-    _i3.SecurityRole? securityRole,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userProfileId,
+    _izifjpv2.UserProfile? userProfile,
+    _isc.UuidValue? securityRoleId,
+    _ivjb8sui.SecurityRole? securityRole,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -115,8 +118,23 @@ abstract class UserRole implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'UserRole',
+      'id': id.toJson(),
+      if (userProfileId != null) 'userProfileId': userProfileId?.toJson(),
+      if (userProfile != null) 'userProfile': userProfile?.toJsonForProtocol(),
+      if (securityRoleId != null) 'securityRoleId': securityRoleId?.toJson(),
+      if (securityRole != null)
+        'securityRole': securityRole?.toJsonForProtocol(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJsonForProtocol(),
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -124,13 +142,13 @@ class _Undefined {}
 
 class _UserRoleImpl extends UserRole {
   _UserRoleImpl({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userProfileId,
-    _i2.UserProfile? userProfile,
-    _i1.UuidValue? securityRoleId,
-    _i3.SecurityRole? securityRole,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userProfileId,
+    _izifjpv2.UserProfile? userProfile,
+    _isc.UuidValue? securityRoleId,
+    _ivjb8sui.SecurityRole? securityRole,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
   }) : super._(
          id: id,
          userProfileId: userProfileId,
@@ -143,10 +161,10 @@ class _UserRoleImpl extends UserRole {
 
   /// Returns a shallow copy of this [UserRole]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   UserRole copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     Object? userProfileId = _Undefined,
     Object? userProfile = _Undefined,
     Object? securityRoleId = _Undefined,
@@ -156,20 +174,22 @@ class _UserRoleImpl extends UserRole {
   }) {
     return UserRole(
       id: id ?? this.id,
-      userProfileId: userProfileId is _i1.UuidValue?
+      userProfileId: userProfileId is _isc.UuidValue?
           ? userProfileId
           : this.userProfileId,
-      userProfile: userProfile is _i2.UserProfile?
+      userProfile: userProfile is _izifjpv2.UserProfile?
           ? userProfile
           : this.userProfile?.copyWith(),
-      securityRoleId: securityRoleId is _i1.UuidValue?
+      securityRoleId: securityRoleId is _isc.UuidValue?
           ? securityRoleId
           : this.securityRoleId,
-      securityRole: securityRole is _i3.SecurityRole?
+      securityRole: securityRole is _ivjb8sui.SecurityRole?
           ? securityRole
           : this.securityRole?.copyWith(),
-      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
-      company: company is _i4.Company? ? company : this.company?.copyWith(),
+      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
+      company: company is _iocy1ifk.Company?
+          ? company
+          : this.company?.copyWith(),
     );
   }
 }

@@ -10,13 +10,14 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i2;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i3;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i312scxx;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
 
-abstract class AmmunitionStock implements _i1.SerializableModel {
+abstract class AmmunitionStock
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   AmmunitionStock._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     this.userInfoId,
     this.userInfo,
     required this.type,
@@ -28,12 +29,12 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
     this.purchasePrice,
     required this.acquisitionDate,
     this.casingBatch,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory AmmunitionStock({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
     required String type,
     required String manufacturer,
     required String caliber,
@@ -49,11 +50,11 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
     return AmmunitionStock(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
-          : _i3.Protocol().deserialize<_i2.UserInfo>(
+          : _itys55mc.Protocol().deserialize<_i312scxx.UserInfo>(
               jsonSerialization['userInfo'],
             ),
       type: jsonSerialization['type'] as String,
@@ -64,7 +65,7 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
           (jsonSerialization['projectileWeightGrains'] as num?)?.toDouble(),
       quantity: jsonSerialization['quantity'] as int,
       purchasePrice: (jsonSerialization['purchasePrice'] as num?)?.toDouble(),
-      acquisitionDate: _i1.DateTimeJsonExtension.fromJson(
+      acquisitionDate: _isc.DateTimeJsonExtension.fromJson(
         jsonSerialization['acquisitionDate'],
       ),
       casingBatch: jsonSerialization['casingBatch'] as String?,
@@ -72,11 +73,11 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   int? userInfoId;
 
-  _i2.UserInfo? userInfo;
+  _i312scxx.UserInfo? userInfo;
 
   String type;
 
@@ -98,11 +99,11 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [AmmunitionStock]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   AmmunitionStock copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
     String? type,
     String? manufacturer,
     String? caliber,
@@ -134,8 +135,28 @@ abstract class AmmunitionStock implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'AmmunitionStock',
+      'id': id.toJson(),
+      if (userInfoId != null) 'userInfoId': userInfoId,
+      if (userInfo != null) 'userInfo': userInfo?.toJson(),
+      'type': type,
+      'manufacturer': manufacturer,
+      'caliber': caliber,
+      'projectileType': projectileType,
+      if (projectileWeightGrains != null)
+        'projectileWeightGrains': projectileWeightGrains,
+      'quantity': quantity,
+      if (purchasePrice != null) 'purchasePrice': purchasePrice,
+      'acquisitionDate': acquisitionDate.toJson(),
+      if (casingBatch != null) 'casingBatch': casingBatch,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -143,9 +164,9 @@ class _Undefined {}
 
 class _AmmunitionStockImpl extends AmmunitionStock {
   _AmmunitionStockImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
     required String type,
     required String manufacturer,
     required String caliber,
@@ -172,10 +193,10 @@ class _AmmunitionStockImpl extends AmmunitionStock {
 
   /// Returns a shallow copy of this [AmmunitionStock]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   AmmunitionStock copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     String? type,
@@ -191,7 +212,7 @@ class _AmmunitionStockImpl extends AmmunitionStock {
     return AmmunitionStock(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i2.UserInfo?
+      userInfo: userInfo is _i312scxx.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
       type: type ?? this.type,

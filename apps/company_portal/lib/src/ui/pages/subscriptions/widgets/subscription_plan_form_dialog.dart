@@ -96,7 +96,7 @@ class _SubscriptionPlanFormDialogState
                   Expanded(
                     flex: 1,
                     child: DropdownButtonFormField<PlanType>(
-                      value: _selectedType,
+                      initialValue: _selectedType,
                       decoration: const InputDecoration(labelText: 'TIPO'),
                       items: PlanType.values
                           .map(
@@ -113,7 +113,7 @@ class _SubscriptionPlanFormDialogState
                   Expanded(
                     flex: 1,
                     child: DropdownButtonFormField<PlanPeriodicity>(
-                      value: _selectedPeriodicity,
+                      initialValue: _selectedPeriodicity,
                       decoration: const InputDecoration(
                         labelText: 'PERIODICIDADE',
                       ),
@@ -162,7 +162,7 @@ class _SubscriptionPlanFormDialogState
                   Expanded(
                     flex: 1,
                     child: DropdownButtonFormField<PlanStatus>(
-                      value: _selectedStatus,
+                      initialValue: _selectedStatus,
                       decoration: const InputDecoration(labelText: 'STATUS'),
                       items: PlanStatus.values
                           .map(

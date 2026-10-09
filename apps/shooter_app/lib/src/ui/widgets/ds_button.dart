@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oneshot_flutter/src/ui/widgets/ds_tokens.dart';
+import 'package:shooter_app/src/ui/widgets/ds_tokens.dart';
 
 enum DSButtonType { primary, secondary, outline }
 

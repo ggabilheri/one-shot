@@ -1,7 +1,10 @@
 name: Deploy to GCP
 on:
-  push:
-    branches: [ deployment-gcp-production, deployment-gcp-staging ]
+  # Deploy automático desativado: o projeto GCP ainda não foi configurado
+  # (veja PROJECT/REGION/ZONE abaixo). Reative o bloco `push` caso o GCP
+  # volte a ser usado como alvo de deploy.
+  # push:
+  #   branches: [ deployment-gcp-production, deployment-gcp-staging ]
   workflow_dispatch:
     inputs:
       target:
@@ -28,7 +31,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -55,7 +58,7 @@ jobs:
 
       - id: "auth"
         name: "Authenticate to Google Cloud"
-        uses: "google-github-actions/auth@v1"
+        uses: "google-github-actions/auth@v2"
         with:
           credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
 

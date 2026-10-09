@@ -10,53 +10,56 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../finance/invoice.dart' as _i2;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i3;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../finance/invoice.dart' as _i3d856q3;
 
-abstract class InvoiceItem implements _i1.SerializableModel {
+abstract class InvoiceItem
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   InvoiceItem._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.description,
     required this.quantity,
     required this.unitPrice,
     required this.totalPrice,
     this.invoiceId,
     this.invoice,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory InvoiceItem({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String description,
     required double quantity,
     required double unitPrice,
     required double totalPrice,
-    _i1.UuidValue? invoiceId,
-    _i2.Invoice? invoice,
+    _isc.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
   }) = _InvoiceItemImpl;
 
   factory InvoiceItem.fromJson(Map<String, dynamic> jsonSerialization) {
     return InvoiceItem(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       description: jsonSerialization['description'] as String,
       quantity: (jsonSerialization['quantity'] as num).toDouble(),
       unitPrice: (jsonSerialization['unitPrice'] as num).toDouble(),
       totalPrice: (jsonSerialization['totalPrice'] as num).toDouble(),
       invoiceId: jsonSerialization['invoiceId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['invoiceId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['invoiceId'],
+            ),
       invoice: jsonSerialization['invoice'] == null
           ? null
-          : _i3.Protocol().deserialize<_i2.Invoice>(
+          : _itys55mc.Protocol().deserialize<_i3d856q3.Invoice>(
               jsonSerialization['invoice'],
             ),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   String description;
 
@@ -66,21 +69,21 @@ abstract class InvoiceItem implements _i1.SerializableModel {
 
   double totalPrice;
 
-  _i1.UuidValue? invoiceId;
+  _isc.UuidValue? invoiceId;
 
-  _i2.Invoice? invoice;
+  _i3d856q3.Invoice? invoice;
 
   /// Returns a shallow copy of this [InvoiceItem]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   InvoiceItem copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? description,
     double? quantity,
     double? unitPrice,
     double? totalPrice,
-    _i1.UuidValue? invoiceId,
-    _i2.Invoice? invoice,
+    _isc.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -97,8 +100,22 @@ abstract class InvoiceItem implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'InvoiceItem',
+      'id': id.toJson(),
+      'description': description,
+      'quantity': quantity,
+      'unitPrice': unitPrice,
+      'totalPrice': totalPrice,
+      if (invoiceId != null) 'invoiceId': invoiceId?.toJson(),
+      if (invoice != null) 'invoice': invoice?.toJsonForProtocol(),
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -106,13 +123,13 @@ class _Undefined {}
 
 class _InvoiceItemImpl extends InvoiceItem {
   _InvoiceItemImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String description,
     required double quantity,
     required double unitPrice,
     required double totalPrice,
-    _i1.UuidValue? invoiceId,
-    _i2.Invoice? invoice,
+    _isc.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
   }) : super._(
          id: id,
          description: description,
@@ -125,10 +142,10 @@ class _InvoiceItemImpl extends InvoiceItem {
 
   /// Returns a shallow copy of this [InvoiceItem]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   InvoiceItem copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? description,
     double? quantity,
     double? unitPrice,
@@ -142,8 +159,10 @@ class _InvoiceItemImpl extends InvoiceItem {
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       totalPrice: totalPrice ?? this.totalPrice,
-      invoiceId: invoiceId is _i1.UuidValue? ? invoiceId : this.invoiceId,
-      invoice: invoice is _i2.Invoice? ? invoice : this.invoice?.copyWith(),
+      invoiceId: invoiceId is _isc.UuidValue? ? invoiceId : this.invoiceId,
+      invoice: invoice is _i3d856q3.Invoice?
+          ? invoice
+          : this.invoice?.copyWith(),
     );
   }
 }

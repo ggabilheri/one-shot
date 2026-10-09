@@ -10,17 +10,18 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../enums/invoice_status.enum.dart' as _i2;
-import '../enums/currency.enum.dart' as _i3;
-import '../company/company.dart' as _i4;
-import '../gunsmith/gunsmith.dart' as _i5;
-import '../common/user_profile.dart' as _i6;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i7;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/user_profile.dart' as _izifjpv2;
+import '../company/company.dart' as _iocy1ifk;
+import '../enums/currency.enum.dart' as _isdw5wvy;
+import '../enums/invoice_status.enum.dart' as _ibd6zzmc;
+import '../gunsmith/gunsmith.dart' as _inzvshfq;
 
-abstract class Invoice implements _i1.SerializableModel {
+abstract class Invoice
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   Invoice._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.originModule,
     required this.direction,
     required this.status,
@@ -42,105 +43,109 @@ abstract class Invoice implements _i1.SerializableModel {
     this.user,
     this.draweeId,
     this.drawee,
-  }) : id = id ?? const _i1.Uuid().v4obj(),
+  }) : id = id ?? const _isc.Uuid().v4obj(),
        isRecurrent = isRecurrent ?? false;
 
   factory Invoice({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String originModule,
     required String direction,
-    required _i2.InvoiceStatus status,
+    required _ibd6zzmc.InvoiceStatus status,
     required DateTime issueDate,
     required DateTime dueDate,
     required double totalAmount,
     double? discount,
     required double finalAmount,
-    required _i3.Currency currency,
+    required _isdw5wvy.Currency currency,
     String? notes,
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
-    _i1.UuidValue? gunsmithId,
-    _i5.Gunsmith? gunsmith,
-    _i1.UuidValue? userId,
-    _i6.UserProfile? user,
-    _i1.UuidValue? draweeId,
-    _i6.UserProfile? drawee,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
+    _isc.UuidValue? gunsmithId,
+    _inzvshfq.Gunsmith? gunsmith,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? draweeId,
+    _izifjpv2.UserProfile? drawee,
   }) = _InvoiceImpl;
 
   factory Invoice.fromJson(Map<String, dynamic> jsonSerialization) {
     return Invoice(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       originModule: jsonSerialization['originModule'] as String,
       direction: jsonSerialization['direction'] as String,
-      status: _i2.InvoiceStatus.fromJson(
+      status: _ibd6zzmc.InvoiceStatus.fromJson(
         (jsonSerialization['status'] as String),
       ),
-      issueDate: _i1.DateTimeJsonExtension.fromJson(
+      issueDate: _isc.DateTimeJsonExtension.fromJson(
         jsonSerialization['issueDate'],
       ),
-      dueDate: _i1.DateTimeJsonExtension.fromJson(jsonSerialization['dueDate']),
+      dueDate: _isc.DateTimeJsonExtension.fromJson(
+        jsonSerialization['dueDate'],
+      ),
       totalAmount: (jsonSerialization['totalAmount'] as num).toDouble(),
       discount: (jsonSerialization['discount'] as num?)?.toDouble(),
       finalAmount: (jsonSerialization['finalAmount'] as num).toDouble(),
-      currency: _i3.Currency.fromJson(
+      currency: _isdw5wvy.Currency.fromJson(
         (jsonSerialization['currency'] as String),
       ),
       notes: jsonSerialization['notes'] as String?,
       isRecurrent: jsonSerialization['isRecurrent'] == null
           ? null
-          : _i1.BoolJsonExtension.fromJson(jsonSerialization['isRecurrent']),
+          : _isc.BoolJsonExtension.fromJson(jsonSerialization['isRecurrent']),
       asaasInstallmentId: jsonSerialization['asaasInstallmentId'] as String?,
       asaasCustomerId: jsonSerialization['asaasCustomerId'] as String?,
       companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['companyId'],
+            ),
       company: jsonSerialization['company'] == null
           ? null
-          : _i7.Protocol().deserialize<_i4.Company>(
+          : _itys55mc.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['company'],
             ),
       gunsmithId: jsonSerialization['gunsmithId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(
               jsonSerialization['gunsmithId'],
             ),
       gunsmith: jsonSerialization['gunsmith'] == null
           ? null
-          : _i7.Protocol().deserialize<_i5.Gunsmith>(
+          : _itys55mc.Protocol().deserialize<_inzvshfq.Gunsmith>(
               jsonSerialization['gunsmith'],
             ),
       userId: jsonSerialization['userId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       user: jsonSerialization['user'] == null
           ? null
-          : _i7.Protocol().deserialize<_i6.UserProfile>(
+          : _itys55mc.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['user'],
             ),
       draweeId: jsonSerialization['draweeId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['draweeId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['draweeId']),
       drawee: jsonSerialization['drawee'] == null
           ? null
-          : _i7.Protocol().deserialize<_i6.UserProfile>(
+          : _itys55mc.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['drawee'],
             ),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   String originModule;
 
   String direction;
 
-  _i2.InvoiceStatus status;
+  _ibd6zzmc.InvoiceStatus status;
 
   DateTime issueDate;
 
@@ -152,7 +157,7 @@ abstract class Invoice implements _i1.SerializableModel {
 
   double finalAmount;
 
-  _i3.Currency currency;
+  _isdw5wvy.Currency currency;
 
   String? notes;
 
@@ -162,48 +167,48 @@ abstract class Invoice implements _i1.SerializableModel {
 
   String? asaasCustomerId;
 
-  _i1.UuidValue? companyId;
+  _isc.UuidValue? companyId;
 
-  _i4.Company? company;
+  _iocy1ifk.Company? company;
 
-  _i1.UuidValue? gunsmithId;
+  _isc.UuidValue? gunsmithId;
 
-  _i5.Gunsmith? gunsmith;
+  _inzvshfq.Gunsmith? gunsmith;
 
-  _i1.UuidValue? userId;
+  _isc.UuidValue? userId;
 
-  _i6.UserProfile? user;
+  _izifjpv2.UserProfile? user;
 
-  _i1.UuidValue? draweeId;
+  _isc.UuidValue? draweeId;
 
-  _i6.UserProfile? drawee;
+  _izifjpv2.UserProfile? drawee;
 
   /// Returns a shallow copy of this [Invoice]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   Invoice copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? originModule,
     String? direction,
-    _i2.InvoiceStatus? status,
+    _ibd6zzmc.InvoiceStatus? status,
     DateTime? issueDate,
     DateTime? dueDate,
     double? totalAmount,
     double? discount,
     double? finalAmount,
-    _i3.Currency? currency,
+    _isdw5wvy.Currency? currency,
     String? notes,
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
-    _i1.UuidValue? gunsmithId,
-    _i5.Gunsmith? gunsmith,
-    _i1.UuidValue? userId,
-    _i6.UserProfile? user,
-    _i1.UuidValue? draweeId,
-    _i6.UserProfile? drawee,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
+    _isc.UuidValue? gunsmithId,
+    _inzvshfq.Gunsmith? gunsmith,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? draweeId,
+    _izifjpv2.UserProfile? drawee,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -235,8 +240,37 @@ abstract class Invoice implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'Invoice',
+      'id': id.toJson(),
+      'originModule': originModule,
+      'direction': direction,
+      'status': status.toJson(),
+      'issueDate': issueDate.toJson(),
+      'dueDate': dueDate.toJson(),
+      'totalAmount': totalAmount,
+      if (discount != null) 'discount': discount,
+      'finalAmount': finalAmount,
+      'currency': currency.toJson(),
+      if (notes != null) 'notes': notes,
+      'isRecurrent': isRecurrent,
+      if (asaasInstallmentId != null) 'asaasInstallmentId': asaasInstallmentId,
+      if (asaasCustomerId != null) 'asaasCustomerId': asaasCustomerId,
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJsonForProtocol(),
+      if (gunsmithId != null) 'gunsmithId': gunsmithId?.toJson(),
+      if (gunsmith != null) 'gunsmith': gunsmith?.toJsonForProtocol(),
+      if (userId != null) 'userId': userId?.toJson(),
+      if (user != null) 'user': user?.toJsonForProtocol(),
+      if (draweeId != null) 'draweeId': draweeId?.toJson(),
+      if (drawee != null) 'drawee': drawee?.toJsonForProtocol(),
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -244,28 +278,28 @@ class _Undefined {}
 
 class _InvoiceImpl extends Invoice {
   _InvoiceImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String originModule,
     required String direction,
-    required _i2.InvoiceStatus status,
+    required _ibd6zzmc.InvoiceStatus status,
     required DateTime issueDate,
     required DateTime dueDate,
     required double totalAmount,
     double? discount,
     required double finalAmount,
-    required _i3.Currency currency,
+    required _isdw5wvy.Currency currency,
     String? notes,
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
-    _i1.UuidValue? gunsmithId,
-    _i5.Gunsmith? gunsmith,
-    _i1.UuidValue? userId,
-    _i6.UserProfile? user,
-    _i1.UuidValue? draweeId,
-    _i6.UserProfile? drawee,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
+    _isc.UuidValue? gunsmithId,
+    _inzvshfq.Gunsmith? gunsmith,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? draweeId,
+    _izifjpv2.UserProfile? drawee,
   }) : super._(
          id: id,
          originModule: originModule,
@@ -293,19 +327,19 @@ class _InvoiceImpl extends Invoice {
 
   /// Returns a shallow copy of this [Invoice]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   Invoice copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? originModule,
     String? direction,
-    _i2.InvoiceStatus? status,
+    _ibd6zzmc.InvoiceStatus? status,
     DateTime? issueDate,
     DateTime? dueDate,
     double? totalAmount,
     Object? discount = _Undefined,
     double? finalAmount,
-    _i3.Currency? currency,
+    _isdw5wvy.Currency? currency,
     Object? notes = _Undefined,
     bool? isRecurrent,
     Object? asaasInstallmentId = _Undefined,
@@ -338,16 +372,20 @@ class _InvoiceImpl extends Invoice {
       asaasCustomerId: asaasCustomerId is String?
           ? asaasCustomerId
           : this.asaasCustomerId,
-      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
-      company: company is _i4.Company? ? company : this.company?.copyWith(),
-      gunsmithId: gunsmithId is _i1.UuidValue? ? gunsmithId : this.gunsmithId,
-      gunsmith: gunsmith is _i5.Gunsmith?
+      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
+      company: company is _iocy1ifk.Company?
+          ? company
+          : this.company?.copyWith(),
+      gunsmithId: gunsmithId is _isc.UuidValue? ? gunsmithId : this.gunsmithId,
+      gunsmith: gunsmith is _inzvshfq.Gunsmith?
           ? gunsmith
           : this.gunsmith?.copyWith(),
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
-      user: user is _i6.UserProfile? ? user : this.user?.copyWith(),
-      draweeId: draweeId is _i1.UuidValue? ? draweeId : this.draweeId,
-      drawee: drawee is _i6.UserProfile? ? drawee : this.drawee?.copyWith(),
+      userId: userId is _isc.UuidValue? ? userId : this.userId,
+      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
+      draweeId: draweeId is _isc.UuidValue? ? draweeId : this.draweeId,
+      drawee: drawee is _izifjpv2.UserProfile?
+          ? drawee
+          : this.drawee?.copyWith(),
     );
   }
 }

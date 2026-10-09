@@ -91,8 +91,7 @@ class InvoiceRepository implements IInvoiceRepository {
       },
       limit: limit,
       offset: offset,
-      orderBy: (t) => t.dueDate,
-      orderDescending: true,
+      orderByList: (t) => [t.dueDate.desc()],
       include: Invoice.include(
         company: Company.include(),
         gunsmith: Gunsmith.include(),

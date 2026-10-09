@@ -8,19 +8,19 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i2;
-import '../common/accessory.dart' as _i3;
-import '../common/supply_stock.dart' as _i4;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i5;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i1n3uhu0;
+import '../common/accessory.dart' as _ixwksfmb;
+import '../common/supply_stock.dart' as _icdicocn;
 
 abstract class ReloadSession
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   ReloadSession._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     this.userInfoId,
     this.userInfo,
     required this.reloadDate,
@@ -39,25 +39,25 @@ abstract class ReloadSession
     required this.oal,
     required this.totalCost,
     required this.unitCost,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _is.Uuid().v4obj();
 
   factory ReloadSession({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i1n3uhu0.UserInfo? userInfo,
     required DateTime reloadDate,
-    _i1.UuidValue? pressId,
-    _i3.Accessory? press,
+    _is.UuidValue? pressId,
+    _ixwksfmb.Accessory? press,
     required String caliber,
     required String casingBatch,
     required int reloadsCompleted,
-    _i1.UuidValue? powderId,
-    _i4.SupplyStock? powder,
+    _is.UuidValue? powderId,
+    _icdicocn.SupplyStock? powder,
     required double powderGrains,
-    _i1.UuidValue? primerId,
-    _i4.SupplyStock? primer,
-    _i1.UuidValue? projectileId,
-    _i4.SupplyStock? projectile,
+    _is.UuidValue? primerId,
+    _icdicocn.SupplyStock? primer,
+    _is.UuidValue? projectileId,
+    _icdicocn.SupplyStock? projectile,
     required double oal,
     required double totalCost,
     required double unitCost,
@@ -67,22 +67,22 @@ abstract class ReloadSession
     return ReloadSession(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
-          : _i5.Protocol().deserialize<_i2.UserInfo>(
+          : _iwflrbqm.Protocol().deserialize<_i1n3uhu0.UserInfo>(
               jsonSerialization['userInfo'],
             ),
-      reloadDate: _i1.DateTimeJsonExtension.fromJson(
+      reloadDate: _is.DateTimeJsonExtension.fromJson(
         jsonSerialization['reloadDate'],
       ),
       pressId: jsonSerialization['pressId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['pressId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['pressId']),
       press: jsonSerialization['press'] == null
           ? null
-          : _i5.Protocol().deserialize<_i3.Accessory>(
+          : _iwflrbqm.Protocol().deserialize<_ixwksfmb.Accessory>(
               jsonSerialization['press'],
             ),
       caliber: jsonSerialization['caliber'] as String,
@@ -90,29 +90,29 @@ abstract class ReloadSession
       reloadsCompleted: jsonSerialization['reloadsCompleted'] as int,
       powderId: jsonSerialization['powderId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['powderId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['powderId']),
       powder: jsonSerialization['powder'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.SupplyStock>(
+          : _iwflrbqm.Protocol().deserialize<_icdicocn.SupplyStock>(
               jsonSerialization['powder'],
             ),
       powderGrains: (jsonSerialization['powderGrains'] as num).toDouble(),
       primerId: jsonSerialization['primerId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['primerId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['primerId']),
       primer: jsonSerialization['primer'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.SupplyStock>(
+          : _iwflrbqm.Protocol().deserialize<_icdicocn.SupplyStock>(
               jsonSerialization['primer'],
             ),
       projectileId: jsonSerialization['projectileId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _is.UuidValueJsonExtension.fromJson(
               jsonSerialization['projectileId'],
             ),
       projectile: jsonSerialization['projectile'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.SupplyStock>(
+          : _iwflrbqm.Protocol().deserialize<_icdicocn.SupplyStock>(
               jsonSerialization['projectile'],
             ),
       oal: (jsonSerialization['oal'] as num).toDouble(),
@@ -126,17 +126,17 @@ abstract class ReloadSession
   static const db = ReloadSessionRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
   int? userInfoId;
 
-  _i2.UserInfo? userInfo;
+  _i1n3uhu0.UserInfo? userInfo;
 
   DateTime reloadDate;
 
-  _i1.UuidValue? pressId;
+  _is.UuidValue? pressId;
 
-  _i3.Accessory? press;
+  _ixwksfmb.Accessory? press;
 
   String caliber;
 
@@ -144,19 +144,19 @@ abstract class ReloadSession
 
   int reloadsCompleted;
 
-  _i1.UuidValue? powderId;
+  _is.UuidValue? powderId;
 
-  _i4.SupplyStock? powder;
+  _icdicocn.SupplyStock? powder;
 
   double powderGrains;
 
-  _i1.UuidValue? primerId;
+  _is.UuidValue? primerId;
 
-  _i4.SupplyStock? primer;
+  _icdicocn.SupplyStock? primer;
 
-  _i1.UuidValue? projectileId;
+  _is.UuidValue? projectileId;
 
-  _i4.SupplyStock? projectile;
+  _icdicocn.SupplyStock? projectile;
 
   double oal;
 
@@ -165,28 +165,28 @@ abstract class ReloadSession
   double unitCost;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [ReloadSession]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   ReloadSession copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i1n3uhu0.UserInfo? userInfo,
     DateTime? reloadDate,
-    _i1.UuidValue? pressId,
-    _i3.Accessory? press,
+    _is.UuidValue? pressId,
+    _ixwksfmb.Accessory? press,
     String? caliber,
     String? casingBatch,
     int? reloadsCompleted,
-    _i1.UuidValue? powderId,
-    _i4.SupplyStock? powder,
+    _is.UuidValue? powderId,
+    _icdicocn.SupplyStock? powder,
     double? powderGrains,
-    _i1.UuidValue? primerId,
-    _i4.SupplyStock? primer,
-    _i1.UuidValue? projectileId,
-    _i4.SupplyStock? projectile,
+    _is.UuidValue? primerId,
+    _icdicocn.SupplyStock? primer,
+    _is.UuidValue? projectileId,
+    _icdicocn.SupplyStock? projectile,
     double? oal,
     double? totalCost,
     double? unitCost,
@@ -223,7 +223,7 @@ abstract class ReloadSession
       '__className__': 'ReloadSession',
       'id': id.toJson(),
       if (userInfoId != null) 'userInfoId': userInfoId,
-      if (userInfo != null) 'userInfo': userInfo?.toJsonForProtocol(),
+      if (userInfo != null) 'userInfo': userInfo?.toJson(),
       'reloadDate': reloadDate.toJson(),
       if (pressId != null) 'pressId': pressId?.toJson(),
       if (press != null) 'press': press?.toJsonForProtocol(),
@@ -244,11 +244,11 @@ abstract class ReloadSession
   }
 
   static ReloadSessionInclude include({
-    _i2.UserInfoInclude? userInfo,
-    _i3.AccessoryInclude? press,
-    _i4.SupplyStockInclude? powder,
-    _i4.SupplyStockInclude? primer,
-    _i4.SupplyStockInclude? projectile,
+    _i1n3uhu0.UserInfoInclude? userInfo,
+    _ixwksfmb.AccessoryInclude? press,
+    _icdicocn.SupplyStockInclude? powder,
+    _icdicocn.SupplyStockInclude? primer,
+    _icdicocn.SupplyStockInclude? projectile,
   }) {
     return ReloadSessionInclude._(
       userInfo: userInfo,
@@ -260,12 +260,11 @@ abstract class ReloadSession
   }
 
   static ReloadSessionIncludeList includeList({
-    _i1.WhereExpressionBuilder<ReloadSessionTable>? where,
+    _is.WhereExpressionBuilder<ReloadSessionTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<ReloadSessionTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ReloadSessionTable>? orderByList,
+    _is.OrderByBuilder<ReloadSessionTable>? orderBy,
+    _is.OrderByListBuilder<ReloadSessionTable>? orderByList,
     ReloadSessionInclude? include,
   }) {
     return ReloadSessionIncludeList._(
@@ -273,7 +272,6 @@ abstract class ReloadSession
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(ReloadSession.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(ReloadSession.t),
       include: include,
     );
@@ -281,7 +279,7 @@ abstract class ReloadSession
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -289,22 +287,22 @@ class _Undefined {}
 
 class _ReloadSessionImpl extends ReloadSession {
   _ReloadSessionImpl({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i1n3uhu0.UserInfo? userInfo,
     required DateTime reloadDate,
-    _i1.UuidValue? pressId,
-    _i3.Accessory? press,
+    _is.UuidValue? pressId,
+    _ixwksfmb.Accessory? press,
     required String caliber,
     required String casingBatch,
     required int reloadsCompleted,
-    _i1.UuidValue? powderId,
-    _i4.SupplyStock? powder,
+    _is.UuidValue? powderId,
+    _icdicocn.SupplyStock? powder,
     required double powderGrains,
-    _i1.UuidValue? primerId,
-    _i4.SupplyStock? primer,
-    _i1.UuidValue? projectileId,
-    _i4.SupplyStock? projectile,
+    _is.UuidValue? primerId,
+    _icdicocn.SupplyStock? primer,
+    _is.UuidValue? projectileId,
+    _icdicocn.SupplyStock? projectile,
     required double oal,
     required double totalCost,
     required double unitCost,
@@ -332,10 +330,10 @@ class _ReloadSessionImpl extends ReloadSession {
 
   /// Returns a shallow copy of this [ReloadSession]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   ReloadSession copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     Object? userInfoId = _Undefined,
     Object? userInfo = _Undefined,
     DateTime? reloadDate,
@@ -358,24 +356,28 @@ class _ReloadSessionImpl extends ReloadSession {
     return ReloadSession(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i2.UserInfo?
+      userInfo: userInfo is _i1n3uhu0.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
       reloadDate: reloadDate ?? this.reloadDate,
-      pressId: pressId is _i1.UuidValue? ? pressId : this.pressId,
-      press: press is _i3.Accessory? ? press : this.press?.copyWith(),
+      pressId: pressId is _is.UuidValue? ? pressId : this.pressId,
+      press: press is _ixwksfmb.Accessory? ? press : this.press?.copyWith(),
       caliber: caliber ?? this.caliber,
       casingBatch: casingBatch ?? this.casingBatch,
       reloadsCompleted: reloadsCompleted ?? this.reloadsCompleted,
-      powderId: powderId is _i1.UuidValue? ? powderId : this.powderId,
-      powder: powder is _i4.SupplyStock? ? powder : this.powder?.copyWith(),
+      powderId: powderId is _is.UuidValue? ? powderId : this.powderId,
+      powder: powder is _icdicocn.SupplyStock?
+          ? powder
+          : this.powder?.copyWith(),
       powderGrains: powderGrains ?? this.powderGrains,
-      primerId: primerId is _i1.UuidValue? ? primerId : this.primerId,
-      primer: primer is _i4.SupplyStock? ? primer : this.primer?.copyWith(),
-      projectileId: projectileId is _i1.UuidValue?
+      primerId: primerId is _is.UuidValue? ? primerId : this.primerId,
+      primer: primer is _icdicocn.SupplyStock?
+          ? primer
+          : this.primer?.copyWith(),
+      projectileId: projectileId is _is.UuidValue?
           ? projectileId
           : this.projectileId,
-      projectile: projectile is _i4.SupplyStock?
+      projectile: projectile is _icdicocn.SupplyStock?
           ? projectile
           : this.projectile?.copyWith(),
       oal: oal ?? this.oal,
@@ -385,246 +387,176 @@ class _ReloadSessionImpl extends ReloadSession {
   }
 }
 
-class ReloadSessionUpdateTable extends _i1.UpdateTable<ReloadSessionTable> {
+class ReloadSessionUpdateTable extends _is.UpdateTable<ReloadSessionTable> {
   ReloadSessionUpdateTable(super.table);
 
-  _i1.ColumnValue<int, int> userInfoId(int? value) => _i1.ColumnValue(
-    table.userInfoId,
-    value,
-  );
+  _is.ColumnValue<int, int> userInfoId(int? value) =>
+      _is.ColumnValue(table.userInfoId, value);
 
-  _i1.ColumnValue<DateTime, DateTime> reloadDate(DateTime value) =>
-      _i1.ColumnValue(
-        table.reloadDate,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> reloadDate(DateTime value) =>
+      _is.ColumnValue(table.reloadDate, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> pressId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.pressId,
-        value,
-      );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> pressId(_is.UuidValue? value) =>
+      _is.ColumnValue(table.pressId, value);
 
-  _i1.ColumnValue<String, String> caliber(String value) => _i1.ColumnValue(
-    table.caliber,
-    value,
-  );
+  _is.ColumnValue<String, String> caliber(String value) =>
+      _is.ColumnValue(table.caliber, value);
 
-  _i1.ColumnValue<String, String> casingBatch(String value) => _i1.ColumnValue(
-    table.casingBatch,
-    value,
-  );
+  _is.ColumnValue<String, String> casingBatch(String value) =>
+      _is.ColumnValue(table.casingBatch, value);
 
-  _i1.ColumnValue<int, int> reloadsCompleted(int value) => _i1.ColumnValue(
-    table.reloadsCompleted,
-    value,
-  );
+  _is.ColumnValue<int, int> reloadsCompleted(int value) =>
+      _is.ColumnValue(table.reloadsCompleted, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> powderId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.powderId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> powderId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.powderId, value);
 
-  _i1.ColumnValue<double, double> powderGrains(double value) => _i1.ColumnValue(
-    table.powderGrains,
-    value,
-  );
+  _is.ColumnValue<double, double> powderGrains(double value) =>
+      _is.ColumnValue(table.powderGrains, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> primerId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.primerId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> primerId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.primerId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> projectileId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.projectileId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> projectileId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.projectileId, value);
 
-  _i1.ColumnValue<double, double> oal(double value) => _i1.ColumnValue(
-    table.oal,
-    value,
-  );
+  _is.ColumnValue<double, double> oal(double value) =>
+      _is.ColumnValue(table.oal, value);
 
-  _i1.ColumnValue<double, double> totalCost(double value) => _i1.ColumnValue(
-    table.totalCost,
-    value,
-  );
+  _is.ColumnValue<double, double> totalCost(double value) =>
+      _is.ColumnValue(table.totalCost, value);
 
-  _i1.ColumnValue<double, double> unitCost(double value) => _i1.ColumnValue(
-    table.unitCost,
-    value,
-  );
+  _is.ColumnValue<double, double> unitCost(double value) =>
+      _is.ColumnValue(table.unitCost, value);
 }
 
-class ReloadSessionTable extends _i1.Table<_i1.UuidValue> {
+class ReloadSessionTable extends _is.Table<_is.UuidValue> {
   ReloadSessionTable({super.tableRelation})
     : super(tableName: 'reload_sessions') {
     updateTable = ReloadSessionUpdateTable(this);
-    userInfoId = _i1.ColumnInt(
-      'userInfoId',
-      this,
-    );
-    reloadDate = _i1.ColumnDateTime(
-      'reloadDate',
-      this,
-    );
-    pressId = _i1.ColumnUuid(
-      'pressId',
-      this,
-    );
-    caliber = _i1.ColumnString(
-      'caliber',
-      this,
-    );
-    casingBatch = _i1.ColumnString(
-      'casingBatch',
-      this,
-    );
-    reloadsCompleted = _i1.ColumnInt(
-      'reloadsCompleted',
-      this,
-    );
-    powderId = _i1.ColumnUuid(
-      'powderId',
-      this,
-    );
-    powderGrains = _i1.ColumnDouble(
-      'powderGrains',
-      this,
-    );
-    primerId = _i1.ColumnUuid(
-      'primerId',
-      this,
-    );
-    projectileId = _i1.ColumnUuid(
-      'projectileId',
-      this,
-    );
-    oal = _i1.ColumnDouble(
-      'oal',
-      this,
-    );
-    totalCost = _i1.ColumnDouble(
-      'totalCost',
-      this,
-    );
-    unitCost = _i1.ColumnDouble(
-      'unitCost',
-      this,
-    );
+    userInfoId = _is.ColumnInt('userInfoId', this);
+    reloadDate = _is.ColumnDateTime('reloadDate', this);
+    pressId = _is.ColumnUuid('pressId', this);
+    caliber = _is.ColumnString('caliber', this);
+    casingBatch = _is.ColumnString('casingBatch', this);
+    reloadsCompleted = _is.ColumnInt('reloadsCompleted', this);
+    powderId = _is.ColumnUuid('powderId', this);
+    powderGrains = _is.ColumnDouble('powderGrains', this);
+    primerId = _is.ColumnUuid('primerId', this);
+    projectileId = _is.ColumnUuid('projectileId', this);
+    oal = _is.ColumnDouble('oal', this);
+    totalCost = _is.ColumnDouble('totalCost', this);
+    unitCost = _is.ColumnDouble('unitCost', this);
   }
 
   late final ReloadSessionUpdateTable updateTable;
 
-  late final _i1.ColumnInt userInfoId;
+  late final _is.ColumnInt userInfoId;
 
-  _i2.UserInfoTable? _userInfo;
+  _i1n3uhu0.UserInfoTable? _userInfo;
 
-  late final _i1.ColumnDateTime reloadDate;
+  late final _is.ColumnDateTime reloadDate;
 
-  late final _i1.ColumnUuid pressId;
+  late final _is.ColumnUuid pressId;
 
-  _i3.AccessoryTable? _press;
+  _ixwksfmb.AccessoryTable? _press;
 
-  late final _i1.ColumnString caliber;
+  late final _is.ColumnString caliber;
 
-  late final _i1.ColumnString casingBatch;
+  late final _is.ColumnString casingBatch;
 
-  late final _i1.ColumnInt reloadsCompleted;
+  late final _is.ColumnInt reloadsCompleted;
 
-  late final _i1.ColumnUuid powderId;
+  late final _is.ColumnUuid powderId;
 
-  _i4.SupplyStockTable? _powder;
+  _icdicocn.SupplyStockTable? _powder;
 
-  late final _i1.ColumnDouble powderGrains;
+  late final _is.ColumnDouble powderGrains;
 
-  late final _i1.ColumnUuid primerId;
+  late final _is.ColumnUuid primerId;
 
-  _i4.SupplyStockTable? _primer;
+  _icdicocn.SupplyStockTable? _primer;
 
-  late final _i1.ColumnUuid projectileId;
+  late final _is.ColumnUuid projectileId;
 
-  _i4.SupplyStockTable? _projectile;
+  _icdicocn.SupplyStockTable? _projectile;
 
-  late final _i1.ColumnDouble oal;
+  late final _is.ColumnDouble oal;
 
-  late final _i1.ColumnDouble totalCost;
+  late final _is.ColumnDouble totalCost;
 
-  late final _i1.ColumnDouble unitCost;
+  late final _is.ColumnDouble unitCost;
 
-  _i2.UserInfoTable get userInfo {
+  _i1n3uhu0.UserInfoTable get userInfo {
     if (_userInfo != null) return _userInfo!;
-    _userInfo = _i1.createRelationTable(
+    _userInfo = _is.createRelationTable(
       relationFieldName: 'userInfo',
       field: ReloadSession.t.userInfoId,
-      foreignField: _i2.UserInfo.t.id,
+      foreignField: _i1n3uhu0.UserInfo.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.UserInfoTable(tableRelation: foreignTableRelation),
+          _i1n3uhu0.UserInfoTable(tableRelation: foreignTableRelation),
     );
     return _userInfo!;
   }
 
-  _i3.AccessoryTable get press {
+  _ixwksfmb.AccessoryTable get press {
     if (_press != null) return _press!;
-    _press = _i1.createRelationTable(
+    _press = _is.createRelationTable(
       relationFieldName: 'press',
       field: ReloadSession.t.pressId,
-      foreignField: _i3.Accessory.t.id,
+      foreignField: _ixwksfmb.Accessory.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i3.AccessoryTable(tableRelation: foreignTableRelation),
+          _ixwksfmb.AccessoryTable(tableRelation: foreignTableRelation),
     );
     return _press!;
   }
 
-  _i4.SupplyStockTable get powder {
+  _icdicocn.SupplyStockTable get powder {
     if (_powder != null) return _powder!;
-    _powder = _i1.createRelationTable(
+    _powder = _is.createRelationTable(
       relationFieldName: 'powder',
       field: ReloadSession.t.powderId,
-      foreignField: _i4.SupplyStock.t.id,
+      foreignField: _icdicocn.SupplyStock.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i4.SupplyStockTable(tableRelation: foreignTableRelation),
+          _icdicocn.SupplyStockTable(tableRelation: foreignTableRelation),
     );
     return _powder!;
   }
 
-  _i4.SupplyStockTable get primer {
+  _icdicocn.SupplyStockTable get primer {
     if (_primer != null) return _primer!;
-    _primer = _i1.createRelationTable(
+    _primer = _is.createRelationTable(
       relationFieldName: 'primer',
       field: ReloadSession.t.primerId,
-      foreignField: _i4.SupplyStock.t.id,
+      foreignField: _icdicocn.SupplyStock.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i4.SupplyStockTable(tableRelation: foreignTableRelation),
+          _icdicocn.SupplyStockTable(tableRelation: foreignTableRelation),
     );
     return _primer!;
   }
 
-  _i4.SupplyStockTable get projectile {
+  _icdicocn.SupplyStockTable get projectile {
     if (_projectile != null) return _projectile!;
-    _projectile = _i1.createRelationTable(
+    _projectile = _is.createRelationTable(
       relationFieldName: 'projectile',
       field: ReloadSession.t.projectileId,
-      foreignField: _i4.SupplyStock.t.id,
+      foreignField: _icdicocn.SupplyStock.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i4.SupplyStockTable(tableRelation: foreignTableRelation),
+          _icdicocn.SupplyStockTable(tableRelation: foreignTableRelation),
     );
     return _projectile!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     userInfoId,
     reloadDate,
@@ -642,7 +574,7 @@ class ReloadSessionTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'userInfo') {
       return userInfo;
     }
@@ -662,13 +594,13 @@ class ReloadSessionTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class ReloadSessionInclude extends _i1.IncludeObject {
+class ReloadSessionInclude extends _is.IncludeObject {
   ReloadSessionInclude._({
-    _i2.UserInfoInclude? userInfo,
-    _i3.AccessoryInclude? press,
-    _i4.SupplyStockInclude? powder,
-    _i4.SupplyStockInclude? primer,
-    _i4.SupplyStockInclude? projectile,
+    _i1n3uhu0.UserInfoInclude? userInfo,
+    _ixwksfmb.AccessoryInclude? press,
+    _icdicocn.SupplyStockInclude? powder,
+    _icdicocn.SupplyStockInclude? primer,
+    _icdicocn.SupplyStockInclude? projectile,
   }) {
     _userInfo = userInfo;
     _press = press;
@@ -677,18 +609,18 @@ class ReloadSessionInclude extends _i1.IncludeObject {
     _projectile = projectile;
   }
 
-  _i2.UserInfoInclude? _userInfo;
+  _i1n3uhu0.UserInfoInclude? _userInfo;
 
-  _i3.AccessoryInclude? _press;
+  _ixwksfmb.AccessoryInclude? _press;
 
-  _i4.SupplyStockInclude? _powder;
+  _icdicocn.SupplyStockInclude? _powder;
 
-  _i4.SupplyStockInclude? _primer;
+  _icdicocn.SupplyStockInclude? _primer;
 
-  _i4.SupplyStockInclude? _projectile;
+  _icdicocn.SupplyStockInclude? _projectile;
 
   @override
-  Map<String, _i1.Include?> get includes => {
+  Map<String, _is.Include?> get includes => {
     'userInfo': _userInfo,
     'press': _press,
     'powder': _powder,
@@ -697,16 +629,15 @@ class ReloadSessionInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue> get table => ReloadSession.t;
+  _is.Table<_is.UuidValue> get table => ReloadSession.t;
 }
 
-class ReloadSessionIncludeList extends _i1.IncludeList {
+class ReloadSessionIncludeList extends _is.IncludeList {
   ReloadSessionIncludeList._({
-    _i1.WhereExpressionBuilder<ReloadSessionTable>? where,
+    _is.WhereExpressionBuilder<ReloadSessionTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -714,10 +645,10 @@ class ReloadSessionIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => ReloadSession.t;
+  _is.Table<_is.UuidValue> get table => ReloadSession.t;
 }
 
 class ReloadSessionRepository {
@@ -750,23 +681,21 @@ class ReloadSessionRepository {
   /// );
   /// ```
   Future<List<ReloadSession>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<ReloadSessionTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<ReloadSessionTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<ReloadSessionTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ReloadSessionTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<ReloadSessionTable>? orderBy,
+    _is.OrderByListBuilder<ReloadSessionTable>? orderByList,
+    _is.Transaction? transaction,
     ReloadSessionInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<ReloadSession>(
       where: where?.call(ReloadSession.t),
       orderBy: orderBy?.call(ReloadSession.t),
       orderByList: orderByList?.call(ReloadSession.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -794,22 +723,20 @@ class ReloadSessionRepository {
   /// );
   /// ```
   Future<ReloadSession?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<ReloadSessionTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<ReloadSessionTable>? where,
     int? offset,
-    _i1.OrderByBuilder<ReloadSessionTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<ReloadSessionTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<ReloadSessionTable>? orderBy,
+    _is.OrderByListBuilder<ReloadSessionTable>? orderByList,
+    _is.Transaction? transaction,
     ReloadSessionInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<ReloadSession>(
       where: where?.call(ReloadSession.t),
       orderBy: orderBy?.call(ReloadSession.t),
       orderByList: orderByList?.call(ReloadSession.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -820,12 +747,12 @@ class ReloadSessionRepository {
 
   /// Finds a single [ReloadSession] by its [id] or null if no such row exists.
   Future<ReloadSession?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     ReloadSessionInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<ReloadSession>(
       id,
@@ -846,16 +773,22 @@ class ReloadSessionRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<ReloadSession>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<ReloadSession> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<ReloadSession>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -863,12 +796,78 @@ class ReloadSessionRepository {
   ///
   /// The returned [ReloadSession] will have its `id` field set.
   Future<ReloadSession> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.insertRow<ReloadSession>(
+    return session.db.insertRow<ReloadSession>(row, transaction: transaction);
+  }
+
+  /// Upserts all [ReloadSession]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [ReloadSession]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<ReloadSession>> upsert(
+    _is.DatabaseSession session,
+    List<ReloadSession> rows, {
+    required _is.ColumnSelections<ReloadSessionTable> conflictColumns,
+    _is.ColumnSelections<ReloadSessionTable>? updateColumns,
+    _is.WhereExpressionBuilder<ReloadSessionTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<ReloadSession>(
+      rows,
+      conflictColumns: conflictColumns(ReloadSession.t),
+      updateColumns: updateColumns?.call(ReloadSession.t),
+      updateWhere: updateWhere?.call(ReloadSession.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [ReloadSession] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [ReloadSession] will have its `id` field set.
+  Future<ReloadSession?> upsertRow(
+    _is.DatabaseSession session,
+    ReloadSession row, {
+    required _is.ColumnSelections<ReloadSessionTable> conflictColumns,
+    _is.ColumnSelections<ReloadSessionTable>? updateColumns,
+    _is.WhereExpressionBuilder<ReloadSessionTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<ReloadSession>(
       row,
+      conflictColumns: conflictColumns(ReloadSession.t),
+      updateColumns: updateColumns?.call(ReloadSession.t),
+      updateWhere: updateWhere?.call(ReloadSession.t),
       transaction: transaction,
     );
   }
@@ -878,16 +877,22 @@ class ReloadSessionRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<ReloadSession>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<ReloadSession> rows, {
-    _i1.ColumnSelections<ReloadSessionTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<ReloadSessionTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<ReloadSession>(
       rows,
       columns: columns?.call(ReloadSession.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -895,10 +900,10 @@ class ReloadSessionRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<ReloadSession> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession row, {
-    _i1.ColumnSelections<ReloadSessionTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<ReloadSessionTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<ReloadSession>(
       row,
@@ -910,10 +915,10 @@ class ReloadSessionRepository {
   /// Updates a single [ReloadSession] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<ReloadSession?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<ReloadSessionUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<ReloadSessionUpdateTable> columnValues,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<ReloadSession>(
       id,
@@ -924,16 +929,20 @@ class ReloadSessionRepository {
 
   /// Updates all [ReloadSession]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<ReloadSession>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<ReloadSessionUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<ReloadSessionTable> where,
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<ReloadSessionUpdateTable> columnValues,
+    required _is.WhereExpressionBuilder<ReloadSessionTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<ReloadSessionTable>? orderBy,
-    _i1.OrderByListBuilder<ReloadSessionTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<ReloadSessionTable>? orderBy,
+    _is.OrderByListBuilder<ReloadSessionTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<ReloadSession>(
       columnValues: columnValues(ReloadSession.t.updateTable),
@@ -942,56 +951,80 @@ class ReloadSessionRepository {
       offset: offset,
       orderBy: orderBy?.call(ReloadSession.t),
       orderByList: orderByList?.call(ReloadSession.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [ReloadSession]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<ReloadSession>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<ReloadSession> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<ReloadSessionTable>? orderBy,
+    _is.OrderByListBuilder<ReloadSessionTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<ReloadSession>(
       rows,
+      orderBy: orderBy?.call(ReloadSession.t),
+      orderByList: orderByList?.call(ReloadSession.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [ReloadSession].
   Future<ReloadSession> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<ReloadSession>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<ReloadSession>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<ReloadSession>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<ReloadSessionTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<ReloadSessionTable> where,
+    _is.OrderByBuilder<ReloadSessionTable>? orderBy,
+    _is.OrderByListBuilder<ReloadSessionTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<ReloadSession>(
       where: where(ReloadSession.t),
+      orderBy: orderBy?.call(ReloadSession.t),
+      orderByList: orderByList?.call(ReloadSession.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<ReloadSessionTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<ReloadSessionTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<ReloadSession>(
       where: where?.call(ReloadSession.t),
@@ -1002,11 +1035,11 @@ class ReloadSessionRepository {
 
   /// Acquires row-level locks on [ReloadSession] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<ReloadSessionTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<ReloadSessionTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<ReloadSession>(
       where: where(ReloadSession.t),
@@ -1023,10 +1056,10 @@ class ReloadSessionAttachRowRepository {
   /// Creates a relation between the given [ReloadSession] and [UserInfo]
   /// by setting the [ReloadSession]'s foreign key `userInfoId` to refer to the [UserInfo].
   Future<void> userInfo(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession reloadSession,
-    _i2.UserInfo userInfo, {
-    _i1.Transaction? transaction,
+    _i1n3uhu0.UserInfo userInfo, {
+    _is.Transaction? transaction,
   }) async {
     if (reloadSession.id == null) {
       throw ArgumentError.notNull('reloadSession.id');
@@ -1046,10 +1079,10 @@ class ReloadSessionAttachRowRepository {
   /// Creates a relation between the given [ReloadSession] and [Accessory]
   /// by setting the [ReloadSession]'s foreign key `pressId` to refer to the [Accessory].
   Future<void> press(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession reloadSession,
-    _i3.Accessory press, {
-    _i1.Transaction? transaction,
+    _ixwksfmb.Accessory press, {
+    _is.Transaction? transaction,
   }) async {
     if (reloadSession.id == null) {
       throw ArgumentError.notNull('reloadSession.id');
@@ -1069,10 +1102,10 @@ class ReloadSessionAttachRowRepository {
   /// Creates a relation between the given [ReloadSession] and [SupplyStock]
   /// by setting the [ReloadSession]'s foreign key `powderId` to refer to the [SupplyStock].
   Future<void> powder(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession reloadSession,
-    _i4.SupplyStock powder, {
-    _i1.Transaction? transaction,
+    _icdicocn.SupplyStock powder, {
+    _is.Transaction? transaction,
   }) async {
     if (reloadSession.id == null) {
       throw ArgumentError.notNull('reloadSession.id');
@@ -1092,10 +1125,10 @@ class ReloadSessionAttachRowRepository {
   /// Creates a relation between the given [ReloadSession] and [SupplyStock]
   /// by setting the [ReloadSession]'s foreign key `primerId` to refer to the [SupplyStock].
   Future<void> primer(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession reloadSession,
-    _i4.SupplyStock primer, {
-    _i1.Transaction? transaction,
+    _icdicocn.SupplyStock primer, {
+    _is.Transaction? transaction,
   }) async {
     if (reloadSession.id == null) {
       throw ArgumentError.notNull('reloadSession.id');
@@ -1115,10 +1148,10 @@ class ReloadSessionAttachRowRepository {
   /// Creates a relation between the given [ReloadSession] and [SupplyStock]
   /// by setting the [ReloadSession]'s foreign key `projectileId` to refer to the [SupplyStock].
   Future<void> projectile(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession reloadSession,
-    _i4.SupplyStock projectile, {
-    _i1.Transaction? transaction,
+    _icdicocn.SupplyStock projectile, {
+    _is.Transaction? transaction,
   }) async {
     if (reloadSession.id == null) {
       throw ArgumentError.notNull('reloadSession.id');
@@ -1145,9 +1178,9 @@ class ReloadSessionDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> userInfo(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession reloadSession, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (reloadSession.id == null) {
       throw ArgumentError.notNull('reloadSession.id');
@@ -1167,9 +1200,9 @@ class ReloadSessionDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> press(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession reloadSession, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (reloadSession.id == null) {
       throw ArgumentError.notNull('reloadSession.id');
@@ -1189,9 +1222,9 @@ class ReloadSessionDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> powder(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession reloadSession, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (reloadSession.id == null) {
       throw ArgumentError.notNull('reloadSession.id');
@@ -1211,9 +1244,9 @@ class ReloadSessionDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> primer(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession reloadSession, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (reloadSession.id == null) {
       throw ArgumentError.notNull('reloadSession.id');
@@ -1233,9 +1266,9 @@ class ReloadSessionDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> projectile(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     ReloadSession reloadSession, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (reloadSession.id == null) {
       throw ArgumentError.notNull('reloadSession.id');

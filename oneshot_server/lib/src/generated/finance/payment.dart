@@ -8,20 +8,20 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import '../enums/payment_method.enum.dart' as _i2;
-import '../enums/payment_status.enum.dart' as _i3;
-import '../enums/currency.enum.dart' as _i4;
-import '../finance/invoice.dart' as _i5;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i6;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import '../enums/currency.enum.dart' as _isdw5wvy;
+import '../enums/payment_method.enum.dart' as _iqyvznnz;
+import '../enums/payment_status.enum.dart' as _iulumb5a;
+import '../finance/invoice.dart' as _i3d856q3;
 
 abstract class Payment
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   Payment._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required this.paymentDate,
     required this.amountPaid,
     required this.paymentMethod,
@@ -39,15 +39,15 @@ abstract class Payment
     this.asaasRefundedAt,
     this.invoiceId,
     this.invoice,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _is.Uuid().v4obj();
 
   factory Payment({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required DateTime paymentDate,
     required double amountPaid,
-    required _i2.PaymentMethod paymentMethod,
-    required _i3.PaymentStatus status,
-    required _i4.Currency currency,
+    required _iqyvznnz.PaymentMethod paymentMethod,
+    required _iulumb5a.PaymentStatus status,
+    required _isdw5wvy.Currency currency,
     String? asaasPaymentId,
     String? asaasCustomerId,
     String? asaasBillingType,
@@ -58,26 +58,26 @@ abstract class Payment
     String? asaasPixQrCodePayload,
     String? asaasPixQrCodeImage,
     DateTime? asaasRefundedAt,
-    _i1.UuidValue? invoiceId,
-    _i5.Invoice? invoice,
+    _is.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
   }) = _PaymentImpl;
 
   factory Payment.fromJson(Map<String, dynamic> jsonSerialization) {
     return Payment(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      paymentDate: _i1.DateTimeJsonExtension.fromJson(
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+      paymentDate: _is.DateTimeJsonExtension.fromJson(
         jsonSerialization['paymentDate'],
       ),
       amountPaid: (jsonSerialization['amountPaid'] as num).toDouble(),
-      paymentMethod: _i2.PaymentMethod.fromJson(
+      paymentMethod: _iqyvznnz.PaymentMethod.fromJson(
         (jsonSerialization['paymentMethod'] as String),
       ),
-      status: _i3.PaymentStatus.fromJson(
+      status: _iulumb5a.PaymentStatus.fromJson(
         (jsonSerialization['status'] as String),
       ),
-      currency: _i4.Currency.fromJson(
+      currency: _isdw5wvy.Currency.fromJson(
         (jsonSerialization['currency'] as String),
       ),
       asaasPaymentId: jsonSerialization['asaasPaymentId'] as String?,
@@ -85,7 +85,7 @@ abstract class Payment
       asaasBillingType: jsonSerialization['asaasBillingType'] as String?,
       asaasDueDate: jsonSerialization['asaasDueDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _is.DateTimeJsonExtension.fromJson(
               jsonSerialization['asaasDueDate'],
             ),
       asaasNetValue: (jsonSerialization['asaasNetValue'] as num?)?.toDouble(),
@@ -96,15 +96,15 @@ abstract class Payment
       asaasPixQrCodeImage: jsonSerialization['asaasPixQrCodeImage'] as String?,
       asaasRefundedAt: jsonSerialization['asaasRefundedAt'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _is.DateTimeJsonExtension.fromJson(
               jsonSerialization['asaasRefundedAt'],
             ),
       invoiceId: jsonSerialization['invoiceId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['invoiceId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['invoiceId']),
       invoice: jsonSerialization['invoice'] == null
           ? null
-          : _i6.Protocol().deserialize<_i5.Invoice>(
+          : _iwflrbqm.Protocol().deserialize<_i3d856q3.Invoice>(
               jsonSerialization['invoice'],
             ),
     );
@@ -115,17 +115,17 @@ abstract class Payment
   static const db = PaymentRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
   DateTime paymentDate;
 
   double amountPaid;
 
-  _i2.PaymentMethod paymentMethod;
+  _iqyvznnz.PaymentMethod paymentMethod;
 
-  _i3.PaymentStatus status;
+  _iulumb5a.PaymentStatus status;
 
-  _i4.Currency currency;
+  _isdw5wvy.Currency currency;
 
   String? asaasPaymentId;
 
@@ -147,23 +147,23 @@ abstract class Payment
 
   DateTime? asaasRefundedAt;
 
-  _i1.UuidValue? invoiceId;
+  _is.UuidValue? invoiceId;
 
-  _i5.Invoice? invoice;
+  _i3d856q3.Invoice? invoice;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Payment]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   Payment copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     DateTime? paymentDate,
     double? amountPaid,
-    _i2.PaymentMethod? paymentMethod,
-    _i3.PaymentStatus? status,
-    _i4.Currency? currency,
+    _iqyvznnz.PaymentMethod? paymentMethod,
+    _iulumb5a.PaymentStatus? status,
+    _isdw5wvy.Currency? currency,
     String? asaasPaymentId,
     String? asaasCustomerId,
     String? asaasBillingType,
@@ -174,8 +174,8 @@ abstract class Payment
     String? asaasPixQrCodePayload,
     String? asaasPixQrCodeImage,
     DateTime? asaasRefundedAt,
-    _i1.UuidValue? invoiceId,
-    _i5.Invoice? invoice,
+    _is.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -231,17 +231,16 @@ abstract class Payment
     };
   }
 
-  static PaymentInclude include({_i5.InvoiceInclude? invoice}) {
+  static PaymentInclude include({_i3d856q3.InvoiceInclude? invoice}) {
     return PaymentInclude._(invoice: invoice);
   }
 
   static PaymentIncludeList includeList({
-    _i1.WhereExpressionBuilder<PaymentTable>? where,
+    _is.WhereExpressionBuilder<PaymentTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<PaymentTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<PaymentTable>? orderByList,
+    _is.OrderByBuilder<PaymentTable>? orderBy,
+    _is.OrderByListBuilder<PaymentTable>? orderByList,
     PaymentInclude? include,
   }) {
     return PaymentIncludeList._(
@@ -249,7 +248,6 @@ abstract class Payment
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(Payment.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(Payment.t),
       include: include,
     );
@@ -257,7 +255,7 @@ abstract class Payment
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -265,12 +263,12 @@ class _Undefined {}
 
 class _PaymentImpl extends Payment {
   _PaymentImpl({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required DateTime paymentDate,
     required double amountPaid,
-    required _i2.PaymentMethod paymentMethod,
-    required _i3.PaymentStatus status,
-    required _i4.Currency currency,
+    required _iqyvznnz.PaymentMethod paymentMethod,
+    required _iulumb5a.PaymentStatus status,
+    required _isdw5wvy.Currency currency,
     String? asaasPaymentId,
     String? asaasCustomerId,
     String? asaasBillingType,
@@ -281,8 +279,8 @@ class _PaymentImpl extends Payment {
     String? asaasPixQrCodePayload,
     String? asaasPixQrCodeImage,
     DateTime? asaasRefundedAt,
-    _i1.UuidValue? invoiceId,
-    _i5.Invoice? invoice,
+    _is.UuidValue? invoiceId,
+    _i3d856q3.Invoice? invoice,
   }) : super._(
          id: id,
          paymentDate: paymentDate,
@@ -306,15 +304,15 @@ class _PaymentImpl extends Payment {
 
   /// Returns a shallow copy of this [Payment]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   Payment copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     DateTime? paymentDate,
     double? amountPaid,
-    _i2.PaymentMethod? paymentMethod,
-    _i3.PaymentStatus? status,
-    _i4.Currency? currency,
+    _iqyvznnz.PaymentMethod? paymentMethod,
+    _iulumb5a.PaymentStatus? status,
+    _isdw5wvy.Currency? currency,
     Object? asaasPaymentId = _Undefined,
     Object? asaasCustomerId = _Undefined,
     Object? asaasBillingType = _Undefined,
@@ -365,237 +363,146 @@ class _PaymentImpl extends Payment {
       asaasRefundedAt: asaasRefundedAt is DateTime?
           ? asaasRefundedAt
           : this.asaasRefundedAt,
-      invoiceId: invoiceId is _i1.UuidValue? ? invoiceId : this.invoiceId,
-      invoice: invoice is _i5.Invoice? ? invoice : this.invoice?.copyWith(),
+      invoiceId: invoiceId is _is.UuidValue? ? invoiceId : this.invoiceId,
+      invoice: invoice is _i3d856q3.Invoice?
+          ? invoice
+          : this.invoice?.copyWith(),
     );
   }
 }
 
-class PaymentUpdateTable extends _i1.UpdateTable<PaymentTable> {
+class PaymentUpdateTable extends _is.UpdateTable<PaymentTable> {
   PaymentUpdateTable(super.table);
 
-  _i1.ColumnValue<DateTime, DateTime> paymentDate(DateTime value) =>
-      _i1.ColumnValue(
-        table.paymentDate,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> paymentDate(DateTime value) =>
+      _is.ColumnValue(table.paymentDate, value);
 
-  _i1.ColumnValue<double, double> amountPaid(double value) => _i1.ColumnValue(
-    table.amountPaid,
-    value,
-  );
+  _is.ColumnValue<double, double> amountPaid(double value) =>
+      _is.ColumnValue(table.amountPaid, value);
 
-  _i1.ColumnValue<_i2.PaymentMethod, _i2.PaymentMethod> paymentMethod(
-    _i2.PaymentMethod value,
-  ) => _i1.ColumnValue(
-    table.paymentMethod,
-    value,
-  );
+  _is.ColumnValue<_iqyvznnz.PaymentMethod, _iqyvznnz.PaymentMethod>
+  paymentMethod(_iqyvznnz.PaymentMethod value) =>
+      _is.ColumnValue(table.paymentMethod, value);
 
-  _i1.ColumnValue<_i3.PaymentStatus, _i3.PaymentStatus> status(
-    _i3.PaymentStatus value,
-  ) => _i1.ColumnValue(
-    table.status,
-    value,
-  );
+  _is.ColumnValue<_iulumb5a.PaymentStatus, _iulumb5a.PaymentStatus> status(
+    _iulumb5a.PaymentStatus value,
+  ) => _is.ColumnValue(table.status, value);
 
-  _i1.ColumnValue<_i4.Currency, _i4.Currency> currency(_i4.Currency value) =>
-      _i1.ColumnValue(
-        table.currency,
-        value,
-      );
+  _is.ColumnValue<_isdw5wvy.Currency, _isdw5wvy.Currency> currency(
+    _isdw5wvy.Currency value,
+  ) => _is.ColumnValue(table.currency, value);
 
-  _i1.ColumnValue<String, String> asaasPaymentId(String? value) =>
-      _i1.ColumnValue(
-        table.asaasPaymentId,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasPaymentId(String? value) =>
+      _is.ColumnValue(table.asaasPaymentId, value);
 
-  _i1.ColumnValue<String, String> asaasCustomerId(String? value) =>
-      _i1.ColumnValue(
-        table.asaasCustomerId,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasCustomerId(String? value) =>
+      _is.ColumnValue(table.asaasCustomerId, value);
 
-  _i1.ColumnValue<String, String> asaasBillingType(String? value) =>
-      _i1.ColumnValue(
-        table.asaasBillingType,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasBillingType(String? value) =>
+      _is.ColumnValue(table.asaasBillingType, value);
 
-  _i1.ColumnValue<DateTime, DateTime> asaasDueDate(DateTime? value) =>
-      _i1.ColumnValue(
-        table.asaasDueDate,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> asaasDueDate(DateTime? value) =>
+      _is.ColumnValue(table.asaasDueDate, value);
 
-  _i1.ColumnValue<double, double> asaasNetValue(double? value) =>
-      _i1.ColumnValue(
-        table.asaasNetValue,
-        value,
-      );
+  _is.ColumnValue<double, double> asaasNetValue(double? value) =>
+      _is.ColumnValue(table.asaasNetValue, value);
 
-  _i1.ColumnValue<String, String> asaasInvoiceUrl(String? value) =>
-      _i1.ColumnValue(
-        table.asaasInvoiceUrl,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasInvoiceUrl(String? value) =>
+      _is.ColumnValue(table.asaasInvoiceUrl, value);
 
-  _i1.ColumnValue<String, String> asaasBankSlipUrl(String? value) =>
-      _i1.ColumnValue(
-        table.asaasBankSlipUrl,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasBankSlipUrl(String? value) =>
+      _is.ColumnValue(table.asaasBankSlipUrl, value);
 
-  _i1.ColumnValue<String, String> asaasPixQrCodePayload(String? value) =>
-      _i1.ColumnValue(
-        table.asaasPixQrCodePayload,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasPixQrCodePayload(String? value) =>
+      _is.ColumnValue(table.asaasPixQrCodePayload, value);
 
-  _i1.ColumnValue<String, String> asaasPixQrCodeImage(String? value) =>
-      _i1.ColumnValue(
-        table.asaasPixQrCodeImage,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasPixQrCodeImage(String? value) =>
+      _is.ColumnValue(table.asaasPixQrCodeImage, value);
 
-  _i1.ColumnValue<DateTime, DateTime> asaasRefundedAt(DateTime? value) =>
-      _i1.ColumnValue(
-        table.asaasRefundedAt,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> asaasRefundedAt(DateTime? value) =>
+      _is.ColumnValue(table.asaasRefundedAt, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> invoiceId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.invoiceId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> invoiceId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.invoiceId, value);
 }
 
-class PaymentTable extends _i1.Table<_i1.UuidValue> {
+class PaymentTable extends _is.Table<_is.UuidValue> {
   PaymentTable({super.tableRelation}) : super(tableName: 'payments') {
     updateTable = PaymentUpdateTable(this);
-    paymentDate = _i1.ColumnDateTime(
-      'paymentDate',
-      this,
-    );
-    amountPaid = _i1.ColumnDouble(
-      'amountPaid',
-      this,
-    );
-    paymentMethod = _i1.ColumnEnum(
+    paymentDate = _is.ColumnDateTime('paymentDate', this);
+    amountPaid = _is.ColumnDouble('amountPaid', this);
+    paymentMethod = _is.ColumnEnum(
       'paymentMethod',
       this,
-      _i1.EnumSerialization.byName,
+      _is.EnumSerialization.byName,
     );
-    status = _i1.ColumnEnum(
-      'status',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    currency = _i1.ColumnEnum(
-      'currency',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    asaasPaymentId = _i1.ColumnString(
-      'asaasPaymentId',
-      this,
-    );
-    asaasCustomerId = _i1.ColumnString(
-      'asaasCustomerId',
-      this,
-    );
-    asaasBillingType = _i1.ColumnString(
-      'asaasBillingType',
-      this,
-    );
-    asaasDueDate = _i1.ColumnDateTime(
-      'asaasDueDate',
-      this,
-    );
-    asaasNetValue = _i1.ColumnDouble(
-      'asaasNetValue',
-      this,
-    );
-    asaasInvoiceUrl = _i1.ColumnString(
-      'asaasInvoiceUrl',
-      this,
-    );
-    asaasBankSlipUrl = _i1.ColumnString(
-      'asaasBankSlipUrl',
-      this,
-    );
-    asaasPixQrCodePayload = _i1.ColumnString(
-      'asaasPixQrCodePayload',
-      this,
-    );
-    asaasPixQrCodeImage = _i1.ColumnString(
-      'asaasPixQrCodeImage',
-      this,
-    );
-    asaasRefundedAt = _i1.ColumnDateTime(
-      'asaasRefundedAt',
-      this,
-    );
-    invoiceId = _i1.ColumnUuid(
-      'invoiceId',
-      this,
-    );
+    status = _is.ColumnEnum('status', this, _is.EnumSerialization.byName);
+    currency = _is.ColumnEnum('currency', this, _is.EnumSerialization.byName);
+    asaasPaymentId = _is.ColumnString('asaasPaymentId', this);
+    asaasCustomerId = _is.ColumnString('asaasCustomerId', this);
+    asaasBillingType = _is.ColumnString('asaasBillingType', this);
+    asaasDueDate = _is.ColumnDateTime('asaasDueDate', this);
+    asaasNetValue = _is.ColumnDouble('asaasNetValue', this);
+    asaasInvoiceUrl = _is.ColumnString('asaasInvoiceUrl', this);
+    asaasBankSlipUrl = _is.ColumnString('asaasBankSlipUrl', this);
+    asaasPixQrCodePayload = _is.ColumnString('asaasPixQrCodePayload', this);
+    asaasPixQrCodeImage = _is.ColumnString('asaasPixQrCodeImage', this);
+    asaasRefundedAt = _is.ColumnDateTime('asaasRefundedAt', this);
+    invoiceId = _is.ColumnUuid('invoiceId', this);
   }
 
   late final PaymentUpdateTable updateTable;
 
-  late final _i1.ColumnDateTime paymentDate;
+  late final _is.ColumnDateTime paymentDate;
 
-  late final _i1.ColumnDouble amountPaid;
+  late final _is.ColumnDouble amountPaid;
 
-  late final _i1.ColumnEnum<_i2.PaymentMethod> paymentMethod;
+  late final _is.ColumnEnum<_iqyvznnz.PaymentMethod> paymentMethod;
 
-  late final _i1.ColumnEnum<_i3.PaymentStatus> status;
+  late final _is.ColumnEnum<_iulumb5a.PaymentStatus> status;
 
-  late final _i1.ColumnEnum<_i4.Currency> currency;
+  late final _is.ColumnEnum<_isdw5wvy.Currency> currency;
 
-  late final _i1.ColumnString asaasPaymentId;
+  late final _is.ColumnString asaasPaymentId;
 
-  late final _i1.ColumnString asaasCustomerId;
+  late final _is.ColumnString asaasCustomerId;
 
-  late final _i1.ColumnString asaasBillingType;
+  late final _is.ColumnString asaasBillingType;
 
-  late final _i1.ColumnDateTime asaasDueDate;
+  late final _is.ColumnDateTime asaasDueDate;
 
-  late final _i1.ColumnDouble asaasNetValue;
+  late final _is.ColumnDouble asaasNetValue;
 
-  late final _i1.ColumnString asaasInvoiceUrl;
+  late final _is.ColumnString asaasInvoiceUrl;
 
-  late final _i1.ColumnString asaasBankSlipUrl;
+  late final _is.ColumnString asaasBankSlipUrl;
 
-  late final _i1.ColumnString asaasPixQrCodePayload;
+  late final _is.ColumnString asaasPixQrCodePayload;
 
-  late final _i1.ColumnString asaasPixQrCodeImage;
+  late final _is.ColumnString asaasPixQrCodeImage;
 
-  late final _i1.ColumnDateTime asaasRefundedAt;
+  late final _is.ColumnDateTime asaasRefundedAt;
 
-  late final _i1.ColumnUuid invoiceId;
+  late final _is.ColumnUuid invoiceId;
 
-  _i5.InvoiceTable? _invoice;
+  _i3d856q3.InvoiceTable? _invoice;
 
-  _i5.InvoiceTable get invoice {
+  _i3d856q3.InvoiceTable get invoice {
     if (_invoice != null) return _invoice!;
-    _invoice = _i1.createRelationTable(
+    _invoice = _is.createRelationTable(
       relationFieldName: 'invoice',
       field: Payment.t.invoiceId,
-      foreignField: _i5.Invoice.t.id,
+      foreignField: _i3d856q3.Invoice.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i5.InvoiceTable(tableRelation: foreignTableRelation),
+          _i3d856q3.InvoiceTable(tableRelation: foreignTableRelation),
     );
     return _invoice!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     paymentDate,
     amountPaid,
@@ -616,7 +523,7 @@ class PaymentTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'invoice') {
       return invoice;
     }
@@ -624,27 +531,26 @@ class PaymentTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class PaymentInclude extends _i1.IncludeObject {
-  PaymentInclude._({_i5.InvoiceInclude? invoice}) {
+class PaymentInclude extends _is.IncludeObject {
+  PaymentInclude._({_i3d856q3.InvoiceInclude? invoice}) {
     _invoice = invoice;
   }
 
-  _i5.InvoiceInclude? _invoice;
+  _i3d856q3.InvoiceInclude? _invoice;
 
   @override
-  Map<String, _i1.Include?> get includes => {'invoice': _invoice};
+  Map<String, _is.Include?> get includes => {'invoice': _invoice};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => Payment.t;
+  _is.Table<_is.UuidValue> get table => Payment.t;
 }
 
-class PaymentIncludeList extends _i1.IncludeList {
+class PaymentIncludeList extends _is.IncludeList {
   PaymentIncludeList._({
-    _i1.WhereExpressionBuilder<PaymentTable>? where,
+    _is.WhereExpressionBuilder<PaymentTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -652,10 +558,10 @@ class PaymentIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => Payment.t;
+  _is.Table<_is.UuidValue> get table => Payment.t;
 }
 
 class PaymentRepository {
@@ -688,23 +594,21 @@ class PaymentRepository {
   /// );
   /// ```
   Future<List<Payment>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<PaymentTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<PaymentTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<PaymentTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<PaymentTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<PaymentTable>? orderBy,
+    _is.OrderByListBuilder<PaymentTable>? orderByList,
+    _is.Transaction? transaction,
     PaymentInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<Payment>(
       where: where?.call(Payment.t),
       orderBy: orderBy?.call(Payment.t),
       orderByList: orderByList?.call(Payment.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -732,22 +636,20 @@ class PaymentRepository {
   /// );
   /// ```
   Future<Payment?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<PaymentTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<PaymentTable>? where,
     int? offset,
-    _i1.OrderByBuilder<PaymentTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<PaymentTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<PaymentTable>? orderBy,
+    _is.OrderByListBuilder<PaymentTable>? orderByList,
+    _is.Transaction? transaction,
     PaymentInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<Payment>(
       where: where?.call(Payment.t),
       orderBy: orderBy?.call(Payment.t),
       orderByList: orderByList?.call(Payment.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -758,12 +660,12 @@ class PaymentRepository {
 
   /// Finds a single [Payment] by its [id] or null if no such row exists.
   Future<Payment?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     PaymentInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<Payment>(
       id,
@@ -784,16 +686,22 @@ class PaymentRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Payment>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Payment> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<Payment>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -801,12 +709,78 @@ class PaymentRepository {
   ///
   /// The returned [Payment] will have its `id` field set.
   Future<Payment> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Payment row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.insertRow<Payment>(
+    return session.db.insertRow<Payment>(row, transaction: transaction);
+  }
+
+  /// Upserts all [Payment]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [Payment]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<Payment>> upsert(
+    _is.DatabaseSession session,
+    List<Payment> rows, {
+    required _is.ColumnSelections<PaymentTable> conflictColumns,
+    _is.ColumnSelections<PaymentTable>? updateColumns,
+    _is.WhereExpressionBuilder<PaymentTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<Payment>(
+      rows,
+      conflictColumns: conflictColumns(Payment.t),
+      updateColumns: updateColumns?.call(Payment.t),
+      updateWhere: updateWhere?.call(Payment.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [Payment] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [Payment] will have its `id` field set.
+  Future<Payment?> upsertRow(
+    _is.DatabaseSession session,
+    Payment row, {
+    required _is.ColumnSelections<PaymentTable> conflictColumns,
+    _is.ColumnSelections<PaymentTable>? updateColumns,
+    _is.WhereExpressionBuilder<PaymentTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<Payment>(
       row,
+      conflictColumns: conflictColumns(Payment.t),
+      updateColumns: updateColumns?.call(Payment.t),
+      updateWhere: updateWhere?.call(Payment.t),
       transaction: transaction,
     );
   }
@@ -816,16 +790,22 @@ class PaymentRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Payment>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Payment> rows, {
-    _i1.ColumnSelections<PaymentTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<PaymentTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<Payment>(
       rows,
       columns: columns?.call(Payment.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -833,10 +813,10 @@ class PaymentRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Payment> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Payment row, {
-    _i1.ColumnSelections<PaymentTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<PaymentTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<Payment>(
       row,
@@ -848,10 +828,10 @@ class PaymentRepository {
   /// Updates a single [Payment] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Payment?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<PaymentUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<PaymentUpdateTable> columnValues,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<Payment>(
       id,
@@ -862,16 +842,20 @@ class PaymentRepository {
 
   /// Updates all [Payment]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Payment>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<PaymentUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<PaymentTable> where,
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<PaymentUpdateTable> columnValues,
+    required _is.WhereExpressionBuilder<PaymentTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<PaymentTable>? orderBy,
-    _i1.OrderByListBuilder<PaymentTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<PaymentTable>? orderBy,
+    _is.OrderByListBuilder<PaymentTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<Payment>(
       columnValues: columnValues(Payment.t.updateTable),
@@ -880,56 +864,80 @@ class PaymentRepository {
       offset: offset,
       orderBy: orderBy?.call(Payment.t),
       orderByList: orderByList?.call(Payment.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [Payment]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Payment>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Payment> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<PaymentTable>? orderBy,
+    _is.OrderByListBuilder<PaymentTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<Payment>(
       rows,
+      orderBy: orderBy?.call(Payment.t),
+      orderByList: orderByList?.call(Payment.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [Payment].
   Future<Payment> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Payment row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<Payment>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<Payment>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Payment>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<PaymentTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<PaymentTable> where,
+    _is.OrderByBuilder<PaymentTable>? orderBy,
+    _is.OrderByListBuilder<PaymentTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<Payment>(
       where: where(Payment.t),
+      orderBy: orderBy?.call(Payment.t),
+      orderByList: orderByList?.call(Payment.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<PaymentTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<PaymentTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<Payment>(
       where: where?.call(Payment.t),
@@ -940,11 +948,11 @@ class PaymentRepository {
 
   /// Acquires row-level locks on [Payment] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<PaymentTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<PaymentTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<Payment>(
       where: where(Payment.t),
@@ -961,10 +969,10 @@ class PaymentAttachRowRepository {
   /// Creates a relation between the given [Payment] and [Invoice]
   /// by setting the [Payment]'s foreign key `invoiceId` to refer to the [Invoice].
   Future<void> invoice(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Payment payment,
-    _i5.Invoice invoice, {
-    _i1.Transaction? transaction,
+    _i3d856q3.Invoice invoice, {
+    _is.Transaction? transaction,
   }) async {
     if (payment.id == null) {
       throw ArgumentError.notNull('payment.id');
@@ -991,9 +999,9 @@ class PaymentDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> invoice(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Payment payment, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (payment.id == null) {
       throw ArgumentError.notNull('payment.id');

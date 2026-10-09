@@ -1,6 +1,7 @@
 import 'package:company_portal/src/core/viewmodel.dart';
 import 'package:company_portal/src/domain/repositories/bank_account_repository.dart';
 import 'package:company_portal/src/domain/repositories/brasil_api_repository.dart';
+import 'package:flutter/foundation.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import 'package:company_portal/src/domain/services/company_session.dart';
 
@@ -95,7 +96,7 @@ class BankAccountsViewmodel extends Viewmodel
           )
           .toList();
     } catch (e) {
-      print('Erro ao buscar bancos: $e');
+      debugPrint('Erro ao buscar bancos: $e');
       return [];
     }
   }

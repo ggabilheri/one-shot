@@ -32,7 +32,7 @@ class BrasilApiGatewayEndpoint extends Endpoint {
         );
       }
     } catch (e) {
-      print('erro ao buscar o cnpj: $e');
+      session.log('erro ao buscar o cnpj: $e', level: LogLevel.error);
     }
     return null;
   }
@@ -56,7 +56,7 @@ class BrasilApiGatewayEndpoint extends Endpoint {
         );
       }
     } catch (e) {
-      print('erro ao buscar o cep: $e');
+      session.log('erro ao buscar o cep: $e', level: LogLevel.error);
     }
     return address;
   }
@@ -74,7 +74,7 @@ class BrasilApiGatewayEndpoint extends Endpoint {
         }
       }
     } catch (e) {
-      print('erro ao buscar os bancos: $e');
+      session.log('erro ao buscar os bancos: $e', level: LogLevel.error);
     }
     return banks;
   }

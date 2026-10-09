@@ -70,7 +70,7 @@ class _DocumentListPageState extends ViewmodelState<DocumentListPage, IDocumentV
                     : ListView.separated(
                         padding: const EdgeInsets.all(24),
                         itemCount: vm.documents.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 16),
+                        separatorBuilder: (_, _) => const SizedBox(height: 16),
                         itemBuilder: (context, index) {
                           final document = vm.documents[index];
                           return _DocumentCard(
@@ -131,7 +131,7 @@ class _DocumentCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: DSTokens.surface,
         borderRadius: BorderRadius.circular(DSTokens.borderRadius),
-        border: Border.all(color: DSTokens.outline.withOpacity(0.05)),
+        border: Border.all(color: DSTokens.outline.withValues(alpha: 0.05)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -8,107 +8,118 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
+// ignore_for_file: dead_code, unnecessary_type_check
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import 'package:serverpod/protocol.dart' as _i2;
-import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i3;
-import 'access_control/role_permission.dart' as _i4;
-import 'access_control/security_role.dart' as _i5;
-import 'access_control/user_role.dart' as _i6;
-import 'common/accessory.dart' as _i7;
-import 'common/address.dart' as _i8;
-import 'common/document.dart' as _i9;
-import 'common/one_shot_exception.dart' as _i10;
-import 'common/supply_stock.dart' as _i11;
-import 'common/user_profile.dart' as _i12;
-import 'company/company.dart' as _i13;
-import 'company/company_type.dart' as _i14;
-import 'company/membership.dart' as _i15;
-import 'company/range_visit.dart' as _i16;
-import 'enums/access_level.enum.dart' as _i17;
-import 'enums/accessory.enum.dart' as _i18;
-import 'enums/app_module.enum.dart' as _i19;
-import 'enums/asaas_webhook_event_type.enum.dart' as _i20;
-import 'enums/conservation_state.enum.dart' as _i21;
-import 'enums/currency.enum.dart' as _i22;
-import 'enums/document_type.enum.dart' as _i23;
-import 'enums/financial_entry_status.dart' as _i24;
-import 'enums/financial_entry_type.dart' as _i25;
-import 'enums/firearm_action.enum.dart' as _i26;
-import 'enums/firearm_purpose.enum.dart' as _i27;
-import 'enums/firearm_type.enum.dart' as _i28;
-import 'enums/gender.enum.dart' as _i29;
-import 'enums/invoice_status.enum.dart' as _i30;
-import 'enums/membership_status.dart' as _i31;
-import 'enums/payment_method.enum.dart' as _i32;
-import 'enums/payment_status.enum.dart' as _i33;
-import 'enums/pix_key_type.dart' as _i34;
-import 'enums/plan_periodicity.enum.dart' as _i35;
-import 'enums/plan_status.enum.dart' as _i36;
-import 'enums/plan_type.enum.dart' as _i37;
-import 'enums/platform_app.enum.dart' as _i38;
-import 'enums/registry_body.enum.dart' as _i39;
-import 'enums/usage_type.enum.dart' as _i40;
-import 'enums/user_status.enum.dart' as _i41;
-import 'enums/user_type.enum.dart' as _i42;
-import 'finance/asaas_webhook_event.dart' as _i43;
-import 'finance/bank.dart' as _i44;
-import 'finance/bank_account.dart' as _i45;
-import 'finance/financial_entry.dart' as _i46;
-import 'finance/invoice.dart' as _i47;
-import 'finance/invoice_item.dart' as _i48;
-import 'finance/payment.dart' as _i49;
-import 'greeting.dart' as _i50;
-import 'gunsmith/gunsmith.dart' as _i51;
-import 'gunsmith/gunsmith_client.dart' as _i52;
-import 'gunsmith/service_order.dart' as _i53;
-import 'gunsmith/service_order_item.dart' as _i54;
-import 'product/product.dart' as _i55;
-import 'product/product_group.dart' as _i56;
-import 'shooter/ammunition_stock.dart' as _i57;
-import 'shooter/firearm.dart' as _i58;
-import 'shooter/reload_session.dart' as _i59;
-import 'shooter/reload_test.dart' as _i60;
-import 'shooter/training.dart' as _i61;
-import 'subscription/subscription_plan.dart' as _i62;
-import 'package:oneshot_server/src/generated/common/accessory.dart' as _i63;
-import 'package:oneshot_server/src/generated/shooter/ammunition_stock.dart'
-    as _i64;
-import 'package:oneshot_server/src/generated/finance/bank_account.dart' as _i65;
-import 'package:oneshot_server/src/generated/finance/bank.dart' as _i66;
-import 'package:oneshot_server/src/generated/company/company.dart' as _i67;
-import 'package:oneshot_server/src/generated/company/membership.dart' as _i68;
-import 'package:oneshot_server/src/generated/company/range_visit.dart' as _i69;
-import 'package:oneshot_server/src/generated/common/document.dart' as _i70;
-import 'package:oneshot_server/src/generated/finance/financial_entry.dart'
-    as _i71;
-import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _i72;
-import 'package:oneshot_server/src/generated/gunsmith/gunsmith.dart' as _i73;
-import 'package:oneshot_server/src/generated/gunsmith/gunsmith_client.dart'
-    as _i74;
-import 'package:oneshot_server/src/generated/gunsmith/service_order_item.dart'
-    as _i75;
-import 'package:oneshot_server/src/generated/gunsmith/service_order.dart'
-    as _i76;
-import 'package:oneshot_server/src/generated/finance/invoice_item.dart' as _i77;
-import 'package:oneshot_server/src/generated/finance/invoice.dart' as _i78;
-import 'package:oneshot_server/src/generated/finance/payment.dart' as _i79;
-import 'package:oneshot_server/src/generated/product/product.dart' as _i80;
-import 'package:oneshot_server/src/generated/product/product_group.dart'
-    as _i81;
-import 'package:oneshot_server/src/generated/shooter/reload_session.dart'
-    as _i82;
-import 'package:oneshot_server/src/generated/shooter/reload_test.dart' as _i83;
-import 'package:oneshot_server/src/generated/common/supply_stock.dart' as _i84;
 import 'package:oneshot_server/src/generated/access_control/role_permission.dart'
-    as _i85;
+    as _itb2zhn4;
 import 'package:oneshot_server/src/generated/access_control/security_role.dart'
-    as _i86;
+    as _i1xchi60;
+import 'package:oneshot_server/src/generated/common/accessory.dart'
+    as _ieqpa344;
+import 'package:oneshot_server/src/generated/common/document.dart' as _is536eiv;
+import 'package:oneshot_server/src/generated/common/supply_stock.dart'
+    as _i8gnh98r;
+import 'package:oneshot_server/src/generated/common/user_profile.dart'
+    as _i2pyoxii;
+import 'package:oneshot_server/src/generated/company/company.dart' as _ic0khr1u;
+import 'package:oneshot_server/src/generated/company/membership.dart'
+    as _i1s6ob71;
+import 'package:oneshot_server/src/generated/company/range_visit.dart'
+    as _illbufnr;
+import 'package:oneshot_server/src/generated/finance/bank.dart' as _ij8k7xum;
+import 'package:oneshot_server/src/generated/finance/bank_account.dart'
+    as _ix4lc03l;
+import 'package:oneshot_server/src/generated/finance/financial_entry.dart'
+    as _ibsfr7x7;
+import 'package:oneshot_server/src/generated/finance/invoice.dart' as _i30q017a;
+import 'package:oneshot_server/src/generated/finance/invoice_item.dart'
+    as _i4dj62ps;
+import 'package:oneshot_server/src/generated/finance/payment.dart' as _i2rb000s;
+import 'package:oneshot_server/src/generated/gunsmith/gunsmith.dart'
+    as _icrmzcgd;
+import 'package:oneshot_server/src/generated/gunsmith/gunsmith_client.dart'
+    as _i3v21vya;
+import 'package:oneshot_server/src/generated/gunsmith/service_order.dart'
+    as _ilfracgz;
+import 'package:oneshot_server/src/generated/gunsmith/service_order_item.dart'
+    as _ipjdt3yw;
+import 'package:oneshot_server/src/generated/product/product.dart' as _ichcxeb2;
+import 'package:oneshot_server/src/generated/product/product_group.dart'
+    as _isb7m7oi;
+import 'package:oneshot_server/src/generated/shooter/ammunition_stock.dart'
+    as _iznitra9;
+import 'package:oneshot_server/src/generated/shooter/firearm.dart' as _iv8sr5qk;
+import 'package:oneshot_server/src/generated/shooter/reload_session.dart'
+    as _ir80yzxg;
+import 'package:oneshot_server/src/generated/shooter/reload_test.dart'
+    as _ifny91bp;
+import 'package:oneshot_server/src/generated/shooter/training.dart'
+    as _i8n7svi8;
 import 'package:oneshot_server/src/generated/subscription/subscription_plan.dart'
-    as _i87;
-import 'package:oneshot_server/src/generated/shooter/training.dart' as _i88;
-import 'package:oneshot_server/src/generated/common/user_profile.dart' as _i89;
+    as _ilwo31st;
+import 'package:serverpod/protocol.dart' as _isp;
+import 'package:serverpod/serverpod.dart' as _is;
+import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i1n3uhu0;
+import 'access_control/role_permission.dart' as _itwd6fku;
+import 'access_control/security_role.dart' as _in9fkuzh;
+import 'access_control/user_role.dart' as _iflys0o9;
+import 'common/accessory.dart' as _i18rxkcg;
+import 'common/address.dart' as _ii1cybhg;
+import 'common/document.dart' as _i023ezu2;
+import 'common/one_shot_exception.dart' as _i2v0zfwt;
+import 'common/supply_stock.dart' as _i8y573y6;
+import 'common/user_profile.dart' as _izgbvseu;
+import 'company/company.dart' as _ienljv70;
+import 'company/company_type.dart' as _i7fsgy8h;
+import 'company/membership.dart' as _i29p8qv7;
+import 'company/range_visit.dart' as _iqo0zmu4;
+import 'enums/access_level.enum.dart' as _iugjo2wb;
+import 'enums/accessory.enum.dart' as _ip9lql6r;
+import 'enums/app_module.enum.dart' as _iyudezai;
+import 'enums/asaas_webhook_event_type.enum.dart' as _iy4kwzbj;
+import 'enums/conservation_state.enum.dart' as _iuu90wd5;
+import 'enums/currency.enum.dart' as _ictknidt;
+import 'enums/document_type.enum.dart' as _ibornalb;
+import 'enums/financial_entry_status.dart' as _idw6xq4s;
+import 'enums/financial_entry_type.dart' as _iv2iml2v;
+import 'enums/firearm_action.enum.dart' as _itctldyk;
+import 'enums/firearm_purpose.enum.dart' as _ipfzkkcy;
+import 'enums/firearm_type.enum.dart' as _iv6h25me;
+import 'enums/gender.enum.dart' as _ivjv70nm;
+import 'enums/invoice_status.enum.dart' as _iwp0wycx;
+import 'enums/membership_status.dart' as _iaawilat;
+import 'enums/payment_method.enum.dart' as _ir7lu9de;
+import 'enums/payment_status.enum.dart' as _ikjzbt8l;
+import 'enums/pix_key_type.dart' as _i2xwc0ya;
+import 'enums/plan_periodicity.enum.dart' as _ihsiicw8;
+import 'enums/plan_status.enum.dart' as _i3zf9gwu;
+import 'enums/plan_type.enum.dart' as _itku2k2q;
+import 'enums/platform_app.enum.dart' as _i2yfqo06;
+import 'enums/registry_body.enum.dart' as _ibbobdoe;
+import 'enums/usage_type.enum.dart' as _ixsenwfe;
+import 'enums/user_status.enum.dart' as _ihk15r1q;
+import 'enums/user_type.enum.dart' as _i6i91bhn;
+import 'finance/asaas_webhook_event.dart' as _i268wbv5;
+import 'finance/bank.dart' as _i7csfp3a;
+import 'finance/bank_account.dart' as _i1qq6iwp;
+import 'finance/financial_entry.dart' as _irygpv1g;
+import 'finance/invoice.dart' as _ivdiuwq4;
+import 'finance/invoice_item.dart' as _izi6zi6k;
+import 'finance/payment.dart' as _i3em9ox0;
+import 'greeting.dart' as _ig8bxnp5;
+import 'gunsmith/gunsmith.dart' as _i1xnjo88;
+import 'gunsmith/gunsmith_client.dart' as _iov85fbn;
+import 'gunsmith/service_order.dart' as _itc8b666;
+import 'gunsmith/service_order_item.dart' as _igkm4f4b;
+import 'product/product.dart' as _ip2j4rpy;
+import 'product/product_group.dart' as _iy51xlx2;
+import 'shooter/ammunition_stock.dart' as _ig3iv7v1;
+import 'shooter/firearm.dart' as _i7i930pv;
+import 'shooter/reload_session.dart' as _ipl25531;
+import 'shooter/reload_test.dart' as _ikjmk4up;
+import 'shooter/training.dart' as _iujmcebm;
+import 'subscription/subscription_plan.dart' as _iq5ctf45;
 export 'access_control/role_permission.dart';
 export 'access_control/security_role.dart';
 export 'access_control/user_role.dart';
@@ -169,214 +180,201 @@ export 'shooter/reload_test.dart';
 export 'shooter/training.dart';
 export 'subscription/subscription_plan.dart';
 
-class Protocol extends _i1.SerializationManagerServer {
+class Protocol extends _is.DatabaseSerializationManager {
   Protocol._();
 
   factory Protocol() => _instance;
 
-  static final Protocol _instance = Protocol._();
+  static final Protocol _instance = Protocol._().._registerHostProtocols();
 
-  static final List<_i2.TableDefinition> targetTableDefinitions = [
-    _i2.TableDefinition(
+  static List<_isp.TableDefinition> get targetTableDefinitions => [
+    _isp.TableDefinition(
       name: 'accessories',
       dartName: 'Accessory',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'firearmId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'purpose',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'type',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:AccessoryType',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'serialNumber',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'manufactureCountry',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'manufacturer',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'model',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'description',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'conservationState',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'protocol:ConservationState?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'usageType',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'protocol:UsageType?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'dimensions',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'weight',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: true,
           dartType: 'double?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'color',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'finishMaterial',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'acquisitionDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'purchasePrice',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: true,
           dartType: 'double?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'invoiceNumber',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'invoiceEmissionDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'sellerData',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'registryBody',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'protocol:RegistryBody?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'customizations',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'maintenanceHistory',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'images',
-          columnType: _i2.ColumnType.json,
+          columnType: _isp.ColumnType.json,
           isNullable: true,
           dartType: 'List<String>?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'accessories_fk_0',
           columns: ['userId'],
           referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'accessories_fk_1',
           columns: ['firearmId'],
           referenceTable: 'firearms',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'accessories_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'accessory_user_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'userId',
             ),
           ],
@@ -384,12 +382,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'accessory_firearm_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'firearmId',
             ),
           ],
@@ -397,12 +395,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'accessory_serial_number_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'serialNumber',
             ),
           ],
@@ -413,100 +411,87 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'addresses',
       dartName: 'Address',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'street',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'number',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'complement',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'neighborhood',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'city',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'state',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'zipCode',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userProfileId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'addresses_fk_0',
           columns: ['userProfileId'],
           referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'addresses_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'address_zip_code_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'zipCode',
             ),
           ],
@@ -517,112 +502,99 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'ammunition_stocks',
       dartName: 'AmmunitionStock',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userInfoId',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: true,
           dartType: 'int?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'type',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'manufacturer',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'caliber',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'projectileType',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'projectileWeightGrains',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: true,
           dartType: 'double?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'quantity',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'purchasePrice',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: true,
           dartType: 'double?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'acquisitionDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'casingBatch',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'ammunition_stocks_fk_0',
           columns: ['userInfoId'],
           referenceTable: 'serverpod_user_info',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'ammunition_stocks_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'ammo_stock_user_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'userInfoId',
             ),
           ],
@@ -630,12 +602,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'ammo_stock_caliber_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'caliber',
             ),
           ],
@@ -646,85 +618,72 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'asaas_webhook_events',
       dartName: 'AsaasWebhookEvent',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'eventId',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'event',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'payload',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'processed',
-          columnType: _i2.ColumnType.boolean,
+          columnType: _isp.ColumnType.boolean,
           isNullable: false,
           dartType: 'bool',
           columnDefault: 'false',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'processedAt',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'error',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'receivedAt',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
-          columnDefault: 'CURRENT_TIMESTAMP',
+          columnDefault: 'now',
         ),
       ],
       foreignKeys: [],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'asaas_webhook_events_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'asaas_event_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'eventId',
             ),
           ],
@@ -732,12 +691,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: true,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'asaas_event_processed_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'processed',
             ),
           ],
@@ -745,12 +704,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'asaas_event_type_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'event',
             ),
           ],
@@ -758,12 +717,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'asaas_event_received_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'receivedAt',
             ),
           ],
@@ -774,124 +733,111 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'bank_accounts',
       dartName: 'BankAccount',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'name',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'bankName',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'agency',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'agencyDigit',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'accountNumber',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'accountDigit',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'balance',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'status',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'originModule',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'companyId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'pixKey',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'pixKeyType',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'protocol:PixKeyType?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'bank_accounts_fk_0',
           columns: ['companyId'],
           referenceTable: 'companies',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'bank_accounts_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'bank_account_origin_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'originModule',
             ),
           ],
@@ -899,12 +845,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'bank_account_status_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'status',
             ),
           ],
@@ -915,158 +861,145 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'companies',
       dartName: 'Company',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'name',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'cnpj',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'type',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:CompanyType',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'addressId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'ownerId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'phoneNumber',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'email',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'active',
-          columnType: _i2.ColumnType.boolean,
+          columnType: _isp.ColumnType.boolean,
           isNullable: false,
           dartType: 'bool',
           columnDefault: 'true',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'incomeValue',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
           columnDefault: '1000.00',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'parentCompanyId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasAccountId',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasWalletId',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasApiKey',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasOnboardingFailureReason',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'companies_fk_0',
           columns: ['addressId'],
           referenceTable: 'addresses',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'companies_fk_1',
           columns: ['ownerId'],
           referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'companies_fk_2',
           columns: ['parentCompanyId'],
           referenceTable: 'companies',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'companies_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'company_cnpj_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'cnpj',
             ),
           ],
@@ -1074,12 +1007,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: true,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'company_owner_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'ownerId',
             ),
           ],
@@ -1087,12 +1020,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'company_parent_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'parentCompanyId',
             ),
           ],
@@ -1103,150 +1036,137 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'documents',
       dartName: 'Document',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'firearmId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'accessoryId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'type',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:DocumentType',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'registryBody',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:RegistryBody',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'number',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'emissionDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'expirationDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'filePath',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'supplierName',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'supplierCpfCnpj',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'supplierPhone',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'supplierAddress',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'documents_fk_0',
           columns: ['userId'],
           referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'documents_fk_1',
           columns: ['firearmId'],
           referenceTable: 'firearms',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'documents_fk_2',
           columns: ['accessoryId'],
           referenceTable: 'accessories',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'documents_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'document_user_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'userId',
             ),
           ],
@@ -1254,12 +1174,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'document_number_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'number',
             ),
           ],
@@ -1267,12 +1187,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'document_firearm_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'firearmId',
             ),
           ],
@@ -1280,12 +1200,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'document_accessory_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'accessoryId',
             ),
           ],
@@ -1296,132 +1216,119 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'financial_entries',
       dartName: 'FinancialEntry',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'type',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:FinancialEntryType',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'description',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'amount',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'dueDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'paymentDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'status',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:FinancialEntryStatus',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'originModule',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:PlatformApp',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'bankAccountId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'invoiceId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'companyId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'financial_entries_fk_0',
           columns: ['bankAccountId'],
           referenceTable: 'bank_accounts',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'financial_entries_fk_1',
           columns: ['invoiceId'],
           referenceTable: 'invoices',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'financial_entries_fk_2',
           columns: ['companyId'],
           referenceTable: 'companies',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'financial_entries_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'financial_entry_type_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'type',
             ),
           ],
@@ -1429,12 +1336,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'financial_entry_status_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'status',
             ),
           ],
@@ -1442,12 +1349,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'financial_entry_due_date_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'dueDate',
             ),
           ],
@@ -1455,12 +1362,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'financial_entry_origin_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'originModule',
             ),
           ],
@@ -1471,256 +1378,243 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'firearms',
       dartName: 'Firearm',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'purpose',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:FirearmPurpose',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'type',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:FirearmType',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'action',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:FirearmAction',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'usageType',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:UsageType',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'serialNumber',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'manufactureCountry',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'manufacturer',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'model',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'bolt',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'frame',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'grip',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'conservationState',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:ConservationState',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'caliber',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'barrelsCount',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: true,
           dartType: 'int?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'barrelLength',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'soulType',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'sightType',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'riflingCount',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: true,
           dartType: 'int?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'riflingDirection',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'magazineCapacity',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'magazineCount',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: true,
           dartType: 'int?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'dimensions',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'weight',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: true,
           dartType: 'double?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'acquisitionDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'purchasePrice',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: true,
           dartType: 'double?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'saleDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'salePrice',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: true,
           dartType: 'double?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'buyerData',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'customizations',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'images',
-          columnType: _i2.ColumnType.json,
+          columnType: _isp.ColumnType.json,
           isNullable: true,
           dartType: 'List<String>?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'cleaningHistory',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'maintenanceHistory',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'totalShots',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: true,
           dartType: 'int?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'firearms_fk_0',
           columns: ['userId'],
           referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'firearms_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'firearm_user_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'userId',
             ),
           ],
@@ -1728,12 +1622,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'firearm_serial_number_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'serialNumber',
             ),
           ],
@@ -1744,98 +1638,85 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'gunsmith_clients',
       dartName: 'GunsmithClient',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'gunsmithUserInfoId',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: true,
           dartType: 'int?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'name',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'cpf',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'rg',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'phone',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'addressId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'gunsmith_clients_fk_0',
           columns: ['gunsmithUserInfoId'],
           referenceTable: 'serverpod_user_info',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'gunsmith_clients_fk_1',
           columns: ['addressId'],
           referenceTable: 'addresses',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'gunsmith_clients_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'gunsmith_client_user_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'gunsmithUserInfoId',
             ),
           ],
@@ -1843,12 +1724,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'gunsmith_client_cpf_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'cpf',
             ),
           ],
@@ -1859,124 +1740,111 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'gunsmiths',
       dartName: 'Gunsmith',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'name',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'taxId',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'addressId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'ownerId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'active',
-          columnType: _i2.ColumnType.boolean,
+          columnType: _isp.ColumnType.boolean,
           isNullable: false,
           dartType: 'bool',
           columnDefault: 'true',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'incomeValue',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
           columnDefault: '1000.00',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasAccountId',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasWalletId',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasApiKey',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasOnboardingFailureReason',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'gunsmiths_fk_0',
           columns: ['addressId'],
           referenceTable: 'addresses',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'gunsmiths_fk_1',
           columns: ['ownerId'],
           referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'gunsmiths_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'gunsmith_tax_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'taxId',
             ),
           ],
@@ -1984,12 +1852,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: true,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'gunsmith_owner_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'ownerId',
             ),
           ],
@@ -2000,82 +1868,69 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'invoice_items',
       dartName: 'InvoiceItem',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'description',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'quantity',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'unitPrice',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'totalPrice',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'invoiceId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'invoice_items_fk_0',
           columns: ['invoiceId'],
           referenceTable: 'invoices',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'invoice_items_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'invoice_item_invoice_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'invoiceId',
             ),
           ],
@@ -2086,185 +1941,172 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'invoices',
       dartName: 'Invoice',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'originModule',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'direction',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'status',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:InvoiceStatus',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'issueDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'dueDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'totalAmount',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'discount',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: true,
           dartType: 'double?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'finalAmount',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'currency',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:Currency',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'notes',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'isRecurrent',
-          columnType: _i2.ColumnType.boolean,
+          columnType: _isp.ColumnType.boolean,
           isNullable: false,
           dartType: 'bool',
           columnDefault: 'false',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasInstallmentId',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasCustomerId',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'companyId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'gunsmithId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'draweeId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'invoices_fk_0',
           columns: ['companyId'],
           referenceTable: 'companies',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'invoices_fk_1',
           columns: ['gunsmithId'],
           referenceTable: 'gunsmiths',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'invoices_fk_2',
           columns: ['userId'],
           referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'invoices_fk_3',
           columns: ['draweeId'],
           referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'invoices_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'invoice_status_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'status',
             ),
           ],
@@ -2272,12 +2114,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'invoice_due_date_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'dueDate',
             ),
           ],
@@ -2285,12 +2127,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'invoice_company_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'companyId',
             ),
           ],
@@ -2298,12 +2140,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'invoice_gunsmith_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'gunsmithId',
             ),
           ],
@@ -2311,12 +2153,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'invoice_user_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'userId',
             ),
           ],
@@ -2324,12 +2166,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'invoice_asaas_installment_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'asaasInstallmentId',
             ),
           ],
@@ -2340,109 +2182,96 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'memberships',
       dartName: 'Membership',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'companyId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'membershipNumber',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'startDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'validUntil',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'status',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:MembershipStatus',
-          columnDefault: '\'active\'::text',
+          columnDefault: '\'active\'',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'planName',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'memberships_fk_0',
           columns: ['userId'],
           referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'memberships_fk_1',
           columns: ['companyId'],
           referenceTable: 'companies',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'memberships_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'membership_user_company_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'userId',
             ),
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'companyId',
             ),
           ],
@@ -2450,12 +2279,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: true,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'membership_company_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'companyId',
             ),
           ],
@@ -2466,148 +2295,135 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'payments',
       dartName: 'Payment',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'paymentDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'amountPaid',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'paymentMethod',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:PaymentMethod',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'status',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:PaymentStatus',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'currency',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:Currency',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasPaymentId',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasCustomerId',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasBillingType',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasDueDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasNetValue',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: true,
           dartType: 'double?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasInvoiceUrl',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasBankSlipUrl',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasPixQrCodePayload',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasPixQrCodeImage',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasRefundedAt',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'invoiceId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'payments_fk_0',
           columns: ['invoiceId'],
           referenceTable: 'invoices',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'payments_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'payment_invoice_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'invoiceId',
             ),
           ],
@@ -2615,12 +2431,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'payment_status_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'status',
             ),
           ],
@@ -2628,12 +2444,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'payment_date_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'paymentDate',
             ),
           ],
@@ -2641,12 +2457,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'payment_asaas_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'asaasPaymentId',
             ),
           ],
@@ -2657,76 +2473,63 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'product_groups',
       dartName: 'ProductGroup',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'name',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'description',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'originModule',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'ownerId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'product_groups_fk_0',
           columns: ['ownerId'],
           referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'product_groups_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'product_group_origin_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'originModule',
             ),
           ],
@@ -2734,12 +2537,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'product_group_owner_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'ownerId',
             ),
           ],
@@ -2750,88 +2553,75 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'products',
       dartName: 'Product',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'code',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'description',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'unit',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'unitPrice',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'originModule',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'groupId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'products_fk_0',
           columns: ['groupId'],
           referenceTable: 'product_groups',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'products_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'products_code_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'code',
             ),
           ],
@@ -2839,12 +2629,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: true,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'products_origin_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'originModule',
             ),
           ],
@@ -2852,12 +2642,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'product_group_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'groupId',
             ),
           ],
@@ -2868,122 +2658,109 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'range_visits',
       dartName: 'RangeVisit',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'companyId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'firearmId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'checkIn',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'checkOut',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'shotsFired',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
           columnDefault: '0',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'notes',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'habitualityReportGenerated',
-          columnType: _i2.ColumnType.boolean,
+          columnType: _isp.ColumnType.boolean,
           isNullable: false,
           dartType: 'bool',
           columnDefault: 'false',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'range_visits_fk_0',
           columns: ['userId'],
           referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'range_visits_fk_1',
           columns: ['companyId'],
           referenceTable: 'companies',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'range_visits_fk_2',
           columns: ['firearmId'],
           referenceTable: 'firearms',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'range_visits_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'range_visit_user_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'userId',
             ),
           ],
@@ -2991,12 +2768,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'range_visit_company_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'companyId',
             ),
           ],
@@ -3004,12 +2781,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'range_visit_date_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'checkIn',
             ),
           ],
@@ -3020,170 +2797,157 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'reload_sessions',
       dartName: 'ReloadSession',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userInfoId',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: true,
           dartType: 'int?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'reloadDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'pressId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'caliber',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'casingBatch',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'reloadsCompleted',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'powderId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'powderGrains',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'primerId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'projectileId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'oal',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'totalCost',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'unitCost',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'reload_sessions_fk_0',
           columns: ['userInfoId'],
           referenceTable: 'serverpod_user_info',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'reload_sessions_fk_1',
           columns: ['pressId'],
           referenceTable: 'accessories',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'reload_sessions_fk_2',
           columns: ['powderId'],
           referenceTable: 'supply_stocks',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'reload_sessions_fk_3',
           columns: ['primerId'],
           referenceTable: 'supply_stocks',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'reload_sessions_fk_4',
           columns: ['projectileId'],
           referenceTable: 'supply_stocks',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'reload_sessions_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'reload_session_user_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'userInfoId',
             ),
           ],
@@ -3191,12 +2955,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'reload_session_date_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'reloadDate',
             ),
           ],
@@ -3207,128 +2971,115 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'reload_tests',
       dartName: 'ReloadTest',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'reloadSessionId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'firearmId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'testDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'shotsFired',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'highestVelocityFps',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'lowestVelocityFps',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'averageVelocityFps',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'powerFactor',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'averageEnergy',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'groupingMeasurement',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: true,
           dartType: 'double?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'crackedCasings',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'reload_tests_fk_0',
           columns: ['reloadSessionId'],
           referenceTable: 'reload_sessions',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'reload_tests_fk_1',
           columns: ['firearmId'],
           referenceTable: 'firearms',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'reload_tests_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'reload_test_session_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'reloadSessionId',
             ),
           ],
@@ -3336,12 +3087,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'reload_test_firearm_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'firearmId',
             ),
           ],
@@ -3352,209 +3103,168 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'role_permissions',
       dartName: 'RolePermission',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'securityRoleId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'platform',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:PlatformApp',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'module',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'protocol:AppModule?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'level',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:AccessLevel',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'role_permissions_fk_0',
           columns: ['securityRoleId'],
           referenceTable: 'security_roles',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
-      indexes: [
-        _i2.IndexDefinition(
-          indexName: 'role_permissions_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-      ],
+      indexes: [],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'security_roles',
       dartName: 'SecurityRole',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'name',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'description',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'active',
-          columnType: _i2.ColumnType.boolean,
+          columnType: _isp.ColumnType.boolean,
           isNullable: false,
           dartType: 'bool',
         ),
       ],
       foreignKeys: [],
-      indexes: [
-        _i2.IndexDefinition(
-          indexName: 'security_roles_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-      ],
+      indexes: [],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'service_order_items',
       dartName: 'ServiceOrderItem',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'serviceOrderId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'description',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'isStockPart',
-          columnType: _i2.ColumnType.boolean,
+          columnType: _isp.ColumnType.boolean,
           isNullable: false,
           dartType: 'bool',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'supplyPartId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'servicePrice',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'service_order_items_fk_0',
           columns: ['serviceOrderId'],
           referenceTable: 'service_orders',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'service_order_items_fk_1',
           columns: ['supplyPartId'],
           referenceTable: 'supply_stocks',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'service_order_items_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'service_order_item_order_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'serviceOrderId',
             ),
           ],
@@ -3565,116 +3275,103 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'service_orders',
       dartName: 'ServiceOrder',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'clientId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'firearmId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'entryDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'estimatedDeliveryDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'totalPrice',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'discount',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: true,
           dartType: 'double?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'finalPrice',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'paymentMethod',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'notes',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'service_orders_fk_0',
           columns: ['clientId'],
           referenceTable: 'gunsmith_clients',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'service_orders_fk_1',
           columns: ['firearmId'],
           referenceTable: 'firearms',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'service_orders_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'service_order_client_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'clientId',
             ),
           ],
@@ -3682,12 +3379,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'service_order_entry_date_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'entryDate',
             ),
           ],
@@ -3698,100 +3395,87 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'subscription_plans',
       dartName: 'SubscriptionPlan',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'name',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'planType',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:PlanType',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'unitValue',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'quantity',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'totalValue',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'periodicity',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:PlanPeriodicity',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'status',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:PlanStatus',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'companyId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'subscription_plans_fk_0',
           columns: ['companyId'],
           referenceTable: 'companies',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'subscription_plans_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'plan_type_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'planType',
             ),
           ],
@@ -3799,12 +3483,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'plan_status_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'status',
             ),
           ],
@@ -3815,94 +3499,81 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'supply_stocks',
       dartName: 'SupplyStock',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'name',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'type',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'quantity',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'unit',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'acquisitionDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'batchNumber',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userInfoId',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: true,
           dartType: 'int?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'supply_stocks_fk_0',
           columns: ['userInfoId'],
           referenceTable: 'serverpod_user_info',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'supply_stocks_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'supply_stock_user_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'userInfoId',
             ),
           ],
@@ -3913,132 +3584,119 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'trainings',
       dartName: 'Training',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userInfoId',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: true,
           dartType: 'int?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'date',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
           dartType: 'DateTime',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'location',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'environmentType',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'firearmId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'ammunitionId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'shotsFired',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'distanceMeters',
-          columnType: _i2.ColumnType.doublePrecision,
+          columnType: _isp.ColumnType.doublePrecision,
           isNullable: false,
           dartType: 'double',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'score',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: true,
           dartType: 'int?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'targetImagesUrl',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'trainings_fk_0',
           columns: ['userInfoId'],
           referenceTable: 'serverpod_user_info',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'trainings_fk_1',
           columns: ['firearmId'],
           referenceTable: 'firearms',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'trainings_fk_2',
           columns: ['ammunitionId'],
           referenceTable: 'ammunition_stocks',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'trainings_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'training_user_id_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'userInfoId',
             ),
           ],
@@ -4046,12 +3704,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: false,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'training_date_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'date',
             ),
           ],
@@ -4062,140 +3720,127 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'user_profile',
       dartName: 'UserProfile',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userInfoId',
-          columnType: _i2.ColumnType.bigint,
+          columnType: _isp.ColumnType.bigint,
           isNullable: true,
           dartType: 'int?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'name',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'String',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'gender',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'protocol:Gender?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'birthDate',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'rg',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'cpf',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'phone',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'email',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'addressId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'types',
-          columnType: _i2.ColumnType.json,
+          columnType: _isp.ColumnType.json,
           isNullable: true,
           dartType: 'List<protocol:UserType>?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'status',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: false,
           dartType: 'protocol:UserStatus',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasCustomerId',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'asaasOnboardingFailureReason',
-          columnType: _i2.ColumnType.text,
+          columnType: _isp.ColumnType.text,
           isNullable: true,
           dartType: 'String?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'user_profile_fk_0',
           columns: ['userInfoId'],
           referenceTable: 'serverpod_user_info',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'user_profile_fk_1',
           columns: ['addressId'],
           referenceTable: 'addresses',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
       indexes: [
-        _i2.IndexDefinition(
-          indexName: 'user_profile_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'user_cpf_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'cpf',
             ),
           ],
@@ -4203,12 +3848,12 @@ class Protocol extends _i1.SerializationManagerServer {
           isUnique: true,
           isPrimary: false,
         ),
-        _i2.IndexDefinition(
+        _isp.IndexDefinition(
           indexName: 'user_email_idx',
           tableSpace: null,
           elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
               definition: 'email',
             ),
           ],
@@ -4219,89 +3864,75 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
+    _isp.TableDefinition(
       name: 'user_roles',
       dartName: 'UserRole',
       schema: 'public',
       module: 'oneshot',
       columns: [
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: false,
           dartType: 'UuidValue',
-          columnDefault: 'gen_random_uuid()',
+          columnDefault: 'random',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'userProfileId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'securityRoleId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
-        _i2.ColumnDefinition(
+        _isp.ColumnDefinition(
           name: 'companyId',
-          columnType: _i2.ColumnType.uuid,
+          columnType: _isp.ColumnType.uuid,
           isNullable: true,
           dartType: 'UuidValue?',
         ),
       ],
       foreignKeys: [
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'user_roles_fk_0',
           columns: ['userProfileId'],
           referenceTable: 'user_profile',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'user_roles_fk_1',
           columns: ['securityRoleId'],
           referenceTable: 'security_roles',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
-        _i2.ForeignKeyDefinition(
+        _isp.ForeignKeyDefinition(
           constraintName: 'user_roles_fk_2',
           columns: ['companyId'],
           referenceTable: 'companies',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
-      indexes: [
-        _i2.IndexDefinition(
-          indexName: 'user_roles_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            ),
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        ),
-      ],
+      indexes: [],
       managed: true,
     ),
-    ..._i3.Protocol.targetTableDefinitions,
-    ..._i2.Protocol.targetTableDefinitions,
+    ..._i1n3uhu0.Protocol.targetTableDefinitions,
+    ..._isp.Protocol.targetTableDefinitions,
   ];
 
   static String? getClassNameFromObjectJson(dynamic data) {
@@ -4311,10 +3942,7 @@ class Protocol extends _i1.SerializationManagerServer {
   }
 
   @override
-  T deserialize<T>(
-    dynamic data, [
-    Type? t,
-  ]) {
+  T deserialize<T>(dynamic data, [Type? t]) {
     t ??= T;
 
     final dataClassName = getClassNameFromObjectJson(data);
@@ -4324,528 +3952,576 @@ class Protocol extends _i1.SerializationManagerServer {
           'className': dataClassName,
           'data': data,
         });
-      } on FormatException catch (_) {
+      } on _is.DeserializationClassNameNotFoundException catch (_) {
         // If the className is not recognized (e.g., older client receiving
         // data with a new subtype), fall back to deserializing without the
         // className, using the expected type T.
       }
     }
 
-    if (t == _i4.RolePermission) {
-      return _i4.RolePermission.fromJson(data) as T;
+    if (t == _itwd6fku.RolePermission) {
+      return _itwd6fku.RolePermission.fromJson(data) as T;
     }
-    if (t == _i5.SecurityRole) {
-      return _i5.SecurityRole.fromJson(data) as T;
+    if (t == _in9fkuzh.SecurityRole) {
+      return _in9fkuzh.SecurityRole.fromJson(data) as T;
     }
-    if (t == _i6.UserRole) {
-      return _i6.UserRole.fromJson(data) as T;
+    if (t == _iflys0o9.UserRole) {
+      return _iflys0o9.UserRole.fromJson(data) as T;
     }
-    if (t == _i7.Accessory) {
-      return _i7.Accessory.fromJson(data) as T;
+    if (t == _i18rxkcg.Accessory) {
+      return _i18rxkcg.Accessory.fromJson(data) as T;
     }
-    if (t == _i8.Address) {
-      return _i8.Address.fromJson(data) as T;
+    if (t == _ii1cybhg.Address) {
+      return _ii1cybhg.Address.fromJson(data) as T;
     }
-    if (t == _i9.Document) {
-      return _i9.Document.fromJson(data) as T;
+    if (t == _i023ezu2.Document) {
+      return _i023ezu2.Document.fromJson(data) as T;
     }
-    if (t == _i10.AppException) {
-      return _i10.AppException.fromJson(data) as T;
+    if (t == _i2v0zfwt.AppException) {
+      return _i2v0zfwt.AppException.fromJson(data) as T;
     }
-    if (t == _i11.SupplyStock) {
-      return _i11.SupplyStock.fromJson(data) as T;
+    if (t == _i8y573y6.SupplyStock) {
+      return _i8y573y6.SupplyStock.fromJson(data) as T;
     }
-    if (t == _i12.UserProfile) {
-      return _i12.UserProfile.fromJson(data) as T;
+    if (t == _izgbvseu.UserProfile) {
+      return _izgbvseu.UserProfile.fromJson(data) as T;
     }
-    if (t == _i13.Company) {
-      return _i13.Company.fromJson(data) as T;
+    if (t == _ienljv70.Company) {
+      return _ienljv70.Company.fromJson(data) as T;
     }
-    if (t == _i14.CompanyType) {
-      return _i14.CompanyType.fromJson(data) as T;
+    if (t == _i7fsgy8h.CompanyType) {
+      return _i7fsgy8h.CompanyType.fromJson(data) as T;
     }
-    if (t == _i15.Membership) {
-      return _i15.Membership.fromJson(data) as T;
+    if (t == _i29p8qv7.Membership) {
+      return _i29p8qv7.Membership.fromJson(data) as T;
     }
-    if (t == _i16.RangeVisit) {
-      return _i16.RangeVisit.fromJson(data) as T;
+    if (t == _iqo0zmu4.RangeVisit) {
+      return _iqo0zmu4.RangeVisit.fromJson(data) as T;
     }
-    if (t == _i17.AccessLevel) {
-      return _i17.AccessLevel.fromJson(data) as T;
+    if (t == _iugjo2wb.AccessLevel) {
+      return _iugjo2wb.AccessLevel.fromJson(data) as T;
     }
-    if (t == _i18.AccessoryType) {
-      return _i18.AccessoryType.fromJson(data) as T;
+    if (t == _ip9lql6r.AccessoryType) {
+      return _ip9lql6r.AccessoryType.fromJson(data) as T;
     }
-    if (t == _i19.AppModule) {
-      return _i19.AppModule.fromJson(data) as T;
+    if (t == _iyudezai.AppModule) {
+      return _iyudezai.AppModule.fromJson(data) as T;
     }
-    if (t == _i20.AsaasWebhookEventType) {
-      return _i20.AsaasWebhookEventType.fromJson(data) as T;
+    if (t == _iy4kwzbj.AsaasWebhookEventType) {
+      return _iy4kwzbj.AsaasWebhookEventType.fromJson(data) as T;
     }
-    if (t == _i21.ConservationState) {
-      return _i21.ConservationState.fromJson(data) as T;
+    if (t == _iuu90wd5.ConservationState) {
+      return _iuu90wd5.ConservationState.fromJson(data) as T;
     }
-    if (t == _i22.Currency) {
-      return _i22.Currency.fromJson(data) as T;
+    if (t == _ictknidt.Currency) {
+      return _ictknidt.Currency.fromJson(data) as T;
     }
-    if (t == _i23.DocumentType) {
-      return _i23.DocumentType.fromJson(data) as T;
+    if (t == _ibornalb.DocumentType) {
+      return _ibornalb.DocumentType.fromJson(data) as T;
     }
-    if (t == _i24.FinancialEntryStatus) {
-      return _i24.FinancialEntryStatus.fromJson(data) as T;
+    if (t == _idw6xq4s.FinancialEntryStatus) {
+      return _idw6xq4s.FinancialEntryStatus.fromJson(data) as T;
     }
-    if (t == _i25.FinancialEntryType) {
-      return _i25.FinancialEntryType.fromJson(data) as T;
+    if (t == _iv2iml2v.FinancialEntryType) {
+      return _iv2iml2v.FinancialEntryType.fromJson(data) as T;
     }
-    if (t == _i26.FirearmAction) {
-      return _i26.FirearmAction.fromJson(data) as T;
+    if (t == _itctldyk.FirearmAction) {
+      return _itctldyk.FirearmAction.fromJson(data) as T;
     }
-    if (t == _i27.FirearmPurpose) {
-      return _i27.FirearmPurpose.fromJson(data) as T;
+    if (t == _ipfzkkcy.FirearmPurpose) {
+      return _ipfzkkcy.FirearmPurpose.fromJson(data) as T;
     }
-    if (t == _i28.FirearmType) {
-      return _i28.FirearmType.fromJson(data) as T;
+    if (t == _iv6h25me.FirearmType) {
+      return _iv6h25me.FirearmType.fromJson(data) as T;
     }
-    if (t == _i29.Gender) {
-      return _i29.Gender.fromJson(data) as T;
+    if (t == _ivjv70nm.Gender) {
+      return _ivjv70nm.Gender.fromJson(data) as T;
     }
-    if (t == _i30.InvoiceStatus) {
-      return _i30.InvoiceStatus.fromJson(data) as T;
+    if (t == _iwp0wycx.InvoiceStatus) {
+      return _iwp0wycx.InvoiceStatus.fromJson(data) as T;
     }
-    if (t == _i31.MembershipStatus) {
-      return _i31.MembershipStatus.fromJson(data) as T;
+    if (t == _iaawilat.MembershipStatus) {
+      return _iaawilat.MembershipStatus.fromJson(data) as T;
     }
-    if (t == _i32.PaymentMethod) {
-      return _i32.PaymentMethod.fromJson(data) as T;
+    if (t == _ir7lu9de.PaymentMethod) {
+      return _ir7lu9de.PaymentMethod.fromJson(data) as T;
     }
-    if (t == _i33.PaymentStatus) {
-      return _i33.PaymentStatus.fromJson(data) as T;
+    if (t == _ikjzbt8l.PaymentStatus) {
+      return _ikjzbt8l.PaymentStatus.fromJson(data) as T;
     }
-    if (t == _i34.PixKeyType) {
-      return _i34.PixKeyType.fromJson(data) as T;
+    if (t == _i2xwc0ya.PixKeyType) {
+      return _i2xwc0ya.PixKeyType.fromJson(data) as T;
     }
-    if (t == _i35.PlanPeriodicity) {
-      return _i35.PlanPeriodicity.fromJson(data) as T;
+    if (t == _ihsiicw8.PlanPeriodicity) {
+      return _ihsiicw8.PlanPeriodicity.fromJson(data) as T;
     }
-    if (t == _i36.PlanStatus) {
-      return _i36.PlanStatus.fromJson(data) as T;
+    if (t == _i3zf9gwu.PlanStatus) {
+      return _i3zf9gwu.PlanStatus.fromJson(data) as T;
     }
-    if (t == _i37.PlanType) {
-      return _i37.PlanType.fromJson(data) as T;
+    if (t == _itku2k2q.PlanType) {
+      return _itku2k2q.PlanType.fromJson(data) as T;
     }
-    if (t == _i38.PlatformApp) {
-      return _i38.PlatformApp.fromJson(data) as T;
+    if (t == _i2yfqo06.PlatformApp) {
+      return _i2yfqo06.PlatformApp.fromJson(data) as T;
     }
-    if (t == _i39.RegistryBody) {
-      return _i39.RegistryBody.fromJson(data) as T;
+    if (t == _ibbobdoe.RegistryBody) {
+      return _ibbobdoe.RegistryBody.fromJson(data) as T;
     }
-    if (t == _i40.UsageType) {
-      return _i40.UsageType.fromJson(data) as T;
+    if (t == _ixsenwfe.UsageType) {
+      return _ixsenwfe.UsageType.fromJson(data) as T;
     }
-    if (t == _i41.UserStatus) {
-      return _i41.UserStatus.fromJson(data) as T;
+    if (t == _ihk15r1q.UserStatus) {
+      return _ihk15r1q.UserStatus.fromJson(data) as T;
     }
-    if (t == _i42.UserType) {
-      return _i42.UserType.fromJson(data) as T;
+    if (t == _i6i91bhn.UserType) {
+      return _i6i91bhn.UserType.fromJson(data) as T;
     }
-    if (t == _i43.AsaasWebhookEvent) {
-      return _i43.AsaasWebhookEvent.fromJson(data) as T;
+    if (t == _i268wbv5.AsaasWebhookEvent) {
+      return _i268wbv5.AsaasWebhookEvent.fromJson(data) as T;
     }
-    if (t == _i44.Bank) {
-      return _i44.Bank.fromJson(data) as T;
+    if (t == _i7csfp3a.Bank) {
+      return _i7csfp3a.Bank.fromJson(data) as T;
     }
-    if (t == _i45.BankAccount) {
-      return _i45.BankAccount.fromJson(data) as T;
+    if (t == _i1qq6iwp.BankAccount) {
+      return _i1qq6iwp.BankAccount.fromJson(data) as T;
     }
-    if (t == _i46.FinancialEntry) {
-      return _i46.FinancialEntry.fromJson(data) as T;
+    if (t == _irygpv1g.FinancialEntry) {
+      return _irygpv1g.FinancialEntry.fromJson(data) as T;
     }
-    if (t == _i47.Invoice) {
-      return _i47.Invoice.fromJson(data) as T;
+    if (t == _ivdiuwq4.Invoice) {
+      return _ivdiuwq4.Invoice.fromJson(data) as T;
     }
-    if (t == _i48.InvoiceItem) {
-      return _i48.InvoiceItem.fromJson(data) as T;
+    if (t == _izi6zi6k.InvoiceItem) {
+      return _izi6zi6k.InvoiceItem.fromJson(data) as T;
     }
-    if (t == _i49.Payment) {
-      return _i49.Payment.fromJson(data) as T;
+    if (t == _i3em9ox0.Payment) {
+      return _i3em9ox0.Payment.fromJson(data) as T;
     }
-    if (t == _i50.Greeting) {
-      return _i50.Greeting.fromJson(data) as T;
+    if (t == _ig8bxnp5.Greeting) {
+      return _ig8bxnp5.Greeting.fromJson(data) as T;
     }
-    if (t == _i51.Gunsmith) {
-      return _i51.Gunsmith.fromJson(data) as T;
+    if (t == _i1xnjo88.Gunsmith) {
+      return _i1xnjo88.Gunsmith.fromJson(data) as T;
     }
-    if (t == _i52.GunsmithClient) {
-      return _i52.GunsmithClient.fromJson(data) as T;
+    if (t == _iov85fbn.GunsmithClient) {
+      return _iov85fbn.GunsmithClient.fromJson(data) as T;
     }
-    if (t == _i53.ServiceOrder) {
-      return _i53.ServiceOrder.fromJson(data) as T;
+    if (t == _itc8b666.ServiceOrder) {
+      return _itc8b666.ServiceOrder.fromJson(data) as T;
     }
-    if (t == _i54.ServiceOrderItem) {
-      return _i54.ServiceOrderItem.fromJson(data) as T;
+    if (t == _igkm4f4b.ServiceOrderItem) {
+      return _igkm4f4b.ServiceOrderItem.fromJson(data) as T;
     }
-    if (t == _i55.Product) {
-      return _i55.Product.fromJson(data) as T;
+    if (t == _ip2j4rpy.Product) {
+      return _ip2j4rpy.Product.fromJson(data) as T;
     }
-    if (t == _i56.ProductGroup) {
-      return _i56.ProductGroup.fromJson(data) as T;
+    if (t == _iy51xlx2.ProductGroup) {
+      return _iy51xlx2.ProductGroup.fromJson(data) as T;
     }
-    if (t == _i57.AmmunitionStock) {
-      return _i57.AmmunitionStock.fromJson(data) as T;
+    if (t == _ig3iv7v1.AmmunitionStock) {
+      return _ig3iv7v1.AmmunitionStock.fromJson(data) as T;
     }
-    if (t == _i58.Firearm) {
-      return _i58.Firearm.fromJson(data) as T;
+    if (t == _i7i930pv.Firearm) {
+      return _i7i930pv.Firearm.fromJson(data) as T;
     }
-    if (t == _i59.ReloadSession) {
-      return _i59.ReloadSession.fromJson(data) as T;
+    if (t == _ipl25531.ReloadSession) {
+      return _ipl25531.ReloadSession.fromJson(data) as T;
     }
-    if (t == _i60.ReloadTest) {
-      return _i60.ReloadTest.fromJson(data) as T;
+    if (t == _ikjmk4up.ReloadTest) {
+      return _ikjmk4up.ReloadTest.fromJson(data) as T;
     }
-    if (t == _i61.Training) {
-      return _i61.Training.fromJson(data) as T;
+    if (t == _iujmcebm.Training) {
+      return _iujmcebm.Training.fromJson(data) as T;
     }
-    if (t == _i62.SubscriptionPlan) {
-      return _i62.SubscriptionPlan.fromJson(data) as T;
+    if (t == _iq5ctf45.SubscriptionPlan) {
+      return _iq5ctf45.SubscriptionPlan.fromJson(data) as T;
     }
-    if (t == _i1.getType<_i4.RolePermission?>()) {
-      return (data != null ? _i4.RolePermission.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i5.SecurityRole?>()) {
-      return (data != null ? _i5.SecurityRole.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i6.UserRole?>()) {
-      return (data != null ? _i6.UserRole.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i7.Accessory?>()) {
-      return (data != null ? _i7.Accessory.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i8.Address?>()) {
-      return (data != null ? _i8.Address.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i9.Document?>()) {
-      return (data != null ? _i9.Document.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i10.AppException?>()) {
-      return (data != null ? _i10.AppException.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i11.SupplyStock?>()) {
-      return (data != null ? _i11.SupplyStock.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i12.UserProfile?>()) {
-      return (data != null ? _i12.UserProfile.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i13.Company?>()) {
-      return (data != null ? _i13.Company.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i14.CompanyType?>()) {
-      return (data != null ? _i14.CompanyType.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i15.Membership?>()) {
-      return (data != null ? _i15.Membership.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i16.RangeVisit?>()) {
-      return (data != null ? _i16.RangeVisit.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i17.AccessLevel?>()) {
-      return (data != null ? _i17.AccessLevel.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i18.AccessoryType?>()) {
-      return (data != null ? _i18.AccessoryType.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i19.AppModule?>()) {
-      return (data != null ? _i19.AppModule.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i20.AsaasWebhookEventType?>()) {
-      return (data != null ? _i20.AsaasWebhookEventType.fromJson(data) : null)
+    if (t == _is.getType<_itwd6fku.RolePermission?>()) {
+      return (data != null ? _itwd6fku.RolePermission.fromJson(data) : null)
           as T;
     }
-    if (t == _i1.getType<_i21.ConservationState?>()) {
-      return (data != null ? _i21.ConservationState.fromJson(data) : null) as T;
+    if (t == _is.getType<_in9fkuzh.SecurityRole?>()) {
+      return (data != null ? _in9fkuzh.SecurityRole.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i22.Currency?>()) {
-      return (data != null ? _i22.Currency.fromJson(data) : null) as T;
+    if (t == _is.getType<_iflys0o9.UserRole?>()) {
+      return (data != null ? _iflys0o9.UserRole.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i23.DocumentType?>()) {
-      return (data != null ? _i23.DocumentType.fromJson(data) : null) as T;
+    if (t == _is.getType<_i18rxkcg.Accessory?>()) {
+      return (data != null ? _i18rxkcg.Accessory.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i24.FinancialEntryStatus?>()) {
-      return (data != null ? _i24.FinancialEntryStatus.fromJson(data) : null)
+    if (t == _is.getType<_ii1cybhg.Address?>()) {
+      return (data != null ? _ii1cybhg.Address.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_i023ezu2.Document?>()) {
+      return (data != null ? _i023ezu2.Document.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_i2v0zfwt.AppException?>()) {
+      return (data != null ? _i2v0zfwt.AppException.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_i8y573y6.SupplyStock?>()) {
+      return (data != null ? _i8y573y6.SupplyStock.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_izgbvseu.UserProfile?>()) {
+      return (data != null ? _izgbvseu.UserProfile.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_ienljv70.Company?>()) {
+      return (data != null ? _ienljv70.Company.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_i7fsgy8h.CompanyType?>()) {
+      return (data != null ? _i7fsgy8h.CompanyType.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_i29p8qv7.Membership?>()) {
+      return (data != null ? _i29p8qv7.Membership.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_iqo0zmu4.RangeVisit?>()) {
+      return (data != null ? _iqo0zmu4.RangeVisit.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_iugjo2wb.AccessLevel?>()) {
+      return (data != null ? _iugjo2wb.AccessLevel.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_ip9lql6r.AccessoryType?>()) {
+      return (data != null ? _ip9lql6r.AccessoryType.fromJson(data) : null)
           as T;
     }
-    if (t == _i1.getType<_i25.FinancialEntryType?>()) {
-      return (data != null ? _i25.FinancialEntryType.fromJson(data) : null)
+    if (t == _is.getType<_iyudezai.AppModule?>()) {
+      return (data != null ? _iyudezai.AppModule.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_iy4kwzbj.AsaasWebhookEventType?>()) {
+      return (data != null
+              ? _iy4kwzbj.AsaasWebhookEventType.fromJson(data)
+              : null)
           as T;
     }
-    if (t == _i1.getType<_i26.FirearmAction?>()) {
-      return (data != null ? _i26.FirearmAction.fromJson(data) : null) as T;
+    if (t == _is.getType<_iuu90wd5.ConservationState?>()) {
+      return (data != null ? _iuu90wd5.ConservationState.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i27.FirearmPurpose?>()) {
-      return (data != null ? _i27.FirearmPurpose.fromJson(data) : null) as T;
+    if (t == _is.getType<_ictknidt.Currency?>()) {
+      return (data != null ? _ictknidt.Currency.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i28.FirearmType?>()) {
-      return (data != null ? _i28.FirearmType.fromJson(data) : null) as T;
+    if (t == _is.getType<_ibornalb.DocumentType?>()) {
+      return (data != null ? _ibornalb.DocumentType.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i29.Gender?>()) {
-      return (data != null ? _i29.Gender.fromJson(data) : null) as T;
+    if (t == _is.getType<_idw6xq4s.FinancialEntryStatus?>()) {
+      return (data != null
+              ? _idw6xq4s.FinancialEntryStatus.fromJson(data)
+              : null)
+          as T;
     }
-    if (t == _i1.getType<_i30.InvoiceStatus?>()) {
-      return (data != null ? _i30.InvoiceStatus.fromJson(data) : null) as T;
+    if (t == _is.getType<_iv2iml2v.FinancialEntryType?>()) {
+      return (data != null ? _iv2iml2v.FinancialEntryType.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i31.MembershipStatus?>()) {
-      return (data != null ? _i31.MembershipStatus.fromJson(data) : null) as T;
+    if (t == _is.getType<_itctldyk.FirearmAction?>()) {
+      return (data != null ? _itctldyk.FirearmAction.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i32.PaymentMethod?>()) {
-      return (data != null ? _i32.PaymentMethod.fromJson(data) : null) as T;
+    if (t == _is.getType<_ipfzkkcy.FirearmPurpose?>()) {
+      return (data != null ? _ipfzkkcy.FirearmPurpose.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i33.PaymentStatus?>()) {
-      return (data != null ? _i33.PaymentStatus.fromJson(data) : null) as T;
+    if (t == _is.getType<_iv6h25me.FirearmType?>()) {
+      return (data != null ? _iv6h25me.FirearmType.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i34.PixKeyType?>()) {
-      return (data != null ? _i34.PixKeyType.fromJson(data) : null) as T;
+    if (t == _is.getType<_ivjv70nm.Gender?>()) {
+      return (data != null ? _ivjv70nm.Gender.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i35.PlanPeriodicity?>()) {
-      return (data != null ? _i35.PlanPeriodicity.fromJson(data) : null) as T;
+    if (t == _is.getType<_iwp0wycx.InvoiceStatus?>()) {
+      return (data != null ? _iwp0wycx.InvoiceStatus.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i36.PlanStatus?>()) {
-      return (data != null ? _i36.PlanStatus.fromJson(data) : null) as T;
+    if (t == _is.getType<_iaawilat.MembershipStatus?>()) {
+      return (data != null ? _iaawilat.MembershipStatus.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i37.PlanType?>()) {
-      return (data != null ? _i37.PlanType.fromJson(data) : null) as T;
+    if (t == _is.getType<_ir7lu9de.PaymentMethod?>()) {
+      return (data != null ? _ir7lu9de.PaymentMethod.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i38.PlatformApp?>()) {
-      return (data != null ? _i38.PlatformApp.fromJson(data) : null) as T;
+    if (t == _is.getType<_ikjzbt8l.PaymentStatus?>()) {
+      return (data != null ? _ikjzbt8l.PaymentStatus.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i39.RegistryBody?>()) {
-      return (data != null ? _i39.RegistryBody.fromJson(data) : null) as T;
+    if (t == _is.getType<_i2xwc0ya.PixKeyType?>()) {
+      return (data != null ? _i2xwc0ya.PixKeyType.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i40.UsageType?>()) {
-      return (data != null ? _i40.UsageType.fromJson(data) : null) as T;
+    if (t == _is.getType<_ihsiicw8.PlanPeriodicity?>()) {
+      return (data != null ? _ihsiicw8.PlanPeriodicity.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i41.UserStatus?>()) {
-      return (data != null ? _i41.UserStatus.fromJson(data) : null) as T;
+    if (t == _is.getType<_i3zf9gwu.PlanStatus?>()) {
+      return (data != null ? _i3zf9gwu.PlanStatus.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i42.UserType?>()) {
-      return (data != null ? _i42.UserType.fromJson(data) : null) as T;
+    if (t == _is.getType<_itku2k2q.PlanType?>()) {
+      return (data != null ? _itku2k2q.PlanType.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i43.AsaasWebhookEvent?>()) {
-      return (data != null ? _i43.AsaasWebhookEvent.fromJson(data) : null) as T;
+    if (t == _is.getType<_i2yfqo06.PlatformApp?>()) {
+      return (data != null ? _i2yfqo06.PlatformApp.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i44.Bank?>()) {
-      return (data != null ? _i44.Bank.fromJson(data) : null) as T;
+    if (t == _is.getType<_ibbobdoe.RegistryBody?>()) {
+      return (data != null ? _ibbobdoe.RegistryBody.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i45.BankAccount?>()) {
-      return (data != null ? _i45.BankAccount.fromJson(data) : null) as T;
+    if (t == _is.getType<_ixsenwfe.UsageType?>()) {
+      return (data != null ? _ixsenwfe.UsageType.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i46.FinancialEntry?>()) {
-      return (data != null ? _i46.FinancialEntry.fromJson(data) : null) as T;
+    if (t == _is.getType<_ihk15r1q.UserStatus?>()) {
+      return (data != null ? _ihk15r1q.UserStatus.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i47.Invoice?>()) {
-      return (data != null ? _i47.Invoice.fromJson(data) : null) as T;
+    if (t == _is.getType<_i6i91bhn.UserType?>()) {
+      return (data != null ? _i6i91bhn.UserType.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i48.InvoiceItem?>()) {
-      return (data != null ? _i48.InvoiceItem.fromJson(data) : null) as T;
+    if (t == _is.getType<_i268wbv5.AsaasWebhookEvent?>()) {
+      return (data != null ? _i268wbv5.AsaasWebhookEvent.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i49.Payment?>()) {
-      return (data != null ? _i49.Payment.fromJson(data) : null) as T;
+    if (t == _is.getType<_i7csfp3a.Bank?>()) {
+      return (data != null ? _i7csfp3a.Bank.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i50.Greeting?>()) {
-      return (data != null ? _i50.Greeting.fromJson(data) : null) as T;
+    if (t == _is.getType<_i1qq6iwp.BankAccount?>()) {
+      return (data != null ? _i1qq6iwp.BankAccount.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i51.Gunsmith?>()) {
-      return (data != null ? _i51.Gunsmith.fromJson(data) : null) as T;
+    if (t == _is.getType<_irygpv1g.FinancialEntry?>()) {
+      return (data != null ? _irygpv1g.FinancialEntry.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i52.GunsmithClient?>()) {
-      return (data != null ? _i52.GunsmithClient.fromJson(data) : null) as T;
+    if (t == _is.getType<_ivdiuwq4.Invoice?>()) {
+      return (data != null ? _ivdiuwq4.Invoice.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i53.ServiceOrder?>()) {
-      return (data != null ? _i53.ServiceOrder.fromJson(data) : null) as T;
+    if (t == _is.getType<_izi6zi6k.InvoiceItem?>()) {
+      return (data != null ? _izi6zi6k.InvoiceItem.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i54.ServiceOrderItem?>()) {
-      return (data != null ? _i54.ServiceOrderItem.fromJson(data) : null) as T;
+    if (t == _is.getType<_i3em9ox0.Payment?>()) {
+      return (data != null ? _i3em9ox0.Payment.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i55.Product?>()) {
-      return (data != null ? _i55.Product.fromJson(data) : null) as T;
+    if (t == _is.getType<_ig8bxnp5.Greeting?>()) {
+      return (data != null ? _ig8bxnp5.Greeting.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i56.ProductGroup?>()) {
-      return (data != null ? _i56.ProductGroup.fromJson(data) : null) as T;
+    if (t == _is.getType<_i1xnjo88.Gunsmith?>()) {
+      return (data != null ? _i1xnjo88.Gunsmith.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i57.AmmunitionStock?>()) {
-      return (data != null ? _i57.AmmunitionStock.fromJson(data) : null) as T;
+    if (t == _is.getType<_iov85fbn.GunsmithClient?>()) {
+      return (data != null ? _iov85fbn.GunsmithClient.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i58.Firearm?>()) {
-      return (data != null ? _i58.Firearm.fromJson(data) : null) as T;
+    if (t == _is.getType<_itc8b666.ServiceOrder?>()) {
+      return (data != null ? _itc8b666.ServiceOrder.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i59.ReloadSession?>()) {
-      return (data != null ? _i59.ReloadSession.fromJson(data) : null) as T;
+    if (t == _is.getType<_igkm4f4b.ServiceOrderItem?>()) {
+      return (data != null ? _igkm4f4b.ServiceOrderItem.fromJson(data) : null)
+          as T;
     }
-    if (t == _i1.getType<_i60.ReloadTest?>()) {
-      return (data != null ? _i60.ReloadTest.fromJson(data) : null) as T;
+    if (t == _is.getType<_ip2j4rpy.Product?>()) {
+      return (data != null ? _ip2j4rpy.Product.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i61.Training?>()) {
-      return (data != null ? _i61.Training.fromJson(data) : null) as T;
+    if (t == _is.getType<_iy51xlx2.ProductGroup?>()) {
+      return (data != null ? _iy51xlx2.ProductGroup.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i62.SubscriptionPlan?>()) {
-      return (data != null ? _i62.SubscriptionPlan.fromJson(data) : null) as T;
+    if (t == _is.getType<_ig3iv7v1.AmmunitionStock?>()) {
+      return (data != null ? _ig3iv7v1.AmmunitionStock.fromJson(data) : null)
+          as T;
+    }
+    if (t == _is.getType<_i7i930pv.Firearm?>()) {
+      return (data != null ? _i7i930pv.Firearm.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_ipl25531.ReloadSession?>()) {
+      return (data != null ? _ipl25531.ReloadSession.fromJson(data) : null)
+          as T;
+    }
+    if (t == _is.getType<_ikjmk4up.ReloadTest?>()) {
+      return (data != null ? _ikjmk4up.ReloadTest.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_iujmcebm.Training?>()) {
+      return (data != null ? _iujmcebm.Training.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_iq5ctf45.SubscriptionPlan?>()) {
+      return (data != null ? _iq5ctf45.SubscriptionPlan.fromJson(data) : null)
+          as T;
     }
     if (t == List<String>) {
       return (data as List).map((e) => deserialize<String>(e)).toList() as T;
     }
-    if (t == _i1.getType<List<String>?>()) {
+    if (t == _is.getType<List<String>?>()) {
       return (data != null
               ? (data as List).map((e) => deserialize<String>(e)).toList()
               : null)
           as T;
     }
-    if (t == List<_i42.UserType>) {
-      return (data as List).map((e) => deserialize<_i42.UserType>(e)).toList()
+    if (t == List<_i6i91bhn.UserType>) {
+      return (data as List)
+              .map((e) => deserialize<_i6i91bhn.UserType>(e))
+              .toList()
           as T;
     }
-    if (t == _i1.getType<List<_i42.UserType>?>()) {
+    if (t == _is.getType<List<_i6i91bhn.UserType>?>()) {
       return (data != null
               ? (data as List)
-                    .map((e) => deserialize<_i42.UserType>(e))
+                    .map((e) => deserialize<_i6i91bhn.UserType>(e))
                     .toList()
               : null)
           as T;
     }
-    if (t == List<_i63.Accessory>) {
-      return (data as List).map((e) => deserialize<_i63.Accessory>(e)).toList()
-          as T;
-    }
-    if (t == List<_i64.AmmunitionStock>) {
+    if (t == List<_ieqpa344.Accessory>) {
       return (data as List)
-              .map((e) => deserialize<_i64.AmmunitionStock>(e))
+              .map((e) => deserialize<_ieqpa344.Accessory>(e))
               .toList()
           as T;
     }
-    if (t == List<_i65.BankAccount>) {
+    if (t == List<_iznitra9.AmmunitionStock>) {
       return (data as List)
-              .map((e) => deserialize<_i65.BankAccount>(e))
+              .map((e) => deserialize<_iznitra9.AmmunitionStock>(e))
               .toList()
           as T;
     }
-    if (t == List<_i66.Bank>) {
-      return (data as List).map((e) => deserialize<_i66.Bank>(e)).toList() as T;
-    }
-    if (t == List<_i67.Company>) {
-      return (data as List).map((e) => deserialize<_i67.Company>(e)).toList()
-          as T;
-    }
-    if (t == List<_i68.Membership>) {
-      return (data as List).map((e) => deserialize<_i68.Membership>(e)).toList()
-          as T;
-    }
-    if (t == List<_i69.RangeVisit>) {
-      return (data as List).map((e) => deserialize<_i69.RangeVisit>(e)).toList()
-          as T;
-    }
-    if (t == List<_i70.Document>) {
-      return (data as List).map((e) => deserialize<_i70.Document>(e)).toList()
-          as T;
-    }
-    if (t == List<_i71.FinancialEntry>) {
+    if (t == List<_ix4lc03l.BankAccount>) {
       return (data as List)
-              .map((e) => deserialize<_i71.FinancialEntry>(e))
+              .map((e) => deserialize<_ix4lc03l.BankAccount>(e))
               .toList()
           as T;
     }
-    if (t == List<_i72.Firearm>) {
-      return (data as List).map((e) => deserialize<_i72.Firearm>(e)).toList()
+    if (t == List<_ij8k7xum.Bank>) {
+      return (data as List).map((e) => deserialize<_ij8k7xum.Bank>(e)).toList()
           as T;
     }
-    if (t == List<_i73.Gunsmith>) {
-      return (data as List).map((e) => deserialize<_i73.Gunsmith>(e)).toList()
-          as T;
-    }
-    if (t == List<_i74.GunsmithClient>) {
+    if (t == List<_ic0khr1u.Company>) {
       return (data as List)
-              .map((e) => deserialize<_i74.GunsmithClient>(e))
+              .map((e) => deserialize<_ic0khr1u.Company>(e))
               .toList()
           as T;
     }
-    if (t == List<_i75.ServiceOrderItem>) {
+    if (t == List<_i1s6ob71.Membership>) {
       return (data as List)
-              .map((e) => deserialize<_i75.ServiceOrderItem>(e))
+              .map((e) => deserialize<_i1s6ob71.Membership>(e))
               .toList()
           as T;
     }
-    if (t == List<_i76.ServiceOrder>) {
+    if (t == List<_illbufnr.RangeVisit>) {
       return (data as List)
-              .map((e) => deserialize<_i76.ServiceOrder>(e))
+              .map((e) => deserialize<_illbufnr.RangeVisit>(e))
               .toList()
           as T;
     }
-    if (t == List<_i77.InvoiceItem>) {
+    if (t == List<_is536eiv.Document>) {
       return (data as List)
-              .map((e) => deserialize<_i77.InvoiceItem>(e))
+              .map((e) => deserialize<_is536eiv.Document>(e))
               .toList()
           as T;
     }
-    if (t == List<_i78.Invoice>) {
-      return (data as List).map((e) => deserialize<_i78.Invoice>(e)).toList()
-          as T;
-    }
-    if (t == List<_i79.Payment>) {
-      return (data as List).map((e) => deserialize<_i79.Payment>(e)).toList()
-          as T;
-    }
-    if (t == List<_i80.Product>) {
-      return (data as List).map((e) => deserialize<_i80.Product>(e)).toList()
-          as T;
-    }
-    if (t == List<_i81.ProductGroup>) {
+    if (t == List<_ibsfr7x7.FinancialEntry>) {
       return (data as List)
-              .map((e) => deserialize<_i81.ProductGroup>(e))
+              .map((e) => deserialize<_ibsfr7x7.FinancialEntry>(e))
               .toList()
           as T;
     }
-    if (t == List<_i82.ReloadSession>) {
+    if (t == List<_iv8sr5qk.Firearm>) {
       return (data as List)
-              .map((e) => deserialize<_i82.ReloadSession>(e))
+              .map((e) => deserialize<_iv8sr5qk.Firearm>(e))
               .toList()
           as T;
     }
-    if (t == List<_i83.ReloadTest>) {
-      return (data as List).map((e) => deserialize<_i83.ReloadTest>(e)).toList()
-          as T;
-    }
-    if (t == List<_i84.SupplyStock>) {
+    if (t == List<_icrmzcgd.Gunsmith>) {
       return (data as List)
-              .map((e) => deserialize<_i84.SupplyStock>(e))
+              .map((e) => deserialize<_icrmzcgd.Gunsmith>(e))
               .toList()
           as T;
     }
-    if (t == List<_i85.RolePermission>) {
+    if (t == List<_i3v21vya.GunsmithClient>) {
       return (data as List)
-              .map((e) => deserialize<_i85.RolePermission>(e))
+              .map((e) => deserialize<_i3v21vya.GunsmithClient>(e))
               .toList()
           as T;
     }
-    if (t == List<_i86.SecurityRole>) {
+    if (t == List<_ipjdt3yw.ServiceOrderItem>) {
       return (data as List)
-              .map((e) => deserialize<_i86.SecurityRole>(e))
+              .map((e) => deserialize<_ipjdt3yw.ServiceOrderItem>(e))
               .toList()
           as T;
     }
-    if (t == List<_i87.SubscriptionPlan>) {
+    if (t == List<_ilfracgz.ServiceOrder>) {
       return (data as List)
-              .map((e) => deserialize<_i87.SubscriptionPlan>(e))
+              .map((e) => deserialize<_ilfracgz.ServiceOrder>(e))
               .toList()
           as T;
     }
-    if (t == List<_i88.Training>) {
-      return (data as List).map((e) => deserialize<_i88.Training>(e)).toList()
-          as T;
-    }
-    if (t == List<_i89.UserProfile>) {
+    if (t == List<_i4dj62ps.InvoiceItem>) {
       return (data as List)
-              .map((e) => deserialize<_i89.UserProfile>(e))
+              .map((e) => deserialize<_i4dj62ps.InvoiceItem>(e))
               .toList()
           as T;
     }
-    if (t == List<_i1.UuidValue>) {
-      return (data as List).map((e) => deserialize<_i1.UuidValue>(e)).toList()
+    if (t == List<_i30q017a.Invoice>) {
+      return (data as List)
+              .map((e) => deserialize<_i30q017a.Invoice>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i2rb000s.Payment>) {
+      return (data as List)
+              .map((e) => deserialize<_i2rb000s.Payment>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_ichcxeb2.Product>) {
+      return (data as List)
+              .map((e) => deserialize<_ichcxeb2.Product>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_isb7m7oi.ProductGroup>) {
+      return (data as List)
+              .map((e) => deserialize<_isb7m7oi.ProductGroup>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_ir80yzxg.ReloadSession>) {
+      return (data as List)
+              .map((e) => deserialize<_ir80yzxg.ReloadSession>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_ifny91bp.ReloadTest>) {
+      return (data as List)
+              .map((e) => deserialize<_ifny91bp.ReloadTest>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i8gnh98r.SupplyStock>) {
+      return (data as List)
+              .map((e) => deserialize<_i8gnh98r.SupplyStock>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_itb2zhn4.RolePermission>) {
+      return (data as List)
+              .map((e) => deserialize<_itb2zhn4.RolePermission>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i1xchi60.SecurityRole>) {
+      return (data as List)
+              .map((e) => deserialize<_i1xchi60.SecurityRole>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_ilwo31st.SubscriptionPlan>) {
+      return (data as List)
+              .map((e) => deserialize<_ilwo31st.SubscriptionPlan>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i8n7svi8.Training>) {
+      return (data as List)
+              .map((e) => deserialize<_i8n7svi8.Training>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i2pyoxii.UserProfile>) {
+      return (data as List)
+              .map((e) => deserialize<_i2pyoxii.UserProfile>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_is.UuidValue>) {
+      return (data as List).map((e) => deserialize<_is.UuidValue>(e)).toList()
           as T;
     }
     if (t == Map<String, dynamic>) {
@@ -4854,6 +4530,9 @@ class Protocol extends _i1.SerializationManagerServer {
           )
           as T;
     }
+    if (t == dynamic) {
+      return deserializeDynamicFieldValue(data) as T;
+    }
     if (t == List<Map<String, dynamic>>) {
       return (data as List)
               .map((e) => deserialize<Map<String, dynamic>>(e))
@@ -4861,75 +4540,75 @@ class Protocol extends _i1.SerializationManagerServer {
           as T;
     }
     try {
-      return _i3.Protocol().deserialize<T>(data, t);
-    } on _i1.DeserializationTypeNotFoundException catch (_) {}
+      return _i1n3uhu0.Protocol().deserialize<T>(data, t);
+    } on _is.DeserializationTypeNotFoundException catch (_) {}
     try {
-      return _i2.Protocol().deserialize<T>(data, t);
-    } on _i1.DeserializationTypeNotFoundException catch (_) {}
+      return _isp.Protocol().deserialize<T>(data, t);
+    } on _is.DeserializationTypeNotFoundException catch (_) {}
     return super.deserialize<T>(data, t);
   }
 
   static String? getClassNameForType(Type type) {
     return switch (type) {
-      _i4.RolePermission => 'RolePermission',
-      _i5.SecurityRole => 'SecurityRole',
-      _i6.UserRole => 'UserRole',
-      _i7.Accessory => 'Accessory',
-      _i8.Address => 'Address',
-      _i9.Document => 'Document',
-      _i10.AppException => 'AppException',
-      _i11.SupplyStock => 'SupplyStock',
-      _i12.UserProfile => 'UserProfile',
-      _i13.Company => 'Company',
-      _i14.CompanyType => 'CompanyType',
-      _i15.Membership => 'Membership',
-      _i16.RangeVisit => 'RangeVisit',
-      _i17.AccessLevel => 'AccessLevel',
-      _i18.AccessoryType => 'AccessoryType',
-      _i19.AppModule => 'AppModule',
-      _i20.AsaasWebhookEventType => 'AsaasWebhookEventType',
-      _i21.ConservationState => 'ConservationState',
-      _i22.Currency => 'Currency',
-      _i23.DocumentType => 'DocumentType',
-      _i24.FinancialEntryStatus => 'FinancialEntryStatus',
-      _i25.FinancialEntryType => 'FinancialEntryType',
-      _i26.FirearmAction => 'FirearmAction',
-      _i27.FirearmPurpose => 'FirearmPurpose',
-      _i28.FirearmType => 'FirearmType',
-      _i29.Gender => 'Gender',
-      _i30.InvoiceStatus => 'InvoiceStatus',
-      _i31.MembershipStatus => 'MembershipStatus',
-      _i32.PaymentMethod => 'PaymentMethod',
-      _i33.PaymentStatus => 'PaymentStatus',
-      _i34.PixKeyType => 'PixKeyType',
-      _i35.PlanPeriodicity => 'PlanPeriodicity',
-      _i36.PlanStatus => 'PlanStatus',
-      _i37.PlanType => 'PlanType',
-      _i38.PlatformApp => 'PlatformApp',
-      _i39.RegistryBody => 'RegistryBody',
-      _i40.UsageType => 'UsageType',
-      _i41.UserStatus => 'UserStatus',
-      _i42.UserType => 'UserType',
-      _i43.AsaasWebhookEvent => 'AsaasWebhookEvent',
-      _i44.Bank => 'Bank',
-      _i45.BankAccount => 'BankAccount',
-      _i46.FinancialEntry => 'FinancialEntry',
-      _i47.Invoice => 'Invoice',
-      _i48.InvoiceItem => 'InvoiceItem',
-      _i49.Payment => 'Payment',
-      _i50.Greeting => 'Greeting',
-      _i51.Gunsmith => 'Gunsmith',
-      _i52.GunsmithClient => 'GunsmithClient',
-      _i53.ServiceOrder => 'ServiceOrder',
-      _i54.ServiceOrderItem => 'ServiceOrderItem',
-      _i55.Product => 'Product',
-      _i56.ProductGroup => 'ProductGroup',
-      _i57.AmmunitionStock => 'AmmunitionStock',
-      _i58.Firearm => 'Firearm',
-      _i59.ReloadSession => 'ReloadSession',
-      _i60.ReloadTest => 'ReloadTest',
-      _i61.Training => 'Training',
-      _i62.SubscriptionPlan => 'SubscriptionPlan',
+      _itwd6fku.RolePermission => 'RolePermission',
+      _in9fkuzh.SecurityRole => 'SecurityRole',
+      _iflys0o9.UserRole => 'UserRole',
+      _i18rxkcg.Accessory => 'Accessory',
+      _ii1cybhg.Address => 'Address',
+      _i023ezu2.Document => 'Document',
+      _i2v0zfwt.AppException => 'AppException',
+      _i8y573y6.SupplyStock => 'SupplyStock',
+      _izgbvseu.UserProfile => 'UserProfile',
+      _ienljv70.Company => 'Company',
+      _i7fsgy8h.CompanyType => 'CompanyType',
+      _i29p8qv7.Membership => 'Membership',
+      _iqo0zmu4.RangeVisit => 'RangeVisit',
+      _iugjo2wb.AccessLevel => 'AccessLevel',
+      _ip9lql6r.AccessoryType => 'AccessoryType',
+      _iyudezai.AppModule => 'AppModule',
+      _iy4kwzbj.AsaasWebhookEventType => 'AsaasWebhookEventType',
+      _iuu90wd5.ConservationState => 'ConservationState',
+      _ictknidt.Currency => 'Currency',
+      _ibornalb.DocumentType => 'DocumentType',
+      _idw6xq4s.FinancialEntryStatus => 'FinancialEntryStatus',
+      _iv2iml2v.FinancialEntryType => 'FinancialEntryType',
+      _itctldyk.FirearmAction => 'FirearmAction',
+      _ipfzkkcy.FirearmPurpose => 'FirearmPurpose',
+      _iv6h25me.FirearmType => 'FirearmType',
+      _ivjv70nm.Gender => 'Gender',
+      _iwp0wycx.InvoiceStatus => 'InvoiceStatus',
+      _iaawilat.MembershipStatus => 'MembershipStatus',
+      _ir7lu9de.PaymentMethod => 'PaymentMethod',
+      _ikjzbt8l.PaymentStatus => 'PaymentStatus',
+      _i2xwc0ya.PixKeyType => 'PixKeyType',
+      _ihsiicw8.PlanPeriodicity => 'PlanPeriodicity',
+      _i3zf9gwu.PlanStatus => 'PlanStatus',
+      _itku2k2q.PlanType => 'PlanType',
+      _i2yfqo06.PlatformApp => 'PlatformApp',
+      _ibbobdoe.RegistryBody => 'RegistryBody',
+      _ixsenwfe.UsageType => 'UsageType',
+      _ihk15r1q.UserStatus => 'UserStatus',
+      _i6i91bhn.UserType => 'UserType',
+      _i268wbv5.AsaasWebhookEvent => 'AsaasWebhookEvent',
+      _i7csfp3a.Bank => 'Bank',
+      _i1qq6iwp.BankAccount => 'BankAccount',
+      _irygpv1g.FinancialEntry => 'FinancialEntry',
+      _ivdiuwq4.Invoice => 'Invoice',
+      _izi6zi6k.InvoiceItem => 'InvoiceItem',
+      _i3em9ox0.Payment => 'Payment',
+      _ig8bxnp5.Greeting => 'Greeting',
+      _i1xnjo88.Gunsmith => 'Gunsmith',
+      _iov85fbn.GunsmithClient => 'GunsmithClient',
+      _itc8b666.ServiceOrder => 'ServiceOrder',
+      _igkm4f4b.ServiceOrderItem => 'ServiceOrderItem',
+      _ip2j4rpy.Product => 'Product',
+      _iy51xlx2.ProductGroup => 'ProductGroup',
+      _ig3iv7v1.AmmunitionStock => 'AmmunitionStock',
+      _i7i930pv.Firearm => 'Firearm',
+      _ipl25531.ReloadSession => 'ReloadSession',
+      _ikjmk4up.ReloadTest => 'ReloadTest',
+      _iujmcebm.Training => 'Training',
+      _iq5ctf45.SubscriptionPlan => 'SubscriptionPlan',
       _ => null,
     };
   }
@@ -4944,132 +4623,132 @@ class Protocol extends _i1.SerializationManagerServer {
     }
 
     switch (data) {
-      case _i4.RolePermission():
+      case _itwd6fku.RolePermission():
         return 'RolePermission';
-      case _i5.SecurityRole():
+      case _in9fkuzh.SecurityRole():
         return 'SecurityRole';
-      case _i6.UserRole():
+      case _iflys0o9.UserRole():
         return 'UserRole';
-      case _i7.Accessory():
+      case _i18rxkcg.Accessory():
         return 'Accessory';
-      case _i8.Address():
+      case _ii1cybhg.Address():
         return 'Address';
-      case _i9.Document():
+      case _i023ezu2.Document():
         return 'Document';
-      case _i10.AppException():
+      case _i2v0zfwt.AppException():
         return 'AppException';
-      case _i11.SupplyStock():
+      case _i8y573y6.SupplyStock():
         return 'SupplyStock';
-      case _i12.UserProfile():
+      case _izgbvseu.UserProfile():
         return 'UserProfile';
-      case _i13.Company():
+      case _ienljv70.Company():
         return 'Company';
-      case _i14.CompanyType():
+      case _i7fsgy8h.CompanyType():
         return 'CompanyType';
-      case _i15.Membership():
+      case _i29p8qv7.Membership():
         return 'Membership';
-      case _i16.RangeVisit():
+      case _iqo0zmu4.RangeVisit():
         return 'RangeVisit';
-      case _i17.AccessLevel():
+      case _iugjo2wb.AccessLevel():
         return 'AccessLevel';
-      case _i18.AccessoryType():
+      case _ip9lql6r.AccessoryType():
         return 'AccessoryType';
-      case _i19.AppModule():
+      case _iyudezai.AppModule():
         return 'AppModule';
-      case _i20.AsaasWebhookEventType():
+      case _iy4kwzbj.AsaasWebhookEventType():
         return 'AsaasWebhookEventType';
-      case _i21.ConservationState():
+      case _iuu90wd5.ConservationState():
         return 'ConservationState';
-      case _i22.Currency():
+      case _ictknidt.Currency():
         return 'Currency';
-      case _i23.DocumentType():
+      case _ibornalb.DocumentType():
         return 'DocumentType';
-      case _i24.FinancialEntryStatus():
+      case _idw6xq4s.FinancialEntryStatus():
         return 'FinancialEntryStatus';
-      case _i25.FinancialEntryType():
+      case _iv2iml2v.FinancialEntryType():
         return 'FinancialEntryType';
-      case _i26.FirearmAction():
+      case _itctldyk.FirearmAction():
         return 'FirearmAction';
-      case _i27.FirearmPurpose():
+      case _ipfzkkcy.FirearmPurpose():
         return 'FirearmPurpose';
-      case _i28.FirearmType():
+      case _iv6h25me.FirearmType():
         return 'FirearmType';
-      case _i29.Gender():
+      case _ivjv70nm.Gender():
         return 'Gender';
-      case _i30.InvoiceStatus():
+      case _iwp0wycx.InvoiceStatus():
         return 'InvoiceStatus';
-      case _i31.MembershipStatus():
+      case _iaawilat.MembershipStatus():
         return 'MembershipStatus';
-      case _i32.PaymentMethod():
+      case _ir7lu9de.PaymentMethod():
         return 'PaymentMethod';
-      case _i33.PaymentStatus():
+      case _ikjzbt8l.PaymentStatus():
         return 'PaymentStatus';
-      case _i34.PixKeyType():
+      case _i2xwc0ya.PixKeyType():
         return 'PixKeyType';
-      case _i35.PlanPeriodicity():
+      case _ihsiicw8.PlanPeriodicity():
         return 'PlanPeriodicity';
-      case _i36.PlanStatus():
+      case _i3zf9gwu.PlanStatus():
         return 'PlanStatus';
-      case _i37.PlanType():
+      case _itku2k2q.PlanType():
         return 'PlanType';
-      case _i38.PlatformApp():
+      case _i2yfqo06.PlatformApp():
         return 'PlatformApp';
-      case _i39.RegistryBody():
+      case _ibbobdoe.RegistryBody():
         return 'RegistryBody';
-      case _i40.UsageType():
+      case _ixsenwfe.UsageType():
         return 'UsageType';
-      case _i41.UserStatus():
+      case _ihk15r1q.UserStatus():
         return 'UserStatus';
-      case _i42.UserType():
+      case _i6i91bhn.UserType():
         return 'UserType';
-      case _i43.AsaasWebhookEvent():
+      case _i268wbv5.AsaasWebhookEvent():
         return 'AsaasWebhookEvent';
-      case _i44.Bank():
+      case _i7csfp3a.Bank():
         return 'Bank';
-      case _i45.BankAccount():
+      case _i1qq6iwp.BankAccount():
         return 'BankAccount';
-      case _i46.FinancialEntry():
+      case _irygpv1g.FinancialEntry():
         return 'FinancialEntry';
-      case _i47.Invoice():
+      case _ivdiuwq4.Invoice():
         return 'Invoice';
-      case _i48.InvoiceItem():
+      case _izi6zi6k.InvoiceItem():
         return 'InvoiceItem';
-      case _i49.Payment():
+      case _i3em9ox0.Payment():
         return 'Payment';
-      case _i50.Greeting():
+      case _ig8bxnp5.Greeting():
         return 'Greeting';
-      case _i51.Gunsmith():
+      case _i1xnjo88.Gunsmith():
         return 'Gunsmith';
-      case _i52.GunsmithClient():
+      case _iov85fbn.GunsmithClient():
         return 'GunsmithClient';
-      case _i53.ServiceOrder():
+      case _itc8b666.ServiceOrder():
         return 'ServiceOrder';
-      case _i54.ServiceOrderItem():
+      case _igkm4f4b.ServiceOrderItem():
         return 'ServiceOrderItem';
-      case _i55.Product():
+      case _ip2j4rpy.Product():
         return 'Product';
-      case _i56.ProductGroup():
+      case _iy51xlx2.ProductGroup():
         return 'ProductGroup';
-      case _i57.AmmunitionStock():
+      case _ig3iv7v1.AmmunitionStock():
         return 'AmmunitionStock';
-      case _i58.Firearm():
+      case _i7i930pv.Firearm():
         return 'Firearm';
-      case _i59.ReloadSession():
+      case _ipl25531.ReloadSession():
         return 'ReloadSession';
-      case _i60.ReloadTest():
+      case _ikjmk4up.ReloadTest():
         return 'ReloadTest';
-      case _i61.Training():
+      case _iujmcebm.Training():
         return 'Training';
-      case _i62.SubscriptionPlan():
+      case _iq5ctf45.SubscriptionPlan():
         return 'SubscriptionPlan';
     }
-    className = _i2.Protocol().getClassNameForObject(data);
+    className = _i1n3uhu0.Protocol().getClassNameForObject(data);
     if (className != null) {
-      return 'serverpod.$className';
+      return className.contains('.') ? className : 'serverpod_auth.$className';
     }
-    className = _i3.Protocol().getClassNameForObject(data);
+    className = _isp.Protocol().getClassNameForObject(data);
     if (className != null) {
-      return 'serverpod_auth.$className';
+      return className.contains('.') ? className : 'serverpod.$className';
     }
     return null;
   }
@@ -5081,272 +4760,276 @@ class Protocol extends _i1.SerializationManagerServer {
       return super.deserializeByClassName(data);
     }
     if (dataClassName == 'RolePermission') {
-      return deserialize<_i4.RolePermission>(data['data']);
+      return deserialize<_itwd6fku.RolePermission>(data['data']);
     }
     if (dataClassName == 'SecurityRole') {
-      return deserialize<_i5.SecurityRole>(data['data']);
+      return deserialize<_in9fkuzh.SecurityRole>(data['data']);
     }
     if (dataClassName == 'UserRole') {
-      return deserialize<_i6.UserRole>(data['data']);
+      return deserialize<_iflys0o9.UserRole>(data['data']);
     }
     if (dataClassName == 'Accessory') {
-      return deserialize<_i7.Accessory>(data['data']);
+      return deserialize<_i18rxkcg.Accessory>(data['data']);
     }
     if (dataClassName == 'Address') {
-      return deserialize<_i8.Address>(data['data']);
+      return deserialize<_ii1cybhg.Address>(data['data']);
     }
     if (dataClassName == 'Document') {
-      return deserialize<_i9.Document>(data['data']);
+      return deserialize<_i023ezu2.Document>(data['data']);
     }
     if (dataClassName == 'AppException') {
-      return deserialize<_i10.AppException>(data['data']);
+      return deserialize<_i2v0zfwt.AppException>(data['data']);
     }
     if (dataClassName == 'SupplyStock') {
-      return deserialize<_i11.SupplyStock>(data['data']);
+      return deserialize<_i8y573y6.SupplyStock>(data['data']);
     }
     if (dataClassName == 'UserProfile') {
-      return deserialize<_i12.UserProfile>(data['data']);
+      return deserialize<_izgbvseu.UserProfile>(data['data']);
     }
     if (dataClassName == 'Company') {
-      return deserialize<_i13.Company>(data['data']);
+      return deserialize<_ienljv70.Company>(data['data']);
     }
     if (dataClassName == 'CompanyType') {
-      return deserialize<_i14.CompanyType>(data['data']);
+      return deserialize<_i7fsgy8h.CompanyType>(data['data']);
     }
     if (dataClassName == 'Membership') {
-      return deserialize<_i15.Membership>(data['data']);
+      return deserialize<_i29p8qv7.Membership>(data['data']);
     }
     if (dataClassName == 'RangeVisit') {
-      return deserialize<_i16.RangeVisit>(data['data']);
+      return deserialize<_iqo0zmu4.RangeVisit>(data['data']);
     }
     if (dataClassName == 'AccessLevel') {
-      return deserialize<_i17.AccessLevel>(data['data']);
+      return deserialize<_iugjo2wb.AccessLevel>(data['data']);
     }
     if (dataClassName == 'AccessoryType') {
-      return deserialize<_i18.AccessoryType>(data['data']);
+      return deserialize<_ip9lql6r.AccessoryType>(data['data']);
     }
     if (dataClassName == 'AppModule') {
-      return deserialize<_i19.AppModule>(data['data']);
+      return deserialize<_iyudezai.AppModule>(data['data']);
     }
     if (dataClassName == 'AsaasWebhookEventType') {
-      return deserialize<_i20.AsaasWebhookEventType>(data['data']);
+      return deserialize<_iy4kwzbj.AsaasWebhookEventType>(data['data']);
     }
     if (dataClassName == 'ConservationState') {
-      return deserialize<_i21.ConservationState>(data['data']);
+      return deserialize<_iuu90wd5.ConservationState>(data['data']);
     }
     if (dataClassName == 'Currency') {
-      return deserialize<_i22.Currency>(data['data']);
+      return deserialize<_ictknidt.Currency>(data['data']);
     }
     if (dataClassName == 'DocumentType') {
-      return deserialize<_i23.DocumentType>(data['data']);
+      return deserialize<_ibornalb.DocumentType>(data['data']);
     }
     if (dataClassName == 'FinancialEntryStatus') {
-      return deserialize<_i24.FinancialEntryStatus>(data['data']);
+      return deserialize<_idw6xq4s.FinancialEntryStatus>(data['data']);
     }
     if (dataClassName == 'FinancialEntryType') {
-      return deserialize<_i25.FinancialEntryType>(data['data']);
+      return deserialize<_iv2iml2v.FinancialEntryType>(data['data']);
     }
     if (dataClassName == 'FirearmAction') {
-      return deserialize<_i26.FirearmAction>(data['data']);
+      return deserialize<_itctldyk.FirearmAction>(data['data']);
     }
     if (dataClassName == 'FirearmPurpose') {
-      return deserialize<_i27.FirearmPurpose>(data['data']);
+      return deserialize<_ipfzkkcy.FirearmPurpose>(data['data']);
     }
     if (dataClassName == 'FirearmType') {
-      return deserialize<_i28.FirearmType>(data['data']);
+      return deserialize<_iv6h25me.FirearmType>(data['data']);
     }
     if (dataClassName == 'Gender') {
-      return deserialize<_i29.Gender>(data['data']);
+      return deserialize<_ivjv70nm.Gender>(data['data']);
     }
     if (dataClassName == 'InvoiceStatus') {
-      return deserialize<_i30.InvoiceStatus>(data['data']);
+      return deserialize<_iwp0wycx.InvoiceStatus>(data['data']);
     }
     if (dataClassName == 'MembershipStatus') {
-      return deserialize<_i31.MembershipStatus>(data['data']);
+      return deserialize<_iaawilat.MembershipStatus>(data['data']);
     }
     if (dataClassName == 'PaymentMethod') {
-      return deserialize<_i32.PaymentMethod>(data['data']);
+      return deserialize<_ir7lu9de.PaymentMethod>(data['data']);
     }
     if (dataClassName == 'PaymentStatus') {
-      return deserialize<_i33.PaymentStatus>(data['data']);
+      return deserialize<_ikjzbt8l.PaymentStatus>(data['data']);
     }
     if (dataClassName == 'PixKeyType') {
-      return deserialize<_i34.PixKeyType>(data['data']);
+      return deserialize<_i2xwc0ya.PixKeyType>(data['data']);
     }
     if (dataClassName == 'PlanPeriodicity') {
-      return deserialize<_i35.PlanPeriodicity>(data['data']);
+      return deserialize<_ihsiicw8.PlanPeriodicity>(data['data']);
     }
     if (dataClassName == 'PlanStatus') {
-      return deserialize<_i36.PlanStatus>(data['data']);
+      return deserialize<_i3zf9gwu.PlanStatus>(data['data']);
     }
     if (dataClassName == 'PlanType') {
-      return deserialize<_i37.PlanType>(data['data']);
+      return deserialize<_itku2k2q.PlanType>(data['data']);
     }
     if (dataClassName == 'PlatformApp') {
-      return deserialize<_i38.PlatformApp>(data['data']);
+      return deserialize<_i2yfqo06.PlatformApp>(data['data']);
     }
     if (dataClassName == 'RegistryBody') {
-      return deserialize<_i39.RegistryBody>(data['data']);
+      return deserialize<_ibbobdoe.RegistryBody>(data['data']);
     }
     if (dataClassName == 'UsageType') {
-      return deserialize<_i40.UsageType>(data['data']);
+      return deserialize<_ixsenwfe.UsageType>(data['data']);
     }
     if (dataClassName == 'UserStatus') {
-      return deserialize<_i41.UserStatus>(data['data']);
+      return deserialize<_ihk15r1q.UserStatus>(data['data']);
     }
     if (dataClassName == 'UserType') {
-      return deserialize<_i42.UserType>(data['data']);
+      return deserialize<_i6i91bhn.UserType>(data['data']);
     }
     if (dataClassName == 'AsaasWebhookEvent') {
-      return deserialize<_i43.AsaasWebhookEvent>(data['data']);
+      return deserialize<_i268wbv5.AsaasWebhookEvent>(data['data']);
     }
     if (dataClassName == 'Bank') {
-      return deserialize<_i44.Bank>(data['data']);
+      return deserialize<_i7csfp3a.Bank>(data['data']);
     }
     if (dataClassName == 'BankAccount') {
-      return deserialize<_i45.BankAccount>(data['data']);
+      return deserialize<_i1qq6iwp.BankAccount>(data['data']);
     }
     if (dataClassName == 'FinancialEntry') {
-      return deserialize<_i46.FinancialEntry>(data['data']);
+      return deserialize<_irygpv1g.FinancialEntry>(data['data']);
     }
     if (dataClassName == 'Invoice') {
-      return deserialize<_i47.Invoice>(data['data']);
+      return deserialize<_ivdiuwq4.Invoice>(data['data']);
     }
     if (dataClassName == 'InvoiceItem') {
-      return deserialize<_i48.InvoiceItem>(data['data']);
+      return deserialize<_izi6zi6k.InvoiceItem>(data['data']);
     }
     if (dataClassName == 'Payment') {
-      return deserialize<_i49.Payment>(data['data']);
+      return deserialize<_i3em9ox0.Payment>(data['data']);
     }
     if (dataClassName == 'Greeting') {
-      return deserialize<_i50.Greeting>(data['data']);
+      return deserialize<_ig8bxnp5.Greeting>(data['data']);
     }
     if (dataClassName == 'Gunsmith') {
-      return deserialize<_i51.Gunsmith>(data['data']);
+      return deserialize<_i1xnjo88.Gunsmith>(data['data']);
     }
     if (dataClassName == 'GunsmithClient') {
-      return deserialize<_i52.GunsmithClient>(data['data']);
+      return deserialize<_iov85fbn.GunsmithClient>(data['data']);
     }
     if (dataClassName == 'ServiceOrder') {
-      return deserialize<_i53.ServiceOrder>(data['data']);
+      return deserialize<_itc8b666.ServiceOrder>(data['data']);
     }
     if (dataClassName == 'ServiceOrderItem') {
-      return deserialize<_i54.ServiceOrderItem>(data['data']);
+      return deserialize<_igkm4f4b.ServiceOrderItem>(data['data']);
     }
     if (dataClassName == 'Product') {
-      return deserialize<_i55.Product>(data['data']);
+      return deserialize<_ip2j4rpy.Product>(data['data']);
     }
     if (dataClassName == 'ProductGroup') {
-      return deserialize<_i56.ProductGroup>(data['data']);
+      return deserialize<_iy51xlx2.ProductGroup>(data['data']);
     }
     if (dataClassName == 'AmmunitionStock') {
-      return deserialize<_i57.AmmunitionStock>(data['data']);
+      return deserialize<_ig3iv7v1.AmmunitionStock>(data['data']);
     }
     if (dataClassName == 'Firearm') {
-      return deserialize<_i58.Firearm>(data['data']);
+      return deserialize<_i7i930pv.Firearm>(data['data']);
     }
     if (dataClassName == 'ReloadSession') {
-      return deserialize<_i59.ReloadSession>(data['data']);
+      return deserialize<_ipl25531.ReloadSession>(data['data']);
     }
     if (dataClassName == 'ReloadTest') {
-      return deserialize<_i60.ReloadTest>(data['data']);
+      return deserialize<_ikjmk4up.ReloadTest>(data['data']);
     }
     if (dataClassName == 'Training') {
-      return deserialize<_i61.Training>(data['data']);
+      return deserialize<_iujmcebm.Training>(data['data']);
     }
     if (dataClassName == 'SubscriptionPlan') {
-      return deserialize<_i62.SubscriptionPlan>(data['data']);
-    }
-    if (dataClassName.startsWith('serverpod.')) {
-      data['className'] = dataClassName.substring(10);
-      return _i2.Protocol().deserializeByClassName(data);
+      return deserialize<_iq5ctf45.SubscriptionPlan>(data['data']);
     }
     if (dataClassName.startsWith('serverpod_auth.')) {
       data['className'] = dataClassName.substring(15);
-      return _i3.Protocol().deserializeByClassName(data);
+      return _i1n3uhu0.Protocol().deserializeByClassName(data);
+    }
+    if (dataClassName.startsWith('serverpod.')) {
+      data['className'] = dataClassName.substring(10);
+      return _isp.Protocol().deserializeByClassName(data);
     }
     return super.deserializeByClassName(data);
   }
 
+  void _registerHostProtocols() {
+    _i1n3uhu0.Protocol().registerHostProtocol('oneshot', this);
+  }
+
   @override
-  _i1.Table? getTableForType(Type t) {
+  _is.Table? getTableForType(Type t) {
     {
-      var table = _i3.Protocol().getTableForType(t);
+      var table = _i1n3uhu0.Protocol().getTableForType(t);
       if (table != null) {
         return table;
       }
     }
     {
-      var table = _i2.Protocol().getTableForType(t);
+      var table = _isp.Protocol().getTableForType(t);
       if (table != null) {
         return table;
       }
     }
     switch (t) {
-      case _i4.RolePermission:
-        return _i4.RolePermission.t;
-      case _i5.SecurityRole:
-        return _i5.SecurityRole.t;
-      case _i6.UserRole:
-        return _i6.UserRole.t;
-      case _i7.Accessory:
-        return _i7.Accessory.t;
-      case _i8.Address:
-        return _i8.Address.t;
-      case _i9.Document:
-        return _i9.Document.t;
-      case _i11.SupplyStock:
-        return _i11.SupplyStock.t;
-      case _i12.UserProfile:
-        return _i12.UserProfile.t;
-      case _i13.Company:
-        return _i13.Company.t;
-      case _i15.Membership:
-        return _i15.Membership.t;
-      case _i16.RangeVisit:
-        return _i16.RangeVisit.t;
-      case _i43.AsaasWebhookEvent:
-        return _i43.AsaasWebhookEvent.t;
-      case _i45.BankAccount:
-        return _i45.BankAccount.t;
-      case _i46.FinancialEntry:
-        return _i46.FinancialEntry.t;
-      case _i47.Invoice:
-        return _i47.Invoice.t;
-      case _i48.InvoiceItem:
-        return _i48.InvoiceItem.t;
-      case _i49.Payment:
-        return _i49.Payment.t;
-      case _i51.Gunsmith:
-        return _i51.Gunsmith.t;
-      case _i52.GunsmithClient:
-        return _i52.GunsmithClient.t;
-      case _i53.ServiceOrder:
-        return _i53.ServiceOrder.t;
-      case _i54.ServiceOrderItem:
-        return _i54.ServiceOrderItem.t;
-      case _i55.Product:
-        return _i55.Product.t;
-      case _i56.ProductGroup:
-        return _i56.ProductGroup.t;
-      case _i57.AmmunitionStock:
-        return _i57.AmmunitionStock.t;
-      case _i58.Firearm:
-        return _i58.Firearm.t;
-      case _i59.ReloadSession:
-        return _i59.ReloadSession.t;
-      case _i60.ReloadTest:
-        return _i60.ReloadTest.t;
-      case _i61.Training:
-        return _i61.Training.t;
-      case _i62.SubscriptionPlan:
-        return _i62.SubscriptionPlan.t;
+      case _itwd6fku.RolePermission:
+        return _itwd6fku.RolePermission.t;
+      case _in9fkuzh.SecurityRole:
+        return _in9fkuzh.SecurityRole.t;
+      case _iflys0o9.UserRole:
+        return _iflys0o9.UserRole.t;
+      case _i18rxkcg.Accessory:
+        return _i18rxkcg.Accessory.t;
+      case _ii1cybhg.Address:
+        return _ii1cybhg.Address.t;
+      case _i023ezu2.Document:
+        return _i023ezu2.Document.t;
+      case _i8y573y6.SupplyStock:
+        return _i8y573y6.SupplyStock.t;
+      case _izgbvseu.UserProfile:
+        return _izgbvseu.UserProfile.t;
+      case _ienljv70.Company:
+        return _ienljv70.Company.t;
+      case _i29p8qv7.Membership:
+        return _i29p8qv7.Membership.t;
+      case _iqo0zmu4.RangeVisit:
+        return _iqo0zmu4.RangeVisit.t;
+      case _i268wbv5.AsaasWebhookEvent:
+        return _i268wbv5.AsaasWebhookEvent.t;
+      case _i1qq6iwp.BankAccount:
+        return _i1qq6iwp.BankAccount.t;
+      case _irygpv1g.FinancialEntry:
+        return _irygpv1g.FinancialEntry.t;
+      case _ivdiuwq4.Invoice:
+        return _ivdiuwq4.Invoice.t;
+      case _izi6zi6k.InvoiceItem:
+        return _izi6zi6k.InvoiceItem.t;
+      case _i3em9ox0.Payment:
+        return _i3em9ox0.Payment.t;
+      case _i1xnjo88.Gunsmith:
+        return _i1xnjo88.Gunsmith.t;
+      case _iov85fbn.GunsmithClient:
+        return _iov85fbn.GunsmithClient.t;
+      case _itc8b666.ServiceOrder:
+        return _itc8b666.ServiceOrder.t;
+      case _igkm4f4b.ServiceOrderItem:
+        return _igkm4f4b.ServiceOrderItem.t;
+      case _ip2j4rpy.Product:
+        return _ip2j4rpy.Product.t;
+      case _iy51xlx2.ProductGroup:
+        return _iy51xlx2.ProductGroup.t;
+      case _ig3iv7v1.AmmunitionStock:
+        return _ig3iv7v1.AmmunitionStock.t;
+      case _i7i930pv.Firearm:
+        return _i7i930pv.Firearm.t;
+      case _ipl25531.ReloadSession:
+        return _ipl25531.ReloadSession.t;
+      case _ikjmk4up.ReloadTest:
+        return _ikjmk4up.ReloadTest.t;
+      case _iujmcebm.Training:
+        return _iujmcebm.Training.t;
+      case _iq5ctf45.SubscriptionPlan:
+        return _iq5ctf45.SubscriptionPlan.t;
     }
     return null;
   }
 
   @override
-  List<_i2.TableDefinition> getTargetTableDefinitions() =>
+  List<_isp.TableDefinition> getTargetTableDefinitions() =>
       targetTableDefinitions;
 
   @override
@@ -5362,7 +5045,7 @@ class Protocol extends _i1.SerializationManagerServer {
       return null;
     }
     try {
-      return _i3.Protocol().mapRecordToJson(record);
+      return _i1n3uhu0.Protocol().mapRecordToJson(record);
     } catch (_) {}
     throw Exception('Unsupported record type ${record.runtimeType}');
   }

@@ -70,7 +70,7 @@ class _AccessoryListPageState extends ViewmodelState<AccessoryListPage, IAccesso
                     : ListView.separated(
                         padding: const EdgeInsets.all(24),
                         itemCount: vm.accessories.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 16),
+                        separatorBuilder: (_, _) => const SizedBox(height: 16),
                         itemBuilder: (context, index) {
                           final accessory = vm.accessories[index];
                           return _AccessoryCard(
@@ -131,7 +131,7 @@ class _AccessoryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: DSTokens.surface,
         borderRadius: BorderRadius.circular(DSTokens.borderRadius),
-        border: Border.all(color: DSTokens.outline.withOpacity(0.05)),
+        border: Border.all(color: DSTokens.outline.withValues(alpha: 0.05)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

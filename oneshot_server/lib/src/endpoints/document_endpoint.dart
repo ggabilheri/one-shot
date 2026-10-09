@@ -33,7 +33,7 @@ class DocumentEndpoint extends Endpoint {
 
   /// Gera uma descrição de upload para o arquivo.
   Future<String?> getUploadDescription(Session session, String path) async {
-    return await session.storage.createDirectFileUploadDescription(
+    return await session.storage.createUploadDescription(
       storageId: 'public',
       path: path,
     );
@@ -41,11 +41,15 @@ class DocumentEndpoint extends Endpoint {
 
   /// Verifica se o upload ocorreu e retorna a URL pública.
   Future<String?> verifyUpload(Session session, String path) async {
-    final success = await session.storage.verifyDirectFileUpload(
+    final success = await session.storage.verifyUpload(
       storageId: 'public',
       path: path,
     );
     if (!success) return null;
-    return (await session.storage.getPublicUrl(storageId: 'public', path: path))?.toString();
+    final url = await session.storage.publicDownloadUrl(
+      storageId: 'public',
+      path: path,
+    );
+    return url.toString();
   }
 }

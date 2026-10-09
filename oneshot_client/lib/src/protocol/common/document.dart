@@ -10,17 +10,18 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../common/user_profile.dart' as _i2;
-import '../shooter/firearm.dart' as _i3;
-import '../common/accessory.dart' as _i4;
-import '../enums/document_type.enum.dart' as _i5;
-import '../enums/registry_body.enum.dart' as _i6;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i7;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/accessory.dart' as _ixwksfmb;
+import '../common/user_profile.dart' as _izifjpv2;
+import '../enums/document_type.enum.dart' as _i5d5abt7;
+import '../enums/registry_body.enum.dart' as _ii1wmk2g;
+import '../shooter/firearm.dart' as _i25s0fp9;
 
-abstract class Document implements _i1.SerializableModel {
+abstract class Document
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   Document._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.userId,
     this.user,
     this.firearmId,
@@ -37,18 +38,18 @@ abstract class Document implements _i1.SerializableModel {
     this.supplierCpfCnpj,
     this.supplierPhone,
     this.supplierAddress,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory Document({
-    _i1.UuidValue? id,
-    required _i1.UuidValue userId,
-    _i2.UserProfile? user,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
-    _i1.UuidValue? accessoryId,
-    _i4.Accessory? accessory,
-    required _i5.DocumentType type,
-    required _i6.RegistryBody registryBody,
+    _isc.UuidValue? id,
+    required _isc.UuidValue userId,
+    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
+    _isc.UuidValue? accessoryId,
+    _ixwksfmb.Accessory? accessory,
+    required _i5d5abt7.DocumentType type,
+    required _ii1wmk2g.RegistryBody registryBody,
     required String number,
     required DateTime emissionDate,
     DateTime? expirationDate,
@@ -63,42 +64,46 @@ abstract class Document implements _i1.SerializableModel {
     return Document(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+      userId: _isc.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       user: jsonSerialization['user'] == null
           ? null
-          : _i7.Protocol().deserialize<_i2.UserProfile>(
+          : _itys55mc.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['user'],
             ),
       firearmId: jsonSerialization['firearmId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['firearmId'],
+            ),
       firearm: jsonSerialization['firearm'] == null
           ? null
-          : _i7.Protocol().deserialize<_i3.Firearm>(
+          : _itys55mc.Protocol().deserialize<_i25s0fp9.Firearm>(
               jsonSerialization['firearm'],
             ),
       accessoryId: jsonSerialization['accessoryId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(
               jsonSerialization['accessoryId'],
             ),
       accessory: jsonSerialization['accessory'] == null
           ? null
-          : _i7.Protocol().deserialize<_i4.Accessory>(
+          : _itys55mc.Protocol().deserialize<_ixwksfmb.Accessory>(
               jsonSerialization['accessory'],
             ),
-      type: _i5.DocumentType.fromJson((jsonSerialization['type'] as String)),
-      registryBody: _i6.RegistryBody.fromJson(
+      type: _i5d5abt7.DocumentType.fromJson(
+        (jsonSerialization['type'] as String),
+      ),
+      registryBody: _ii1wmk2g.RegistryBody.fromJson(
         (jsonSerialization['registryBody'] as String),
       ),
       number: jsonSerialization['number'] as String,
-      emissionDate: _i1.DateTimeJsonExtension.fromJson(
+      emissionDate: _isc.DateTimeJsonExtension.fromJson(
         jsonSerialization['emissionDate'],
       ),
       expirationDate: jsonSerialization['expirationDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _isc.DateTimeJsonExtension.fromJson(
               jsonSerialization['expirationDate'],
             ),
       filePath: jsonSerialization['filePath'] as String?,
@@ -110,23 +115,23 @@ abstract class Document implements _i1.SerializableModel {
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
-  _i1.UuidValue userId;
+  _isc.UuidValue userId;
 
-  _i2.UserProfile? user;
+  _izifjpv2.UserProfile? user;
 
-  _i1.UuidValue? firearmId;
+  _isc.UuidValue? firearmId;
 
-  _i3.Firearm? firearm;
+  _i25s0fp9.Firearm? firearm;
 
-  _i1.UuidValue? accessoryId;
+  _isc.UuidValue? accessoryId;
 
-  _i4.Accessory? accessory;
+  _ixwksfmb.Accessory? accessory;
 
-  _i5.DocumentType type;
+  _i5d5abt7.DocumentType type;
 
-  _i6.RegistryBody registryBody;
+  _ii1wmk2g.RegistryBody registryBody;
 
   String number;
 
@@ -146,17 +151,17 @@ abstract class Document implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [Document]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   Document copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
-    _i1.UuidValue? accessoryId,
-    _i4.Accessory? accessory,
-    _i5.DocumentType? type,
-    _i6.RegistryBody? registryBody,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
+    _isc.UuidValue? accessoryId,
+    _ixwksfmb.Accessory? accessory,
+    _i5d5abt7.DocumentType? type,
+    _ii1wmk2g.RegistryBody? registryBody,
     String? number,
     DateTime? emissionDate,
     DateTime? expirationDate,
@@ -191,8 +196,32 @@ abstract class Document implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'Document',
+      'id': id.toJson(),
+      'userId': userId.toJson(),
+      if (user != null) 'user': user?.toJsonForProtocol(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
+      if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
+      if (accessoryId != null) 'accessoryId': accessoryId?.toJson(),
+      if (accessory != null) 'accessory': accessory?.toJsonForProtocol(),
+      'type': type.toJson(),
+      'registryBody': registryBody.toJson(),
+      'number': number,
+      'emissionDate': emissionDate.toJson(),
+      if (expirationDate != null) 'expirationDate': expirationDate?.toJson(),
+      if (filePath != null) 'filePath': filePath,
+      if (supplierName != null) 'supplierName': supplierName,
+      if (supplierCpfCnpj != null) 'supplierCpfCnpj': supplierCpfCnpj,
+      if (supplierPhone != null) 'supplierPhone': supplierPhone,
+      if (supplierAddress != null) 'supplierAddress': supplierAddress,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -200,15 +229,15 @@ class _Undefined {}
 
 class _DocumentImpl extends Document {
   _DocumentImpl({
-    _i1.UuidValue? id,
-    required _i1.UuidValue userId,
-    _i2.UserProfile? user,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
-    _i1.UuidValue? accessoryId,
-    _i4.Accessory? accessory,
-    required _i5.DocumentType type,
-    required _i6.RegistryBody registryBody,
+    _isc.UuidValue? id,
+    required _isc.UuidValue userId,
+    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
+    _isc.UuidValue? accessoryId,
+    _ixwksfmb.Accessory? accessory,
+    required _i5d5abt7.DocumentType type,
+    required _ii1wmk2g.RegistryBody registryBody,
     required String number,
     required DateTime emissionDate,
     DateTime? expirationDate,
@@ -239,18 +268,18 @@ class _DocumentImpl extends Document {
 
   /// Returns a shallow copy of this [Document]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   Document copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userId,
     Object? user = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     Object? accessoryId = _Undefined,
     Object? accessory = _Undefined,
-    _i5.DocumentType? type,
-    _i6.RegistryBody? registryBody,
+    _i5d5abt7.DocumentType? type,
+    _ii1wmk2g.RegistryBody? registryBody,
     String? number,
     DateTime? emissionDate,
     Object? expirationDate = _Undefined,
@@ -263,13 +292,15 @@ class _DocumentImpl extends Document {
     return Document(
       id: id ?? this.id,
       userId: userId ?? this.userId,
-      user: user is _i2.UserProfile? ? user : this.user?.copyWith(),
-      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
-      accessoryId: accessoryId is _i1.UuidValue?
+      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
+      firearmId: firearmId is _isc.UuidValue? ? firearmId : this.firearmId,
+      firearm: firearm is _i25s0fp9.Firearm?
+          ? firearm
+          : this.firearm?.copyWith(),
+      accessoryId: accessoryId is _isc.UuidValue?
           ? accessoryId
           : this.accessoryId,
-      accessory: accessory is _i4.Accessory?
+      accessory: accessory is _ixwksfmb.Accessory?
           ? accessory
           : this.accessory?.copyWith(),
       type: type ?? this.type,

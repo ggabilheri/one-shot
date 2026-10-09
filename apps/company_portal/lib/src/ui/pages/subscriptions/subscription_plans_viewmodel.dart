@@ -5,6 +5,7 @@ import 'package:company_portal/src/domain/services/company_session.dart';
 
 abstract class ISubscriptionPlansViewModel extends IViewmodel {
   List<SubscriptionPlan> get plans;
+  @override
   bool get isLoading;
   PlanType? get filterType;
   PlanStatus? get filterStatus;

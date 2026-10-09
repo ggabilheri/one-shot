@@ -84,7 +84,7 @@ class _SubscriptionPlansPageState
         children: [
           Expanded(
             child: DropdownButtonFormField<PlanType?>(
-              value: vm.filterType,
+              initialValue: vm.filterType,
               decoration: const InputDecoration(labelText: 'FILTRAR POR TIPO'),
               items: [
                 const DropdownMenuItem(
@@ -101,7 +101,7 @@ class _SubscriptionPlansPageState
           const SizedBox(width: DSTokens.spacingMd),
           Expanded(
             child: DropdownButtonFormField<PlanStatus?>(
-              value: vm.filterStatus,
+              initialValue: vm.filterStatus,
               decoration: const InputDecoration(
                 labelText: 'FILTRAR POR STATUS',
               ),
@@ -239,9 +239,9 @@ class _SubscriptionPlansPageState
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
           decoration: BoxDecoration(
-            color: color.withOpacity(0.12),
+            color: color.withValues(alpha: 0.12),
             borderRadius: BorderRadius.circular(4),
-            border: Border.all(color: color.withOpacity(0.3)),
+            border: Border.all(color: color.withValues(alpha: 0.3)),
           ),
           child: Text(
             type.label.toUpperCase(),
@@ -286,11 +286,12 @@ class _SubscriptionPlansPageState
   void _openForm({SubscriptionPlan? plan}) {
     showDialog(
       context: context,
-      barrierColor: DSTokens.background.withOpacity(0.8),
+      barrierColor: DSTokens.background.withValues(alpha: 0.8),
       builder: (context) => SubscriptionPlanFormDialog(
         plan: plan,
         onSave: (p, isEdit) async {
           await vm.savePlan(p, isEditing: isEdit);
+          if (!context.mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Plano salvo com sucesso!')),
           );

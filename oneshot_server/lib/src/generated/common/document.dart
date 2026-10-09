@@ -8,21 +8,21 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import '../common/user_profile.dart' as _i2;
-import '../shooter/firearm.dart' as _i3;
-import '../common/accessory.dart' as _i4;
-import '../enums/document_type.enum.dart' as _i5;
-import '../enums/registry_body.enum.dart' as _i6;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i7;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import '../common/accessory.dart' as _ixwksfmb;
+import '../common/user_profile.dart' as _izifjpv2;
+import '../enums/document_type.enum.dart' as _i5d5abt7;
+import '../enums/registry_body.enum.dart' as _ii1wmk2g;
+import '../shooter/firearm.dart' as _i25s0fp9;
 
 abstract class Document
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   Document._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required this.userId,
     this.user,
     this.firearmId,
@@ -39,18 +39,18 @@ abstract class Document
     this.supplierCpfCnpj,
     this.supplierPhone,
     this.supplierAddress,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _is.Uuid().v4obj();
 
   factory Document({
-    _i1.UuidValue? id,
-    required _i1.UuidValue userId,
-    _i2.UserProfile? user,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
-    _i1.UuidValue? accessoryId,
-    _i4.Accessory? accessory,
-    required _i5.DocumentType type,
-    required _i6.RegistryBody registryBody,
+    _is.UuidValue? id,
+    required _is.UuidValue userId,
+    _izifjpv2.UserProfile? user,
+    _is.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
+    _is.UuidValue? accessoryId,
+    _ixwksfmb.Accessory? accessory,
+    required _i5d5abt7.DocumentType type,
+    required _ii1wmk2g.RegistryBody registryBody,
     required String number,
     required DateTime emissionDate,
     DateTime? expirationDate,
@@ -65,42 +65,44 @@ abstract class Document
     return Document(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      userId: _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+      userId: _is.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       user: jsonSerialization['user'] == null
           ? null
-          : _i7.Protocol().deserialize<_i2.UserProfile>(
+          : _iwflrbqm.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['user'],
             ),
       firearmId: jsonSerialization['firearmId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
       firearm: jsonSerialization['firearm'] == null
           ? null
-          : _i7.Protocol().deserialize<_i3.Firearm>(
+          : _iwflrbqm.Protocol().deserialize<_i25s0fp9.Firearm>(
               jsonSerialization['firearm'],
             ),
       accessoryId: jsonSerialization['accessoryId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _is.UuidValueJsonExtension.fromJson(
               jsonSerialization['accessoryId'],
             ),
       accessory: jsonSerialization['accessory'] == null
           ? null
-          : _i7.Protocol().deserialize<_i4.Accessory>(
+          : _iwflrbqm.Protocol().deserialize<_ixwksfmb.Accessory>(
               jsonSerialization['accessory'],
             ),
-      type: _i5.DocumentType.fromJson((jsonSerialization['type'] as String)),
-      registryBody: _i6.RegistryBody.fromJson(
+      type: _i5d5abt7.DocumentType.fromJson(
+        (jsonSerialization['type'] as String),
+      ),
+      registryBody: _ii1wmk2g.RegistryBody.fromJson(
         (jsonSerialization['registryBody'] as String),
       ),
       number: jsonSerialization['number'] as String,
-      emissionDate: _i1.DateTimeJsonExtension.fromJson(
+      emissionDate: _is.DateTimeJsonExtension.fromJson(
         jsonSerialization['emissionDate'],
       ),
       expirationDate: jsonSerialization['expirationDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _is.DateTimeJsonExtension.fromJson(
               jsonSerialization['expirationDate'],
             ),
       filePath: jsonSerialization['filePath'] as String?,
@@ -116,23 +118,23 @@ abstract class Document
   static const db = DocumentRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
-  _i1.UuidValue userId;
+  _is.UuidValue userId;
 
-  _i2.UserProfile? user;
+  _izifjpv2.UserProfile? user;
 
-  _i1.UuidValue? firearmId;
+  _is.UuidValue? firearmId;
 
-  _i3.Firearm? firearm;
+  _i25s0fp9.Firearm? firearm;
 
-  _i1.UuidValue? accessoryId;
+  _is.UuidValue? accessoryId;
 
-  _i4.Accessory? accessory;
+  _ixwksfmb.Accessory? accessory;
 
-  _i5.DocumentType type;
+  _i5d5abt7.DocumentType type;
 
-  _i6.RegistryBody registryBody;
+  _ii1wmk2g.RegistryBody registryBody;
 
   String number;
 
@@ -151,21 +153,21 @@ abstract class Document
   String? supplierAddress;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Document]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   Document copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
-    _i1.UuidValue? accessoryId,
-    _i4.Accessory? accessory,
-    _i5.DocumentType? type,
-    _i6.RegistryBody? registryBody,
+    _is.UuidValue? id,
+    _is.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _is.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
+    _is.UuidValue? accessoryId,
+    _ixwksfmb.Accessory? accessory,
+    _i5d5abt7.DocumentType? type,
+    _ii1wmk2g.RegistryBody? registryBody,
     String? number,
     DateTime? emissionDate,
     DateTime? expirationDate,
@@ -224,9 +226,9 @@ abstract class Document
   }
 
   static DocumentInclude include({
-    _i2.UserProfileInclude? user,
-    _i3.FirearmInclude? firearm,
-    _i4.AccessoryInclude? accessory,
+    _izifjpv2.UserProfileInclude? user,
+    _i25s0fp9.FirearmInclude? firearm,
+    _ixwksfmb.AccessoryInclude? accessory,
   }) {
     return DocumentInclude._(
       user: user,
@@ -236,12 +238,11 @@ abstract class Document
   }
 
   static DocumentIncludeList includeList({
-    _i1.WhereExpressionBuilder<DocumentTable>? where,
+    _is.WhereExpressionBuilder<DocumentTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<DocumentTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<DocumentTable>? orderByList,
+    _is.OrderByBuilder<DocumentTable>? orderBy,
+    _is.OrderByListBuilder<DocumentTable>? orderByList,
     DocumentInclude? include,
   }) {
     return DocumentIncludeList._(
@@ -249,7 +250,6 @@ abstract class Document
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(Document.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(Document.t),
       include: include,
     );
@@ -257,7 +257,7 @@ abstract class Document
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -265,15 +265,15 @@ class _Undefined {}
 
 class _DocumentImpl extends Document {
   _DocumentImpl({
-    _i1.UuidValue? id,
-    required _i1.UuidValue userId,
-    _i2.UserProfile? user,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
-    _i1.UuidValue? accessoryId,
-    _i4.Accessory? accessory,
-    required _i5.DocumentType type,
-    required _i6.RegistryBody registryBody,
+    _is.UuidValue? id,
+    required _is.UuidValue userId,
+    _izifjpv2.UserProfile? user,
+    _is.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
+    _is.UuidValue? accessoryId,
+    _ixwksfmb.Accessory? accessory,
+    required _i5d5abt7.DocumentType type,
+    required _ii1wmk2g.RegistryBody registryBody,
     required String number,
     required DateTime emissionDate,
     DateTime? expirationDate,
@@ -304,18 +304,18 @@ class _DocumentImpl extends Document {
 
   /// Returns a shallow copy of this [Document]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   Document copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
+    _is.UuidValue? id,
+    _is.UuidValue? userId,
     Object? user = _Undefined,
     Object? firearmId = _Undefined,
     Object? firearm = _Undefined,
     Object? accessoryId = _Undefined,
     Object? accessory = _Undefined,
-    _i5.DocumentType? type,
-    _i6.RegistryBody? registryBody,
+    _i5d5abt7.DocumentType? type,
+    _ii1wmk2g.RegistryBody? registryBody,
     String? number,
     DateTime? emissionDate,
     Object? expirationDate = _Undefined,
@@ -328,13 +328,15 @@ class _DocumentImpl extends Document {
     return Document(
       id: id ?? this.id,
       userId: userId ?? this.userId,
-      user: user is _i2.UserProfile? ? user : this.user?.copyWith(),
-      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
-      accessoryId: accessoryId is _i1.UuidValue?
+      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
+      firearmId: firearmId is _is.UuidValue? ? firearmId : this.firearmId,
+      firearm: firearm is _i25s0fp9.Firearm?
+          ? firearm
+          : this.firearm?.copyWith(),
+      accessoryId: accessoryId is _is.UuidValue?
           ? accessoryId
           : this.accessoryId,
-      accessory: accessory is _i4.Accessory?
+      accessory: accessory is _ixwksfmb.Accessory?
           ? accessory
           : this.accessory?.copyWith(),
       type: type ?? this.type,
@@ -359,224 +361,150 @@ class _DocumentImpl extends Document {
   }
 }
 
-class DocumentUpdateTable extends _i1.UpdateTable<DocumentTable> {
+class DocumentUpdateTable extends _is.UpdateTable<DocumentTable> {
   DocumentUpdateTable(super.table);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue value) =>
-      _i1.ColumnValue(
-        table.userId,
-        value,
-      );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> userId(_is.UuidValue value) =>
+      _is.ColumnValue(table.userId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> firearmId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.firearmId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> firearmId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.firearmId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> accessoryId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.accessoryId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> accessoryId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.accessoryId, value);
 
-  _i1.ColumnValue<_i5.DocumentType, _i5.DocumentType> type(
-    _i5.DocumentType value,
-  ) => _i1.ColumnValue(
-    table.type,
-    value,
-  );
+  _is.ColumnValue<_i5d5abt7.DocumentType, _i5d5abt7.DocumentType> type(
+    _i5d5abt7.DocumentType value,
+  ) => _is.ColumnValue(table.type, value);
 
-  _i1.ColumnValue<_i6.RegistryBody, _i6.RegistryBody> registryBody(
-    _i6.RegistryBody value,
-  ) => _i1.ColumnValue(
-    table.registryBody,
-    value,
-  );
+  _is.ColumnValue<_ii1wmk2g.RegistryBody, _ii1wmk2g.RegistryBody> registryBody(
+    _ii1wmk2g.RegistryBody value,
+  ) => _is.ColumnValue(table.registryBody, value);
 
-  _i1.ColumnValue<String, String> number(String value) => _i1.ColumnValue(
-    table.number,
-    value,
-  );
+  _is.ColumnValue<String, String> number(String value) =>
+      _is.ColumnValue(table.number, value);
 
-  _i1.ColumnValue<DateTime, DateTime> emissionDate(DateTime value) =>
-      _i1.ColumnValue(
-        table.emissionDate,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> emissionDate(DateTime value) =>
+      _is.ColumnValue(table.emissionDate, value);
 
-  _i1.ColumnValue<DateTime, DateTime> expirationDate(DateTime? value) =>
-      _i1.ColumnValue(
-        table.expirationDate,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> expirationDate(DateTime? value) =>
+      _is.ColumnValue(table.expirationDate, value);
 
-  _i1.ColumnValue<String, String> filePath(String? value) => _i1.ColumnValue(
-    table.filePath,
-    value,
-  );
+  _is.ColumnValue<String, String> filePath(String? value) =>
+      _is.ColumnValue(table.filePath, value);
 
-  _i1.ColumnValue<String, String> supplierName(String? value) =>
-      _i1.ColumnValue(
-        table.supplierName,
-        value,
-      );
+  _is.ColumnValue<String, String> supplierName(String? value) =>
+      _is.ColumnValue(table.supplierName, value);
 
-  _i1.ColumnValue<String, String> supplierCpfCnpj(String? value) =>
-      _i1.ColumnValue(
-        table.supplierCpfCnpj,
-        value,
-      );
+  _is.ColumnValue<String, String> supplierCpfCnpj(String? value) =>
+      _is.ColumnValue(table.supplierCpfCnpj, value);
 
-  _i1.ColumnValue<String, String> supplierPhone(String? value) =>
-      _i1.ColumnValue(
-        table.supplierPhone,
-        value,
-      );
+  _is.ColumnValue<String, String> supplierPhone(String? value) =>
+      _is.ColumnValue(table.supplierPhone, value);
 
-  _i1.ColumnValue<String, String> supplierAddress(String? value) =>
-      _i1.ColumnValue(
-        table.supplierAddress,
-        value,
-      );
+  _is.ColumnValue<String, String> supplierAddress(String? value) =>
+      _is.ColumnValue(table.supplierAddress, value);
 }
 
-class DocumentTable extends _i1.Table<_i1.UuidValue> {
+class DocumentTable extends _is.Table<_is.UuidValue> {
   DocumentTable({super.tableRelation}) : super(tableName: 'documents') {
     updateTable = DocumentUpdateTable(this);
-    userId = _i1.ColumnUuid(
-      'userId',
-      this,
-    );
-    firearmId = _i1.ColumnUuid(
-      'firearmId',
-      this,
-    );
-    accessoryId = _i1.ColumnUuid(
-      'accessoryId',
-      this,
-    );
-    type = _i1.ColumnEnum(
-      'type',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    registryBody = _i1.ColumnEnum(
+    userId = _is.ColumnUuid('userId', this);
+    firearmId = _is.ColumnUuid('firearmId', this);
+    accessoryId = _is.ColumnUuid('accessoryId', this);
+    type = _is.ColumnEnum('type', this, _is.EnumSerialization.byName);
+    registryBody = _is.ColumnEnum(
       'registryBody',
       this,
-      _i1.EnumSerialization.byName,
+      _is.EnumSerialization.byName,
     );
-    number = _i1.ColumnString(
-      'number',
-      this,
-    );
-    emissionDate = _i1.ColumnDateTime(
-      'emissionDate',
-      this,
-    );
-    expirationDate = _i1.ColumnDateTime(
-      'expirationDate',
-      this,
-    );
-    filePath = _i1.ColumnString(
-      'filePath',
-      this,
-    );
-    supplierName = _i1.ColumnString(
-      'supplierName',
-      this,
-    );
-    supplierCpfCnpj = _i1.ColumnString(
-      'supplierCpfCnpj',
-      this,
-    );
-    supplierPhone = _i1.ColumnString(
-      'supplierPhone',
-      this,
-    );
-    supplierAddress = _i1.ColumnString(
-      'supplierAddress',
-      this,
-    );
+    number = _is.ColumnString('number', this);
+    emissionDate = _is.ColumnDateTime('emissionDate', this);
+    expirationDate = _is.ColumnDateTime('expirationDate', this);
+    filePath = _is.ColumnString('filePath', this);
+    supplierName = _is.ColumnString('supplierName', this);
+    supplierCpfCnpj = _is.ColumnString('supplierCpfCnpj', this);
+    supplierPhone = _is.ColumnString('supplierPhone', this);
+    supplierAddress = _is.ColumnString('supplierAddress', this);
   }
 
   late final DocumentUpdateTable updateTable;
 
-  late final _i1.ColumnUuid userId;
+  late final _is.ColumnUuid userId;
 
-  _i2.UserProfileTable? _user;
+  _izifjpv2.UserProfileTable? _user;
 
-  late final _i1.ColumnUuid firearmId;
+  late final _is.ColumnUuid firearmId;
 
-  _i3.FirearmTable? _firearm;
+  _i25s0fp9.FirearmTable? _firearm;
 
-  late final _i1.ColumnUuid accessoryId;
+  late final _is.ColumnUuid accessoryId;
 
-  _i4.AccessoryTable? _accessory;
+  _ixwksfmb.AccessoryTable? _accessory;
 
-  late final _i1.ColumnEnum<_i5.DocumentType> type;
+  late final _is.ColumnEnum<_i5d5abt7.DocumentType> type;
 
-  late final _i1.ColumnEnum<_i6.RegistryBody> registryBody;
+  late final _is.ColumnEnum<_ii1wmk2g.RegistryBody> registryBody;
 
-  late final _i1.ColumnString number;
+  late final _is.ColumnString number;
 
-  late final _i1.ColumnDateTime emissionDate;
+  late final _is.ColumnDateTime emissionDate;
 
-  late final _i1.ColumnDateTime expirationDate;
+  late final _is.ColumnDateTime expirationDate;
 
-  late final _i1.ColumnString filePath;
+  late final _is.ColumnString filePath;
 
-  late final _i1.ColumnString supplierName;
+  late final _is.ColumnString supplierName;
 
-  late final _i1.ColumnString supplierCpfCnpj;
+  late final _is.ColumnString supplierCpfCnpj;
 
-  late final _i1.ColumnString supplierPhone;
+  late final _is.ColumnString supplierPhone;
 
-  late final _i1.ColumnString supplierAddress;
+  late final _is.ColumnString supplierAddress;
 
-  _i2.UserProfileTable get user {
+  _izifjpv2.UserProfileTable get user {
     if (_user != null) return _user!;
-    _user = _i1.createRelationTable(
+    _user = _is.createRelationTable(
       relationFieldName: 'user',
       field: Document.t.userId,
-      foreignField: _i2.UserProfile.t.id,
+      foreignField: _izifjpv2.UserProfile.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.UserProfileTable(tableRelation: foreignTableRelation),
+          _izifjpv2.UserProfileTable(tableRelation: foreignTableRelation),
     );
     return _user!;
   }
 
-  _i3.FirearmTable get firearm {
+  _i25s0fp9.FirearmTable get firearm {
     if (_firearm != null) return _firearm!;
-    _firearm = _i1.createRelationTable(
+    _firearm = _is.createRelationTable(
       relationFieldName: 'firearm',
       field: Document.t.firearmId,
-      foreignField: _i3.Firearm.t.id,
+      foreignField: _i25s0fp9.Firearm.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i3.FirearmTable(tableRelation: foreignTableRelation),
+          _i25s0fp9.FirearmTable(tableRelation: foreignTableRelation),
     );
     return _firearm!;
   }
 
-  _i4.AccessoryTable get accessory {
+  _ixwksfmb.AccessoryTable get accessory {
     if (_accessory != null) return _accessory!;
-    _accessory = _i1.createRelationTable(
+    _accessory = _is.createRelationTable(
       relationFieldName: 'accessory',
       field: Document.t.accessoryId,
-      foreignField: _i4.Accessory.t.id,
+      foreignField: _ixwksfmb.Accessory.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i4.AccessoryTable(tableRelation: foreignTableRelation),
+          _ixwksfmb.AccessoryTable(tableRelation: foreignTableRelation),
     );
     return _accessory!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     userId,
     firearmId,
@@ -594,7 +522,7 @@ class DocumentTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'user') {
       return user;
     }
@@ -608,41 +536,40 @@ class DocumentTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class DocumentInclude extends _i1.IncludeObject {
+class DocumentInclude extends _is.IncludeObject {
   DocumentInclude._({
-    _i2.UserProfileInclude? user,
-    _i3.FirearmInclude? firearm,
-    _i4.AccessoryInclude? accessory,
+    _izifjpv2.UserProfileInclude? user,
+    _i25s0fp9.FirearmInclude? firearm,
+    _ixwksfmb.AccessoryInclude? accessory,
   }) {
     _user = user;
     _firearm = firearm;
     _accessory = accessory;
   }
 
-  _i2.UserProfileInclude? _user;
+  _izifjpv2.UserProfileInclude? _user;
 
-  _i3.FirearmInclude? _firearm;
+  _i25s0fp9.FirearmInclude? _firearm;
 
-  _i4.AccessoryInclude? _accessory;
+  _ixwksfmb.AccessoryInclude? _accessory;
 
   @override
-  Map<String, _i1.Include?> get includes => {
+  Map<String, _is.Include?> get includes => {
     'user': _user,
     'firearm': _firearm,
     'accessory': _accessory,
   };
 
   @override
-  _i1.Table<_i1.UuidValue> get table => Document.t;
+  _is.Table<_is.UuidValue> get table => Document.t;
 }
 
-class DocumentIncludeList extends _i1.IncludeList {
+class DocumentIncludeList extends _is.IncludeList {
   DocumentIncludeList._({
-    _i1.WhereExpressionBuilder<DocumentTable>? where,
+    _is.WhereExpressionBuilder<DocumentTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -650,10 +577,10 @@ class DocumentIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => Document.t;
+  _is.Table<_is.UuidValue> get table => Document.t;
 }
 
 class DocumentRepository {
@@ -686,23 +613,21 @@ class DocumentRepository {
   /// );
   /// ```
   Future<List<Document>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<DocumentTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<DocumentTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<DocumentTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<DocumentTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<DocumentTable>? orderBy,
+    _is.OrderByListBuilder<DocumentTable>? orderByList,
+    _is.Transaction? transaction,
     DocumentInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<Document>(
       where: where?.call(Document.t),
       orderBy: orderBy?.call(Document.t),
       orderByList: orderByList?.call(Document.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -730,22 +655,20 @@ class DocumentRepository {
   /// );
   /// ```
   Future<Document?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<DocumentTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<DocumentTable>? where,
     int? offset,
-    _i1.OrderByBuilder<DocumentTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<DocumentTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<DocumentTable>? orderBy,
+    _is.OrderByListBuilder<DocumentTable>? orderByList,
+    _is.Transaction? transaction,
     DocumentInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<Document>(
       where: where?.call(Document.t),
       orderBy: orderBy?.call(Document.t),
       orderByList: orderByList?.call(Document.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -756,12 +679,12 @@ class DocumentRepository {
 
   /// Finds a single [Document] by its [id] or null if no such row exists.
   Future<Document?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     DocumentInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<Document>(
       id,
@@ -782,16 +705,22 @@ class DocumentRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Document>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Document> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<Document>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -799,12 +728,78 @@ class DocumentRepository {
   ///
   /// The returned [Document] will have its `id` field set.
   Future<Document> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Document row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.insertRow<Document>(
+    return session.db.insertRow<Document>(row, transaction: transaction);
+  }
+
+  /// Upserts all [Document]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [Document]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<Document>> upsert(
+    _is.DatabaseSession session,
+    List<Document> rows, {
+    required _is.ColumnSelections<DocumentTable> conflictColumns,
+    _is.ColumnSelections<DocumentTable>? updateColumns,
+    _is.WhereExpressionBuilder<DocumentTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<Document>(
+      rows,
+      conflictColumns: conflictColumns(Document.t),
+      updateColumns: updateColumns?.call(Document.t),
+      updateWhere: updateWhere?.call(Document.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [Document] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [Document] will have its `id` field set.
+  Future<Document?> upsertRow(
+    _is.DatabaseSession session,
+    Document row, {
+    required _is.ColumnSelections<DocumentTable> conflictColumns,
+    _is.ColumnSelections<DocumentTable>? updateColumns,
+    _is.WhereExpressionBuilder<DocumentTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<Document>(
       row,
+      conflictColumns: conflictColumns(Document.t),
+      updateColumns: updateColumns?.call(Document.t),
+      updateWhere: updateWhere?.call(Document.t),
       transaction: transaction,
     );
   }
@@ -814,16 +809,22 @@ class DocumentRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Document>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Document> rows, {
-    _i1.ColumnSelections<DocumentTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<DocumentTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<Document>(
       rows,
       columns: columns?.call(Document.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -831,10 +832,10 @@ class DocumentRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Document> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Document row, {
-    _i1.ColumnSelections<DocumentTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<DocumentTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<Document>(
       row,
@@ -846,10 +847,10 @@ class DocumentRepository {
   /// Updates a single [Document] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Document?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<DocumentUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<DocumentUpdateTable> columnValues,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<Document>(
       id,
@@ -860,16 +861,20 @@ class DocumentRepository {
 
   /// Updates all [Document]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Document>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<DocumentUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<DocumentTable> where,
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<DocumentUpdateTable> columnValues,
+    required _is.WhereExpressionBuilder<DocumentTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<DocumentTable>? orderBy,
-    _i1.OrderByListBuilder<DocumentTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<DocumentTable>? orderBy,
+    _is.OrderByListBuilder<DocumentTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<Document>(
       columnValues: columnValues(Document.t.updateTable),
@@ -878,56 +883,80 @@ class DocumentRepository {
       offset: offset,
       orderBy: orderBy?.call(Document.t),
       orderByList: orderByList?.call(Document.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [Document]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Document>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Document> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<DocumentTable>? orderBy,
+    _is.OrderByListBuilder<DocumentTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<Document>(
       rows,
+      orderBy: orderBy?.call(Document.t),
+      orderByList: orderByList?.call(Document.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [Document].
   Future<Document> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Document row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<Document>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<Document>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Document>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<DocumentTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<DocumentTable> where,
+    _is.OrderByBuilder<DocumentTable>? orderBy,
+    _is.OrderByListBuilder<DocumentTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<Document>(
       where: where(Document.t),
+      orderBy: orderBy?.call(Document.t),
+      orderByList: orderByList?.call(Document.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<DocumentTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<DocumentTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<Document>(
       where: where?.call(Document.t),
@@ -938,11 +967,11 @@ class DocumentRepository {
 
   /// Acquires row-level locks on [Document] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<DocumentTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<DocumentTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<Document>(
       where: where(Document.t),
@@ -959,10 +988,10 @@ class DocumentAttachRowRepository {
   /// Creates a relation between the given [Document] and [UserProfile]
   /// by setting the [Document]'s foreign key `userId` to refer to the [UserProfile].
   Future<void> user(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Document document,
-    _i2.UserProfile user, {
-    _i1.Transaction? transaction,
+    _izifjpv2.UserProfile user, {
+    _is.Transaction? transaction,
   }) async {
     if (document.id == null) {
       throw ArgumentError.notNull('document.id');
@@ -982,10 +1011,10 @@ class DocumentAttachRowRepository {
   /// Creates a relation between the given [Document] and [Firearm]
   /// by setting the [Document]'s foreign key `firearmId` to refer to the [Firearm].
   Future<void> firearm(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Document document,
-    _i3.Firearm firearm, {
-    _i1.Transaction? transaction,
+    _i25s0fp9.Firearm firearm, {
+    _is.Transaction? transaction,
   }) async {
     if (document.id == null) {
       throw ArgumentError.notNull('document.id');
@@ -1005,10 +1034,10 @@ class DocumentAttachRowRepository {
   /// Creates a relation between the given [Document] and [Accessory]
   /// by setting the [Document]'s foreign key `accessoryId` to refer to the [Accessory].
   Future<void> accessory(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Document document,
-    _i4.Accessory accessory, {
-    _i1.Transaction? transaction,
+    _ixwksfmb.Accessory accessory, {
+    _is.Transaction? transaction,
   }) async {
     if (document.id == null) {
       throw ArgumentError.notNull('document.id');
@@ -1035,9 +1064,9 @@ class DocumentDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> firearm(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Document document, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (document.id == null) {
       throw ArgumentError.notNull('document.id');
@@ -1057,9 +1086,9 @@ class DocumentDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> accessory(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Document document, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (document.id == null) {
       throw ArgumentError.notNull('document.id');

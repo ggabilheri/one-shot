@@ -10,13 +10,14 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../common/user_profile.dart' as _i2;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i3;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/user_profile.dart' as _izifjpv2;
 
-abstract class Address implements _i1.SerializableModel {
+abstract class Address
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   Address._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.street,
     required this.number,
     this.complement,
@@ -26,10 +27,10 @@ abstract class Address implements _i1.SerializableModel {
     required this.zipCode,
     this.userProfileId,
     this.userProfile,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory Address({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String street,
     required String number,
     String? complement,
@@ -37,15 +38,15 @@ abstract class Address implements _i1.SerializableModel {
     required String city,
     required String state,
     required String zipCode,
-    _i1.UuidValue? userProfileId,
-    _i2.UserProfile? userProfile,
+    _isc.UuidValue? userProfileId,
+    _izifjpv2.UserProfile? userProfile,
   }) = _AddressImpl;
 
   factory Address.fromJson(Map<String, dynamic> jsonSerialization) {
     return Address(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       street: jsonSerialization['street'] as String,
       number: jsonSerialization['number'] as String,
       complement: jsonSerialization['complement'] as String?,
@@ -55,19 +56,19 @@ abstract class Address implements _i1.SerializableModel {
       zipCode: jsonSerialization['zipCode'] as String,
       userProfileId: jsonSerialization['userProfileId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(
               jsonSerialization['userProfileId'],
             ),
       userProfile: jsonSerialization['userProfile'] == null
           ? null
-          : _i3.Protocol().deserialize<_i2.UserProfile>(
+          : _itys55mc.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['userProfile'],
             ),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   String street;
 
@@ -83,15 +84,15 @@ abstract class Address implements _i1.SerializableModel {
 
   String zipCode;
 
-  _i1.UuidValue? userProfileId;
+  _isc.UuidValue? userProfileId;
 
-  _i2.UserProfile? userProfile;
+  _izifjpv2.UserProfile? userProfile;
 
   /// Returns a shallow copy of this [Address]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   Address copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? street,
     String? number,
     String? complement,
@@ -99,8 +100,8 @@ abstract class Address implements _i1.SerializableModel {
     String? city,
     String? state,
     String? zipCode,
-    _i1.UuidValue? userProfileId,
-    _i2.UserProfile? userProfile,
+    _isc.UuidValue? userProfileId,
+    _izifjpv2.UserProfile? userProfile,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -120,8 +121,25 @@ abstract class Address implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'Address',
+      'id': id.toJson(),
+      'street': street,
+      'number': number,
+      if (complement != null) 'complement': complement,
+      'neighborhood': neighborhood,
+      'city': city,
+      'state': state,
+      'zipCode': zipCode,
+      if (userProfileId != null) 'userProfileId': userProfileId?.toJson(),
+      if (userProfile != null) 'userProfile': userProfile?.toJsonForProtocol(),
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -129,7 +147,7 @@ class _Undefined {}
 
 class _AddressImpl extends Address {
   _AddressImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String street,
     required String number,
     String? complement,
@@ -137,8 +155,8 @@ class _AddressImpl extends Address {
     required String city,
     required String state,
     required String zipCode,
-    _i1.UuidValue? userProfileId,
-    _i2.UserProfile? userProfile,
+    _isc.UuidValue? userProfileId,
+    _izifjpv2.UserProfile? userProfile,
   }) : super._(
          id: id,
          street: street,
@@ -154,10 +172,10 @@ class _AddressImpl extends Address {
 
   /// Returns a shallow copy of this [Address]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   Address copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? street,
     String? number,
     Object? complement = _Undefined,
@@ -177,10 +195,10 @@ class _AddressImpl extends Address {
       city: city ?? this.city,
       state: state ?? this.state,
       zipCode: zipCode ?? this.zipCode,
-      userProfileId: userProfileId is _i1.UuidValue?
+      userProfileId: userProfileId is _isc.UuidValue?
           ? userProfileId
           : this.userProfileId,
-      userProfile: userProfile is _i2.UserProfile?
+      userProfile: userProfile is _izifjpv2.UserProfile?
           ? userProfile
           : this.userProfile?.copyWith(),
     );

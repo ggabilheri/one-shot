@@ -10,14 +10,15 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i2;
-import '../common/address.dart' as _i3;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i4;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i312scxx;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/address.dart' as _iy1vkl2d;
 
-abstract class GunsmithClient implements _i1.SerializableModel {
+abstract class GunsmithClient
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   GunsmithClient._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     this.gunsmithUserInfoId,
     this.gunsmithUserInfo,
     required this.name,
@@ -26,29 +27,29 @@ abstract class GunsmithClient implements _i1.SerializableModel {
     required this.phone,
     this.addressId,
     this.address,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory GunsmithClient({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? gunsmithUserInfoId,
-    _i2.UserInfo? gunsmithUserInfo,
+    _i312scxx.UserInfo? gunsmithUserInfo,
     required String name,
     required String cpf,
     String? rg,
     required String phone,
-    _i1.UuidValue? addressId,
-    _i3.Address? address,
+    _isc.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
   }) = _GunsmithClientImpl;
 
   factory GunsmithClient.fromJson(Map<String, dynamic> jsonSerialization) {
     return GunsmithClient(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       gunsmithUserInfoId: jsonSerialization['gunsmithUserInfoId'] as int?,
       gunsmithUserInfo: jsonSerialization['gunsmithUserInfo'] == null
           ? null
-          : _i4.Protocol().deserialize<_i2.UserInfo>(
+          : _itys55mc.Protocol().deserialize<_i312scxx.UserInfo>(
               jsonSerialization['gunsmithUserInfo'],
             ),
       name: jsonSerialization['name'] as String,
@@ -57,21 +58,23 @@ abstract class GunsmithClient implements _i1.SerializableModel {
       phone: jsonSerialization['phone'] as String,
       addressId: jsonSerialization['addressId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['addressId'],
+            ),
       address: jsonSerialization['address'] == null
           ? null
-          : _i4.Protocol().deserialize<_i3.Address>(
+          : _itys55mc.Protocol().deserialize<_iy1vkl2d.Address>(
               jsonSerialization['address'],
             ),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   int? gunsmithUserInfoId;
 
-  _i2.UserInfo? gunsmithUserInfo;
+  _i312scxx.UserInfo? gunsmithUserInfo;
 
   String name;
 
@@ -81,23 +84,23 @@ abstract class GunsmithClient implements _i1.SerializableModel {
 
   String phone;
 
-  _i1.UuidValue? addressId;
+  _isc.UuidValue? addressId;
 
-  _i3.Address? address;
+  _iy1vkl2d.Address? address;
 
   /// Returns a shallow copy of this [GunsmithClient]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   GunsmithClient copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? gunsmithUserInfoId,
-    _i2.UserInfo? gunsmithUserInfo,
+    _i312scxx.UserInfo? gunsmithUserInfo,
     String? name,
     String? cpf,
     String? rg,
     String? phone,
-    _i1.UuidValue? addressId,
-    _i3.Address? address,
+    _isc.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -117,8 +120,25 @@ abstract class GunsmithClient implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'GunsmithClient',
+      'id': id.toJson(),
+      if (gunsmithUserInfoId != null) 'gunsmithUserInfoId': gunsmithUserInfoId,
+      if (gunsmithUserInfo != null)
+        'gunsmithUserInfo': gunsmithUserInfo?.toJson(),
+      'name': name,
+      'cpf': cpf,
+      if (rg != null) 'rg': rg,
+      'phone': phone,
+      if (addressId != null) 'addressId': addressId?.toJson(),
+      if (address != null) 'address': address?.toJsonForProtocol(),
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -126,15 +146,15 @@ class _Undefined {}
 
 class _GunsmithClientImpl extends GunsmithClient {
   _GunsmithClientImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     int? gunsmithUserInfoId,
-    _i2.UserInfo? gunsmithUserInfo,
+    _i312scxx.UserInfo? gunsmithUserInfo,
     required String name,
     required String cpf,
     String? rg,
     required String phone,
-    _i1.UuidValue? addressId,
-    _i3.Address? address,
+    _isc.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
   }) : super._(
          id: id,
          gunsmithUserInfoId: gunsmithUserInfoId,
@@ -149,10 +169,10 @@ class _GunsmithClientImpl extends GunsmithClient {
 
   /// Returns a shallow copy of this [GunsmithClient]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   GunsmithClient copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     Object? gunsmithUserInfoId = _Undefined,
     Object? gunsmithUserInfo = _Undefined,
     String? name,
@@ -167,15 +187,17 @@ class _GunsmithClientImpl extends GunsmithClient {
       gunsmithUserInfoId: gunsmithUserInfoId is int?
           ? gunsmithUserInfoId
           : this.gunsmithUserInfoId,
-      gunsmithUserInfo: gunsmithUserInfo is _i2.UserInfo?
+      gunsmithUserInfo: gunsmithUserInfo is _i312scxx.UserInfo?
           ? gunsmithUserInfo
           : this.gunsmithUserInfo?.copyWith(),
       name: name ?? this.name,
       cpf: cpf ?? this.cpf,
       rg: rg is String? ? rg : this.rg,
       phone: phone ?? this.phone,
-      addressId: addressId is _i1.UuidValue? ? addressId : this.addressId,
-      address: address is _i3.Address? ? address : this.address?.copyWith(),
+      addressId: addressId is _isc.UuidValue? ? addressId : this.addressId,
+      address: address is _iy1vkl2d.Address?
+          ? address
+          : this.address?.copyWith(),
     );
   }
 }

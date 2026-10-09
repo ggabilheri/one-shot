@@ -126,10 +126,12 @@ class _ProductFormDialogState extends State<ProductFormDialog> {
             ),
           ),
           validator: (value) {
-            if (isRequired && (value == null || value.isEmpty))
+            if (isRequired && (value == null || value.isEmpty)) {
               return 'Campo obrigatório';
-            if (isNumber && double.tryParse(value ?? '0') == null)
+            }
+            if (isNumber && double.tryParse(value ?? '0') == null) {
               return 'Valor inválido';
+            }
             return null;
           },
         ),
@@ -144,7 +146,7 @@ class _ProductFormDialogState extends State<ProductFormDialog> {
         Text('GRUPO / CATEGORIA', style: DSTokens.label),
         const SizedBox(height: DSTokens.spacingSm),
         DropdownButtonFormField<UuidValue>(
-          value: _selectedGroupId,
+          initialValue: _selectedGroupId,
           dropdownColor: DSTokens.surface,
           decoration: InputDecoration(
             fillColor: DSTokens.surfaceContainer,
@@ -182,7 +184,7 @@ class _ProductFormDialogState extends State<ProductFormDialog> {
         Text('UNIDADE', style: DSTokens.label),
         const SizedBox(height: DSTokens.spacingSm),
         DropdownButtonFormField<String>(
-          value: _unit,
+          initialValue: _unit,
           dropdownColor: DSTokens.surface,
           decoration: InputDecoration(
             fillColor: DSTokens.surfaceContainer,
@@ -258,6 +260,7 @@ class _ProductFormDialogState extends State<ProductFormDialog> {
           );
         }
       } catch (e) {
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(e.toString()),

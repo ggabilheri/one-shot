@@ -8,21 +8,21 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 // ignore_for_file: invalid_use_of_internal_member
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
-import '../enums/invoice_status.enum.dart' as _i2;
-import '../enums/currency.enum.dart' as _i3;
-import '../company/company.dart' as _i4;
-import '../gunsmith/gunsmith.dart' as _i5;
-import '../common/user_profile.dart' as _i6;
-import 'package:oneshot_server/src/generated/protocol.dart' as _i7;
+import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
+import 'package:serverpod/serverpod.dart' as _is;
+import '../common/user_profile.dart' as _izifjpv2;
+import '../company/company.dart' as _iocy1ifk;
+import '../enums/currency.enum.dart' as _isdw5wvy;
+import '../enums/invoice_status.enum.dart' as _ibd6zzmc;
+import '../gunsmith/gunsmith.dart' as _inzvshfq;
 
 abstract class Invoice
-    implements _i1.TableRow<_i1.UuidValue>, _i1.ProtocolSerialization {
+    implements _is.TableRow<_is.UuidValue>, _is.ProtocolSerialization {
   Invoice._({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required this.originModule,
     required this.direction,
     required this.status,
@@ -44,92 +44,92 @@ abstract class Invoice
     this.user,
     this.draweeId,
     this.drawee,
-  }) : id = id ?? const _i1.Uuid().v4obj(),
+  }) : id = id ?? const _is.Uuid().v4obj(),
        isRecurrent = isRecurrent ?? false;
 
   factory Invoice({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required String originModule,
     required String direction,
-    required _i2.InvoiceStatus status,
+    required _ibd6zzmc.InvoiceStatus status,
     required DateTime issueDate,
     required DateTime dueDate,
     required double totalAmount,
     double? discount,
     required double finalAmount,
-    required _i3.Currency currency,
+    required _isdw5wvy.Currency currency,
     String? notes,
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
-    _i1.UuidValue? gunsmithId,
-    _i5.Gunsmith? gunsmith,
-    _i1.UuidValue? userId,
-    _i6.UserProfile? user,
-    _i1.UuidValue? draweeId,
-    _i6.UserProfile? drawee,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
+    _is.UuidValue? gunsmithId,
+    _inzvshfq.Gunsmith? gunsmith,
+    _is.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _is.UuidValue? draweeId,
+    _izifjpv2.UserProfile? drawee,
   }) = _InvoiceImpl;
 
   factory Invoice.fromJson(Map<String, dynamic> jsonSerialization) {
     return Invoice(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       originModule: jsonSerialization['originModule'] as String,
       direction: jsonSerialization['direction'] as String,
-      status: _i2.InvoiceStatus.fromJson(
+      status: _ibd6zzmc.InvoiceStatus.fromJson(
         (jsonSerialization['status'] as String),
       ),
-      issueDate: _i1.DateTimeJsonExtension.fromJson(
+      issueDate: _is.DateTimeJsonExtension.fromJson(
         jsonSerialization['issueDate'],
       ),
-      dueDate: _i1.DateTimeJsonExtension.fromJson(jsonSerialization['dueDate']),
+      dueDate: _is.DateTimeJsonExtension.fromJson(jsonSerialization['dueDate']),
       totalAmount: (jsonSerialization['totalAmount'] as num).toDouble(),
       discount: (jsonSerialization['discount'] as num?)?.toDouble(),
       finalAmount: (jsonSerialization['finalAmount'] as num).toDouble(),
-      currency: _i3.Currency.fromJson(
+      currency: _isdw5wvy.Currency.fromJson(
         (jsonSerialization['currency'] as String),
       ),
       notes: jsonSerialization['notes'] as String?,
       isRecurrent: jsonSerialization['isRecurrent'] == null
           ? null
-          : _i1.BoolJsonExtension.fromJson(jsonSerialization['isRecurrent']),
+          : _is.BoolJsonExtension.fromJson(jsonSerialization['isRecurrent']),
       asaasInstallmentId: jsonSerialization['asaasInstallmentId'] as String?,
       asaasCustomerId: jsonSerialization['asaasCustomerId'] as String?,
       companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
       company: jsonSerialization['company'] == null
           ? null
-          : _i7.Protocol().deserialize<_i4.Company>(
+          : _iwflrbqm.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['company'],
             ),
       gunsmithId: jsonSerialization['gunsmithId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _is.UuidValueJsonExtension.fromJson(
               jsonSerialization['gunsmithId'],
             ),
       gunsmith: jsonSerialization['gunsmith'] == null
           ? null
-          : _i7.Protocol().deserialize<_i5.Gunsmith>(
+          : _iwflrbqm.Protocol().deserialize<_inzvshfq.Gunsmith>(
               jsonSerialization['gunsmith'],
             ),
       userId: jsonSerialization['userId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       user: jsonSerialization['user'] == null
           ? null
-          : _i7.Protocol().deserialize<_i6.UserProfile>(
+          : _iwflrbqm.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['user'],
             ),
       draweeId: jsonSerialization['draweeId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['draweeId']),
+          : _is.UuidValueJsonExtension.fromJson(jsonSerialization['draweeId']),
       drawee: jsonSerialization['drawee'] == null
           ? null
-          : _i7.Protocol().deserialize<_i6.UserProfile>(
+          : _iwflrbqm.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['drawee'],
             ),
     );
@@ -140,13 +140,13 @@ abstract class Invoice
   static const db = InvoiceRepository._();
 
   @override
-  _i1.UuidValue id;
+  _is.UuidValue id;
 
   String originModule;
 
   String direction;
 
-  _i2.InvoiceStatus status;
+  _ibd6zzmc.InvoiceStatus status;
 
   DateTime issueDate;
 
@@ -158,7 +158,7 @@ abstract class Invoice
 
   double finalAmount;
 
-  _i3.Currency currency;
+  _isdw5wvy.Currency currency;
 
   String? notes;
 
@@ -168,51 +168,51 @@ abstract class Invoice
 
   String? asaasCustomerId;
 
-  _i1.UuidValue? companyId;
+  _is.UuidValue? companyId;
 
-  _i4.Company? company;
+  _iocy1ifk.Company? company;
 
-  _i1.UuidValue? gunsmithId;
+  _is.UuidValue? gunsmithId;
 
-  _i5.Gunsmith? gunsmith;
+  _inzvshfq.Gunsmith? gunsmith;
 
-  _i1.UuidValue? userId;
+  _is.UuidValue? userId;
 
-  _i6.UserProfile? user;
+  _izifjpv2.UserProfile? user;
 
-  _i1.UuidValue? draweeId;
+  _is.UuidValue? draweeId;
 
-  _i6.UserProfile? drawee;
+  _izifjpv2.UserProfile? drawee;
 
   @override
-  _i1.Table<_i1.UuidValue> get table => t;
+  _is.Table<_is.UuidValue> get table => t;
 
   /// Returns a shallow copy of this [Invoice]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   Invoice copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     String? originModule,
     String? direction,
-    _i2.InvoiceStatus? status,
+    _ibd6zzmc.InvoiceStatus? status,
     DateTime? issueDate,
     DateTime? dueDate,
     double? totalAmount,
     double? discount,
     double? finalAmount,
-    _i3.Currency? currency,
+    _isdw5wvy.Currency? currency,
     String? notes,
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
-    _i1.UuidValue? gunsmithId,
-    _i5.Gunsmith? gunsmith,
-    _i1.UuidValue? userId,
-    _i6.UserProfile? user,
-    _i1.UuidValue? draweeId,
-    _i6.UserProfile? drawee,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
+    _is.UuidValue? gunsmithId,
+    _inzvshfq.Gunsmith? gunsmith,
+    _is.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _is.UuidValue? draweeId,
+    _izifjpv2.UserProfile? drawee,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -273,10 +273,10 @@ abstract class Invoice
   }
 
   static InvoiceInclude include({
-    _i4.CompanyInclude? company,
-    _i5.GunsmithInclude? gunsmith,
-    _i6.UserProfileInclude? user,
-    _i6.UserProfileInclude? drawee,
+    _iocy1ifk.CompanyInclude? company,
+    _inzvshfq.GunsmithInclude? gunsmith,
+    _izifjpv2.UserProfileInclude? user,
+    _izifjpv2.UserProfileInclude? drawee,
   }) {
     return InvoiceInclude._(
       company: company,
@@ -287,12 +287,11 @@ abstract class Invoice
   }
 
   static InvoiceIncludeList includeList({
-    _i1.WhereExpressionBuilder<InvoiceTable>? where,
+    _is.WhereExpressionBuilder<InvoiceTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<InvoiceTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<InvoiceTable>? orderByList,
+    _is.OrderByBuilder<InvoiceTable>? orderBy,
+    _is.OrderByListBuilder<InvoiceTable>? orderByList,
     InvoiceInclude? include,
   }) {
     return InvoiceIncludeList._(
@@ -300,7 +299,6 @@ abstract class Invoice
       limit: limit,
       offset: offset,
       orderBy: orderBy?.call(Invoice.t),
-      orderDescending: orderDescending,
       orderByList: orderByList?.call(Invoice.t),
       include: include,
     );
@@ -308,7 +306,7 @@ abstract class Invoice
 
   @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _is.SerializationManager.encode(this);
   }
 }
 
@@ -316,28 +314,28 @@ class _Undefined {}
 
 class _InvoiceImpl extends Invoice {
   _InvoiceImpl({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     required String originModule,
     required String direction,
-    required _i2.InvoiceStatus status,
+    required _ibd6zzmc.InvoiceStatus status,
     required DateTime issueDate,
     required DateTime dueDate,
     required double totalAmount,
     double? discount,
     required double finalAmount,
-    required _i3.Currency currency,
+    required _isdw5wvy.Currency currency,
     String? notes,
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _i1.UuidValue? companyId,
-    _i4.Company? company,
-    _i1.UuidValue? gunsmithId,
-    _i5.Gunsmith? gunsmith,
-    _i1.UuidValue? userId,
-    _i6.UserProfile? user,
-    _i1.UuidValue? draweeId,
-    _i6.UserProfile? drawee,
+    _is.UuidValue? companyId,
+    _iocy1ifk.Company? company,
+    _is.UuidValue? gunsmithId,
+    _inzvshfq.Gunsmith? gunsmith,
+    _is.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _is.UuidValue? draweeId,
+    _izifjpv2.UserProfile? drawee,
   }) : super._(
          id: id,
          originModule: originModule,
@@ -365,19 +363,19 @@ class _InvoiceImpl extends Invoice {
 
   /// Returns a shallow copy of this [Invoice]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
   Invoice copyWith({
-    _i1.UuidValue? id,
+    _is.UuidValue? id,
     String? originModule,
     String? direction,
-    _i2.InvoiceStatus? status,
+    _ibd6zzmc.InvoiceStatus? status,
     DateTime? issueDate,
     DateTime? dueDate,
     double? totalAmount,
     Object? discount = _Undefined,
     double? finalAmount,
-    _i3.Currency? currency,
+    _isdw5wvy.Currency? currency,
     Object? notes = _Undefined,
     bool? isRecurrent,
     Object? asaasInstallmentId = _Undefined,
@@ -410,297 +408,204 @@ class _InvoiceImpl extends Invoice {
       asaasCustomerId: asaasCustomerId is String?
           ? asaasCustomerId
           : this.asaasCustomerId,
-      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
-      company: company is _i4.Company? ? company : this.company?.copyWith(),
-      gunsmithId: gunsmithId is _i1.UuidValue? ? gunsmithId : this.gunsmithId,
-      gunsmith: gunsmith is _i5.Gunsmith?
+      companyId: companyId is _is.UuidValue? ? companyId : this.companyId,
+      company: company is _iocy1ifk.Company?
+          ? company
+          : this.company?.copyWith(),
+      gunsmithId: gunsmithId is _is.UuidValue? ? gunsmithId : this.gunsmithId,
+      gunsmith: gunsmith is _inzvshfq.Gunsmith?
           ? gunsmith
           : this.gunsmith?.copyWith(),
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
-      user: user is _i6.UserProfile? ? user : this.user?.copyWith(),
-      draweeId: draweeId is _i1.UuidValue? ? draweeId : this.draweeId,
-      drawee: drawee is _i6.UserProfile? ? drawee : this.drawee?.copyWith(),
+      userId: userId is _is.UuidValue? ? userId : this.userId,
+      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
+      draweeId: draweeId is _is.UuidValue? ? draweeId : this.draweeId,
+      drawee: drawee is _izifjpv2.UserProfile?
+          ? drawee
+          : this.drawee?.copyWith(),
     );
   }
 }
 
-class InvoiceUpdateTable extends _i1.UpdateTable<InvoiceTable> {
+class InvoiceUpdateTable extends _is.UpdateTable<InvoiceTable> {
   InvoiceUpdateTable(super.table);
 
-  _i1.ColumnValue<String, String> originModule(String value) => _i1.ColumnValue(
-    table.originModule,
-    value,
-  );
+  _is.ColumnValue<String, String> originModule(String value) =>
+      _is.ColumnValue(table.originModule, value);
 
-  _i1.ColumnValue<String, String> direction(String value) => _i1.ColumnValue(
-    table.direction,
-    value,
-  );
+  _is.ColumnValue<String, String> direction(String value) =>
+      _is.ColumnValue(table.direction, value);
 
-  _i1.ColumnValue<_i2.InvoiceStatus, _i2.InvoiceStatus> status(
-    _i2.InvoiceStatus value,
-  ) => _i1.ColumnValue(
-    table.status,
-    value,
-  );
+  _is.ColumnValue<_ibd6zzmc.InvoiceStatus, _ibd6zzmc.InvoiceStatus> status(
+    _ibd6zzmc.InvoiceStatus value,
+  ) => _is.ColumnValue(table.status, value);
 
-  _i1.ColumnValue<DateTime, DateTime> issueDate(DateTime value) =>
-      _i1.ColumnValue(
-        table.issueDate,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> issueDate(DateTime value) =>
+      _is.ColumnValue(table.issueDate, value);
 
-  _i1.ColumnValue<DateTime, DateTime> dueDate(DateTime value) =>
-      _i1.ColumnValue(
-        table.dueDate,
-        value,
-      );
+  _is.ColumnValue<DateTime, DateTime> dueDate(DateTime value) =>
+      _is.ColumnValue(table.dueDate, value);
 
-  _i1.ColumnValue<double, double> totalAmount(double value) => _i1.ColumnValue(
-    table.totalAmount,
-    value,
-  );
+  _is.ColumnValue<double, double> totalAmount(double value) =>
+      _is.ColumnValue(table.totalAmount, value);
 
-  _i1.ColumnValue<double, double> discount(double? value) => _i1.ColumnValue(
-    table.discount,
-    value,
-  );
+  _is.ColumnValue<double, double> discount(double? value) =>
+      _is.ColumnValue(table.discount, value);
 
-  _i1.ColumnValue<double, double> finalAmount(double value) => _i1.ColumnValue(
-    table.finalAmount,
-    value,
-  );
+  _is.ColumnValue<double, double> finalAmount(double value) =>
+      _is.ColumnValue(table.finalAmount, value);
 
-  _i1.ColumnValue<_i3.Currency, _i3.Currency> currency(_i3.Currency value) =>
-      _i1.ColumnValue(
-        table.currency,
-        value,
-      );
+  _is.ColumnValue<_isdw5wvy.Currency, _isdw5wvy.Currency> currency(
+    _isdw5wvy.Currency value,
+  ) => _is.ColumnValue(table.currency, value);
 
-  _i1.ColumnValue<String, String> notes(String? value) => _i1.ColumnValue(
-    table.notes,
-    value,
-  );
+  _is.ColumnValue<String, String> notes(String? value) =>
+      _is.ColumnValue(table.notes, value);
 
-  _i1.ColumnValue<bool, bool> isRecurrent(bool value) => _i1.ColumnValue(
-    table.isRecurrent,
-    value,
-  );
+  _is.ColumnValue<bool, bool> isRecurrent(bool value) =>
+      _is.ColumnValue(table.isRecurrent, value);
 
-  _i1.ColumnValue<String, String> asaasInstallmentId(String? value) =>
-      _i1.ColumnValue(
-        table.asaasInstallmentId,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasInstallmentId(String? value) =>
+      _is.ColumnValue(table.asaasInstallmentId, value);
 
-  _i1.ColumnValue<String, String> asaasCustomerId(String? value) =>
-      _i1.ColumnValue(
-        table.asaasCustomerId,
-        value,
-      );
+  _is.ColumnValue<String, String> asaasCustomerId(String? value) =>
+      _is.ColumnValue(table.asaasCustomerId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> companyId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.companyId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> companyId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.companyId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> gunsmithId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.gunsmithId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> gunsmithId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.gunsmithId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> userId(_i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.userId,
-        value,
-      );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> userId(_is.UuidValue? value) =>
+      _is.ColumnValue(table.userId, value);
 
-  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> draweeId(
-    _i1.UuidValue? value,
-  ) => _i1.ColumnValue(
-    table.draweeId,
-    value,
-  );
+  _is.ColumnValue<_is.UuidValue, _is.UuidValue> draweeId(
+    _is.UuidValue? value,
+  ) => _is.ColumnValue(table.draweeId, value);
 }
 
-class InvoiceTable extends _i1.Table<_i1.UuidValue> {
+class InvoiceTable extends _is.Table<_is.UuidValue> {
   InvoiceTable({super.tableRelation}) : super(tableName: 'invoices') {
     updateTable = InvoiceUpdateTable(this);
-    originModule = _i1.ColumnString(
-      'originModule',
-      this,
-    );
-    direction = _i1.ColumnString(
-      'direction',
-      this,
-    );
-    status = _i1.ColumnEnum(
-      'status',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    issueDate = _i1.ColumnDateTime(
-      'issueDate',
-      this,
-    );
-    dueDate = _i1.ColumnDateTime(
-      'dueDate',
-      this,
-    );
-    totalAmount = _i1.ColumnDouble(
-      'totalAmount',
-      this,
-    );
-    discount = _i1.ColumnDouble(
-      'discount',
-      this,
-    );
-    finalAmount = _i1.ColumnDouble(
-      'finalAmount',
-      this,
-    );
-    currency = _i1.ColumnEnum(
-      'currency',
-      this,
-      _i1.EnumSerialization.byName,
-    );
-    notes = _i1.ColumnString(
-      'notes',
-      this,
-    );
-    isRecurrent = _i1.ColumnBool(
-      'isRecurrent',
-      this,
-      hasDefault: true,
-    );
-    asaasInstallmentId = _i1.ColumnString(
-      'asaasInstallmentId',
-      this,
-    );
-    asaasCustomerId = _i1.ColumnString(
-      'asaasCustomerId',
-      this,
-    );
-    companyId = _i1.ColumnUuid(
-      'companyId',
-      this,
-    );
-    gunsmithId = _i1.ColumnUuid(
-      'gunsmithId',
-      this,
-    );
-    userId = _i1.ColumnUuid(
-      'userId',
-      this,
-    );
-    draweeId = _i1.ColumnUuid(
-      'draweeId',
-      this,
-    );
+    originModule = _is.ColumnString('originModule', this);
+    direction = _is.ColumnString('direction', this);
+    status = _is.ColumnEnum('status', this, _is.EnumSerialization.byName);
+    issueDate = _is.ColumnDateTime('issueDate', this);
+    dueDate = _is.ColumnDateTime('dueDate', this);
+    totalAmount = _is.ColumnDouble('totalAmount', this);
+    discount = _is.ColumnDouble('discount', this);
+    finalAmount = _is.ColumnDouble('finalAmount', this);
+    currency = _is.ColumnEnum('currency', this, _is.EnumSerialization.byName);
+    notes = _is.ColumnString('notes', this);
+    isRecurrent = _is.ColumnBool('isRecurrent', this, hasDefault: true);
+    asaasInstallmentId = _is.ColumnString('asaasInstallmentId', this);
+    asaasCustomerId = _is.ColumnString('asaasCustomerId', this);
+    companyId = _is.ColumnUuid('companyId', this);
+    gunsmithId = _is.ColumnUuid('gunsmithId', this);
+    userId = _is.ColumnUuid('userId', this);
+    draweeId = _is.ColumnUuid('draweeId', this);
   }
 
   late final InvoiceUpdateTable updateTable;
 
-  late final _i1.ColumnString originModule;
+  late final _is.ColumnString originModule;
 
-  late final _i1.ColumnString direction;
+  late final _is.ColumnString direction;
 
-  late final _i1.ColumnEnum<_i2.InvoiceStatus> status;
+  late final _is.ColumnEnum<_ibd6zzmc.InvoiceStatus> status;
 
-  late final _i1.ColumnDateTime issueDate;
+  late final _is.ColumnDateTime issueDate;
 
-  late final _i1.ColumnDateTime dueDate;
+  late final _is.ColumnDateTime dueDate;
 
-  late final _i1.ColumnDouble totalAmount;
+  late final _is.ColumnDouble totalAmount;
 
-  late final _i1.ColumnDouble discount;
+  late final _is.ColumnDouble discount;
 
-  late final _i1.ColumnDouble finalAmount;
+  late final _is.ColumnDouble finalAmount;
 
-  late final _i1.ColumnEnum<_i3.Currency> currency;
+  late final _is.ColumnEnum<_isdw5wvy.Currency> currency;
 
-  late final _i1.ColumnString notes;
+  late final _is.ColumnString notes;
 
-  late final _i1.ColumnBool isRecurrent;
+  late final _is.ColumnBool isRecurrent;
 
-  late final _i1.ColumnString asaasInstallmentId;
+  late final _is.ColumnString asaasInstallmentId;
 
-  late final _i1.ColumnString asaasCustomerId;
+  late final _is.ColumnString asaasCustomerId;
 
-  late final _i1.ColumnUuid companyId;
+  late final _is.ColumnUuid companyId;
 
-  _i4.CompanyTable? _company;
+  _iocy1ifk.CompanyTable? _company;
 
-  late final _i1.ColumnUuid gunsmithId;
+  late final _is.ColumnUuid gunsmithId;
 
-  _i5.GunsmithTable? _gunsmith;
+  _inzvshfq.GunsmithTable? _gunsmith;
 
-  late final _i1.ColumnUuid userId;
+  late final _is.ColumnUuid userId;
 
-  _i6.UserProfileTable? _user;
+  _izifjpv2.UserProfileTable? _user;
 
-  late final _i1.ColumnUuid draweeId;
+  late final _is.ColumnUuid draweeId;
 
-  _i6.UserProfileTable? _drawee;
+  _izifjpv2.UserProfileTable? _drawee;
 
-  _i4.CompanyTable get company {
+  _iocy1ifk.CompanyTable get company {
     if (_company != null) return _company!;
-    _company = _i1.createRelationTable(
+    _company = _is.createRelationTable(
       relationFieldName: 'company',
       field: Invoice.t.companyId,
-      foreignField: _i4.Company.t.id,
+      foreignField: _iocy1ifk.Company.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i4.CompanyTable(tableRelation: foreignTableRelation),
+          _iocy1ifk.CompanyTable(tableRelation: foreignTableRelation),
     );
     return _company!;
   }
 
-  _i5.GunsmithTable get gunsmith {
+  _inzvshfq.GunsmithTable get gunsmith {
     if (_gunsmith != null) return _gunsmith!;
-    _gunsmith = _i1.createRelationTable(
+    _gunsmith = _is.createRelationTable(
       relationFieldName: 'gunsmith',
       field: Invoice.t.gunsmithId,
-      foreignField: _i5.Gunsmith.t.id,
+      foreignField: _inzvshfq.Gunsmith.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i5.GunsmithTable(tableRelation: foreignTableRelation),
+          _inzvshfq.GunsmithTable(tableRelation: foreignTableRelation),
     );
     return _gunsmith!;
   }
 
-  _i6.UserProfileTable get user {
+  _izifjpv2.UserProfileTable get user {
     if (_user != null) return _user!;
-    _user = _i1.createRelationTable(
+    _user = _is.createRelationTable(
       relationFieldName: 'user',
       field: Invoice.t.userId,
-      foreignField: _i6.UserProfile.t.id,
+      foreignField: _izifjpv2.UserProfile.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i6.UserProfileTable(tableRelation: foreignTableRelation),
+          _izifjpv2.UserProfileTable(tableRelation: foreignTableRelation),
     );
     return _user!;
   }
 
-  _i6.UserProfileTable get drawee {
+  _izifjpv2.UserProfileTable get drawee {
     if (_drawee != null) return _drawee!;
-    _drawee = _i1.createRelationTable(
+    _drawee = _is.createRelationTable(
       relationFieldName: 'drawee',
       field: Invoice.t.draweeId,
-      foreignField: _i6.UserProfile.t.id,
+      foreignField: _izifjpv2.UserProfile.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i6.UserProfileTable(tableRelation: foreignTableRelation),
+          _izifjpv2.UserProfileTable(tableRelation: foreignTableRelation),
     );
     return _drawee!;
   }
 
   @override
-  List<_i1.Column> get columns => [
+  List<_is.Column> get columns => [
     id,
     originModule,
     direction,
@@ -722,7 +627,7 @@ class InvoiceTable extends _i1.Table<_i1.UuidValue> {
   ];
 
   @override
-  _i1.Table? getRelationTable(String relationField) {
+  _is.Table? getRelationTable(String relationField) {
     if (relationField == 'company') {
       return company;
     }
@@ -739,12 +644,12 @@ class InvoiceTable extends _i1.Table<_i1.UuidValue> {
   }
 }
 
-class InvoiceInclude extends _i1.IncludeObject {
+class InvoiceInclude extends _is.IncludeObject {
   InvoiceInclude._({
-    _i4.CompanyInclude? company,
-    _i5.GunsmithInclude? gunsmith,
-    _i6.UserProfileInclude? user,
-    _i6.UserProfileInclude? drawee,
+    _iocy1ifk.CompanyInclude? company,
+    _inzvshfq.GunsmithInclude? gunsmith,
+    _izifjpv2.UserProfileInclude? user,
+    _izifjpv2.UserProfileInclude? drawee,
   }) {
     _company = company;
     _gunsmith = gunsmith;
@@ -752,16 +657,16 @@ class InvoiceInclude extends _i1.IncludeObject {
     _drawee = drawee;
   }
 
-  _i4.CompanyInclude? _company;
+  _iocy1ifk.CompanyInclude? _company;
 
-  _i5.GunsmithInclude? _gunsmith;
+  _inzvshfq.GunsmithInclude? _gunsmith;
 
-  _i6.UserProfileInclude? _user;
+  _izifjpv2.UserProfileInclude? _user;
 
-  _i6.UserProfileInclude? _drawee;
+  _izifjpv2.UserProfileInclude? _drawee;
 
   @override
-  Map<String, _i1.Include?> get includes => {
+  Map<String, _is.Include?> get includes => {
     'company': _company,
     'gunsmith': _gunsmith,
     'user': _user,
@@ -769,16 +674,15 @@ class InvoiceInclude extends _i1.IncludeObject {
   };
 
   @override
-  _i1.Table<_i1.UuidValue> get table => Invoice.t;
+  _is.Table<_is.UuidValue> get table => Invoice.t;
 }
 
-class InvoiceIncludeList extends _i1.IncludeList {
+class InvoiceIncludeList extends _is.IncludeList {
   InvoiceIncludeList._({
-    _i1.WhereExpressionBuilder<InvoiceTable>? where,
+    _is.WhereExpressionBuilder<InvoiceTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
-    super.orderDescending,
     super.orderByList,
     super.include,
   }) {
@@ -786,10 +690,10 @@ class InvoiceIncludeList extends _i1.IncludeList {
   }
 
   @override
-  Map<String, _i1.Include?> get includes => include?.includes ?? {};
+  Map<String, _is.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<_i1.UuidValue> get table => Invoice.t;
+  _is.Table<_is.UuidValue> get table => Invoice.t;
 }
 
 class InvoiceRepository {
@@ -822,23 +726,21 @@ class InvoiceRepository {
   /// );
   /// ```
   Future<List<Invoice>> find(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<InvoiceTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<InvoiceTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<InvoiceTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<InvoiceTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<InvoiceTable>? orderBy,
+    _is.OrderByListBuilder<InvoiceTable>? orderByList,
+    _is.Transaction? transaction,
     InvoiceInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.find<Invoice>(
       where: where?.call(Invoice.t),
       orderBy: orderBy?.call(Invoice.t),
       orderByList: orderByList?.call(Invoice.t),
-      orderDescending: orderDescending,
       limit: limit,
       offset: offset,
       transaction: transaction,
@@ -866,22 +768,20 @@ class InvoiceRepository {
   /// );
   /// ```
   Future<Invoice?> findFirstRow(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<InvoiceTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<InvoiceTable>? where,
     int? offset,
-    _i1.OrderByBuilder<InvoiceTable>? orderBy,
-    bool orderDescending = false,
-    _i1.OrderByListBuilder<InvoiceTable>? orderByList,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<InvoiceTable>? orderBy,
+    _is.OrderByListBuilder<InvoiceTable>? orderByList,
+    _is.Transaction? transaction,
     InvoiceInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findFirstRow<Invoice>(
       where: where?.call(Invoice.t),
       orderBy: orderBy?.call(Invoice.t),
       orderByList: orderByList?.call(Invoice.t),
-      orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
       include: include,
@@ -892,12 +792,12 @@ class InvoiceRepository {
 
   /// Finds a single [Invoice] by its [id] or null if no such row exists.
   Future<Invoice?> findById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    _is.Transaction? transaction,
     InvoiceInclude? include,
-    _i1.LockMode? lockMode,
-    _i1.LockBehavior? lockBehavior,
+    _is.LockMode? lockMode,
+    _is.LockBehavior? lockBehavior,
   }) async {
     return session.db.findById<Invoice>(
       id,
@@ -918,16 +818,22 @@ class InvoiceRepository {
   /// If [ignoreConflicts] is set to `true`, rows that conflict with existing
   /// rows are silently skipped, and only the successfully inserted rows are
   /// returned.
+  ///
+  /// If [noReturn] is set to `true`, the inserted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Invoice>> insert(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Invoice> rows, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
     bool ignoreConflicts = false,
+    bool noReturn = false,
   }) async {
     return session.db.insert<Invoice>(
       rows,
       transaction: transaction,
       ignoreConflicts: ignoreConflicts,
+      noReturn: noReturn,
     );
   }
 
@@ -935,12 +841,78 @@ class InvoiceRepository {
   ///
   /// The returned [Invoice] will have its `id` field set.
   Future<Invoice> insertRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Invoice row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.insertRow<Invoice>(
+    return session.db.insertRow<Invoice>(row, transaction: transaction);
+  }
+
+  /// Upserts all [Invoice]s in the list and returns the resulting rows.
+  ///
+  /// If a row conflicts on the given [conflictColumns], the existing row is
+  /// updated with the new values. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies to rows matching the
+  /// given expression. Conflicting rows that don't match are skipped and not
+  /// returned, so the resulting list may be shorter than [rows].
+  ///
+  /// The returned [Invoice]s will have their `id` fields set.
+  ///
+  /// This is an atomic operation, meaning that if one of the rows fails,
+  /// none of the rows will be affected.
+  ///
+  /// If [noReturn] is set to `true`, the resulting rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
+  Future<List<Invoice>> upsert(
+    _is.DatabaseSession session,
+    List<Invoice> rows, {
+    required _is.ColumnSelections<InvoiceTable> conflictColumns,
+    _is.ColumnSelections<InvoiceTable>? updateColumns,
+    _is.WhereExpressionBuilder<InvoiceTable>? updateWhere,
+    _is.Transaction? transaction,
+    bool noReturn = false,
+  }) async {
+    return session.db.upsert<Invoice>(
+      rows,
+      conflictColumns: conflictColumns(Invoice.t),
+      updateColumns: updateColumns?.call(Invoice.t),
+      updateWhere: updateWhere?.call(Invoice.t),
+      transaction: transaction,
+      noReturn: noReturn,
+    );
+  }
+
+  /// Upserts a single [Invoice] and returns the resulting row.
+  ///
+  /// If the row conflicts on the given [conflictColumns], the existing row is
+  /// updated. Otherwise, a new row is inserted.
+  ///
+  /// If [updateColumns] is provided, only those columns will be updated on
+  /// conflict. If null, all non-conflict, non-id columns are updated.
+  ///
+  /// If [updateWhere] is provided, the update only applies when the existing
+  /// row matches the expression. Returns `null` if no row was affected — for
+  /// example when [updateWhere] does not match the conflicting row.
+  ///
+  /// The returned [Invoice] will have its `id` field set.
+  Future<Invoice?> upsertRow(
+    _is.DatabaseSession session,
+    Invoice row, {
+    required _is.ColumnSelections<InvoiceTable> conflictColumns,
+    _is.ColumnSelections<InvoiceTable>? updateColumns,
+    _is.WhereExpressionBuilder<InvoiceTable>? updateWhere,
+    _is.Transaction? transaction,
+  }) async {
+    return session.db.upsertRow<Invoice>(
       row,
+      conflictColumns: conflictColumns(Invoice.t),
+      updateColumns: updateColumns?.call(Invoice.t),
+      updateWhere: updateWhere?.call(Invoice.t),
       transaction: transaction,
     );
   }
@@ -950,16 +922,22 @@ class InvoiceRepository {
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Invoice>> update(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Invoice> rows, {
-    _i1.ColumnSelections<InvoiceTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<InvoiceTable>? columns,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.update<Invoice>(
       rows,
       columns: columns?.call(Invoice.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
@@ -967,10 +945,10 @@ class InvoiceRepository {
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
   Future<Invoice> updateRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Invoice row, {
-    _i1.ColumnSelections<InvoiceTable>? columns,
-    _i1.Transaction? transaction,
+    _is.ColumnSelections<InvoiceTable>? columns,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateRow<Invoice>(
       row,
@@ -982,10 +960,10 @@ class InvoiceRepository {
   /// Updates a single [Invoice] by its [id] with the specified [columnValues].
   /// Returns the updated row or null if no row with the given id exists.
   Future<Invoice?> updateById(
-    _i1.DatabaseSession session,
-    _i1.UuidValue id, {
-    required _i1.ColumnValueListBuilder<InvoiceUpdateTable> columnValues,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session,
+    _is.UuidValue id, {
+    required _is.ColumnValueListBuilder<InvoiceUpdateTable> columnValues,
+    _is.Transaction? transaction,
   }) async {
     return session.db.updateById<Invoice>(
       id,
@@ -996,16 +974,20 @@ class InvoiceRepository {
 
   /// Updates all [Invoice]s matching the [where] expression with the specified [columnValues].
   /// Returns the list of updated rows.
+  ///
+  /// If [noReturn] is set to `true`, the updated rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Invoice>> updateWhere(
-    _i1.DatabaseSession session, {
-    required _i1.ColumnValueListBuilder<InvoiceUpdateTable> columnValues,
-    required _i1.WhereExpressionBuilder<InvoiceTable> where,
+    _is.DatabaseSession session, {
+    required _is.ColumnValueListBuilder<InvoiceUpdateTable> columnValues,
+    required _is.WhereExpressionBuilder<InvoiceTable> where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<InvoiceTable>? orderBy,
-    _i1.OrderByListBuilder<InvoiceTable>? orderByList,
-    bool orderDescending = false,
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<InvoiceTable>? orderBy,
+    _is.OrderByListBuilder<InvoiceTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.updateWhere<Invoice>(
       columnValues: columnValues(Invoice.t.updateTable),
@@ -1014,56 +996,80 @@ class InvoiceRepository {
       offset: offset,
       orderBy: orderBy?.call(Invoice.t),
       orderByList: orderByList?.call(Invoice.t),
-      orderDescending: orderDescending,
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes all [Invoice]s in the list and returns the deleted rows.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Invoice>> delete(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     List<Invoice> rows, {
-    _i1.Transaction? transaction,
+    _is.OrderByBuilder<InvoiceTable>? orderBy,
+    _is.OrderByListBuilder<InvoiceTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.delete<Invoice>(
       rows,
+      orderBy: orderBy?.call(Invoice.t),
+      orderByList: orderByList?.call(Invoice.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Deletes a single [Invoice].
   Future<Invoice> deleteRow(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Invoice row, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<Invoice>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<Invoice>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.
+  ///
+  /// To specify the order of the returned rows use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// If [noReturn] is set to `true`, the deleted rows are not read back from
+  /// the database and an empty list is returned. This avoids the overhead of
+  /// transferring and deserializing the rows when the result is not needed.
   Future<List<Invoice>> deleteWhere(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<InvoiceTable> where,
-    _i1.Transaction? transaction,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<InvoiceTable> where,
+    _is.OrderByBuilder<InvoiceTable>? orderBy,
+    _is.OrderByListBuilder<InvoiceTable>? orderByList,
+    _is.Transaction? transaction,
+    bool noReturn = false,
   }) async {
     return session.db.deleteWhere<Invoice>(
       where: where(Invoice.t),
+      orderBy: orderBy?.call(Invoice.t),
+      orderByList: orderByList?.call(Invoice.t),
       transaction: transaction,
+      noReturn: noReturn,
     );
   }
 
   /// Counts the number of rows matching the [where] expression. If omitted,
   /// will return the count of all rows in the table.
   Future<int> count(
-    _i1.DatabaseSession session, {
-    _i1.WhereExpressionBuilder<InvoiceTable>? where,
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<InvoiceTable>? where,
     int? limit,
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     return session.db.count<Invoice>(
       where: where?.call(Invoice.t),
@@ -1074,11 +1080,11 @@ class InvoiceRepository {
 
   /// Acquires row-level locks on [Invoice] rows matching the [where] expression.
   Future<void> lockRows(
-    _i1.DatabaseSession session, {
-    required _i1.WhereExpressionBuilder<InvoiceTable> where,
-    required _i1.LockMode lockMode,
-    required _i1.Transaction transaction,
-    _i1.LockBehavior lockBehavior = _i1.LockBehavior.wait,
+    _is.DatabaseSession session, {
+    required _is.WhereExpressionBuilder<InvoiceTable> where,
+    required _is.LockMode lockMode,
+    required _is.Transaction transaction,
+    _is.LockBehavior lockBehavior = _is.LockBehavior.wait,
   }) async {
     return session.db.lockRows<Invoice>(
       where: where(Invoice.t),
@@ -1095,10 +1101,10 @@ class InvoiceAttachRowRepository {
   /// Creates a relation between the given [Invoice] and [Company]
   /// by setting the [Invoice]'s foreign key `companyId` to refer to the [Company].
   Future<void> company(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Invoice invoice,
-    _i4.Company company, {
-    _i1.Transaction? transaction,
+    _iocy1ifk.Company company, {
+    _is.Transaction? transaction,
   }) async {
     if (invoice.id == null) {
       throw ArgumentError.notNull('invoice.id');
@@ -1118,10 +1124,10 @@ class InvoiceAttachRowRepository {
   /// Creates a relation between the given [Invoice] and [Gunsmith]
   /// by setting the [Invoice]'s foreign key `gunsmithId` to refer to the [Gunsmith].
   Future<void> gunsmith(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Invoice invoice,
-    _i5.Gunsmith gunsmith, {
-    _i1.Transaction? transaction,
+    _inzvshfq.Gunsmith gunsmith, {
+    _is.Transaction? transaction,
   }) async {
     if (invoice.id == null) {
       throw ArgumentError.notNull('invoice.id');
@@ -1141,10 +1147,10 @@ class InvoiceAttachRowRepository {
   /// Creates a relation between the given [Invoice] and [UserProfile]
   /// by setting the [Invoice]'s foreign key `userId` to refer to the [UserProfile].
   Future<void> user(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Invoice invoice,
-    _i6.UserProfile user, {
-    _i1.Transaction? transaction,
+    _izifjpv2.UserProfile user, {
+    _is.Transaction? transaction,
   }) async {
     if (invoice.id == null) {
       throw ArgumentError.notNull('invoice.id');
@@ -1164,10 +1170,10 @@ class InvoiceAttachRowRepository {
   /// Creates a relation between the given [Invoice] and [UserProfile]
   /// by setting the [Invoice]'s foreign key `draweeId` to refer to the [UserProfile].
   Future<void> drawee(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Invoice invoice,
-    _i6.UserProfile drawee, {
-    _i1.Transaction? transaction,
+    _izifjpv2.UserProfile drawee, {
+    _is.Transaction? transaction,
   }) async {
     if (invoice.id == null) {
       throw ArgumentError.notNull('invoice.id');
@@ -1194,9 +1200,9 @@ class InvoiceDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> company(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Invoice invoice, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (invoice.id == null) {
       throw ArgumentError.notNull('invoice.id');
@@ -1216,9 +1222,9 @@ class InvoiceDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> gunsmith(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Invoice invoice, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (invoice.id == null) {
       throw ArgumentError.notNull('invoice.id');
@@ -1238,9 +1244,9 @@ class InvoiceDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> user(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Invoice invoice, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (invoice.id == null) {
       throw ArgumentError.notNull('invoice.id');
@@ -1260,9 +1266,9 @@ class InvoiceDetachRowRepository {
   /// This removes the association between the two models without deleting
   /// the related record.
   Future<void> drawee(
-    _i1.DatabaseSession session,
+    _is.DatabaseSession session,
     Invoice invoice, {
-    _i1.Transaction? transaction,
+    _is.Transaction? transaction,
   }) async {
     if (invoice.id == null) {
       throw ArgumentError.notNull('invoice.id');

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
 import 'package:serverpod_auth_shared_flutter/serverpod_auth_shared_flutter.dart';
 import 'package:qlevar_router/qlevar_router.dart';
-import 'package:oneshot_flutter/src/ui/widgets/ds_tokens.dart';
-import 'package:oneshot_flutter/src/injections/viewmodel_injections.dart';
-import 'package:oneshot_flutter/src/injections/services_injections.dart';
-import 'package:oneshot_flutter/src/injections/repositories_injections.dart';
-import 'package:oneshot_flutter/src/routes/app_routes.dart';
+import 'package:shooter_app/src/ui/widgets/ds_tokens.dart';
+import 'package:shooter_app/src/injections/viewmodel_injections.dart';
+import 'package:shooter_app/src/injections/services_injections.dart';
+import 'package:shooter_app/src/injections/repositories_injections.dart';
+import 'package:shooter_app/src/routes/app_routes.dart';
 
 // ignore: avoid_global_state
 late final Client client;
@@ -22,10 +22,9 @@ void main() async {
   final serverUrl =
       serverUrlFromEnv.isEmpty ? 'http://localhost:8080/' : serverUrlFromEnv;
 
-  client = Client(
-    serverUrl,
-    authenticationKeyManager: FlutterAuthenticationKeyManager(),
-  )..connectivityMonitor = FlutterConnectivityMonitor();
+  client = Client(serverUrl)
+    ..connectivityMonitor = FlutterConnectivityMonitor()
+    ..authKeyProvider = FlutterAuthenticationKeyManager();
 
   sessionManager = SessionManager(
     caller: client.modules.auth,
@@ -56,7 +55,6 @@ class MyApp extends StatelessWidget {
           primary: DSTokens.primary,
           secondary: DSTokens.secondary,
           surface: DSTokens.surface,
-          background: DSTokens.background,
           error: DSTokens.error,
         ),
         useMaterial3: true,

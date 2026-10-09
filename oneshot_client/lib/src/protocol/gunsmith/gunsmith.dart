@@ -10,14 +10,15 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../common/address.dart' as _i2;
-import '../common/user_profile.dart' as _i3;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i4;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/address.dart' as _iy1vkl2d;
+import '../common/user_profile.dart' as _izifjpv2;
 
-abstract class Gunsmith implements _i1.SerializableModel {
+abstract class Gunsmith
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   Gunsmith._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.name,
     required this.taxId,
     this.addressId,
@@ -30,18 +31,18 @@ abstract class Gunsmith implements _i1.SerializableModel {
     this.asaasWalletId,
     this.asaasApiKey,
     this.asaasOnboardingFailureReason,
-  }) : id = id ?? const _i1.Uuid().v4obj(),
+  }) : id = id ?? const _isc.Uuid().v4obj(),
        active = active ?? true,
        incomeValue = incomeValue ?? 1000.0;
 
   factory Gunsmith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String name,
     required String taxId,
-    _i1.UuidValue? addressId,
-    _i2.Address? address,
-    _i1.UuidValue? ownerId,
-    _i3.UserProfile? owner,
+    _isc.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    _isc.UuidValue? ownerId,
+    _izifjpv2.UserProfile? owner,
     bool? active,
     double? incomeValue,
     String? asaasAccountId,
@@ -54,28 +55,30 @@ abstract class Gunsmith implements _i1.SerializableModel {
     return Gunsmith(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       name: jsonSerialization['name'] as String,
       taxId: jsonSerialization['taxId'] as String,
       addressId: jsonSerialization['addressId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['addressId'],
+            ),
       address: jsonSerialization['address'] == null
           ? null
-          : _i4.Protocol().deserialize<_i2.Address>(
+          : _itys55mc.Protocol().deserialize<_iy1vkl2d.Address>(
               jsonSerialization['address'],
             ),
       ownerId: jsonSerialization['ownerId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['ownerId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['ownerId']),
       owner: jsonSerialization['owner'] == null
           ? null
-          : _i4.Protocol().deserialize<_i3.UserProfile>(
+          : _itys55mc.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['owner'],
             ),
       active: jsonSerialization['active'] == null
           ? null
-          : _i1.BoolJsonExtension.fromJson(jsonSerialization['active']),
+          : _isc.BoolJsonExtension.fromJson(jsonSerialization['active']),
       incomeValue: (jsonSerialization['incomeValue'] as num?)?.toDouble(),
       asaasAccountId: jsonSerialization['asaasAccountId'] as String?,
       asaasWalletId: jsonSerialization['asaasWalletId'] as String?,
@@ -86,19 +89,19 @@ abstract class Gunsmith implements _i1.SerializableModel {
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   String name;
 
   String taxId;
 
-  _i1.UuidValue? addressId;
+  _isc.UuidValue? addressId;
 
-  _i2.Address? address;
+  _iy1vkl2d.Address? address;
 
-  _i1.UuidValue? ownerId;
+  _isc.UuidValue? ownerId;
 
-  _i3.UserProfile? owner;
+  _izifjpv2.UserProfile? owner;
 
   bool active;
 
@@ -114,15 +117,15 @@ abstract class Gunsmith implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [Gunsmith]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   Gunsmith copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? name,
     String? taxId,
-    _i1.UuidValue? addressId,
-    _i2.Address? address,
-    _i1.UuidValue? ownerId,
-    _i3.UserProfile? owner,
+    _isc.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    _isc.UuidValue? ownerId,
+    _izifjpv2.UserProfile? owner,
     bool? active,
     double? incomeValue,
     String? asaasAccountId,
@@ -152,8 +155,29 @@ abstract class Gunsmith implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'Gunsmith',
+      'id': id.toJson(),
+      'name': name,
+      'taxId': taxId,
+      if (addressId != null) 'addressId': addressId?.toJson(),
+      if (address != null) 'address': address?.toJsonForProtocol(),
+      if (ownerId != null) 'ownerId': ownerId?.toJson(),
+      if (owner != null) 'owner': owner?.toJsonForProtocol(),
+      'active': active,
+      'incomeValue': incomeValue,
+      if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
+      if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
+      if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
+      if (asaasOnboardingFailureReason != null)
+        'asaasOnboardingFailureReason': asaasOnboardingFailureReason,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -161,13 +185,13 @@ class _Undefined {}
 
 class _GunsmithImpl extends Gunsmith {
   _GunsmithImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String name,
     required String taxId,
-    _i1.UuidValue? addressId,
-    _i2.Address? address,
-    _i1.UuidValue? ownerId,
-    _i3.UserProfile? owner,
+    _isc.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    _isc.UuidValue? ownerId,
+    _izifjpv2.UserProfile? owner,
     bool? active,
     double? incomeValue,
     String? asaasAccountId,
@@ -192,10 +216,10 @@ class _GunsmithImpl extends Gunsmith {
 
   /// Returns a shallow copy of this [Gunsmith]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   Gunsmith copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? name,
     String? taxId,
     Object? addressId = _Undefined,
@@ -213,10 +237,12 @@ class _GunsmithImpl extends Gunsmith {
       id: id ?? this.id,
       name: name ?? this.name,
       taxId: taxId ?? this.taxId,
-      addressId: addressId is _i1.UuidValue? ? addressId : this.addressId,
-      address: address is _i2.Address? ? address : this.address?.copyWith(),
-      ownerId: ownerId is _i1.UuidValue? ? ownerId : this.ownerId,
-      owner: owner is _i3.UserProfile? ? owner : this.owner?.copyWith(),
+      addressId: addressId is _isc.UuidValue? ? addressId : this.addressId,
+      address: address is _iy1vkl2d.Address?
+          ? address
+          : this.address?.copyWith(),
+      ownerId: ownerId is _isc.UuidValue? ? ownerId : this.ownerId,
+      owner: owner is _izifjpv2.UserProfile? ? owner : this.owner?.copyWith(),
       active: active ?? this.active,
       incomeValue: incomeValue ?? this.incomeValue,
       asaasAccountId: asaasAccountId is String?

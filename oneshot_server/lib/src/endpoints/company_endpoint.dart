@@ -72,12 +72,10 @@ class CompanyEndpoint extends Endpoint {
     var filterId = parentCompanyId;
 
     if (filterId == null) {
-      final profile = await sl.getOrCreateProfileUseCase.execute(session);
-      final managed =
-          await sl.companyRepository.findByOwner(session, profile.id, type);
-      // if (managed.isNotEmpty) {
-      //   filterId = managed.first.id;
-      // }
+      // Garante o perfil do usuário logado (cria se necessário).
+      await sl.getOrCreateProfileUseCase.execute(session);
+      // Filtro por empresa do usuário desativado no momento: definir quando o
+      // fluxo backoffice vs. clube estiver fechado (ver comentário acima).
     }
 
     return await sl.companyRepository
@@ -105,7 +103,7 @@ class CompanyEndpoint extends Endpoint {
     final profile = await sl.getOrCreateProfileUseCase.execute(session);
 
     // Validar se já existe.
-    final authInfo = await session.authenticated;
+    final authInfo = session.authenticated;
     if (authInfo == null) throw Exception('Não autorizado.');
     final existing = await sl.membershipRepository
         .findByUserAndCompany(session, profile.id, companyId);
@@ -136,7 +134,7 @@ class CompanyEndpoint extends Endpoint {
     final profile = await sl.getOrCreateProfileUseCase.execute(session);
 
     final visit = RangeVisit(
-      userId: profile.id!,
+      userId: profile.id,
       companyId: companyId,
       firearmId: firearmId!,
       checkIn: DateTime.now(),
@@ -161,7 +159,6 @@ class CompanyEndpoint extends Endpoint {
   /// Obtém a empresa gerenciada pelo usuário logado (Dono do Clube).
   Future<Company> getManagedCompany(Session session) async {
     final profile = await sl.getOrCreateProfileUseCase.execute(session);
-    if (profile.id == null) throw Exception('Perfil incompleto.');
 
     final companies = await sl.companyRepository
         .findByOwner(session, profile.id, CompanyType.club);

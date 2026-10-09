@@ -6,6 +6,7 @@ import 'package:company_portal/src/domain/repositories/user_repository.dart';
 
 abstract class ICompaniesViewmodel extends IViewmodel {
   List<Company> get companies;
+  @override
   bool get isLoading;
   Future<void> loadCompanies();
   Future<void> saveCompany(Company company, {bool isEditing = false});

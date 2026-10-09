@@ -10,16 +10,17 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../company/company_type.dart' as _i2;
-import '../common/address.dart' as _i3;
-import '../common/user_profile.dart' as _i4;
-import '../company/company.dart' as _i5;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i6;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/address.dart' as _iy1vkl2d;
+import '../common/user_profile.dart' as _izifjpv2;
+import '../company/company.dart' as _iocy1ifk;
+import '../company/company_type.dart' as _iqrrhgif;
 
-abstract class Company implements _i1.SerializableModel {
+abstract class Company
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   Company._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.name,
     required this.cnpj,
     required this.type,
@@ -37,25 +38,25 @@ abstract class Company implements _i1.SerializableModel {
     this.asaasWalletId,
     this.asaasApiKey,
     this.asaasOnboardingFailureReason,
-  }) : id = id ?? const _i1.Uuid().v4obj(),
+  }) : id = id ?? const _isc.Uuid().v4obj(),
        active = active ?? true,
        incomeValue = incomeValue ?? 1000.0;
 
   factory Company({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String name,
     required String cnpj,
-    required _i2.CompanyType type,
-    _i1.UuidValue? addressId,
-    _i3.Address? address,
-    _i1.UuidValue? ownerId,
-    _i4.UserProfile? owner,
+    required _iqrrhgif.CompanyType type,
+    _isc.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    _isc.UuidValue? ownerId,
+    _izifjpv2.UserProfile? owner,
     String? phoneNumber,
     String? email,
     bool? active,
     double? incomeValue,
-    _i1.UuidValue? parentCompanyId,
-    _i5.Company? parentCompany,
+    _isc.UuidValue? parentCompanyId,
+    _iocy1ifk.Company? parentCompany,
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
@@ -66,40 +67,44 @@ abstract class Company implements _i1.SerializableModel {
     return Company(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       name: jsonSerialization['name'] as String,
       cnpj: jsonSerialization['cnpj'] as String,
-      type: _i2.CompanyType.fromJson((jsonSerialization['type'] as String)),
+      type: _iqrrhgif.CompanyType.fromJson(
+        (jsonSerialization['type'] as String),
+      ),
       addressId: jsonSerialization['addressId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['addressId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['addressId'],
+            ),
       address: jsonSerialization['address'] == null
           ? null
-          : _i6.Protocol().deserialize<_i3.Address>(
+          : _itys55mc.Protocol().deserialize<_iy1vkl2d.Address>(
               jsonSerialization['address'],
             ),
       ownerId: jsonSerialization['ownerId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['ownerId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['ownerId']),
       owner: jsonSerialization['owner'] == null
           ? null
-          : _i6.Protocol().deserialize<_i4.UserProfile>(
+          : _itys55mc.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['owner'],
             ),
       phoneNumber: jsonSerialization['phoneNumber'] as String?,
       email: jsonSerialization['email'] as String?,
       active: jsonSerialization['active'] == null
           ? null
-          : _i1.BoolJsonExtension.fromJson(jsonSerialization['active']),
+          : _isc.BoolJsonExtension.fromJson(jsonSerialization['active']),
       incomeValue: (jsonSerialization['incomeValue'] as num?)?.toDouble(),
       parentCompanyId: jsonSerialization['parentCompanyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(
               jsonSerialization['parentCompanyId'],
             ),
       parentCompany: jsonSerialization['parentCompany'] == null
           ? null
-          : _i6.Protocol().deserialize<_i5.Company>(
+          : _itys55mc.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['parentCompany'],
             ),
       asaasAccountId: jsonSerialization['asaasAccountId'] as String?,
@@ -111,21 +116,21 @@ abstract class Company implements _i1.SerializableModel {
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   String name;
 
   String cnpj;
 
-  _i2.CompanyType type;
+  _iqrrhgif.CompanyType type;
 
-  _i1.UuidValue? addressId;
+  _isc.UuidValue? addressId;
 
-  _i3.Address? address;
+  _iy1vkl2d.Address? address;
 
-  _i1.UuidValue? ownerId;
+  _isc.UuidValue? ownerId;
 
-  _i4.UserProfile? owner;
+  _izifjpv2.UserProfile? owner;
 
   String? phoneNumber;
 
@@ -135,9 +140,9 @@ abstract class Company implements _i1.SerializableModel {
 
   double incomeValue;
 
-  _i1.UuidValue? parentCompanyId;
+  _isc.UuidValue? parentCompanyId;
 
-  _i5.Company? parentCompany;
+  _iocy1ifk.Company? parentCompany;
 
   String? asaasAccountId;
 
@@ -149,22 +154,22 @@ abstract class Company implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [Company]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   Company copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? name,
     String? cnpj,
-    _i2.CompanyType? type,
-    _i1.UuidValue? addressId,
-    _i3.Address? address,
-    _i1.UuidValue? ownerId,
-    _i4.UserProfile? owner,
+    _iqrrhgif.CompanyType? type,
+    _isc.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    _isc.UuidValue? ownerId,
+    _izifjpv2.UserProfile? owner,
     String? phoneNumber,
     String? email,
     bool? active,
     double? incomeValue,
-    _i1.UuidValue? parentCompanyId,
-    _i5.Company? parentCompany,
+    _isc.UuidValue? parentCompanyId,
+    _iocy1ifk.Company? parentCompany,
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
@@ -197,8 +202,35 @@ abstract class Company implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'Company',
+      'id': id.toJson(),
+      'name': name,
+      'cnpj': cnpj,
+      'type': type.toJson(),
+      if (addressId != null) 'addressId': addressId?.toJson(),
+      if (address != null) 'address': address?.toJsonForProtocol(),
+      if (ownerId != null) 'ownerId': ownerId?.toJson(),
+      if (owner != null) 'owner': owner?.toJsonForProtocol(),
+      if (phoneNumber != null) 'phoneNumber': phoneNumber,
+      if (email != null) 'email': email,
+      'active': active,
+      'incomeValue': incomeValue,
+      if (parentCompanyId != null) 'parentCompanyId': parentCompanyId?.toJson(),
+      if (parentCompany != null)
+        'parentCompany': parentCompany?.toJsonForProtocol(),
+      if (asaasAccountId != null) 'asaasAccountId': asaasAccountId,
+      if (asaasWalletId != null) 'asaasWalletId': asaasWalletId,
+      if (asaasApiKey != null) 'asaasApiKey': asaasApiKey,
+      if (asaasOnboardingFailureReason != null)
+        'asaasOnboardingFailureReason': asaasOnboardingFailureReason,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -206,20 +238,20 @@ class _Undefined {}
 
 class _CompanyImpl extends Company {
   _CompanyImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String name,
     required String cnpj,
-    required _i2.CompanyType type,
-    _i1.UuidValue? addressId,
-    _i3.Address? address,
-    _i1.UuidValue? ownerId,
-    _i4.UserProfile? owner,
+    required _iqrrhgif.CompanyType type,
+    _isc.UuidValue? addressId,
+    _iy1vkl2d.Address? address,
+    _isc.UuidValue? ownerId,
+    _izifjpv2.UserProfile? owner,
     String? phoneNumber,
     String? email,
     bool? active,
     double? incomeValue,
-    _i1.UuidValue? parentCompanyId,
-    _i5.Company? parentCompany,
+    _isc.UuidValue? parentCompanyId,
+    _iocy1ifk.Company? parentCompany,
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
@@ -247,13 +279,13 @@ class _CompanyImpl extends Company {
 
   /// Returns a shallow copy of this [Company]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   Company copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? name,
     String? cnpj,
-    _i2.CompanyType? type,
+    _iqrrhgif.CompanyType? type,
     Object? addressId = _Undefined,
     Object? address = _Undefined,
     Object? ownerId = _Undefined,
@@ -274,18 +306,20 @@ class _CompanyImpl extends Company {
       name: name ?? this.name,
       cnpj: cnpj ?? this.cnpj,
       type: type ?? this.type,
-      addressId: addressId is _i1.UuidValue? ? addressId : this.addressId,
-      address: address is _i3.Address? ? address : this.address?.copyWith(),
-      ownerId: ownerId is _i1.UuidValue? ? ownerId : this.ownerId,
-      owner: owner is _i4.UserProfile? ? owner : this.owner?.copyWith(),
+      addressId: addressId is _isc.UuidValue? ? addressId : this.addressId,
+      address: address is _iy1vkl2d.Address?
+          ? address
+          : this.address?.copyWith(),
+      ownerId: ownerId is _isc.UuidValue? ? ownerId : this.ownerId,
+      owner: owner is _izifjpv2.UserProfile? ? owner : this.owner?.copyWith(),
       phoneNumber: phoneNumber is String? ? phoneNumber : this.phoneNumber,
       email: email is String? ? email : this.email,
       active: active ?? this.active,
       incomeValue: incomeValue ?? this.incomeValue,
-      parentCompanyId: parentCompanyId is _i1.UuidValue?
+      parentCompanyId: parentCompanyId is _isc.UuidValue?
           ? parentCompanyId
           : this.parentCompanyId,
-      parentCompany: parentCompany is _i5.Company?
+      parentCompany: parentCompany is _iocy1ifk.Company?
           ? parentCompany
           : this.parentCompany?.copyWith(),
       asaasAccountId: asaasAccountId is String?

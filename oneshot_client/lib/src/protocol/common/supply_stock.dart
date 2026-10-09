@@ -10,13 +10,14 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i2;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i3;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i312scxx;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
 
-abstract class SupplyStock implements _i1.SerializableModel {
+abstract class SupplyStock
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   SupplyStock._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required this.name,
     required this.type,
     required this.quantity,
@@ -25,10 +26,10 @@ abstract class SupplyStock implements _i1.SerializableModel {
     this.batchNumber,
     this.userInfoId,
     this.userInfo,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory SupplyStock({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String name,
     required String type,
     required double quantity,
@@ -36,35 +37,35 @@ abstract class SupplyStock implements _i1.SerializableModel {
     DateTime? acquisitionDate,
     String? batchNumber,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
   }) = _SupplyStockImpl;
 
   factory SupplyStock.fromJson(Map<String, dynamic> jsonSerialization) {
     return SupplyStock(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       name: jsonSerialization['name'] as String,
       type: jsonSerialization['type'] as String,
       quantity: (jsonSerialization['quantity'] as num).toDouble(),
       unit: jsonSerialization['unit'] as String,
       acquisitionDate: jsonSerialization['acquisitionDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _isc.DateTimeJsonExtension.fromJson(
               jsonSerialization['acquisitionDate'],
             ),
       batchNumber: jsonSerialization['batchNumber'] as String?,
       userInfoId: jsonSerialization['userInfoId'] as int?,
       userInfo: jsonSerialization['userInfo'] == null
           ? null
-          : _i3.Protocol().deserialize<_i2.UserInfo>(
+          : _itys55mc.Protocol().deserialize<_i312scxx.UserInfo>(
               jsonSerialization['userInfo'],
             ),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
   String name;
 
@@ -80,13 +81,13 @@ abstract class SupplyStock implements _i1.SerializableModel {
 
   int? userInfoId;
 
-  _i2.UserInfo? userInfo;
+  _i312scxx.UserInfo? userInfo;
 
   /// Returns a shallow copy of this [SupplyStock]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   SupplyStock copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? name,
     String? type,
     double? quantity,
@@ -94,7 +95,7 @@ abstract class SupplyStock implements _i1.SerializableModel {
     DateTime? acquisitionDate,
     String? batchNumber,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -113,8 +114,24 @@ abstract class SupplyStock implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'SupplyStock',
+      'id': id.toJson(),
+      'name': name,
+      'type': type,
+      'quantity': quantity,
+      'unit': unit,
+      if (acquisitionDate != null) 'acquisitionDate': acquisitionDate?.toJson(),
+      if (batchNumber != null) 'batchNumber': batchNumber,
+      if (userInfoId != null) 'userInfoId': userInfoId,
+      if (userInfo != null) 'userInfo': userInfo?.toJson(),
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -122,7 +139,7 @@ class _Undefined {}
 
 class _SupplyStockImpl extends SupplyStock {
   _SupplyStockImpl({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     required String name,
     required String type,
     required double quantity,
@@ -130,7 +147,7 @@ class _SupplyStockImpl extends SupplyStock {
     DateTime? acquisitionDate,
     String? batchNumber,
     int? userInfoId,
-    _i2.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo,
   }) : super._(
          id: id,
          name: name,
@@ -145,10 +162,10 @@ class _SupplyStockImpl extends SupplyStock {
 
   /// Returns a shallow copy of this [SupplyStock]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   SupplyStock copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     String? name,
     String? type,
     double? quantity,
@@ -169,7 +186,7 @@ class _SupplyStockImpl extends SupplyStock {
           : this.acquisitionDate,
       batchNumber: batchNumber is String? ? batchNumber : this.batchNumber,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i2.UserInfo?
+      userInfo: userInfo is _i312scxx.UserInfo?
           ? userInfo
           : this.userInfo?.copyWith(),
     );

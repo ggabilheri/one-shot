@@ -6,6 +6,7 @@ import 'package:backoffice_web/src/domain/repositories/product_group_repository.
 abstract class IProductsViewmodel extends IViewmodel {
   List<Product> get products;
   List<ProductGroup> get groups;
+  @override
   bool get isLoading;
   String get selectedOrigin;
   UuidValue? get selectedGroupId;

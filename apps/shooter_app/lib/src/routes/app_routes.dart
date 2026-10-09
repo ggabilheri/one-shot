@@ -1,13 +1,13 @@
 import 'package:qlevar_router/qlevar_router.dart';
 import 'package:oneshot_client/oneshot_client.dart';
-import 'package:oneshot_flutter/src/ui/pages/home/home_page.dart';
-import 'package:oneshot_flutter/src/ui/pages/profile/profile_page.dart';
-import 'package:oneshot_flutter/src/ui/pages/firearms/firearm_list_page.dart';
-import 'package:oneshot_flutter/src/ui/pages/firearms/firearm_form_page.dart';
-import 'package:oneshot_flutter/src/ui/pages/accessories/accessory_list_page.dart';
-import 'package:oneshot_flutter/src/ui/pages/accessories/accessory_form_page.dart';
-import 'package:oneshot_flutter/src/ui/pages/documents/document_list_page.dart';
-import 'package:oneshot_flutter/src/ui/pages/documents/document_form_page.dart';
+import 'package:shooter_app/src/ui/pages/home/home_page.dart';
+import 'package:shooter_app/src/ui/pages/profile/profile_page.dart';
+import 'package:shooter_app/src/ui/pages/firearms/firearm_list_page.dart';
+import 'package:shooter_app/src/ui/pages/firearms/firearm_form_page.dart';
+import 'package:shooter_app/src/ui/pages/accessories/accessory_list_page.dart';
+import 'package:shooter_app/src/ui/pages/accessories/accessory_form_page.dart';
+import 'package:shooter_app/src/ui/pages/documents/document_list_page.dart';
+import 'package:shooter_app/src/ui/pages/documents/document_form_page.dart';
 
 class AppRoutes {
   static final routes = [
@@ -20,7 +20,7 @@ class AppRoutes {
       builder: () {
         final userIdStr = QR.params['userId']?.value;
         if (userIdStr == null) return const HomePage();
-        return FirearmListPage(userId: UuidValue(userIdStr.toString()));
+        return FirearmListPage(userId: UuidValue.fromString(userIdStr.toString()));
       },
     ),
     QRoute(
@@ -31,7 +31,7 @@ class AppRoutes {
         // Em vez de passar o objeto, o formulário pode recuperar do ViewModel se necessário
         // ou podemos passar o ID via query parameter
         return FirearmFormPage(
-          userId: UuidValue(userIdStr.toString()),
+          userId: UuidValue.fromString(userIdStr.toString()),
         );
       },
     ),
@@ -42,7 +42,7 @@ class AppRoutes {
       builder: () {
         final userIdStr = QR.params['userId']?.value;
         if (userIdStr == null) return const HomePage();
-        return AccessoryListPage(userId: UuidValue(userIdStr.toString()));
+        return AccessoryListPage(userId: UuidValue.fromString(userIdStr.toString()));
       },
     ),
     QRoute(
@@ -51,7 +51,7 @@ class AppRoutes {
         final userIdStr = QR.params['userId']?.value;
         if (userIdStr == null) return const HomePage();
         return AccessoryFormPage(
-          userId: UuidValue(userIdStr.toString()),
+          userId: UuidValue.fromString(userIdStr.toString()),
         );
       },
     ),
@@ -62,7 +62,7 @@ class AppRoutes {
       builder: () {
         final userIdStr = QR.params['userId']?.value;
         if (userIdStr == null) return const HomePage();
-        return DocumentListPage(userId: UuidValue(userIdStr.toString()));
+        return DocumentListPage(userId: UuidValue.fromString(userIdStr.toString()));
       },
     ),
     QRoute(
@@ -71,7 +71,7 @@ class AppRoutes {
         final userIdStr = QR.params['userId']?.value;
         if (userIdStr == null) return const HomePage();
         return DocumentFormPage(
-          userId: UuidValue(userIdStr.toString()),
+          userId: UuidValue.fromString(userIdStr.toString()),
         );
       },
     ),

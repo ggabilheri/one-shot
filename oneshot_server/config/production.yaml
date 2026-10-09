@@ -32,8 +32,8 @@ webServer:
 database:
   host: database.private-production.examplepod.com
   port: 5432
-  name: serverpod
-  user: postgres
+  name: oneshot
+  user: oneshot_user
   requireSsl: true
   #isUnixSocket: true # defaults to false
 
@@ -64,3 +64,16 @@ sessionLogs:
 # Configuração do gateway de pagamento Asaas
 asaas:
   baseUrl: 'https://api.asaas.com'
+
+# Configuração de envio de e-mails (SMTP) para os códigos de validação de
+# cadastro e recuperação de senha. OBRIGATÓRIA em produção: sem esta seção os
+# códigos são apenas registrados no log e os usuários não os recebem.
+# A senha do SMTP não fica aqui: configure em config/passwords.yaml (chave
+# `email` no bloco `production`).
+#email:
+#  host: smtp.seuprovedor.com
+#  port: 587
+#  ssl: false # false para STARTTLS (porta 587); true para TLS implícito (porta 465)
+#  username: usuario@seuprovedor.com
+#  senderEmail: no-reply@oneshot.com.br
+#  senderName: One-Shot

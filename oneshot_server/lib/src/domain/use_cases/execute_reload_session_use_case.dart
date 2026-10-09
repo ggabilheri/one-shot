@@ -65,7 +65,7 @@ class ExecuteReloadSessionUseCase implements IExecuteReloadSessionUseCase {
       await _ammunitionRepository.create(session, targetAmmo);
     } else {
       await _ammunitionRepository.adjustQuantity(
-          session, targetAmmo.id!, totalReloads);
+          session, targetAmmo.id, totalReloads);
     }
 
     return savedSession;

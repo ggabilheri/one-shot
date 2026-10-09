@@ -28,7 +28,7 @@ class ProductsOriginBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: bgColor.withOpacity(0.1),
+        color: bgColor.withValues(alpha: 0.1),
         border: Border.all(color: bgColor),
         borderRadius: BorderRadius.circular(4),
       ),

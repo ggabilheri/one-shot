@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:serverpod/serverpod.dart';
 import 'package:oneshot_server/src/gateway/asaas/repositories/i_asaas_webhook_event_repository.dart';
 import 'package:oneshot_server/src/generated/protocol.dart';

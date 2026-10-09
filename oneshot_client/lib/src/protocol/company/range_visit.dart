@@ -10,15 +10,16 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../common/user_profile.dart' as _i2;
-import '../company/company.dart' as _i3;
-import '../shooter/firearm.dart' as _i4;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i5;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../common/user_profile.dart' as _izifjpv2;
+import '../company/company.dart' as _iocy1ifk;
+import '../shooter/firearm.dart' as _i25s0fp9;
 
-abstract class RangeVisit implements _i1.SerializableModel {
+abstract class RangeVisit
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   RangeVisit._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     this.userId,
     this.user,
     this.companyId,
@@ -30,18 +31,18 @@ abstract class RangeVisit implements _i1.SerializableModel {
     int? shotsFired,
     this.notes,
     bool? habitualityReportGenerated,
-  }) : id = id ?? const _i1.Uuid().v4obj(),
+  }) : id = id ?? const _isc.Uuid().v4obj(),
        shotsFired = shotsFired ?? 0,
        habitualityReportGenerated = habitualityReportGenerated ?? false;
 
   factory RangeVisit({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    _i1.UuidValue? companyId,
-    _i3.Company? company,
-    _i1.UuidValue? firearmId,
-    _i4.Firearm? firearm,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
     required DateTime checkIn,
     DateTime? checkOut,
     int? shotsFired,
@@ -53,60 +54,66 @@ abstract class RangeVisit implements _i1.SerializableModel {
     return RangeVisit(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       userId: jsonSerialization['userId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['userId']),
       user: jsonSerialization['user'] == null
           ? null
-          : _i5.Protocol().deserialize<_i2.UserProfile>(
+          : _itys55mc.Protocol().deserialize<_izifjpv2.UserProfile>(
               jsonSerialization['user'],
             ),
       companyId: jsonSerialization['companyId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['companyId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['companyId'],
+            ),
       company: jsonSerialization['company'] == null
           ? null
-          : _i5.Protocol().deserialize<_i3.Company>(
+          : _itys55mc.Protocol().deserialize<_iocy1ifk.Company>(
               jsonSerialization['company'],
             ),
       firearmId: jsonSerialization['firearmId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['firearmId'],
+            ),
       firearm: jsonSerialization['firearm'] == null
           ? null
-          : _i5.Protocol().deserialize<_i4.Firearm>(
+          : _itys55mc.Protocol().deserialize<_i25s0fp9.Firearm>(
               jsonSerialization['firearm'],
             ),
-      checkIn: _i1.DateTimeJsonExtension.fromJson(jsonSerialization['checkIn']),
+      checkIn: _isc.DateTimeJsonExtension.fromJson(
+        jsonSerialization['checkIn'],
+      ),
       checkOut: jsonSerialization['checkOut'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(jsonSerialization['checkOut']),
+          : _isc.DateTimeJsonExtension.fromJson(jsonSerialization['checkOut']),
       shotsFired: jsonSerialization['shotsFired'] as int?,
       notes: jsonSerialization['notes'] as String?,
       habitualityReportGenerated:
           jsonSerialization['habitualityReportGenerated'] == null
           ? null
-          : _i1.BoolJsonExtension.fromJson(
+          : _isc.BoolJsonExtension.fromJson(
               jsonSerialization['habitualityReportGenerated'],
             ),
     );
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
-  _i1.UuidValue? userId;
+  _isc.UuidValue? userId;
 
-  _i2.UserProfile? user;
+  _izifjpv2.UserProfile? user;
 
-  _i1.UuidValue? companyId;
+  _isc.UuidValue? companyId;
 
-  _i3.Company? company;
+  _iocy1ifk.Company? company;
 
-  _i1.UuidValue? firearmId;
+  _isc.UuidValue? firearmId;
 
-  _i4.Firearm? firearm;
+  _i25s0fp9.Firearm? firearm;
 
   DateTime checkIn;
 
@@ -120,15 +127,15 @@ abstract class RangeVisit implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [RangeVisit]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   RangeVisit copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    _i1.UuidValue? companyId,
-    _i3.Company? company,
-    _i1.UuidValue? firearmId,
-    _i4.Firearm? firearm,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
     DateTime? checkIn,
     DateTime? checkOut,
     int? shotsFired,
@@ -155,8 +162,27 @@ abstract class RangeVisit implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'RangeVisit',
+      'id': id.toJson(),
+      if (userId != null) 'userId': userId?.toJson(),
+      if (user != null) 'user': user?.toJsonForProtocol(),
+      if (companyId != null) 'companyId': companyId?.toJson(),
+      if (company != null) 'company': company?.toJsonForProtocol(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
+      if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
+      'checkIn': checkIn.toJson(),
+      if (checkOut != null) 'checkOut': checkOut?.toJson(),
+      'shotsFired': shotsFired,
+      if (notes != null) 'notes': notes,
+      'habitualityReportGenerated': habitualityReportGenerated,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -164,13 +190,13 @@ class _Undefined {}
 
 class _RangeVisitImpl extends RangeVisit {
   _RangeVisitImpl({
-    _i1.UuidValue? id,
-    _i1.UuidValue? userId,
-    _i2.UserProfile? user,
-    _i1.UuidValue? companyId,
-    _i3.Company? company,
-    _i1.UuidValue? firearmId,
-    _i4.Firearm? firearm,
+    _isc.UuidValue? id,
+    _isc.UuidValue? userId,
+    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? companyId,
+    _iocy1ifk.Company? company,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
     required DateTime checkIn,
     DateTime? checkOut,
     int? shotsFired,
@@ -193,10 +219,10 @@ class _RangeVisitImpl extends RangeVisit {
 
   /// Returns a shallow copy of this [RangeVisit]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   RangeVisit copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     Object? userId = _Undefined,
     Object? user = _Undefined,
     Object? companyId = _Undefined,
@@ -211,12 +237,16 @@ class _RangeVisitImpl extends RangeVisit {
   }) {
     return RangeVisit(
       id: id ?? this.id,
-      userId: userId is _i1.UuidValue? ? userId : this.userId,
-      user: user is _i2.UserProfile? ? user : this.user?.copyWith(),
-      companyId: companyId is _i1.UuidValue? ? companyId : this.companyId,
-      company: company is _i3.Company? ? company : this.company?.copyWith(),
-      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i4.Firearm? ? firearm : this.firearm?.copyWith(),
+      userId: userId is _isc.UuidValue? ? userId : this.userId,
+      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
+      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
+      company: company is _iocy1ifk.Company?
+          ? company
+          : this.company?.copyWith(),
+      firearmId: firearmId is _isc.UuidValue? ? firearmId : this.firearmId,
+      firearm: firearm is _i25s0fp9.Firearm?
+          ? firearm
+          : this.firearm?.copyWith(),
       checkIn: checkIn ?? this.checkIn,
       checkOut: checkOut is DateTime? ? checkOut : this.checkOut,
       shotsFired: shotsFired ?? this.shotsFired,

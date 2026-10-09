@@ -1,6 +1,6 @@
 # backoffice_web
 
-A new Flutter project.
+Backoffice One-Shot.
 
 ## Getting Started
 

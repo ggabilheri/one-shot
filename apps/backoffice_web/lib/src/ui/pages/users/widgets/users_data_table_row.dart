@@ -42,7 +42,7 @@ class UsersDataTableRow extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       decoration: BoxDecoration(
-        color: isEven ? Colors.transparent : Colors.white.withOpacity(0.01),
+        color: isEven ? Colors.transparent : Colors.white.withValues(alpha: 0.01),
         border: const Border(
           bottom: BorderSide(color: DSTokens.surfaceContainerHigh),
         ),
@@ -131,7 +131,7 @@ class UsersDataTableRow extends StatelessWidget {
                     onTap: () {
                       showDialog(
                         context: context,
-                        barrierColor: DSTokens.background.withOpacity(0.8),
+                        barrierColor: DSTokens.background.withValues(alpha: 0.8),
                         builder: (context) =>
                             UserFormDialog(vm: vm, user: user),
                       );

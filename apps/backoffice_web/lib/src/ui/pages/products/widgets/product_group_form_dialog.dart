@@ -22,12 +22,10 @@ class _ProductGroupFormDialogState extends State<ProductGroupFormDialog> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
   late TextEditingController _descriptionController;
-  late bool _isNew;
 
   @override
   void initState() {
     super.initState();
-    _isNew = widget.group == null;
     _nameController = TextEditingController(text: widget.group?.name);
     _descriptionController = TextEditingController(
       text: widget.group?.description,

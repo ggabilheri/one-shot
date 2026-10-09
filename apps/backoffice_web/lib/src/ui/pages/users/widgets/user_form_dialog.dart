@@ -2,12 +2,10 @@ import 'package:backoffice_web/src/core/extensions/enum_translations.dart';
 import 'package:backoffice_web/src/ui/pages/users/widgets/user_form_dropdown_field.dart';
 import 'package:backoffice_web/src/ui/pages/users/widgets/user_form_input_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 import 'package:backoffice_web/src/ui/pages/users/users_viewmodel.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:uuid/uuid.dart';
 
 class UserFormDialog extends StatefulWidget {
   final IUsersViewmodel vm;
@@ -291,7 +289,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
             border: Border.all(color: DSTokens.surfaceContainerHigh),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withValues(alpha: 0.5),
                 blurRadius: 20,
                 offset: const Offset(0, 10),
               ),
@@ -473,7 +471,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
                                         });
                                       },
                                       selectedColor: DSTokens.primary
-                                          .withOpacity(0.2),
+                                          .withValues(alpha: 0.2),
                                       checkmarkColor: DSTokens.primary,
                                       backgroundColor:
                                           DSTokens.surfaceContainerHigh,
@@ -518,7 +516,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
                                   }
                                 });
                               },
-                              selectedColor: DSTokens.primary.withOpacity(0.2),
+                              selectedColor: DSTokens.primary.withValues(alpha: 0.2),
                               checkmarkColor: DSTokens.primary,
                               backgroundColor: DSTokens.surfaceContainerHigh,
                             );

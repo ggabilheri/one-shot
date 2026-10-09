@@ -151,12 +151,12 @@ class _AccessoryFormPageState
               letterSpacing: 1.1,
               fontSize: 11,
               fontWeight: FontWeight.bold,
-              color: DSTokens.primary.withOpacity(0.8),
+              color: DSTokens.primary.withValues(alpha: 0.8),
             ),
           ),
         ),
         DropdownButtonFormField<T>(
-          value: value,
+          initialValue: value,
           style: DSTokens.body.copyWith(fontSize: 15),
           dropdownColor: const Color(0xFF1E2022),
           decoration: InputDecoration(
@@ -165,11 +165,11 @@ class _AccessoryFormPageState
             contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(DSTokens.borderRadius),
-              borderSide: BorderSide(color: DSTokens.outline.withOpacity(0.1)),
+              borderSide: BorderSide(color: DSTokens.outline.withValues(alpha: 0.1)),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(DSTokens.borderRadius),
-              borderSide: BorderSide(color: DSTokens.outline.withOpacity(0.1)),
+              borderSide: BorderSide(color: DSTokens.outline.withValues(alpha: 0.1)),
             ),
           ),
           items: items.map((t) {

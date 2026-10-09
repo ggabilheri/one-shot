@@ -10,14 +10,15 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../shooter/reload_session.dart' as _i2;
-import '../shooter/firearm.dart' as _i3;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i4;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../shooter/firearm.dart' as _i25s0fp9;
+import '../shooter/reload_session.dart' as _iai2mm7j;
 
-abstract class ReloadTest implements _i1.SerializableModel {
+abstract class ReloadTest
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   ReloadTest._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     this.reloadSessionId,
     this.reloadSession,
     this.firearmId,
@@ -31,14 +32,14 @@ abstract class ReloadTest implements _i1.SerializableModel {
     required this.averageEnergy,
     this.groupingMeasurement,
     required this.crackedCasings,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory ReloadTest({
-    _i1.UuidValue? id,
-    _i1.UuidValue? reloadSessionId,
-    _i2.ReloadSession? reloadSession,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
+    _isc.UuidValue? id,
+    _isc.UuidValue? reloadSessionId,
+    _iai2mm7j.ReloadSession? reloadSession,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
     required DateTime testDate,
     required int shotsFired,
     required double highestVelocityFps,
@@ -54,26 +55,28 @@ abstract class ReloadTest implements _i1.SerializableModel {
     return ReloadTest(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       reloadSessionId: jsonSerialization['reloadSessionId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(
+          : _isc.UuidValueJsonExtension.fromJson(
               jsonSerialization['reloadSessionId'],
             ),
       reloadSession: jsonSerialization['reloadSession'] == null
           ? null
-          : _i4.Protocol().deserialize<_i2.ReloadSession>(
+          : _itys55mc.Protocol().deserialize<_iai2mm7j.ReloadSession>(
               jsonSerialization['reloadSession'],
             ),
       firearmId: jsonSerialization['firearmId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['firearmId'],
+            ),
       firearm: jsonSerialization['firearm'] == null
           ? null
-          : _i4.Protocol().deserialize<_i3.Firearm>(
+          : _itys55mc.Protocol().deserialize<_i25s0fp9.Firearm>(
               jsonSerialization['firearm'],
             ),
-      testDate: _i1.DateTimeJsonExtension.fromJson(
+      testDate: _isc.DateTimeJsonExtension.fromJson(
         jsonSerialization['testDate'],
       ),
       shotsFired: jsonSerialization['shotsFired'] as int,
@@ -92,15 +95,15 @@ abstract class ReloadTest implements _i1.SerializableModel {
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
-  _i1.UuidValue? reloadSessionId;
+  _isc.UuidValue? reloadSessionId;
 
-  _i2.ReloadSession? reloadSession;
+  _iai2mm7j.ReloadSession? reloadSession;
 
-  _i1.UuidValue? firearmId;
+  _isc.UuidValue? firearmId;
 
-  _i3.Firearm? firearm;
+  _i25s0fp9.Firearm? firearm;
 
   DateTime testDate;
 
@@ -122,13 +125,13 @@ abstract class ReloadTest implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [ReloadTest]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   ReloadTest copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? reloadSessionId,
-    _i2.ReloadSession? reloadSession,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
+    _isc.UuidValue? id,
+    _isc.UuidValue? reloadSessionId,
+    _iai2mm7j.ReloadSession? reloadSession,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
     DateTime? testDate,
     int? shotsFired,
     double? highestVelocityFps,
@@ -162,8 +165,31 @@ abstract class ReloadTest implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'ReloadTest',
+      'id': id.toJson(),
+      if (reloadSessionId != null) 'reloadSessionId': reloadSessionId?.toJson(),
+      if (reloadSession != null)
+        'reloadSession': reloadSession?.toJsonForProtocol(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
+      if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
+      'testDate': testDate.toJson(),
+      'shotsFired': shotsFired,
+      'highestVelocityFps': highestVelocityFps,
+      'lowestVelocityFps': lowestVelocityFps,
+      'averageVelocityFps': averageVelocityFps,
+      'powerFactor': powerFactor,
+      'averageEnergy': averageEnergy,
+      if (groupingMeasurement != null)
+        'groupingMeasurement': groupingMeasurement,
+      'crackedCasings': crackedCasings,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -171,11 +197,11 @@ class _Undefined {}
 
 class _ReloadTestImpl extends ReloadTest {
   _ReloadTestImpl({
-    _i1.UuidValue? id,
-    _i1.UuidValue? reloadSessionId,
-    _i2.ReloadSession? reloadSession,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
+    _isc.UuidValue? id,
+    _isc.UuidValue? reloadSessionId,
+    _iai2mm7j.ReloadSession? reloadSession,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
     required DateTime testDate,
     required int shotsFired,
     required double highestVelocityFps,
@@ -204,10 +230,10 @@ class _ReloadTestImpl extends ReloadTest {
 
   /// Returns a shallow copy of this [ReloadTest]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   ReloadTest copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     Object? reloadSessionId = _Undefined,
     Object? reloadSession = _Undefined,
     Object? firearmId = _Undefined,
@@ -224,14 +250,16 @@ class _ReloadTestImpl extends ReloadTest {
   }) {
     return ReloadTest(
       id: id ?? this.id,
-      reloadSessionId: reloadSessionId is _i1.UuidValue?
+      reloadSessionId: reloadSessionId is _isc.UuidValue?
           ? reloadSessionId
           : this.reloadSessionId,
-      reloadSession: reloadSession is _i2.ReloadSession?
+      reloadSession: reloadSession is _iai2mm7j.ReloadSession?
           ? reloadSession
           : this.reloadSession?.copyWith(),
-      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
+      firearmId: firearmId is _isc.UuidValue? ? firearmId : this.firearmId,
+      firearm: firearm is _i25s0fp9.Firearm?
+          ? firearm
+          : this.firearm?.copyWith(),
       testDate: testDate ?? this.testDate,
       shotsFired: shotsFired ?? this.shotsFired,
       highestVelocityFps: highestVelocityFps ?? this.highestVelocityFps,

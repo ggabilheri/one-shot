@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:company_portal/src/ui/widgets/ds_tokens.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import 'package:intl/intl.dart';
-import 'financial_entry_card.dart';
 
 class FinancialEntriesList extends StatelessWidget {
   final List<FinancialEntry> entries;

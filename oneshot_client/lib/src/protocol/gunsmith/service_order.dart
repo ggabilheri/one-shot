@@ -10,14 +10,15 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import '../gunsmith/gunsmith_client.dart' as _i2;
-import '../shooter/firearm.dart' as _i3;
-import 'package:oneshot_client/src/protocol/protocol.dart' as _i4;
+import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
+import 'package:serverpod_client/serverpod_client.dart' as _isc;
+import '../gunsmith/gunsmith_client.dart' as _i2wg6r80;
+import '../shooter/firearm.dart' as _i25s0fp9;
 
-abstract class ServiceOrder implements _i1.SerializableModel {
+abstract class ServiceOrder
+    implements _isc.SerializableModel, _isc.ProtocolSerialization {
   ServiceOrder._({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     this.clientId,
     this.client,
     this.firearmId,
@@ -29,14 +30,14 @@ abstract class ServiceOrder implements _i1.SerializableModel {
     required this.finalPrice,
     this.paymentMethod,
     this.notes,
-  }) : id = id ?? const _i1.Uuid().v4obj();
+  }) : id = id ?? const _isc.Uuid().v4obj();
 
   factory ServiceOrder({
-    _i1.UuidValue? id,
-    _i1.UuidValue? clientId,
-    _i2.GunsmithClient? client,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
+    _isc.UuidValue? id,
+    _isc.UuidValue? clientId,
+    _i2wg6r80.GunsmithClient? client,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
     required DateTime entryDate,
     DateTime? estimatedDeliveryDate,
     required double totalPrice,
@@ -50,29 +51,31 @@ abstract class ServiceOrder implements _i1.SerializableModel {
     return ServiceOrder(
       id: jsonSerialization['id'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       clientId: jsonSerialization['clientId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['clientId']),
+          : _isc.UuidValueJsonExtension.fromJson(jsonSerialization['clientId']),
       client: jsonSerialization['client'] == null
           ? null
-          : _i4.Protocol().deserialize<_i2.GunsmithClient>(
+          : _itys55mc.Protocol().deserialize<_i2wg6r80.GunsmithClient>(
               jsonSerialization['client'],
             ),
       firearmId: jsonSerialization['firearmId'] == null
           ? null
-          : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['firearmId']),
+          : _isc.UuidValueJsonExtension.fromJson(
+              jsonSerialization['firearmId'],
+            ),
       firearm: jsonSerialization['firearm'] == null
           ? null
-          : _i4.Protocol().deserialize<_i3.Firearm>(
+          : _itys55mc.Protocol().deserialize<_i25s0fp9.Firearm>(
               jsonSerialization['firearm'],
             ),
-      entryDate: _i1.DateTimeJsonExtension.fromJson(
+      entryDate: _isc.DateTimeJsonExtension.fromJson(
         jsonSerialization['entryDate'],
       ),
       estimatedDeliveryDate: jsonSerialization['estimatedDeliveryDate'] == null
           ? null
-          : _i1.DateTimeJsonExtension.fromJson(
+          : _isc.DateTimeJsonExtension.fromJson(
               jsonSerialization['estimatedDeliveryDate'],
             ),
       totalPrice: (jsonSerialization['totalPrice'] as num).toDouble(),
@@ -84,15 +87,15 @@ abstract class ServiceOrder implements _i1.SerializableModel {
   }
 
   /// The id of the object.
-  _i1.UuidValue id;
+  _isc.UuidValue id;
 
-  _i1.UuidValue? clientId;
+  _isc.UuidValue? clientId;
 
-  _i2.GunsmithClient? client;
+  _i2wg6r80.GunsmithClient? client;
 
-  _i1.UuidValue? firearmId;
+  _isc.UuidValue? firearmId;
 
-  _i3.Firearm? firearm;
+  _i25s0fp9.Firearm? firearm;
 
   DateTime entryDate;
 
@@ -110,13 +113,13 @@ abstract class ServiceOrder implements _i1.SerializableModel {
 
   /// Returns a shallow copy of this [ServiceOrder]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   ServiceOrder copyWith({
-    _i1.UuidValue? id,
-    _i1.UuidValue? clientId,
-    _i2.GunsmithClient? client,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
+    _isc.UuidValue? id,
+    _isc.UuidValue? clientId,
+    _i2wg6r80.GunsmithClient? client,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
     DateTime? entryDate,
     DateTime? estimatedDeliveryDate,
     double? totalPrice,
@@ -146,8 +149,28 @@ abstract class ServiceOrder implements _i1.SerializableModel {
   }
 
   @override
+  Map<String, dynamic> toJsonForProtocol() {
+    return {
+      '__className__': 'ServiceOrder',
+      'id': id.toJson(),
+      if (clientId != null) 'clientId': clientId?.toJson(),
+      if (client != null) 'client': client?.toJsonForProtocol(),
+      if (firearmId != null) 'firearmId': firearmId?.toJson(),
+      if (firearm != null) 'firearm': firearm?.toJsonForProtocol(),
+      'entryDate': entryDate.toJson(),
+      if (estimatedDeliveryDate != null)
+        'estimatedDeliveryDate': estimatedDeliveryDate?.toJson(),
+      'totalPrice': totalPrice,
+      if (discount != null) 'discount': discount,
+      'finalPrice': finalPrice,
+      if (paymentMethod != null) 'paymentMethod': paymentMethod,
+      if (notes != null) 'notes': notes,
+    };
+  }
+
+  @override
   String toString() {
-    return _i1.SerializationManager.encode(this);
+    return _isc.SerializationManager.encode(this);
   }
 }
 
@@ -155,11 +178,11 @@ class _Undefined {}
 
 class _ServiceOrderImpl extends ServiceOrder {
   _ServiceOrderImpl({
-    _i1.UuidValue? id,
-    _i1.UuidValue? clientId,
-    _i2.GunsmithClient? client,
-    _i1.UuidValue? firearmId,
-    _i3.Firearm? firearm,
+    _isc.UuidValue? id,
+    _isc.UuidValue? clientId,
+    _i2wg6r80.GunsmithClient? client,
+    _isc.UuidValue? firearmId,
+    _i25s0fp9.Firearm? firearm,
     required DateTime entryDate,
     DateTime? estimatedDeliveryDate,
     required double totalPrice,
@@ -184,10 +207,10 @@ class _ServiceOrderImpl extends ServiceOrder {
 
   /// Returns a shallow copy of this [ServiceOrder]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_isc.useResult
   @override
   ServiceOrder copyWith({
-    _i1.UuidValue? id,
+    _isc.UuidValue? id,
     Object? clientId = _Undefined,
     Object? client = _Undefined,
     Object? firearmId = _Undefined,
@@ -202,10 +225,14 @@ class _ServiceOrderImpl extends ServiceOrder {
   }) {
     return ServiceOrder(
       id: id ?? this.id,
-      clientId: clientId is _i1.UuidValue? ? clientId : this.clientId,
-      client: client is _i2.GunsmithClient? ? client : this.client?.copyWith(),
-      firearmId: firearmId is _i1.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i3.Firearm? ? firearm : this.firearm?.copyWith(),
+      clientId: clientId is _isc.UuidValue? ? clientId : this.clientId,
+      client: client is _i2wg6r80.GunsmithClient?
+          ? client
+          : this.client?.copyWith(),
+      firearmId: firearmId is _isc.UuidValue? ? firearmId : this.firearmId,
+      firearm: firearm is _i25s0fp9.Firearm?
+          ? firearm
+          : this.firearm?.copyWith(),
       entryDate: entryDate ?? this.entryDate,
       estimatedDeliveryDate: estimatedDeliveryDate is DateTime?
           ? estimatedDeliveryDate

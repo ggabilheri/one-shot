@@ -31,10 +31,6 @@ class DashboardModuleSwitcher extends StatelessWidget {
         return const PayablePage();
       case DashboardPageType.receivable:
         return const ReceivablePage();
-      case DashboardPageType.payable:
-        return const PayablePage();
-      case DashboardPageType.receivable:
-        return const ReceivablePage();
       case DashboardPageType.stock:
         return Center(child: Text('MÓDULO DE ESTOQUE EM BREVE', style: DSTokens.body));
       case DashboardPageType.serviceOrders:

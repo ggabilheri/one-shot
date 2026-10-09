@@ -10,22 +10,17 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
+import 'package:serverpod/serverpod.dart' as _is;
 
 abstract class AppException
     implements
-        _i1.SerializableException,
-        _i1.SerializableModel,
-        _i1.ProtocolSerialization {
-  AppException._({
-    required this.message,
-    this.code,
-  });
+        _is.SerializableException,
+        _is.SerializableModel,
+        _is.ProtocolSerialization {
+  AppException._({required this.message, this.code});
 
-  factory AppException({
-    required String message,
-    String? code,
-  }) = _AppExceptionImpl;
+  factory AppException({required String message, String? code}) =
+      _AppExceptionImpl;
 
   factory AppException.fromJson(Map<String, dynamic> jsonSerialization) {
     return AppException(
@@ -40,11 +35,8 @@ abstract class AppException
 
   /// Returns a shallow copy of this [AppException]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
-  AppException copyWith({
-    String? message,
-    String? code,
-  });
+  @_is.useResult
+  AppException copyWith({String? message, String? code});
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -72,22 +64,14 @@ abstract class AppException
 class _Undefined {}
 
 class _AppExceptionImpl extends AppException {
-  _AppExceptionImpl({
-    required String message,
-    String? code,
-  }) : super._(
-         message: message,
-         code: code,
-       );
+  _AppExceptionImpl({required String message, String? code})
+    : super._(message: message, code: code);
 
   /// Returns a shallow copy of this [AppException]
   /// with some or all fields replaced by the given arguments.
-  @_i1.useResult
+  @_is.useResult
   @override
-  AppException copyWith({
-    String? message,
-    Object? code = _Undefined,
-  }) {
+  AppException copyWith({String? message, Object? code = _Undefined}) {
     return AppException(
       message: message ?? this.message,
       code: code is String? ? code : this.code,

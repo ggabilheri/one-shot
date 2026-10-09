@@ -44,10 +44,10 @@ class RolesDataTableRow extends DataRow {
         vertical: 4,
       ),
       decoration: BoxDecoration(
-        color: active ? DSTokens.success.withOpacity(0.1) : DSTokens.error.withOpacity(0.1),
+        color: active ? DSTokens.success.withValues(alpha: 0.1) : DSTokens.error.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(4),
         border: Border.all(
-          color: active ? DSTokens.success.withOpacity(0.3) : DSTokens.error.withOpacity(0.3),
+          color: active ? DSTokens.success.withValues(alpha: 0.3) : DSTokens.error.withValues(alpha: 0.3),
         ),
       ),
       child: Text(
