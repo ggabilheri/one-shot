@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../company/company.dart' as _iocy1ifk;
 import '../enums/financial_entry_status.dart' as _ig5968cj;
 import '../enums/financial_entry_type.dart' as _i3i99b7x;
@@ -150,15 +151,16 @@ abstract class FinancialEntry
     String? description,
     double? amount,
     DateTime? dueDate,
-    DateTime? paymentDate,
+    DateTime? paymentDate = const _isc.$UndefinedDateTime(),
     _ig5968cj.FinancialEntryStatus? status,
     _ie17db6d.PlatformApp? originModule,
-    _isc.UuidValue? bankAccountId,
-    _iqlw3pat.BankAccount? bankAccount,
-    _isc.UuidValue? invoiceId,
-    _i3d856q3.Invoice? invoice,
-    _isc.UuidValue? companyId,
-    _iocy1ifk.Company? company,
+    _isc.UuidValue? bankAccountId = const _isc.$UndefinedUuidValue(),
+    _iqlw3pat.BankAccount? bankAccount =
+        const _UndefinedFinancialEntry$bankAccount(),
+    _isc.UuidValue? invoiceId = const _isc.$UndefinedUuidValue(),
+    _i3d856q3.Invoice? invoice = const _UndefinedFinancialEntry$invoice(),
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedFinancialEntry$company(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -208,7 +210,20 @@ abstract class FinancialEntry
   }
 }
 
-class _Undefined {}
+class _UndefinedFinancialEntry$bankAccount extends _isc.UndefinedSentinel
+    implements _iqlw3pat.BankAccount {
+  const _UndefinedFinancialEntry$bankAccount();
+}
+
+class _UndefinedFinancialEntry$invoice extends _isc.UndefinedSentinel
+    implements _i3d856q3.Invoice {
+  const _UndefinedFinancialEntry$invoice();
+}
+
+class _UndefinedFinancialEntry$company extends _isc.UndefinedSentinel
+    implements _iocy1ifk.Company {
+  const _UndefinedFinancialEntry$company();
+}
 
 class _FinancialEntryImpl extends FinancialEntry {
   _FinancialEntryImpl({
@@ -253,15 +268,16 @@ class _FinancialEntryImpl extends FinancialEntry {
     String? description,
     double? amount,
     DateTime? dueDate,
-    Object? paymentDate = _Undefined,
+    DateTime? paymentDate = const _isc.$UndefinedDateTime(),
     _ig5968cj.FinancialEntryStatus? status,
     _ie17db6d.PlatformApp? originModule,
-    Object? bankAccountId = _Undefined,
-    Object? bankAccount = _Undefined,
-    Object? invoiceId = _Undefined,
-    Object? invoice = _Undefined,
-    Object? companyId = _Undefined,
-    Object? company = _Undefined,
+    _isc.UuidValue? bankAccountId = const _isc.$UndefinedUuidValue(),
+    _iqlw3pat.BankAccount? bankAccount =
+        const _UndefinedFinancialEntry$bankAccount(),
+    _isc.UuidValue? invoiceId = const _isc.$UndefinedUuidValue(),
+    _i3d856q3.Invoice? invoice = const _UndefinedFinancialEntry$invoice(),
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedFinancialEntry$company(),
   }) {
     return FinancialEntry(
       id: id ?? this.id,
@@ -269,23 +285,29 @@ class _FinancialEntryImpl extends FinancialEntry {
       description: description ?? this.description,
       amount: amount ?? this.amount,
       dueDate: dueDate ?? this.dueDate,
-      paymentDate: paymentDate is DateTime? ? paymentDate : this.paymentDate,
+      paymentDate: paymentDate is _isc.UndefinedSentinel
+          ? this.paymentDate
+          : paymentDate,
       status: status ?? this.status,
       originModule: originModule ?? this.originModule,
-      bankAccountId: bankAccountId is _isc.UuidValue?
-          ? bankAccountId
-          : this.bankAccountId,
-      bankAccount: bankAccount is _iqlw3pat.BankAccount?
-          ? bankAccount
-          : this.bankAccount?.copyWith(),
-      invoiceId: invoiceId is _isc.UuidValue? ? invoiceId : this.invoiceId,
-      invoice: invoice is _i3d856q3.Invoice?
-          ? invoice
-          : this.invoice?.copyWith(),
-      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
-      company: company is _iocy1ifk.Company?
-          ? company
-          : this.company?.copyWith(),
+      bankAccountId: bankAccountId is _isc.UndefinedSentinel
+          ? this.bankAccountId
+          : bankAccountId,
+      bankAccount: bankAccount is _isc.UndefinedSentinel
+          ? this.bankAccount?.copyWith()
+          : bankAccount,
+      invoiceId: invoiceId is _isc.UndefinedSentinel
+          ? this.invoiceId
+          : invoiceId,
+      invoice: invoice is _isc.UndefinedSentinel
+          ? this.invoice?.copyWith()
+          : invoice,
+      companyId: companyId is _isc.UndefinedSentinel
+          ? this.companyId
+          : companyId,
+      company: company is _isc.UndefinedSentinel
+          ? this.company?.copyWith()
+          : company,
     );
   }
 }

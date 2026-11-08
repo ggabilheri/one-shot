@@ -11,8 +11,11 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
+
 import '../enums/currency.enum.dart' as _isdw5wvy;
 import '../enums/payment_method.enum.dart' as _iqyvznnz;
 import '../enums/payment_status.enum.dart' as _iulumb5a;
@@ -167,15 +170,15 @@ abstract class Payment
     String? asaasPaymentId,
     String? asaasCustomerId,
     String? asaasBillingType,
-    DateTime? asaasDueDate,
+    DateTime? asaasDueDate = const _is.$UndefinedDateTime(),
     double? asaasNetValue,
     String? asaasInvoiceUrl,
     String? asaasBankSlipUrl,
     String? asaasPixQrCodePayload,
     String? asaasPixQrCodeImage,
-    DateTime? asaasRefundedAt,
-    _is.UuidValue? invoiceId,
-    _i3d856q3.Invoice? invoice,
+    DateTime? asaasRefundedAt = const _is.$UndefinedDateTime(),
+    _is.UuidValue? invoiceId = const _is.$UndefinedUuidValue(),
+    _i3d856q3.Invoice? invoice = const _UndefinedPayment$invoice(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -261,6 +264,11 @@ abstract class Payment
 
 class _Undefined {}
 
+class _UndefinedPayment$invoice extends _is.UndefinedSentinel
+    implements _i3d856q3.Invoice {
+  const _UndefinedPayment$invoice();
+}
+
 class _PaymentImpl extends Payment {
   _PaymentImpl({
     _is.UuidValue? id,
@@ -316,15 +324,15 @@ class _PaymentImpl extends Payment {
     Object? asaasPaymentId = _Undefined,
     Object? asaasCustomerId = _Undefined,
     Object? asaasBillingType = _Undefined,
-    Object? asaasDueDate = _Undefined,
+    DateTime? asaasDueDate = const _is.$UndefinedDateTime(),
     Object? asaasNetValue = _Undefined,
     Object? asaasInvoiceUrl = _Undefined,
     Object? asaasBankSlipUrl = _Undefined,
     Object? asaasPixQrCodePayload = _Undefined,
     Object? asaasPixQrCodeImage = _Undefined,
-    Object? asaasRefundedAt = _Undefined,
-    Object? invoiceId = _Undefined,
-    Object? invoice = _Undefined,
+    DateTime? asaasRefundedAt = const _is.$UndefinedDateTime(),
+    _is.UuidValue? invoiceId = const _is.$UndefinedUuidValue(),
+    _i3d856q3.Invoice? invoice = const _UndefinedPayment$invoice(),
   }) {
     return Payment(
       id: id ?? this.id,
@@ -342,9 +350,9 @@ class _PaymentImpl extends Payment {
       asaasBillingType: asaasBillingType is String?
           ? asaasBillingType
           : this.asaasBillingType,
-      asaasDueDate: asaasDueDate is DateTime?
-          ? asaasDueDate
-          : this.asaasDueDate,
+      asaasDueDate: asaasDueDate is _is.UndefinedSentinel
+          ? this.asaasDueDate
+          : asaasDueDate,
       asaasNetValue: asaasNetValue is double?
           ? asaasNetValue
           : this.asaasNetValue,
@@ -360,13 +368,15 @@ class _PaymentImpl extends Payment {
       asaasPixQrCodeImage: asaasPixQrCodeImage is String?
           ? asaasPixQrCodeImage
           : this.asaasPixQrCodeImage,
-      asaasRefundedAt: asaasRefundedAt is DateTime?
-          ? asaasRefundedAt
-          : this.asaasRefundedAt,
-      invoiceId: invoiceId is _is.UuidValue? ? invoiceId : this.invoiceId,
-      invoice: invoice is _i3d856q3.Invoice?
-          ? invoice
-          : this.invoice?.copyWith(),
+      asaasRefundedAt: asaasRefundedAt is _is.UndefinedSentinel
+          ? this.asaasRefundedAt
+          : asaasRefundedAt,
+      invoiceId: invoiceId is _is.UndefinedSentinel
+          ? this.invoiceId
+          : invoiceId,
+      invoice: invoice is _is.UndefinedSentinel
+          ? this.invoice?.copyWith()
+          : invoice,
     );
   }
 }
@@ -615,6 +625,71 @@ class PaymentRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [Payment]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `Payment.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<Payment>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<PaymentTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<PaymentTable>? orderBy,
+    _is.OrderByListBuilder<PaymentTable>? orderByList,
+    PaymentInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<Payment>(
+      where: where?.call(Payment.t),
+      orderBy: orderBy?.call(Payment.t),
+      orderByList: orderByList?.call(Payment.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

@@ -89,7 +89,7 @@ abstract class AsaasWebhookEvent
     String? event,
     String? payload,
     bool? processed,
-    DateTime? processedAt,
+    DateTime? processedAt = const _isc.$UndefinedDateTime(),
     String? error,
     DateTime? receivedAt,
   });
@@ -162,7 +162,7 @@ class _AsaasWebhookEventImpl extends AsaasWebhookEvent {
     String? event,
     String? payload,
     bool? processed,
-    Object? processedAt = _Undefined,
+    DateTime? processedAt = const _isc.$UndefinedDateTime(),
     Object? error = _Undefined,
     DateTime? receivedAt,
   }) {
@@ -172,7 +172,9 @@ class _AsaasWebhookEventImpl extends AsaasWebhookEvent {
       event: event ?? this.event,
       payload: payload ?? this.payload,
       processed: processed ?? this.processed,
-      processedAt: processedAt is DateTime? ? processedAt : this.processedAt,
+      processedAt: processedAt is _isc.UndefinedSentinel
+          ? this.processedAt
+          : processedAt,
       error: error is String? ? error : this.error,
       receivedAt: receivedAt ?? this.receivedAt,
     );

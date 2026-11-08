@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/address.dart' as _iy1vkl2d;
 import '../common/user_profile.dart' as _izifjpv2;
 
@@ -122,10 +123,10 @@ abstract class Gunsmith
     _isc.UuidValue? id,
     String? name,
     String? taxId,
-    _isc.UuidValue? addressId,
-    _iy1vkl2d.Address? address,
-    _isc.UuidValue? ownerId,
-    _izifjpv2.UserProfile? owner,
+    _isc.UuidValue? addressId = const _isc.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedGunsmith$address(),
+    _isc.UuidValue? ownerId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? owner = const _UndefinedGunsmith$owner(),
     bool? active,
     double? incomeValue,
     String? asaasAccountId,
@@ -183,6 +184,16 @@ abstract class Gunsmith
 
 class _Undefined {}
 
+class _UndefinedGunsmith$address extends _isc.UndefinedSentinel
+    implements _iy1vkl2d.Address {
+  const _UndefinedGunsmith$address();
+}
+
+class _UndefinedGunsmith$owner extends _isc.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedGunsmith$owner();
+}
+
 class _GunsmithImpl extends Gunsmith {
   _GunsmithImpl({
     _isc.UuidValue? id,
@@ -222,10 +233,10 @@ class _GunsmithImpl extends Gunsmith {
     _isc.UuidValue? id,
     String? name,
     String? taxId,
-    Object? addressId = _Undefined,
-    Object? address = _Undefined,
-    Object? ownerId = _Undefined,
-    Object? owner = _Undefined,
+    _isc.UuidValue? addressId = const _isc.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedGunsmith$address(),
+    _isc.UuidValue? ownerId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? owner = const _UndefinedGunsmith$owner(),
     bool? active,
     double? incomeValue,
     Object? asaasAccountId = _Undefined,
@@ -237,12 +248,14 @@ class _GunsmithImpl extends Gunsmith {
       id: id ?? this.id,
       name: name ?? this.name,
       taxId: taxId ?? this.taxId,
-      addressId: addressId is _isc.UuidValue? ? addressId : this.addressId,
-      address: address is _iy1vkl2d.Address?
-          ? address
-          : this.address?.copyWith(),
-      ownerId: ownerId is _isc.UuidValue? ? ownerId : this.ownerId,
-      owner: owner is _izifjpv2.UserProfile? ? owner : this.owner?.copyWith(),
+      addressId: addressId is _isc.UndefinedSentinel
+          ? this.addressId
+          : addressId,
+      address: address is _isc.UndefinedSentinel
+          ? this.address?.copyWith()
+          : address,
+      ownerId: ownerId is _isc.UndefinedSentinel ? this.ownerId : ownerId,
+      owner: owner is _isc.UndefinedSentinel ? this.owner?.copyWith() : owner,
       active: active ?? this.active,
       incomeValue: incomeValue ?? this.incomeValue,
       asaasAccountId: asaasAccountId is String?

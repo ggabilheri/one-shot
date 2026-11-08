@@ -11,6 +11,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _ida;
+
 import 'package:http/http.dart' as _i85jenna;
 import 'package:oneshot_client/src/protocol/access_control/role_permission.dart'
     as _ih25lxcw;
@@ -75,6 +76,7 @@ import 'package:oneshot_client/src/protocol/subscription/subscription_plan.dart'
     as _iq7fauej;
 import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i312scxx;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import 'protocol.dart' as _il2as5qe;
 
 /// {@category Endpoint}
@@ -637,17 +639,20 @@ class EndpointInvoice extends _isc.EndpointRef {
     _isc.UuidValue? userId,
     int? limit,
     int? offset,
-  }) => caller
-      .callServerEndpoint<List<_ipuzw8nn.Invoice>>('invoice', 'listInvoices', {
-        'originModule': originModule,
-        'direction': direction,
-        'status': status,
-        'companyId': companyId,
-        'gunsmithId': gunsmithId,
-        'userId': userId,
-        'limit': limit,
-        'offset': offset,
-      });
+  }) => caller.callServerEndpoint<List<_ipuzw8nn.Invoice>>(
+    'invoice',
+    'listInvoices',
+    {
+      'originModule': originModule,
+      'direction': direction,
+      'status': status,
+      'companyId': companyId,
+      'gunsmithId': gunsmithId,
+      'userId': userId,
+      'limit': limit,
+      'offset': offset,
+    },
+  );
 
   /// Atualiza uma fatura.
   _ida.Future<_ipuzw8nn.Invoice> updateInvoice(_ipuzw8nn.Invoice invoice) =>

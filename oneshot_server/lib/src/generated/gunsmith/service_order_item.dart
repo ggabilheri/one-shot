@@ -11,8 +11,11 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
+
 import '../common/supply_stock.dart' as _icdicocn;
 import '../gunsmith/service_order.dart' as _inn42g74;
 
@@ -102,12 +105,14 @@ abstract class ServiceOrderItem
   @_is.useResult
   ServiceOrderItem copyWith({
     _is.UuidValue? id,
-    _is.UuidValue? serviceOrderId,
-    _inn42g74.ServiceOrder? serviceOrder,
+    _is.UuidValue? serviceOrderId = const _is.$UndefinedUuidValue(),
+    _inn42g74.ServiceOrder? serviceOrder =
+        const _UndefinedServiceOrderItem$serviceOrder(),
     String? description,
     bool? isStockPart,
-    _is.UuidValue? supplyPartId,
-    _icdicocn.SupplyStock? supplyPart,
+    _is.UuidValue? supplyPartId = const _is.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? supplyPart =
+        const _UndefinedServiceOrderItem$supplyPart(),
     double? servicePrice,
   });
   @override
@@ -175,7 +180,15 @@ abstract class ServiceOrderItem
   }
 }
 
-class _Undefined {}
+class _UndefinedServiceOrderItem$serviceOrder extends _is.UndefinedSentinel
+    implements _inn42g74.ServiceOrder {
+  const _UndefinedServiceOrderItem$serviceOrder();
+}
+
+class _UndefinedServiceOrderItem$supplyPart extends _is.UndefinedSentinel
+    implements _icdicocn.SupplyStock {
+  const _UndefinedServiceOrderItem$supplyPart();
+}
 
 class _ServiceOrderItemImpl extends ServiceOrderItem {
   _ServiceOrderItemImpl({
@@ -204,30 +217,32 @@ class _ServiceOrderItemImpl extends ServiceOrderItem {
   @override
   ServiceOrderItem copyWith({
     _is.UuidValue? id,
-    Object? serviceOrderId = _Undefined,
-    Object? serviceOrder = _Undefined,
+    _is.UuidValue? serviceOrderId = const _is.$UndefinedUuidValue(),
+    _inn42g74.ServiceOrder? serviceOrder =
+        const _UndefinedServiceOrderItem$serviceOrder(),
     String? description,
     bool? isStockPart,
-    Object? supplyPartId = _Undefined,
-    Object? supplyPart = _Undefined,
+    _is.UuidValue? supplyPartId = const _is.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? supplyPart =
+        const _UndefinedServiceOrderItem$supplyPart(),
     double? servicePrice,
   }) {
     return ServiceOrderItem(
       id: id ?? this.id,
-      serviceOrderId: serviceOrderId is _is.UuidValue?
-          ? serviceOrderId
-          : this.serviceOrderId,
-      serviceOrder: serviceOrder is _inn42g74.ServiceOrder?
-          ? serviceOrder
-          : this.serviceOrder?.copyWith(),
+      serviceOrderId: serviceOrderId is _is.UndefinedSentinel
+          ? this.serviceOrderId
+          : serviceOrderId,
+      serviceOrder: serviceOrder is _is.UndefinedSentinel
+          ? this.serviceOrder?.copyWith()
+          : serviceOrder,
       description: description ?? this.description,
       isStockPart: isStockPart ?? this.isStockPart,
-      supplyPartId: supplyPartId is _is.UuidValue?
-          ? supplyPartId
-          : this.supplyPartId,
-      supplyPart: supplyPart is _icdicocn.SupplyStock?
-          ? supplyPart
-          : this.supplyPart?.copyWith(),
+      supplyPartId: supplyPartId is _is.UndefinedSentinel
+          ? this.supplyPartId
+          : supplyPartId,
+      supplyPart: supplyPart is _is.UndefinedSentinel
+          ? this.supplyPart?.copyWith()
+          : supplyPart,
       servicePrice: servicePrice ?? this.servicePrice,
     );
   }
@@ -423,6 +438,71 @@ class ServiceOrderItemRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [ServiceOrderItem]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `ServiceOrderItem.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<ServiceOrderItem>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<ServiceOrderItemTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<ServiceOrderItemTable>? orderBy,
+    _is.OrderByListBuilder<ServiceOrderItemTable>? orderByList,
+    ServiceOrderItemInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<ServiceOrderItem>(
+      where: where?.call(ServiceOrderItem.t),
+      orderBy: orderBy?.call(ServiceOrderItem.t),
+      orderByList: orderByList?.call(ServiceOrderItem.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

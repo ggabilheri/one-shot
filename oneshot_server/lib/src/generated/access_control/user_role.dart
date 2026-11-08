@@ -11,8 +11,11 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
+
 import '../access_control/security_role.dart' as _ivjb8sui;
 import '../common/user_profile.dart' as _izifjpv2;
 import '../company/company.dart' as _iocy1ifk;
@@ -102,12 +105,13 @@ abstract class UserRole
   @_is.useResult
   UserRole copyWith({
     _is.UuidValue? id,
-    _is.UuidValue? userProfileId,
-    _izifjpv2.UserProfile? userProfile,
-    _is.UuidValue? securityRoleId,
-    _ivjb8sui.SecurityRole? securityRole,
-    _is.UuidValue? companyId,
-    _iocy1ifk.Company? company,
+    _is.UuidValue? userProfileId = const _is.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? userProfile = const _UndefinedUserRole$userProfile(),
+    _is.UuidValue? securityRoleId = const _is.$UndefinedUuidValue(),
+    _ivjb8sui.SecurityRole? securityRole =
+        const _UndefinedUserRole$securityRole(),
+    _is.UuidValue? companyId = const _is.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedUserRole$company(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -174,7 +178,20 @@ abstract class UserRole
   }
 }
 
-class _Undefined {}
+class _UndefinedUserRole$userProfile extends _is.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedUserRole$userProfile();
+}
+
+class _UndefinedUserRole$securityRole extends _is.UndefinedSentinel
+    implements _ivjb8sui.SecurityRole {
+  const _UndefinedUserRole$securityRole();
+}
+
+class _UndefinedUserRole$company extends _is.UndefinedSentinel
+    implements _iocy1ifk.Company {
+  const _UndefinedUserRole$company();
+}
 
 class _UserRoleImpl extends UserRole {
   _UserRoleImpl({
@@ -201,31 +218,34 @@ class _UserRoleImpl extends UserRole {
   @override
   UserRole copyWith({
     _is.UuidValue? id,
-    Object? userProfileId = _Undefined,
-    Object? userProfile = _Undefined,
-    Object? securityRoleId = _Undefined,
-    Object? securityRole = _Undefined,
-    Object? companyId = _Undefined,
-    Object? company = _Undefined,
+    _is.UuidValue? userProfileId = const _is.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? userProfile = const _UndefinedUserRole$userProfile(),
+    _is.UuidValue? securityRoleId = const _is.$UndefinedUuidValue(),
+    _ivjb8sui.SecurityRole? securityRole =
+        const _UndefinedUserRole$securityRole(),
+    _is.UuidValue? companyId = const _is.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedUserRole$company(),
   }) {
     return UserRole(
       id: id ?? this.id,
-      userProfileId: userProfileId is _is.UuidValue?
-          ? userProfileId
-          : this.userProfileId,
-      userProfile: userProfile is _izifjpv2.UserProfile?
-          ? userProfile
-          : this.userProfile?.copyWith(),
-      securityRoleId: securityRoleId is _is.UuidValue?
-          ? securityRoleId
-          : this.securityRoleId,
-      securityRole: securityRole is _ivjb8sui.SecurityRole?
-          ? securityRole
-          : this.securityRole?.copyWith(),
-      companyId: companyId is _is.UuidValue? ? companyId : this.companyId,
-      company: company is _iocy1ifk.Company?
-          ? company
-          : this.company?.copyWith(),
+      userProfileId: userProfileId is _is.UndefinedSentinel
+          ? this.userProfileId
+          : userProfileId,
+      userProfile: userProfile is _is.UndefinedSentinel
+          ? this.userProfile?.copyWith()
+          : userProfile,
+      securityRoleId: securityRoleId is _is.UndefinedSentinel
+          ? this.securityRoleId
+          : securityRoleId,
+      securityRole: securityRole is _is.UndefinedSentinel
+          ? this.securityRole?.copyWith()
+          : securityRole,
+      companyId: companyId is _is.UndefinedSentinel
+          ? this.companyId
+          : companyId,
+      company: company is _is.UndefinedSentinel
+          ? this.company?.copyWith()
+          : company,
     );
   }
 }
@@ -428,6 +448,71 @@ class UserRoleRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [UserRole]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `UserRole.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<UserRole>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<UserRoleTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<UserRoleTable>? orderBy,
+    _is.OrderByListBuilder<UserRoleTable>? orderByList,
+    UserRoleInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<UserRole>(
+      where: where?.call(UserRole.t),
+      orderBy: orderBy?.call(UserRole.t),
+      orderByList: orderByList?.call(UserRole.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

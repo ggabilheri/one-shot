@@ -92,10 +92,10 @@ abstract class SupplyStock
     String? type,
     double? quantity,
     String? unit,
-    DateTime? acquisitionDate,
+    DateTime? acquisitionDate = const _isc.$UndefinedDateTime(),
     String? batchNumber,
     int? userInfoId,
-    _i312scxx.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo = const _UndefinedSupplyStock$userInfo(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -137,6 +137,11 @@ abstract class SupplyStock
 
 class _Undefined {}
 
+class _UndefinedSupplyStock$userInfo extends _isc.UndefinedSentinel
+    implements _i312scxx.UserInfo {
+  const _UndefinedSupplyStock$userInfo();
+}
+
 class _SupplyStockImpl extends SupplyStock {
   _SupplyStockImpl({
     _isc.UuidValue? id,
@@ -170,10 +175,10 @@ class _SupplyStockImpl extends SupplyStock {
     String? type,
     double? quantity,
     String? unit,
-    Object? acquisitionDate = _Undefined,
+    DateTime? acquisitionDate = const _isc.$UndefinedDateTime(),
     Object? batchNumber = _Undefined,
     Object? userInfoId = _Undefined,
-    Object? userInfo = _Undefined,
+    _i312scxx.UserInfo? userInfo = const _UndefinedSupplyStock$userInfo(),
   }) {
     return SupplyStock(
       id: id ?? this.id,
@@ -181,14 +186,14 @@ class _SupplyStockImpl extends SupplyStock {
       type: type ?? this.type,
       quantity: quantity ?? this.quantity,
       unit: unit ?? this.unit,
-      acquisitionDate: acquisitionDate is DateTime?
-          ? acquisitionDate
-          : this.acquisitionDate,
+      acquisitionDate: acquisitionDate is _isc.UndefinedSentinel
+          ? this.acquisitionDate
+          : acquisitionDate,
       batchNumber: batchNumber is String? ? batchNumber : this.batchNumber,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i312scxx.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userInfo: userInfo is _isc.UndefinedSentinel
+          ? this.userInfo?.copyWith()
+          : userInfo,
     );
   }
 }

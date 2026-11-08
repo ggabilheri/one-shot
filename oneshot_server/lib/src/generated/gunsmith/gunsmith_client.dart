@@ -11,9 +11,12 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i1n3uhu0;
+
 import '../common/address.dart' as _iy1vkl2d;
 
 abstract class GunsmithClient
@@ -100,13 +103,14 @@ abstract class GunsmithClient
   GunsmithClient copyWith({
     _is.UuidValue? id,
     int? gunsmithUserInfoId,
-    _i1n3uhu0.UserInfo? gunsmithUserInfo,
+    _i1n3uhu0.UserInfo? gunsmithUserInfo =
+        const _UndefinedGunsmithClient$gunsmithUserInfo(),
     String? name,
     String? cpf,
     String? rg,
     String? phone,
-    _is.UuidValue? addressId,
-    _iy1vkl2d.Address? address,
+    _is.UuidValue? addressId = const _is.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedGunsmithClient$address(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -178,6 +182,16 @@ abstract class GunsmithClient
 
 class _Undefined {}
 
+class _UndefinedGunsmithClient$gunsmithUserInfo extends _is.UndefinedSentinel
+    implements _i1n3uhu0.UserInfo {
+  const _UndefinedGunsmithClient$gunsmithUserInfo();
+}
+
+class _UndefinedGunsmithClient$address extends _is.UndefinedSentinel
+    implements _iy1vkl2d.Address {
+  const _UndefinedGunsmithClient$address();
+}
+
 class _GunsmithClientImpl extends GunsmithClient {
   _GunsmithClientImpl({
     _is.UuidValue? id,
@@ -208,30 +222,33 @@ class _GunsmithClientImpl extends GunsmithClient {
   GunsmithClient copyWith({
     _is.UuidValue? id,
     Object? gunsmithUserInfoId = _Undefined,
-    Object? gunsmithUserInfo = _Undefined,
+    _i1n3uhu0.UserInfo? gunsmithUserInfo =
+        const _UndefinedGunsmithClient$gunsmithUserInfo(),
     String? name,
     String? cpf,
     Object? rg = _Undefined,
     String? phone,
-    Object? addressId = _Undefined,
-    Object? address = _Undefined,
+    _is.UuidValue? addressId = const _is.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedGunsmithClient$address(),
   }) {
     return GunsmithClient(
       id: id ?? this.id,
       gunsmithUserInfoId: gunsmithUserInfoId is int?
           ? gunsmithUserInfoId
           : this.gunsmithUserInfoId,
-      gunsmithUserInfo: gunsmithUserInfo is _i1n3uhu0.UserInfo?
-          ? gunsmithUserInfo
-          : this.gunsmithUserInfo?.copyWith(),
+      gunsmithUserInfo: gunsmithUserInfo is _is.UndefinedSentinel
+          ? this.gunsmithUserInfo?.copyWith()
+          : gunsmithUserInfo,
       name: name ?? this.name,
       cpf: cpf ?? this.cpf,
       rg: rg is String? ? rg : this.rg,
       phone: phone ?? this.phone,
-      addressId: addressId is _is.UuidValue? ? addressId : this.addressId,
-      address: address is _iy1vkl2d.Address?
-          ? address
-          : this.address?.copyWith(),
+      addressId: addressId is _is.UndefinedSentinel
+          ? this.addressId
+          : addressId,
+      address: address is _is.UndefinedSentinel
+          ? this.address?.copyWith()
+          : address,
     );
   }
 }
@@ -431,6 +448,71 @@ class GunsmithClientRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [GunsmithClient]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `GunsmithClient.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<GunsmithClient>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<GunsmithClientTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<GunsmithClientTable>? orderBy,
+    _is.OrderByListBuilder<GunsmithClientTable>? orderByList,
+    GunsmithClientInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<GunsmithClient>(
+      where: where?.call(GunsmithClient.t),
+      orderBy: orderBy?.call(GunsmithClient.t),
+      orderByList: orderByList?.call(GunsmithClient.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

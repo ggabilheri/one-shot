@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/user_profile.dart' as _izifjpv2;
 import '../enums/accessory.enum.dart' as _iv3j3xuk;
 import '../enums/conservation_state.enum.dart' as _im6njl07;
@@ -214,9 +215,9 @@ abstract class Accessory
   Accessory copyWith({
     _isc.UuidValue? id,
     _isc.UuidValue? userId,
-    _izifjpv2.UserProfile? user,
-    _isc.UuidValue? firearmId,
-    _i25s0fp9.Firearm? firearm,
+    _izifjpv2.UserProfile? user = const _UndefinedAccessory$user(),
+    _isc.UuidValue? firearmId = const _isc.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedAccessory$firearm(),
     String? purpose,
     _iv3j3xuk.AccessoryType? type,
     String? serialNumber,
@@ -230,15 +231,15 @@ abstract class Accessory
     double? weight,
     String? color,
     String? finishMaterial,
-    DateTime? acquisitionDate,
+    DateTime? acquisitionDate = const _isc.$UndefinedDateTime(),
     double? purchasePrice,
     String? invoiceNumber,
-    DateTime? invoiceEmissionDate,
+    DateTime? invoiceEmissionDate = const _isc.$UndefinedDateTime(),
     String? sellerData,
     _ii1wmk2g.RegistryBody? registryBody,
     String? customizations,
     String? maintenanceHistory,
-    List<String>? images,
+    List<String>? images = const _isc.$UndefinedList<String>(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -320,6 +321,16 @@ abstract class Accessory
 
 class _Undefined {}
 
+class _UndefinedAccessory$user extends _isc.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedAccessory$user();
+}
+
+class _UndefinedAccessory$firearm extends _isc.UndefinedSentinel
+    implements _i25s0fp9.Firearm {
+  const _UndefinedAccessory$firearm();
+}
+
 class _AccessoryImpl extends Accessory {
   _AccessoryImpl({
     _isc.UuidValue? id,
@@ -386,9 +397,9 @@ class _AccessoryImpl extends Accessory {
   Accessory copyWith({
     _isc.UuidValue? id,
     _isc.UuidValue? userId,
-    Object? user = _Undefined,
-    Object? firearmId = _Undefined,
-    Object? firearm = _Undefined,
+    _izifjpv2.UserProfile? user = const _UndefinedAccessory$user(),
+    _isc.UuidValue? firearmId = const _isc.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedAccessory$firearm(),
     Object? purpose = _Undefined,
     _iv3j3xuk.AccessoryType? type,
     Object? serialNumber = _Undefined,
@@ -402,24 +413,26 @@ class _AccessoryImpl extends Accessory {
     Object? weight = _Undefined,
     Object? color = _Undefined,
     Object? finishMaterial = _Undefined,
-    Object? acquisitionDate = _Undefined,
+    DateTime? acquisitionDate = const _isc.$UndefinedDateTime(),
     Object? purchasePrice = _Undefined,
     Object? invoiceNumber = _Undefined,
-    Object? invoiceEmissionDate = _Undefined,
+    DateTime? invoiceEmissionDate = const _isc.$UndefinedDateTime(),
     Object? sellerData = _Undefined,
     Object? registryBody = _Undefined,
     Object? customizations = _Undefined,
     Object? maintenanceHistory = _Undefined,
-    Object? images = _Undefined,
+    List<String>? images = const _isc.$UndefinedList<String>(),
   }) {
     return Accessory(
       id: id ?? this.id,
       userId: userId ?? this.userId,
-      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
-      firearmId: firearmId is _isc.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i25s0fp9.Firearm?
-          ? firearm
-          : this.firearm?.copyWith(),
+      user: user is _isc.UndefinedSentinel ? this.user?.copyWith() : user,
+      firearmId: firearmId is _isc.UndefinedSentinel
+          ? this.firearmId
+          : firearmId,
+      firearm: firearm is _isc.UndefinedSentinel
+          ? this.firearm?.copyWith()
+          : firearm,
       purpose: purpose is String? ? purpose : this.purpose,
       type: type ?? this.type,
       serialNumber: serialNumber is String? ? serialNumber : this.serialNumber,
@@ -439,18 +452,18 @@ class _AccessoryImpl extends Accessory {
       finishMaterial: finishMaterial is String?
           ? finishMaterial
           : this.finishMaterial,
-      acquisitionDate: acquisitionDate is DateTime?
-          ? acquisitionDate
-          : this.acquisitionDate,
+      acquisitionDate: acquisitionDate is _isc.UndefinedSentinel
+          ? this.acquisitionDate
+          : acquisitionDate,
       purchasePrice: purchasePrice is double?
           ? purchasePrice
           : this.purchasePrice,
       invoiceNumber: invoiceNumber is String?
           ? invoiceNumber
           : this.invoiceNumber,
-      invoiceEmissionDate: invoiceEmissionDate is DateTime?
-          ? invoiceEmissionDate
-          : this.invoiceEmissionDate,
+      invoiceEmissionDate: invoiceEmissionDate is _isc.UndefinedSentinel
+          ? this.invoiceEmissionDate
+          : invoiceEmissionDate,
       sellerData: sellerData is String? ? sellerData : this.sellerData,
       registryBody: registryBody is _ii1wmk2g.RegistryBody?
           ? registryBody
@@ -461,9 +474,9 @@ class _AccessoryImpl extends Accessory {
       maintenanceHistory: maintenanceHistory is String?
           ? maintenanceHistory
           : this.maintenanceHistory,
-      images: images is List<String>?
-          ? images
-          : this.images?.map((e0) => e0).toList(),
+      images: images is _isc.UndefinedSentinel
+          ? this.images?.map((e0) => e0).toList()
+          : images,
     );
   }
 }

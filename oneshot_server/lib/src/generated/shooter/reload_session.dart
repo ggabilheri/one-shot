@@ -11,9 +11,12 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i1n3uhu0;
+
 import '../common/accessory.dart' as _ixwksfmb;
 import '../common/supply_stock.dart' as _icdicocn;
 
@@ -173,20 +176,20 @@ abstract class ReloadSession
   ReloadSession copyWith({
     _is.UuidValue? id,
     int? userInfoId,
-    _i1n3uhu0.UserInfo? userInfo,
+    _i1n3uhu0.UserInfo? userInfo = const _UndefinedReloadSession$userInfo(),
     DateTime? reloadDate,
-    _is.UuidValue? pressId,
-    _ixwksfmb.Accessory? press,
+    _is.UuidValue? pressId = const _is.$UndefinedUuidValue(),
+    _ixwksfmb.Accessory? press = const _UndefinedReloadSession$press(),
     String? caliber,
     String? casingBatch,
     int? reloadsCompleted,
-    _is.UuidValue? powderId,
-    _icdicocn.SupplyStock? powder,
+    _is.UuidValue? powderId = const _is.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? powder = const _UndefinedReloadSession$powder(),
     double? powderGrains,
-    _is.UuidValue? primerId,
-    _icdicocn.SupplyStock? primer,
-    _is.UuidValue? projectileId,
-    _icdicocn.SupplyStock? projectile,
+    _is.UuidValue? primerId = const _is.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? primer = const _UndefinedReloadSession$powder(),
+    _is.UuidValue? projectileId = const _is.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? projectile = const _UndefinedReloadSession$powder(),
     double? oal,
     double? totalCost,
     double? unitCost,
@@ -285,6 +288,21 @@ abstract class ReloadSession
 
 class _Undefined {}
 
+class _UndefinedReloadSession$userInfo extends _is.UndefinedSentinel
+    implements _i1n3uhu0.UserInfo {
+  const _UndefinedReloadSession$userInfo();
+}
+
+class _UndefinedReloadSession$press extends _is.UndefinedSentinel
+    implements _ixwksfmb.Accessory {
+  const _UndefinedReloadSession$press();
+}
+
+class _UndefinedReloadSession$powder extends _is.UndefinedSentinel
+    implements _icdicocn.SupplyStock {
+  const _UndefinedReloadSession$powder();
+}
+
 class _ReloadSessionImpl extends ReloadSession {
   _ReloadSessionImpl({
     _is.UuidValue? id,
@@ -335,20 +353,20 @@ class _ReloadSessionImpl extends ReloadSession {
   ReloadSession copyWith({
     _is.UuidValue? id,
     Object? userInfoId = _Undefined,
-    Object? userInfo = _Undefined,
+    _i1n3uhu0.UserInfo? userInfo = const _UndefinedReloadSession$userInfo(),
     DateTime? reloadDate,
-    Object? pressId = _Undefined,
-    Object? press = _Undefined,
+    _is.UuidValue? pressId = const _is.$UndefinedUuidValue(),
+    _ixwksfmb.Accessory? press = const _UndefinedReloadSession$press(),
     String? caliber,
     String? casingBatch,
     int? reloadsCompleted,
-    Object? powderId = _Undefined,
-    Object? powder = _Undefined,
+    _is.UuidValue? powderId = const _is.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? powder = const _UndefinedReloadSession$powder(),
     double? powderGrains,
-    Object? primerId = _Undefined,
-    Object? primer = _Undefined,
-    Object? projectileId = _Undefined,
-    Object? projectile = _Undefined,
+    _is.UuidValue? primerId = const _is.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? primer = const _UndefinedReloadSession$powder(),
+    _is.UuidValue? projectileId = const _is.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? projectile = const _UndefinedReloadSession$powder(),
     double? oal,
     double? totalCost,
     double? unitCost,
@@ -356,30 +374,30 @@ class _ReloadSessionImpl extends ReloadSession {
     return ReloadSession(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i1n3uhu0.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userInfo: userInfo is _is.UndefinedSentinel
+          ? this.userInfo?.copyWith()
+          : userInfo,
       reloadDate: reloadDate ?? this.reloadDate,
-      pressId: pressId is _is.UuidValue? ? pressId : this.pressId,
-      press: press is _ixwksfmb.Accessory? ? press : this.press?.copyWith(),
+      pressId: pressId is _is.UndefinedSentinel ? this.pressId : pressId,
+      press: press is _is.UndefinedSentinel ? this.press?.copyWith() : press,
       caliber: caliber ?? this.caliber,
       casingBatch: casingBatch ?? this.casingBatch,
       reloadsCompleted: reloadsCompleted ?? this.reloadsCompleted,
-      powderId: powderId is _is.UuidValue? ? powderId : this.powderId,
-      powder: powder is _icdicocn.SupplyStock?
-          ? powder
-          : this.powder?.copyWith(),
+      powderId: powderId is _is.UndefinedSentinel ? this.powderId : powderId,
+      powder: powder is _is.UndefinedSentinel
+          ? this.powder?.copyWith()
+          : powder,
       powderGrains: powderGrains ?? this.powderGrains,
-      primerId: primerId is _is.UuidValue? ? primerId : this.primerId,
-      primer: primer is _icdicocn.SupplyStock?
-          ? primer
-          : this.primer?.copyWith(),
-      projectileId: projectileId is _is.UuidValue?
-          ? projectileId
-          : this.projectileId,
-      projectile: projectile is _icdicocn.SupplyStock?
-          ? projectile
-          : this.projectile?.copyWith(),
+      primerId: primerId is _is.UndefinedSentinel ? this.primerId : primerId,
+      primer: primer is _is.UndefinedSentinel
+          ? this.primer?.copyWith()
+          : primer,
+      projectileId: projectileId is _is.UndefinedSentinel
+          ? this.projectileId
+          : projectileId,
+      projectile: projectile is _is.UndefinedSentinel
+          ? this.projectile?.copyWith()
+          : projectile,
       oal: oal ?? this.oal,
       totalCost: totalCost ?? this.totalCost,
       unitCost: unitCost ?? this.unitCost,
@@ -702,6 +720,71 @@ class ReloadSessionRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [ReloadSession]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `ReloadSession.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<ReloadSession>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<ReloadSessionTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<ReloadSessionTable>? orderBy,
+    _is.OrderByListBuilder<ReloadSessionTable>? orderByList,
+    ReloadSessionInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<ReloadSession>(
+      where: where?.call(ReloadSession.t),
+      orderBy: orderBy?.call(ReloadSession.t),
+      orderByList: orderByList?.call(ReloadSession.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

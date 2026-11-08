@@ -13,6 +13,7 @@
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i312scxx;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/accessory.dart' as _ixwksfmb;
 import '../common/supply_stock.dart' as _icdicocn;
 
@@ -165,20 +166,20 @@ abstract class ReloadSession
   ReloadSession copyWith({
     _isc.UuidValue? id,
     int? userInfoId,
-    _i312scxx.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo = const _UndefinedReloadSession$userInfo(),
     DateTime? reloadDate,
-    _isc.UuidValue? pressId,
-    _ixwksfmb.Accessory? press,
+    _isc.UuidValue? pressId = const _isc.$UndefinedUuidValue(),
+    _ixwksfmb.Accessory? press = const _UndefinedReloadSession$press(),
     String? caliber,
     String? casingBatch,
     int? reloadsCompleted,
-    _isc.UuidValue? powderId,
-    _icdicocn.SupplyStock? powder,
+    _isc.UuidValue? powderId = const _isc.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? powder = const _UndefinedReloadSession$powder(),
     double? powderGrains,
-    _isc.UuidValue? primerId,
-    _icdicocn.SupplyStock? primer,
-    _isc.UuidValue? projectileId,
-    _icdicocn.SupplyStock? projectile,
+    _isc.UuidValue? primerId = const _isc.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? primer = const _UndefinedReloadSession$powder(),
+    _isc.UuidValue? projectileId = const _isc.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? projectile = const _UndefinedReloadSession$powder(),
     double? oal,
     double? totalCost,
     double? unitCost,
@@ -243,6 +244,21 @@ abstract class ReloadSession
 
 class _Undefined {}
 
+class _UndefinedReloadSession$userInfo extends _isc.UndefinedSentinel
+    implements _i312scxx.UserInfo {
+  const _UndefinedReloadSession$userInfo();
+}
+
+class _UndefinedReloadSession$press extends _isc.UndefinedSentinel
+    implements _ixwksfmb.Accessory {
+  const _UndefinedReloadSession$press();
+}
+
+class _UndefinedReloadSession$powder extends _isc.UndefinedSentinel
+    implements _icdicocn.SupplyStock {
+  const _UndefinedReloadSession$powder();
+}
+
 class _ReloadSessionImpl extends ReloadSession {
   _ReloadSessionImpl({
     _isc.UuidValue? id,
@@ -293,20 +309,20 @@ class _ReloadSessionImpl extends ReloadSession {
   ReloadSession copyWith({
     _isc.UuidValue? id,
     Object? userInfoId = _Undefined,
-    Object? userInfo = _Undefined,
+    _i312scxx.UserInfo? userInfo = const _UndefinedReloadSession$userInfo(),
     DateTime? reloadDate,
-    Object? pressId = _Undefined,
-    Object? press = _Undefined,
+    _isc.UuidValue? pressId = const _isc.$UndefinedUuidValue(),
+    _ixwksfmb.Accessory? press = const _UndefinedReloadSession$press(),
     String? caliber,
     String? casingBatch,
     int? reloadsCompleted,
-    Object? powderId = _Undefined,
-    Object? powder = _Undefined,
+    _isc.UuidValue? powderId = const _isc.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? powder = const _UndefinedReloadSession$powder(),
     double? powderGrains,
-    Object? primerId = _Undefined,
-    Object? primer = _Undefined,
-    Object? projectileId = _Undefined,
-    Object? projectile = _Undefined,
+    _isc.UuidValue? primerId = const _isc.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? primer = const _UndefinedReloadSession$powder(),
+    _isc.UuidValue? projectileId = const _isc.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? projectile = const _UndefinedReloadSession$powder(),
     double? oal,
     double? totalCost,
     double? unitCost,
@@ -314,30 +330,30 @@ class _ReloadSessionImpl extends ReloadSession {
     return ReloadSession(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i312scxx.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userInfo: userInfo is _isc.UndefinedSentinel
+          ? this.userInfo?.copyWith()
+          : userInfo,
       reloadDate: reloadDate ?? this.reloadDate,
-      pressId: pressId is _isc.UuidValue? ? pressId : this.pressId,
-      press: press is _ixwksfmb.Accessory? ? press : this.press?.copyWith(),
+      pressId: pressId is _isc.UndefinedSentinel ? this.pressId : pressId,
+      press: press is _isc.UndefinedSentinel ? this.press?.copyWith() : press,
       caliber: caliber ?? this.caliber,
       casingBatch: casingBatch ?? this.casingBatch,
       reloadsCompleted: reloadsCompleted ?? this.reloadsCompleted,
-      powderId: powderId is _isc.UuidValue? ? powderId : this.powderId,
-      powder: powder is _icdicocn.SupplyStock?
-          ? powder
-          : this.powder?.copyWith(),
+      powderId: powderId is _isc.UndefinedSentinel ? this.powderId : powderId,
+      powder: powder is _isc.UndefinedSentinel
+          ? this.powder?.copyWith()
+          : powder,
       powderGrains: powderGrains ?? this.powderGrains,
-      primerId: primerId is _isc.UuidValue? ? primerId : this.primerId,
-      primer: primer is _icdicocn.SupplyStock?
-          ? primer
-          : this.primer?.copyWith(),
-      projectileId: projectileId is _isc.UuidValue?
-          ? projectileId
-          : this.projectileId,
-      projectile: projectile is _icdicocn.SupplyStock?
-          ? projectile
-          : this.projectile?.copyWith(),
+      primerId: primerId is _isc.UndefinedSentinel ? this.primerId : primerId,
+      primer: primer is _isc.UndefinedSentinel
+          ? this.primer?.copyWith()
+          : primer,
+      projectileId: projectileId is _isc.UndefinedSentinel
+          ? this.projectileId
+          : projectileId,
+      projectile: projectile is _isc.UndefinedSentinel
+          ? this.projectile?.copyWith()
+          : projectile,
       oal: oal ?? this.oal,
       totalCost: totalCost ?? this.totalCost,
       unitCost: unitCost ?? this.unitCost,

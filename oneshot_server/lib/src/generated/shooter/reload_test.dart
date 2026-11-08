@@ -11,8 +11,11 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
+
 import '../shooter/firearm.dart' as _i25s0fp9;
 import '../shooter/reload_session.dart' as _iai2mm7j;
 
@@ -134,10 +137,11 @@ abstract class ReloadTest
   @_is.useResult
   ReloadTest copyWith({
     _is.UuidValue? id,
-    _is.UuidValue? reloadSessionId,
-    _iai2mm7j.ReloadSession? reloadSession,
-    _is.UuidValue? firearmId,
-    _i25s0fp9.Firearm? firearm,
+    _is.UuidValue? reloadSessionId = const _is.$UndefinedUuidValue(),
+    _iai2mm7j.ReloadSession? reloadSession =
+        const _UndefinedReloadTest$reloadSession(),
+    _is.UuidValue? firearmId = const _is.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedReloadTest$firearm(),
     DateTime? testDate,
     int? shotsFired,
     double? highestVelocityFps,
@@ -226,6 +230,16 @@ abstract class ReloadTest
 
 class _Undefined {}
 
+class _UndefinedReloadTest$reloadSession extends _is.UndefinedSentinel
+    implements _iai2mm7j.ReloadSession {
+  const _UndefinedReloadTest$reloadSession();
+}
+
+class _UndefinedReloadTest$firearm extends _is.UndefinedSentinel
+    implements _i25s0fp9.Firearm {
+  const _UndefinedReloadTest$firearm();
+}
+
 class _ReloadTestImpl extends ReloadTest {
   _ReloadTestImpl({
     _is.UuidValue? id,
@@ -265,10 +279,11 @@ class _ReloadTestImpl extends ReloadTest {
   @override
   ReloadTest copyWith({
     _is.UuidValue? id,
-    Object? reloadSessionId = _Undefined,
-    Object? reloadSession = _Undefined,
-    Object? firearmId = _Undefined,
-    Object? firearm = _Undefined,
+    _is.UuidValue? reloadSessionId = const _is.$UndefinedUuidValue(),
+    _iai2mm7j.ReloadSession? reloadSession =
+        const _UndefinedReloadTest$reloadSession(),
+    _is.UuidValue? firearmId = const _is.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedReloadTest$firearm(),
     DateTime? testDate,
     int? shotsFired,
     double? highestVelocityFps,
@@ -281,16 +296,18 @@ class _ReloadTestImpl extends ReloadTest {
   }) {
     return ReloadTest(
       id: id ?? this.id,
-      reloadSessionId: reloadSessionId is _is.UuidValue?
-          ? reloadSessionId
-          : this.reloadSessionId,
-      reloadSession: reloadSession is _iai2mm7j.ReloadSession?
-          ? reloadSession
-          : this.reloadSession?.copyWith(),
-      firearmId: firearmId is _is.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i25s0fp9.Firearm?
-          ? firearm
-          : this.firearm?.copyWith(),
+      reloadSessionId: reloadSessionId is _is.UndefinedSentinel
+          ? this.reloadSessionId
+          : reloadSessionId,
+      reloadSession: reloadSession is _is.UndefinedSentinel
+          ? this.reloadSession?.copyWith()
+          : reloadSession,
+      firearmId: firearmId is _is.UndefinedSentinel
+          ? this.firearmId
+          : firearmId,
+      firearm: firearm is _is.UndefinedSentinel
+          ? this.firearm?.copyWith()
+          : firearm,
       testDate: testDate ?? this.testDate,
       shotsFired: shotsFired ?? this.shotsFired,
       highestVelocityFps: highestVelocityFps ?? this.highestVelocityFps,
@@ -536,6 +553,71 @@ class ReloadTestRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [ReloadTest]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `ReloadTest.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<ReloadTest>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<ReloadTestTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<ReloadTestTable>? orderBy,
+    _is.OrderByListBuilder<ReloadTestTable>? orderByList,
+    ReloadTestInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<ReloadTest>(
+      where: where?.call(ReloadTest.t),
+      orderBy: orderBy?.call(ReloadTest.t),
+      orderByList: orderByList?.call(ReloadTest.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

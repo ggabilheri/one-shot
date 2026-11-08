@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../access_control/security_role.dart' as _ivjb8sui;
 import '../common/user_profile.dart' as _izifjpv2;
 import '../company/company.dart' as _iocy1ifk;
@@ -96,12 +97,13 @@ abstract class UserRole
   @_isc.useResult
   UserRole copyWith({
     _isc.UuidValue? id,
-    _isc.UuidValue? userProfileId,
-    _izifjpv2.UserProfile? userProfile,
-    _isc.UuidValue? securityRoleId,
-    _ivjb8sui.SecurityRole? securityRole,
-    _isc.UuidValue? companyId,
-    _iocy1ifk.Company? company,
+    _isc.UuidValue? userProfileId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? userProfile = const _UndefinedUserRole$userProfile(),
+    _isc.UuidValue? securityRoleId = const _isc.$UndefinedUuidValue(),
+    _ivjb8sui.SecurityRole? securityRole =
+        const _UndefinedUserRole$securityRole(),
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedUserRole$company(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -138,7 +140,20 @@ abstract class UserRole
   }
 }
 
-class _Undefined {}
+class _UndefinedUserRole$userProfile extends _isc.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedUserRole$userProfile();
+}
+
+class _UndefinedUserRole$securityRole extends _isc.UndefinedSentinel
+    implements _ivjb8sui.SecurityRole {
+  const _UndefinedUserRole$securityRole();
+}
+
+class _UndefinedUserRole$company extends _isc.UndefinedSentinel
+    implements _iocy1ifk.Company {
+  const _UndefinedUserRole$company();
+}
 
 class _UserRoleImpl extends UserRole {
   _UserRoleImpl({
@@ -165,31 +180,34 @@ class _UserRoleImpl extends UserRole {
   @override
   UserRole copyWith({
     _isc.UuidValue? id,
-    Object? userProfileId = _Undefined,
-    Object? userProfile = _Undefined,
-    Object? securityRoleId = _Undefined,
-    Object? securityRole = _Undefined,
-    Object? companyId = _Undefined,
-    Object? company = _Undefined,
+    _isc.UuidValue? userProfileId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? userProfile = const _UndefinedUserRole$userProfile(),
+    _isc.UuidValue? securityRoleId = const _isc.$UndefinedUuidValue(),
+    _ivjb8sui.SecurityRole? securityRole =
+        const _UndefinedUserRole$securityRole(),
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedUserRole$company(),
   }) {
     return UserRole(
       id: id ?? this.id,
-      userProfileId: userProfileId is _isc.UuidValue?
-          ? userProfileId
-          : this.userProfileId,
-      userProfile: userProfile is _izifjpv2.UserProfile?
-          ? userProfile
-          : this.userProfile?.copyWith(),
-      securityRoleId: securityRoleId is _isc.UuidValue?
-          ? securityRoleId
-          : this.securityRoleId,
-      securityRole: securityRole is _ivjb8sui.SecurityRole?
-          ? securityRole
-          : this.securityRole?.copyWith(),
-      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
-      company: company is _iocy1ifk.Company?
-          ? company
-          : this.company?.copyWith(),
+      userProfileId: userProfileId is _isc.UndefinedSentinel
+          ? this.userProfileId
+          : userProfileId,
+      userProfile: userProfile is _isc.UndefinedSentinel
+          ? this.userProfile?.copyWith()
+          : userProfile,
+      securityRoleId: securityRoleId is _isc.UndefinedSentinel
+          ? this.securityRoleId
+          : securityRoleId,
+      securityRole: securityRole is _isc.UndefinedSentinel
+          ? this.securityRole?.copyWith()
+          : securityRole,
+      companyId: companyId is _isc.UndefinedSentinel
+          ? this.companyId
+          : companyId,
+      company: company is _isc.UndefinedSentinel
+          ? this.company?.copyWith()
+          : company,
     );
   }
 }

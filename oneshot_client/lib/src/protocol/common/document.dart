@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/accessory.dart' as _ixwksfmb;
 import '../common/user_profile.dart' as _izifjpv2;
 import '../enums/document_type.enum.dart' as _i5d5abt7;
@@ -155,16 +156,16 @@ abstract class Document
   Document copyWith({
     _isc.UuidValue? id,
     _isc.UuidValue? userId,
-    _izifjpv2.UserProfile? user,
-    _isc.UuidValue? firearmId,
-    _i25s0fp9.Firearm? firearm,
-    _isc.UuidValue? accessoryId,
-    _ixwksfmb.Accessory? accessory,
+    _izifjpv2.UserProfile? user = const _UndefinedDocument$user(),
+    _isc.UuidValue? firearmId = const _isc.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedDocument$firearm(),
+    _isc.UuidValue? accessoryId = const _isc.$UndefinedUuidValue(),
+    _ixwksfmb.Accessory? accessory = const _UndefinedDocument$accessory(),
     _i5d5abt7.DocumentType? type,
     _ii1wmk2g.RegistryBody? registryBody,
     String? number,
     DateTime? emissionDate,
-    DateTime? expirationDate,
+    DateTime? expirationDate = const _isc.$UndefinedDateTime(),
     String? filePath,
     String? supplierName,
     String? supplierCpfCnpj,
@@ -227,6 +228,21 @@ abstract class Document
 
 class _Undefined {}
 
+class _UndefinedDocument$user extends _isc.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedDocument$user();
+}
+
+class _UndefinedDocument$firearm extends _isc.UndefinedSentinel
+    implements _i25s0fp9.Firearm {
+  const _UndefinedDocument$firearm();
+}
+
+class _UndefinedDocument$accessory extends _isc.UndefinedSentinel
+    implements _ixwksfmb.Accessory {
+  const _UndefinedDocument$accessory();
+}
+
 class _DocumentImpl extends Document {
   _DocumentImpl({
     _isc.UuidValue? id,
@@ -273,16 +289,16 @@ class _DocumentImpl extends Document {
   Document copyWith({
     _isc.UuidValue? id,
     _isc.UuidValue? userId,
-    Object? user = _Undefined,
-    Object? firearmId = _Undefined,
-    Object? firearm = _Undefined,
-    Object? accessoryId = _Undefined,
-    Object? accessory = _Undefined,
+    _izifjpv2.UserProfile? user = const _UndefinedDocument$user(),
+    _isc.UuidValue? firearmId = const _isc.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedDocument$firearm(),
+    _isc.UuidValue? accessoryId = const _isc.$UndefinedUuidValue(),
+    _ixwksfmb.Accessory? accessory = const _UndefinedDocument$accessory(),
     _i5d5abt7.DocumentType? type,
     _ii1wmk2g.RegistryBody? registryBody,
     String? number,
     DateTime? emissionDate,
-    Object? expirationDate = _Undefined,
+    DateTime? expirationDate = const _isc.$UndefinedDateTime(),
     Object? filePath = _Undefined,
     Object? supplierName = _Undefined,
     Object? supplierCpfCnpj = _Undefined,
@@ -292,24 +308,26 @@ class _DocumentImpl extends Document {
     return Document(
       id: id ?? this.id,
       userId: userId ?? this.userId,
-      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
-      firearmId: firearmId is _isc.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i25s0fp9.Firearm?
-          ? firearm
-          : this.firearm?.copyWith(),
-      accessoryId: accessoryId is _isc.UuidValue?
-          ? accessoryId
-          : this.accessoryId,
-      accessory: accessory is _ixwksfmb.Accessory?
-          ? accessory
-          : this.accessory?.copyWith(),
+      user: user is _isc.UndefinedSentinel ? this.user?.copyWith() : user,
+      firearmId: firearmId is _isc.UndefinedSentinel
+          ? this.firearmId
+          : firearmId,
+      firearm: firearm is _isc.UndefinedSentinel
+          ? this.firearm?.copyWith()
+          : firearm,
+      accessoryId: accessoryId is _isc.UndefinedSentinel
+          ? this.accessoryId
+          : accessoryId,
+      accessory: accessory is _isc.UndefinedSentinel
+          ? this.accessory?.copyWith()
+          : accessory,
       type: type ?? this.type,
       registryBody: registryBody ?? this.registryBody,
       number: number ?? this.number,
       emissionDate: emissionDate ?? this.emissionDate,
-      expirationDate: expirationDate is DateTime?
-          ? expirationDate
-          : this.expirationDate,
+      expirationDate: expirationDate is _isc.UndefinedSentinel
+          ? this.expirationDate
+          : expirationDate,
       filePath: filePath is String? ? filePath : this.filePath,
       supplierName: supplierName is String? ? supplierName : this.supplierName,
       supplierCpfCnpj: supplierCpfCnpj is String?

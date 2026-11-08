@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/address.dart' as _iy1vkl2d;
 import '../common/user_profile.dart' as _izifjpv2;
 import '../company/company.dart' as _iocy1ifk;
@@ -160,16 +161,16 @@ abstract class Company
     String? name,
     String? cnpj,
     _iqrrhgif.CompanyType? type,
-    _isc.UuidValue? addressId,
-    _iy1vkl2d.Address? address,
-    _isc.UuidValue? ownerId,
-    _izifjpv2.UserProfile? owner,
+    _isc.UuidValue? addressId = const _isc.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedCompany$address(),
+    _isc.UuidValue? ownerId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? owner = const _UndefinedCompany$owner(),
     String? phoneNumber,
     String? email,
     bool? active,
     double? incomeValue,
-    _isc.UuidValue? parentCompanyId,
-    _iocy1ifk.Company? parentCompany,
+    _isc.UuidValue? parentCompanyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? parentCompany = const _UndefinedCompany$parentCompany(),
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
@@ -236,6 +237,21 @@ abstract class Company
 
 class _Undefined {}
 
+class _UndefinedCompany$address extends _isc.UndefinedSentinel
+    implements _iy1vkl2d.Address {
+  const _UndefinedCompany$address();
+}
+
+class _UndefinedCompany$owner extends _isc.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedCompany$owner();
+}
+
+class _UndefinedCompany$parentCompany extends _isc.UndefinedSentinel
+    implements _iocy1ifk.Company {
+  const _UndefinedCompany$parentCompany();
+}
+
 class _CompanyImpl extends Company {
   _CompanyImpl({
     _isc.UuidValue? id,
@@ -286,16 +302,16 @@ class _CompanyImpl extends Company {
     String? name,
     String? cnpj,
     _iqrrhgif.CompanyType? type,
-    Object? addressId = _Undefined,
-    Object? address = _Undefined,
-    Object? ownerId = _Undefined,
-    Object? owner = _Undefined,
+    _isc.UuidValue? addressId = const _isc.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedCompany$address(),
+    _isc.UuidValue? ownerId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? owner = const _UndefinedCompany$owner(),
     Object? phoneNumber = _Undefined,
     Object? email = _Undefined,
     bool? active,
     double? incomeValue,
-    Object? parentCompanyId = _Undefined,
-    Object? parentCompany = _Undefined,
+    _isc.UuidValue? parentCompanyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? parentCompany = const _UndefinedCompany$parentCompany(),
     Object? asaasAccountId = _Undefined,
     Object? asaasWalletId = _Undefined,
     Object? asaasApiKey = _Undefined,
@@ -306,22 +322,24 @@ class _CompanyImpl extends Company {
       name: name ?? this.name,
       cnpj: cnpj ?? this.cnpj,
       type: type ?? this.type,
-      addressId: addressId is _isc.UuidValue? ? addressId : this.addressId,
-      address: address is _iy1vkl2d.Address?
-          ? address
-          : this.address?.copyWith(),
-      ownerId: ownerId is _isc.UuidValue? ? ownerId : this.ownerId,
-      owner: owner is _izifjpv2.UserProfile? ? owner : this.owner?.copyWith(),
+      addressId: addressId is _isc.UndefinedSentinel
+          ? this.addressId
+          : addressId,
+      address: address is _isc.UndefinedSentinel
+          ? this.address?.copyWith()
+          : address,
+      ownerId: ownerId is _isc.UndefinedSentinel ? this.ownerId : ownerId,
+      owner: owner is _isc.UndefinedSentinel ? this.owner?.copyWith() : owner,
       phoneNumber: phoneNumber is String? ? phoneNumber : this.phoneNumber,
       email: email is String? ? email : this.email,
       active: active ?? this.active,
       incomeValue: incomeValue ?? this.incomeValue,
-      parentCompanyId: parentCompanyId is _isc.UuidValue?
-          ? parentCompanyId
-          : this.parentCompanyId,
-      parentCompany: parentCompany is _iocy1ifk.Company?
-          ? parentCompany
-          : this.parentCompany?.copyWith(),
+      parentCompanyId: parentCompanyId is _isc.UndefinedSentinel
+          ? this.parentCompanyId
+          : parentCompanyId,
+      parentCompany: parentCompany is _isc.UndefinedSentinel
+          ? this.parentCompany?.copyWith()
+          : parentCompany,
       asaasAccountId: asaasAccountId is String?
           ? asaasAccountId
           : this.asaasAccountId,

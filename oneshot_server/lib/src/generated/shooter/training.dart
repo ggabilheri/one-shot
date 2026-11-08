@@ -11,9 +11,12 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i1n3uhu0;
+
 import '../shooter/ammunition_stock.dart' as _idy3jb5r;
 import '../shooter/firearm.dart' as _i25s0fp9;
 
@@ -134,14 +137,15 @@ abstract class Training
   Training copyWith({
     _is.UuidValue? id,
     int? userInfoId,
-    _i1n3uhu0.UserInfo? userInfo,
+    _i1n3uhu0.UserInfo? userInfo = const _UndefinedTraining$userInfo(),
     DateTime? date,
     String? location,
     String? environmentType,
-    _is.UuidValue? firearmId,
-    _i25s0fp9.Firearm? firearm,
-    _is.UuidValue? ammunitionId,
-    _idy3jb5r.AmmunitionStock? ammunition,
+    _is.UuidValue? firearmId = const _is.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedTraining$firearm(),
+    _is.UuidValue? ammunitionId = const _is.$UndefinedUuidValue(),
+    _idy3jb5r.AmmunitionStock? ammunition =
+        const _UndefinedTraining$ammunition(),
     int? shotsFired,
     double? distanceMeters,
     int? score,
@@ -227,6 +231,21 @@ abstract class Training
 
 class _Undefined {}
 
+class _UndefinedTraining$userInfo extends _is.UndefinedSentinel
+    implements _i1n3uhu0.UserInfo {
+  const _UndefinedTraining$userInfo();
+}
+
+class _UndefinedTraining$firearm extends _is.UndefinedSentinel
+    implements _i25s0fp9.Firearm {
+  const _UndefinedTraining$firearm();
+}
+
+class _UndefinedTraining$ammunition extends _is.UndefinedSentinel
+    implements _idy3jb5r.AmmunitionStock {
+  const _UndefinedTraining$ammunition();
+}
+
 class _TrainingImpl extends Training {
   _TrainingImpl({
     _is.UuidValue? id,
@@ -267,14 +286,15 @@ class _TrainingImpl extends Training {
   Training copyWith({
     _is.UuidValue? id,
     Object? userInfoId = _Undefined,
-    Object? userInfo = _Undefined,
+    _i1n3uhu0.UserInfo? userInfo = const _UndefinedTraining$userInfo(),
     DateTime? date,
     String? location,
     String? environmentType,
-    Object? firearmId = _Undefined,
-    Object? firearm = _Undefined,
-    Object? ammunitionId = _Undefined,
-    Object? ammunition = _Undefined,
+    _is.UuidValue? firearmId = const _is.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedTraining$firearm(),
+    _is.UuidValue? ammunitionId = const _is.$UndefinedUuidValue(),
+    _idy3jb5r.AmmunitionStock? ammunition =
+        const _UndefinedTraining$ammunition(),
     int? shotsFired,
     double? distanceMeters,
     Object? score = _Undefined,
@@ -283,22 +303,24 @@ class _TrainingImpl extends Training {
     return Training(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i1n3uhu0.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userInfo: userInfo is _is.UndefinedSentinel
+          ? this.userInfo?.copyWith()
+          : userInfo,
       date: date ?? this.date,
       location: location ?? this.location,
       environmentType: environmentType ?? this.environmentType,
-      firearmId: firearmId is _is.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i25s0fp9.Firearm?
-          ? firearm
-          : this.firearm?.copyWith(),
-      ammunitionId: ammunitionId is _is.UuidValue?
-          ? ammunitionId
-          : this.ammunitionId,
-      ammunition: ammunition is _idy3jb5r.AmmunitionStock?
-          ? ammunition
-          : this.ammunition?.copyWith(),
+      firearmId: firearmId is _is.UndefinedSentinel
+          ? this.firearmId
+          : firearmId,
+      firearm: firearm is _is.UndefinedSentinel
+          ? this.firearm?.copyWith()
+          : firearm,
+      ammunitionId: ammunitionId is _is.UndefinedSentinel
+          ? this.ammunitionId
+          : ammunitionId,
+      ammunition: ammunition is _is.UndefinedSentinel
+          ? this.ammunition?.copyWith()
+          : ammunition,
       shotsFired: shotsFired ?? this.shotsFired,
       distanceMeters: distanceMeters ?? this.distanceMeters,
       score: score is int? ? score : this.score,
@@ -555,6 +577,71 @@ class TrainingRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [Training]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `Training.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<Training>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<TrainingTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<TrainingTable>? orderBy,
+    _is.OrderByListBuilder<TrainingTable>? orderByList,
+    TrainingInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<Training>(
+      where: where?.call(Training.t),
+      orderBy: orderBy?.call(Training.t),
+      orderByList: orderByList?.call(Training.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

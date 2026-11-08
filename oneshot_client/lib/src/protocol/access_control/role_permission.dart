@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../access_control/security_role.dart' as _ivjb8sui;
 import '../enums/access_level.enum.dart' as _iznhd8p2;
 import '../enums/app_module.enum.dart' as _if1q2mgi;
@@ -84,8 +85,9 @@ abstract class RolePermission
   @_isc.useResult
   RolePermission copyWith({
     _isc.UuidValue? id,
-    _isc.UuidValue? securityRoleId,
-    _ivjb8sui.SecurityRole? securityRole,
+    _isc.UuidValue? securityRoleId = const _isc.$UndefinedUuidValue(),
+    _ivjb8sui.SecurityRole? securityRole =
+        const _UndefinedRolePermission$securityRole(),
     _ie17db6d.PlatformApp? platform,
     _if1q2mgi.AppModule? module,
     _iznhd8p2.AccessLevel? level,
@@ -125,6 +127,11 @@ abstract class RolePermission
 
 class _Undefined {}
 
+class _UndefinedRolePermission$securityRole extends _isc.UndefinedSentinel
+    implements _ivjb8sui.SecurityRole {
+  const _UndefinedRolePermission$securityRole();
+}
+
 class _RolePermissionImpl extends RolePermission {
   _RolePermissionImpl({
     _isc.UuidValue? id,
@@ -148,20 +155,21 @@ class _RolePermissionImpl extends RolePermission {
   @override
   RolePermission copyWith({
     _isc.UuidValue? id,
-    Object? securityRoleId = _Undefined,
-    Object? securityRole = _Undefined,
+    _isc.UuidValue? securityRoleId = const _isc.$UndefinedUuidValue(),
+    _ivjb8sui.SecurityRole? securityRole =
+        const _UndefinedRolePermission$securityRole(),
     _ie17db6d.PlatformApp? platform,
     Object? module = _Undefined,
     _iznhd8p2.AccessLevel? level,
   }) {
     return RolePermission(
       id: id ?? this.id,
-      securityRoleId: securityRoleId is _isc.UuidValue?
-          ? securityRoleId
-          : this.securityRoleId,
-      securityRole: securityRole is _ivjb8sui.SecurityRole?
-          ? securityRole
-          : this.securityRole?.copyWith(),
+      securityRoleId: securityRoleId is _isc.UndefinedSentinel
+          ? this.securityRoleId
+          : securityRoleId,
+      securityRole: securityRole is _isc.UndefinedSentinel
+          ? this.securityRole?.copyWith()
+          : securityRole,
       platform: platform ?? this.platform,
       module: module is _if1q2mgi.AppModule? ? module : this.module,
       level: level ?? this.level,

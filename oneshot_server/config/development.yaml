@@ -35,8 +35,8 @@ database:
   # O host/porta pressupõem o serviço `postgres` do docker-compose rodando nesta máquina (porta 8090 exposta).
   host: 192.168.30.190
   port: 8090
-  name: oneshot
-  user: oneshot_user
+  name: one_shot
+  user: one_shot_user
   #requireSsl: true # defaults to false
   #isUnixSocket: true # defaults to false
 

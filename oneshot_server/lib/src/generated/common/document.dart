@@ -11,8 +11,11 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
+
 import '../common/accessory.dart' as _ixwksfmb;
 import '../common/user_profile.dart' as _izifjpv2;
 import '../enums/document_type.enum.dart' as _i5d5abt7;
@@ -161,16 +164,16 @@ abstract class Document
   Document copyWith({
     _is.UuidValue? id,
     _is.UuidValue? userId,
-    _izifjpv2.UserProfile? user,
-    _is.UuidValue? firearmId,
-    _i25s0fp9.Firearm? firearm,
-    _is.UuidValue? accessoryId,
-    _ixwksfmb.Accessory? accessory,
+    _izifjpv2.UserProfile? user = const _UndefinedDocument$user(),
+    _is.UuidValue? firearmId = const _is.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedDocument$firearm(),
+    _is.UuidValue? accessoryId = const _is.$UndefinedUuidValue(),
+    _ixwksfmb.Accessory? accessory = const _UndefinedDocument$accessory(),
     _i5d5abt7.DocumentType? type,
     _ii1wmk2g.RegistryBody? registryBody,
     String? number,
     DateTime? emissionDate,
-    DateTime? expirationDate,
+    DateTime? expirationDate = const _is.$UndefinedDateTime(),
     String? filePath,
     String? supplierName,
     String? supplierCpfCnpj,
@@ -263,6 +266,21 @@ abstract class Document
 
 class _Undefined {}
 
+class _UndefinedDocument$user extends _is.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedDocument$user();
+}
+
+class _UndefinedDocument$firearm extends _is.UndefinedSentinel
+    implements _i25s0fp9.Firearm {
+  const _UndefinedDocument$firearm();
+}
+
+class _UndefinedDocument$accessory extends _is.UndefinedSentinel
+    implements _ixwksfmb.Accessory {
+  const _UndefinedDocument$accessory();
+}
+
 class _DocumentImpl extends Document {
   _DocumentImpl({
     _is.UuidValue? id,
@@ -309,16 +327,16 @@ class _DocumentImpl extends Document {
   Document copyWith({
     _is.UuidValue? id,
     _is.UuidValue? userId,
-    Object? user = _Undefined,
-    Object? firearmId = _Undefined,
-    Object? firearm = _Undefined,
-    Object? accessoryId = _Undefined,
-    Object? accessory = _Undefined,
+    _izifjpv2.UserProfile? user = const _UndefinedDocument$user(),
+    _is.UuidValue? firearmId = const _is.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedDocument$firearm(),
+    _is.UuidValue? accessoryId = const _is.$UndefinedUuidValue(),
+    _ixwksfmb.Accessory? accessory = const _UndefinedDocument$accessory(),
     _i5d5abt7.DocumentType? type,
     _ii1wmk2g.RegistryBody? registryBody,
     String? number,
     DateTime? emissionDate,
-    Object? expirationDate = _Undefined,
+    DateTime? expirationDate = const _is.$UndefinedDateTime(),
     Object? filePath = _Undefined,
     Object? supplierName = _Undefined,
     Object? supplierCpfCnpj = _Undefined,
@@ -328,24 +346,26 @@ class _DocumentImpl extends Document {
     return Document(
       id: id ?? this.id,
       userId: userId ?? this.userId,
-      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
-      firearmId: firearmId is _is.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i25s0fp9.Firearm?
-          ? firearm
-          : this.firearm?.copyWith(),
-      accessoryId: accessoryId is _is.UuidValue?
-          ? accessoryId
-          : this.accessoryId,
-      accessory: accessory is _ixwksfmb.Accessory?
-          ? accessory
-          : this.accessory?.copyWith(),
+      user: user is _is.UndefinedSentinel ? this.user?.copyWith() : user,
+      firearmId: firearmId is _is.UndefinedSentinel
+          ? this.firearmId
+          : firearmId,
+      firearm: firearm is _is.UndefinedSentinel
+          ? this.firearm?.copyWith()
+          : firearm,
+      accessoryId: accessoryId is _is.UndefinedSentinel
+          ? this.accessoryId
+          : accessoryId,
+      accessory: accessory is _is.UndefinedSentinel
+          ? this.accessory?.copyWith()
+          : accessory,
       type: type ?? this.type,
       registryBody: registryBody ?? this.registryBody,
       number: number ?? this.number,
       emissionDate: emissionDate ?? this.emissionDate,
-      expirationDate: expirationDate is DateTime?
-          ? expirationDate
-          : this.expirationDate,
+      expirationDate: expirationDate is _is.UndefinedSentinel
+          ? this.expirationDate
+          : expirationDate,
       filePath: filePath is String? ? filePath : this.filePath,
       supplierName: supplierName is String? ? supplierName : this.supplierName,
       supplierCpfCnpj: supplierCpfCnpj is String?
@@ -634,6 +654,71 @@ class DocumentRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [Document]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `Document.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<Document>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<DocumentTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<DocumentTable>? orderBy,
+    _is.OrderByListBuilder<DocumentTable>? orderByList,
+    DocumentInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<Document>(
+      where: where?.call(Document.t),
+      orderBy: orderBy?.call(Document.t),
+      orderByList: orderByList?.call(Document.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

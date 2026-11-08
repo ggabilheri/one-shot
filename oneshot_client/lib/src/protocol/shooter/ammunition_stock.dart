@@ -103,7 +103,7 @@ abstract class AmmunitionStock
   AmmunitionStock copyWith({
     _isc.UuidValue? id,
     int? userInfoId,
-    _i312scxx.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo = const _UndefinedAmmunitionStock$userInfo(),
     String? type,
     String? manufacturer,
     String? caliber,
@@ -162,6 +162,11 @@ abstract class AmmunitionStock
 
 class _Undefined {}
 
+class _UndefinedAmmunitionStock$userInfo extends _isc.UndefinedSentinel
+    implements _i312scxx.UserInfo {
+  const _UndefinedAmmunitionStock$userInfo();
+}
+
 class _AmmunitionStockImpl extends AmmunitionStock {
   _AmmunitionStockImpl({
     _isc.UuidValue? id,
@@ -198,7 +203,7 @@ class _AmmunitionStockImpl extends AmmunitionStock {
   AmmunitionStock copyWith({
     _isc.UuidValue? id,
     Object? userInfoId = _Undefined,
-    Object? userInfo = _Undefined,
+    _i312scxx.UserInfo? userInfo = const _UndefinedAmmunitionStock$userInfo(),
     String? type,
     String? manufacturer,
     String? caliber,
@@ -212,9 +217,9 @@ class _AmmunitionStockImpl extends AmmunitionStock {
     return AmmunitionStock(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i312scxx.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userInfo: userInfo is _isc.UndefinedSentinel
+          ? this.userInfo?.copyWith()
+          : userInfo,
       type: type ?? this.type,
       manufacturer: manufacturer ?? this.manufacturer,
       caliber: caliber ?? this.caliber,

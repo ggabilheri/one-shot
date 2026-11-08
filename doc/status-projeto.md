@@ -1,6 +1,6 @@
 # Status do Projeto One-Shot
 
-> Documento atualizado após a migração **Serverpod 3.4.4 → 4.0.4** e **Flutter 3.32.5 → 3.47.5** (FVM). Descreve a arquitetura e as funcionalidades realmente implementadas no repositório.
+> Documento atualizado após a migração **Serverpod 3.4.4 → 4.1.1** e **Flutter 3.32.5 → 3.47.5** (FVM). Descreve a arquitetura e as funcionalidades realmente implementadas no repositório.
 
 ## Visão geral
 
@@ -8,7 +8,7 @@ O One-Shot é um sistema de gestão para o mercado de tiro esportivo (CAC, clube
 
 | Componente | Pacote | Descrição |
 |---|---|---|
-| Backend | `oneshot_server` | Servidor Serverpod 4.0.4 (Dart 3.13) com endpoints, gateways de integração e regras de negócio |
+| Backend | `oneshot_server` | Servidor Serverpod 4.1.1 (Dart 3.13) com endpoints, gateways de integração e regras de negócio |
 | Client | `oneshot_client` | Client gerado (protocolo Serverpod) consumido pelos apps |
 | App do atirador | `apps/shooter_app` | App Flutter do atirador (CAC): armas, acessórios, documentos, perfil |
 | Backoffice | `apps/backoffice_web` | Backoffice web: usuários, empresas, perfis, produtos, assinaturas, financeiro |
@@ -18,7 +18,7 @@ O One-Shot é um sistema de gestão para o mercado de tiro esportivo (CAC, clube
 
 - **Flutter/Dart via FVM**: `.fvmrc` fixa Flutter **3.47.5** (Dart 3.13).
 - **SDKs dos pubspecs**: `sdk: '>=3.13.0 <4.0.0'` (server/client) e `sdk: ^3.13.0` + `flutter: '>=3.44.4'` (apps).
-- **Serverpod**: **4.0.4** em todos os pacotes (`serverpod`, `serverpod_auth_*`, `serverpod_test`, `serverpod_flutter`).
+- **Serverpod**: **4.1.1** em todos os pacotes (`serverpod`, `serverpod_auth_*`, `serverpod_test`, `serverpod_flutter`).
 - Comandos: `fvm flutter pub get|analyze|test` nos apps; `fvm dart pub get|analyze|test` e `serverpod generate` no server.
 
 ## Backend (`oneshot_server`)

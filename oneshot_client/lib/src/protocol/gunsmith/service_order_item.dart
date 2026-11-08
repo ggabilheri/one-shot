@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/supply_stock.dart' as _icdicocn;
 import '../gunsmith/service_order.dart' as _inn42g74;
 
@@ -94,12 +95,14 @@ abstract class ServiceOrderItem
   @_isc.useResult
   ServiceOrderItem copyWith({
     _isc.UuidValue? id,
-    _isc.UuidValue? serviceOrderId,
-    _inn42g74.ServiceOrder? serviceOrder,
+    _isc.UuidValue? serviceOrderId = const _isc.$UndefinedUuidValue(),
+    _inn42g74.ServiceOrder? serviceOrder =
+        const _UndefinedServiceOrderItem$serviceOrder(),
     String? description,
     bool? isStockPart,
-    _isc.UuidValue? supplyPartId,
-    _icdicocn.SupplyStock? supplyPart,
+    _isc.UuidValue? supplyPartId = const _isc.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? supplyPart =
+        const _UndefinedServiceOrderItem$supplyPart(),
     double? servicePrice,
   });
   @override
@@ -139,7 +142,15 @@ abstract class ServiceOrderItem
   }
 }
 
-class _Undefined {}
+class _UndefinedServiceOrderItem$serviceOrder extends _isc.UndefinedSentinel
+    implements _inn42g74.ServiceOrder {
+  const _UndefinedServiceOrderItem$serviceOrder();
+}
+
+class _UndefinedServiceOrderItem$supplyPart extends _isc.UndefinedSentinel
+    implements _icdicocn.SupplyStock {
+  const _UndefinedServiceOrderItem$supplyPart();
+}
 
 class _ServiceOrderItemImpl extends ServiceOrderItem {
   _ServiceOrderItemImpl({
@@ -168,30 +179,32 @@ class _ServiceOrderItemImpl extends ServiceOrderItem {
   @override
   ServiceOrderItem copyWith({
     _isc.UuidValue? id,
-    Object? serviceOrderId = _Undefined,
-    Object? serviceOrder = _Undefined,
+    _isc.UuidValue? serviceOrderId = const _isc.$UndefinedUuidValue(),
+    _inn42g74.ServiceOrder? serviceOrder =
+        const _UndefinedServiceOrderItem$serviceOrder(),
     String? description,
     bool? isStockPart,
-    Object? supplyPartId = _Undefined,
-    Object? supplyPart = _Undefined,
+    _isc.UuidValue? supplyPartId = const _isc.$UndefinedUuidValue(),
+    _icdicocn.SupplyStock? supplyPart =
+        const _UndefinedServiceOrderItem$supplyPart(),
     double? servicePrice,
   }) {
     return ServiceOrderItem(
       id: id ?? this.id,
-      serviceOrderId: serviceOrderId is _isc.UuidValue?
-          ? serviceOrderId
-          : this.serviceOrderId,
-      serviceOrder: serviceOrder is _inn42g74.ServiceOrder?
-          ? serviceOrder
-          : this.serviceOrder?.copyWith(),
+      serviceOrderId: serviceOrderId is _isc.UndefinedSentinel
+          ? this.serviceOrderId
+          : serviceOrderId,
+      serviceOrder: serviceOrder is _isc.UndefinedSentinel
+          ? this.serviceOrder?.copyWith()
+          : serviceOrder,
       description: description ?? this.description,
       isStockPart: isStockPart ?? this.isStockPart,
-      supplyPartId: supplyPartId is _isc.UuidValue?
-          ? supplyPartId
-          : this.supplyPartId,
-      supplyPart: supplyPart is _icdicocn.SupplyStock?
-          ? supplyPart
-          : this.supplyPart?.copyWith(),
+      supplyPartId: supplyPartId is _isc.UndefinedSentinel
+          ? this.supplyPartId
+          : supplyPartId,
+      supplyPart: supplyPart is _isc.UndefinedSentinel
+          ? this.supplyPart?.copyWith()
+          : supplyPart,
       servicePrice: servicePrice ?? this.servicePrice,
     );
   }

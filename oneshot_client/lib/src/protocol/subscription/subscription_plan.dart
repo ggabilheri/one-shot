@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../company/company.dart' as _iocy1ifk;
 import '../enums/plan_periodicity.enum.dart' as _i183hlh8;
 import '../enums/plan_status.enum.dart' as _i2ytazif;
@@ -109,8 +110,8 @@ abstract class SubscriptionPlan
     double? totalValue,
     _i183hlh8.PlanPeriodicity? periodicity,
     _i2ytazif.PlanStatus? status,
-    _isc.UuidValue? companyId,
-    _iocy1ifk.Company? company,
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedSubscriptionPlan$company(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -152,7 +153,10 @@ abstract class SubscriptionPlan
   }
 }
 
-class _Undefined {}
+class _UndefinedSubscriptionPlan$company extends _isc.UndefinedSentinel
+    implements _iocy1ifk.Company {
+  const _UndefinedSubscriptionPlan$company();
+}
 
 class _SubscriptionPlanImpl extends SubscriptionPlan {
   _SubscriptionPlanImpl({
@@ -192,8 +196,8 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
     double? totalValue,
     _i183hlh8.PlanPeriodicity? periodicity,
     _i2ytazif.PlanStatus? status,
-    Object? companyId = _Undefined,
-    Object? company = _Undefined,
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedSubscriptionPlan$company(),
   }) {
     return SubscriptionPlan(
       id: id ?? this.id,
@@ -204,10 +208,12 @@ class _SubscriptionPlanImpl extends SubscriptionPlan {
       totalValue: totalValue ?? this.totalValue,
       periodicity: periodicity ?? this.periodicity,
       status: status ?? this.status,
-      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
-      company: company is _iocy1ifk.Company?
-          ? company
-          : this.company?.copyWith(),
+      companyId: companyId is _isc.UndefinedSentinel
+          ? this.companyId
+          : companyId,
+      company: company is _isc.UndefinedSentinel
+          ? this.company?.copyWith()
+          : company,
     );
   }
 }

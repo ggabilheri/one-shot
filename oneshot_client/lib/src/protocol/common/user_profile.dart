@@ -13,6 +13,7 @@
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i312scxx;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/address.dart' as _iy1vkl2d;
 import '../enums/gender.enum.dart' as _ix60f0mc;
 import '../enums/user_status.enum.dart' as _ijq1b3b6;
@@ -143,17 +144,18 @@ abstract class UserProfile
   UserProfile copyWith({
     _isc.UuidValue? id,
     int? userInfoId,
-    _i312scxx.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo = const _UndefinedUserProfile$userInfo(),
     String? name,
     _ix60f0mc.Gender? gender,
-    DateTime? birthDate,
+    DateTime? birthDate = const _isc.$UndefinedDateTime(),
     String? rg,
     String? cpf,
     String? phone,
     String? email,
-    _isc.UuidValue? addressId,
-    _iy1vkl2d.Address? address,
-    List<_i828q2d1.UserType>? types,
+    _isc.UuidValue? addressId = const _isc.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedUserProfile$address(),
+    List<_i828q2d1.UserType>? types =
+        const _isc.$UndefinedList<_i828q2d1.UserType>(),
     _ijq1b3b6.UserStatus? status,
     String? asaasCustomerId,
     String? asaasOnboardingFailureReason,
@@ -214,6 +216,16 @@ abstract class UserProfile
 
 class _Undefined {}
 
+class _UndefinedUserProfile$userInfo extends _isc.UndefinedSentinel
+    implements _i312scxx.UserInfo {
+  const _UndefinedUserProfile$userInfo();
+}
+
+class _UndefinedUserProfile$address extends _isc.UndefinedSentinel
+    implements _iy1vkl2d.Address {
+  const _UndefinedUserProfile$address();
+}
+
 class _UserProfileImpl extends UserProfile {
   _UserProfileImpl({
     _isc.UuidValue? id,
@@ -258,17 +270,18 @@ class _UserProfileImpl extends UserProfile {
   UserProfile copyWith({
     _isc.UuidValue? id,
     Object? userInfoId = _Undefined,
-    Object? userInfo = _Undefined,
+    _i312scxx.UserInfo? userInfo = const _UndefinedUserProfile$userInfo(),
     String? name,
     Object? gender = _Undefined,
-    Object? birthDate = _Undefined,
+    DateTime? birthDate = const _isc.$UndefinedDateTime(),
     Object? rg = _Undefined,
     Object? cpf = _Undefined,
     Object? phone = _Undefined,
     Object? email = _Undefined,
-    Object? addressId = _Undefined,
-    Object? address = _Undefined,
-    Object? types = _Undefined,
+    _isc.UuidValue? addressId = const _isc.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedUserProfile$address(),
+    List<_i828q2d1.UserType>? types =
+        const _isc.$UndefinedList<_i828q2d1.UserType>(),
     _ijq1b3b6.UserStatus? status,
     Object? asaasCustomerId = _Undefined,
     Object? asaasOnboardingFailureReason = _Undefined,
@@ -276,23 +289,27 @@ class _UserProfileImpl extends UserProfile {
     return UserProfile(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i312scxx.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userInfo: userInfo is _isc.UndefinedSentinel
+          ? this.userInfo?.copyWith()
+          : userInfo,
       name: name ?? this.name,
       gender: gender is _ix60f0mc.Gender? ? gender : this.gender,
-      birthDate: birthDate is DateTime? ? birthDate : this.birthDate,
+      birthDate: birthDate is _isc.UndefinedSentinel
+          ? this.birthDate
+          : birthDate,
       rg: rg is String? ? rg : this.rg,
       cpf: cpf is String? ? cpf : this.cpf,
       phone: phone is String? ? phone : this.phone,
       email: email is String? ? email : this.email,
-      addressId: addressId is _isc.UuidValue? ? addressId : this.addressId,
-      address: address is _iy1vkl2d.Address?
-          ? address
-          : this.address?.copyWith(),
-      types: types is List<_i828q2d1.UserType>?
-          ? types
-          : this.types?.map((e0) => e0).toList(),
+      addressId: addressId is _isc.UndefinedSentinel
+          ? this.addressId
+          : addressId,
+      address: address is _isc.UndefinedSentinel
+          ? this.address?.copyWith()
+          : address,
+      types: types is _isc.UndefinedSentinel
+          ? this.types?.map((e0) => e0).toList()
+          : types,
       status: status ?? this.status,
       asaasCustomerId: asaasCustomerId is String?
           ? asaasCustomerId

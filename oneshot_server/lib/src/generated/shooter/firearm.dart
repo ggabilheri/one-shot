@@ -11,8 +11,11 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
+
 import '../common/user_profile.dart' as _izifjpv2;
 import '../enums/conservation_state.enum.dart' as _im6njl07;
 import '../enums/firearm_action.enum.dart' as _id0m3mr4;
@@ -254,8 +257,8 @@ abstract class Firearm
   @_is.useResult
   Firearm copyWith({
     _is.UuidValue? id,
-    _is.UuidValue? userId,
-    _izifjpv2.UserProfile? user,
+    _is.UuidValue? userId = const _is.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? user = const _UndefinedFirearm$user(),
     _ie635x89.FirearmPurpose? purpose,
     _i5vdw3jb.FirearmType? type,
     _id0m3mr4.FirearmAction? action,
@@ -279,13 +282,13 @@ abstract class Firearm
     int? magazineCount,
     String? dimensions,
     double? weight,
-    DateTime? acquisitionDate,
+    DateTime? acquisitionDate = const _is.$UndefinedDateTime(),
     double? purchasePrice,
-    DateTime? saleDate,
+    DateTime? saleDate = const _is.$UndefinedDateTime(),
     double? salePrice,
     String? buyerData,
     String? customizations,
-    List<String>? images,
+    List<String>? images = const _is.$UndefinedList<String>(),
     String? cleaningHistory,
     String? maintenanceHistory,
     int? totalShots,
@@ -406,6 +409,11 @@ abstract class Firearm
 
 class _Undefined {}
 
+class _UndefinedFirearm$user extends _is.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedFirearm$user();
+}
+
 class _FirearmImpl extends Firearm {
   _FirearmImpl({
     _is.UuidValue? id,
@@ -489,8 +497,8 @@ class _FirearmImpl extends Firearm {
   @override
   Firearm copyWith({
     _is.UuidValue? id,
-    Object? userId = _Undefined,
-    Object? user = _Undefined,
+    _is.UuidValue? userId = const _is.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? user = const _UndefinedFirearm$user(),
     _ie635x89.FirearmPurpose? purpose,
     _i5vdw3jb.FirearmType? type,
     _id0m3mr4.FirearmAction? action,
@@ -514,21 +522,21 @@ class _FirearmImpl extends Firearm {
     Object? magazineCount = _Undefined,
     Object? dimensions = _Undefined,
     Object? weight = _Undefined,
-    Object? acquisitionDate = _Undefined,
+    DateTime? acquisitionDate = const _is.$UndefinedDateTime(),
     Object? purchasePrice = _Undefined,
-    Object? saleDate = _Undefined,
+    DateTime? saleDate = const _is.$UndefinedDateTime(),
     Object? salePrice = _Undefined,
     Object? buyerData = _Undefined,
     Object? customizations = _Undefined,
-    Object? images = _Undefined,
+    List<String>? images = const _is.$UndefinedList<String>(),
     Object? cleaningHistory = _Undefined,
     Object? maintenanceHistory = _Undefined,
     Object? totalShots = _Undefined,
   }) {
     return Firearm(
       id: id ?? this.id,
-      userId: userId is _is.UuidValue? ? userId : this.userId,
-      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
+      userId: userId is _is.UndefinedSentinel ? this.userId : userId,
+      user: user is _is.UndefinedSentinel ? this.user?.copyWith() : user,
       purpose: purpose ?? this.purpose,
       type: type ?? this.type,
       action: action ?? this.action,
@@ -554,21 +562,21 @@ class _FirearmImpl extends Firearm {
       magazineCount: magazineCount is int? ? magazineCount : this.magazineCount,
       dimensions: dimensions is String? ? dimensions : this.dimensions,
       weight: weight is double? ? weight : this.weight,
-      acquisitionDate: acquisitionDate is DateTime?
-          ? acquisitionDate
-          : this.acquisitionDate,
+      acquisitionDate: acquisitionDate is _is.UndefinedSentinel
+          ? this.acquisitionDate
+          : acquisitionDate,
       purchasePrice: purchasePrice is double?
           ? purchasePrice
           : this.purchasePrice,
-      saleDate: saleDate is DateTime? ? saleDate : this.saleDate,
+      saleDate: saleDate is _is.UndefinedSentinel ? this.saleDate : saleDate,
       salePrice: salePrice is double? ? salePrice : this.salePrice,
       buyerData: buyerData is String? ? buyerData : this.buyerData,
       customizations: customizations is String?
           ? customizations
           : this.customizations,
-      images: images is List<String>?
-          ? images
-          : this.images?.map((e0) => e0).toList(),
+      images: images is _is.UndefinedSentinel
+          ? this.images?.map((e0) => e0).toList()
+          : images,
       cleaningHistory: cleaningHistory is String?
           ? cleaningHistory
           : this.cleaningHistory,
@@ -951,6 +959,71 @@ class FirearmRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [Firearm]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `Firearm.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<Firearm>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<FirearmTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<FirearmTable>? orderBy,
+    _is.OrderByListBuilder<FirearmTable>? orderByList,
+    FirearmInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<Firearm>(
+      where: where?.call(Firearm.t),
+      orderBy: orderBy?.call(Firearm.t),
+      orderByList: orderByList?.call(Firearm.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

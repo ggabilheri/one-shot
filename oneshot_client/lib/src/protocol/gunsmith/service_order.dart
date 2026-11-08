@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../gunsmith/gunsmith_client.dart' as _i2wg6r80;
 import '../shooter/firearm.dart' as _i25s0fp9;
 
@@ -116,12 +117,12 @@ abstract class ServiceOrder
   @_isc.useResult
   ServiceOrder copyWith({
     _isc.UuidValue? id,
-    _isc.UuidValue? clientId,
-    _i2wg6r80.GunsmithClient? client,
-    _isc.UuidValue? firearmId,
-    _i25s0fp9.Firearm? firearm,
+    _isc.UuidValue? clientId = const _isc.$UndefinedUuidValue(),
+    _i2wg6r80.GunsmithClient? client = const _UndefinedServiceOrder$client(),
+    _isc.UuidValue? firearmId = const _isc.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedServiceOrder$firearm(),
     DateTime? entryDate,
-    DateTime? estimatedDeliveryDate,
+    DateTime? estimatedDeliveryDate = const _isc.$UndefinedDateTime(),
     double? totalPrice,
     double? discount,
     double? finalPrice,
@@ -176,6 +177,16 @@ abstract class ServiceOrder
 
 class _Undefined {}
 
+class _UndefinedServiceOrder$client extends _isc.UndefinedSentinel
+    implements _i2wg6r80.GunsmithClient {
+  const _UndefinedServiceOrder$client();
+}
+
+class _UndefinedServiceOrder$firearm extends _isc.UndefinedSentinel
+    implements _i25s0fp9.Firearm {
+  const _UndefinedServiceOrder$firearm();
+}
+
 class _ServiceOrderImpl extends ServiceOrder {
   _ServiceOrderImpl({
     _isc.UuidValue? id,
@@ -211,12 +222,12 @@ class _ServiceOrderImpl extends ServiceOrder {
   @override
   ServiceOrder copyWith({
     _isc.UuidValue? id,
-    Object? clientId = _Undefined,
-    Object? client = _Undefined,
-    Object? firearmId = _Undefined,
-    Object? firearm = _Undefined,
+    _isc.UuidValue? clientId = const _isc.$UndefinedUuidValue(),
+    _i2wg6r80.GunsmithClient? client = const _UndefinedServiceOrder$client(),
+    _isc.UuidValue? firearmId = const _isc.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedServiceOrder$firearm(),
     DateTime? entryDate,
-    Object? estimatedDeliveryDate = _Undefined,
+    DateTime? estimatedDeliveryDate = const _isc.$UndefinedDateTime(),
     double? totalPrice,
     Object? discount = _Undefined,
     double? finalPrice,
@@ -225,18 +236,20 @@ class _ServiceOrderImpl extends ServiceOrder {
   }) {
     return ServiceOrder(
       id: id ?? this.id,
-      clientId: clientId is _isc.UuidValue? ? clientId : this.clientId,
-      client: client is _i2wg6r80.GunsmithClient?
-          ? client
-          : this.client?.copyWith(),
-      firearmId: firearmId is _isc.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i25s0fp9.Firearm?
-          ? firearm
-          : this.firearm?.copyWith(),
+      clientId: clientId is _isc.UndefinedSentinel ? this.clientId : clientId,
+      client: client is _isc.UndefinedSentinel
+          ? this.client?.copyWith()
+          : client,
+      firearmId: firearmId is _isc.UndefinedSentinel
+          ? this.firearmId
+          : firearmId,
+      firearm: firearm is _isc.UndefinedSentinel
+          ? this.firearm?.copyWith()
+          : firearm,
       entryDate: entryDate ?? this.entryDate,
-      estimatedDeliveryDate: estimatedDeliveryDate is DateTime?
-          ? estimatedDeliveryDate
-          : this.estimatedDeliveryDate,
+      estimatedDeliveryDate: estimatedDeliveryDate is _isc.UndefinedSentinel
+          ? this.estimatedDeliveryDate
+          : estimatedDeliveryDate,
       totalPrice: totalPrice ?? this.totalPrice,
       discount: discount is double? ? discount : this.discount,
       finalPrice: finalPrice ?? this.finalPrice,

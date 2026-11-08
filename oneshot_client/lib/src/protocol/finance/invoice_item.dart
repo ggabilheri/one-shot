@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../finance/invoice.dart' as _i3d856q3;
 
 abstract class InvoiceItem
@@ -82,8 +83,8 @@ abstract class InvoiceItem
     double? quantity,
     double? unitPrice,
     double? totalPrice,
-    _isc.UuidValue? invoiceId,
-    _i3d856q3.Invoice? invoice,
+    _isc.UuidValue? invoiceId = const _isc.$UndefinedUuidValue(),
+    _i3d856q3.Invoice? invoice = const _UndefinedInvoiceItem$invoice(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -119,7 +120,10 @@ abstract class InvoiceItem
   }
 }
 
-class _Undefined {}
+class _UndefinedInvoiceItem$invoice extends _isc.UndefinedSentinel
+    implements _i3d856q3.Invoice {
+  const _UndefinedInvoiceItem$invoice();
+}
 
 class _InvoiceItemImpl extends InvoiceItem {
   _InvoiceItemImpl({
@@ -150,8 +154,8 @@ class _InvoiceItemImpl extends InvoiceItem {
     double? quantity,
     double? unitPrice,
     double? totalPrice,
-    Object? invoiceId = _Undefined,
-    Object? invoice = _Undefined,
+    _isc.UuidValue? invoiceId = const _isc.$UndefinedUuidValue(),
+    _i3d856q3.Invoice? invoice = const _UndefinedInvoiceItem$invoice(),
   }) {
     return InvoiceItem(
       id: id ?? this.id,
@@ -159,10 +163,12 @@ class _InvoiceItemImpl extends InvoiceItem {
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       totalPrice: totalPrice ?? this.totalPrice,
-      invoiceId: invoiceId is _isc.UuidValue? ? invoiceId : this.invoiceId,
-      invoice: invoice is _i3d856q3.Invoice?
-          ? invoice
-          : this.invoice?.copyWith(),
+      invoiceId: invoiceId is _isc.UndefinedSentinel
+          ? this.invoiceId
+          : invoiceId,
+      invoice: invoice is _isc.UndefinedSentinel
+          ? this.invoice?.copyWith()
+          : invoice,
     );
   }
 }

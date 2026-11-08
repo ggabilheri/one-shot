@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../enums/currency.enum.dart' as _isdw5wvy;
 import '../enums/payment_method.enum.dart' as _iqyvznnz;
 import '../enums/payment_status.enum.dart' as _iulumb5a;
@@ -161,15 +162,15 @@ abstract class Payment
     String? asaasPaymentId,
     String? asaasCustomerId,
     String? asaasBillingType,
-    DateTime? asaasDueDate,
+    DateTime? asaasDueDate = const _isc.$UndefinedDateTime(),
     double? asaasNetValue,
     String? asaasInvoiceUrl,
     String? asaasBankSlipUrl,
     String? asaasPixQrCodePayload,
     String? asaasPixQrCodeImage,
-    DateTime? asaasRefundedAt,
-    _isc.UuidValue? invoiceId,
-    _i3d856q3.Invoice? invoice,
+    DateTime? asaasRefundedAt = const _isc.$UndefinedDateTime(),
+    _isc.UuidValue? invoiceId = const _isc.$UndefinedUuidValue(),
+    _i3d856q3.Invoice? invoice = const _UndefinedPayment$invoice(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -233,6 +234,11 @@ abstract class Payment
 
 class _Undefined {}
 
+class _UndefinedPayment$invoice extends _isc.UndefinedSentinel
+    implements _i3d856q3.Invoice {
+  const _UndefinedPayment$invoice();
+}
+
 class _PaymentImpl extends Payment {
   _PaymentImpl({
     _isc.UuidValue? id,
@@ -288,15 +294,15 @@ class _PaymentImpl extends Payment {
     Object? asaasPaymentId = _Undefined,
     Object? asaasCustomerId = _Undefined,
     Object? asaasBillingType = _Undefined,
-    Object? asaasDueDate = _Undefined,
+    DateTime? asaasDueDate = const _isc.$UndefinedDateTime(),
     Object? asaasNetValue = _Undefined,
     Object? asaasInvoiceUrl = _Undefined,
     Object? asaasBankSlipUrl = _Undefined,
     Object? asaasPixQrCodePayload = _Undefined,
     Object? asaasPixQrCodeImage = _Undefined,
-    Object? asaasRefundedAt = _Undefined,
-    Object? invoiceId = _Undefined,
-    Object? invoice = _Undefined,
+    DateTime? asaasRefundedAt = const _isc.$UndefinedDateTime(),
+    _isc.UuidValue? invoiceId = const _isc.$UndefinedUuidValue(),
+    _i3d856q3.Invoice? invoice = const _UndefinedPayment$invoice(),
   }) {
     return Payment(
       id: id ?? this.id,
@@ -314,9 +320,9 @@ class _PaymentImpl extends Payment {
       asaasBillingType: asaasBillingType is String?
           ? asaasBillingType
           : this.asaasBillingType,
-      asaasDueDate: asaasDueDate is DateTime?
-          ? asaasDueDate
-          : this.asaasDueDate,
+      asaasDueDate: asaasDueDate is _isc.UndefinedSentinel
+          ? this.asaasDueDate
+          : asaasDueDate,
       asaasNetValue: asaasNetValue is double?
           ? asaasNetValue
           : this.asaasNetValue,
@@ -332,13 +338,15 @@ class _PaymentImpl extends Payment {
       asaasPixQrCodeImage: asaasPixQrCodeImage is String?
           ? asaasPixQrCodeImage
           : this.asaasPixQrCodeImage,
-      asaasRefundedAt: asaasRefundedAt is DateTime?
-          ? asaasRefundedAt
-          : this.asaasRefundedAt,
-      invoiceId: invoiceId is _isc.UuidValue? ? invoiceId : this.invoiceId,
-      invoice: invoice is _i3d856q3.Invoice?
-          ? invoice
-          : this.invoice?.copyWith(),
+      asaasRefundedAt: asaasRefundedAt is _isc.UndefinedSentinel
+          ? this.asaasRefundedAt
+          : asaasRefundedAt,
+      invoiceId: invoiceId is _isc.UndefinedSentinel
+          ? this.invoiceId
+          : invoiceId,
+      invoice: invoice is _isc.UndefinedSentinel
+          ? this.invoice?.copyWith()
+          : invoice,
     );
   }
 }

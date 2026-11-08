@@ -11,8 +11,11 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
+
 import '../gunsmith/gunsmith_client.dart' as _i2wg6r80;
 import '../shooter/firearm.dart' as _i25s0fp9;
 
@@ -122,12 +125,12 @@ abstract class ServiceOrder
   @_is.useResult
   ServiceOrder copyWith({
     _is.UuidValue? id,
-    _is.UuidValue? clientId,
-    _i2wg6r80.GunsmithClient? client,
-    _is.UuidValue? firearmId,
-    _i25s0fp9.Firearm? firearm,
+    _is.UuidValue? clientId = const _is.$UndefinedUuidValue(),
+    _i2wg6r80.GunsmithClient? client = const _UndefinedServiceOrder$client(),
+    _is.UuidValue? firearmId = const _is.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedServiceOrder$firearm(),
     DateTime? entryDate,
-    DateTime? estimatedDeliveryDate,
+    DateTime? estimatedDeliveryDate = const _is.$UndefinedDateTime(),
     double? totalPrice,
     double? discount,
     double? finalPrice,
@@ -207,6 +210,16 @@ abstract class ServiceOrder
 
 class _Undefined {}
 
+class _UndefinedServiceOrder$client extends _is.UndefinedSentinel
+    implements _i2wg6r80.GunsmithClient {
+  const _UndefinedServiceOrder$client();
+}
+
+class _UndefinedServiceOrder$firearm extends _is.UndefinedSentinel
+    implements _i25s0fp9.Firearm {
+  const _UndefinedServiceOrder$firearm();
+}
+
 class _ServiceOrderImpl extends ServiceOrder {
   _ServiceOrderImpl({
     _is.UuidValue? id,
@@ -242,12 +255,12 @@ class _ServiceOrderImpl extends ServiceOrder {
   @override
   ServiceOrder copyWith({
     _is.UuidValue? id,
-    Object? clientId = _Undefined,
-    Object? client = _Undefined,
-    Object? firearmId = _Undefined,
-    Object? firearm = _Undefined,
+    _is.UuidValue? clientId = const _is.$UndefinedUuidValue(),
+    _i2wg6r80.GunsmithClient? client = const _UndefinedServiceOrder$client(),
+    _is.UuidValue? firearmId = const _is.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedServiceOrder$firearm(),
     DateTime? entryDate,
-    Object? estimatedDeliveryDate = _Undefined,
+    DateTime? estimatedDeliveryDate = const _is.$UndefinedDateTime(),
     double? totalPrice,
     Object? discount = _Undefined,
     double? finalPrice,
@@ -256,18 +269,20 @@ class _ServiceOrderImpl extends ServiceOrder {
   }) {
     return ServiceOrder(
       id: id ?? this.id,
-      clientId: clientId is _is.UuidValue? ? clientId : this.clientId,
-      client: client is _i2wg6r80.GunsmithClient?
-          ? client
-          : this.client?.copyWith(),
-      firearmId: firearmId is _is.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i25s0fp9.Firearm?
-          ? firearm
-          : this.firearm?.copyWith(),
+      clientId: clientId is _is.UndefinedSentinel ? this.clientId : clientId,
+      client: client is _is.UndefinedSentinel
+          ? this.client?.copyWith()
+          : client,
+      firearmId: firearmId is _is.UndefinedSentinel
+          ? this.firearmId
+          : firearmId,
+      firearm: firearm is _is.UndefinedSentinel
+          ? this.firearm?.copyWith()
+          : firearm,
       entryDate: entryDate ?? this.entryDate,
-      estimatedDeliveryDate: estimatedDeliveryDate is DateTime?
-          ? estimatedDeliveryDate
-          : this.estimatedDeliveryDate,
+      estimatedDeliveryDate: estimatedDeliveryDate is _is.UndefinedSentinel
+          ? this.estimatedDeliveryDate
+          : estimatedDeliveryDate,
       totalPrice: totalPrice ?? this.totalPrice,
       discount: discount is double? ? discount : this.discount,
       finalPrice: finalPrice ?? this.finalPrice,
@@ -496,6 +511,71 @@ class ServiceOrderRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [ServiceOrder]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `ServiceOrder.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<ServiceOrder>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<ServiceOrderTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<ServiceOrderTable>? orderBy,
+    _is.OrderByListBuilder<ServiceOrderTable>? orderByList,
+    ServiceOrderInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<ServiceOrder>(
+      where: where?.call(ServiceOrder.t),
+      orderBy: orderBy?.call(ServiceOrder.t),
+      orderByList: orderByList?.call(ServiceOrder.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

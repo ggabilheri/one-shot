@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../company/company.dart' as _iocy1ifk;
 import '../enums/pix_key_type.dart' as _imwhqumt;
 
@@ -127,8 +128,8 @@ abstract class BankAccount
     double? balance,
     String? status,
     String? originModule,
-    _isc.UuidValue? companyId,
-    _iocy1ifk.Company? company,
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedBankAccount$company(),
     String? pixKey,
     _imwhqumt.PixKeyType? pixKeyType,
   });
@@ -182,6 +183,11 @@ abstract class BankAccount
 
 class _Undefined {}
 
+class _UndefinedBankAccount$company extends _isc.UndefinedSentinel
+    implements _iocy1ifk.Company {
+  const _UndefinedBankAccount$company();
+}
+
 class _BankAccountImpl extends BankAccount {
   _BankAccountImpl({
     _isc.UuidValue? id,
@@ -230,8 +236,8 @@ class _BankAccountImpl extends BankAccount {
     double? balance,
     String? status,
     String? originModule,
-    Object? companyId = _Undefined,
-    Object? company = _Undefined,
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedBankAccount$company(),
     Object? pixKey = _Undefined,
     Object? pixKeyType = _Undefined,
   }) {
@@ -248,10 +254,12 @@ class _BankAccountImpl extends BankAccount {
       balance: balance ?? this.balance,
       status: status ?? this.status,
       originModule: originModule ?? this.originModule,
-      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
-      company: company is _iocy1ifk.Company?
-          ? company
-          : this.company?.copyWith(),
+      companyId: companyId is _isc.UndefinedSentinel
+          ? this.companyId
+          : companyId,
+      company: company is _isc.UndefinedSentinel
+          ? this.company?.copyWith()
+          : company,
       pixKey: pixKey is String? ? pixKey : this.pixKey,
       pixKeyType: pixKeyType is _imwhqumt.PixKeyType?
           ? pixKeyType

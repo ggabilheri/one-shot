@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/user_profile.dart' as _izifjpv2;
 import '../company/company.dart' as _iocy1ifk;
 import '../enums/currency.enum.dart' as _isdw5wvy;
@@ -201,14 +202,14 @@ abstract class Invoice
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _isc.UuidValue? companyId,
-    _iocy1ifk.Company? company,
-    _isc.UuidValue? gunsmithId,
-    _inzvshfq.Gunsmith? gunsmith,
-    _isc.UuidValue? userId,
-    _izifjpv2.UserProfile? user,
-    _isc.UuidValue? draweeId,
-    _izifjpv2.UserProfile? drawee,
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedInvoice$company(),
+    _isc.UuidValue? gunsmithId = const _isc.$UndefinedUuidValue(),
+    _inzvshfq.Gunsmith? gunsmith = const _UndefinedInvoice$gunsmith(),
+    _isc.UuidValue? userId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? user = const _UndefinedInvoice$user(),
+    _isc.UuidValue? draweeId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? drawee = const _UndefinedInvoice$user(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -275,6 +276,21 @@ abstract class Invoice
 }
 
 class _Undefined {}
+
+class _UndefinedInvoice$company extends _isc.UndefinedSentinel
+    implements _iocy1ifk.Company {
+  const _UndefinedInvoice$company();
+}
+
+class _UndefinedInvoice$gunsmith extends _isc.UndefinedSentinel
+    implements _inzvshfq.Gunsmith {
+  const _UndefinedInvoice$gunsmith();
+}
+
+class _UndefinedInvoice$user extends _isc.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedInvoice$user();
+}
 
 class _InvoiceImpl extends Invoice {
   _InvoiceImpl({
@@ -344,14 +360,14 @@ class _InvoiceImpl extends Invoice {
     bool? isRecurrent,
     Object? asaasInstallmentId = _Undefined,
     Object? asaasCustomerId = _Undefined,
-    Object? companyId = _Undefined,
-    Object? company = _Undefined,
-    Object? gunsmithId = _Undefined,
-    Object? gunsmith = _Undefined,
-    Object? userId = _Undefined,
-    Object? user = _Undefined,
-    Object? draweeId = _Undefined,
-    Object? drawee = _Undefined,
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedInvoice$company(),
+    _isc.UuidValue? gunsmithId = const _isc.$UndefinedUuidValue(),
+    _inzvshfq.Gunsmith? gunsmith = const _UndefinedInvoice$gunsmith(),
+    _isc.UuidValue? userId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? user = const _UndefinedInvoice$user(),
+    _isc.UuidValue? draweeId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? drawee = const _UndefinedInvoice$user(),
   }) {
     return Invoice(
       id: id ?? this.id,
@@ -372,20 +388,24 @@ class _InvoiceImpl extends Invoice {
       asaasCustomerId: asaasCustomerId is String?
           ? asaasCustomerId
           : this.asaasCustomerId,
-      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
-      company: company is _iocy1ifk.Company?
-          ? company
-          : this.company?.copyWith(),
-      gunsmithId: gunsmithId is _isc.UuidValue? ? gunsmithId : this.gunsmithId,
-      gunsmith: gunsmith is _inzvshfq.Gunsmith?
-          ? gunsmith
-          : this.gunsmith?.copyWith(),
-      userId: userId is _isc.UuidValue? ? userId : this.userId,
-      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
-      draweeId: draweeId is _isc.UuidValue? ? draweeId : this.draweeId,
-      drawee: drawee is _izifjpv2.UserProfile?
-          ? drawee
-          : this.drawee?.copyWith(),
+      companyId: companyId is _isc.UndefinedSentinel
+          ? this.companyId
+          : companyId,
+      company: company is _isc.UndefinedSentinel
+          ? this.company?.copyWith()
+          : company,
+      gunsmithId: gunsmithId is _isc.UndefinedSentinel
+          ? this.gunsmithId
+          : gunsmithId,
+      gunsmith: gunsmith is _isc.UndefinedSentinel
+          ? this.gunsmith?.copyWith()
+          : gunsmith,
+      userId: userId is _isc.UndefinedSentinel ? this.userId : userId,
+      user: user is _isc.UndefinedSentinel ? this.user?.copyWith() : user,
+      draweeId: draweeId is _isc.UndefinedSentinel ? this.draweeId : draweeId,
+      drawee: drawee is _isc.UndefinedSentinel
+          ? this.drawee?.copyWith()
+          : drawee,
     );
   }
 }

@@ -58,6 +58,7 @@ import 'package:oneshot_client/src/protocol/subscription/subscription_plan.dart'
     as _iq7fauej;
 import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i312scxx;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import 'access_control/role_permission.dart' as _itwd6fku;
 import 'access_control/security_role.dart' as _in9fkuzh;
 import 'access_control/user_role.dart' as _iflys0o9;
@@ -178,24 +179,245 @@ export 'shooter/training.dart';
 export 'subscription/subscription_plan.dart';
 export 'client.dart';
 
-class Protocol extends _isc.SerializationManager {
+class Protocol extends _isc.SerializationManager
+    implements _isc.ProtocolDeserializationProvider {
   Protocol._();
 
   factory Protocol() => _instance;
 
   static final Protocol _instance = Protocol._().._registerHostProtocols();
 
-  static String? getClassNameFromObjectJson(dynamic data) {
-    if (data is! Map) return null;
-    final className = data['__className__'] as String?;
-    return className;
-  }
+  @override
+  _isc.ProtocolDeserialization get deserializationMetadata =>
+      _isc.ProtocolDeserialization.cached(
+        this,
+        types: const [
+          _isc.getType<_itwd6fku.RolePermission>,
+          _isc.getType<_in9fkuzh.SecurityRole>,
+          _isc.getType<_iflys0o9.UserRole>,
+          _isc.getType<_i18rxkcg.Accessory>,
+          _isc.getType<_ii1cybhg.Address>,
+          _isc.getType<_i023ezu2.Document>,
+          _isc.getType<_i2v0zfwt.AppException>,
+          _isc.getType<_i8y573y6.SupplyStock>,
+          _isc.getType<_izgbvseu.UserProfile>,
+          _isc.getType<_ienljv70.Company>,
+          _isc.getType<_i7fsgy8h.CompanyType>,
+          _isc.getType<_i29p8qv7.Membership>,
+          _isc.getType<_iqo0zmu4.RangeVisit>,
+          _isc.getType<_iugjo2wb.AccessLevel>,
+          _isc.getType<_ip9lql6r.AccessoryType>,
+          _isc.getType<_iyudezai.AppModule>,
+          _isc.getType<_iy4kwzbj.AsaasWebhookEventType>,
+          _isc.getType<_iuu90wd5.ConservationState>,
+          _isc.getType<_ictknidt.Currency>,
+          _isc.getType<_ibornalb.DocumentType>,
+          _isc.getType<_idw6xq4s.FinancialEntryStatus>,
+          _isc.getType<_iv2iml2v.FinancialEntryType>,
+          _isc.getType<_itctldyk.FirearmAction>,
+          _isc.getType<_ipfzkkcy.FirearmPurpose>,
+          _isc.getType<_iv6h25me.FirearmType>,
+          _isc.getType<_ivjv70nm.Gender>,
+          _isc.getType<_iwp0wycx.InvoiceStatus>,
+          _isc.getType<_iaawilat.MembershipStatus>,
+          _isc.getType<_ir7lu9de.PaymentMethod>,
+          _isc.getType<_ikjzbt8l.PaymentStatus>,
+          _isc.getType<_i2xwc0ya.PixKeyType>,
+          _isc.getType<_ihsiicw8.PlanPeriodicity>,
+          _isc.getType<_i3zf9gwu.PlanStatus>,
+          _isc.getType<_itku2k2q.PlanType>,
+          _isc.getType<_i2yfqo06.PlatformApp>,
+          _isc.getType<_ibbobdoe.RegistryBody>,
+          _isc.getType<_ixsenwfe.UsageType>,
+          _isc.getType<_ihk15r1q.UserStatus>,
+          _isc.getType<_i6i91bhn.UserType>,
+          _isc.getType<_i268wbv5.AsaasWebhookEvent>,
+          _isc.getType<_i7csfp3a.Bank>,
+          _isc.getType<_i1qq6iwp.BankAccount>,
+          _isc.getType<_irygpv1g.FinancialEntry>,
+          _isc.getType<_ivdiuwq4.Invoice>,
+          _isc.getType<_izi6zi6k.InvoiceItem>,
+          _isc.getType<_i3em9ox0.Payment>,
+          _isc.getType<_ig8bxnp5.Greeting>,
+          _isc.getType<_i1xnjo88.Gunsmith>,
+          _isc.getType<_iov85fbn.GunsmithClient>,
+          _isc.getType<_itc8b666.ServiceOrder>,
+          _isc.getType<_igkm4f4b.ServiceOrderItem>,
+          _isc.getType<_ip2j4rpy.Product>,
+          _isc.getType<_iy51xlx2.ProductGroup>,
+          _isc.getType<_ig3iv7v1.AmmunitionStock>,
+          _isc.getType<_i7i930pv.Firearm>,
+          _isc.getType<_ipl25531.ReloadSession>,
+          _isc.getType<_ikjmk4up.ReloadTest>,
+          _isc.getType<_iujmcebm.Training>,
+          _isc.getType<_iq5ctf45.SubscriptionPlan>,
+          _isc.getType<_itwd6fku.RolePermission?>,
+          _isc.getType<_in9fkuzh.SecurityRole?>,
+          _isc.getType<_iflys0o9.UserRole?>,
+          _isc.getType<_i18rxkcg.Accessory?>,
+          _isc.getType<_ii1cybhg.Address?>,
+          _isc.getType<_i023ezu2.Document?>,
+          _isc.getType<_i2v0zfwt.AppException?>,
+          _isc.getType<_i8y573y6.SupplyStock?>,
+          _isc.getType<_izgbvseu.UserProfile?>,
+          _isc.getType<_ienljv70.Company?>,
+          _isc.getType<_i7fsgy8h.CompanyType?>,
+          _isc.getType<_i29p8qv7.Membership?>,
+          _isc.getType<_iqo0zmu4.RangeVisit?>,
+          _isc.getType<_iugjo2wb.AccessLevel?>,
+          _isc.getType<_ip9lql6r.AccessoryType?>,
+          _isc.getType<_iyudezai.AppModule?>,
+          _isc.getType<_iy4kwzbj.AsaasWebhookEventType?>,
+          _isc.getType<_iuu90wd5.ConservationState?>,
+          _isc.getType<_ictknidt.Currency?>,
+          _isc.getType<_ibornalb.DocumentType?>,
+          _isc.getType<_idw6xq4s.FinancialEntryStatus?>,
+          _isc.getType<_iv2iml2v.FinancialEntryType?>,
+          _isc.getType<_itctldyk.FirearmAction?>,
+          _isc.getType<_ipfzkkcy.FirearmPurpose?>,
+          _isc.getType<_iv6h25me.FirearmType?>,
+          _isc.getType<_ivjv70nm.Gender?>,
+          _isc.getType<_iwp0wycx.InvoiceStatus?>,
+          _isc.getType<_iaawilat.MembershipStatus?>,
+          _isc.getType<_ir7lu9de.PaymentMethod?>,
+          _isc.getType<_ikjzbt8l.PaymentStatus?>,
+          _isc.getType<_i2xwc0ya.PixKeyType?>,
+          _isc.getType<_ihsiicw8.PlanPeriodicity?>,
+          _isc.getType<_i3zf9gwu.PlanStatus?>,
+          _isc.getType<_itku2k2q.PlanType?>,
+          _isc.getType<_i2yfqo06.PlatformApp?>,
+          _isc.getType<_ibbobdoe.RegistryBody?>,
+          _isc.getType<_ixsenwfe.UsageType?>,
+          _isc.getType<_ihk15r1q.UserStatus?>,
+          _isc.getType<_i6i91bhn.UserType?>,
+          _isc.getType<_i268wbv5.AsaasWebhookEvent?>,
+          _isc.getType<_i7csfp3a.Bank?>,
+          _isc.getType<_i1qq6iwp.BankAccount?>,
+          _isc.getType<_irygpv1g.FinancialEntry?>,
+          _isc.getType<_ivdiuwq4.Invoice?>,
+          _isc.getType<_izi6zi6k.InvoiceItem?>,
+          _isc.getType<_i3em9ox0.Payment?>,
+          _isc.getType<_ig8bxnp5.Greeting?>,
+          _isc.getType<_i1xnjo88.Gunsmith?>,
+          _isc.getType<_iov85fbn.GunsmithClient?>,
+          _isc.getType<_itc8b666.ServiceOrder?>,
+          _isc.getType<_igkm4f4b.ServiceOrderItem?>,
+          _isc.getType<_ip2j4rpy.Product?>,
+          _isc.getType<_iy51xlx2.ProductGroup?>,
+          _isc.getType<_ig3iv7v1.AmmunitionStock?>,
+          _isc.getType<_i7i930pv.Firearm?>,
+          _isc.getType<_ipl25531.ReloadSession?>,
+          _isc.getType<_ikjmk4up.ReloadTest?>,
+          _isc.getType<_iujmcebm.Training?>,
+          _isc.getType<_iq5ctf45.SubscriptionPlan?>,
+          _isc.getType<List<String>>,
+          _isc.getType<List<String>?>,
+          _isc.getType<List<_i6i91bhn.UserType>>,
+          _isc.getType<List<_i6i91bhn.UserType>?>,
+          _isc.getType<List<_i5j6rswi.Accessory>>,
+          _isc.getType<List<_ig3cbd8p.AmmunitionStock>>,
+          _isc.getType<List<_i0k9g66j.BankAccount>>,
+          _isc.getType<List<_iu4e25gm.Bank>>,
+          _isc.getType<List<_i3sd1a32.Company>>,
+          _isc.getType<List<_id04q892.Membership>>,
+          _isc.getType<List<_iw6oqvjt.RangeVisit>>,
+          _isc.getType<List<_i0b5zr2s.Document>>,
+          _isc.getType<List<_i73s6949.FinancialEntry>>,
+          _isc.getType<List<_io8jidll.Firearm>>,
+          _isc.getType<List<_i36mig6d.Gunsmith>>,
+          _isc.getType<List<_is59bod2.GunsmithClient>>,
+          _isc.getType<List<_ifcud9hx.ServiceOrderItem>>,
+          _isc.getType<List<_imab12od.ServiceOrder>>,
+          _isc.getType<List<_iakdg9xr.InvoiceItem>>,
+          _isc.getType<List<_ipuzw8nn.Invoice>>,
+          _isc.getType<List<_ie2ol2q9.Payment>>,
+          _isc.getType<List<_i2pthzti.Product>>,
+          _isc.getType<List<_io32npgw.ProductGroup>>,
+          _isc.getType<List<_i6yaeg3x.ReloadSession>>,
+          _isc.getType<List<_ifmg7iki.ReloadTest>>,
+          _isc.getType<List<_i39d40wj.SupplyStock>>,
+          _isc.getType<List<_ih25lxcw.RolePermission>>,
+          _isc.getType<List<_iz410fgy.SecurityRole>>,
+          _isc.getType<List<_iq7fauej.SubscriptionPlan>>,
+          _isc.getType<List<_iisju3we.Training>>,
+          _isc.getType<List<_itg25mst.UserProfile>>,
+          _isc.getType<List<_isc.UuidValue>>,
+          _isc.getType<Map<String, dynamic>>,
+          _isc.getType<dynamic>,
+          _isc.getType<List<Map<String, dynamic>>>,
+        ],
+        modules: const [_i312scxx.Protocol.new],
+        classNames: const [
+          'RolePermission',
+          'SecurityRole',
+          'UserRole',
+          'Accessory',
+          'Address',
+          'Document',
+          'AppException',
+          'SupplyStock',
+          'UserProfile',
+          'Company',
+          'CompanyType',
+          'Membership',
+          'RangeVisit',
+          'AccessLevel',
+          'AccessoryType',
+          'AppModule',
+          'AsaasWebhookEventType',
+          'ConservationState',
+          'Currency',
+          'DocumentType',
+          'FinancialEntryStatus',
+          'FinancialEntryType',
+          'FirearmAction',
+          'FirearmPurpose',
+          'FirearmType',
+          'Gender',
+          'InvoiceStatus',
+          'MembershipStatus',
+          'PaymentMethod',
+          'PaymentStatus',
+          'PixKeyType',
+          'PlanPeriodicity',
+          'PlanStatus',
+          'PlanType',
+          'PlatformApp',
+          'RegistryBody',
+          'UsageType',
+          'UserStatus',
+          'UserType',
+          'AsaasWebhookEvent',
+          'Bank',
+          'BankAccount',
+          'FinancialEntry',
+          'Invoice',
+          'InvoiceItem',
+          'Payment',
+          'Greeting',
+          'Gunsmith',
+          'GunsmithClient',
+          'ServiceOrder',
+          'ServiceOrderItem',
+          'Product',
+          'ProductGroup',
+          'AmmunitionStock',
+          'Firearm',
+          'ReloadSession',
+          'ReloadTest',
+          'Training',
+          'SubscriptionPlan',
+        ],
+      );
+
+  static String? getClassNameFromObjectJson(dynamic data) =>
+      _isc.ProtocolDeserialization.readClassName(data);
 
   @override
   T deserialize<T>(dynamic data, [Type? t]) {
     t ??= T;
-
-    final dataClassName = getClassNameFromObjectJson(data);
+    final rawDataClassName = _isc.ProtocolDeserialization.readClassName(data);
+    final dataClassName = rawDataClassName;
     if (dataClassName != null && dataClassName != getClassNameForType(t)) {
       try {
         return deserializeByClassName({
@@ -776,9 +998,8 @@ class Protocol extends _isc.SerializationManager {
     }
     if (t == Map<String, dynamic>) {
       return (data as Map).map(
-            (k, v) => MapEntry(deserialize<String>(k), deserialize<dynamic>(v)),
-          )
-          as T;
+        (k, v) => MapEntry(deserialize<String>(k), deserialize<dynamic>(v)),
+      ) as T;
     }
     if (t == dynamic) {
       return deserializeDynamicFieldValue(data) as T;
@@ -789,9 +1010,16 @@ class Protocol extends _isc.SerializationManager {
               .toList()
           as T;
     }
-    try {
-      return _i312scxx.Protocol().deserialize<T>(data, t);
-    } on _isc.DeserializationTypeNotFoundException catch (_) {}
+    final modules = deserializationMetadata.modulesForDeserialization(
+      t,
+      className: rawDataClassName,
+    );
+    for (final module in modules) {
+      try {
+        return module.deserialize<T>(data, t);
+      } on _isc.DeserializationTypeNotFoundException catch (_) {}
+    }
+
     return super.deserialize<T>(data, t);
   }
 
@@ -1180,8 +1408,10 @@ class Protocol extends _isc.SerializationManager {
       return deserialize<_iq5ctf45.SubscriptionPlan>(data['data']);
     }
     if (dataClassName.startsWith('serverpod_auth.')) {
-      data['className'] = dataClassName.substring(15);
-      return _i312scxx.Protocol().deserializeByClassName(data);
+      return _i312scxx.Protocol().deserializeByClassName({
+        ...data,
+        'className': dataClassName.substring(15),
+      });
     }
     return super.deserializeByClassName(data);
   }

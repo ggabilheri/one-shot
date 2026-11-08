@@ -11,8 +11,11 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
+
 import '../common/user_profile.dart' as _izifjpv2;
 import '../company/company.dart' as _iocy1ifk;
 import '../enums/currency.enum.dart' as _isdw5wvy;
@@ -205,14 +208,14 @@ abstract class Invoice
     bool? isRecurrent,
     String? asaasInstallmentId,
     String? asaasCustomerId,
-    _is.UuidValue? companyId,
-    _iocy1ifk.Company? company,
-    _is.UuidValue? gunsmithId,
-    _inzvshfq.Gunsmith? gunsmith,
-    _is.UuidValue? userId,
-    _izifjpv2.UserProfile? user,
-    _is.UuidValue? draweeId,
-    _izifjpv2.UserProfile? drawee,
+    _is.UuidValue? companyId = const _is.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedInvoice$company(),
+    _is.UuidValue? gunsmithId = const _is.$UndefinedUuidValue(),
+    _inzvshfq.Gunsmith? gunsmith = const _UndefinedInvoice$gunsmith(),
+    _is.UuidValue? userId = const _is.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? user = const _UndefinedInvoice$user(),
+    _is.UuidValue? draweeId = const _is.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? drawee = const _UndefinedInvoice$user(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -312,6 +315,21 @@ abstract class Invoice
 
 class _Undefined {}
 
+class _UndefinedInvoice$company extends _is.UndefinedSentinel
+    implements _iocy1ifk.Company {
+  const _UndefinedInvoice$company();
+}
+
+class _UndefinedInvoice$gunsmith extends _is.UndefinedSentinel
+    implements _inzvshfq.Gunsmith {
+  const _UndefinedInvoice$gunsmith();
+}
+
+class _UndefinedInvoice$user extends _is.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedInvoice$user();
+}
+
 class _InvoiceImpl extends Invoice {
   _InvoiceImpl({
     _is.UuidValue? id,
@@ -380,14 +398,14 @@ class _InvoiceImpl extends Invoice {
     bool? isRecurrent,
     Object? asaasInstallmentId = _Undefined,
     Object? asaasCustomerId = _Undefined,
-    Object? companyId = _Undefined,
-    Object? company = _Undefined,
-    Object? gunsmithId = _Undefined,
-    Object? gunsmith = _Undefined,
-    Object? userId = _Undefined,
-    Object? user = _Undefined,
-    Object? draweeId = _Undefined,
-    Object? drawee = _Undefined,
+    _is.UuidValue? companyId = const _is.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedInvoice$company(),
+    _is.UuidValue? gunsmithId = const _is.$UndefinedUuidValue(),
+    _inzvshfq.Gunsmith? gunsmith = const _UndefinedInvoice$gunsmith(),
+    _is.UuidValue? userId = const _is.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? user = const _UndefinedInvoice$user(),
+    _is.UuidValue? draweeId = const _is.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? drawee = const _UndefinedInvoice$user(),
   }) {
     return Invoice(
       id: id ?? this.id,
@@ -408,20 +426,24 @@ class _InvoiceImpl extends Invoice {
       asaasCustomerId: asaasCustomerId is String?
           ? asaasCustomerId
           : this.asaasCustomerId,
-      companyId: companyId is _is.UuidValue? ? companyId : this.companyId,
-      company: company is _iocy1ifk.Company?
-          ? company
-          : this.company?.copyWith(),
-      gunsmithId: gunsmithId is _is.UuidValue? ? gunsmithId : this.gunsmithId,
-      gunsmith: gunsmith is _inzvshfq.Gunsmith?
-          ? gunsmith
-          : this.gunsmith?.copyWith(),
-      userId: userId is _is.UuidValue? ? userId : this.userId,
-      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
-      draweeId: draweeId is _is.UuidValue? ? draweeId : this.draweeId,
-      drawee: drawee is _izifjpv2.UserProfile?
-          ? drawee
-          : this.drawee?.copyWith(),
+      companyId: companyId is _is.UndefinedSentinel
+          ? this.companyId
+          : companyId,
+      company: company is _is.UndefinedSentinel
+          ? this.company?.copyWith()
+          : company,
+      gunsmithId: gunsmithId is _is.UndefinedSentinel
+          ? this.gunsmithId
+          : gunsmithId,
+      gunsmith: gunsmith is _is.UndefinedSentinel
+          ? this.gunsmith?.copyWith()
+          : gunsmith,
+      userId: userId is _is.UndefinedSentinel ? this.userId : userId,
+      user: user is _is.UndefinedSentinel ? this.user?.copyWith() : user,
+      draweeId: draweeId is _is.UndefinedSentinel ? this.draweeId : draweeId,
+      drawee: drawee is _is.UndefinedSentinel
+          ? this.drawee?.copyWith()
+          : drawee,
     );
   }
 }
@@ -747,6 +769,71 @@ class InvoiceRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [Invoice]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `Invoice.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<Invoice>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<InvoiceTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<InvoiceTable>? orderBy,
+    _is.OrderByListBuilder<InvoiceTable>? orderByList,
+    InvoiceInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<Invoice>(
+      where: where?.call(Invoice.t),
+      orderBy: orderBy?.call(Invoice.t),
+      orderByList: orderByList?.call(Invoice.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

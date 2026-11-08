@@ -61,6 +61,7 @@ import 'package:oneshot_server/src/generated/subscription/subscription_plan.dart
 import 'package:serverpod/protocol.dart' as _isp;
 import 'package:serverpod/serverpod.dart' as _is;
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i1n3uhu0;
+
 import 'access_control/role_permission.dart' as _itwd6fku;
 import 'access_control/security_role.dart' as _in9fkuzh;
 import 'access_control/user_role.dart' as _iflys0o9;
@@ -180,12 +181,236 @@ export 'shooter/reload_test.dart';
 export 'shooter/training.dart';
 export 'subscription/subscription_plan.dart';
 
-class Protocol extends _is.DatabaseSerializationManager {
+class Protocol extends _is.DatabaseSerializationManager
+    implements _is.DatabaseProtocolDeserializationProvider {
   Protocol._();
 
   factory Protocol() => _instance;
 
   static final Protocol _instance = Protocol._().._registerHostProtocols();
+
+  @override
+  _is.ProtocolDeserialization get deserializationMetadata =>
+      _is.ProtocolDeserialization.cached(
+        this,
+        types: const [
+          _is.getType<_itwd6fku.RolePermission>,
+          _is.getType<_in9fkuzh.SecurityRole>,
+          _is.getType<_iflys0o9.UserRole>,
+          _is.getType<_i18rxkcg.Accessory>,
+          _is.getType<_ii1cybhg.Address>,
+          _is.getType<_i023ezu2.Document>,
+          _is.getType<_i2v0zfwt.AppException>,
+          _is.getType<_i8y573y6.SupplyStock>,
+          _is.getType<_izgbvseu.UserProfile>,
+          _is.getType<_ienljv70.Company>,
+          _is.getType<_i7fsgy8h.CompanyType>,
+          _is.getType<_i29p8qv7.Membership>,
+          _is.getType<_iqo0zmu4.RangeVisit>,
+          _is.getType<_iugjo2wb.AccessLevel>,
+          _is.getType<_ip9lql6r.AccessoryType>,
+          _is.getType<_iyudezai.AppModule>,
+          _is.getType<_iy4kwzbj.AsaasWebhookEventType>,
+          _is.getType<_iuu90wd5.ConservationState>,
+          _is.getType<_ictknidt.Currency>,
+          _is.getType<_ibornalb.DocumentType>,
+          _is.getType<_idw6xq4s.FinancialEntryStatus>,
+          _is.getType<_iv2iml2v.FinancialEntryType>,
+          _is.getType<_itctldyk.FirearmAction>,
+          _is.getType<_ipfzkkcy.FirearmPurpose>,
+          _is.getType<_iv6h25me.FirearmType>,
+          _is.getType<_ivjv70nm.Gender>,
+          _is.getType<_iwp0wycx.InvoiceStatus>,
+          _is.getType<_iaawilat.MembershipStatus>,
+          _is.getType<_ir7lu9de.PaymentMethod>,
+          _is.getType<_ikjzbt8l.PaymentStatus>,
+          _is.getType<_i2xwc0ya.PixKeyType>,
+          _is.getType<_ihsiicw8.PlanPeriodicity>,
+          _is.getType<_i3zf9gwu.PlanStatus>,
+          _is.getType<_itku2k2q.PlanType>,
+          _is.getType<_i2yfqo06.PlatformApp>,
+          _is.getType<_ibbobdoe.RegistryBody>,
+          _is.getType<_ixsenwfe.UsageType>,
+          _is.getType<_ihk15r1q.UserStatus>,
+          _is.getType<_i6i91bhn.UserType>,
+          _is.getType<_i268wbv5.AsaasWebhookEvent>,
+          _is.getType<_i7csfp3a.Bank>,
+          _is.getType<_i1qq6iwp.BankAccount>,
+          _is.getType<_irygpv1g.FinancialEntry>,
+          _is.getType<_ivdiuwq4.Invoice>,
+          _is.getType<_izi6zi6k.InvoiceItem>,
+          _is.getType<_i3em9ox0.Payment>,
+          _is.getType<_ig8bxnp5.Greeting>,
+          _is.getType<_i1xnjo88.Gunsmith>,
+          _is.getType<_iov85fbn.GunsmithClient>,
+          _is.getType<_itc8b666.ServiceOrder>,
+          _is.getType<_igkm4f4b.ServiceOrderItem>,
+          _is.getType<_ip2j4rpy.Product>,
+          _is.getType<_iy51xlx2.ProductGroup>,
+          _is.getType<_ig3iv7v1.AmmunitionStock>,
+          _is.getType<_i7i930pv.Firearm>,
+          _is.getType<_ipl25531.ReloadSession>,
+          _is.getType<_ikjmk4up.ReloadTest>,
+          _is.getType<_iujmcebm.Training>,
+          _is.getType<_iq5ctf45.SubscriptionPlan>,
+          _is.getType<_itwd6fku.RolePermission?>,
+          _is.getType<_in9fkuzh.SecurityRole?>,
+          _is.getType<_iflys0o9.UserRole?>,
+          _is.getType<_i18rxkcg.Accessory?>,
+          _is.getType<_ii1cybhg.Address?>,
+          _is.getType<_i023ezu2.Document?>,
+          _is.getType<_i2v0zfwt.AppException?>,
+          _is.getType<_i8y573y6.SupplyStock?>,
+          _is.getType<_izgbvseu.UserProfile?>,
+          _is.getType<_ienljv70.Company?>,
+          _is.getType<_i7fsgy8h.CompanyType?>,
+          _is.getType<_i29p8qv7.Membership?>,
+          _is.getType<_iqo0zmu4.RangeVisit?>,
+          _is.getType<_iugjo2wb.AccessLevel?>,
+          _is.getType<_ip9lql6r.AccessoryType?>,
+          _is.getType<_iyudezai.AppModule?>,
+          _is.getType<_iy4kwzbj.AsaasWebhookEventType?>,
+          _is.getType<_iuu90wd5.ConservationState?>,
+          _is.getType<_ictknidt.Currency?>,
+          _is.getType<_ibornalb.DocumentType?>,
+          _is.getType<_idw6xq4s.FinancialEntryStatus?>,
+          _is.getType<_iv2iml2v.FinancialEntryType?>,
+          _is.getType<_itctldyk.FirearmAction?>,
+          _is.getType<_ipfzkkcy.FirearmPurpose?>,
+          _is.getType<_iv6h25me.FirearmType?>,
+          _is.getType<_ivjv70nm.Gender?>,
+          _is.getType<_iwp0wycx.InvoiceStatus?>,
+          _is.getType<_iaawilat.MembershipStatus?>,
+          _is.getType<_ir7lu9de.PaymentMethod?>,
+          _is.getType<_ikjzbt8l.PaymentStatus?>,
+          _is.getType<_i2xwc0ya.PixKeyType?>,
+          _is.getType<_ihsiicw8.PlanPeriodicity?>,
+          _is.getType<_i3zf9gwu.PlanStatus?>,
+          _is.getType<_itku2k2q.PlanType?>,
+          _is.getType<_i2yfqo06.PlatformApp?>,
+          _is.getType<_ibbobdoe.RegistryBody?>,
+          _is.getType<_ixsenwfe.UsageType?>,
+          _is.getType<_ihk15r1q.UserStatus?>,
+          _is.getType<_i6i91bhn.UserType?>,
+          _is.getType<_i268wbv5.AsaasWebhookEvent?>,
+          _is.getType<_i7csfp3a.Bank?>,
+          _is.getType<_i1qq6iwp.BankAccount?>,
+          _is.getType<_irygpv1g.FinancialEntry?>,
+          _is.getType<_ivdiuwq4.Invoice?>,
+          _is.getType<_izi6zi6k.InvoiceItem?>,
+          _is.getType<_i3em9ox0.Payment?>,
+          _is.getType<_ig8bxnp5.Greeting?>,
+          _is.getType<_i1xnjo88.Gunsmith?>,
+          _is.getType<_iov85fbn.GunsmithClient?>,
+          _is.getType<_itc8b666.ServiceOrder?>,
+          _is.getType<_igkm4f4b.ServiceOrderItem?>,
+          _is.getType<_ip2j4rpy.Product?>,
+          _is.getType<_iy51xlx2.ProductGroup?>,
+          _is.getType<_ig3iv7v1.AmmunitionStock?>,
+          _is.getType<_i7i930pv.Firearm?>,
+          _is.getType<_ipl25531.ReloadSession?>,
+          _is.getType<_ikjmk4up.ReloadTest?>,
+          _is.getType<_iujmcebm.Training?>,
+          _is.getType<_iq5ctf45.SubscriptionPlan?>,
+          _is.getType<List<String>>,
+          _is.getType<List<String>?>,
+          _is.getType<List<_i6i91bhn.UserType>>,
+          _is.getType<List<_i6i91bhn.UserType>?>,
+          _is.getType<List<_ieqpa344.Accessory>>,
+          _is.getType<List<_iznitra9.AmmunitionStock>>,
+          _is.getType<List<_ix4lc03l.BankAccount>>,
+          _is.getType<List<_ij8k7xum.Bank>>,
+          _is.getType<List<_ic0khr1u.Company>>,
+          _is.getType<List<_i1s6ob71.Membership>>,
+          _is.getType<List<_illbufnr.RangeVisit>>,
+          _is.getType<List<_is536eiv.Document>>,
+          _is.getType<List<_ibsfr7x7.FinancialEntry>>,
+          _is.getType<List<_iv8sr5qk.Firearm>>,
+          _is.getType<List<_icrmzcgd.Gunsmith>>,
+          _is.getType<List<_i3v21vya.GunsmithClient>>,
+          _is.getType<List<_ipjdt3yw.ServiceOrderItem>>,
+          _is.getType<List<_ilfracgz.ServiceOrder>>,
+          _is.getType<List<_i4dj62ps.InvoiceItem>>,
+          _is.getType<List<_i30q017a.Invoice>>,
+          _is.getType<List<_i2rb000s.Payment>>,
+          _is.getType<List<_ichcxeb2.Product>>,
+          _is.getType<List<_isb7m7oi.ProductGroup>>,
+          _is.getType<List<_ir80yzxg.ReloadSession>>,
+          _is.getType<List<_ifny91bp.ReloadTest>>,
+          _is.getType<List<_i8gnh98r.SupplyStock>>,
+          _is.getType<List<_itb2zhn4.RolePermission>>,
+          _is.getType<List<_i1xchi60.SecurityRole>>,
+          _is.getType<List<_ilwo31st.SubscriptionPlan>>,
+          _is.getType<List<_i8n7svi8.Training>>,
+          _is.getType<List<_i2pyoxii.UserProfile>>,
+          _is.getType<List<_is.UuidValue>>,
+          _is.getType<Map<String, dynamic>>,
+          _is.getType<dynamic>,
+          _is.getType<List<Map<String, dynamic>>>,
+        ],
+        modules: const [_i1n3uhu0.Protocol.new, _isp.Protocol.new],
+        classNames: const [
+          'RolePermission',
+          'SecurityRole',
+          'UserRole',
+          'Accessory',
+          'Address',
+          'Document',
+          'AppException',
+          'SupplyStock',
+          'UserProfile',
+          'Company',
+          'CompanyType',
+          'Membership',
+          'RangeVisit',
+          'AccessLevel',
+          'AccessoryType',
+          'AppModule',
+          'AsaasWebhookEventType',
+          'ConservationState',
+          'Currency',
+          'DocumentType',
+          'FinancialEntryStatus',
+          'FinancialEntryType',
+          'FirearmAction',
+          'FirearmPurpose',
+          'FirearmType',
+          'Gender',
+          'InvoiceStatus',
+          'MembershipStatus',
+          'PaymentMethod',
+          'PaymentStatus',
+          'PixKeyType',
+          'PlanPeriodicity',
+          'PlanStatus',
+          'PlanType',
+          'PlatformApp',
+          'RegistryBody',
+          'UsageType',
+          'UserStatus',
+          'UserType',
+          'AsaasWebhookEvent',
+          'Bank',
+          'BankAccount',
+          'FinancialEntry',
+          'Invoice',
+          'InvoiceItem',
+          'Payment',
+          'Greeting',
+          'Gunsmith',
+          'GunsmithClient',
+          'ServiceOrder',
+          'ServiceOrderItem',
+          'Product',
+          'ProductGroup',
+          'AmmunitionStock',
+          'Firearm',
+          'ReloadSession',
+          'ReloadTest',
+          'Training',
+          'SubscriptionPlan',
+        ],
+      );
 
   static List<_isp.TableDefinition> get targetTableDefinitions => [
     _isp.TableDefinition(
@@ -3935,17 +4160,14 @@ class Protocol extends _is.DatabaseSerializationManager {
     ..._isp.Protocol.targetTableDefinitions,
   ];
 
-  static String? getClassNameFromObjectJson(dynamic data) {
-    if (data is! Map) return null;
-    final className = data['__className__'] as String?;
-    return className;
-  }
+  static String? getClassNameFromObjectJson(dynamic data) =>
+      _is.ProtocolDeserialization.readClassName(data);
 
   @override
   T deserialize<T>(dynamic data, [Type? t]) {
     t ??= T;
-
-    final dataClassName = getClassNameFromObjectJson(data);
+    final rawDataClassName = _is.ProtocolDeserialization.readClassName(data);
+    final dataClassName = rawDataClassName;
     if (dataClassName != null && dataClassName != getClassNameForType(t)) {
       try {
         return deserializeByClassName({
@@ -4526,9 +4748,8 @@ class Protocol extends _is.DatabaseSerializationManager {
     }
     if (t == Map<String, dynamic>) {
       return (data as Map).map(
-            (k, v) => MapEntry(deserialize<String>(k), deserialize<dynamic>(v)),
-          )
-          as T;
+        (k, v) => MapEntry(deserialize<String>(k), deserialize<dynamic>(v)),
+      ) as T;
     }
     if (t == dynamic) {
       return deserializeDynamicFieldValue(data) as T;
@@ -4539,12 +4760,16 @@ class Protocol extends _is.DatabaseSerializationManager {
               .toList()
           as T;
     }
-    try {
-      return _i1n3uhu0.Protocol().deserialize<T>(data, t);
-    } on _is.DeserializationTypeNotFoundException catch (_) {}
-    try {
-      return _isp.Protocol().deserialize<T>(data, t);
-    } on _is.DeserializationTypeNotFoundException catch (_) {}
+    final modules = deserializationMetadata.modulesForDeserialization(
+      t,
+      className: rawDataClassName,
+    );
+    for (final module in modules) {
+      try {
+        return module.deserialize<T>(data, t);
+      } on _is.DeserializationTypeNotFoundException catch (_) {}
+    }
+
     return super.deserialize<T>(data, t);
   }
 
@@ -4937,12 +5162,16 @@ class Protocol extends _is.DatabaseSerializationManager {
       return deserialize<_iq5ctf45.SubscriptionPlan>(data['data']);
     }
     if (dataClassName.startsWith('serverpod_auth.')) {
-      data['className'] = dataClassName.substring(15);
-      return _i1n3uhu0.Protocol().deserializeByClassName(data);
+      return _i1n3uhu0.Protocol().deserializeByClassName({
+        ...data,
+        'className': dataClassName.substring(15),
+      });
     }
     if (dataClassName.startsWith('serverpod.')) {
-      data['className'] = dataClassName.substring(10);
-      return _isp.Protocol().deserializeByClassName(data);
+      return _isp.Protocol().deserializeByClassName({
+        ...data,
+        'className': dataClassName.substring(10),
+      });
     }
     return super.deserializeByClassName(data);
   }

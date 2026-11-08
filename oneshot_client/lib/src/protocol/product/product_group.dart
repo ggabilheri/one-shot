@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/user_profile.dart' as _izifjpv2;
 
 abstract class ProductGroup
@@ -74,8 +75,8 @@ abstract class ProductGroup
     String? name,
     String? description,
     String? originModule,
-    _isc.UuidValue? ownerId,
-    _izifjpv2.UserProfile? owner,
+    _isc.UuidValue? ownerId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? owner = const _UndefinedProductGroup$owner(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -111,6 +112,11 @@ abstract class ProductGroup
 
 class _Undefined {}
 
+class _UndefinedProductGroup$owner extends _isc.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedProductGroup$owner();
+}
+
 class _ProductGroupImpl extends ProductGroup {
   _ProductGroupImpl({
     _isc.UuidValue? id,
@@ -137,16 +143,16 @@ class _ProductGroupImpl extends ProductGroup {
     String? name,
     Object? description = _Undefined,
     String? originModule,
-    Object? ownerId = _Undefined,
-    Object? owner = _Undefined,
+    _isc.UuidValue? ownerId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? owner = const _UndefinedProductGroup$owner(),
   }) {
     return ProductGroup(
       id: id ?? this.id,
       name: name ?? this.name,
       description: description is String? ? description : this.description,
       originModule: originModule ?? this.originModule,
-      ownerId: ownerId is _isc.UuidValue? ? ownerId : this.ownerId,
-      owner: owner is _izifjpv2.UserProfile? ? owner : this.owner?.copyWith(),
+      ownerId: ownerId is _isc.UndefinedSentinel ? this.ownerId : ownerId,
+      owner: owner is _isc.UndefinedSentinel ? this.owner?.copyWith() : owner,
     );
   }
 }

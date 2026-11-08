@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../product/product_group.dart' as _i1dl6bm0;
 
 abstract class Product
@@ -87,7 +88,7 @@ abstract class Product
     double? unitPrice,
     String? originModule,
     _isc.UuidValue? groupId,
-    _i1dl6bm0.ProductGroup? group,
+    _i1dl6bm0.ProductGroup? group = const _UndefinedProduct$group(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -125,7 +126,10 @@ abstract class Product
   }
 }
 
-class _Undefined {}
+class _UndefinedProduct$group extends _isc.UndefinedSentinel
+    implements _i1dl6bm0.ProductGroup {
+  const _UndefinedProduct$group();
+}
 
 class _ProductImpl extends Product {
   _ProductImpl({
@@ -160,7 +164,7 @@ class _ProductImpl extends Product {
     double? unitPrice,
     String? originModule,
     _isc.UuidValue? groupId,
-    Object? group = _Undefined,
+    _i1dl6bm0.ProductGroup? group = const _UndefinedProduct$group(),
   }) {
     return Product(
       id: id ?? this.id,
@@ -170,7 +174,7 @@ class _ProductImpl extends Product {
       unitPrice: unitPrice ?? this.unitPrice,
       originModule: originModule ?? this.originModule,
       groupId: groupId ?? this.groupId,
-      group: group is _i1dl6bm0.ProductGroup? ? group : this.group?.copyWith(),
+      group: group is _isc.UndefinedSentinel ? this.group?.copyWith() : group,
     );
   }
 }

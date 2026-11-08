@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/user_profile.dart' as _izifjpv2;
 
 abstract class Address
@@ -100,8 +101,8 @@ abstract class Address
     String? city,
     String? state,
     String? zipCode,
-    _isc.UuidValue? userProfileId,
-    _izifjpv2.UserProfile? userProfile,
+    _isc.UuidValue? userProfileId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? userProfile = const _UndefinedAddress$userProfile(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -145,6 +146,11 @@ abstract class Address
 
 class _Undefined {}
 
+class _UndefinedAddress$userProfile extends _isc.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedAddress$userProfile();
+}
+
 class _AddressImpl extends Address {
   _AddressImpl({
     _isc.UuidValue? id,
@@ -183,8 +189,8 @@ class _AddressImpl extends Address {
     String? city,
     String? state,
     String? zipCode,
-    Object? userProfileId = _Undefined,
-    Object? userProfile = _Undefined,
+    _isc.UuidValue? userProfileId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? userProfile = const _UndefinedAddress$userProfile(),
   }) {
     return Address(
       id: id ?? this.id,
@@ -195,12 +201,12 @@ class _AddressImpl extends Address {
       city: city ?? this.city,
       state: state ?? this.state,
       zipCode: zipCode ?? this.zipCode,
-      userProfileId: userProfileId is _isc.UuidValue?
-          ? userProfileId
-          : this.userProfileId,
-      userProfile: userProfile is _izifjpv2.UserProfile?
-          ? userProfile
-          : this.userProfile?.copyWith(),
+      userProfileId: userProfileId is _isc.UndefinedSentinel
+          ? this.userProfileId
+          : userProfileId,
+      userProfile: userProfile is _isc.UndefinedSentinel
+          ? this.userProfile?.copyWith()
+          : userProfile,
     );
   }
 }

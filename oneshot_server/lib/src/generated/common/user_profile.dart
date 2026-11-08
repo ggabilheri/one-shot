@@ -11,9 +11,12 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i1n3uhu0;
+
 import '../common/address.dart' as _iy1vkl2d;
 import '../enums/gender.enum.dart' as _ix60f0mc;
 import '../enums/user_status.enum.dart' as _ijq1b3b6;
@@ -149,17 +152,18 @@ abstract class UserProfile
   UserProfile copyWith({
     _is.UuidValue? id,
     int? userInfoId,
-    _i1n3uhu0.UserInfo? userInfo,
+    _i1n3uhu0.UserInfo? userInfo = const _UndefinedUserProfile$userInfo(),
     String? name,
     _ix60f0mc.Gender? gender,
-    DateTime? birthDate,
+    DateTime? birthDate = const _is.$UndefinedDateTime(),
     String? rg,
     String? cpf,
     String? phone,
     String? email,
-    _is.UuidValue? addressId,
-    _iy1vkl2d.Address? address,
-    List<_i828q2d1.UserType>? types,
+    _is.UuidValue? addressId = const _is.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedUserProfile$address(),
+    List<_i828q2d1.UserType>? types =
+        const _is.$UndefinedList<_i828q2d1.UserType>(),
     _ijq1b3b6.UserStatus? status,
     String? asaasCustomerId,
     String? asaasOnboardingFailureReason,
@@ -245,6 +249,16 @@ abstract class UserProfile
 
 class _Undefined {}
 
+class _UndefinedUserProfile$userInfo extends _is.UndefinedSentinel
+    implements _i1n3uhu0.UserInfo {
+  const _UndefinedUserProfile$userInfo();
+}
+
+class _UndefinedUserProfile$address extends _is.UndefinedSentinel
+    implements _iy1vkl2d.Address {
+  const _UndefinedUserProfile$address();
+}
+
 class _UserProfileImpl extends UserProfile {
   _UserProfileImpl({
     _is.UuidValue? id,
@@ -289,17 +303,18 @@ class _UserProfileImpl extends UserProfile {
   UserProfile copyWith({
     _is.UuidValue? id,
     Object? userInfoId = _Undefined,
-    Object? userInfo = _Undefined,
+    _i1n3uhu0.UserInfo? userInfo = const _UndefinedUserProfile$userInfo(),
     String? name,
     Object? gender = _Undefined,
-    Object? birthDate = _Undefined,
+    DateTime? birthDate = const _is.$UndefinedDateTime(),
     Object? rg = _Undefined,
     Object? cpf = _Undefined,
     Object? phone = _Undefined,
     Object? email = _Undefined,
-    Object? addressId = _Undefined,
-    Object? address = _Undefined,
-    Object? types = _Undefined,
+    _is.UuidValue? addressId = const _is.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedUserProfile$address(),
+    List<_i828q2d1.UserType>? types =
+        const _is.$UndefinedList<_i828q2d1.UserType>(),
     _ijq1b3b6.UserStatus? status,
     Object? asaasCustomerId = _Undefined,
     Object? asaasOnboardingFailureReason = _Undefined,
@@ -307,23 +322,27 @@ class _UserProfileImpl extends UserProfile {
     return UserProfile(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i1n3uhu0.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userInfo: userInfo is _is.UndefinedSentinel
+          ? this.userInfo?.copyWith()
+          : userInfo,
       name: name ?? this.name,
       gender: gender is _ix60f0mc.Gender? ? gender : this.gender,
-      birthDate: birthDate is DateTime? ? birthDate : this.birthDate,
+      birthDate: birthDate is _is.UndefinedSentinel
+          ? this.birthDate
+          : birthDate,
       rg: rg is String? ? rg : this.rg,
       cpf: cpf is String? ? cpf : this.cpf,
       phone: phone is String? ? phone : this.phone,
       email: email is String? ? email : this.email,
-      addressId: addressId is _is.UuidValue? ? addressId : this.addressId,
-      address: address is _iy1vkl2d.Address?
-          ? address
-          : this.address?.copyWith(),
-      types: types is List<_i828q2d1.UserType>?
-          ? types
-          : this.types?.map((e0) => e0).toList(),
+      addressId: addressId is _is.UndefinedSentinel
+          ? this.addressId
+          : addressId,
+      address: address is _is.UndefinedSentinel
+          ? this.address?.copyWith()
+          : address,
+      types: types is _is.UndefinedSentinel
+          ? this.types?.map((e0) => e0).toList()
+          : types,
       status: status ?? this.status,
       asaasCustomerId: asaasCustomerId is String?
           ? asaasCustomerId
@@ -584,6 +603,71 @@ class UserProfileRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [UserProfile]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `UserProfile.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<UserProfile>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<UserProfileTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<UserProfileTable>? orderBy,
+    _is.OrderByListBuilder<UserProfileTable>? orderByList,
+    UserProfileInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<UserProfile>(
+      where: where?.call(UserProfile.t),
+      orderBy: orderBy?.call(UserProfile.t),
+      orderByList: orderByList?.call(UserProfile.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

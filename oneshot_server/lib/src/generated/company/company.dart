@@ -11,8 +11,11 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
+
 import '../common/address.dart' as _iy1vkl2d;
 import '../common/user_profile.dart' as _izifjpv2;
 import '../company/company.dart' as _iocy1ifk;
@@ -166,16 +169,16 @@ abstract class Company
     String? name,
     String? cnpj,
     _iqrrhgif.CompanyType? type,
-    _is.UuidValue? addressId,
-    _iy1vkl2d.Address? address,
-    _is.UuidValue? ownerId,
-    _izifjpv2.UserProfile? owner,
+    _is.UuidValue? addressId = const _is.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedCompany$address(),
+    _is.UuidValue? ownerId = const _is.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? owner = const _UndefinedCompany$owner(),
     String? phoneNumber,
     String? email,
     bool? active,
     double? incomeValue,
-    _is.UuidValue? parentCompanyId,
-    _iocy1ifk.Company? parentCompany,
+    _is.UuidValue? parentCompanyId = const _is.$UndefinedUuidValue(),
+    _iocy1ifk.Company? parentCompany = const _UndefinedCompany$parentCompany(),
     String? asaasAccountId,
     String? asaasWalletId,
     String? asaasApiKey,
@@ -272,6 +275,21 @@ abstract class Company
 
 class _Undefined {}
 
+class _UndefinedCompany$address extends _is.UndefinedSentinel
+    implements _iy1vkl2d.Address {
+  const _UndefinedCompany$address();
+}
+
+class _UndefinedCompany$owner extends _is.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedCompany$owner();
+}
+
+class _UndefinedCompany$parentCompany extends _is.UndefinedSentinel
+    implements _iocy1ifk.Company {
+  const _UndefinedCompany$parentCompany();
+}
+
 class _CompanyImpl extends Company {
   _CompanyImpl({
     _is.UuidValue? id,
@@ -322,16 +340,16 @@ class _CompanyImpl extends Company {
     String? name,
     String? cnpj,
     _iqrrhgif.CompanyType? type,
-    Object? addressId = _Undefined,
-    Object? address = _Undefined,
-    Object? ownerId = _Undefined,
-    Object? owner = _Undefined,
+    _is.UuidValue? addressId = const _is.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedCompany$address(),
+    _is.UuidValue? ownerId = const _is.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? owner = const _UndefinedCompany$owner(),
     Object? phoneNumber = _Undefined,
     Object? email = _Undefined,
     bool? active,
     double? incomeValue,
-    Object? parentCompanyId = _Undefined,
-    Object? parentCompany = _Undefined,
+    _is.UuidValue? parentCompanyId = const _is.$UndefinedUuidValue(),
+    _iocy1ifk.Company? parentCompany = const _UndefinedCompany$parentCompany(),
     Object? asaasAccountId = _Undefined,
     Object? asaasWalletId = _Undefined,
     Object? asaasApiKey = _Undefined,
@@ -342,22 +360,24 @@ class _CompanyImpl extends Company {
       name: name ?? this.name,
       cnpj: cnpj ?? this.cnpj,
       type: type ?? this.type,
-      addressId: addressId is _is.UuidValue? ? addressId : this.addressId,
-      address: address is _iy1vkl2d.Address?
-          ? address
-          : this.address?.copyWith(),
-      ownerId: ownerId is _is.UuidValue? ? ownerId : this.ownerId,
-      owner: owner is _izifjpv2.UserProfile? ? owner : this.owner?.copyWith(),
+      addressId: addressId is _is.UndefinedSentinel
+          ? this.addressId
+          : addressId,
+      address: address is _is.UndefinedSentinel
+          ? this.address?.copyWith()
+          : address,
+      ownerId: ownerId is _is.UndefinedSentinel ? this.ownerId : ownerId,
+      owner: owner is _is.UndefinedSentinel ? this.owner?.copyWith() : owner,
       phoneNumber: phoneNumber is String? ? phoneNumber : this.phoneNumber,
       email: email is String? ? email : this.email,
       active: active ?? this.active,
       incomeValue: incomeValue ?? this.incomeValue,
-      parentCompanyId: parentCompanyId is _is.UuidValue?
-          ? parentCompanyId
-          : this.parentCompanyId,
-      parentCompany: parentCompany is _iocy1ifk.Company?
-          ? parentCompany
-          : this.parentCompany?.copyWith(),
+      parentCompanyId: parentCompanyId is _is.UndefinedSentinel
+          ? this.parentCompanyId
+          : parentCompanyId,
+      parentCompany: parentCompany is _is.UndefinedSentinel
+          ? this.parentCompany?.copyWith()
+          : parentCompany,
       asaasAccountId: asaasAccountId is String?
           ? asaasAccountId
           : this.asaasAccountId,
@@ -650,6 +670,71 @@ class CompanyRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [Company]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `Company.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<Company>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<CompanyTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<CompanyTable>? orderBy,
+    _is.OrderByListBuilder<CompanyTable>? orderByList,
+    CompanyInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<Company>(
+      where: where?.call(Company.t),
+      orderBy: orderBy?.call(Company.t),
+      orderByList: orderByList?.call(Company.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

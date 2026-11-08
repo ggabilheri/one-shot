@@ -69,6 +69,7 @@ import 'package:oneshot_server/src/generated/subscription/subscription_plan.dart
     as _ilwo31st;
 import 'package:serverpod/serverpod.dart' as _is;
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i1n3uhu0;
+
 import '../endpoints/accessory_endpoint.dart' as _ixyw2gfy;
 import '../endpoints/ammunition_endpoint.dart' as _i2r3wky8;
 import '../endpoints/bank_account_endpoint.dart' as _ie1buk0y;

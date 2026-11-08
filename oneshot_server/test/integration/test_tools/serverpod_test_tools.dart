@@ -13,6 +13,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _ida;
 import 'dart:io' as _idi;
+
 import 'package:oneshot_server/src/generated/access_control/role_permission.dart'
     as _itb2zhn4;
 import 'package:oneshot_server/src/generated/access_control/security_role.dart'
@@ -356,12 +357,10 @@ class _AccessoryEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ieqpa344.Accessory?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ieqpa344.Accessory?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -387,12 +386,10 @@ class _AccessoryEndpoint {
           parameters: _ist.testObjectToJson({'accessory': accessory}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ieqpa344.Accessory>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ieqpa344.Accessory>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -418,12 +415,10 @@ class _AccessoryEndpoint {
           parameters: _ist.testObjectToJson({'accessory': accessory}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ieqpa344.Accessory>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ieqpa344.Accessory>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -449,12 +444,10 @@ class _AccessoryEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -486,12 +479,10 @@ class _AccessoryEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_ieqpa344.Accessory>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_ieqpa344.Accessory>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -524,12 +515,10 @@ class _AmmunitionEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_iznitra9.AmmunitionStock>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_iznitra9.AmmunitionStock>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -555,12 +544,10 @@ class _AmmunitionEndpoint {
           parameters: _ist.testObjectToJson({'ammo': ammo}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_iznitra9.AmmunitionStock>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_iznitra9.AmmunitionStock>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -587,12 +574,10 @@ class _AmmunitionEndpoint {
           parameters: _ist.testObjectToJson({'id': id, 'change': change}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_iznitra9.AmmunitionStock?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_iznitra9.AmmunitionStock?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -618,12 +603,10 @@ class _AmmunitionEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -657,12 +640,10 @@ class _BankAccountEndpoint {
           parameters: _ist.testObjectToJson({'account': account}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ix4lc03l.BankAccount>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ix4lc03l.BankAccount>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -688,12 +669,10 @@ class _BankAccountEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ix4lc03l.BankAccount?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ix4lc03l.BankAccount?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -719,12 +698,10 @@ class _BankAccountEndpoint {
           parameters: _ist.testObjectToJson({'account': account}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ix4lc03l.BankAccount>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ix4lc03l.BankAccount>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -750,12 +727,10 @@ class _BankAccountEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -791,12 +766,10 @@ class _BankAccountEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_ix4lc03l.BankAccount>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_ix4lc03l.BankAccount>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -830,12 +803,10 @@ class _BrasilApiGatewayEndpoint {
           parameters: _ist.testObjectToJson({'cnpj': cnpj}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ic0khr1u.Company?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ic0khr1u.Company?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -861,12 +832,10 @@ class _BrasilApiGatewayEndpoint {
           parameters: _ist.testObjectToJson({'zipcode': zipcode}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_iy1kcvhk.Address?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_iy1kcvhk.Address?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -891,12 +860,10 @@ class _BrasilApiGatewayEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_ij8k7xum.Bank>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_ij8k7xum.Bank>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -930,12 +897,10 @@ class _CompanyEndpoint {
           parameters: _ist.testObjectToJson({'company': company}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ic0khr1u.Company>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ic0khr1u.Company>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -965,12 +930,10 @@ class _CompanyEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_ic0khr1u.Company>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_ic0khr1u.Company>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -996,12 +959,10 @@ class _CompanyEndpoint {
           parameters: _ist.testObjectToJson({'company': company}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ic0khr1u.Company>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ic0khr1u.Company>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1027,12 +988,10 @@ class _CompanyEndpoint {
           parameters: _ist.testObjectToJson({'companyId': companyId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ic0khr1u.Company>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ic0khr1u.Company>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1058,12 +1017,10 @@ class _CompanyEndpoint {
           parameters: _ist.testObjectToJson({'companyId': companyId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i1s6ob71.Membership>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i1s6ob71.Membership>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1088,12 +1045,10 @@ class _CompanyEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_i1s6ob71.Membership>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_i1s6ob71.Membership>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1123,12 +1078,10 @@ class _CompanyEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_illbufnr.RangeVisit>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_illbufnr.RangeVisit>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1158,12 +1111,10 @@ class _CompanyEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_illbufnr.RangeVisit>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_illbufnr.RangeVisit>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1188,12 +1139,10 @@ class _CompanyEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_illbufnr.RangeVisit>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_illbufnr.RangeVisit>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1218,12 +1167,10 @@ class _CompanyEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ic0khr1u.Company>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ic0khr1u.Company>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1257,12 +1204,10 @@ class _DocumentEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_is536eiv.Document?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_is536eiv.Document?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1288,12 +1233,10 @@ class _DocumentEndpoint {
           parameters: _ist.testObjectToJson({'document': document}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_is536eiv.Document>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_is536eiv.Document>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1319,12 +1262,10 @@ class _DocumentEndpoint {
           parameters: _ist.testObjectToJson({'document': document}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_is536eiv.Document>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_is536eiv.Document>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1350,12 +1291,10 @@ class _DocumentEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1387,12 +1326,10 @@ class _DocumentEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_is536eiv.Document>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_is536eiv.Document>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1418,12 +1355,10 @@ class _DocumentEndpoint {
           parameters: _ist.testObjectToJson({'firearmId': firearmId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_is536eiv.Document>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_is536eiv.Document>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1449,12 +1384,10 @@ class _DocumentEndpoint {
           parameters: _ist.testObjectToJson({'accessoryId': accessoryId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_is536eiv.Document>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_is536eiv.Document>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1480,12 +1413,10 @@ class _DocumentEndpoint {
           parameters: _ist.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1511,12 +1442,10 @@ class _DocumentEndpoint {
           parameters: _ist.testObjectToJson({'path': path}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<String?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<String?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1550,12 +1479,10 @@ class _FinancialEntryEndpoint {
           parameters: _ist.testObjectToJson({'entry': entry}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ibsfr7x7.FinancialEntry>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ibsfr7x7.FinancialEntry>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1581,12 +1508,10 @@ class _FinancialEntryEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ibsfr7x7.FinancialEntry?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ibsfr7x7.FinancialEntry?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1612,12 +1537,10 @@ class _FinancialEntryEndpoint {
           parameters: _ist.testObjectToJson({'entry': entry}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ibsfr7x7.FinancialEntry>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ibsfr7x7.FinancialEntry>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1643,12 +1566,10 @@ class _FinancialEntryEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1690,12 +1611,10 @@ class _FinancialEntryEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_ibsfr7x7.FinancialEntry>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_ibsfr7x7.FinancialEntry>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1729,12 +1648,10 @@ class _FirearmEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_iv8sr5qk.Firearm?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_iv8sr5qk.Firearm?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1760,12 +1677,10 @@ class _FirearmEndpoint {
           parameters: _ist.testObjectToJson({'serialNumber': serialNumber}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_iv8sr5qk.Firearm?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_iv8sr5qk.Firearm?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1791,12 +1706,10 @@ class _FirearmEndpoint {
           parameters: _ist.testObjectToJson({'firearm': firearm}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_iv8sr5qk.Firearm>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_iv8sr5qk.Firearm>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1822,12 +1735,10 @@ class _FirearmEndpoint {
           parameters: _ist.testObjectToJson({'firearm': firearm}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_iv8sr5qk.Firearm>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_iv8sr5qk.Firearm>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1853,12 +1764,10 @@ class _FirearmEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1890,12 +1799,10 @@ class _FirearmEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_iv8sr5qk.Firearm>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_iv8sr5qk.Firearm>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1929,12 +1836,10 @@ class _GunsmithEndpoint {
           parameters: _ist.testObjectToJson({'gunsmith': gunsmith}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_icrmzcgd.Gunsmith>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_icrmzcgd.Gunsmith>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1960,12 +1865,10 @@ class _GunsmithEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_icrmzcgd.Gunsmith?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_icrmzcgd.Gunsmith?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -1991,12 +1894,10 @@ class _GunsmithEndpoint {
           parameters: _ist.testObjectToJson({'ownerId': ownerId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_icrmzcgd.Gunsmith?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_icrmzcgd.Gunsmith?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2023,12 +1924,10 @@ class _GunsmithEndpoint {
           parameters: _ist.testObjectToJson({'limit': limit, 'offset': offset}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_icrmzcgd.Gunsmith>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_icrmzcgd.Gunsmith>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2054,12 +1953,10 @@ class _GunsmithEndpoint {
           parameters: _ist.testObjectToJson({'gunsmith': gunsmith}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_icrmzcgd.Gunsmith>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_icrmzcgd.Gunsmith>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2085,12 +1982,10 @@ class _GunsmithEndpoint {
           parameters: _ist.testObjectToJson({'client': client}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i3v21vya.GunsmithClient>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i3v21vya.GunsmithClient>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2116,12 +2011,10 @@ class _GunsmithEndpoint {
           parameters: _ist.testObjectToJson({'cpf': cpf}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i3v21vya.GunsmithClient?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i3v21vya.GunsmithClient?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2146,12 +2039,10 @@ class _GunsmithEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_i3v21vya.GunsmithClient>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_i3v21vya.GunsmithClient>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2178,12 +2069,10 @@ class _GunsmithEndpoint {
           parameters: _ist.testObjectToJson({'order': order, 'items': items}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ilfracgz.ServiceOrder>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ilfracgz.ServiceOrder>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2209,12 +2098,10 @@ class _GunsmithEndpoint {
           parameters: _ist.testObjectToJson({'clientId': clientId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_ilfracgz.ServiceOrder>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_ilfracgz.ServiceOrder>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2240,12 +2127,10 @@ class _GunsmithEndpoint {
           parameters: _ist.testObjectToJson({'serviceOrderId': serviceOrderId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_ipjdt3yw.ServiceOrderItem>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_ipjdt3yw.ServiceOrderItem>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2283,12 +2168,10 @@ class _InvoiceEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i30q017a.Invoice>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i30q017a.Invoice>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2314,12 +2197,10 @@ class _InvoiceEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i30q017a.Invoice?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i30q017a.Invoice?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2361,12 +2242,10 @@ class _InvoiceEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_i30q017a.Invoice>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_i30q017a.Invoice>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2392,12 +2271,10 @@ class _InvoiceEndpoint {
           parameters: _ist.testObjectToJson({'invoice': invoice}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i30q017a.Invoice>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i30q017a.Invoice>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2423,12 +2300,10 @@ class _InvoiceEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2454,12 +2329,10 @@ class _InvoiceEndpoint {
           parameters: _ist.testObjectToJson({'invoiceId': invoiceId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_i4dj62ps.InvoiceItem>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_i4dj62ps.InvoiceItem>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2493,12 +2366,10 @@ class _PaymentEndpoint {
           parameters: _ist.testObjectToJson({'payment': payment}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i2rb000s.Payment>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i2rb000s.Payment>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2524,12 +2395,10 @@ class _PaymentEndpoint {
           parameters: _ist.testObjectToJson({'invoiceId': invoiceId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_i2rb000s.Payment>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_i2rb000s.Payment>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2556,12 +2425,10 @@ class _PaymentEndpoint {
           parameters: _ist.testObjectToJson({'limit': limit, 'offset': offset}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_i2rb000s.Payment>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_i2rb000s.Payment>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2595,12 +2462,10 @@ class _ProductEndpoint {
           parameters: _ist.testObjectToJson({'product': product}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ichcxeb2.Product>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ichcxeb2.Product>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2626,12 +2491,10 @@ class _ProductEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ichcxeb2.Product?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ichcxeb2.Product?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2657,12 +2520,10 @@ class _ProductEndpoint {
           parameters: _ist.testObjectToJson({'code': code}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ichcxeb2.Product?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ichcxeb2.Product?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2688,12 +2549,10 @@ class _ProductEndpoint {
           parameters: _ist.testObjectToJson({'product': product}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ichcxeb2.Product>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ichcxeb2.Product>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2719,12 +2578,10 @@ class _ProductEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2758,12 +2615,10 @@ class _ProductEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_ichcxeb2.Product>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_ichcxeb2.Product>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2805,12 +2660,10 @@ class _ProductGroupEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_isb7m7oi.ProductGroup>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_isb7m7oi.ProductGroup>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2836,12 +2689,10 @@ class _ProductGroupEndpoint {
           parameters: _ist.testObjectToJson({'group': group}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_isb7m7oi.ProductGroup>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_isb7m7oi.ProductGroup>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2867,12 +2718,10 @@ class _ProductGroupEndpoint {
           parameters: _ist.testObjectToJson({'group': group}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_isb7m7oi.ProductGroup>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_isb7m7oi.ProductGroup>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2898,12 +2747,10 @@ class _ProductGroupEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2929,12 +2776,10 @@ class _ProductGroupEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_isb7m7oi.ProductGroup?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_isb7m7oi.ProductGroup?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2967,12 +2812,10 @@ class _ProfileEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i2pyoxii.UserProfile>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i2pyoxii.UserProfile>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -2998,12 +2841,10 @@ class _ProfileEndpoint {
           parameters: _ist.testObjectToJson({'profile': profile}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i2pyoxii.UserProfile>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i2pyoxii.UserProfile>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3029,12 +2870,10 @@ class _ProfileEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i2pyoxii.UserProfile?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i2pyoxii.UserProfile?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3068,12 +2907,10 @@ class _ReloadEndpoint {
           parameters: _ist.testObjectToJson({'reloadSession': reloadSession}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ir80yzxg.ReloadSession>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ir80yzxg.ReloadSession>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3098,12 +2935,10 @@ class _ReloadEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_ir80yzxg.ReloadSession>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_ir80yzxg.ReloadSession>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3129,12 +2964,10 @@ class _ReloadEndpoint {
           parameters: _ist.testObjectToJson({'test': test}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ifny91bp.ReloadTest>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ifny91bp.ReloadTest>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3160,12 +2993,10 @@ class _ReloadEndpoint {
           parameters: _ist.testObjectToJson({'sessionId': sessionId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_ifny91bp.ReloadTest>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_ifny91bp.ReloadTest>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3190,12 +3021,10 @@ class _ReloadEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_i8gnh98r.SupplyStock>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_i8gnh98r.SupplyStock>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3221,12 +3050,10 @@ class _ReloadEndpoint {
           parameters: _ist.testObjectToJson({'supply': supply}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i8gnh98r.SupplyStock>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i8gnh98r.SupplyStock>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3252,12 +3079,10 @@ class _ReloadEndpoint {
           parameters: _ist.testObjectToJson({'supply': supply}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i8gnh98r.SupplyStock>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i8gnh98r.SupplyStock>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3295,12 +3120,10 @@ class _SecurityRoleEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i1xchi60.SecurityRole>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i1xchi60.SecurityRole>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3330,12 +3153,10 @@ class _SecurityRoleEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i1xchi60.SecurityRole>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i1xchi60.SecurityRole>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3361,12 +3182,10 @@ class _SecurityRoleEndpoint {
           parameters: _ist.testObjectToJson({'role': role}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3391,12 +3210,10 @@ class _SecurityRoleEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_i1xchi60.SecurityRole>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_i1xchi60.SecurityRole>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3422,12 +3239,10 @@ class _SecurityRoleEndpoint {
           parameters: _ist.testObjectToJson({'role': role}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_itb2zhn4.RolePermission>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_itb2zhn4.RolePermission>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3461,12 +3276,10 @@ class _SubscriptionPlanEndpoint {
           parameters: _ist.testObjectToJson({'plan': plan}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ilwo31st.SubscriptionPlan>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ilwo31st.SubscriptionPlan>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3492,12 +3305,10 @@ class _SubscriptionPlanEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ilwo31st.SubscriptionPlan?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ilwo31st.SubscriptionPlan?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3523,12 +3334,10 @@ class _SubscriptionPlanEndpoint {
           parameters: _ist.testObjectToJson({'plan': plan}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ilwo31st.SubscriptionPlan>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ilwo31st.SubscriptionPlan>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3554,12 +3363,10 @@ class _SubscriptionPlanEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3595,12 +3402,10 @@ class _SubscriptionPlanEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_ilwo31st.SubscriptionPlan>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_ilwo31st.SubscriptionPlan>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3634,12 +3439,10 @@ class _TrainingEndpoint {
           parameters: _ist.testObjectToJson({'training': training}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i8n7svi8.Training>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i8n7svi8.Training>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3664,12 +3467,10 @@ class _TrainingEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_i8n7svi8.Training>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_i8n7svi8.Training>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3695,12 +3496,10 @@ class _TrainingEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i8n7svi8.Training?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i8n7svi8.Training?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3734,12 +3533,10 @@ class _UserEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i2pyoxii.UserProfile?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i2pyoxii.UserProfile?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3765,12 +3562,10 @@ class _UserEndpoint {
           parameters: _ist.testObjectToJson({'cpf': cpf}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i2pyoxii.UserProfile?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i2pyoxii.UserProfile?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3796,12 +3591,10 @@ class _UserEndpoint {
           parameters: _ist.testObjectToJson({'user': user}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i2pyoxii.UserProfile>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i2pyoxii.UserProfile>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3827,12 +3620,10 @@ class _UserEndpoint {
           parameters: _ist.testObjectToJson({'user': user}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_i2pyoxii.UserProfile>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_i2pyoxii.UserProfile>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3858,12 +3649,10 @@ class _UserEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<bool>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3890,12 +3679,10 @@ class _UserEndpoint {
           parameters: _ist.testObjectToJson({'limit': limit, 'offset': offset}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_i2pyoxii.UserProfile>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_i2pyoxii.UserProfile>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3921,12 +3708,10 @@ class _UserEndpoint {
           parameters: _ist.testObjectToJson({'query': query}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_i2pyoxii.UserProfile>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_i2pyoxii.UserProfile>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3952,12 +3737,10 @@ class _UserEndpoint {
           parameters: _ist.testObjectToJson({'userId': userId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_i1xchi60.SecurityRole>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_i1xchi60.SecurityRole>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -3987,12 +3770,10 @@ class _UserEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4017,12 +3798,10 @@ class _UserEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<_ic0khr1u.Company>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_ic0khr1u.Company>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4056,12 +3835,10 @@ class _ViaCepGatewayEndpoint {
           parameters: _ist.testObjectToJson({'zipcode': zipcode}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_iy1kcvhk.Address?>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_iy1kcvhk.Address?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4095,12 +3872,10 @@ class _AsaasAccountEndpoint {
           parameters: _ist.testObjectToJson({'requestData': requestData}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4127,12 +3902,10 @@ class _AsaasAccountEndpoint {
           parameters: _ist.testObjectToJson({'limit': limit, 'offset': offset}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<Map<String, dynamic>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<Map<String, dynamic>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4157,12 +3930,10 @@ class _AsaasAccountEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4187,12 +3958,10 @@ class _AsaasAccountEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4226,12 +3995,10 @@ class _AsaasCustomerEndpoint {
           parameters: _ist.testObjectToJson({'requestData': requestData}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4265,12 +4032,10 @@ class _AsaasCustomerEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4296,12 +4061,10 @@ class _AsaasCustomerEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4331,12 +4094,10 @@ class _AsaasCustomerEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4362,12 +4123,10 @@ class _AsaasCustomerEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4393,12 +4152,10 @@ class _AsaasCustomerEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4424,12 +4181,10 @@ class _AsaasCustomerEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4463,12 +4218,10 @@ class _AsaasInstallmentEndpoint {
           parameters: _ist.testObjectToJson({'requestData': requestData}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4495,12 +4248,10 @@ class _AsaasInstallmentEndpoint {
           parameters: _ist.testObjectToJson({'limit': limit, 'offset': offset}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<Map<String, dynamic>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<Map<String, dynamic>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4526,12 +4277,10 @@ class _AsaasInstallmentEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4557,12 +4306,10 @@ class _AsaasInstallmentEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4588,12 +4335,10 @@ class _AsaasInstallmentEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<Map<String, dynamic>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<Map<String, dynamic>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4627,12 +4372,10 @@ class _AsaasPaymentEndpoint {
           parameters: _ist.testObjectToJson({'requestData': requestData}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4666,12 +4409,10 @@ class _AsaasPaymentEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<Map<String, dynamic>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<Map<String, dynamic>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4697,12 +4438,10 @@ class _AsaasPaymentEndpoint {
           parameters: _ist.testObjectToJson({'paymentId': paymentId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4732,12 +4471,10 @@ class _AsaasPaymentEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4763,12 +4500,10 @@ class _AsaasPaymentEndpoint {
           parameters: _ist.testObjectToJson({'paymentId': paymentId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4794,12 +4529,10 @@ class _AsaasPaymentEndpoint {
           parameters: _ist.testObjectToJson({'paymentId': paymentId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<String>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<String>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4825,12 +4558,10 @@ class _AsaasPaymentEndpoint {
           parameters: _ist.testObjectToJson({'paymentId': paymentId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4856,12 +4587,10 @@ class _AsaasPaymentEndpoint {
           parameters: _ist.testObjectToJson({'paymentId': paymentId}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4895,12 +4624,10 @@ class _AsaasPixEndpoint {
           parameters: _ist.testObjectToJson({'type': type}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4925,12 +4652,10 @@ class _AsaasPixEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<Map<String, dynamic>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<Map<String, dynamic>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4956,12 +4681,10 @@ class _AsaasPixEndpoint {
           parameters: _ist.testObjectToJson({'request': request}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -4987,12 +4710,10 @@ class _AsaasPixEndpoint {
           parameters: _ist.testObjectToJson({'request': request}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5026,12 +4747,10 @@ class _AsaasPixEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<Map<String, dynamic>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<Map<String, dynamic>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5065,12 +4784,10 @@ class _AsaasTransferEndpoint {
           parameters: _ist.testObjectToJson({'requestData': requestData}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5097,12 +4814,10 @@ class _AsaasTransferEndpoint {
           parameters: _ist.testObjectToJson({'limit': limit, 'offset': offset}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<Map<String, dynamic>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<Map<String, dynamic>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5136,12 +4851,10 @@ class _AsaasTransferEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<Map<String, dynamic>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<Map<String, dynamic>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5166,12 +4879,10 @@ class _AsaasTransferEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5208,12 +4919,10 @@ class _AsaasWebhookConfigEndpoint {
           parameters: _ist.testObjectToJson({'requestData': requestData}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5238,12 +4947,10 @@ class _AsaasWebhookConfigEndpoint {
           parameters: _ist.testObjectToJson({}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<List<Map<String, dynamic>>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<Map<String, dynamic>>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5273,12 +4980,10 @@ class _AsaasWebhookConfigEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<Map<String, dynamic>>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<Map<String, dynamic>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5304,12 +5009,10 @@ class _AsaasWebhookConfigEndpoint {
           parameters: _ist.testObjectToJson({'id': id}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5346,12 +5049,10 @@ class _AsaasWebhookReceiverEndpoint {
           parameters: _ist.testObjectToJson({'payload': payload}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<void>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -5385,12 +5086,10 @@ class _GreetingEndpoint {
           parameters: _ist.testObjectToJson({'name': name}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue =
-            await (_localCallContext.method.call(
-                  _localUniqueSession,
-                  _localCallContext.arguments,
-                )
-                as _ida.Future<_ikgv4xca.Greeting>);
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ikgv4xca.Greeting>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

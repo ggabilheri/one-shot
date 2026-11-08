@@ -13,6 +13,7 @@
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i312scxx;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/address.dart' as _iy1vkl2d;
 
 abstract class GunsmithClient
@@ -94,13 +95,14 @@ abstract class GunsmithClient
   GunsmithClient copyWith({
     _isc.UuidValue? id,
     int? gunsmithUserInfoId,
-    _i312scxx.UserInfo? gunsmithUserInfo,
+    _i312scxx.UserInfo? gunsmithUserInfo =
+        const _UndefinedGunsmithClient$gunsmithUserInfo(),
     String? name,
     String? cpf,
     String? rg,
     String? phone,
-    _isc.UuidValue? addressId,
-    _iy1vkl2d.Address? address,
+    _isc.UuidValue? addressId = const _isc.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedGunsmithClient$address(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -144,6 +146,16 @@ abstract class GunsmithClient
 
 class _Undefined {}
 
+class _UndefinedGunsmithClient$gunsmithUserInfo extends _isc.UndefinedSentinel
+    implements _i312scxx.UserInfo {
+  const _UndefinedGunsmithClient$gunsmithUserInfo();
+}
+
+class _UndefinedGunsmithClient$address extends _isc.UndefinedSentinel
+    implements _iy1vkl2d.Address {
+  const _UndefinedGunsmithClient$address();
+}
+
 class _GunsmithClientImpl extends GunsmithClient {
   _GunsmithClientImpl({
     _isc.UuidValue? id,
@@ -174,30 +186,33 @@ class _GunsmithClientImpl extends GunsmithClient {
   GunsmithClient copyWith({
     _isc.UuidValue? id,
     Object? gunsmithUserInfoId = _Undefined,
-    Object? gunsmithUserInfo = _Undefined,
+    _i312scxx.UserInfo? gunsmithUserInfo =
+        const _UndefinedGunsmithClient$gunsmithUserInfo(),
     String? name,
     String? cpf,
     Object? rg = _Undefined,
     String? phone,
-    Object? addressId = _Undefined,
-    Object? address = _Undefined,
+    _isc.UuidValue? addressId = const _isc.$UndefinedUuidValue(),
+    _iy1vkl2d.Address? address = const _UndefinedGunsmithClient$address(),
   }) {
     return GunsmithClient(
       id: id ?? this.id,
       gunsmithUserInfoId: gunsmithUserInfoId is int?
           ? gunsmithUserInfoId
           : this.gunsmithUserInfoId,
-      gunsmithUserInfo: gunsmithUserInfo is _i312scxx.UserInfo?
-          ? gunsmithUserInfo
-          : this.gunsmithUserInfo?.copyWith(),
+      gunsmithUserInfo: gunsmithUserInfo is _isc.UndefinedSentinel
+          ? this.gunsmithUserInfo?.copyWith()
+          : gunsmithUserInfo,
       name: name ?? this.name,
       cpf: cpf ?? this.cpf,
       rg: rg is String? ? rg : this.rg,
       phone: phone ?? this.phone,
-      addressId: addressId is _isc.UuidValue? ? addressId : this.addressId,
-      address: address is _iy1vkl2d.Address?
-          ? address
-          : this.address?.copyWith(),
+      addressId: addressId is _isc.UndefinedSentinel
+          ? this.addressId
+          : addressId,
+      address: address is _isc.UndefinedSentinel
+          ? this.address?.copyWith()
+          : address,
     );
   }
 }

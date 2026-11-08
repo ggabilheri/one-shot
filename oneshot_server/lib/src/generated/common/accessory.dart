@@ -11,8 +11,11 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
+
 import '../common/user_profile.dart' as _izifjpv2;
 import '../enums/accessory.enum.dart' as _iv3j3xuk;
 import '../enums/conservation_state.enum.dart' as _im6njl07;
@@ -220,9 +223,9 @@ abstract class Accessory
   Accessory copyWith({
     _is.UuidValue? id,
     _is.UuidValue? userId,
-    _izifjpv2.UserProfile? user,
-    _is.UuidValue? firearmId,
-    _i25s0fp9.Firearm? firearm,
+    _izifjpv2.UserProfile? user = const _UndefinedAccessory$user(),
+    _is.UuidValue? firearmId = const _is.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedAccessory$firearm(),
     String? purpose,
     _iv3j3xuk.AccessoryType? type,
     String? serialNumber,
@@ -236,15 +239,15 @@ abstract class Accessory
     double? weight,
     String? color,
     String? finishMaterial,
-    DateTime? acquisitionDate,
+    DateTime? acquisitionDate = const _is.$UndefinedDateTime(),
     double? purchasePrice,
     String? invoiceNumber,
-    DateTime? invoiceEmissionDate,
+    DateTime? invoiceEmissionDate = const _is.$UndefinedDateTime(),
     String? sellerData,
     _ii1wmk2g.RegistryBody? registryBody,
     String? customizations,
     String? maintenanceHistory,
-    List<String>? images,
+    List<String>? images = const _is.$UndefinedList<String>(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -351,6 +354,16 @@ abstract class Accessory
 
 class _Undefined {}
 
+class _UndefinedAccessory$user extends _is.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedAccessory$user();
+}
+
+class _UndefinedAccessory$firearm extends _is.UndefinedSentinel
+    implements _i25s0fp9.Firearm {
+  const _UndefinedAccessory$firearm();
+}
+
 class _AccessoryImpl extends Accessory {
   _AccessoryImpl({
     _is.UuidValue? id,
@@ -417,9 +430,9 @@ class _AccessoryImpl extends Accessory {
   Accessory copyWith({
     _is.UuidValue? id,
     _is.UuidValue? userId,
-    Object? user = _Undefined,
-    Object? firearmId = _Undefined,
-    Object? firearm = _Undefined,
+    _izifjpv2.UserProfile? user = const _UndefinedAccessory$user(),
+    _is.UuidValue? firearmId = const _is.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedAccessory$firearm(),
     Object? purpose = _Undefined,
     _iv3j3xuk.AccessoryType? type,
     Object? serialNumber = _Undefined,
@@ -433,24 +446,26 @@ class _AccessoryImpl extends Accessory {
     Object? weight = _Undefined,
     Object? color = _Undefined,
     Object? finishMaterial = _Undefined,
-    Object? acquisitionDate = _Undefined,
+    DateTime? acquisitionDate = const _is.$UndefinedDateTime(),
     Object? purchasePrice = _Undefined,
     Object? invoiceNumber = _Undefined,
-    Object? invoiceEmissionDate = _Undefined,
+    DateTime? invoiceEmissionDate = const _is.$UndefinedDateTime(),
     Object? sellerData = _Undefined,
     Object? registryBody = _Undefined,
     Object? customizations = _Undefined,
     Object? maintenanceHistory = _Undefined,
-    Object? images = _Undefined,
+    List<String>? images = const _is.$UndefinedList<String>(),
   }) {
     return Accessory(
       id: id ?? this.id,
       userId: userId ?? this.userId,
-      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
-      firearmId: firearmId is _is.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i25s0fp9.Firearm?
-          ? firearm
-          : this.firearm?.copyWith(),
+      user: user is _is.UndefinedSentinel ? this.user?.copyWith() : user,
+      firearmId: firearmId is _is.UndefinedSentinel
+          ? this.firearmId
+          : firearmId,
+      firearm: firearm is _is.UndefinedSentinel
+          ? this.firearm?.copyWith()
+          : firearm,
       purpose: purpose is String? ? purpose : this.purpose,
       type: type ?? this.type,
       serialNumber: serialNumber is String? ? serialNumber : this.serialNumber,
@@ -470,18 +485,18 @@ class _AccessoryImpl extends Accessory {
       finishMaterial: finishMaterial is String?
           ? finishMaterial
           : this.finishMaterial,
-      acquisitionDate: acquisitionDate is DateTime?
-          ? acquisitionDate
-          : this.acquisitionDate,
+      acquisitionDate: acquisitionDate is _is.UndefinedSentinel
+          ? this.acquisitionDate
+          : acquisitionDate,
       purchasePrice: purchasePrice is double?
           ? purchasePrice
           : this.purchasePrice,
       invoiceNumber: invoiceNumber is String?
           ? invoiceNumber
           : this.invoiceNumber,
-      invoiceEmissionDate: invoiceEmissionDate is DateTime?
-          ? invoiceEmissionDate
-          : this.invoiceEmissionDate,
+      invoiceEmissionDate: invoiceEmissionDate is _is.UndefinedSentinel
+          ? this.invoiceEmissionDate
+          : invoiceEmissionDate,
       sellerData: sellerData is String? ? sellerData : this.sellerData,
       registryBody: registryBody is _ii1wmk2g.RegistryBody?
           ? registryBody
@@ -492,9 +507,9 @@ class _AccessoryImpl extends Accessory {
       maintenanceHistory: maintenanceHistory is String?
           ? maintenanceHistory
           : this.maintenanceHistory,
-      images: images is List<String>?
-          ? images
-          : this.images?.map((e0) => e0).toList(),
+      images: images is _is.UndefinedSentinel
+          ? this.images?.map((e0) => e0).toList()
+          : images,
     );
   }
 }
@@ -831,6 +846,71 @@ class AccessoryRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [Accessory]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `Accessory.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<Accessory>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<AccessoryTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<AccessoryTable>? orderBy,
+    _is.OrderByListBuilder<AccessoryTable>? orderByList,
+    AccessoryInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<Accessory>(
+      where: where?.call(Accessory.t),
+      orderBy: orderBy?.call(Accessory.t),
+      orderByList: orderByList?.call(Accessory.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

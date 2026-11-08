@@ -12,14 +12,18 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _ida;
+
 import 'package:clock/clock.dart' as _io0w16m8;
 import 'package:oneshot_server/src/generated/greeting.dart' as _ikgv4xca;
 import 'package:serverpod/serverpod.dart' as _is;
+
 import '../birthday_reminder.dart' as _ipapxm9n;
 
 /// Invokes a future call.
-typedef _InvokeFutureCall =
-    Future<void> Function(String name, _is.SerializableModel? object);
+typedef _InvokeFutureCall = Future<void> Function(
+  String name,
+  _is.SerializableModel? object,
+);
 
 extension ServerpodFutureCallsGetter on _is.Serverpod {
   /// Generated future calls.

@@ -11,8 +11,11 @@
 // ignore_for_file: dead_code, unnecessary_null_comparison
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _ida;
+
 import 'package:oneshot_server/src/generated/protocol.dart' as _iwflrbqm;
 import 'package:serverpod/serverpod.dart' as _is;
+
 import '../common/user_profile.dart' as _izifjpv2;
 
 abstract class Address
@@ -108,8 +111,8 @@ abstract class Address
     String? city,
     String? state,
     String? zipCode,
-    _is.UuidValue? userProfileId,
-    _izifjpv2.UserProfile? userProfile,
+    _is.UuidValue? userProfileId = const _is.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? userProfile = const _UndefinedAddress$userProfile(),
   });
   @override
   Map<String, dynamic> toJson() {
@@ -175,6 +178,11 @@ abstract class Address
 
 class _Undefined {}
 
+class _UndefinedAddress$userProfile extends _is.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedAddress$userProfile();
+}
+
 class _AddressImpl extends Address {
   _AddressImpl({
     _is.UuidValue? id,
@@ -213,8 +221,8 @@ class _AddressImpl extends Address {
     String? city,
     String? state,
     String? zipCode,
-    Object? userProfileId = _Undefined,
-    Object? userProfile = _Undefined,
+    _is.UuidValue? userProfileId = const _is.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? userProfile = const _UndefinedAddress$userProfile(),
   }) {
     return Address(
       id: id ?? this.id,
@@ -225,12 +233,12 @@ class _AddressImpl extends Address {
       city: city ?? this.city,
       state: state ?? this.state,
       zipCode: zipCode ?? this.zipCode,
-      userProfileId: userProfileId is _is.UuidValue?
-          ? userProfileId
-          : this.userProfileId,
-      userProfile: userProfile is _izifjpv2.UserProfile?
-          ? userProfile
-          : this.userProfile?.copyWith(),
+      userProfileId: userProfileId is _is.UndefinedSentinel
+          ? this.userProfileId
+          : userProfileId,
+      userProfile: userProfile is _is.UndefinedSentinel
+          ? this.userProfile?.copyWith()
+          : userProfile,
     );
   }
 }
@@ -416,6 +424,71 @@ class AddressRepository {
       include: include,
       lockMode: lockMode,
       lockBehavior: lockBehavior,
+    );
+  }
+
+  /// Emits [Address]s matching the given query parameters every time the
+  /// source tables are modified.
+  ///
+  /// Use [where] to specify which items to include in the return value.
+  /// If none is specified, all items will be returned.
+  ///
+  /// To specify the order of the items use [orderBy] or [orderByList]
+  /// when sorting by multiple columns.
+  ///
+  /// The maximum number of items can be set by [limit]. If no limit is set,
+  /// all items matching the query will be returned.
+  ///
+  /// [offset] defines how many items to skip, after which [limit] (or all)
+  /// items are read from the database.
+  ///
+  /// Use [throttle] to specify the minimum interval between queries. It can
+  /// also be set to `null`, in which case the stream will only be throttled
+  /// when its subscription is paused.
+  ///
+  /// Source tables are collected from the queried table, [where], [orderBy],
+  /// [orderByList], and the [include] graph. [alsoTriggerOnTables] is added
+  /// to that set. Pass [Table] instances such as `Address.t`.
+  ///
+  /// Raw [Expression] SQL is not inspected. Tables referenced only in raw
+  /// SQL must be passed via [alsoTriggerOnTables].
+  ///
+  /// The stream always reads committed state and never joins an ambient
+  /// [Transaction]. Emissions for a write fire after that write commits.
+  ///
+  /// Currently only supported on SQLite. Calling this method on PostgreSQL
+  /// throws an [UnsupportedError].
+  ///
+  /// ```dart
+  /// var subscription = Persons.db.watch(
+  ///   session,
+  ///   where: (t) => t.lastName.equals('Jones'),
+  ///   orderBy: (t) => t.firstName,
+  ///   limit: 100,
+  /// ).listen((persons) {
+  ///   // Handle the latest matching rows.
+  /// });
+  /// ```
+  _ida.Stream<List<Address>> watch(
+    _is.DatabaseSession session, {
+    _is.WhereExpressionBuilder<AddressTable>? where,
+    int? limit,
+    int? offset,
+    _is.OrderByBuilder<AddressTable>? orderBy,
+    _is.OrderByListBuilder<AddressTable>? orderByList,
+    AddressInclude? include,
+    Duration? throttle = const Duration(milliseconds: 30),
+    Iterable<_is.Table>? alsoTriggerOnTables,
+  }) {
+    return session.db.watch<Address>(
+      where: where?.call(Address.t),
+      orderBy: orderBy?.call(Address.t),
+      orderByList: orderByList?.call(Address.t),
+      limit: limit,
+      offset: offset,
+      include: include,
+      throttle: throttle,
+      alsoTriggerOnTables: alsoTriggerOnTables,
     );
   }
 

@@ -13,6 +13,7 @@
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i312scxx;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../shooter/ammunition_stock.dart' as _idy3jb5r;
 import '../shooter/firearm.dart' as _i25s0fp9;
 
@@ -128,14 +129,15 @@ abstract class Training
   Training copyWith({
     _isc.UuidValue? id,
     int? userInfoId,
-    _i312scxx.UserInfo? userInfo,
+    _i312scxx.UserInfo? userInfo = const _UndefinedTraining$userInfo(),
     DateTime? date,
     String? location,
     String? environmentType,
-    _isc.UuidValue? firearmId,
-    _i25s0fp9.Firearm? firearm,
-    _isc.UuidValue? ammunitionId,
-    _idy3jb5r.AmmunitionStock? ammunition,
+    _isc.UuidValue? firearmId = const _isc.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedTraining$firearm(),
+    _isc.UuidValue? ammunitionId = const _isc.$UndefinedUuidValue(),
+    _idy3jb5r.AmmunitionStock? ammunition =
+        const _UndefinedTraining$ammunition(),
     int? shotsFired,
     double? distanceMeters,
     int? score,
@@ -191,6 +193,21 @@ abstract class Training
 
 class _Undefined {}
 
+class _UndefinedTraining$userInfo extends _isc.UndefinedSentinel
+    implements _i312scxx.UserInfo {
+  const _UndefinedTraining$userInfo();
+}
+
+class _UndefinedTraining$firearm extends _isc.UndefinedSentinel
+    implements _i25s0fp9.Firearm {
+  const _UndefinedTraining$firearm();
+}
+
+class _UndefinedTraining$ammunition extends _isc.UndefinedSentinel
+    implements _idy3jb5r.AmmunitionStock {
+  const _UndefinedTraining$ammunition();
+}
+
 class _TrainingImpl extends Training {
   _TrainingImpl({
     _isc.UuidValue? id,
@@ -231,14 +248,15 @@ class _TrainingImpl extends Training {
   Training copyWith({
     _isc.UuidValue? id,
     Object? userInfoId = _Undefined,
-    Object? userInfo = _Undefined,
+    _i312scxx.UserInfo? userInfo = const _UndefinedTraining$userInfo(),
     DateTime? date,
     String? location,
     String? environmentType,
-    Object? firearmId = _Undefined,
-    Object? firearm = _Undefined,
-    Object? ammunitionId = _Undefined,
-    Object? ammunition = _Undefined,
+    _isc.UuidValue? firearmId = const _isc.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedTraining$firearm(),
+    _isc.UuidValue? ammunitionId = const _isc.$UndefinedUuidValue(),
+    _idy3jb5r.AmmunitionStock? ammunition =
+        const _UndefinedTraining$ammunition(),
     int? shotsFired,
     double? distanceMeters,
     Object? score = _Undefined,
@@ -247,22 +265,24 @@ class _TrainingImpl extends Training {
     return Training(
       id: id ?? this.id,
       userInfoId: userInfoId is int? ? userInfoId : this.userInfoId,
-      userInfo: userInfo is _i312scxx.UserInfo?
-          ? userInfo
-          : this.userInfo?.copyWith(),
+      userInfo: userInfo is _isc.UndefinedSentinel
+          ? this.userInfo?.copyWith()
+          : userInfo,
       date: date ?? this.date,
       location: location ?? this.location,
       environmentType: environmentType ?? this.environmentType,
-      firearmId: firearmId is _isc.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i25s0fp9.Firearm?
-          ? firearm
-          : this.firearm?.copyWith(),
-      ammunitionId: ammunitionId is _isc.UuidValue?
-          ? ammunitionId
-          : this.ammunitionId,
-      ammunition: ammunition is _idy3jb5r.AmmunitionStock?
-          ? ammunition
-          : this.ammunition?.copyWith(),
+      firearmId: firearmId is _isc.UndefinedSentinel
+          ? this.firearmId
+          : firearmId,
+      firearm: firearm is _isc.UndefinedSentinel
+          ? this.firearm?.copyWith()
+          : firearm,
+      ammunitionId: ammunitionId is _isc.UndefinedSentinel
+          ? this.ammunitionId
+          : ammunitionId,
+      ammunition: ammunition is _isc.UndefinedSentinel
+          ? this.ammunition?.copyWith()
+          : ammunition,
       shotsFired: shotsFired ?? this.shotsFired,
       distanceMeters: distanceMeters ?? this.distanceMeters,
       score: score is int? ? score : this.score,

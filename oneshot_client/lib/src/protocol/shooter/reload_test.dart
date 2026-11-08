@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../shooter/firearm.dart' as _i25s0fp9;
 import '../shooter/reload_session.dart' as _iai2mm7j;
 
@@ -128,10 +129,11 @@ abstract class ReloadTest
   @_isc.useResult
   ReloadTest copyWith({
     _isc.UuidValue? id,
-    _isc.UuidValue? reloadSessionId,
-    _iai2mm7j.ReloadSession? reloadSession,
-    _isc.UuidValue? firearmId,
-    _i25s0fp9.Firearm? firearm,
+    _isc.UuidValue? reloadSessionId = const _isc.$UndefinedUuidValue(),
+    _iai2mm7j.ReloadSession? reloadSession =
+        const _UndefinedReloadTest$reloadSession(),
+    _isc.UuidValue? firearmId = const _isc.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedReloadTest$firearm(),
     DateTime? testDate,
     int? shotsFired,
     double? highestVelocityFps,
@@ -195,6 +197,16 @@ abstract class ReloadTest
 
 class _Undefined {}
 
+class _UndefinedReloadTest$reloadSession extends _isc.UndefinedSentinel
+    implements _iai2mm7j.ReloadSession {
+  const _UndefinedReloadTest$reloadSession();
+}
+
+class _UndefinedReloadTest$firearm extends _isc.UndefinedSentinel
+    implements _i25s0fp9.Firearm {
+  const _UndefinedReloadTest$firearm();
+}
+
 class _ReloadTestImpl extends ReloadTest {
   _ReloadTestImpl({
     _isc.UuidValue? id,
@@ -234,10 +246,11 @@ class _ReloadTestImpl extends ReloadTest {
   @override
   ReloadTest copyWith({
     _isc.UuidValue? id,
-    Object? reloadSessionId = _Undefined,
-    Object? reloadSession = _Undefined,
-    Object? firearmId = _Undefined,
-    Object? firearm = _Undefined,
+    _isc.UuidValue? reloadSessionId = const _isc.$UndefinedUuidValue(),
+    _iai2mm7j.ReloadSession? reloadSession =
+        const _UndefinedReloadTest$reloadSession(),
+    _isc.UuidValue? firearmId = const _isc.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedReloadTest$firearm(),
     DateTime? testDate,
     int? shotsFired,
     double? highestVelocityFps,
@@ -250,16 +263,18 @@ class _ReloadTestImpl extends ReloadTest {
   }) {
     return ReloadTest(
       id: id ?? this.id,
-      reloadSessionId: reloadSessionId is _isc.UuidValue?
-          ? reloadSessionId
-          : this.reloadSessionId,
-      reloadSession: reloadSession is _iai2mm7j.ReloadSession?
-          ? reloadSession
-          : this.reloadSession?.copyWith(),
-      firearmId: firearmId is _isc.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i25s0fp9.Firearm?
-          ? firearm
-          : this.firearm?.copyWith(),
+      reloadSessionId: reloadSessionId is _isc.UndefinedSentinel
+          ? this.reloadSessionId
+          : reloadSessionId,
+      reloadSession: reloadSession is _isc.UndefinedSentinel
+          ? this.reloadSession?.copyWith()
+          : reloadSession,
+      firearmId: firearmId is _isc.UndefinedSentinel
+          ? this.firearmId
+          : firearmId,
+      firearm: firearm is _isc.UndefinedSentinel
+          ? this.firearm?.copyWith()
+          : firearm,
       testDate: testDate ?? this.testDate,
       shotsFired: shotsFired ?? this.shotsFired,
       highestVelocityFps: highestVelocityFps ?? this.highestVelocityFps,

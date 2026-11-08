@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/user_profile.dart' as _izifjpv2;
 import '../company/company.dart' as _iocy1ifk;
 import '../enums/membership_status.dart' as _ikbz440x;
@@ -112,13 +113,13 @@ abstract class Membership
   @_isc.useResult
   Membership copyWith({
     _isc.UuidValue? id,
-    _isc.UuidValue? userId,
-    _izifjpv2.UserProfile? user,
-    _isc.UuidValue? companyId,
-    _iocy1ifk.Company? company,
+    _isc.UuidValue? userId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? user = const _UndefinedMembership$user(),
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedMembership$company(),
     String? membershipNumber,
     DateTime? startDate,
-    DateTime? validUntil,
+    DateTime? validUntil = const _isc.$UndefinedDateTime(),
     _ikbz440x.MembershipStatus? status,
     String? planName,
   });
@@ -164,6 +165,16 @@ abstract class Membership
 
 class _Undefined {}
 
+class _UndefinedMembership$user extends _isc.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedMembership$user();
+}
+
+class _UndefinedMembership$company extends _isc.UndefinedSentinel
+    implements _iocy1ifk.Company {
+  const _UndefinedMembership$company();
+}
+
 class _MembershipImpl extends Membership {
   _MembershipImpl({
     _isc.UuidValue? id,
@@ -195,29 +206,33 @@ class _MembershipImpl extends Membership {
   @override
   Membership copyWith({
     _isc.UuidValue? id,
-    Object? userId = _Undefined,
-    Object? user = _Undefined,
-    Object? companyId = _Undefined,
-    Object? company = _Undefined,
+    _isc.UuidValue? userId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? user = const _UndefinedMembership$user(),
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedMembership$company(),
     Object? membershipNumber = _Undefined,
     DateTime? startDate,
-    Object? validUntil = _Undefined,
+    DateTime? validUntil = const _isc.$UndefinedDateTime(),
     _ikbz440x.MembershipStatus? status,
     Object? planName = _Undefined,
   }) {
     return Membership(
       id: id ?? this.id,
-      userId: userId is _isc.UuidValue? ? userId : this.userId,
-      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
-      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
-      company: company is _iocy1ifk.Company?
-          ? company
-          : this.company?.copyWith(),
+      userId: userId is _isc.UndefinedSentinel ? this.userId : userId,
+      user: user is _isc.UndefinedSentinel ? this.user?.copyWith() : user,
+      companyId: companyId is _isc.UndefinedSentinel
+          ? this.companyId
+          : companyId,
+      company: company is _isc.UndefinedSentinel
+          ? this.company?.copyWith()
+          : company,
       membershipNumber: membershipNumber is String?
           ? membershipNumber
           : this.membershipNumber,
       startDate: startDate ?? this.startDate,
-      validUntil: validUntil is DateTime? ? validUntil : this.validUntil,
+      validUntil: validUntil is _isc.UndefinedSentinel
+          ? this.validUntil
+          : validUntil,
       status: status ?? this.status,
       planName: planName is String? ? planName : this.planName,
     );

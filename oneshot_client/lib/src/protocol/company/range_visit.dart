@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/user_profile.dart' as _izifjpv2;
 import '../company/company.dart' as _iocy1ifk;
 import '../shooter/firearm.dart' as _i25s0fp9;
@@ -130,14 +131,14 @@ abstract class RangeVisit
   @_isc.useResult
   RangeVisit copyWith({
     _isc.UuidValue? id,
-    _isc.UuidValue? userId,
-    _izifjpv2.UserProfile? user,
-    _isc.UuidValue? companyId,
-    _iocy1ifk.Company? company,
-    _isc.UuidValue? firearmId,
-    _i25s0fp9.Firearm? firearm,
+    _isc.UuidValue? userId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? user = const _UndefinedRangeVisit$user(),
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedRangeVisit$company(),
+    _isc.UuidValue? firearmId = const _isc.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedRangeVisit$firearm(),
     DateTime? checkIn,
-    DateTime? checkOut,
+    DateTime? checkOut = const _isc.$UndefinedDateTime(),
     int? shotsFired,
     String? notes,
     bool? habitualityReportGenerated,
@@ -188,6 +189,21 @@ abstract class RangeVisit
 
 class _Undefined {}
 
+class _UndefinedRangeVisit$user extends _isc.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedRangeVisit$user();
+}
+
+class _UndefinedRangeVisit$company extends _isc.UndefinedSentinel
+    implements _iocy1ifk.Company {
+  const _UndefinedRangeVisit$company();
+}
+
+class _UndefinedRangeVisit$firearm extends _isc.UndefinedSentinel
+    implements _i25s0fp9.Firearm {
+  const _UndefinedRangeVisit$firearm();
+}
+
 class _RangeVisitImpl extends RangeVisit {
   _RangeVisitImpl({
     _isc.UuidValue? id,
@@ -223,32 +239,36 @@ class _RangeVisitImpl extends RangeVisit {
   @override
   RangeVisit copyWith({
     _isc.UuidValue? id,
-    Object? userId = _Undefined,
-    Object? user = _Undefined,
-    Object? companyId = _Undefined,
-    Object? company = _Undefined,
-    Object? firearmId = _Undefined,
-    Object? firearm = _Undefined,
+    _isc.UuidValue? userId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? user = const _UndefinedRangeVisit$user(),
+    _isc.UuidValue? companyId = const _isc.$UndefinedUuidValue(),
+    _iocy1ifk.Company? company = const _UndefinedRangeVisit$company(),
+    _isc.UuidValue? firearmId = const _isc.$UndefinedUuidValue(),
+    _i25s0fp9.Firearm? firearm = const _UndefinedRangeVisit$firearm(),
     DateTime? checkIn,
-    Object? checkOut = _Undefined,
+    DateTime? checkOut = const _isc.$UndefinedDateTime(),
     int? shotsFired,
     Object? notes = _Undefined,
     bool? habitualityReportGenerated,
   }) {
     return RangeVisit(
       id: id ?? this.id,
-      userId: userId is _isc.UuidValue? ? userId : this.userId,
-      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
-      companyId: companyId is _isc.UuidValue? ? companyId : this.companyId,
-      company: company is _iocy1ifk.Company?
-          ? company
-          : this.company?.copyWith(),
-      firearmId: firearmId is _isc.UuidValue? ? firearmId : this.firearmId,
-      firearm: firearm is _i25s0fp9.Firearm?
-          ? firearm
-          : this.firearm?.copyWith(),
+      userId: userId is _isc.UndefinedSentinel ? this.userId : userId,
+      user: user is _isc.UndefinedSentinel ? this.user?.copyWith() : user,
+      companyId: companyId is _isc.UndefinedSentinel
+          ? this.companyId
+          : companyId,
+      company: company is _isc.UndefinedSentinel
+          ? this.company?.copyWith()
+          : company,
+      firearmId: firearmId is _isc.UndefinedSentinel
+          ? this.firearmId
+          : firearmId,
+      firearm: firearm is _isc.UndefinedSentinel
+          ? this.firearm?.copyWith()
+          : firearm,
       checkIn: checkIn ?? this.checkIn,
-      checkOut: checkOut is DateTime? ? checkOut : this.checkOut,
+      checkOut: checkOut is _isc.UndefinedSentinel ? this.checkOut : checkOut,
       shotsFired: shotsFired ?? this.shotsFired,
       notes: notes is String? ? notes : this.notes,
       habitualityReportGenerated:

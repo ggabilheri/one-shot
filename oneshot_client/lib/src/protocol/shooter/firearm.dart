@@ -12,6 +12,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:oneshot_client/src/protocol/protocol.dart' as _itys55mc;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
+
 import '../common/user_profile.dart' as _izifjpv2;
 import '../enums/conservation_state.enum.dart' as _im6njl07;
 import '../enums/firearm_action.enum.dart' as _id0m3mr4;
@@ -246,8 +247,8 @@ abstract class Firearm
   @_isc.useResult
   Firearm copyWith({
     _isc.UuidValue? id,
-    _isc.UuidValue? userId,
-    _izifjpv2.UserProfile? user,
+    _isc.UuidValue? userId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? user = const _UndefinedFirearm$user(),
     _ie635x89.FirearmPurpose? purpose,
     _i5vdw3jb.FirearmType? type,
     _id0m3mr4.FirearmAction? action,
@@ -271,13 +272,13 @@ abstract class Firearm
     int? magazineCount,
     String? dimensions,
     double? weight,
-    DateTime? acquisitionDate,
+    DateTime? acquisitionDate = const _isc.$UndefinedDateTime(),
     double? purchasePrice,
-    DateTime? saleDate,
+    DateTime? saleDate = const _isc.$UndefinedDateTime(),
     double? salePrice,
     String? buyerData,
     String? customizations,
-    List<String>? images,
+    List<String>? images = const _isc.$UndefinedList<String>(),
     String? cleaningHistory,
     String? maintenanceHistory,
     int? totalShots,
@@ -376,6 +377,11 @@ abstract class Firearm
 
 class _Undefined {}
 
+class _UndefinedFirearm$user extends _isc.UndefinedSentinel
+    implements _izifjpv2.UserProfile {
+  const _UndefinedFirearm$user();
+}
+
 class _FirearmImpl extends Firearm {
   _FirearmImpl({
     _isc.UuidValue? id,
@@ -459,8 +465,8 @@ class _FirearmImpl extends Firearm {
   @override
   Firearm copyWith({
     _isc.UuidValue? id,
-    Object? userId = _Undefined,
-    Object? user = _Undefined,
+    _isc.UuidValue? userId = const _isc.$UndefinedUuidValue(),
+    _izifjpv2.UserProfile? user = const _UndefinedFirearm$user(),
     _ie635x89.FirearmPurpose? purpose,
     _i5vdw3jb.FirearmType? type,
     _id0m3mr4.FirearmAction? action,
@@ -484,21 +490,21 @@ class _FirearmImpl extends Firearm {
     Object? magazineCount = _Undefined,
     Object? dimensions = _Undefined,
     Object? weight = _Undefined,
-    Object? acquisitionDate = _Undefined,
+    DateTime? acquisitionDate = const _isc.$UndefinedDateTime(),
     Object? purchasePrice = _Undefined,
-    Object? saleDate = _Undefined,
+    DateTime? saleDate = const _isc.$UndefinedDateTime(),
     Object? salePrice = _Undefined,
     Object? buyerData = _Undefined,
     Object? customizations = _Undefined,
-    Object? images = _Undefined,
+    List<String>? images = const _isc.$UndefinedList<String>(),
     Object? cleaningHistory = _Undefined,
     Object? maintenanceHistory = _Undefined,
     Object? totalShots = _Undefined,
   }) {
     return Firearm(
       id: id ?? this.id,
-      userId: userId is _isc.UuidValue? ? userId : this.userId,
-      user: user is _izifjpv2.UserProfile? ? user : this.user?.copyWith(),
+      userId: userId is _isc.UndefinedSentinel ? this.userId : userId,
+      user: user is _isc.UndefinedSentinel ? this.user?.copyWith() : user,
       purpose: purpose ?? this.purpose,
       type: type ?? this.type,
       action: action ?? this.action,
@@ -524,21 +530,21 @@ class _FirearmImpl extends Firearm {
       magazineCount: magazineCount is int? ? magazineCount : this.magazineCount,
       dimensions: dimensions is String? ? dimensions : this.dimensions,
       weight: weight is double? ? weight : this.weight,
-      acquisitionDate: acquisitionDate is DateTime?
-          ? acquisitionDate
-          : this.acquisitionDate,
+      acquisitionDate: acquisitionDate is _isc.UndefinedSentinel
+          ? this.acquisitionDate
+          : acquisitionDate,
       purchasePrice: purchasePrice is double?
           ? purchasePrice
           : this.purchasePrice,
-      saleDate: saleDate is DateTime? ? saleDate : this.saleDate,
+      saleDate: saleDate is _isc.UndefinedSentinel ? this.saleDate : saleDate,
       salePrice: salePrice is double? ? salePrice : this.salePrice,
       buyerData: buyerData is String? ? buyerData : this.buyerData,
       customizations: customizations is String?
           ? customizations
           : this.customizations,
-      images: images is List<String>?
-          ? images
-          : this.images?.map((e0) => e0).toList(),
+      images: images is _isc.UndefinedSentinel
+          ? this.images?.map((e0) => e0).toList()
+          : images,
       cleaningHistory: cleaningHistory is String?
           ? cleaningHistory
           : this.cleaningHistory,
