@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import '../../../core/viewmodel_state.dart';
-import '../../../core/utils/i18n.dart';
+import '../../../core/utils/l10n_extension.dart';
 import '../../widgets/ds_button.dart';
 import '../../widgets/ds_text_field.dart';
 import '../../widgets/ds_tokens.dart';
@@ -72,7 +72,7 @@ class _AccessoryFormPageState
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          (widget.accessory == null ? "accessory.form.title".tr() : "common.edit".tr()).toUpperCase(),
+          (widget.accessory == null ? context.l10n.accessoryFormTitle : context.l10n.commonEdit).toUpperCase(),
           style: DSTokens.headline.copyWith(fontSize: 18, letterSpacing: 1.2),
         ),
       ),
@@ -87,19 +87,19 @@ class _AccessoryFormPageState
                 _SectionHeader(title: "Identificação".toUpperCase()),
                 const SizedBox(height: 24),
                 DSTextField(
-                  label: "accessory.serialNumber".tr(),
+                  label: context.l10n.accessorySerialNumber,
                   placeholder: "Número de série ou ID",
                   controller: _serialController,
                 ),
                 const SizedBox(height: 16),
                 DSTextField(
-                  label: "accessory.manufacturer".tr(),
+                  label: context.l10n.accessoryManufacturer,
                   placeholder: "Fabricante / Marca",
                   controller: _manufacturerController,
                 ),
                 const SizedBox(height: 16),
                 DSTextField(
-                  label: "accessory.model".tr(),
+                  label: context.l10n.accessoryModel,
                   placeholder: "Modelo do acessório",
                   controller: _modelController,
                 ),
@@ -107,11 +107,11 @@ class _AccessoryFormPageState
                 _SectionHeader(title: "Especificação".toUpperCase()),
                 const SizedBox(height: 24),
                 _buildDropdown<AccessoryType>(
-                  label: "accessory.type".tr(),
+                  label: context.l10n.accessoryType,
                   value: _type,
                   items: AccessoryType.values,
                   onChanged: (val) => setState(() => _type = val!),
-                  itemLabel: (t) => t.name.toUpperCase(),
+                  itemLabel: (t) => context.l10n.accessoryTypeLabel(t),
                 ),
                 const SizedBox(height: 16),
                 DSTextField(
@@ -121,7 +121,7 @@ class _AccessoryFormPageState
                 ),
                 const SizedBox(height: 40),
                 DSButton(
-                  label: "common.save".tr(),
+                  label: context.l10n.commonSave,
                   onPressed: _save,
                   isLoading: load,
                 ),

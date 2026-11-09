@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import '../../../core/viewmodel_state.dart';
-import '../../../core/utils/i18n.dart';
+import '../../../core/utils/l10n_extension.dart';
 import '../../widgets/ds_button.dart';
 import '../../widgets/ds_tokens.dart';
 import 'accessory_viewmodel.dart';
@@ -39,7 +39,7 @@ class _AccessoryListPageState extends ViewmodelState<AccessoryListPage, IAccesso
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          "accessory.list.title".tr().toUpperCase(),
+          context.l10n.accessoryListTitle.toUpperCase(),
           style: DSTokens.headline.copyWith(fontSize: 18, letterSpacing: 1.2),
         ),
       ),
@@ -93,19 +93,19 @@ class _AccessoryListPageState extends ViewmodelState<AccessoryListPage, IAccesso
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: DSTokens.surface,
-        title: Text("common.delete".tr(), style: DSTokens.headline.copyWith(fontSize: 18)),
-        content: Text("Deseja realmente excluir este acessório?", style: DSTokens.body),
+        title: Text(context.l10n.commonDelete, style: DSTokens.headline.copyWith(fontSize: 18)),
+        content: const Text("Deseja realmente excluir este acessório?", style: DSTokens.body),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("common.cancel".tr(), style: const TextStyle(color: DSTokens.outline)),
+            child: Text(context.l10n.commonCancel, style: const TextStyle(color: DSTokens.outline)),
           ),
           TextButton(
             onPressed: () {
               vm.deleteAccessory(id);
               Navigator.pop(context);
             },
-            child: Text("common.delete".tr(), style: const TextStyle(color: DSTokens.error)),
+            child: Text(context.l10n.commonDelete, style: const TextStyle(color: DSTokens.error)),
           ),
         ],
       ),
@@ -156,7 +156,7 @@ class _AccessoryCard extends StatelessWidget {
                       style: DSTokens.headline.copyWith(fontSize: 14, letterSpacing: 1),
                     ),
                     Text(
-                      "enum.accessoryType.${accessory.type.name}".tr(),
+                      context.l10n.accessoryTypeLabel(accessory.type),
                       style: DSTokens.label.copyWith(fontSize: 12, color: DSTokens.secondary),
                     ),
                   ],

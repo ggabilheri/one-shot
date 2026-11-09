@@ -1,5 +1,7 @@
 import 'package:backoffice_web/src/domain/repositories/bank_account_repository.dart';
+import 'package:backoffice_web/src/domain/repositories/bank_transaction_repository.dart';
 import 'package:backoffice_web/src/domain/repositories/financial_entry_repository.dart';
+import 'package:backoffice_web/src/ui/pages/finance/reconciliation/bank_reconciliation_viewmodel.dart';
 import 'package:backoffice_web/src/ui/pages/finance/bank_accounts/bank_accounts_viewmodel.dart';
 import 'package:backoffice_web/src/ui/pages/finance/entries/financial_entries_viewmodel.dart';
 import 'package:backoffice_web/src/domain/repositories/brasil_api_repository.dart';
@@ -25,7 +27,7 @@ import 'package:backoffice_web/src/ui/pages/products/products_viewmodel.dart';
 void setupViewModelInjections() {
   final getIt = GetIt.instance;
   getIt.registerFactory<ILoginViewModel>(() => LoginViewModel(getIt<IAuthRepository>()));
-  getIt.registerFactory<IDashboardViewModel>(() => DashboardViewModel());
+  getIt.registerLazySingleton<IDashboardViewModel>(() => DashboardViewModel());
   getIt.registerFactory<IRegisterViewModel>(() => RegisterViewModel(getIt<IAuthRepository>()));
   getIt.registerFactory<IDashboardSummaryViewModel>(() => DashboardSummaryViewModel());
   getIt.registerFactory<ICompaniesViewmodel>(() => CompaniesViewmodel(getIt<ICompanyRepository>(), getIt<IUserRepository>()));
@@ -36,4 +38,5 @@ void setupViewModelInjections() {
   getIt.registerFactory<ISubscriptionPlansViewModel>(() => SubscriptionPlansViewModel(getIt<ISubscriptionPlanRepository>()));
   getIt.registerFactory<IBankAccountsViewmodel>(() => BankAccountsViewmodel(getIt<IBankAccountRepository>(), getIt<IBrasilApiRepository>()));
   getIt.registerFactory<IFinancialEntriesViewmodel>(() => FinancialEntriesViewmodel(getIt<IFinancialEntryRepository>(), getIt<IBankAccountRepository>()));
+  getIt.registerFactory<IBankReconciliationViewModel>(() => BankReconciliationViewModel(getIt<IBankTransactionRepository>(), getIt<IFinancialEntryRepository>()));
 }

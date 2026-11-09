@@ -421,7 +421,9 @@ class _UserFormDialogState extends State<UserFormDialog> {
                             flex: 1,
                             child: UserFormDropdownField<UserStatus>(
                               label: 'STATUS',
-                              items: UserStatus.values,
+                              items: UserStatus.values
+                                  .where((s) => s != UserStatus.deleted)
+                                  .toList(),
                               value: _selectedStatus,
                               onChanged: (newVal) {
                                 if (newVal != null) {

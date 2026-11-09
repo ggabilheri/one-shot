@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 import 'package:oneshot_client/oneshot_client.dart';
+
 import 'bank_account_card.dart';
 
 class BankAccountsGrid extends StatelessWidget {
   final List<BankAccount> accounts;
   final Function(BankAccount) onEdit;
   final Function(BankAccount) onDelete;
+  final Function(BankAccount)? onImportOfx;
+  final Function(BankAccount)? onReconciliation;
   final bool isLoading;
 
   const BankAccountsGrid({
@@ -14,6 +17,8 @@ class BankAccountsGrid extends StatelessWidget {
     required this.accounts,
     required this.onEdit,
     required this.onDelete,
+    this.onImportOfx,
+    this.onReconciliation,
     this.isLoading = false,
   });
 
@@ -28,7 +33,7 @@ class BankAccountsGrid extends StatelessWidget {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 400,
-        mainAxisExtent: 240,
+        mainAxisExtent: 330,
         crossAxisSpacing: DSTokens.spacingLg,
         mainAxisSpacing: DSTokens.spacingLg,
       ),
@@ -39,6 +44,10 @@ class BankAccountsGrid extends StatelessWidget {
           account: account,
           onEdit: () => onEdit(account),
           onDelete: () => onDelete(account),
+          onImportOfx: onImportOfx != null ? () => onImportOfx!(account) : null,
+          onReconciliation: onReconciliation != null
+              ? () => onReconciliation!(account)
+              : null,
         );
       },
     );

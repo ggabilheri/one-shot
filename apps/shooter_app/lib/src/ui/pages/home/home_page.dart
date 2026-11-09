@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 import 'package:shooter_app/src/core/viewmodel_state.dart';
-import 'package:shooter_app/src/core/utils/i18n.dart';
+import 'package:shooter_app/src/core/utils/l10n_extension.dart';
 import 'package:shooter_app/src/ui/widgets/ds_button.dart';
 import 'package:shooter_app/src/ui/widgets/ds_tokens.dart';
 import 'home_viewmodel.dart';
@@ -39,7 +39,7 @@ class _HomePageState extends ViewmodelState<HomePage, IHomeViewmodel> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "Operação Alpha".toUpperCase(),
+              context.l10n.homeOperation.toUpperCase(),
               style: DSTokens.label.copyWith(
                 color: DSTokens.primary,
                 letterSpacing: 1.5,
@@ -47,45 +47,45 @@ class _HomePageState extends ViewmodelState<HomePage, IHomeViewmodel> {
             ),
             const SizedBox(height: 12),
             Text(
-              "Bem-vindo, Atirador",
+              context.l10n.homeWelcome,
               style: DSTokens.headline.copyWith(fontSize: 28),
             ),
             const SizedBox(height: 8),
             Text(
-              "Gerencie seu perfil e acervo com precisão balística.",
+              context.l10n.homeSubtitle,
               style: DSTokens.body.copyWith(color: DSTokens.outline),
             ),
             const SizedBox(height: 40),
             _ActionCard(
-              title: "profile.title".tr(),
-              subtitle: "Dados pessoais e documentos",
+              title: context.l10n.profileTitle,
+              subtitle: context.l10n.homeProfileSubtitle,
               icon: Icons.person_outline,
               onTap: () => QR.to('/profile'),
             ),
             const SizedBox(height: 16),
             _ActionCard(
-              title: "firearm.list.title".tr(),
-              subtitle: "Controle de armas e registros",
+              title: context.l10n.firearmListTitle,
+              subtitle: context.l10n.homeFirearmsSubtitle,
               icon: Icons.shield_outlined,
               onTap: () => QR.to('/firearms/$_mockUserId'),
             ),
             const SizedBox(height: 16),
             _ActionCard(
-              title: "accessory.list.title".tr(),
-              subtitle: "Ópticos e supressores",
+              title: context.l10n.accessoryListTitle,
+              subtitle: context.l10n.homeAccessoriesSubtitle,
               icon: Icons.extension_outlined,
               onTap: () => QR.to('/accessories/$_mockUserId'),
             ),
             const SizedBox(height: 16),
             _ActionCard(
-              title: "Documentos",
-              subtitle: "Certidões e autorizações",
+              title: context.l10n.homeDocumentsTitle,
+              subtitle: context.l10n.homeDocumentsSubtitle,
               icon: Icons.description_outlined,
               onTap: () => QR.to('/documents/$_mockUserId'),
             ),
             const SizedBox(height: 48),
             DSButton(
-              label: "Encerrar Sessão",
+              label: context.l10n.homeLogout,
               onPressed: () {}, // Logout
               type: DSButtonType.outline,
             ),

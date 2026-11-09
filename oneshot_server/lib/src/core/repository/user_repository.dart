@@ -77,7 +77,8 @@ class UserProfileRepository implements IUserProfileRepository {
   Future<bool> delete(Session session, UuidValue id) async {
     final user = await findById(session, id);
     if (user == null) return false;
-    await UserProfile.db.deleteRow(session, user);
+    user.status = UserStatus.deleted;
+    await UserProfile.db.updateRow(session, user);
     return true;
   }
 
@@ -86,6 +87,7 @@ class UserProfileRepository implements IUserProfileRepository {
       {int? limit, int? offset}) async {
     return await UserProfile.db.find(
       session,
+      where: (t) => t.status.notEquals(UserStatus.deleted),
       limit: limit,
       offset: offset,
       orderBy: (t) => t.name,
@@ -101,10 +103,11 @@ class UserProfileRepository implements IUserProfileRepository {
     return await UserProfile.db.find(
       session,
       where: (t) =>
-          t.name.ilike('%$cleanQuery%') |
-          t.cpf.ilike('%$cleanQuery%') |
-          t.email.ilike('%$cleanQuery%') |
-          t.phone.ilike('%$cleanQuery%'),
+          t.status.notEquals(UserStatus.deleted) &
+          (t.name.ilike('%$cleanQuery%') |
+              t.cpf.ilike('%$cleanQuery%') |
+              t.email.ilike('%$cleanQuery%') |
+              t.phone.ilike('%$cleanQuery%')),
       orderBy: (t) => t.name,
       include: UserProfile.include(address: Address.include()),
     );

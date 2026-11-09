@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import '../../../core/viewmodel_state.dart';
-import '../../../core/utils/i18n.dart';
+import '../../../core/utils/l10n_extension.dart';
 import '../../widgets/ds_button.dart';
 import '../../widgets/ds_tokens.dart';
 import 'document_viewmodel.dart';
@@ -39,7 +39,7 @@ class _DocumentListPageState extends ViewmodelState<DocumentListPage, IDocumentV
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          "DOCUMENTOS".toUpperCase(),
+          context.l10n.documentListTitle.toUpperCase(),
           style: DSTokens.headline.copyWith(fontSize: 18, letterSpacing: 1.2),
         ),
       ),
@@ -93,19 +93,19 @@ class _DocumentListPageState extends ViewmodelState<DocumentListPage, IDocumentV
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: DSTokens.surface,
-        title: Text("common.delete".tr(), style: DSTokens.headline.copyWith(fontSize: 18)),
+        title: Text(context.l10n.commonDelete, style: DSTokens.headline.copyWith(fontSize: 18)),
         content: Text("Deseja realmente excluir este documento?", style: DSTokens.body),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("common.cancel".tr(), style: const TextStyle(color: DSTokens.outline)),
+            child: Text(context.l10n.commonCancel, style: const TextStyle(color: DSTokens.outline)),
           ),
           TextButton(
             onPressed: () {
               vm.deleteDocument(id);
               Navigator.pop(context);
             },
-            child: Text("common.delete".tr(), style: const TextStyle(color: DSTokens.error)),
+            child: Text(context.l10n.commonDelete, style: const TextStyle(color: DSTokens.error)),
           ),
         ],
       ),
@@ -152,7 +152,7 @@ class _DocumentCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "enum.documentType.${document.type.name}".tr().toUpperCase(),
+                      context.l10n.documentTypeLabel(document.type).toUpperCase(),
                       style: DSTokens.headline.copyWith(fontSize: 14, letterSpacing: 1),
                     ),
                     Text(
@@ -179,7 +179,7 @@ class _DocumentCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _InfoItem(label: "NÚMERO", value: document.number),
-              _InfoItem(label: "ORGÃO", value: "enum.registryBody.${document.registryBody.name}".tr().toUpperCase()),
+              _InfoItem(label: context.l10n.documentRegistryBody.toUpperCase(), value: context.l10n.registryBodyLabel(document.registryBody).toUpperCase()),
             ],
           ),
         ],

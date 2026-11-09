@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_snackbar.dart';
+
 import 'viewmodel.dart';
 
 abstract class ViewmodelState<T extends StatefulWidget, VM extends IViewmodel>
@@ -10,14 +11,14 @@ abstract class ViewmodelState<T extends StatefulWidget, VM extends IViewmodel>
   @override
   void initState() {
     super.initState();
-    // Resolve ViewModel via GetIt. 
+    // Resolve ViewModel via GetIt.
     // If it's a factory, we might want to pass this as a parameter if it implements IPresenterBase.
     try {
       vm = GetIt.I.get<VM>(param1: this is IPresenterBase ? this : null);
     } catch (_) {
       vm = GetIt.I.get<VM>();
     }
-    
+
     vm.addListener(_listener);
     onInit();
   }
@@ -46,8 +47,10 @@ abstract class ViewmodelState<T extends StatefulWidget, VM extends IViewmodel>
   @override
   void dispose() {
     vm.removeListener(_listener);
-    // Vms factory devem ser disposadas aqui
-    vm.dispose();
+    // Vms factory com autoDispose devem ser disposadas aqui
+    if (vm.autoDispose) {
+      vm.dispose();
+    }
     super.dispose();
   }
 }

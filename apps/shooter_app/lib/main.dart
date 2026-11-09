@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
 import 'package:serverpod_auth_shared_flutter/serverpod_auth_shared_flutter.dart';
 import 'package:qlevar_router/qlevar_router.dart';
+import 'package:shooter_app/l10n/app_localizations.dart';
 import 'package:shooter_app/src/ui/widgets/ds_tokens.dart';
 import 'package:shooter_app/src/injections/viewmodel_injections.dart';
 import 'package:shooter_app/src/injections/services_injections.dart';
@@ -47,6 +48,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'OneShot',
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: const Locale('pt'),
       theme: ThemeData(
         brightness: Brightness.dark,
         scaffoldBackgroundColor: DSTokens.background,

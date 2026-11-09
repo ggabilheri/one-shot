@@ -22,11 +22,14 @@ class AdminSidebarHeader extends StatelessWidget {
             isCollapsed ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
         children: [
           if (!isCollapsed)
-            Text(
-              'ONE-SHOT',
-              style: DSTokens.headline.copyWith(
-                fontSize: 20,
-                letterSpacing: 2.5,
+            Expanded(
+              child: Text(
+                'ONE-SHOT',
+                style: DSTokens.headline.copyWith(
+                  fontSize: 20,
+                  letterSpacing: 2.5,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           IconButton(

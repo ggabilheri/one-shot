@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import '../../../core/viewmodel_state.dart';
-import '../../../core/utils/i18n.dart';
+import '../../../core/utils/l10n_extension.dart';
 import '../../widgets/ds_button.dart';
 import '../../widgets/ds_text_field.dart';
 import '../../widgets/ds_tokens.dart';
@@ -94,7 +94,7 @@ class _DocumentFormPageState
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          (widget.document == null ? "Novo Documento" : "Editar Documento").toUpperCase(),
+          (widget.document == null ? context.l10n.documentFormTitle : context.l10n.commonEdit).toUpperCase(),
           style: DSTokens.headline.copyWith(fontSize: 18, letterSpacing: 1.2),
         ),
       ),
@@ -109,28 +109,28 @@ class _DocumentFormPageState
                 _SectionHeader(title: "Identificação".toUpperCase()),
                 const SizedBox(height: 24),
                 DSTextField(
-                  label: "document.number".tr(),
+                  label: context.l10n.documentNumber,
                   placeholder: "Ex: 000000000",
                   controller: _numberController,
-                  validator: (v) => v!.isEmpty ? "Campo obrigatório" : null,
+                  validator: (v) => v!.isEmpty ? context.l10n.commonError : null,
                 ),
                 const SizedBox(height: 16),
                 _buildDropdown<DocumentType>(
-                  label: "document.type".tr(),
+                  label: context.l10n.documentType,
                   value: _type,
                   items: DocumentType.values,
                   onChanged: (val) => setState(() => _type = val!),
-                  itemLabel: (t) => "enum.documentType.${t.name}".tr(),
+                  itemLabel: (t) => context.l10n.documentTypeLabel(t),
                 ),
                 const SizedBox(height: 32),
                 _SectionHeader(title: "Expedição".toUpperCase()),
                 const SizedBox(height: 24),
                 _buildDropdown<RegistryBody>(
-                  label: "Orgão Expedidor",
+                  label: context.l10n.documentRegistryBody,
                   value: _registry,
                   items: RegistryBody.values,
                   onChanged: (val) => setState(() => _registry = val!),
-                  itemLabel: (r) => r.name.toUpperCase(),
+                  itemLabel: (r) => context.l10n.registryBodyLabel(r),
                 ),
                 const SizedBox(height: 16),
                 _DatePickerField(
@@ -140,7 +140,7 @@ class _DocumentFormPageState
                 ),
                 const SizedBox(height: 48),
                 DSButton(
-                  label: "common.save".tr(),
+                  label: context.l10n.commonSave,
                   onPressed: _save,
                   isLoading: load,
                 ),

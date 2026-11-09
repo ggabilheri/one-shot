@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 
@@ -11,6 +12,20 @@ class CompanyOwnerSelector extends StatelessWidget {
     this.selectedOwner,
     required this.onSearch,
   });
+
+  String _formatCpf(String? cpf) {
+    if (cpf == null || cpf.trim().isEmpty) return 'N/A';
+    final clean = cpf.replaceAll(RegExp(r'\D'), '');
+    if (clean.isEmpty) return 'N/A';
+    if (clean.length == 11) {
+      return '${clean.substring(0, 3)}.${clean.substring(3, 6)}.${clean.substring(6, 9)}-${clean.substring(9, 11)}';
+    }
+    final mask = MaskTextInputFormatter(
+      mask: '###.###.###-##',
+      filter: {"#": RegExp(r'[0-9]')},
+    );
+    return mask.maskText(clean);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +59,7 @@ class CompanyOwnerSelector extends StatelessWidget {
                     ),
                     if (selectedOwner != null)
                       Text(
-                        'CPF: ${selectedOwner?.cpf ?? "N/A"}',
+                        'CPF: ${_formatCpf(selectedOwner?.cpf)}',
                         style: DSTokens.label.copyWith(color: DSTokens.outline),
                       ),
                   ],

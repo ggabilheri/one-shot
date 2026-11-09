@@ -48,11 +48,15 @@ import 'package:oneshot_server/src/generated/enums/platform_app.enum.dart'
 import 'package:oneshot_server/src/generated/finance/bank.dart' as _ij8k7xum;
 import 'package:oneshot_server/src/generated/finance/bank_account.dart'
     as _ix4lc03l;
+import 'package:oneshot_server/src/generated/finance/bank_transaction.dart'
+    as _iktxc6zh;
 import 'package:oneshot_server/src/generated/finance/financial_entry.dart'
     as _ibsfr7x7;
 import 'package:oneshot_server/src/generated/finance/invoice.dart' as _i30q017a;
 import 'package:oneshot_server/src/generated/finance/invoice_item.dart'
     as _i4dj62ps;
+import 'package:oneshot_server/src/generated/finance/ofx_preview_result.dart'
+    as _ioy0lzqv;
 import 'package:oneshot_server/src/generated/finance/payment.dart' as _i2rb000s;
 import 'package:oneshot_server/src/generated/future_calls.dart' as _iahu0g5j;
 import 'package:oneshot_server/src/generated/greeting.dart' as _ikgv4xca;
@@ -221,6 +225,8 @@ class TestEndpoints {
 
   late final _BankAccountEndpoint bankAccount;
 
+  late final _BankTransactionEndpoint bankTransaction;
+
   late final _BrasilApiGatewayEndpoint brasilApiGateway;
 
   late final _CompanyEndpoint company;
@@ -284,6 +290,7 @@ class _InternalTestEndpoints extends TestEndpoints
     accessory = _AccessoryEndpoint(endpoints, serializationManager);
     ammunition = _AmmunitionEndpoint(endpoints, serializationManager);
     bankAccount = _BankAccountEndpoint(endpoints, serializationManager);
+    bankTransaction = _BankTransactionEndpoint(endpoints, serializationManager);
     brasilApiGateway = _BrasilApiGatewayEndpoint(
       endpoints,
       serializationManager,
@@ -770,6 +777,191 @@ class _BankAccountEndpoint {
           _localUniqueSession,
           _localCallContext.arguments,
         ) as _ida.Future<List<_ix4lc03l.BankAccount>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+}
+
+class _BankTransactionEndpoint {
+  _BankTransactionEndpoint(this._endpointDispatch, this._serializationManager);
+
+  final _is.EndpointDispatch _endpointDispatch;
+
+  final _is.SerializationManager _serializationManager;
+
+  _ida.Future<_ioy0lzqv.OfxPreviewResult> previewOfx(
+    _ist.TestSessionBuilder sessionBuilder,
+    _is.UuidValue bankAccountId,
+    String ofxContent,
+  ) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'bankTransaction',
+            method: 'previewOfx',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'bankTransaction',
+          methodName: 'previewOfx',
+          parameters: _ist.testObjectToJson({
+            'bankAccountId': bankAccountId,
+            'ofxContent': ofxContent,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_ioy0lzqv.OfxPreviewResult>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<List<_iktxc6zh.BankTransaction>> importOfx(
+    _ist.TestSessionBuilder sessionBuilder,
+    _is.UuidValue bankAccountId,
+    String ofxContent,
+  ) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'bankTransaction',
+            method: 'importOfx',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'bankTransaction',
+          methodName: 'importOfx',
+          parameters: _ist.testObjectToJson({
+            'bankAccountId': bankAccountId,
+            'ofxContent': ofxContent,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_iktxc6zh.BankTransaction>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<List<_iktxc6zh.BankTransaction>> listTransactions(
+    _ist.TestSessionBuilder sessionBuilder,
+    _is.UuidValue bankAccountId, {
+    bool? isReconciled,
+    DateTime? startDate,
+    DateTime? endDate,
+    int? limit,
+    int? offset,
+  }) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'bankTransaction',
+            method: 'listTransactions',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'bankTransaction',
+          methodName: 'listTransactions',
+          parameters: _ist.testObjectToJson({
+            'bankAccountId': bankAccountId,
+            'isReconciled': isReconciled,
+            'startDate': startDate,
+            'endDate': endDate,
+            'limit': limit,
+            'offset': offset,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<List<_iktxc6zh.BankTransaction>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<int> countTransactions(
+    _ist.TestSessionBuilder sessionBuilder,
+    _is.UuidValue bankAccountId, {
+    bool? isReconciled,
+    DateTime? startDate,
+    DateTime? endDate,
+  }) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'bankTransaction',
+            method: 'countTransactions',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'bankTransaction',
+          methodName: 'countTransactions',
+          parameters: _ist.testObjectToJson({
+            'bankAccountId': bankAccountId,
+            'isReconciled': isReconciled,
+            'startDate': startDate,
+            'endDate': endDate,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<int>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<_iktxc6zh.BankTransaction> reconcile(
+    _ist.TestSessionBuilder sessionBuilder,
+    _is.UuidValue transactionId,
+    _is.UuidValue financialEntryId,
+  ) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'bankTransaction',
+            method: 'reconcile',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'bankTransaction',
+          methodName: 'reconcile',
+          parameters: _ist.testObjectToJson({
+            'transactionId': transactionId,
+            'financialEntryId': financialEntryId,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _ida.Future<_iktxc6zh.BankTransaction>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

@@ -1,0 +1,20 @@
+class: BankTransaction
+table: bank_transactions
+fields:
+  id: UuidValue, defaultModel=random
+  bankAccount: BankAccount?, relation
+  fitId: String
+  transactionType: String
+  date: DateTime
+  amount: double
+  memo: String?
+  financialEntry: FinancialEntry?, relation(optional)
+  isReconciled: bool
+  reconciledAt: DateTime?
+indexes:
+  bank_transaction_fitid_account_idx:
+    fields: bankAccountId, fitId
+    unique: true
+  bank_transaction_account_idx:
+    fields: bankAccountId
+

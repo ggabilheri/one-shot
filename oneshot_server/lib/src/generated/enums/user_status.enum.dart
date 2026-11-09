@@ -16,7 +16,8 @@ enum UserStatus implements _is.SerializableModel {
   active,
   inactive,
   blocked,
-  suspended;
+  suspended,
+  deleted;
 
   static UserStatus fromJson(String name) {
     switch (name) {
@@ -28,6 +29,8 @@ enum UserStatus implements _is.SerializableModel {
         return UserStatus.blocked;
       case 'suspended':
         return UserStatus.suspended;
+      case 'deleted':
+        return UserStatus.deleted;
       default:
         return UserStatus.active;
     }

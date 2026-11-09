@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:backoffice_web/src/core/utils/l10n_extension.dart';
 import 'package:backoffice_web/src/ui/widgets/brutalist_card.dart';
+import 'package:backoffice_web/src/ui/widgets/ds_dropdown.dart';
+import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 import 'package:oneshot_client/oneshot_client.dart';
+import 'bank_account_input_field.dart';
+import 'bank_account_submit_button.dart';
+import 'bank_search_dialog.dart';
 
 class BankAccountFormDialog extends StatefulWidget {
   final BankAccount? account;
@@ -52,9 +58,96 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
     _balanceController = TextEditingController(
       text: widget.account?.balance.toString() ?? '0.0',
     );
-    _pixKeyController = TextEditingController(text: widget.account?.pixKey);
     _status = widget.account?.status ?? 'ACTIVE';
     _pixKeyType = widget.account?.pixKeyType;
+
+    final initialPixKey = widget.account?.pixKey ?? '';
+    final formatter = _getPixKeyFormatter(_pixKeyType);
+    final formattedPixKey = formatter != null
+        ? formatter.maskText(
+            _pixKeyType == PixKeyType.aleatoria
+                ? initialPixKey.replaceAll('-', '')
+                : initialPixKey.replaceAll(RegExp(r'[^0-9]'), ''),
+          )
+        : initialPixKey;
+    _pixKeyController = TextEditingController(text: formattedPixKey);
+  }
+
+  MaskTextInputFormatter? _getPixKeyFormatter(PixKeyType? type) {
+    if (type == null) return null;
+    switch (type) {
+      case PixKeyType.cpf:
+        return MaskTextInputFormatter(
+          mask: '###.###.###-##',
+          filter: {"#": RegExp(r'[0-9]')},
+        );
+      case PixKeyType.cnpj:
+        return MaskTextInputFormatter(
+          mask: '##.###.###/####-##',
+          filter: {"#": RegExp(r'[0-9]')},
+        );
+      case PixKeyType.telefone:
+        return MaskTextInputFormatter(
+          mask: '(##) #####-####',
+          filter: {"#": RegExp(r'[0-9]')},
+        );
+      case PixKeyType.aleatoria:
+        return MaskTextInputFormatter(
+          mask: '########-####-####-####-############',
+          filter: {"#": RegExp(r'[a-zA-Z0-9]')},
+        );
+      case PixKeyType.email:
+        return null;
+    }
+  }
+
+  TextInputType _getPixKeyKeyboardType(PixKeyType? type) {
+    switch (type) {
+      case PixKeyType.cpf:
+      case PixKeyType.cnpj:
+        return TextInputType.number;
+      case PixKeyType.telefone:
+        return TextInputType.phone;
+      case PixKeyType.email:
+        return TextInputType.emailAddress;
+      case PixKeyType.aleatoria:
+      case null:
+        return TextInputType.text;
+    }
+  }
+
+  String? _getPixKeyHint(PixKeyType? type) {
+    switch (type) {
+      case PixKeyType.cpf:
+        return '000.000.000-00';
+      case PixKeyType.cnpj:
+        return '00.000.000/0000-00';
+      case PixKeyType.telefone:
+        return '(00) 00000-0000';
+      case PixKeyType.email:
+        return 'exemplo@dominio.com';
+      case PixKeyType.aleatoria:
+        return '00000000-0000-0000-0000-000000000000';
+      case null:
+        return null;
+    }
+  }
+
+  void _onPixKeyTypeChanged(PixKeyType? newType) {
+    setState(() {
+      _pixKeyType = newType;
+      final formatter = _getPixKeyFormatter(newType);
+      if (formatter != null) {
+        final rawText = newType == PixKeyType.aleatoria
+            ? _pixKeyController.text.replaceAll('-', '')
+            : _pixKeyController.text.replaceAll(RegExp(r'[^0-9]'), '');
+        final maskedText = formatter.maskText(rawText);
+        _pixKeyController.value = TextEditingValue(
+          text: maskedText,
+          selection: TextSelection.collapsed(offset: maskedText.length),
+        );
+      }
+    });
   }
 
   @override
@@ -82,7 +175,9 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
             accountDigit: _accountDigitController.text,
             balance: double.tryParse(_balanceController.text) ?? 0.0,
             status: _status,
-            pixKey: _pixKeyController.text.isEmpty ? null : _pixKeyController.text,
+            pixKey: _pixKeyController.text.isEmpty
+                ? null
+                : _pixKeyController.text,
             pixKeyType: _pixKeyType,
           ) ??
           BankAccount(
@@ -95,9 +190,12 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
             balance: double.tryParse(_balanceController.text) ?? 0.0,
             status: _status,
             originModule: 'BACKOFFICE',
-            pixKey: _pixKeyController.text.isEmpty ? null : _pixKeyController.text,
+            pixKey: _pixKeyController.text.isEmpty
+                ? null
+                : _pixKeyController.text,
             pixKeyType: _pixKeyType,
           );
+
       widget.onSave(account);
       Navigator.pop(context);
     }
@@ -106,7 +204,7 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
   Future<void> _openBankSearch() async {
     final selectedBank = await showDialog<Bank>(
       context: context,
-      builder: (context) => _BankSearchDialog(onSearch: widget.onSearchBanks),
+      builder: (context) => BankSearchDialog(onSearch: widget.onSearchBanks),
     );
 
     if (selectedBank != null) {
@@ -118,6 +216,8 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Dialog(
       backgroundColor: Colors.transparent,
       child: BrutalistCard(
@@ -134,39 +234,45 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _isEditing ? 'EDITAR CONTA' : 'NOVA CONTA',
+                    _isEditing
+                        ? l10n.bankAccountEditTitle.toUpperCase()
+                        : l10n.bankAccountNewTitle.toUpperCase(),
                     style: DSTokens.h2,
                   ),
                   const SizedBox(height: DSTokens.spacingLg),
-                  _buildTextField(
-                    label: 'NOME DA CONTA (APELIDO)',
+                  BankAccountInputField(
+                    label: l10n.bankAccountNameLabel.toUpperCase(),
                     controller: _nameController,
-                    validator: (v) => v?.isEmpty ?? true ? 'Obrigatório' : null,
+                    validator: (v) =>
+                        v?.isEmpty ?? true ? l10n.commonRequired : null,
                   ),
                   const SizedBox(height: DSTokens.spacingMd),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         flex: 3,
-                        child: _buildTextField(
-                          label: 'BANCO',
+                        child: BankAccountInputField(
+                          label: l10n.bankAccountBankLabel.toUpperCase(),
                           controller: _bankNameController,
                           readOnly: true,
                           onTap: _openBankSearch,
                           validator: (v) =>
-                              v?.isEmpty ?? true ? 'Obrigatório' : null,
+                              v?.isEmpty ?? true ? l10n.commonRequired : null,
                         ),
                       ),
                       const SizedBox(width: DSTokens.spacingMd),
                       Expanded(
                         flex: 2,
-                        child: _buildTextField(
-                          label: 'STATUS',
-                          isDropdown: true,
-                          dropdownValue: _status,
-                          items: ['ACTIVE', 'INACTIVE'],
-                          onChanged: (v) => setState(() => _status = v!),
+                        child: DSDropdown<String>.fromValues(
+                          label: l10n.bankAccountStatusLabel.toUpperCase(),
+                          value: _status,
+                          values: const ['ACTIVE', 'INACTIVE'],
+                          labelBuilder: (s) =>
+                              l10n.formatBankAccountStatus(s).toUpperCase(),
+                          onChanged: (v) {
+                            if (v != null) setState(() => _status = v);
+                          },
                         ),
                       ),
                     ],
@@ -177,16 +283,17 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
                     children: [
                       Expanded(
                         flex: 3,
-                        child: _buildTextField(
-                          label: 'AGÊNCIA',
+                        child: BankAccountInputField(
+                          label: l10n.bankAccountAgencyLabel.toUpperCase(),
                           controller: _agencyController,
                         ),
                       ),
                       const SizedBox(width: DSTokens.spacingSm),
                       Expanded(
                         flex: 1,
-                        child: _buildTextField(
-                          label: 'DÍG.',
+                        child: BankAccountInputField(
+                          label:
+                              l10n.bankAccountAgencyDigitLabel.toUpperCase(),
                           controller: _agencyDigitController,
                         ),
                       ),
@@ -198,24 +305,26 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
                     children: [
                       Expanded(
                         flex: 3,
-                        child: _buildTextField(
-                          label: 'CONTA',
+                        child: BankAccountInputField(
+                          label:
+                              l10n.bankAccountAccountNumberLabel.toUpperCase(),
                           controller: _accountNumberController,
                         ),
                       ),
                       const SizedBox(width: DSTokens.spacingSm),
                       Expanded(
                         flex: 1,
-                        child: _buildTextField(
-                          label: 'DÍG.',
+                        child: BankAccountInputField(
+                          label:
+                              l10n.bankAccountAccountDigitLabel.toUpperCase(),
                           controller: _accountDigitController,
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: DSTokens.spacingMd),
-                  _buildTextField(
-                    label: 'SALDO ATUAL',
+                  BankAccountInputField(
+                    label: l10n.bankAccountBalanceLabel.toUpperCase(),
                     controller: _balanceController,
                     keyboardType: TextInputType.number,
                   ),
@@ -225,20 +334,29 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
                     children: [
                       Expanded(
                         flex: 2,
-                        child: _buildTextField(
-                          label: 'TIPO CHAVE PIX',
-                          isDropdown: true,
-                          dropdownValue: _pixKeyType?.name,
-                          items: PixKeyType.values.map((e) => e.name).toList(),
-                          onChanged: (v) => setState(() => _pixKeyType = PixKeyType.values.byName(v!)),
+                        child: DSDropdown<PixKeyType?>.fromValues(
+                          label:
+                              l10n.bankAccountPixKeyTypeLabel.toUpperCase(),
+                          value: _pixKeyType,
+                          values: [null, ...PixKeyType.values],
+                          labelBuilder: (t) => t == null
+                              ? '--'
+                              : l10n.pixKeyTypeLabel(t).toUpperCase(),
+                          onChanged: _onPixKeyTypeChanged,
                         ),
                       ),
                       const SizedBox(width: DSTokens.spacingMd),
                       Expanded(
                         flex: 3,
-                        child: _buildTextField(
-                          label: 'CHAVE PIX',
+                        child: BankAccountInputField(
+                          key: ValueKey(_pixKeyType),
+                          label: l10n.bankAccountPixKeyLabel.toUpperCase(),
                           controller: _pixKeyController,
+                          keyboardType: _getPixKeyKeyboardType(_pixKeyType),
+                          hintText: _getPixKeyHint(_pixKeyType),
+                          inputFormatters: _getPixKeyFormatter(_pixKeyType) != null
+                              ? [_getPixKeyFormatter(_pixKeyType)!]
+                              : null,
                         ),
                       ),
                     ],
@@ -249,191 +367,23 @@ class _BankAccountFormDialogState extends State<BankAccountFormDialog> {
                     children: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: Text('CANCELAR', style: DSTokens.label),
+                        child: Text(
+                          l10n.commonCancel.toUpperCase(),
+                          style: DSTokens.label,
+                        ),
                       ),
                       const SizedBox(width: DSTokens.spacingMd),
-                      _buildSubmitButton(),
+                      BankAccountSubmitButton(
+                        label: _isEditing
+                            ? l10n.bankAccountSaveAccount
+                            : l10n.bankAccountCreateAccount,
+                        onTap: _submit,
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTextField({
-    required String label,
-    TextEditingController? controller,
-    String? Function(String?)? validator,
-    TextInputType? keyboardType,
-    bool isDropdown = false,
-    String? dropdownValue,
-    List<String>? items,
-    Function(String?)? onChanged,
-    bool readOnly = false,
-    VoidCallback? onTap,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: DSTokens.label),
-        const SizedBox(height: 8),
-        if (isDropdown)
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            decoration: BoxDecoration(
-              border: Border.all(color: DSTokens.outlineVariant, width: 2),
-            ),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
-                value: dropdownValue,
-                isExpanded: true,
-                dropdownColor: DSTokens.surface,
-                style: DSTokens.body,
-                items: items!
-                    .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                    .toList(),
-                onChanged: onChanged,
-              ),
-            ),
-          )
-        else
-          TextFormField(
-            controller: controller,
-            validator: validator,
-            keyboardType: keyboardType,
-            readOnly: readOnly,
-            onTap: onTap,
-            style: DSTokens.body,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.black.withValues(alpha: 0.1),
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: DSTokens.outlineVariant,
-                  width: 2,
-                ),
-                borderRadius: BorderRadius.zero,
-              ),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: DSTokens.primary, width: 2),
-                borderRadius: BorderRadius.zero,
-              ),
-            ),
-          ),
-      ],
-    );
-  }
-
-  Widget _buildSubmitButton() {
-    return GestureDetector(
-      onTap: _submit,
-      child: BrutalistCard(
-        padding: EdgeInsets.zero,
-        backgroundColor: DSTokens.primary,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          child: Text(
-            _isEditing ? 'SALVAR ALTERAÇÕES' : 'CRIAR CONTA',
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.2,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _BankSearchDialog extends StatefulWidget {
-  final Future<List<Bank>> Function(String) onSearch;
-
-  const _BankSearchDialog({required this.onSearch});
-
-  @override
-  State<_BankSearchDialog> createState() => _BankSearchDialogState();
-}
-
-class _BankSearchDialogState extends State<_BankSearchDialog> {
-  final _searchController = TextEditingController();
-  List<Bank> _banks = [];
-  bool _loading = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _performSearch('');
-  }
-
-  Future<void> _performSearch(String query) async {
-    setState(() => _loading = true);
-    try {
-      final results = await widget.onSearch(query);
-      setState(() => _banks = results);
-    } finally {
-      setState(() => _loading = false);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      backgroundColor: Colors.transparent,
-      child: BrutalistCard(
-        padding: const EdgeInsets.all(DSTokens.spacingLg),
-        backgroundColor: DSTokens.surface,
-        borderColor: DSTokens.primary,
-        child: SizedBox(
-          width: 400,
-          height: 500,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('BUSCAR BANCO', style: DSTokens.h2),
-              const SizedBox(height: DSTokens.spacingMd),
-              TextField(
-                controller: _searchController,
-                style: DSTokens.body,
-                decoration: InputDecoration(
-                  hintText: 'Digite o nome ou código...',
-                  prefixIcon: const Icon(Icons.search, color: DSTokens.primary),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                      color: DSTokens.outlineVariant,
-                      width: 2,
-                    ),
-                  ),
-                ),
-                onChanged: _performSearch,
-              ),
-              const SizedBox(height: DSTokens.spacingMd),
-              Expanded(
-                child: _loading
-                    ? const Center(child: CircularProgressIndicator())
-                    : _banks.isEmpty
-                    ? const Center(child: Text('Nenhum banco encontrado'))
-                    : ListView.separated(
-                        itemCount: _banks.length,
-                        separatorBuilder: (_, __) => const Divider(),
-                        itemBuilder: (context, index) {
-                          final bank = _banks[index];
-                          return ListTile(
-                            title: Text(bank.name, style: DSTokens.body),
-                            subtitle: Text(
-                              'Código: ${bank.code}',
-                              style: DSTokens.label,
-                            ),
-                            onTap: () => Navigator.pop(context, bank),
-                          );
-                        },
-                      ),
-              ),
-            ],
           ),
         ),
       ),

@@ -1,0 +1,57 @@
+{
+  "@@locale": "en",
+
+  "commonCancel": "Cancel",
+  "commonRequired": "Required",
+  "commonSave": "Save",
+
+  "bankAccountEditTitle": "Edit Account",
+  "bankAccountNewTitle": "New Account",
+  "bankAccountNameLabel": "Account Name (Alias)",
+  "bankAccountBankLabel": "Bank",
+  "bankAccountStatusLabel": "Status",
+  "bankAccountStatusActive": "Active",
+  "bankAccountStatusInactive": "Inactive",
+  "bankAccountAgencyLabel": "Agency",
+  "bankAccountAgencyDigitLabel": "Digit",
+  "bankAccountAccountNumberLabel": "Account",
+  "bankAccountAccountDigitLabel": "Digit",
+  "bankAccountBalanceLabel": "Current Balance",
+  "bankAccountPixKeyTypeLabel": "Pix Key Type",
+  "bankAccountPixKeyLabel": "Pix Key",
+  "bankAccountSaveAccount": "Save Changes",
+  "bankAccountCreateAccount": "Create Account",
+
+  "bankSearchTitle": "Search Bank",
+  "bankSearchHint": "Type name or code...",
+  "bankSearchEmpty": "No bank found",
+  "bankSearchCode": "Code: {code}",
+  "@bankSearchCode": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+
+  "pixKeyTypeCpf": "CPF",
+  "pixKeyTypeCnpj": "CNPJ",
+  "pixKeyTypeEmail": "Email",
+  "pixKeyTypePhone": "Phone",
+  "pixKeyTypeRandom": "Random Key",
+
+  "importOfxTitle": "Import OFX Statement",
+  "importOfxSelectFile": "Select .OFX File",
+  "importOfxChangeFile": "Change File",
+  "importOfxCredits": "Total Credits",
+  "importOfxDebits": "Total Debits",
+  "importOfxNewCount": "New Transactions",
+  "importOfxDuplicatedCount": "Already Imported",
+  "importOfxConfirm": "Confirm Import",
+  "importOfxSuccess": "Statement imported successfully!",
+  "importOfxAccountMismatchAlert": "Warning: File bank details do not belong to this account!",
+  "importOfxButton": "Import OFX",
+  "reconciliationButton": "Statement & Reconciliation",
+  "reconciliationTitle": "Bank Reconciliation"
+}
+

@@ -10,7 +10,9 @@ import 'package:oneshot_server/src/core/repository/product_repository.dart';
 import 'package:oneshot_server/src/core/repository/subscription_plan_repository.dart';
 import 'package:oneshot_server/src/core/repository/user_repository.dart';
 import 'package:oneshot_server/src/core/repository/bank_account_repository.dart';
+import 'package:oneshot_server/src/core/repository/bank_transaction_repository.dart';
 import 'package:oneshot_server/src/core/repository/financial_entry_repository.dart';
+import 'package:oneshot_server/src/services/bank_transaction_service.dart';
 import 'package:oneshot_server/src/data/repositories_impl/ammunition_repository.dart';
 import 'package:oneshot_server/src/data/repositories_impl/company_repositories.dart';
 import 'package:oneshot_server/src/data/repositories_impl/reload_repository.dart';
@@ -57,6 +59,10 @@ class Injections {
   late final IPaymentRepository paymentRepository;
   late final IBankAccountRepository bankAccountRepository;
   late final IFinancialEntryRepository financialEntryRepository;
+  late final IBankTransactionRepository bankTransactionRepository;
+
+  // Finance Services
+  late final BankTransactionService bankTransactionService;
 
   // Gateway Asaas
   // Os repositórios e serviços do Asaas são instanciados por request nos endpoints
@@ -100,6 +106,14 @@ class Injections {
     paymentRepository = PaymentRepository();
     bankAccountRepository = BankAccountRepositoryImpl();
     financialEntryRepository = FinancialEntryRepositoryImpl();
+    bankTransactionRepository = BankTransactionRepository();
+
+    // Services
+    bankTransactionService = BankTransactionService(
+      bankTransactionRepository: bankTransactionRepository,
+      bankAccountRepository: bankAccountRepository,
+      financialEntryRepository: financialEntryRepository,
+    );
 
     // 2. Use Cases
     registerTrainingUseCase = RegisterTrainingUseCase(trainingRepository);

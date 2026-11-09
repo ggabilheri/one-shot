@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import '../../../core/viewmodel_state.dart';
-import '../../../core/utils/i18n.dart';
+import '../../../core/utils/l10n_extension.dart';
 import '../../widgets/ds_button.dart';
 import '../../widgets/ds_tokens.dart';
 import 'firearm_viewmodel.dart';
@@ -40,7 +40,7 @@ class _FirearmListPageState extends ViewmodelState<FirearmListPage, IFirearmView
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          "firearm.list.title".tr().toUpperCase(),
+          context.l10n.firearmListTitle.toUpperCase(),
           style: DSTokens.headline.copyWith(fontSize: 18, letterSpacing: 1.2),
         ),
       ),
@@ -93,19 +93,19 @@ class _FirearmListPageState extends ViewmodelState<FirearmListPage, IFirearmView
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text("common.delete".tr()),
-        content: Text("Deseja realmente excluir esta arma?"),
+        title: Text(context.l10n.commonDelete),
+        content: const Text("Deseja realmente excluir esta arma?"),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("common.cancel".tr()),
+            child: Text(context.l10n.commonCancel),
           ),
           TextButton(
             onPressed: () {
               vm.deleteFirearm(id);
               Navigator.pop(context);
             },
-            child: Text("common.delete".tr()),
+            child: Text(context.l10n.commonDelete),
           ),
         ],
       ),

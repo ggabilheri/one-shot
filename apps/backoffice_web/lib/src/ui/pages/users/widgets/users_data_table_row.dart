@@ -3,6 +3,7 @@ import 'package:backoffice_web/src/ui/pages/users/users_viewmodel.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:oneshot_client/oneshot_client.dart';
+import 'user_delete_confirm_dialog.dart';
 import 'user_form_dialog.dart';
 
 class UsersDataTableRow extends StatelessWidget {
@@ -147,7 +148,36 @@ class UsersDataTableRow extends StatelessWidget {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
-                    onTap: () => vm.deleteUser(user.id.toString()),
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        barrierColor: DSTokens.background.withValues(alpha: 0.8),
+                        builder: (_) => UserDeleteConfirmDialog(
+                          user: user,
+                          onConfirm: () async {
+                            final success =
+                                await vm.deleteUser(user.id.toString());
+                            if (context.mounted) {
+                              if (success) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                        'Usuário "${user.name}" excluído com sucesso.'),
+                                  ),
+                                );
+                              } else if (vm.error != null) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(vm.error!),
+                                    backgroundColor: DSTokens.error,
+                                  ),
+                                );
+                              }
+                            }
+                          },
+                        ),
+                      );
+                    },
                     child: const Icon(
                       Icons.delete_outline,
                       color: DSTokens.error,

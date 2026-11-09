@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import '../../../core/viewmodel_state.dart';
-import '../../../core/utils/i18n.dart';
+import '../../../core/utils/l10n_extension.dart';
 import '../../widgets/ds_button.dart';
 import '../../widgets/ds_text_field.dart';
 import '../../widgets/ds_tokens.dart';
@@ -87,7 +87,7 @@ class _FirearmFormPageState
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          (widget.firearm == null ? "firearm.form.title".tr() : "common.edit".tr()).toUpperCase(),
+          (widget.firearm == null ? context.l10n.firearmFormTitle : context.l10n.commonEdit).toUpperCase(),
           style: DSTokens.headline.copyWith(fontSize: 18, letterSpacing: 1.2),
         ),
       ),
@@ -102,17 +102,17 @@ class _FirearmFormPageState
                 _SectionHeader(title: "Dados de Identificação".toUpperCase()),
                 const SizedBox(height: 24),
                 DSTextField(
-                  label: "firearm.serialNumber".tr(),
+                  label: context.l10n.firearmSerialNumber,
                   placeholder: "Número de série gravado",
                   controller: _serialController,
-                  validator: (v) => v!.isEmpty ? "common.error".tr() : null,
+                  validator: (v) => v!.isEmpty ? context.l10n.commonError : null,
                 ),
                 const SizedBox(height: 16),
                 Row(
                   children: [
                     Expanded(
                       child: DSTextField(
-                        label: "firearm.manufacturer".tr(),
+                        label: context.l10n.firearmManufacturer,
                         placeholder: "Fabricante",
                         controller: _manufacturerController,
                       ),
@@ -129,7 +129,7 @@ class _FirearmFormPageState
                 ),
                 const SizedBox(height: 16),
                 DSTextField(
-                  label: "firearm.model".tr(),
+                  label: context.l10n.firearmModel,
                   placeholder: "Modelo do armamento",
                   controller: _modelController,
                 ),
@@ -140,7 +140,7 @@ class _FirearmFormPageState
                   children: [
                     Expanded(
                       child: DSTextField(
-                        label: "firearm.caliber".tr(),
+                        label: context.l10n.firearmCaliber,
                         placeholder: "Ex: 9mm, .40",
                         controller: _caliberController,
                       ),
@@ -158,15 +158,15 @@ class _FirearmFormPageState
                 ),
                 const SizedBox(height: 16),
                 _buildDropdown<FirearmType>(
-                  label: "firearm.type".tr(),
+                  label: context.l10n.firearmType,
                   value: _type,
                   items: FirearmType.values,
                   onChanged: (val) => setState(() => _type = val!),
-                  itemLabel: (t) => "enum.firearmType.${t.name}".tr(),
+                  itemLabel: (t) => context.l10n.firearmTypeLabel(t),
                 ),
                 const SizedBox(height: 40),
                 DSButton(
-                  label: "common.save".tr(),
+                  label: context.l10n.commonSave,
                   onPressed: _save,
                   isLoading: load,
                 ),

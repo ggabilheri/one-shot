@@ -15,6 +15,12 @@ bankAccount:
   - updateAccount:
   - deleteAccount:
   - listAccounts:
+bankTransaction:
+  - previewOfx:
+  - importOfx:
+  - listTransactions:
+  - countTransactions:
+  - reconcile:
 brasilApiGateway:
   - getCompanyInfo:
   - getAddressByCep:

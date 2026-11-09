@@ -1,0 +1,57 @@
+{
+  "@@locale": "pt",
+
+  "commonCancel": "Cancelar",
+  "commonRequired": "Obrigatório",
+  "commonSave": "Salvar",
+
+  "bankAccountEditTitle": "Editar Conta",
+  "bankAccountNewTitle": "Nova Conta",
+  "bankAccountNameLabel": "Nome da Conta (Apelido)",
+  "bankAccountBankLabel": "Banco",
+  "bankAccountStatusLabel": "Status",
+  "bankAccountStatusActive": "Ativo",
+  "bankAccountStatusInactive": "Inativo",
+  "bankAccountAgencyLabel": "Agência",
+  "bankAccountAgencyDigitLabel": "Díg.",
+  "bankAccountAccountNumberLabel": "Conta",
+  "bankAccountAccountDigitLabel": "Díg.",
+  "bankAccountBalanceLabel": "Saldo Atual",
+  "bankAccountPixKeyTypeLabel": "Tipo Chave PIX",
+  "bankAccountPixKeyLabel": "Chave PIX",
+  "bankAccountSaveAccount": "Salvar Alterações",
+  "bankAccountCreateAccount": "Criar Conta",
+
+  "bankSearchTitle": "Buscar Banco",
+  "bankSearchHint": "Digite o nome ou código...",
+  "bankSearchEmpty": "Nenhum banco encontrado",
+  "bankSearchCode": "Código: {code}",
+  "@bankSearchCode": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+
+  "pixKeyTypeCpf": "CPF",
+  "pixKeyTypeCnpj": "CNPJ",
+  "pixKeyTypeEmail": "E-mail",
+  "pixKeyTypePhone": "Telefone",
+  "pixKeyTypeRandom": "Chave Aleatória",
+
+  "importOfxTitle": "Importar Extrato OFX",
+  "importOfxSelectFile": "Selecionar Arquivo .OFX",
+  "importOfxChangeFile": "Trocar Arquivo",
+  "importOfxCredits": "Total Créditos",
+  "importOfxDebits": "Total Débitos",
+  "importOfxNewCount": "Novas Transações",
+  "importOfxDuplicatedCount": "Já Importadas",
+  "importOfxConfirm": "Confirmar Importação",
+  "importOfxSuccess": "Extrato importado com sucesso!",
+  "importOfxAccountMismatchAlert": "Atenção: Os dados bancários do arquivo não pertencem a esta conta!",
+  "importOfxButton": "Importar OFX",
+  "reconciliationButton": "Extrato & Conciliação",
+  "reconciliationTitle": "Conciliação Bancária"
+}
+

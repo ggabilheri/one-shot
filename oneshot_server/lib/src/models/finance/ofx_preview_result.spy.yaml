@@ -1,0 +1,16 @@
+class: OfxPreviewResult
+fields:
+  bankId: String?
+  branchId: String?
+  acctId: String?
+  startDate: DateTime?
+  endDate: DateTime?
+  ledgerBalance: double?
+  transactions: List<BankTransaction>
+  totalCredits: double
+  totalDebits: double
+  newTransactionsCount: int
+  duplicatedTransactionsCount: int
+  isAccountMatched: bool
+  accountMatchMessage: String?
+

@@ -1,0 +1,25 @@
+feature: "importacao-extrato-ofx"
+source: "recommended"
+variant: "web"
+current_step: completed
+steps:
+  intent:
+    status: completed
+    summary: "Importação de extratos OFX com validação sanitizada de conta bancária, persistência idempotente e conciliação com financial_entries."
+  tech_alignment:
+    status: skipped
+  design:
+    status: skipped
+  scope:
+    status: completed
+    variant: "web"
+    summary: "Definições técnicas do parser OFX, modelos BankTransaction/OfxPreviewResult, endpoints RPC e telas de extrato/conciliação no Backoffice Web."
+  validation:
+    status: skipped
+  task_plan:
+    status: completed
+    summary: "4 tasks geradas (T1: Modelos & Parser, T2: Repositório/Serviço/Endpoints, T3: Diálogo Importação OFX, T4: Extrato e Conciliação)."
+  execution:
+    status: completed
+    tasks_completed: 4
+    tasks_total: 4

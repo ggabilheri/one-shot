@@ -10,7 +10,7 @@ abstract class IUsersViewmodel extends Viewmodel {
   Future<void> loadAvailableRoles();
   Future<void> createUser(UserProfile user);
   Future<void> updateUser(UserProfile user);
-  Future<void> deleteUser(String id);
+  Future<bool> deleteUser(String id);
   Future<Address?> getAddressByCep(String cep);
 
   // RBAC
@@ -98,7 +98,7 @@ class UsersViewmodel extends Viewmodel implements IUsersViewmodel {
   }
 
   @override
-  Future<void> deleteUser(String id) async {
+  Future<bool> deleteUser(String id) async {
     setLoading(true);
     setError(null);
     try {
@@ -106,11 +106,15 @@ class UsersViewmodel extends Viewmodel implements IUsersViewmodel {
       if (success) {
         _users.removeWhere((c) => c.id.toString() == id);
         notifyListeners();
+        return true;
       }
+      return false;
     } on AppException catch (e) {
       setError(e.message);
+      return false;
     } catch (e) {
       setError('Falha ao remover usuário.');
+      return false;
     } finally {
       setLoading(false);
     }

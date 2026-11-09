@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 abstract class IViewmodel extends ChangeNotifier {
   bool get isLoading;
   String? get error;
+  bool get autoDispose => true;
   void setLoading(bool loading);
   void setError(String? error);
   void clearError();
@@ -11,6 +12,9 @@ abstract class IViewmodel extends ChangeNotifier {
 abstract class Viewmodel extends ChangeNotifier implements IViewmodel {
   bool _isLoading = false;
   String? _error;
+
+  @override
+  bool get autoDispose => true;
 
   @override
   bool get isLoading => _isLoading;

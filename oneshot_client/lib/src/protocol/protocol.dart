@@ -29,6 +29,8 @@ import 'package:oneshot_client/src/protocol/company/range_visit.dart'
 import 'package:oneshot_client/src/protocol/finance/bank.dart' as _iu4e25gm;
 import 'package:oneshot_client/src/protocol/finance/bank_account.dart'
     as _i0k9g66j;
+import 'package:oneshot_client/src/protocol/finance/bank_transaction.dart'
+    as _iqnq12ma;
 import 'package:oneshot_client/src/protocol/finance/financial_entry.dart'
     as _i73s6949;
 import 'package:oneshot_client/src/protocol/finance/invoice.dart' as _ipuzw8nn;
@@ -101,9 +103,11 @@ import 'enums/user_type.enum.dart' as _i6i91bhn;
 import 'finance/asaas_webhook_event.dart' as _i268wbv5;
 import 'finance/bank.dart' as _i7csfp3a;
 import 'finance/bank_account.dart' as _i1qq6iwp;
+import 'finance/bank_transaction.dart' as _iolz591p;
 import 'finance/financial_entry.dart' as _irygpv1g;
 import 'finance/invoice.dart' as _ivdiuwq4;
 import 'finance/invoice_item.dart' as _izi6zi6k;
+import 'finance/ofx_preview_result.dart' as _injcfonc;
 import 'finance/payment.dart' as _i3em9ox0;
 import 'greeting.dart' as _ig8bxnp5;
 import 'gunsmith/gunsmith.dart' as _i1xnjo88;
@@ -160,9 +164,11 @@ export 'enums/user_type.enum.dart';
 export 'finance/asaas_webhook_event.dart';
 export 'finance/bank.dart';
 export 'finance/bank_account.dart';
+export 'finance/bank_transaction.dart';
 export 'finance/financial_entry.dart';
 export 'finance/invoice.dart';
 export 'finance/invoice_item.dart';
+export 'finance/ofx_preview_result.dart';
 export 'finance/payment.dart';
 export 'greeting.dart';
 export 'gunsmith/gunsmith.dart';
@@ -234,9 +240,11 @@ class Protocol extends _isc.SerializationManager
           _isc.getType<_i268wbv5.AsaasWebhookEvent>,
           _isc.getType<_i7csfp3a.Bank>,
           _isc.getType<_i1qq6iwp.BankAccount>,
+          _isc.getType<_iolz591p.BankTransaction>,
           _isc.getType<_irygpv1g.FinancialEntry>,
           _isc.getType<_ivdiuwq4.Invoice>,
           _isc.getType<_izi6zi6k.InvoiceItem>,
+          _isc.getType<_injcfonc.OfxPreviewResult>,
           _isc.getType<_i3em9ox0.Payment>,
           _isc.getType<_ig8bxnp5.Greeting>,
           _isc.getType<_i1xnjo88.Gunsmith>,
@@ -293,9 +301,11 @@ class Protocol extends _isc.SerializationManager
           _isc.getType<_i268wbv5.AsaasWebhookEvent?>,
           _isc.getType<_i7csfp3a.Bank?>,
           _isc.getType<_i1qq6iwp.BankAccount?>,
+          _isc.getType<_iolz591p.BankTransaction?>,
           _isc.getType<_irygpv1g.FinancialEntry?>,
           _isc.getType<_ivdiuwq4.Invoice?>,
           _isc.getType<_izi6zi6k.InvoiceItem?>,
+          _isc.getType<_injcfonc.OfxPreviewResult?>,
           _isc.getType<_i3em9ox0.Payment?>,
           _isc.getType<_ig8bxnp5.Greeting?>,
           _isc.getType<_i1xnjo88.Gunsmith?>,
@@ -314,9 +324,11 @@ class Protocol extends _isc.SerializationManager
           _isc.getType<List<String>?>,
           _isc.getType<List<_i6i91bhn.UserType>>,
           _isc.getType<List<_i6i91bhn.UserType>?>,
+          _isc.getType<List<_iolz591p.BankTransaction>>,
           _isc.getType<List<_i5j6rswi.Accessory>>,
           _isc.getType<List<_ig3cbd8p.AmmunitionStock>>,
           _isc.getType<List<_i0k9g66j.BankAccount>>,
+          _isc.getType<List<_iqnq12ma.BankTransaction>>,
           _isc.getType<List<_iu4e25gm.Bank>>,
           _isc.getType<List<_i3sd1a32.Company>>,
           _isc.getType<List<_id04q892.Membership>>,
@@ -390,9 +402,11 @@ class Protocol extends _isc.SerializationManager
           'AsaasWebhookEvent',
           'Bank',
           'BankAccount',
+          'BankTransaction',
           'FinancialEntry',
           'Invoice',
           'InvoiceItem',
+          'OfxPreviewResult',
           'Payment',
           'Greeting',
           'Gunsmith',
@@ -557,6 +571,9 @@ class Protocol extends _isc.SerializationManager
     if (t == _i1qq6iwp.BankAccount) {
       return _i1qq6iwp.BankAccount.fromJson(data) as T;
     }
+    if (t == _iolz591p.BankTransaction) {
+      return _iolz591p.BankTransaction.fromJson(data) as T;
+    }
     if (t == _irygpv1g.FinancialEntry) {
       return _irygpv1g.FinancialEntry.fromJson(data) as T;
     }
@@ -565,6 +582,9 @@ class Protocol extends _isc.SerializationManager
     }
     if (t == _izi6zi6k.InvoiceItem) {
       return _izi6zi6k.InvoiceItem.fromJson(data) as T;
+    }
+    if (t == _injcfonc.OfxPreviewResult) {
+      return _injcfonc.OfxPreviewResult.fromJson(data) as T;
     }
     if (t == _i3em9ox0.Payment) {
       return _i3em9ox0.Payment.fromJson(data) as T;
@@ -752,6 +772,10 @@ class Protocol extends _isc.SerializationManager
     if (t == _isc.getType<_i1qq6iwp.BankAccount?>()) {
       return (data != null ? _i1qq6iwp.BankAccount.fromJson(data) : null) as T;
     }
+    if (t == _isc.getType<_iolz591p.BankTransaction?>()) {
+      return (data != null ? _iolz591p.BankTransaction.fromJson(data) : null)
+          as T;
+    }
     if (t == _isc.getType<_irygpv1g.FinancialEntry?>()) {
       return (data != null ? _irygpv1g.FinancialEntry.fromJson(data) : null)
           as T;
@@ -761,6 +785,10 @@ class Protocol extends _isc.SerializationManager
     }
     if (t == _isc.getType<_izi6zi6k.InvoiceItem?>()) {
       return (data != null ? _izi6zi6k.InvoiceItem.fromJson(data) : null) as T;
+    }
+    if (t == _isc.getType<_injcfonc.OfxPreviewResult?>()) {
+      return (data != null ? _injcfonc.OfxPreviewResult.fromJson(data) : null)
+          as T;
     }
     if (t == _isc.getType<_i3em9ox0.Payment?>()) {
       return (data != null ? _i3em9ox0.Payment.fromJson(data) : null) as T;
@@ -832,6 +860,12 @@ class Protocol extends _isc.SerializationManager
               : null)
           as T;
     }
+    if (t == List<_iolz591p.BankTransaction>) {
+      return (data as List)
+              .map((e) => deserialize<_iolz591p.BankTransaction>(e))
+              .toList()
+          as T;
+    }
     if (t == List<_i5j6rswi.Accessory>) {
       return (data as List)
               .map((e) => deserialize<_i5j6rswi.Accessory>(e))
@@ -847,6 +881,12 @@ class Protocol extends _isc.SerializationManager
     if (t == List<_i0k9g66j.BankAccount>) {
       return (data as List)
               .map((e) => deserialize<_i0k9g66j.BankAccount>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_iqnq12ma.BankTransaction>) {
+      return (data as List)
+              .map((e) => deserialize<_iqnq12ma.BankTransaction>(e))
               .toList()
           as T;
     }
@@ -1067,9 +1107,11 @@ class Protocol extends _isc.SerializationManager
       _i268wbv5.AsaasWebhookEvent => 'AsaasWebhookEvent',
       _i7csfp3a.Bank => 'Bank',
       _i1qq6iwp.BankAccount => 'BankAccount',
+      _iolz591p.BankTransaction => 'BankTransaction',
       _irygpv1g.FinancialEntry => 'FinancialEntry',
       _ivdiuwq4.Invoice => 'Invoice',
       _izi6zi6k.InvoiceItem => 'InvoiceItem',
+      _injcfonc.OfxPreviewResult => 'OfxPreviewResult',
       _i3em9ox0.Payment => 'Payment',
       _ig8bxnp5.Greeting => 'Greeting',
       _i1xnjo88.Gunsmith => 'Gunsmith',
@@ -1182,12 +1224,16 @@ class Protocol extends _isc.SerializationManager
         return 'Bank';
       case _i1qq6iwp.BankAccount():
         return 'BankAccount';
+      case _iolz591p.BankTransaction():
+        return 'BankTransaction';
       case _irygpv1g.FinancialEntry():
         return 'FinancialEntry';
       case _ivdiuwq4.Invoice():
         return 'Invoice';
       case _izi6zi6k.InvoiceItem():
         return 'InvoiceItem';
+      case _injcfonc.OfxPreviewResult():
+        return 'OfxPreviewResult';
       case _i3em9ox0.Payment():
         return 'Payment';
       case _ig8bxnp5.Greeting():
@@ -1356,6 +1402,9 @@ class Protocol extends _isc.SerializationManager
     if (dataClassName == 'BankAccount') {
       return deserialize<_i1qq6iwp.BankAccount>(data['data']);
     }
+    if (dataClassName == 'BankTransaction') {
+      return deserialize<_iolz591p.BankTransaction>(data['data']);
+    }
     if (dataClassName == 'FinancialEntry') {
       return deserialize<_irygpv1g.FinancialEntry>(data['data']);
     }
@@ -1364,6 +1413,9 @@ class Protocol extends _isc.SerializationManager
     }
     if (dataClassName == 'InvoiceItem') {
       return deserialize<_izi6zi6k.InvoiceItem>(data['data']);
+    }
+    if (dataClassName == 'OfxPreviewResult') {
+      return deserialize<_injcfonc.OfxPreviewResult>(data['data']);
     }
     if (dataClassName == 'Payment') {
       return deserialize<_i3em9ox0.Payment>(data['data']);

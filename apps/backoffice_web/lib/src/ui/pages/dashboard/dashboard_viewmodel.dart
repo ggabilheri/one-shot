@@ -9,6 +9,9 @@ abstract class IDashboardViewModel extends IViewmodel {
 }
 
 class DashboardViewModel extends Viewmodel implements IDashboardViewModel {
+  @override
+  bool get autoDispose => false;
+
   bool _isSidebarCollapsed = false;
   DashboardPageType _currentPage = DashboardPageType.summary;
 

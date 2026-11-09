@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import 'package:backoffice_web/src/ui/widgets/ds_tokens.dart';
+import 'package:backoffice_web/src/ui/widgets/ds_dropdown.dart';
 import 'package:backoffice_web/src/core/extensions/enum_translations.dart';
 
 class SubscriptionPlanFormDialog extends StatefulWidget {
@@ -95,41 +96,31 @@ class _SubscriptionPlanFormDialogState
                 children: [
                   Expanded(
                     flex: 1,
-                    child: DropdownButtonFormField<PlanType>(
-                      initialValue: _selectedType,
-                      decoration: const InputDecoration(labelText: 'TIPO'),
-                      items: PlanType.values
-                          .map(
-                            (t) => DropdownMenuItem(
-                              value: t,
-                              child: Text(t.label),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (v) => setState(() => _selectedType = v!),
+                    child: DSDropdown<PlanType>.fromValues(
+                      label: 'TIPO',
+                      value: _selectedType,
+                      values: PlanType.values,
+                      labelBuilder: (t) => t.label,
+                      onChanged: (v) {
+                        if (v != null) setState(() => _selectedType = v);
+                      },
                     ),
                   ),
                   const SizedBox(width: DSTokens.spacingMd),
                   Expanded(
                     flex: 1,
-                    child: DropdownButtonFormField<PlanPeriodicity>(
-                      initialValue: _selectedPeriodicity,
-                      decoration: const InputDecoration(
-                        labelText: 'PERIODICIDADE',
-                      ),
-                      items: PlanPeriodicity.values
-                          .map(
-                            (p) => DropdownMenuItem(
-                              value: p,
-                              child: Text(p.label),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (v) =>
-                          setState(() => _selectedPeriodicity = v!),
+                    child: DSDropdown<PlanPeriodicity>.fromValues(
+                      label: 'PERIODICIDADE',
+                      value: _selectedPeriodicity,
+                      values: PlanPeriodicity.values,
+                      labelBuilder: (p) => p.label,
+                      onChanged: (v) {
+                        if (v != null) {
+                          setState(() => _selectedPeriodicity = v);
+                        }
+                      },
                     ),
                   ),
-                  // const Expanded(flex: 2, child: SizedBox()),
                 ],
               ),
               const SizedBox(height: DSTokens.spacingMd),
@@ -161,18 +152,14 @@ class _SubscriptionPlanFormDialogState
                   const SizedBox(width: DSTokens.spacingLg),
                   Expanded(
                     flex: 1,
-                    child: DropdownButtonFormField<PlanStatus>(
-                      initialValue: _selectedStatus,
-                      decoration: const InputDecoration(labelText: 'STATUS'),
-                      items: PlanStatus.values
-                          .map(
-                            (s) => DropdownMenuItem(
-                              value: s,
-                              child: Text(s.label),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (v) => setState(() => _selectedStatus = v!),
+                    child: DSDropdown<PlanStatus>.fromValues(
+                      label: 'STATUS',
+                      value: _selectedStatus,
+                      values: PlanStatus.values,
+                      labelBuilder: (s) => s.label,
+                      onChanged: (v) {
+                        if (v != null) setState(() => _selectedStatus = v);
+                      },
                     ),
                   ),
                 ],

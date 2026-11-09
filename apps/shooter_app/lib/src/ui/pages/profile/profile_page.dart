@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oneshot_client/oneshot_client.dart';
 import '../../../core/viewmodel_state.dart';
-import '../../../core/utils/i18n.dart';
+import '../../../core/utils/l10n_extension.dart';
 import '../../widgets/ds_button.dart';
 import '../../widgets/ds_text_field.dart';
 import '../../widgets/ds_tokens.dart';
@@ -71,7 +71,7 @@ class _ProfilePageState extends ViewmodelState<ProfilePage, IProfileViewmodel>
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          "profile.title".tr().toUpperCase(),
+          context.l10n.profileTitle.toUpperCase(),
           style: DSTokens.headline.copyWith(fontSize: 18, letterSpacing: 1.2),
         ),
       ),
@@ -84,7 +84,7 @@ class _ProfilePageState extends ViewmodelState<ProfilePage, IProfileViewmodel>
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "DADOS PESSOAIS".toUpperCase(),
+                  context.l10n.profilePersonalData.toUpperCase(),
                   style: DSTokens.label.copyWith(
                     color: DSTokens.primary,
                     fontWeight: FontWeight.bold,
@@ -93,17 +93,17 @@ class _ProfilePageState extends ViewmodelState<ProfilePage, IProfileViewmodel>
                 ),
                 const SizedBox(height: 24),
                 DSTextField(
-                  label: "profile.name".tr(),
-                  placeholder: "Seu nome completo",
+                  label: context.l10n.profileName,
+                  placeholder: context.l10n.profileNamePlaceholder,
                   controller: _nameController,
-                  validator: (v) => v!.isEmpty ? "common.error".tr() : null,
+                  validator: (v) => v!.isEmpty ? context.l10n.commonError : null,
                 ),
                 const SizedBox(height: 16),
                 Row(
                   children: [
                     Expanded(
                       child: DSTextField(
-                        label: "profile.cpf".tr(),
+                        label: context.l10n.profileCpf,
                         placeholder: "000.000.000-00",
                         controller: _cpfController,
                       ),
@@ -111,7 +111,7 @@ class _ProfilePageState extends ViewmodelState<ProfilePage, IProfileViewmodel>
                     const SizedBox(width: 16),
                     Expanded(
                       child: DSTextField(
-                        label: "profile.rg".tr(),
+                        label: context.l10n.profileRg,
                         placeholder: "00.000.000-0",
                         controller: _rgController,
                       ),
@@ -120,7 +120,7 @@ class _ProfilePageState extends ViewmodelState<ProfilePage, IProfileViewmodel>
                 ),
                 const SizedBox(height: 32),
                 Text(
-                  "CONTATO".toUpperCase(),
+                  context.l10n.profileContact.toUpperCase(),
                   style: DSTokens.label.copyWith(
                     color: DSTokens.primary,
                     fontWeight: FontWeight.bold,
@@ -129,21 +129,21 @@ class _ProfilePageState extends ViewmodelState<ProfilePage, IProfileViewmodel>
                 ),
                 const SizedBox(height: 24),
                 DSTextField(
-                  label: "profile.phone".tr(),
+                  label: context.l10n.profilePhone,
                   placeholder: "(00) 00000-0000",
                   controller: _phoneController,
                   keyboardType: TextInputType.phone,
                 ),
                 const SizedBox(height: 16),
                 DSTextField(
-                  label: "profile.email".tr(),
+                  label: context.l10n.profileEmail,
                   placeholder: "email@exemplo.com",
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 40),
                 DSButton(
-                  label: "common.save".tr(),
+                  label: context.l10n.commonSave,
                   onPressed: _save,
                   isLoading: load,
                 ),

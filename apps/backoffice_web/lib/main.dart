@@ -7,6 +7,7 @@ import 'package:backoffice_web/src/injections/viewmodel_injections.dart';
 import 'package:backoffice_web/src/injections/services_injections.dart';
 import 'package:backoffice_web/src/injections/repositories_injections.dart';
 import 'package:backoffice_web/src/routes/app_routes.dart';
+import 'package:backoffice_web/l10n/app_localizations.dart';
 
 // ignore: avoid_global_state
 late final Client client;
@@ -45,6 +46,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'OneShot BackOffice',
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
         brightness: Brightness.dark,
         scaffoldBackgroundColor: const Color(0xFF121416),

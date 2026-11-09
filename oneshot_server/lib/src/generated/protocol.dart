@@ -30,6 +30,8 @@ import 'package:oneshot_server/src/generated/company/range_visit.dart'
 import 'package:oneshot_server/src/generated/finance/bank.dart' as _ij8k7xum;
 import 'package:oneshot_server/src/generated/finance/bank_account.dart'
     as _ix4lc03l;
+import 'package:oneshot_server/src/generated/finance/bank_transaction.dart'
+    as _iktxc6zh;
 import 'package:oneshot_server/src/generated/finance/financial_entry.dart'
     as _ibsfr7x7;
 import 'package:oneshot_server/src/generated/finance/invoice.dart' as _i30q017a;
@@ -104,9 +106,11 @@ import 'enums/user_type.enum.dart' as _i6i91bhn;
 import 'finance/asaas_webhook_event.dart' as _i268wbv5;
 import 'finance/bank.dart' as _i7csfp3a;
 import 'finance/bank_account.dart' as _i1qq6iwp;
+import 'finance/bank_transaction.dart' as _iolz591p;
 import 'finance/financial_entry.dart' as _irygpv1g;
 import 'finance/invoice.dart' as _ivdiuwq4;
 import 'finance/invoice_item.dart' as _izi6zi6k;
+import 'finance/ofx_preview_result.dart' as _injcfonc;
 import 'finance/payment.dart' as _i3em9ox0;
 import 'greeting.dart' as _ig8bxnp5;
 import 'gunsmith/gunsmith.dart' as _i1xnjo88;
@@ -163,9 +167,11 @@ export 'enums/user_type.enum.dart';
 export 'finance/asaas_webhook_event.dart';
 export 'finance/bank.dart';
 export 'finance/bank_account.dart';
+export 'finance/bank_transaction.dart';
 export 'finance/financial_entry.dart';
 export 'finance/invoice.dart';
 export 'finance/invoice_item.dart';
+export 'finance/ofx_preview_result.dart';
 export 'finance/payment.dart';
 export 'greeting.dart';
 export 'gunsmith/gunsmith.dart';
@@ -236,9 +242,11 @@ class Protocol extends _is.DatabaseSerializationManager
           _is.getType<_i268wbv5.AsaasWebhookEvent>,
           _is.getType<_i7csfp3a.Bank>,
           _is.getType<_i1qq6iwp.BankAccount>,
+          _is.getType<_iolz591p.BankTransaction>,
           _is.getType<_irygpv1g.FinancialEntry>,
           _is.getType<_ivdiuwq4.Invoice>,
           _is.getType<_izi6zi6k.InvoiceItem>,
+          _is.getType<_injcfonc.OfxPreviewResult>,
           _is.getType<_i3em9ox0.Payment>,
           _is.getType<_ig8bxnp5.Greeting>,
           _is.getType<_i1xnjo88.Gunsmith>,
@@ -295,9 +303,11 @@ class Protocol extends _is.DatabaseSerializationManager
           _is.getType<_i268wbv5.AsaasWebhookEvent?>,
           _is.getType<_i7csfp3a.Bank?>,
           _is.getType<_i1qq6iwp.BankAccount?>,
+          _is.getType<_iolz591p.BankTransaction?>,
           _is.getType<_irygpv1g.FinancialEntry?>,
           _is.getType<_ivdiuwq4.Invoice?>,
           _is.getType<_izi6zi6k.InvoiceItem?>,
+          _is.getType<_injcfonc.OfxPreviewResult?>,
           _is.getType<_i3em9ox0.Payment?>,
           _is.getType<_ig8bxnp5.Greeting?>,
           _is.getType<_i1xnjo88.Gunsmith?>,
@@ -316,9 +326,11 @@ class Protocol extends _is.DatabaseSerializationManager
           _is.getType<List<String>?>,
           _is.getType<List<_i6i91bhn.UserType>>,
           _is.getType<List<_i6i91bhn.UserType>?>,
+          _is.getType<List<_iolz591p.BankTransaction>>,
           _is.getType<List<_ieqpa344.Accessory>>,
           _is.getType<List<_iznitra9.AmmunitionStock>>,
           _is.getType<List<_ix4lc03l.BankAccount>>,
+          _is.getType<List<_iktxc6zh.BankTransaction>>,
           _is.getType<List<_ij8k7xum.Bank>>,
           _is.getType<List<_ic0khr1u.Company>>,
           _is.getType<List<_i1s6ob71.Membership>>,
@@ -392,9 +404,11 @@ class Protocol extends _is.DatabaseSerializationManager
           'AsaasWebhookEvent',
           'Bank',
           'BankAccount',
+          'BankTransaction',
           'FinancialEntry',
           'Invoice',
           'InvoiceItem',
+          'OfxPreviewResult',
           'Payment',
           'Greeting',
           'Gunsmith',
@@ -1077,6 +1091,130 @@ class Protocol extends _is.DatabaseSerializationManager
             _isp.IndexElementDefinition(
               type: _isp.IndexElementDefinitionType.column,
               definition: 'status',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
+          isPrimary: false,
+        ),
+      ],
+      managed: true,
+    ),
+    _isp.TableDefinition(
+      name: 'bank_transactions',
+      dartName: 'BankTransaction',
+      schema: 'public',
+      module: 'oneshot',
+      columns: [
+        _isp.ColumnDefinition(
+          name: 'id',
+          columnType: _isp.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue',
+          columnDefault: 'random',
+        ),
+        _isp.ColumnDefinition(
+          name: 'bankAccountId',
+          columnType: _isp.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue',
+        ),
+        _isp.ColumnDefinition(
+          name: 'fitId',
+          columnType: _isp.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+        _isp.ColumnDefinition(
+          name: 'transactionType',
+          columnType: _isp.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+        _isp.ColumnDefinition(
+          name: 'date',
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
+          isNullable: false,
+          dartType: 'DateTime',
+        ),
+        _isp.ColumnDefinition(
+          name: 'amount',
+          columnType: _isp.ColumnType.doublePrecision,
+          isNullable: false,
+          dartType: 'double',
+        ),
+        _isp.ColumnDefinition(
+          name: 'memo',
+          columnType: _isp.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _isp.ColumnDefinition(
+          name: 'financialEntryId',
+          columnType: _isp.ColumnType.uuid,
+          isNullable: true,
+          dartType: 'UuidValue?',
+        ),
+        _isp.ColumnDefinition(
+          name: 'isReconciled',
+          columnType: _isp.ColumnType.boolean,
+          isNullable: false,
+          dartType: 'bool',
+        ),
+        _isp.ColumnDefinition(
+          name: 'reconciledAt',
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
+        ),
+      ],
+      foreignKeys: [
+        _isp.ForeignKeyDefinition(
+          constraintName: 'bank_transactions_fk_0',
+          columns: ['bankAccountId'],
+          referenceTable: 'bank_accounts',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
+          matchType: null,
+        ),
+        _isp.ForeignKeyDefinition(
+          constraintName: 'bank_transactions_fk_1',
+          columns: ['financialEntryId'],
+          referenceTable: 'financial_entries',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _isp.ForeignKeyAction.noAction,
+          onDelete: _isp.ForeignKeyAction.noAction,
+          matchType: null,
+        ),
+      ],
+      indexes: [
+        _isp.IndexDefinition(
+          indexName: 'bank_transaction_fitid_account_idx',
+          tableSpace: null,
+          elements: [
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
+              definition: 'bankAccountId',
+            ),
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
+              definition: 'fitId',
+            ),
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: false,
+        ),
+        _isp.IndexDefinition(
+          indexName: 'bank_transaction_account_idx',
+          tableSpace: null,
+          elements: [
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
+              definition: 'bankAccountId',
             ),
           ],
           type: 'btree',
@@ -4307,6 +4445,9 @@ class Protocol extends _is.DatabaseSerializationManager
     if (t == _i1qq6iwp.BankAccount) {
       return _i1qq6iwp.BankAccount.fromJson(data) as T;
     }
+    if (t == _iolz591p.BankTransaction) {
+      return _iolz591p.BankTransaction.fromJson(data) as T;
+    }
     if (t == _irygpv1g.FinancialEntry) {
       return _irygpv1g.FinancialEntry.fromJson(data) as T;
     }
@@ -4315,6 +4456,9 @@ class Protocol extends _is.DatabaseSerializationManager
     }
     if (t == _izi6zi6k.InvoiceItem) {
       return _izi6zi6k.InvoiceItem.fromJson(data) as T;
+    }
+    if (t == _injcfonc.OfxPreviewResult) {
+      return _injcfonc.OfxPreviewResult.fromJson(data) as T;
     }
     if (t == _i3em9ox0.Payment) {
       return _i3em9ox0.Payment.fromJson(data) as T;
@@ -4502,6 +4646,10 @@ class Protocol extends _is.DatabaseSerializationManager
     if (t == _is.getType<_i1qq6iwp.BankAccount?>()) {
       return (data != null ? _i1qq6iwp.BankAccount.fromJson(data) : null) as T;
     }
+    if (t == _is.getType<_iolz591p.BankTransaction?>()) {
+      return (data != null ? _iolz591p.BankTransaction.fromJson(data) : null)
+          as T;
+    }
     if (t == _is.getType<_irygpv1g.FinancialEntry?>()) {
       return (data != null ? _irygpv1g.FinancialEntry.fromJson(data) : null)
           as T;
@@ -4511,6 +4659,10 @@ class Protocol extends _is.DatabaseSerializationManager
     }
     if (t == _is.getType<_izi6zi6k.InvoiceItem?>()) {
       return (data != null ? _izi6zi6k.InvoiceItem.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_injcfonc.OfxPreviewResult?>()) {
+      return (data != null ? _injcfonc.OfxPreviewResult.fromJson(data) : null)
+          as T;
     }
     if (t == _is.getType<_i3em9ox0.Payment?>()) {
       return (data != null ? _i3em9ox0.Payment.fromJson(data) : null) as T;
@@ -4582,6 +4734,12 @@ class Protocol extends _is.DatabaseSerializationManager
               : null)
           as T;
     }
+    if (t == List<_iolz591p.BankTransaction>) {
+      return (data as List)
+              .map((e) => deserialize<_iolz591p.BankTransaction>(e))
+              .toList()
+          as T;
+    }
     if (t == List<_ieqpa344.Accessory>) {
       return (data as List)
               .map((e) => deserialize<_ieqpa344.Accessory>(e))
@@ -4597,6 +4755,12 @@ class Protocol extends _is.DatabaseSerializationManager
     if (t == List<_ix4lc03l.BankAccount>) {
       return (data as List)
               .map((e) => deserialize<_ix4lc03l.BankAccount>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_iktxc6zh.BankTransaction>) {
+      return (data as List)
+              .map((e) => deserialize<_iktxc6zh.BankTransaction>(e))
               .toList()
           as T;
     }
@@ -4817,9 +4981,11 @@ class Protocol extends _is.DatabaseSerializationManager
       _i268wbv5.AsaasWebhookEvent => 'AsaasWebhookEvent',
       _i7csfp3a.Bank => 'Bank',
       _i1qq6iwp.BankAccount => 'BankAccount',
+      _iolz591p.BankTransaction => 'BankTransaction',
       _irygpv1g.FinancialEntry => 'FinancialEntry',
       _ivdiuwq4.Invoice => 'Invoice',
       _izi6zi6k.InvoiceItem => 'InvoiceItem',
+      _injcfonc.OfxPreviewResult => 'OfxPreviewResult',
       _i3em9ox0.Payment => 'Payment',
       _ig8bxnp5.Greeting => 'Greeting',
       _i1xnjo88.Gunsmith => 'Gunsmith',
@@ -4932,12 +5098,16 @@ class Protocol extends _is.DatabaseSerializationManager
         return 'Bank';
       case _i1qq6iwp.BankAccount():
         return 'BankAccount';
+      case _iolz591p.BankTransaction():
+        return 'BankTransaction';
       case _irygpv1g.FinancialEntry():
         return 'FinancialEntry';
       case _ivdiuwq4.Invoice():
         return 'Invoice';
       case _izi6zi6k.InvoiceItem():
         return 'InvoiceItem';
+      case _injcfonc.OfxPreviewResult():
+        return 'OfxPreviewResult';
       case _i3em9ox0.Payment():
         return 'Payment';
       case _ig8bxnp5.Greeting():
@@ -5110,6 +5280,9 @@ class Protocol extends _is.DatabaseSerializationManager
     if (dataClassName == 'BankAccount') {
       return deserialize<_i1qq6iwp.BankAccount>(data['data']);
     }
+    if (dataClassName == 'BankTransaction') {
+      return deserialize<_iolz591p.BankTransaction>(data['data']);
+    }
     if (dataClassName == 'FinancialEntry') {
       return deserialize<_irygpv1g.FinancialEntry>(data['data']);
     }
@@ -5118,6 +5291,9 @@ class Protocol extends _is.DatabaseSerializationManager
     }
     if (dataClassName == 'InvoiceItem') {
       return deserialize<_izi6zi6k.InvoiceItem>(data['data']);
+    }
+    if (dataClassName == 'OfxPreviewResult') {
+      return deserialize<_injcfonc.OfxPreviewResult>(data['data']);
     }
     if (dataClassName == 'Payment') {
       return deserialize<_i3em9ox0.Payment>(data['data']);
@@ -5221,6 +5397,8 @@ class Protocol extends _is.DatabaseSerializationManager
         return _i268wbv5.AsaasWebhookEvent.t;
       case _i1qq6iwp.BankAccount:
         return _i1qq6iwp.BankAccount.t;
+      case _iolz591p.BankTransaction:
+        return _iolz591p.BankTransaction.t;
       case _irygpv1g.FinancialEntry:
         return _irygpv1g.FinancialEntry.t;
       case _ivdiuwq4.Invoice:

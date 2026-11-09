@@ -46,11 +46,15 @@ import 'package:oneshot_client/src/protocol/enums/platform_app.enum.dart'
 import 'package:oneshot_client/src/protocol/finance/bank.dart' as _iu4e25gm;
 import 'package:oneshot_client/src/protocol/finance/bank_account.dart'
     as _i0k9g66j;
+import 'package:oneshot_client/src/protocol/finance/bank_transaction.dart'
+    as _iqnq12ma;
 import 'package:oneshot_client/src/protocol/finance/financial_entry.dart'
     as _i73s6949;
 import 'package:oneshot_client/src/protocol/finance/invoice.dart' as _ipuzw8nn;
 import 'package:oneshot_client/src/protocol/finance/invoice_item.dart'
     as _iakdg9xr;
+import 'package:oneshot_client/src/protocol/finance/ofx_preview_result.dart'
+    as _ifdplsk6;
 import 'package:oneshot_client/src/protocol/finance/payment.dart' as _ie2ol2q9;
 import 'package:oneshot_client/src/protocol/greeting.dart' as _igq4abt2;
 import 'package:oneshot_client/src/protocol/gunsmith/gunsmith.dart'
@@ -209,6 +213,78 @@ class EndpointBankAccount extends _isc.EndpointRef {
       'limit': limit,
       'offset': offset,
     },
+  );
+}
+
+/// {@category Endpoint}
+class EndpointBankTransaction extends _isc.EndpointRef {
+  EndpointBankTransaction(_isc.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'bankTransaction';
+
+  /// Gera a prévia da importação do arquivo OFX para a conta bancária.
+  _ida.Future<_ifdplsk6.OfxPreviewResult> previewOfx(
+    _isc.UuidValue bankAccountId,
+    String ofxContent,
+  ) => caller.callServerEndpoint<_ifdplsk6.OfxPreviewResult>(
+    'bankTransaction',
+    'previewOfx',
+    {'bankAccountId': bankAccountId, 'ofxContent': ofxContent},
+  );
+
+  /// Importa transações de extrato bancário persistindo apenas registros novos.
+  _ida.Future<List<_iqnq12ma.BankTransaction>> importOfx(
+    _isc.UuidValue bankAccountId,
+    String ofxContent,
+  ) => caller.callServerEndpoint<List<_iqnq12ma.BankTransaction>>(
+    'bankTransaction',
+    'importOfx',
+    {'bankAccountId': bankAccountId, 'ofxContent': ofxContent},
+  );
+
+  /// Lista movimentações da conta com suporte a filtros de conciliação, período e paginação.
+  _ida.Future<List<_iqnq12ma.BankTransaction>> listTransactions(
+    _isc.UuidValue bankAccountId, {
+    bool? isReconciled,
+    DateTime? startDate,
+    DateTime? endDate,
+    int? limit,
+    int? offset,
+  }) => caller.callServerEndpoint<List<_iqnq12ma.BankTransaction>>(
+    'bankTransaction',
+    'listTransactions',
+    {
+      'bankAccountId': bankAccountId,
+      'isReconciled': isReconciled,
+      'startDate': startDate,
+      'endDate': endDate,
+      'limit': limit,
+      'offset': offset,
+    },
+  );
+
+  /// Retorna o total de transações para cálculo de paginação.
+  _ida.Future<int> countTransactions(
+    _isc.UuidValue bankAccountId, {
+    bool? isReconciled,
+    DateTime? startDate,
+    DateTime? endDate,
+  }) => caller.callServerEndpoint<int>('bankTransaction', 'countTransactions', {
+    'bankAccountId': bankAccountId,
+    'isReconciled': isReconciled,
+    'startDate': startDate,
+    'endDate': endDate,
+  });
+
+  /// Realiza a conciliação atômica entre movimentação bancária e lançamento financeiro.
+  _ida.Future<_iqnq12ma.BankTransaction> reconcile(
+    _isc.UuidValue transactionId,
+    _isc.UuidValue financialEntryId,
+  ) => caller.callServerEndpoint<_iqnq12ma.BankTransaction>(
+    'bankTransaction',
+    'reconcile',
+    {'transactionId': transactionId, 'financialEntryId': financialEntryId},
   );
 }
 
@@ -1539,6 +1615,7 @@ class Client extends _isc.ServerpodClientShared {
     accessory = EndpointAccessory(this);
     ammunition = EndpointAmmunition(this);
     bankAccount = EndpointBankAccount(this);
+    bankTransaction = EndpointBankTransaction(this);
     brasilApiGateway = EndpointBrasilApiGateway(this);
     company = EndpointCompany(this);
     document = EndpointDocument(this);
@@ -1573,6 +1650,8 @@ class Client extends _isc.ServerpodClientShared {
   late final EndpointAmmunition ammunition;
 
   late final EndpointBankAccount bankAccount;
+
+  late final EndpointBankTransaction bankTransaction;
 
   late final EndpointBrasilApiGateway brasilApiGateway;
 
@@ -1633,6 +1712,7 @@ class Client extends _isc.ServerpodClientShared {
     'accessory': accessory,
     'ammunition': ammunition,
     'bankAccount': bankAccount,
+    'bankTransaction': bankTransaction,
     'brasilApiGateway': brasilApiGateway,
     'company': company,
     'document': document,

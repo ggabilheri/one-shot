@@ -73,6 +73,7 @@ import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i1n3uhu0;
 import '../endpoints/accessory_endpoint.dart' as _ixyw2gfy;
 import '../endpoints/ammunition_endpoint.dart' as _i2r3wky8;
 import '../endpoints/bank_account_endpoint.dart' as _ie1buk0y;
+import '../endpoints/bank_transaction_endpoint.dart' as _i2finge6;
 import '../endpoints/brasil_api_gateway_endpoint.dart' as _i4ytxbt0;
 import '../endpoints/company_endpoint.dart' as _i6ft4xg7;
 import '../endpoints/document_endpoint.dart' as _izig7zaw;
@@ -114,6 +115,8 @@ class Endpoints extends _is.EndpointDispatch {
         ..initialize(server, 'ammunition', null),
       'bankAccount': _ie1buk0y.BankAccountEndpoint()
         ..initialize(server, 'bankAccount', null),
+      'bankTransaction': _i2finge6.BankTransactionEndpoint()
+        ..initialize(server, 'bankTransaction', null),
       'brasilApiGateway': _i4ytxbt0.BrasilApiGatewayEndpoint()
         ..initialize(server, 'brasilApiGateway', null),
       'company': _i6ft4xg7.CompanyEndpoint()
@@ -410,6 +413,163 @@ class Endpoints extends _is.EndpointDispatch {
                     companyId: params['companyId'],
                     limit: params['limit'],
                     offset: params['offset'],
+                  ),
+        ),
+      },
+    );
+    connectors['bankTransaction'] = _is.EndpointConnector(
+      name: 'bankTransaction',
+      endpoint: endpoints['bankTransaction']!,
+      methodConnectors: {
+        'previewOfx': _is.MethodConnector(
+          name: 'previewOfx',
+          params: {
+            'bankAccountId': _is.ParameterDescription(
+              name: 'bankAccountId',
+              type: _is.getType<_is.UuidValue>(),
+              nullable: false,
+            ),
+            'ofxContent': _is.ParameterDescription(
+              name: 'ofxContent',
+              type: _is.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call: (_is.Session session, Map<String, dynamic> params) async =>
+              (endpoints['bankTransaction']
+                      as _i2finge6.BankTransactionEndpoint)
+                  .previewOfx(
+                    session,
+                    params['bankAccountId'],
+                    params['ofxContent'],
+                  ),
+        ),
+        'importOfx': _is.MethodConnector(
+          name: 'importOfx',
+          params: {
+            'bankAccountId': _is.ParameterDescription(
+              name: 'bankAccountId',
+              type: _is.getType<_is.UuidValue>(),
+              nullable: false,
+            ),
+            'ofxContent': _is.ParameterDescription(
+              name: 'ofxContent',
+              type: _is.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call: (_is.Session session, Map<String, dynamic> params) async =>
+              (endpoints['bankTransaction']
+                      as _i2finge6.BankTransactionEndpoint)
+                  .importOfx(
+                    session,
+                    params['bankAccountId'],
+                    params['ofxContent'],
+                  ),
+        ),
+        'listTransactions': _is.MethodConnector(
+          name: 'listTransactions',
+          params: {
+            'bankAccountId': _is.ParameterDescription(
+              name: 'bankAccountId',
+              type: _is.getType<_is.UuidValue>(),
+              nullable: false,
+            ),
+            'isReconciled': _is.ParameterDescription(
+              name: 'isReconciled',
+              type: _is.getType<bool?>(),
+              nullable: true,
+            ),
+            'startDate': _is.ParameterDescription(
+              name: 'startDate',
+              type: _is.getType<DateTime?>(),
+              nullable: true,
+            ),
+            'endDate': _is.ParameterDescription(
+              name: 'endDate',
+              type: _is.getType<DateTime?>(),
+              nullable: true,
+            ),
+            'limit': _is.ParameterDescription(
+              name: 'limit',
+              type: _is.getType<int?>(),
+              nullable: true,
+            ),
+            'offset': _is.ParameterDescription(
+              name: 'offset',
+              type: _is.getType<int?>(),
+              nullable: true,
+            ),
+          },
+          call: (_is.Session session, Map<String, dynamic> params) async =>
+              (endpoints['bankTransaction']
+                      as _i2finge6.BankTransactionEndpoint)
+                  .listTransactions(
+                    session,
+                    params['bankAccountId'],
+                    isReconciled: params['isReconciled'],
+                    startDate: params['startDate'],
+                    endDate: params['endDate'],
+                    limit: params['limit'],
+                    offset: params['offset'],
+                  ),
+        ),
+        'countTransactions': _is.MethodConnector(
+          name: 'countTransactions',
+          params: {
+            'bankAccountId': _is.ParameterDescription(
+              name: 'bankAccountId',
+              type: _is.getType<_is.UuidValue>(),
+              nullable: false,
+            ),
+            'isReconciled': _is.ParameterDescription(
+              name: 'isReconciled',
+              type: _is.getType<bool?>(),
+              nullable: true,
+            ),
+            'startDate': _is.ParameterDescription(
+              name: 'startDate',
+              type: _is.getType<DateTime?>(),
+              nullable: true,
+            ),
+            'endDate': _is.ParameterDescription(
+              name: 'endDate',
+              type: _is.getType<DateTime?>(),
+              nullable: true,
+            ),
+          },
+          call: (_is.Session session, Map<String, dynamic> params) async =>
+              (endpoints['bankTransaction']
+                      as _i2finge6.BankTransactionEndpoint)
+                  .countTransactions(
+                    session,
+                    params['bankAccountId'],
+                    isReconciled: params['isReconciled'],
+                    startDate: params['startDate'],
+                    endDate: params['endDate'],
+                  ),
+        ),
+        'reconcile': _is.MethodConnector(
+          name: 'reconcile',
+          params: {
+            'transactionId': _is.ParameterDescription(
+              name: 'transactionId',
+              type: _is.getType<_is.UuidValue>(),
+              nullable: false,
+            ),
+            'financialEntryId': _is.ParameterDescription(
+              name: 'financialEntryId',
+              type: _is.getType<_is.UuidValue>(),
+              nullable: false,
+            ),
+          },
+          call: (_is.Session session, Map<String, dynamic> params) async =>
+              (endpoints['bankTransaction']
+                      as _i2finge6.BankTransactionEndpoint)
+                  .reconcile(
+                    session,
+                    params['transactionId'],
+                    params['financialEntryId'],
                   ),
         ),
       },

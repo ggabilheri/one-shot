@@ -7,7 +7,7 @@ extension PlanTypeExt on PlanType {
     final n = name.toUpperCase();
     if (n == 'COMPANY' || n == 'CLUB') return 'Empresa Parceira';
     if (n == 'GUNSMITH') return 'Armeiro';
-    if (n == 'CAC') return 'CAC ()';
+    if (n == 'CAC') return 'CAC';
     return n;
   }
 }
